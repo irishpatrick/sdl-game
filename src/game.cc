@@ -1,0 +1,168 @@
+#include "game.h"
+
+Game::Game(SDL_Renderer* r): State(r)
+{
+
+}
+
+Game::~Game()
+{
+    
+}
+
+void Game::init()
+{
+    printf("loading assets\n");
+
+	std::string path = Config::assetpath();
+
+    assets.loadTexture(path + "med-background.png", renderer);
+    assets.loadTexture(path + "hero.png", renderer);
+    assets.loadTexture(path + "monster.png", renderer);
+	assets.loadTexture(path + "grass1.png", renderer);
+
+    camera.screen(Config::screenwidth(), Config::screenheight());
+    camera.setFocus(&hero);
+
+    hero.setTexture(assets.getTexture("hero.png"));
+    
+    hero.speed = 250.0f;
+    
+    monster.setTexture(assets.getTexture("monster.png"));
+    monster.pos(150, 150);
+
+    background.setTexture(assets.getTexture("med-background.png"));
+
+    stage.add(&background);
+    stage.add(&monster);
+    stage.add(&hero);
+
+    for (int i=0; i<500; i++)
+    {
+        Sprite* current = new Sprite();
+        current->x = rand() % Config::screenwidth();
+        current->y = rand() % Config::screenwidth();
+        current->solid = false;
+        current->setTexture(assets.getTexture("grass1.png"));
+        stage.add(current);
+        grass.push_back(current);
+    }
+
+    stage.setCamera(&camera);
+
+    assets.getFutures();
+
+	hero.queryTexture();
+	monster.queryTexture();
+	background.queryTexture();
+
+	hero.pos((Config::screenwidth() / 2) - (hero.w / 2), (Config::screenheight() / 2) - (hero.h / 2));
+
+    testroom.setassets(&assets);
+    testroom.init_from_json(path + "testroom.json");
+
+	groups_.setcamera(&camera);
+	groups_.setfocus(&hero);
+	groups_.addgroup("stage", &stage);
+	groups_.setactive("stage");
+
+    printf("done!\n");
+}
+
+void Game::update(float delta, const uint8_t* keys)
+{
+    bool w = keys[SDL_SCANCODE_W];
+    bool s = keys[SDL_SCANCODE_S];
+    bool a = keys[SDL_SCANCODE_A];
+    bool d = keys[SDL_SCANCODE_D];
+
+	//bool up = keys[SDL_SCANCODE_UP];
+	//bool down = keys[SDL_SCANCODE_DOWN];
+	//bool left = keys[SDL_SCANCODE_LEFT];
+	//bool right = keys[SDL_SCANCODE_RIGHT];
+
+    if ((w || s) && (a || d))
+    {
+        float v = sqrt(pow(hero.speed, 2) / 2.0);
+        hero.xvel = v;
+        hero.yvel = v;
+    }
+    else
+    {
+        hero.xvel = hero.speed;
+        hero.yvel = hero.speed;
+    }
+    
+    if (w)
+    {
+        hero.y -= hero.yvel * delta; 
+    }
+    if (s)
+    {
+        hero.y += hero.yvel * delta;
+    }
+    if (a)
+    {
+        hero.x -= hero.xvel * delta; 
+    }
+    if (d)
+    {
+        hero.x += hero.xvel * delta;
+    }
+
+    std::vector<Sprite*>::iterator it;
+    std::vector<Sprite*> list = stage.getSprites();
+    for (it = list.begin(); it != list.end(); it++)
+    {
+        Sprite* current = *it;
+        if (hero.getUUID() == current->getUUID())
+        {
+            continue;
+        }
+        if (background.getUUID() == current->getUUID())
+        {
+            continue;
+        }
+
+        const std::string result = Util::checkCollision(&hero, current);
+        if (result == "north")
+        {
+            hero.y += hero.yvel * delta;
+        }
+        if (result == "south")
+        {
+            hero.y -= hero.yvel * delta;
+        }
+        if (result == "east")
+        {
+            hero.x -= hero.xvel * delta;
+        }
+        if (result == "west")
+        {
+            hero.x += hero.xvel * delta;
+        }
+    }
+
+    Util::contain(&hero, &background);
+
+    camera.update(delta);
+
+    groups_.getactive()->sort();
+
+    //printf("%f,%f - %f,%f\n", hero.x, hero.y, background.x, background.y);
+    //printf("%x, %x, %x\n", hero.texture->use(), monster.texture->use(), background.texture->use());
+}
+
+void Game::render()
+{
+    groups_.getactive()->draw(renderer);
+}
+
+void Game::destroy()
+{
+    assets.destroy();
+    for (auto &e : grass)
+    {
+        delete e;
+    }
+}

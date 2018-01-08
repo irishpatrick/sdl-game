@@ -1,0 +1,16 @@
+{
+  "sprites": [
+    {
+      "name": "background",
+      "x": 0,
+      "y": 0,
+      "texture": "room-bg.png"
+    },
+    {
+      "name": "monster",
+      "x": 20,
+      "y": 20,
+      "texture": "monster.png"
+    }
+  ]
+}

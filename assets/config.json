@@ -1,0 +1,6 @@
+{
+  "hello": "world",
+  "screenWidth": 1024,
+  "screenHeight": 768,
+  "assetPath": "../assets/"
+}

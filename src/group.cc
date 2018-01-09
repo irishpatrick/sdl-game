@@ -11,7 +11,7 @@ Group::Group()
 
 Group::~Group()
 {
-
+    
 }
 
 void Group::init(SDL_Renderer* r)
@@ -45,10 +45,12 @@ void Group::init_from_json(const std::string& fn)
 
             // test initialize
             Sprite* temp = new Sprite();
+            temp->dynamic = true;
             temp->x = x;
             temp->y = y;
             temp->setTexture(assets_->getTexture(texture));
-            delete temp;
+            renderList.push_back(temp);
+            //delete temp;
 		}
 	}
 }
@@ -93,11 +95,15 @@ void Group::remove(Sprite* s)
 
 void Group::update(float delta)
 {
-    std::vector<Sprite*>::iterator it;
+    /*std::vector<Sprite*>::iterator it;
     for (it = renderList.begin(); it != renderList.end(); it++)
     {
         Sprite* current = *it;
         current->update(delta);
+    }*/
+    for (auto& e : renderList)
+    {
+        e->update(delta);
     }
 }
 
@@ -114,11 +120,15 @@ void Group::sort()
 
 void Group::draw(SDL_Renderer *r)
 {
-    std::vector<Sprite*>::iterator it;
+    /*std::vector<Sprite*>::iterator it;
     for (it = renderList.begin(); it != renderList.end(); it++)
     {
         Sprite* current = *it;
         current->draw(r);
+    }*/
+    for (auto& e : renderList)
+    {
+        e->draw(r);
     }
 }
 
@@ -129,5 +139,12 @@ std::vector<Sprite*> Group::getSprites()
 
 void Group::destroy()
 {
-    
+    for (auto& e : renderList)
+    {
+        if (e->dynamic)
+        {
+            printf("deleting sprite\n");
+            //delete e;
+        }
+    }
 }

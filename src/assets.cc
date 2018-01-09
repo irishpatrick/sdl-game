@@ -27,7 +27,11 @@ void parallel_load(
     const std::string& fn, 
     const std::string& key)
 {
-    SDL_Surface* s = IMG_Load(fn.c_str());  
+    SDL_Surface* s = IMG_Load(fn.c_str());
+    if (s == nullptr)
+    {
+        printf("surface faile4d to load!\n");
+    }
     map[key]->set(s);
 }
 

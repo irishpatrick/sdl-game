@@ -7,19 +7,21 @@ Game::Game(SDL_Renderer* r): State(r)
 
 Game::~Game()
 {
-    
+    testroom.destroy();    
 }
 
 void Game::init()
 {
     printf("loading assets\n");
 
-	std::string path = Config::assetpath();
+	std::string textures = Config::assetpath() + "textures/";
+    std::string maps = Config::assetpath() + "maps/";
 
-    assets.loadTexture(path + "med-background.png", renderer);
-    assets.loadTexture(path + "hero.png", renderer);
-    assets.loadTexture(path + "monster.png", renderer);
-	assets.loadTexture(path + "grass1.png", renderer);
+    assets.loadTexture(textures + "med-background.png", renderer);
+    assets.loadTexture(textures + "hero.png", renderer);
+    assets.loadTexture(textures + "monster.png", renderer);
+	assets.loadTexture(textures + "grass1.png", renderer);
+    assets.loadTexture(textures + "room-bg.png", renderer);
 
     camera.screen(Config::screenwidth(), Config::screenheight());
     camera.setFocus(&hero);
@@ -59,12 +61,14 @@ void Game::init()
 	hero.pos((Config::screenwidth() / 2) - (hero.w / 2), (Config::screenheight() / 2) - (hero.h / 2));
 
     testroom.setassets(&assets);
-    testroom.init_from_json(path + "testroom.json");
+    testroom.init_from_json(maps + "testroom.json");
 
 	groups_.setcamera(&camera);
 	groups_.setfocus(&hero);
 	groups_.addgroup("stage", &stage);
+    groups_.addgroup("room", &testroom);
 	groups_.setactive("stage");
+    //groups_.setactive("room");
 
     printf("done!\n");
 }
@@ -75,11 +79,16 @@ void Game::update(float delta, const uint8_t* keys)
     bool s = keys[SDL_SCANCODE_S];
     bool a = keys[SDL_SCANCODE_A];
     bool d = keys[SDL_SCANCODE_D];
-
+    bool r = keys[SDL_SCANCODE_R];
 	//bool up = keys[SDL_SCANCODE_UP];
 	//bool down = keys[SDL_SCANCODE_DOWN];
 	//bool left = keys[SDL_SCANCODE_LEFT];
 	//bool right = keys[SDL_SCANCODE_RIGHT];
+
+    if (r)
+    {
+        groups_.setactive("room");
+    }
 
     if ((w || s) && (a || d))
     {
@@ -143,7 +152,7 @@ void Game::update(float delta, const uint8_t* keys)
         }
     }
 
-    Util::contain(&hero, &background);
+    //Util::contain(&hero, &background);
 
     camera.update(delta);
 

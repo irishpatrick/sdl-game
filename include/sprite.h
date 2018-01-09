@@ -45,6 +45,7 @@ public:
     int h;
     Texture* texture;
     bool solid;
+    bool dynamic;
 protected:
     Group* parent;
 

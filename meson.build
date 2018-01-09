@@ -25,7 +25,7 @@ config = 'src/config.cc'
 game = 'src/game.cc'
 
 executable(
-    'a.exe',
+    'a',
     main,
     sprite,
     group,

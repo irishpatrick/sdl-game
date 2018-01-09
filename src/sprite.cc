@@ -12,6 +12,7 @@ Sprite::Sprite()
     texture = NULL;
     parent = NULL;
     solid = true;
+    dynamic = false;
     tag = boost::uuids::random_generator()();
 }
 

@@ -41,6 +41,8 @@ public:
 
     float x;
     float y;
+
+    bool dynamic;
 private:
     Assets* assets_;
     float sx;

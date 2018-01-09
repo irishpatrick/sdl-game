@@ -7,7 +7,13 @@ GroupManager::GroupManager()
 
 GroupManager::~GroupManager()
 {
-
+	for (auto& e : groupmap_)
+	{
+		if (e.second->dynamic)
+		{
+			delete e.second;
+		}
+	}
 }
 
 void GroupManager::setassets(Assets* a)
@@ -30,10 +36,12 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
 	json.Parse(data.c_str());
 
 	Group* g = new Group();
+	g->dynamic = true;
 
 	if (json.HasMember("entry"))
     {
-        
+        focus_->x = json["entry"]["x"].GetInt();
+		focus_->y = json["entry"]["y"].GetInt();
     }
 
 	if (json.HasMember("sprites"))
@@ -56,6 +64,8 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
             //delete temp;
 		}
 	}
+
+	addgroup(id, g);
 }
 
 void GroupManager::setactive(const std::string& id)

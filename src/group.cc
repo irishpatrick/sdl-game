@@ -7,6 +7,7 @@ Group::Group()
     sx = 0;
     sy = 0;
     camera = nullptr;
+    dynamic = false;
 }
 
 Group::~Group()

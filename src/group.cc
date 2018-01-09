@@ -33,6 +33,11 @@ void Group::init_from_json(const std::string& fn)
 	rapidjson::Document json;
 	json.Parse(data.c_str());
 
+    if (json.HasMember("entry"))
+    {
+        
+    }
+
 	if (json.HasMember("sprites"))
 	{
 		for (const auto& e : json["sprites"].GetArray())

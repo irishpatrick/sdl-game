@@ -41,7 +41,7 @@ void Assets::loadTexture(const std::string& fn, SDL_Renderer* r)
     std::string key = vec[vec.size() - 1];
 
     texMap[key] = new Texture(r);
-    futures.push_back(boost::async(boost::launch::async, parallel_load, std::ref(texMap), fn, key));
+    futures.push_back(std::async(std::launch::async, parallel_load, std::ref(texMap), fn, key));
 }
 
 Texture* Assets::getTexture(const std::string& key)

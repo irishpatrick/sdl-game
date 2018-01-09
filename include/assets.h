@@ -10,9 +10,9 @@
 #include <thread>
 #include <SDL.h>
 #include <SDL_image.h>
-#define BOOST_THREAD_VERSION 4
-#include <boost/thread.hpp>
-#include <boost/thread/future.hpp>
+//#define BOOST_THREAD_VERSION 4
+//#include <boost/thread.hpp>
+//#include <boost/thread/future.hpp>
 
 #include "texture.h"
 
@@ -30,7 +30,7 @@ public:
 
 private:
     std::map<std::string, Texture*> texMap;
-    std::vector<boost::future<void>> futures;
+    std::vector<std::future<void>> futures;
 };
 
 #endif /* ASSETS_H */

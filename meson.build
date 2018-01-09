@@ -1,9 +1,8 @@
 project('sdl-game', 'cpp')
-add_global_arguments(['-std=c++11', '-g', '-Wall', '-Og'], language: 'cpp')
+add_global_arguments(['-DBOOST_LOG_DYN_LINK', '-std=c++11', '-g', '-Wall', '-Og'], language: 'cpp')
 
 sdl2 = dependency('sdl2')
 sdl2_image = dependency('SDL2_image')
-#boost = dependency('boost')
 threads = dependency('threads')
 
 inc = include_directories('include')

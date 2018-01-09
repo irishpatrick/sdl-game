@@ -149,7 +149,7 @@ void Group::destroy()
         if (e->dynamic)
         {
             printf("deleting sprite\n");
-            //delete e;
+            delete e;
         }
     }
 }

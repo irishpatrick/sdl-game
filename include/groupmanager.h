@@ -2,6 +2,10 @@
 #define GROUPMANAGER_H
 
 #include <map>
+#include <string>
+#include <fstream>
+#include <streambuf>
+#include <rapidjson/document.h>
 #include "group.h"
 #include "sprite.h"
 #include "camera.h"

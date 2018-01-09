@@ -17,9 +17,11 @@ public:
 	~GroupManager();
 
 	void addgroup(const std::string&, Group*);
+	void loadgroup(const std::string&, const std::string&);
 	void setactive(const std::string &);
 	void setcamera(Camera*);
 	void setfocus(Sprite*);
+	void setassets(Assets*);
 
 	Group* getactive();
 
@@ -28,6 +30,7 @@ private:
 	Group* active_;
 	Camera* camera_;
 	Sprite* focus_;
+	Assets* assets_;
 };
 
 #endif /* GROUPMANAGER_H */

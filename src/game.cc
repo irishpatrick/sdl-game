@@ -64,6 +64,7 @@ void Game::init()
     testroom.init_from_json(maps + "testroom.json");
 
 	groups_.setcamera(&camera);
+    groups_.setassets(&assets);
 	groups_.setfocus(&hero);
 	groups_.addgroup("stage", &stage);
     groups_.addgroup("room", &testroom);

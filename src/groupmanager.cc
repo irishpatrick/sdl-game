@@ -10,9 +10,52 @@ GroupManager::~GroupManager()
 
 }
 
+void GroupManager::setassets(Assets* a)
+{
+	assets_ = a;
+}
+
 void GroupManager::addgroup(const std::string& id, Group* g)
 {
 	groupmap_.insert(std::pair<std::string, Group*>(id, g));
+}
+
+void GroupManager::loadgroup(const std::string& id, const std::string& fn)
+{
+	std::ifstream t(fn);
+	std::string data((std::istreambuf_iterator<char>(t)),
+		std::istreambuf_iterator<char>());
+
+	rapidjson::Document json;
+	json.Parse(data.c_str());
+
+	Group* g = new Group();
+
+	if (json.HasMember("entry"))
+    {
+        
+    }
+
+	if (json.HasMember("sprites"))
+	{
+		for (const auto& e : json["sprites"].GetArray())
+		{
+            // assume sprite object has all required fields
+			float x = (float)e["x"].GetInt();
+            float y = (float)e["y"].GetInt();
+            std::string name = e["name"].GetString();
+            std::string texture = e["texture"].GetString();
+
+            // test initialize
+            Sprite* temp = new Sprite();
+            temp->dynamic = true;
+            temp->x = x;
+            temp->y = y;
+            temp->setTexture(assets_->getTexture(texture));
+            g->add(temp);
+            //delete temp;
+		}
+	}
 }
 
 void GroupManager::setactive(const std::string& id)

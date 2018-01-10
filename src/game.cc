@@ -60,14 +60,15 @@ void Game::init()
 
 	hero.pos((Config::screenwidth() / 2) - (hero.w / 2), (Config::screenheight() / 2) - (hero.h / 2));
 
-    testroom.setassets(&assets);
-    testroom.init_from_json(maps + "testroom.json");
+    //testroom.setassets(&assets);
+    //testroom.init_from_json(maps + "testroom.json");
 
 	groups_.setcamera(&camera);
     groups_.setassets(&assets);
 	groups_.setfocus(&hero);
+    groups_.loadgroup("room", maps + "testroom.json");
 	groups_.addgroup("stage", &stage);
-    groups_.addgroup("room", &testroom);
+    //groups_.addgroup("room", &testroom);
 	groups_.setactive("stage");
     //groups_.setactive("room");
 
@@ -153,7 +154,7 @@ void Game::update(float delta, const uint8_t* keys)
         }
     }
 
-    //Util::contain(&hero, &background);
+    Util::contain(&hero, &background);
 
     camera.update(delta);
 

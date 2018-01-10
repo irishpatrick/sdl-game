@@ -31,22 +31,20 @@ std::string Config::assetpath()
 
 void Config::load(const std::string& fn)
 {
-	std::ifstream t(fn);
-	std::string data((std::istreambuf_iterator<char>(t)),
-		std::istreambuf_iterator<char>());
+	std::ifstream i(fn);
+	nlohmann::json o;
+	i >> o;
 
-	json.Parse(data.c_str());
-
-	if (json.HasMember("screenWidth"))
+	if (o.find("screenWidth") != o.end())
 	{
-		Config::SCREENWIDTH = json["screenWidth"].GetInt();
+		Config::SCREENWIDTH = o["screenWidth"];
 	}
-	if (json.HasMember("screenHeight"))
+	if (o.find("screenHeight") != o.end())
 	{
-		Config::SCREENHEIGHT = json["screenHeight"].GetInt();
+		Config::SCREENHEIGHT = o["screenHeight"];
 	}
-	if (json.HasMember("assetPath"))
+	if (o.find("assetPath") != o.end())
 	{
-		Config::ASSETPATH = json["assetPath"].GetString();
+		Config::ASSETPATH = o["assetPath"];
 	}
 }

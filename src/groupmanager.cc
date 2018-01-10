@@ -28,11 +28,42 @@ void GroupManager::addgroup(const std::string& id, Group* g)
 
 void GroupManager::loadgroup(const std::string& id, const std::string& fn)
 {
-	std::ifstream t(fn);
-	std::string data((std::istreambuf_iterator<char>(t)),
-		std::istreambuf_iterator<char>());
+	std::ifstream i(fn);
+	nlohmann::json o;
+	i >> o;
 
-	rapidjson::Document json;
+	Group* g = new Group();
+	g->dynamic = true;
+
+	if (o.find("entry") != o.end())
+	{
+		g->sx = o["entry"]["x"];
+		g->sy = o["entry"]["y"];
+	}
+	if (o.find("sprites") != o.end())
+	{
+		for (const auto& e : o["sprites"])
+		{
+            // assume sprite object has all required fields
+			float x = (float)e["x"];
+            float y = (float)e["y"];
+            std::string name = e["name"];
+            std::string texture = e["texture"];
+
+            // test initialize
+            Sprite* temp = new Sprite();
+            temp->dynamic = true;
+            temp->x = x;
+            temp->y = y;
+            temp->setTexture(assets_->getTexture(texture));
+            g->add(temp);
+            //delete temp;
+		}
+	}
+
+	addgroup(id, g);
+
+	/*rapidjson::Document json;
 	json.Parse(data.c_str());
 
 	Group* g = new Group();
@@ -65,7 +96,7 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
 		}
 	}
 
-	addgroup(id, g);
+	addgroup(id, g);*/
 }
 
 void GroupManager::setactive(const std::string& id)
@@ -86,6 +117,8 @@ void GroupManager::setactive(const std::string& id)
 		{
 			active_->add(focus_);
 		}
+		focus_->x = active_->sx;
+		focus_->y = active_->sy;
 	}
 }
 

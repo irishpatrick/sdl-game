@@ -6,7 +6,8 @@
 #include <string>
 #include <fstream>
 #include <streambuf>
-#include <rapidjson/document.h>
+//#include <rapidjson/document.h>
+#include "json.hpp"
 
 class Config
 {
@@ -21,7 +22,6 @@ public:
 	static std::string assetpath();
 
 private:
-    rapidjson::Document json;
 	static int SCREENWIDTH;
 	static int SCREENHEIGHT;
 	static std::string ASSETPATH;

@@ -41,12 +41,12 @@ public:
 
     float x;
     float y;
+    float sx;
+    float sy;
 
     bool dynamic;
 private:
     Assets* assets_;
-    float sx;
-    float sy;
     std::vector<Sprite*> renderList;
     Camera* camera;
 };

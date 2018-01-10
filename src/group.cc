@@ -61,6 +61,18 @@ void Group::init_from_json(const std::string& fn)
 	}
 }
 
+Sprite* Group::get_sprite_by_name(const std::string& name)
+{
+    for (auto& e : renderList)
+    {
+        if (e->name == name)
+        {
+            return e;
+        }
+    }
+    return nullptr;
+}
+
 float Group::screenX()
 {
     if (camera != nullptr)

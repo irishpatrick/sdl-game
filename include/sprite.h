@@ -46,6 +46,7 @@ public:
     Texture* texture;
     bool solid;
     bool dynamic;
+    std::string name;
 protected:
     Group* parent;
 

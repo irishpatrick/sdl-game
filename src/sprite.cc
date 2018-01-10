@@ -13,6 +13,7 @@ Sprite::Sprite()
     parent = NULL;
     solid = true;
     dynamic = false;
+    name = "";
     tag = boost::uuids::random_generator()();
 }
 

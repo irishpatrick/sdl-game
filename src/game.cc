@@ -22,6 +22,7 @@ void Game::init()
     assets.loadTexture(textures + "monster.png", renderer);
 	assets.loadTexture(textures + "grass1.png", renderer);
     assets.loadTexture(textures + "room-bg.png", renderer);
+    assets.loadTexture(textures + "pointlight.png", renderer);
 
     camera.screen(Config::screenwidth(), Config::screenheight());
     camera.setFocus(&hero);
@@ -34,10 +35,14 @@ void Game::init()
     monster.pos(150, 150);
 
     background.setTexture(assets.getTexture("med-background.png"));
+    background.name = "background";
 
     stage.add(&background);
     stage.add(&monster);
     stage.add(&hero);
+
+    stage.sx = 300;
+    stage.sy = 300;
 
     for (int i=0; i<500; i++)
     {
@@ -122,7 +127,7 @@ void Game::update(float delta, const uint8_t* keys)
     }
 
     std::vector<Sprite*>::iterator it;
-    std::vector<Sprite*> list = stage.getSprites();
+    std::vector<Sprite*> list = groups_.getactive()->getSprites();
     for (it = list.begin(); it != list.end(); it++)
     {
         Sprite* current = *it;
@@ -154,7 +159,7 @@ void Game::update(float delta, const uint8_t* keys)
         }
     }
 
-    Util::contain(&hero, &background);
+    Util::contain(&hero, groups_.getactive()->get_sprite_by_name("background"));
 
     camera.update(delta);
 

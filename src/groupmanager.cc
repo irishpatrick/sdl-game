@@ -53,6 +53,7 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
             // test initialize
             Sprite* temp = new Sprite();
             temp->dynamic = true;
+			temp->name = name;
             temp->x = x;
             temp->y = y;
             temp->setTexture(assets_->getTexture(texture));

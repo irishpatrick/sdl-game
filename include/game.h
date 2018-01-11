@@ -15,6 +15,7 @@
 #include "util.h"
 #include "config.h"
 #include "texture.h"
+#include "light.h"
 
 class Game: public State
 {
@@ -37,6 +38,7 @@ private:
     Group testroom;
     Camera camera;
 	GroupManager groups_;
+    Light light;
 };
 
 #endif /* GAME_H */

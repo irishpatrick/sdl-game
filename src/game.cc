@@ -22,7 +22,7 @@ void Game::init()
     assets.loadTexture(textures + "monster.png", renderer);
 	assets.loadTexture(textures + "grass1.png", renderer);
     assets.loadTexture(textures + "room-bg.png", renderer);
-    assets.loadTexture(textures + "pointlight.png", renderer);
+    assets.loadTexture(textures + "opposite.png", renderer);
 
     camera.screen(Config::screenwidth(), Config::screenheight());
     camera.setFocus(&hero);
@@ -36,6 +36,11 @@ void Game::init()
 
     background.setTexture(assets.getTexture("med-background.png"));
     background.name = "background";
+
+    light.x = 60;
+    light.y = 60;
+    light.size = 300;
+    light.settexture(assets.getTexture("opposite.png"));
 
     stage.add(&background);
     stage.add(&monster);
@@ -58,6 +63,8 @@ void Game::init()
     stage.setCamera(&camera);
 
     assets.getFutures();
+
+    light.querytexture();
 
 	hero.queryTexture();
 	monster.queryTexture();
@@ -172,6 +179,7 @@ void Game::update(float delta, const uint8_t* keys)
 void Game::render()
 {
     groups_.getactive()->draw(renderer);
+    //ight.draw(renderer);
 }
 
 void Game::destroy()

@@ -20,6 +20,7 @@ texture = 'src/texture.cc'
 camera = 'src/camera.cc'
 config = 'src/config.cc'
 light = 'src/light.cc'
+door = 'src/door.cc'
 
 #game
 game = 'src/game.cc'
@@ -38,6 +39,7 @@ executable(
     camera,
     config,
     light,
+    door,
 
     game,
 

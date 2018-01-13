@@ -6,8 +6,7 @@
 #include <string>
 #include <fstream>
 #include <streambuf>
-//#include <rapidjson/document.h>
-#include "json.hpp"
+#include <json.hpp>
 
 class Config
 {

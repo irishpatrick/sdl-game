@@ -21,6 +21,7 @@ camera = 'src/camera.cc'
 config = 'src/config.cc'
 light = 'src/light.cc'
 door = 'src/door.cc'
+animation = 'src/animation.cc'
 
 #game
 game = 'src/game.cc'
@@ -40,6 +41,7 @@ executable(
     config,
     light,
     door,
+    animation,
 
     game,
 

@@ -16,9 +16,6 @@ class Sprite;
 class Util
 {
 public:
-    Util();
-    ~Util();
-
     //static uint32_t getNow();
     static SDL_Texture* loadTexture(const std::string&, SDL_Renderer*);
     static std::string checkCollision(Sprite*, Sprite*);

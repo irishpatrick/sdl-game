@@ -27,7 +27,7 @@ void init()
 {
 	config.load("../assets/config.json");
 
-    if (SDL_Init(SDL_INIT_VIDEO) != 0)
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) != 0)
     {
         printf("SDL_Init error: %s\n", SDL_GetError());
         exit(1);

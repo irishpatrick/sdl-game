@@ -1,15 +1,5 @@
 #include "util.h"
 
-Util::Util()
-{
-
-}
-
-Util::~Util()
-{
-
-}
-
 /*uint32_t Util::getNow()
 {
     std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>(

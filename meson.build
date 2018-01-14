@@ -22,6 +22,8 @@ config = 'src/config.cc'
 light = 'src/light.cc'
 door = 'src/door.cc'
 animation = 'src/animation.cc'
+controllers = 'src/controllers.cc'
+gamepad = 'src/gamepad.cc'
 
 #game
 game = 'src/game.cc'
@@ -42,6 +44,8 @@ executable(
     light,
     door,
     animation,
+    controllers,
+    gamepad,
 
     game,
 

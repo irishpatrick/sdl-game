@@ -1,5 +1,8 @@
 #include "assets.h"
 
+std::map<std::string, Texture*> Assets::texMap = std::map<std::string, Texture*>();
+std::vector<std::future<void>> Assets::futures = std::vector<std::future<void>>();
+
 std::vector<std::string> split(const std::string& s, char delim)
 {
     std::stringstream ss(s);
@@ -10,16 +13,6 @@ std::vector<std::string> split(const std::string& s, char delim)
         tokens.push_back(item);
     }
     return tokens;
-}
-
-Assets::Assets()
-{
-
-}
-
-Assets::~Assets()
-{
-
 }
 
 void parallel_load(

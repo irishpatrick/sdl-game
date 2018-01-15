@@ -17,30 +17,30 @@ void Game::init()
 	std::string textures = Config::assetpath() + "textures/";
     std::string maps = Config::assetpath() + "maps/";
 
-    assets.loadTexture(textures + "med-background.png", renderer);
-    assets.loadTexture(textures + "hero.png", renderer);
-    assets.loadTexture(textures + "monster.png", renderer);
-	assets.loadTexture(textures + "grass1.png", renderer);
-    assets.loadTexture(textures + "room-bg.png", renderer);
-    assets.loadTexture(textures + "opposite.png", renderer);
+    Assets::loadTexture(textures + "med-background.png", renderer);
+    Assets::loadTexture(textures + "hero.png", renderer);
+    Assets::loadTexture(textures + "monster.png", renderer);
+	Assets::loadTexture(textures + "grass1.png", renderer);
+    Assets::loadTexture(textures + "room-bg.png", renderer);
+    Assets::loadTexture(textures + "opposite.png", renderer);
 
     camera.screen(Config::screenwidth(), Config::screenheight());
     camera.setFocus(&hero);
 
-    hero.setTexture(assets.getTexture("hero.png"));
+    hero.setTexture(Assets::getTexture("hero.png"));
     
     hero.speed = 250.0f;
     
-    monster.setTexture(assets.getTexture("monster.png"));
+    monster.setTexture(Assets::getTexture("monster.png"));
     monster.pos(150, 150);
 
-    background.setTexture(assets.getTexture("med-background.png"));
+    background.setTexture(Assets::getTexture("med-background.png"));
     background.name = "background";
 
     light.x = 60;
     light.y = 60;
     light.size = 300;
-    light.settexture(assets.getTexture("opposite.png"));
+    light.settexture(Assets::getTexture("opposite.png"));
 
     stage.add(&background);
     stage.add(&monster);
@@ -55,14 +55,14 @@ void Game::init()
         current->x = rand() % Config::screenwidth();
         current->y = rand() % Config::screenwidth();
         current->solid = false;
-        current->setTexture(assets.getTexture("grass1.png"));
+        current->setTexture(Assets::getTexture("grass1.png"));
         stage.add(current);
         grass.push_back(current);
     }
 
     stage.setCamera(&camera);
 
-    assets.getFutures();
+    Assets::getFutures();
 
     light.querytexture();
 
@@ -72,11 +72,9 @@ void Game::init()
 
 	hero.pos((Config::screenwidth() / 2) - (hero.w / 2), (Config::screenheight() / 2) - (hero.h / 2));
 
-    //testroom.setassets(&assets);
     //testroom.init_from_json(maps + "testroom.json");
 
 	groups_.setcamera(&camera);
-    groups_.setassets(&assets);
 	groups_.setfocus(&hero);
     groups_.loadgroup("room", maps + "testroom.json");
 	groups_.addgroup("stage", &stage);
@@ -184,7 +182,7 @@ void Game::render()
 
 void Game::destroy()
 {
-    assets.destroy();
+    Assets::destroy();
     for (auto &e : grass)
     {
         delete e;

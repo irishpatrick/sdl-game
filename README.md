@@ -6,7 +6,7 @@
 1. SDL2
 2. SDL2_image
 3. Boost
-4. nlohmann json ([Project Github](https://nlohmann.github.io/json/))
+4. nlohmann json ([Website](https://nlohmann.github.io/json/))
 
 ## Building
 ### Requirements

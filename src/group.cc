@@ -20,11 +20,6 @@ void Group::init(SDL_Renderer* r)
     
 }
 
-void Group::setassets(Assets* a)
-{
-    assets_ = a;
-}
-
 void Group::init_from_json(const std::string& fn)
 {
 	std::ifstream t(fn);
@@ -54,7 +49,7 @@ void Group::init_from_json(const std::string& fn)
             temp->dynamic = true;
             temp->x = x;
             temp->y = y;
-            temp->setTexture(assets_->getTexture(texture));
+            temp->setTexture(Assets::getTexture(texture));
             renderList.push_back(temp);
             //delete temp;
 		}

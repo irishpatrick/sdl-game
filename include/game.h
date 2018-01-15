@@ -29,7 +29,6 @@ public:
     void destroy();
 
 private:
-    Assets assets;
     Sprite hero;
     Sprite monster;
     Sprite background;

@@ -30,7 +30,6 @@ public:
     void add(Sprite*);
 	void queryAll();
     void sort();
-    void setassets(Assets*);
     Sprite* get_sprite_by_name(const std::string&);
 
 	void remove(Sprite*);
@@ -47,7 +46,6 @@ public:
 
     bool dynamic;
 private:
-    Assets* assets_;
     std::vector<Sprite*> renderList;
     Camera* camera;
 };

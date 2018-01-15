@@ -16,6 +16,7 @@
 #include "config.h"
 #include "texture.h"
 #include "light.h"
+#include "animation.h"
 
 class Game: public State
 {
@@ -38,6 +39,7 @@ private:
     Camera camera;
 	GroupManager groups_;
     Light light;
+    Animation test;
 };
 
 #endif /* GAME_H */

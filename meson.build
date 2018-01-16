@@ -24,6 +24,7 @@ door = 'src/door.cc'
 animation = 'src/animation.cc'
 controllers = 'src/controllers.cc'
 gamepad = 'src/gamepad.cc'
+timer = 'src/timer.cc'
 
 #game
 game = 'src/game.cc'
@@ -46,6 +47,7 @@ executable(
     animation,
     controllers,
     gamepad,
+    timer,
 
     game,
 

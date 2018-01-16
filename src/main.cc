@@ -10,9 +10,6 @@
 #include "game.h"
 #include "config.h"
 
-const int WIDTH = 1024;
-const int HEIGHT = 768;
-
 SDL_Window *window;
 SDL_Renderer *renderer;
 SDL_Surface* icon;
@@ -33,6 +30,12 @@ void init()
         exit(1);
     }
 
+    SDL_DisplayMode current;
+    if (SDL_GetDesktopDisplayMode(0, &current) != 0)
+    {
+        printf("Display Mode error: %s\n", SDL_GetError());
+    }
+
     if (!IMG_Init(IMG_INIT_PNG))
     {
         printf("IMG_Init error: %s\n", IMG_GetError());
@@ -42,7 +45,7 @@ void init()
     window = SDL_CreateWindow(
         "Hello World!", 
         SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 
-        Config::screenwidth(), Config::screenheight(), SDL_WINDOW_SHOWN);
+        current.w, current.h, SDL_WINDOW_SHOWN);
 
     if (window == NULL)
     {
@@ -50,6 +53,7 @@ void init()
         SDL_Quit();
         exit(1);
     }
+    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 
     icon = IMG_Load("../assets/icon.png");
     if (icon != nullptr)
@@ -61,7 +65,7 @@ void init()
     renderer = SDL_CreateRenderer(
         window, 
         -1, 
-        SDL_RENDERER_ACCELERATED);
+        SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
     if (renderer == NULL)
     {

@@ -12,6 +12,8 @@ Game::~Game()
 
 void Game::init()
 {
+    int w = 1920;
+    int h = 1080;
     printf("loading assets\n");
 
 	std::string textures = Config::assetpath() + "textures/";
@@ -25,7 +27,7 @@ void Game::init()
     Assets::loadTexture(textures + "room-bg.png", renderer);
     Assets::loadTexture(textures + "opposite.png", renderer);
 
-    camera.screen(Config::screenwidth(), Config::screenheight());
+    camera.screen(w, h);
     camera.setFocus(&hero);
 
     hero.setTexture(Assets::getTexture("hero.png"));
@@ -50,16 +52,16 @@ void Game::init()
     stage.sx = 300;
     stage.sy = 300;
 
-    for (int i=0; i<500; i++)
+    /*for (int i=0; i<500; i++)
     {
         Sprite* current = new Sprite();
-        current->x = rand() % Config::screenwidth();
-        current->y = rand() % Config::screenwidth();
+        current->x = rand() % w;
+        current->y = rand() % w;
         current->solid = false;
         current->setTexture(Assets::getTexture("grass1.png"));
         stage.add(current);
         grass.push_back(current);
-    }
+    }*/
 
     stage.setCamera(&camera);
 
@@ -71,7 +73,7 @@ void Game::init()
 	monster.queryTexture();
 	background.queryTexture();
 
-	hero.pos((Config::screenwidth() / 2) - (hero.w / 2), (Config::screenheight() / 2) - (hero.h / 2));
+	hero.pos((w / 2) - (hero.w / 2), (h / 2) - (hero.h / 2));
  
     //testroom.init_from_json(maps + "testroom.json");
 

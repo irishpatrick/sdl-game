@@ -5,7 +5,7 @@ Game::Game(SDL_Renderer* r): State(r)
 
 }
 
-Game::~Game()
+Game::~Game() 
 {
     testroom.destroy();    
 }
@@ -16,6 +16,7 @@ void Game::init()
 
 	std::string textures = Config::assetpath() + "textures/";
     std::string maps = Config::assetpath() + "maps/";
+    std::string root = Config::assetpath();
 
     Assets::loadTexture(textures + "med-background.png", renderer);
     Assets::loadTexture(textures + "hero.png", renderer);
@@ -71,7 +72,7 @@ void Game::init()
 	background.queryTexture();
 
 	hero.pos((Config::screenwidth() / 2) - (hero.w / 2), (Config::screenheight() / 2) - (hero.h / 2));
-
+ 
     //testroom.init_from_json(maps + "testroom.json");
 
 	groups_.setcamera(&camera);
@@ -83,6 +84,12 @@ void Game::init()
     //groups_.setactive("room");
 
     printf("done!\n");
+
+    printf("starting tests...\n");
+
+    test.InitFromJson(root + "animtest.json");
+
+    printf ("done!\n");
 }
 
 void Game::update(float delta, const uint8_t* keys)

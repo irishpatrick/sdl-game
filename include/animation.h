@@ -19,6 +19,8 @@ public:
     ~Animation();
 
     void InitFromJson(const std::string&);
+    void Start(const std::string&, bool loop);
+    void Stop();
     SDL_Rect* GetCurrentFrame();
 
 private:

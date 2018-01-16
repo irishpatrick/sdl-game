@@ -28,10 +28,6 @@ void Animation::InitFromJson(const std::string& fn)
     {
         for (auto& e : o["animations"])
         {
-            if (e["frames"].is_array())
-            {
-                printf("frames is an array!\n");
-            }
             std::string name = e["name"];
             uint32_t* ptr = (uint32_t*)malloc(e["frames"].size() * sizeof(uint32_t));
             for (uint32_t i=0; i<e["frames"].size(); i++)

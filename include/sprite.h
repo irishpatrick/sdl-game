@@ -10,7 +10,6 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/uuid/uuid_io.hpp>
 
-
 class Group;
 #include "group.h"
 #include "texture.h"

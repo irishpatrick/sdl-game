@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <cstdint>
 #include <cstring>
+#include <cmath>
 #include "texture.h"
 #include "assets.h"
 #include "timer.h"
@@ -18,6 +19,7 @@ typedef struct FrameSet_
 {
     char* name;
     uint32_t fps;
+    uint32_t count;
     uint32_t* frames;
 } FrameSet;
 
@@ -29,17 +31,21 @@ public:
 
     void InitFromJson(const std::string&);
     void Start(const std::string&, bool);
+    void Update();
     void Stop();
     SDL_Rect* GetCurrentFrame();
 
 private:
     //std::map<std::string, FrameSet> animmap_;
     std::vector<FrameSet*> animations_;
-    SDL_Rect* currentframe;
+    SDL_Rect* currentframe_;
+    uint32_t currentindex_;
     FrameSet* currentset_;
     std::vector<SDL_Rect*> frames_;
     Texture* tex_;
     Timer timer_;
+    bool running_;
+    bool looping_;
 };
 
 #endif /* ANIMATION_H */

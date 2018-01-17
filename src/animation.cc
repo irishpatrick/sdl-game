@@ -4,11 +4,14 @@ Animation::Animation()
 {
     tex_ = nullptr;
     currentset_ = nullptr;
+    running_ = false;
+    looping_ = false;
+    currentframe_ = nullptr;
+    currentindex_ = 0;
 }
 
 Animation::~Animation()
 {
-    printf("destroying...\n");
     for (auto& e: animations_)
     {
         free(e->frames);
@@ -24,7 +27,7 @@ Animation::~Animation()
 
 SDL_Rect* Animation::GetCurrentFrame()
 {
-    return currentframe;
+    return currentframe_;
 }
 
 void Animation::InitFromJson(const std::string& fn)
@@ -73,22 +76,56 @@ void Animation::InitFromJson(const std::string& fn)
             {
                 ptr[i] = (uint32_t)e["frames"][i];
             }
+            fs->count = e["frames"].size();
             fs->name = (char*)malloc(name.size());
-            printf("no problem!\n");
             strcpy(fs->name, name.c_str());
-            printf("still no problem!\n");
             fs->frames = ptr;
-            printf("frames ok!\n");
             fs->fps = e["fps"];
-            printf("fps ok!\n");
             animations_.push_back(fs);
-            printf("bye bye\n");
         }
     }
 }
 
 void Animation::Start(const std::string& name, bool loop)
 {
-    
+    if (!running_)
+    {
+        looping_ = loop;
+        FrameSet* current = nullptr;
+        for (auto& e : animations_)
+        {
+            if (strcmp(e->name, name.c_str()))
+            {
+                current = e;
+            }
+        }
+        if (current == nullptr)
+        {
+            printf("animation not found!\n");
+            return;
+        }
+
+        // calculate ms from fps
+        timer_.SetInterval((uint32_t)round(1.0/(double)current->fps));
+        currentindex_ = current->frames[0];
+        currentset_ = current;
+        running_ = true;
+    }
+}
+
+void Animation::Update()
+{
+    if (running_)
+    {
+        currentframe_ = frames_[currentset_->frames[currentindex_]];
+        if (timer_.Tick())
+        {
+            currentindex_++;
+            if (currentindex_ == currentset_->count)
+            {
+                running_ = false;
+            }
+        }
+    }
 }
 

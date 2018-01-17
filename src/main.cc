@@ -16,13 +16,11 @@ SDL_Surface* icon;
 SDL_Event e;
 bool quit;
 
-Config config;
-
 State* current;
 
 void init()
 {
-	config.load("../assets/config.json");
+	Config::load("../assets/config.json");
 
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) != 0)
     {

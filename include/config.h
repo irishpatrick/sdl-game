@@ -11,10 +11,7 @@
 class Config
 {
 public:
-    Config();
-    ~Config();
-
-    void load(const std::string&);
+    static void load(const std::string&);
 
 	static int screenwidth();
 	static int screenheight();

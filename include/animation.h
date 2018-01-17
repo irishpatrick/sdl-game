@@ -11,6 +11,7 @@
 #include <cstdint>
 #include <cstring>
 #include <cmath>
+#include "util.h"
 #include "texture.h"
 #include "assets.h"
 #include "timer.h"
@@ -33,6 +34,7 @@ public:
     void Start(const std::string&, bool);
     void Update();
     void Stop();
+    void Kill();
     SDL_Rect* GetCurrentFrame();
 
 private:

@@ -123,9 +123,27 @@ void Animation::Update()
             currentindex_++;
             if (currentindex_ == currentset_->count)
             {
-                running_ = false;
+                if (looping_)
+                {
+                    currentindex_ = currentset_->frames[0];
+                }
+                else
+                {
+                    running_ = false;
+                }
             }
         }
     }
+}
+
+void Animation::Stop()
+{
+    looping_ = false;
+}
+
+void Animation::Kill()
+{
+    running_ = false;
+    looping_ = false;
 }
 

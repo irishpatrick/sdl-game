@@ -86,3 +86,11 @@ SDL_Rect Util::getAABB(Sprite* a, uint32_t h)
 
     return aabb;
 }
+
+std::string Util::RectToString(SDL_Rect* r)
+{
+    return "SDL_Rect [x: " + boost::lexical_cast<std::string>(r->x) + 
+        ", y: " + boost::lexical_cast<std::string>(r->y) + 
+        ", w: " + boost::lexical_cast<std::string>(r->w) + 
+        ", h: " + boost::lexical_cast<std::string>(r->h) + "]";
+}

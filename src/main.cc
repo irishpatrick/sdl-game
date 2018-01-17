@@ -63,10 +63,6 @@ void init()
         SDL_Quit();
         exit(1);
     }
-    if (Config::fullscreen())
-    {
-        SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
-    }
 
     icon = IMG_Load("../assets/icon.png");
     if (icon != nullptr)
@@ -86,6 +82,11 @@ void init()
         SDL_Quit();
         exit(1);
     } 
+    if (Config::fullscreen())
+    {
+        SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+        SDL_RenderSetLogicalSize(renderer, 1920, 1080);
+    }
 }
 
 void render()

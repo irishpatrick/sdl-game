@@ -42,10 +42,20 @@ void init()
         exit(1);
     }
 
-    window = SDL_CreateWindow(
-        "Hello World!", 
-        SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 
-        current.w, current.h, SDL_WINDOW_SHOWN);
+    if (Config::fullscreen())
+    {
+        window = SDL_CreateWindow(
+            "Hello World!", 
+            SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 
+            current.w, current.h, SDL_WINDOW_SHOWN);
+    }
+    else
+    {
+        window = SDL_CreateWindow(
+            "Hello World!", 
+            SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 
+            Config::screenwidth(), Config::screenheight(), SDL_WINDOW_SHOWN);
+    }
 
     if (window == NULL)
     {
@@ -53,14 +63,16 @@ void init()
         SDL_Quit();
         exit(1);
     }
-    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+    if (Config::fullscreen())
+    {
+        SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+    }
 
     icon = IMG_Load("../assets/icon.png");
     if (icon != nullptr)
     {
         SDL_SetWindowIcon(window, icon);
     }
-    //SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
 
     renderer = SDL_CreateRenderer(
         window, 

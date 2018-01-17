@@ -1,4 +1,8 @@
 {
+    "texture": "animtest.png",
+    "width": 32,
+    "height": 32,
+    
     "animations": [
         {
             "name": "all",

@@ -3,6 +3,7 @@
 int Config::SCREENWIDTH = 0;
 int Config::SCREENHEIGHT = 0;
 std::string Config::ASSETPATH = "";
+bool Config::FULLSCREEN = false;
 
 Config::Config()
 {
@@ -29,6 +30,11 @@ std::string Config::assetpath()
 	return ASSETPATH;
 }
 
+bool Config::fullscreen()
+{
+	return FULLSCREEN;
+}
+
 void Config::load(const std::string& fn)
 {
 	std::ifstream i(fn);
@@ -46,5 +52,17 @@ void Config::load(const std::string& fn)
 	if (o.find("assetPath") != o.end())
 	{
 		Config::ASSETPATH = o["assetPath"];
+	}
+	if (o.find("fullscreen") != o.end())
+	{
+		int res = o["fullscreen"];
+		if (res == 1)
+		{
+			FULLSCREEN = true;
+		}
+		else if (res == 0)
+		{
+			FULLSCREEN = false;
+		}
 	}
 }

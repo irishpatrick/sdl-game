@@ -19,11 +19,13 @@ public:
 	static int screenwidth();
 	static int screenheight();
 	static std::string assetpath();
+	static bool fullscreen();
 
 private:
 	static int SCREENWIDTH;
 	static int SCREENHEIGHT;
 	static std::string ASSETPATH;
+	static bool FULLSCREEN;
 };
 
 #endif /* CONFIG_H */

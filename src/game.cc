@@ -26,6 +26,7 @@ void Game::init()
 	Assets::loadTexture(textures + "grass1.png", renderer);
     Assets::loadTexture(textures + "room-bg.png", renderer);
     Assets::loadTexture(textures + "opposite.png", renderer);
+    Assets::loadTexture(textures + "animtest.png", renderer);
 
     camera.screen(w, h);
     camera.setFocus(&hero);
@@ -91,7 +92,7 @@ void Game::init()
 
     test.InitFromJson(root + "animtest.json");
 
-    printf ("done!\n");
+    printf("done!\n");
 }
 
 void Game::update(float delta, const uint8_t* keys)

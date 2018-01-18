@@ -2,8 +2,8 @@
 #define LIGHT_H
 
 #include <SDL.h>
-#include "texture.h"
-#include "group.h"
+class Texture;
+class Group;
 
 class Light
 {

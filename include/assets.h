@@ -14,7 +14,7 @@
 //#include <boost/thread.hpp>
 //#include <boost/thread/future.hpp>
 
-#include "texture.h"
+class Texture;
 
 class Assets
 {

@@ -1,4 +1,6 @@
 #include "util.h"
+#include "sprite.h"
+#include "line.h"
 
 /*uint32_t Util::getNow()
 {

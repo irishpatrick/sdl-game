@@ -11,10 +11,10 @@
 #include <cstdint>
 #include <cstring>
 #include <cmath>
-#include "util.h"
-#include "texture.h"
-#include "assets.h"
+
 #include "timer.h"
+
+class Texture;
 
 typedef struct FrameSet_
 {

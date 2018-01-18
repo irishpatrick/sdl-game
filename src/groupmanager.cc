@@ -1,4 +1,8 @@
 #include "groupmanager.h"
+#include "assets.h"
+#include "group.h"
+#include "sprite.h"
+#include "camera.h"
 
 GroupManager::GroupManager()
 {
@@ -14,11 +18,6 @@ GroupManager::~GroupManager()
 			delete e.second;
 		}
 	}
-}
-
-void GroupManager::setassets(Assets* a)
-{
-	assets_ = a;
 }
 
 void GroupManager::addgroup(const std::string& id, Group* g)
@@ -56,7 +55,7 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
 			temp->name = name;
             temp->x = x;
             temp->y = y;
-            temp->setTexture(assets_->getTexture(texture));
+            temp->setTexture(Assets::getTexture(texture));
             g->add(temp);
             //delete temp;
 		}

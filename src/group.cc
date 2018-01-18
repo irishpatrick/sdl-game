@@ -1,4 +1,7 @@
 #include "group.h"
+#include "sprite.h"
+#include "camera.h"
+#include "assets.h"
 
 Group::Group()
 {

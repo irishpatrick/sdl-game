@@ -1,4 +1,5 @@
 #include "door.h"
+#include "groupmanager.h"
 
 Door::Door()
 {

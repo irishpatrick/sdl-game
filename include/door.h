@@ -2,7 +2,7 @@
 #define DOOR_H
 
 #include <string>
-#include "groupmanager.h"
+class GroupManager;
 
 class Door
 {

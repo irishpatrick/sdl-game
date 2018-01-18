@@ -1,4 +1,6 @@
 #include "light.h"
+#include "texture.h"
+#include "group.h"
 
 Light::Light()
 {

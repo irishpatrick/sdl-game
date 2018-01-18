@@ -1,7 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "sprite.h"
+class Sprite;
 
 class Camera
 {

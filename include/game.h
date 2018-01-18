@@ -17,6 +17,7 @@
 #include "texture.h"
 #include "light.h"
 #include "animation.h"
+#include "camera.h"
 
 class Game: public State
 {

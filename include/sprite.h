@@ -9,10 +9,10 @@
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/uuid/uuid_io.hpp>
+
+class Animation;
 class Group;
-#include "group.h"
-#include "texture.h"
-#include "animation.h"
+class Texture;
 
 class Sprite
 {

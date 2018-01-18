@@ -1,4 +1,5 @@
 #include "assets.h"
+#include "texture.h"
 
 std::map<std::string, Texture*> Assets::texMap = std::map<std::string, Texture*>();
 std::vector<std::future<void>> Assets::futures = std::vector<std::future<void>>();

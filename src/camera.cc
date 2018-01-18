@@ -1,4 +1,5 @@
 #include "camera.h"
+#include "sprite.h"
 
 Camera::Camera()
 {

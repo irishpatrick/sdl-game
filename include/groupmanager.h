@@ -7,9 +7,9 @@
 #include <streambuf>
 #include "json.hpp"
 //#include <rapidjson/document.h>
-#include "group.h"
-#include "sprite.h"
-#include "camera.h"
+class Group;
+class Sprite;
+class Camera;
 
 
 class GroupManager
@@ -23,7 +23,6 @@ public:
 	void setactive(const std::string &);
 	void setcamera(Camera*);
 	void setfocus(Sprite*);
-	void setassets(Assets*);
 
 	Group* getactive();
 
@@ -32,7 +31,6 @@ private:
 	Group* active_;
 	Camera* camera_;
 	Sprite* focus_;
-	Assets* assets_;
 };
 
 #endif /* GROUPMANAGER_H */

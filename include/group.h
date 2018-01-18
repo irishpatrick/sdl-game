@@ -1,19 +1,17 @@
 #ifndef GROUP_H
 #define GROUP_H
 
+#include <SDL.h>
 #include <vector>
 #include <cstdlib>
 #include <cstdio>
-
 #include <rapidjson/document.h>
 #include <string>
 #include <fstream>
 #include <streambuf>
-#include "assets.h"
+
 class Sprite;
-#include "sprite.h"
 class Camera;
-#include "camera.h"
 
 class Group
 {

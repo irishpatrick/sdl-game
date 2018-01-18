@@ -10,10 +10,7 @@
 #include <SDL_image.h>
 #include <boost/lexical_cast.hpp>
 
-#include "line.h"
-
 class Sprite;
-#include "sprite.h"
 
 class Util
 {

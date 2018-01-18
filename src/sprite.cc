@@ -1,4 +1,7 @@
 #include "sprite.h"
+#include "animation.h"
+#include "group.h"
+#include "texture.h"
 
 Sprite::Sprite()
 {
@@ -15,11 +18,12 @@ Sprite::Sprite()
     dynamic = false;
     name = "";
     tag = boost::uuids::random_generator()();
+    //anim = new Animation();
 }
 
 Sprite::~Sprite()
 {
-    
+    //delete anim;
 }
 
 void Sprite::update(float delta)

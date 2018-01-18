@@ -1,4 +1,7 @@
 #include "animation.h"
+#include "texture.h"
+#include "util.h"
+#include "assets.h"
 
 Animation::Animation()
 {

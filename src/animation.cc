@@ -28,6 +28,11 @@ Animation::~Animation()
     }
 }
 
+Texture* Animation::GetTexture()
+{
+    return tex_;
+}
+
 SDL_Rect* Animation::GetCurrentFrame()
 {
     return currentframe_;
@@ -59,9 +64,10 @@ void Animation::InitFromJson(const std::string& fn)
 
         frames_.push_back(r);
 
-        cx = (i * w) % tex_->getW();
-        if (cx == 0)
+        cx += w;
+        if (cx >= tex_->getW())
         {
+            cx = 0;
             cy += h;
         }
     }
@@ -87,6 +93,8 @@ void Animation::InitFromJson(const std::string& fn)
             animations_.push_back(fs);
         }
     }
+
+    currentframe_ = frames_[0];
 }
 
 void Animation::Start(const std::string& name, bool loop)
@@ -97,7 +105,9 @@ void Animation::Start(const std::string& name, bool loop)
         FrameSet* current = nullptr;
         for (auto& e : animations_)
         {
-            if (strcmp(e->name, name.c_str()))
+            //printf("%s, %s\n", e->name, name.c_str());
+            //printf("%d\n", strcmp(e->name, name.c_str()));
+            if (strcmp(e->name, name.c_str()) == 0)
             {
                 current = e;
             }
@@ -136,6 +146,10 @@ void Animation::Update()
                 }
             }
         }
+    }
+    else
+    {
+        printf("not running!\n");
     }
 }
 

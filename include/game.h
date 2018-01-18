@@ -34,6 +34,7 @@ private:
     Sprite hero;
     Sprite monster;
     Sprite background;
+    Sprite animtest;
     std::vector<Sprite*> grass;
     Group stage;
     Group testroom;

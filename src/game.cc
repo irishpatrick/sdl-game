@@ -90,7 +90,10 @@ void Game::init()
 
     printf("starting tests...\n");
 
-    test.InitFromJson(root + "animtest.json");
+    //test.InitFromJson(root + "animtest.json");
+    animtest.InitAnimation(root + "animtest.json");
+    animtest.GetAnimation()->Start("all", false);
+    stage.add(&animtest);
 
     printf("done!\n");
 }
@@ -173,6 +176,8 @@ void Game::update(float delta, const uint8_t* keys)
             hero.x += hero.xvel * delta;
         }
     }
+
+    animtest.update(delta);
 
     Util::contain(&hero, groups_.getactive()->get_sprite_by_name("background"));
 

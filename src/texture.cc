@@ -35,7 +35,7 @@ void Texture::set(SDL_Surface* s)
     surf = s;
     w = surf->w;
     h = surf->h;
-	printf("%d, %d\n", w, h);
+	//printf("%d, %d\n", w, h);
     ready = true;
 }
 
@@ -48,7 +48,7 @@ SDL_Texture* Texture::use()
 {
     if (ready && tex == NULL)
     {
-        printf("creating texture\n");
+        //printf("creating texture\n");
         tex = SDL_CreateTextureFromSurface(renderer, surf);
     }
     return tex;

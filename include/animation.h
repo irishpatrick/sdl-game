@@ -36,6 +36,7 @@ public:
     void Stop();
     void Kill();
     SDL_Rect* GetCurrentFrame();
+    Texture* GetTexture();
 
 private:
     //std::map<std::string, FrameSet> animmap_;

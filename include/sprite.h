@@ -20,9 +20,11 @@ public:
     Sprite();
     virtual ~Sprite();
 
+    virtual void InitAnimation(const std::string&);
     virtual void setTexture(Texture*);
     virtual void loadTexture(const std::string&, SDL_Renderer*);
     virtual void draw(SDL_Renderer*);
+    virtual Animation* GetAnimation();
     virtual void update(float);
 	void queryTexture();
     inline void pos(float a, float b)
@@ -46,6 +48,7 @@ public:
     bool solid;
     bool dynamic;
     std::string name;
+    Animation* anim;
 protected:
     Group* parent;
 

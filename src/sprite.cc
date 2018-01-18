@@ -17,18 +17,29 @@ Sprite::Sprite()
     solid = true;
     dynamic = false;
     name = "";
+    anim = new Animation();
     tag = boost::uuids::random_generator()();
-    //anim = new Animation();
 }
 
 Sprite::~Sprite()
 {
-    //delete anim;
+    delete anim;
+}
+
+void Sprite::InitAnimation(const std::string& fn)
+{
+    anim->InitFromJson(fn);
+    texture = anim->GetTexture();
 }
 
 void Sprite::update(float delta)
 {
-    
+    anim->Update();
+}
+
+Animation* Sprite::GetAnimation()
+{
+    return anim;
 }
 
 void Sprite::setTexture(Texture *t)
@@ -100,5 +111,12 @@ void Sprite::draw(SDL_Renderer* r)
     rect.h = h;
 
     //if (texture->use() == nullptr) return;
-    SDL_RenderCopy(r, texture->use(), NULL, &rect);
+    if (anim->GetTexture() != nullptr)
+    {
+        SDL_RenderCopy(r, texture->use(), anim->GetCurrentFrame(), &rect);
+    }
+    else
+    {
+        SDL_RenderCopy(r, texture->use(), NULL, &rect);
+    }
 }

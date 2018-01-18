@@ -101,6 +101,7 @@ void Animation::Start(const std::string& name, bool loop)
 {
     if (!running_)
     {
+        printf("now I'm running!\n");
         looping_ = loop;
         FrameSet* current = nullptr;
         for (auto& e : animations_)
@@ -130,6 +131,7 @@ void Animation::Update()
 {
     if (running_)
     {
+        printf("running in Update function!\n");
         currentframe_ = frames_[currentset_->frames[currentindex_]];
         if (timer_.Tick())
         {

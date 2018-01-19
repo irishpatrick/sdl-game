@@ -1,6 +1,7 @@
 #ifndef ANIMATION_H
 #define ANIMATION_H
 
+#include <SDL.h>
 #include <vector>
 #include <map>
 #include <string>
@@ -12,9 +13,8 @@
 #include <cstring>
 #include <cmath>
 
-#include "timer.h"
-
 class Texture;
+class Timer;
 
 typedef struct FrameSet_
 {
@@ -46,7 +46,7 @@ private:
     FrameSet* currentset_;
     std::vector<SDL_Rect*> frames_;
     Texture* tex_;
-    Timer timer_;
+    Timer* timer_;
     bool running_;
     bool looping_;
 };

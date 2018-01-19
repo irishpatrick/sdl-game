@@ -1,6 +1,7 @@
 #include "animation.h"
 #include "texture.h"
 #include "util.h"
+#include "timer.h"
 #include "assets.h"
 
 Animation::Animation()
@@ -10,11 +11,13 @@ Animation::Animation()
     running_ = false;
     looping_ = false;
     currentframe_ = nullptr;
+    timer_ = new Timer();
     currentindex_ = 0;
 }
 
 Animation::~Animation()
 {
+    delete timer_;
     for (auto& e: animations_)
     {
         free(e->frames);
@@ -117,7 +120,7 @@ void Animation::Start(const std::string& name, bool loop)
         }
 
         // calculate ms from fps
-        timer_.SetInterval(1.0/(double)current->fps*1000.0);
+        timer_->SetInterval(1.0/(double)current->fps*1000.0);
         currentindex_ = current->frames[0];
         currentset_ = current;
         running_ = true;
@@ -129,7 +132,7 @@ void Animation::Update()
     if (running_)
     {
         currentframe_ = frames_[currentset_->frames[currentindex_]];
-        if (timer_.Tick())
+        if (timer_->Tick())
         {
             currentindex_++;
             if (currentindex_ == currentset_->count)

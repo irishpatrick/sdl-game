@@ -10,11 +10,11 @@ public:
     Timer();
     ~Timer();
 
-    void SetInterval(uint32_t);
+    void SetInterval(double);
     bool Tick();
 
 private:
-    uint32_t duration_;
+    double duration_;
     uint32_t then_;
     uint32_t now_;
 };

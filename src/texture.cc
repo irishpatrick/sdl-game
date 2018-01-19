@@ -20,12 +20,12 @@ Texture::~Texture()
 
 }
 
-int Texture::getW()
+uint32_t Texture::getW()
 {
     return w;
 }
 
-int Texture::getH()
+uint32_t Texture::getH()
 {
     return h;
 }

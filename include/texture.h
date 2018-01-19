@@ -2,6 +2,7 @@
 #define TEXTURE_H
 
 #include <cstdio>
+#include <cstdint>
 #include <SDL.h>
 
 class Texture
@@ -13,16 +14,16 @@ public:
 
     void set(SDL_Surface*);
     void create(SDL_Renderer*);
-    int getW();
-    int getH();
+    uint32_t getW();
+    uint32_t getH();
     SDL_Texture* use();
     void destroy();
 
     bool ready;
 
 private:
-    int w;
-    int h;
+    uint32_t w;
+    uint32_t h;
     SDL_Texture* tex;
     SDL_Surface* surf;
     SDL_Renderer* renderer;

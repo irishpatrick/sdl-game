@@ -92,7 +92,7 @@ void Game::init()
 
     //test.InitFromJson(root + "animtest.json");
     animtest.InitAnimation(root + "animtest.json");
-    animtest.GetAnimation()->Start("all", false);
+    animtest.GetAnimation()->Start("all", true);
     stage.add(&animtest);
 
     printf("done!\n");

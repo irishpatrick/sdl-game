@@ -101,13 +101,10 @@ void Animation::Start(const std::string& name, bool loop)
 {
     if (!running_)
     {
-        printf("now I'm running!\n");
         looping_ = loop;
         FrameSet* current = nullptr;
         for (auto& e : animations_)
         {
-            //printf("%s, %s\n", e->name, name.c_str());
-            //printf("%d\n", strcmp(e->name, name.c_str()));
             if (strcmp(e->name, name.c_str()) == 0)
             {
                 current = e;
@@ -120,7 +117,7 @@ void Animation::Start(const std::string& name, bool loop)
         }
 
         // calculate ms from fps
-        timer_.SetInterval((uint32_t)round(1.0/(double)current->fps));
+        timer_.SetInterval(1.0/(double)current->fps*1000.0);
         currentindex_ = current->frames[0];
         currentset_ = current;
         running_ = true;
@@ -131,7 +128,6 @@ void Animation::Update()
 {
     if (running_)
     {
-        printf("running in Update function!\n");
         currentframe_ = frames_[currentset_->frames[currentindex_]];
         if (timer_.Tick())
         {
@@ -148,10 +144,6 @@ void Animation::Update()
                 }
             }
         }
-    }
-    else
-    {
-        printf("not running!\n");
     }
 }
 

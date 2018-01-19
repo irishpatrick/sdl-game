@@ -6,7 +6,7 @@
     "animations": [
         {
             "name": "all",
-            "fps": 10,
+            "fps": 4,
             "frames": [0,1,2,3]
         }
     ]

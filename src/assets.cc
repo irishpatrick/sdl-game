@@ -24,7 +24,8 @@ void parallel_load(
     SDL_Surface* s = IMG_Load(fn.c_str());
     if (s == nullptr)
     {
-        printf("surface faile4d to load!\n");
+        printf("surface failed to load!\n");
+        exit(1);
     }
     map[key]->set(s);
 }

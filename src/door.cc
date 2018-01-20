@@ -5,6 +5,8 @@ Door::Door()
 {
     dest_ = "";
     manager_ = nullptr;
+    x = 0.0;
+    y = 0.0;
 }
 
 Door::~Door()
@@ -12,17 +14,17 @@ Door::~Door()
 
 }
 
-void Door::setmanager(GroupManager* m)
+void Door::SetManager(GroupManager* m)
 {
     manager_ = m;
 }
 
-void Door::setdest(const std::string& d)
+void Door::SetDest(const std::string& d)
 {
     dest_ = d;
 }
 
-void Door::enter()
+void Door::Enter()
 {
     if (dest_ != "")
     {

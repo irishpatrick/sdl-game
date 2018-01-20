@@ -28,6 +28,11 @@ bool Config::fullscreen()
 void Config::load(const std::string& fn)
 {
 	std::ifstream i(fn);
+	if (!i)
+	{
+		printf("failed to open %s\n", fn.c_str());
+		exit(1);
+	}
 	nlohmann::json o;
 	i >> o;
 

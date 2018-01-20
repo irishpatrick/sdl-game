@@ -44,6 +44,11 @@ SDL_Rect* Animation::GetCurrentFrame()
 void Animation::InitFromJson(const std::string& fn)
 {
     std::ifstream in(fn);
+    if (!in)
+    {
+        printf("failed to open %s\n", fn.c_str());
+        exit(1);
+    }
 	nlohmann::json o;
 	in >> o;
     in.close();

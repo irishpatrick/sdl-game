@@ -1,6 +1,7 @@
 #ifndef DOOR_H
 #define DOOR_H
 
+#include <cstdint>
 #include <string>
 class GroupManager;
 
@@ -10,9 +11,14 @@ public:
     Door();
     ~Door();
 
-    void setmanager(GroupManager*);
-    void setdest(const std::string&);
-    void enter();
+    void SetManager(GroupManager*);
+    void SetDest(const std::string&);
+    void Enter();
+
+    float x;
+    float y;
+    uint32_t w;
+    uint32_t h;
 
 private:
     GroupManager* manager_;

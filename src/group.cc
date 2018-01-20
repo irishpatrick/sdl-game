@@ -25,27 +25,29 @@ void Group::init(SDL_Renderer* r)
 
 void Group::init_from_json(const std::string& fn)
 {
-	std::ifstream t(fn);
-	std::string data((std::istreambuf_iterator<char>(t)),
-		std::istreambuf_iterator<char>());
+    std::ifstream in(fn);
+    if (!in)
+    {
+        printf("failed to open %s\n", fn.c_str());
+    }
+    nlohmann::json o;
+    in >> o;
+    in.close();
 
-	rapidjson::Document json;
-	json.Parse(data.c_str());
-
-    if (json.HasMember("entry"))
+    if (o.find("entry") != o.end())
     {
         
     }
 
-	if (json.HasMember("sprites"))
+	if (o.find("sprites") != o.end())
 	{
-		for (const auto& e : json["sprites"].GetArray())
+		for (const auto& e : o["sprites"])
 		{
             // assume sprite object has all required fields
-			float x = (float)e["x"].GetInt();
-            float y = (float)e["y"].GetInt();
-            std::string name = e["name"].GetString();
-            std::string texture = e["texture"].GetString();
+			float x = (float)e["x"];
+            float y = (float)e["y"];
+            std::string name = e["name"];
+            std::string texture = e["texture"];
 
             // test initialize
             Sprite* temp = new Sprite();

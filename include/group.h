@@ -5,10 +5,10 @@
 #include <vector>
 #include <cstdlib>
 #include <cstdio>
-#include <rapidjson/document.h>
 #include <string>
 #include <fstream>
 #include <streambuf>
+#include <json.hpp>
 
 class Sprite;
 class Camera;

@@ -19,6 +19,7 @@ void Game::init()
 	std::string textures = Config::assetpath() + "textures/";
     std::string maps = Config::assetpath() + "maps/";
     std::string root = Config::assetpath();
+    std::string sprites = Config::assetpath() + "sprites/";
 
     Assets::loadTexture(textures + "med-background.png", renderer);
     Assets::loadTexture(textures + "hero.png", renderer);
@@ -91,7 +92,7 @@ void Game::init()
     printf("starting tests...\n");
 
     //test.InitFromJson(root + "animtest.json");
-    animtest.InitAnimation(root + "animtest.json");
+    animtest.InitAnimation(sprites + "animtest.json");
     animtest.GetAnimation()->Start("all", true);
     stage.add(&animtest);
 

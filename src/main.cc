@@ -9,6 +9,8 @@
 #include "state.h"
 #include "game.h"
 #include "config.h"
+#include "gamepad.h"
+#include "controllers.h"
 
 SDL_Window *window;
 SDL_Renderer *renderer;
@@ -105,6 +107,8 @@ void render()
             {
                 quit = true;
             }
+
+            Controllers::ProcessEvent(e);
         }
         
         const uint8_t* state = SDL_GetKeyboardState(nullptr);

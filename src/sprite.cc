@@ -29,6 +29,8 @@ Sprite::~Sprite()
 void Sprite::InitAnimation(const std::string& fn)
 {
     anim->InitFromJson(fn);
+    w = anim->GetFrameWidth();
+    h = anim->GetFrameHeight();
     texture = anim->GetTexture();
 }
 
@@ -90,9 +92,6 @@ void Sprite::queryTexture()
 
 void Sprite::draw(SDL_Renderer* r)
 {
-    w = texture->getW();
-    h = texture->getH();
-
     //printf("%x\n", texture->use());
 
     //printf("%d, %d\n", w, h);

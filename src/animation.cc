@@ -11,6 +11,8 @@ Animation::Animation()
     running_ = false;
     looping_ = false;
     currentframe_ = nullptr;
+    framewidth_ = 0;
+    frameheight_ = 0;
     timer_ = new Timer();
     currentindex_ = 0;
 }
@@ -41,6 +43,16 @@ SDL_Rect* Animation::GetCurrentFrame()
     return currentframe_;
 }
 
+uint32_t Animation::GetFrameWidth()
+{
+    return framewidth_;
+}
+
+uint32_t Animation::GetFrameHeight()
+{
+    return frameheight_;
+}
+
 void Animation::InitFromJson(const std::string& fn)
 {
     std::ifstream in(fn);
@@ -56,6 +68,8 @@ void Animation::InitFromJson(const std::string& fn)
     tex_ = Assets::getTexture(o["texture"]);
     uint32_t w = o["width"];
     uint32_t h = o["height"];
+    framewidth_ = w;
+    frameheight_ = h;
 
     uint32_t cx = 0;
     uint32_t cy = 0;

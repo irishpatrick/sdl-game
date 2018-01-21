@@ -37,6 +37,8 @@ public:
     void Kill();
     SDL_Rect* GetCurrentFrame();
     Texture* GetTexture();
+    uint32_t GetFrameWidth();
+    uint32_t GetFrameHeight();
 
 private:
     //std::map<std::string, FrameSet> animmap_;
@@ -49,6 +51,8 @@ private:
     Timer* timer_;
     bool running_;
     bool looping_;
+    uint32_t framewidth_;
+    uint32_t frameheight_;
 };
 
 #endif /* ANIMATION_H */

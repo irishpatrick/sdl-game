@@ -5,9 +5,9 @@ Game::Game(SDL_Renderer* r): State(r)
 
 }
 
-Game::~Game() 
+Game::~Game()
 {
-    testroom.destroy();    
+    testroom.destroy();
 }
 
 void Game::init()
@@ -24,7 +24,7 @@ void Game::init()
     Assets::loadTexture(textures + "med-background.png", renderer);
     Assets::loadTexture(textures + "hero.png", renderer);
     Assets::loadTexture(textures + "monster.png", renderer);
-	Assets::loadTexture(textures + "grass1.png", renderer);
+    Assets::loadTexture(textures + "grass1.png", renderer);
     Assets::loadTexture(textures + "room-bg.png", renderer);
     Assets::loadTexture(textures + "opposite.png", renderer);
     Assets::loadTexture(textures + "animtest.png", renderer);
@@ -34,9 +34,9 @@ void Game::init()
     camera.setFocus(&hero);
 
     hero.setTexture(Assets::getTexture("hero.png"));
-    
+
     hero.speed = 250.0f;
-    
+
     monster.setTexture(Assets::getTexture("monster.png"));
     monster.pos(150, 150);
 
@@ -73,7 +73,7 @@ void Game::init()
     doortest.queryTexture();
 
 	hero.pos((w / 2) - (hero.w / 2), (h / 2) - (hero.h / 2));
- 
+
     //testroom.init_from_json(maps + "testroom.json");
 
 	groups_.setcamera(&camera);
@@ -124,10 +124,10 @@ void Game::update(float delta, const uint8_t* keys)
         hero.xvel = hero.speed;
         hero.yvel = hero.speed;
     }
-    
+
     if (w)
     {
-        hero.y -= hero.yvel * delta; 
+        hero.y -= hero.yvel * delta;
     }
     if (s)
     {
@@ -135,7 +135,7 @@ void Game::update(float delta, const uint8_t* keys)
     }
     if (a)
     {
-        hero.x -= hero.xvel * delta; 
+        hero.x -= hero.xvel * delta;
     }
     if (d)
     {

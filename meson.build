@@ -25,6 +25,8 @@ animation = 'src/animation.cc'
 controllers = 'src/controllers.cc'
 gamepad = 'src/gamepad.cc'
 timer = 'src/timer.cc'
+particle = 'src/particle.cc'
+particleengine = 'src/particleengine.cc'
 
 #game
 game = 'src/game.cc'
@@ -48,6 +50,8 @@ executable(
     controllers,
     gamepad,
     timer,
+    particle,
+    particleengine,
 
     game,
 

@@ -19,7 +19,7 @@ indent_mode=2
 
 [project]
 name=sdl-game
-base_path=/home/patrick/Desktop/sdl-game
+base_path=.
 description=
 file_patterns=
 
@@ -29,15 +29,15 @@ long_line_column=72
 
 [files]
 current_page=0
-FILE_NAME_0=0;None;0;EUTF-8;0;1;0;%2Fhome%2Fpatrick%2FDesktop%2Fsdl-game%2Fmeson.build;0;4
+FILE_NAME_0=61;C++;0;EUTF-8;0;1;0;%2Fhome%2Fpatrick%2FDesktop%2Fsdl-game%2Fsrc%2Fgame.cc;0;4
 
 [VTE]
-last_dir=/home/patrick
+last_dir=/home/patrick/Desktop/sdl-game/build
 
 [build-menu]
 NF_03_LB=Ninja
-NF_03_CM=ninja -C "%p/build"
-NF_03_WD=
+NF_03_CM=ninja
+NF_03_WD=%p/build
 CFT_02_LB=_Lint
 CFT_02_CM=cppcheck --language=c --enable=warning,style --template=gcc "%f"
 CFT_02_WD=
@@ -47,7 +47,7 @@ NF_02_CM=make %e.o
 NF_02_WD=
 EX_00_LB=_Execute
 EX_00_CM=./a
-EX_00_WD="%p/build"
+EX_00_WD=%p/build
 NF_00_LB=_Make
 NF_00_CM=make
 NF_00_WD=

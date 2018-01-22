@@ -18,6 +18,7 @@
 #include "light.h"
 #include "animation.h"
 #include "camera.h"
+#include "door.h"
 
 class Game: public State
 {
@@ -32,6 +33,8 @@ public:
 
 private:
     Sprite hero;
+    Door doortest;
+    Sprite doorsprite;
     Sprite monster;
     Sprite background;
     Sprite animtest;

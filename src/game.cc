@@ -28,6 +28,7 @@ void Game::init()
     Assets::loadTexture(textures + "room-bg.png", renderer);
     Assets::loadTexture(textures + "opposite.png", renderer);
     Assets::loadTexture(textures + "animtest.png", renderer);
+    Assets::loadTexture(textures + "door.png", renderer);
 
     camera.screen(w, h);
     camera.setFocus(&hero);
@@ -47,33 +48,33 @@ void Game::init()
     light.size = 300;
     light.settexture(Assets::getTexture("opposite.png"));
 
+    doorsprite.x = 500;
+    doorsprite.y = 500;
+    doorsprite.setTexture(Assets::getTexture("door.png"));
+    doortest.x = 500;
+    doortest.y = 500;
+
     stage.add(&background);
     stage.add(&monster);
     stage.add(&hero);
+    stage.add(&doorsprite);
 
     stage.sx = 300;
     stage.sy = 300;
-
-    /*for (int i=0; i<500; i++)
-    {
-        Sprite* current = new Sprite();
-        current->x = rand() % w;
-        current->y = rand() % w;
-        current->solid = false;
-        current->setTexture(Assets::getTexture("grass1.png"));
-        stage.add(current);
-        grass.push_back(current);
-    }*/
 
     stage.setCamera(&camera);
 
     Assets::getFutures();
 
     light.querytexture();
-
 	hero.queryTexture();
 	monster.queryTexture();
 	background.queryTexture();
+    doorsprite.queryTexture();
+    doortest.w = doorsprite.w;
+    doortest.h = doorsprite.h;
+    doortest.SetDest("room");
+    doortest.SetManager(&groups_);
 
 	hero.pos((w / 2) - (hero.w / 2), (h / 2) - (hero.h / 2));
  

@@ -84,6 +84,11 @@ const std::string Sprite::getUUID()
     return s;
 }
 
+void Sprite::OnCollision()
+{
+
+}
+
 void Sprite::queryTexture()
 {
 	w = texture->getW();

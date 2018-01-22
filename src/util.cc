@@ -29,6 +29,9 @@ std::string Util::checkCollision(Sprite* a, Sprite* b)
     SDL_Rect abox = getAABB(a, 16);
     SDL_Rect bbox = getAABB(b, 16);
 
+    a->OnCollision();
+    b->OnCollision();
+
     if (
         abox.x < bbox.x + bbox.w &&
         abox.x + abox.w > bbox.x &&

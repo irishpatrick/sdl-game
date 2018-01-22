@@ -33,8 +33,6 @@ public:
 
 private:
     Sprite hero;
-    Door doortest;
-    Sprite doorsprite;
     Sprite monster;
     Sprite background;
     Sprite animtest;
@@ -42,9 +40,10 @@ private:
     Group stage;
     Group testroom;
     Camera camera;
-	GroupManager groups_;
+    GroupManager groups_;
     Light light;
     Animation test;
+    Door doortest;
 };
 
 #endif /* GAME_H */

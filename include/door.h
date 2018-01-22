@@ -3,9 +3,10 @@
 
 #include <cstdint>
 #include <string>
+#include "sprite.h"
 class GroupManager;
 
-class Door
+class Door: public Sprite
 {
 public:
     Door();
@@ -14,11 +15,7 @@ public:
     void SetManager(GroupManager*);
     void SetDest(const std::string&);
     void Enter();
-
-    float x;
-    float y;
-    uint32_t w;
-    uint32_t h;
+    void OnCollision();
 
 private:
     GroupManager* manager_;

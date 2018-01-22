@@ -1,7 +1,7 @@
 #include "door.h"
 #include "groupmanager.h"
 
-Door::Door()
+Door::Door(): Sprite()
 {
     dest_ = "";
     manager_ = nullptr;
@@ -30,4 +30,9 @@ void Door::Enter()
     {
         manager_->setactive(dest_);
     }
+}
+
+void Door::OnCollision()
+{
+    Enter();
 }

@@ -27,6 +27,7 @@ public:
     virtual Animation* GetAnimation();
     virtual void update(float);
 	void queryTexture();
+    virtual void OnCollision();
     inline void pos(float a, float b)
     {
         x = a;
@@ -42,8 +43,8 @@ public:
     float xvel;
     float yvel;
     float speed;
-    int w;
-    int h;
+    uint32_t w;
+    uint32_t h;
     Texture* texture;
     bool solid;
     bool dynamic;

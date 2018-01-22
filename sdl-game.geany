@@ -28,13 +28,12 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=2
-FILE_NAME_0=61;C++;0;EUTF-8;0;1;0;%2Fhome%2Fpatrick%2FDesktop%2Fsdl-game%2Fsrc%2Fgame.cc;0;4
-FILE_NAME_1=120;C;0;EUTF-8;0;1;0;%2Fhome%2Fpatrick%2FDesktop%2Fsdl-game%2Finclude%2Fgame.h;0;4
-FILE_NAME_2=0;C;0;EUTF-8;0;1;0;%2Fhome%2Fpatrick%2FDesktop%2Fsdl-game%2Finclude%2Fconfig.h;0;4
+current_page=0
+FILE_NAME_0=1401;C++;0;EUTF-8;0;1;0;.%2FDesktop%2Fsdl-game%2Fsrc%2Fgame.cc;0;4
+FILE_NAME_1=0;C;0;EUTF-8;0;1;0;.%2FDesktop%2Fsdl-game%2Finclude%2Fgame.h;0;4
 
 [VTE]
-last_dir=/home/patrick/Desktop/sdl-game
+last_dir=/home/patrick/Desktop/sdl-game/build
 
 [build-menu]
 NF_03_LB=Ninja

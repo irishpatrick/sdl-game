@@ -5,8 +5,6 @@ Door::Door(): Sprite()
 {
     dest_ = "";
     manager_ = nullptr;
-    x = 0.0;
-    y = 0.0;
 }
 
 Door::~Door()
@@ -26,6 +24,7 @@ void Door::SetDest(const std::string& d)
 
 void Door::Enter()
 {
+    printf("going through door!\n");
     if (dest_ != "")
     {
         manager_->setactive(dest_);

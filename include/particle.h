@@ -2,23 +2,23 @@
 #define PARTICLE_H
 
 #include <cstdint>
-
+#include "sprite.h"
 class Animation;
 class Texture;
+class Timer;
 
-class Particle
+class Particle: public Sprite
 {
 public:
     Particle();
     ~Particle();
 
-    float x;
-    float y;
-    uint32_t w;
-    uint32_t h;
+    void SetLifeSpan(double);
+    void update(float);
+
 private:
-    Animation* anim_;
-    Texture* tex_;
+    double lifespan_;
+    Timer* timer_;
 };
 
 #endif /* PARTICLE_H */

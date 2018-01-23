@@ -28,6 +28,8 @@ public:
     virtual void update(float);
 	void queryTexture();
     virtual void OnCollision();
+    bool IsVisible();
+    void SetVisible(bool);
     inline void pos(float a, float b)
     {
         x = a;
@@ -51,6 +53,7 @@ public:
     std::string name;
     Animation* anim;
 protected:
+    bool visible_;
     Group* parent;
 
 private:

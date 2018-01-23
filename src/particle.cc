@@ -1,18 +1,27 @@
 #include "particle.h"
 #include "animation.h"
 #include "texture.h"
+#include "timer.h"
 
-Particle::Particle()
+Particle::Particle(): Sprite()
 {
-    x = 0;
-    y = 0;
-    w = 0;
-    h = 0;
-    anim_ = new Animation();
-    tex_ = nullptr;
+    timer_ = new Timer();
 }
 
 Particle::~Particle()
 {
-    delete anim_;
+    delete timer_;
+}
+
+void Particle::SetLifeSpan(double  n)
+{
+    timer_->SetInterval(n);
+}
+
+void Particle::update(float delta)
+{
+    if (timer_->Tick())
+    {
+
+    }
 }

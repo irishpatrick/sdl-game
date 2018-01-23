@@ -16,6 +16,7 @@ Sprite::Sprite()
     parent = NULL;
     solid = true;
     dynamic = false;
+    visible_ = true;
     name = "";
     anim = new Animation();
     tag = boost::uuids::random_generator()();
@@ -34,9 +35,23 @@ void Sprite::InitAnimation(const std::string& fn)
     texture = anim->GetTexture();
 }
 
+void Sprite::SetVisible(bool state)
+{
+    visible_ = state;
+}
+
+bool Sprite::IsVisible()
+{
+    return visible_;
+}
+
 void Sprite::update(float delta)
 {
-    anim->Update();
+    if (!visible_) return;
+    if (anim->GetTexture() != nullptr)
+    {
+        anim->Update();
+    }
 }
 
 Animation* Sprite::GetAnimation()
@@ -86,7 +101,7 @@ const std::string Sprite::getUUID()
 
 void Sprite::OnCollision()
 {
-
+    
 }
 
 void Sprite::queryTexture()
@@ -97,6 +112,7 @@ void Sprite::queryTexture()
 
 void Sprite::draw(SDL_Renderer* r)
 {
+    if (!visible_) return;
     //printf("%x\n", texture->use());
 
     //printf("%d, %d\n", w, h);

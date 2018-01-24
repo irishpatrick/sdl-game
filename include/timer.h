@@ -11,6 +11,7 @@ public:
     ~Timer();
 
     void SetInterval(double);
+    void Reset();
     bool Tick();
 
 private:

@@ -1,4 +1,5 @@
 #include "config.h"
+#include "util.h"
 
 int Config::SCREENWIDTH = 0;
 int Config::SCREENHEIGHT = 0;
@@ -36,19 +37,19 @@ void Config::load(const std::string& fn)
 	nlohmann::json o;
 	i >> o;
 
-	if (o.find("screenWidth") != o.end())
+	if (Util::JsonExists(o, "screenWidth"))
 	{
 		SCREENWIDTH = o["screenWidth"];
 	}
-	if (o.find("screenHeight") != o.end())
+	if (Util::JsonExists(o, "screenHeight"))
 	{
 		SCREENHEIGHT = o["screenHeight"];
 	}
-	if (o.find("assetPath") != o.end())
+	if (Util::JsonExists(o, "assetPath"))
 	{
 		ASSETPATH = o["assetPath"];
 	}
-	if (o.find("fullscreen") != o.end())
+	if (Util::JsonExists(o, "fullscreen"))
 	{
 		int res = o["fullscreen"];
 		if (res == 1)

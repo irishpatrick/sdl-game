@@ -37,7 +37,7 @@ std::string Util::checkCollision(Sprite* a, Sprite* b)
     {
         a->OnCollision();
         b->OnCollision();
-        
+
         Line d1((float)bbox.x, (float)bbox.y, (float)bbox.x + (float)bbox.w, (float)bbox.y + (float)bbox.h);
         Line d2((float)bbox.x + (float)bbox.w, (float)bbox.y, (float)bbox.x, (float)bbox.y + (float)bbox.h);
 
@@ -69,6 +69,11 @@ std::string Util::checkCollision(Sprite* a, Sprite* b)
     return "no collision";
 }
 
+bool Util::JsonExists(nlohmann::json& o, const std::string& key)
+{
+    return o.find(key) != o.end();
+}
+
 void Util::contain(Sprite* a, Sprite* b)
 {
     if (a == nullptr || b == nullptr)
@@ -94,8 +99,8 @@ SDL_Rect Util::getAABB(Sprite* a, uint32_t h)
 
 std::string Util::RectToString(SDL_Rect* r)
 {
-    return "SDL_Rect [x: " + boost::lexical_cast<std::string>(r->x) + 
-        ", y: " + boost::lexical_cast<std::string>(r->y) + 
-        ", w: " + boost::lexical_cast<std::string>(r->w) + 
+    return "SDL_Rect [x: " + boost::lexical_cast<std::string>(r->x) +
+        ", y: " + boost::lexical_cast<std::string>(r->y) +
+        ", w: " + boost::lexical_cast<std::string>(r->w) +
         ", h: " + boost::lexical_cast<std::string>(r->h) + "]";
 }

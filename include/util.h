@@ -9,6 +9,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <boost/lexical_cast.hpp>
+#include <json.hpp>
 
 class Sprite;
 
@@ -21,6 +22,7 @@ public:
     static void contain(Sprite*, Sprite*);
     static SDL_Rect getAABB(Sprite*, uint32_t);
     static std::string RectToString(SDL_Rect*);
+    static bool JsonExists(nlohmann::json&, const std::string&);
 };
 
 #endif /* UTIL_H */

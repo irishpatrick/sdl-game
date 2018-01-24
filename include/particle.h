@@ -15,10 +15,12 @@ public:
 
     void SetLifeSpan(double);
     void update(float);
+    void Reset();
 
 private:
     double lifespan_;
-    Timer* timer_;
+    Timer* life_;
+    Timer* clock_;
 };
 
 #endif /* PARTICLE_H */

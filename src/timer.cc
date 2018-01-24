@@ -18,6 +18,11 @@ void Timer::SetInterval(double ms)
     then_ = SDL_GetTicks();
 }
 
+void Timer::Reset()
+{
+    then_ = SDL_GetTicks();
+}
+
 bool Timer::Tick()
 {
     now_ = SDL_GetTicks();

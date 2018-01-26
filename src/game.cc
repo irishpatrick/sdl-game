@@ -103,6 +103,8 @@ void Game::update(float delta, const uint8_t* keys)
     bool a = keys[SDL_SCANCODE_A];
     bool d = keys[SDL_SCANCODE_D];
     bool r = keys[SDL_SCANCODE_R];
+    bool p = keys[SDL_SCANCODE_P];
+    bool l = keys[SDL_SCANCODE_L];
 	//bool up = keys[SDL_SCANCODE_UP];
 	//bool down = keys[SDL_SCANCODE_DOWN];
 	//bool left = keys[SDL_SCANCODE_LEFT];
@@ -140,6 +142,19 @@ void Game::update(float delta, const uint8_t* keys)
     if (d)
     {
         hero.x += hero.xvel * delta;
+    }
+
+    if (p)
+    {
+        Sprite* collider = hero.GetCollision();
+        if (collider != nullptr)
+        {
+            if (Door* d = dynamic_cast<Door*>(collider))
+            {
+                // success
+                d->Enter();
+            }
+        }
     }
 
     std::vector<Sprite*>::iterator it;
@@ -184,7 +199,10 @@ void Game::update(float delta, const uint8_t* keys)
     groups_.getactive()->sort();
 
     //printf("%f,%f - %f,%f\n", hero.x, hero.y, background.x, background.y);
-    //printf("%x, %x, %x\n", hero.texture->use(), monster.texture->use(), background.texture->use());
+    /*printf("%x, %x, %x\n",
+        hero.texture->use(),
+        monster.texture->use(),
+        background.texture->use());*/
 }
 
 void Game::render()

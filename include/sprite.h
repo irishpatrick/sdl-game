@@ -25,9 +25,11 @@ public:
     virtual void loadTexture(const std::string&, SDL_Renderer*);
     virtual void draw(SDL_Renderer*);
     virtual Animation* GetAnimation();
+    virtual void ResetCollision();
     virtual void update(float);
 	void queryTexture();
-    virtual void OnCollision();
+    virtual void OnCollision(Sprite*);
+    Sprite* GetCollision();
     bool IsVisible();
     void SetVisible(bool);
     inline void pos(float a, float b)
@@ -55,6 +57,7 @@ public:
 protected:
     bool visible_;
     Group* parent;
+    Sprite* collision_;
 
 private:
     boost::uuids::uuid tag;

@@ -35,11 +35,15 @@ std::string Util::checkCollision(Sprite* a, Sprite* b)
         abox.y < bbox.y + bbox.h &&
         abox.y + abox.h > bbox.y)
     {
-        a->OnCollision();
-        b->OnCollision();
+        a->OnCollision(b);
+        b->OnCollision(a);
 
-        Line d1((float)bbox.x, (float)bbox.y, (float)bbox.x + (float)bbox.w, (float)bbox.y + (float)bbox.h);
-        Line d2((float)bbox.x + (float)bbox.w, (float)bbox.y, (float)bbox.x, (float)bbox.y + (float)bbox.h);
+        Line d1(
+            (float)bbox.x, (float)bbox.y,
+            (float)bbox.x + (float)bbox.w, (float)bbox.y + (float)bbox.h);
+        Line d2(
+            (float)bbox.x + (float)bbox.w, (float)bbox.y,
+            (float)bbox.x, (float)bbox.y + (float)bbox.h);
 
         float cx = abox.x + (abox.w / 2.0f);
         float cy = abox.y + (abox.h / 2.0f);

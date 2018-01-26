@@ -31,7 +31,8 @@ void Door::Enter()
     }
 }
 
-void Door::OnCollision()
+void Door::OnCollision(Sprite* sprite)
 {
-    Enter();
+    Sprite::OnCollision(sprite);
+    //Enter();
 }

@@ -15,7 +15,7 @@ public:
     void SetManager(GroupManager*);
     void SetDest(const std::string&);
     void Enter();
-    void OnCollision();
+    void OnCollision(Sprite*);
 
 private:
     GroupManager* manager_;

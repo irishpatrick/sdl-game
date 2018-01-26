@@ -20,6 +20,7 @@ Sprite::Sprite()
     name = "";
     anim = new Animation();
     tag = boost::uuids::random_generator()();
+    collision_ = nullptr;
 }
 
 Sprite::~Sprite()
@@ -99,9 +100,19 @@ const std::string Sprite::getUUID()
     return s;
 }
 
-void Sprite::OnCollision()
+void Sprite::OnCollision(Sprite* sprite)
 {
-    
+    collision_ = sprite;
+}
+
+Sprite* Sprite::GetCollision()
+{
+    return collision_;
+}
+
+void Sprite::ResetCollision()
+{
+    collision_ = nullptr;
 }
 
 void Sprite::queryTexture()

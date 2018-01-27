@@ -61,8 +61,8 @@ void Animation::InitFromJson(const std::string& fn)
         printf("failed to open %s\n", fn.c_str());
         exit(1);
     }
-	nlohmann::json o;
-	in >> o;
+    nlohmann::json o;
+    in >> o;
     in.close();
 
     tex_ = Assets::getTexture(o["texture"]);
@@ -179,4 +179,3 @@ void Animation::Kill()
     running_ = false;
     looping_ = false;
 }
-

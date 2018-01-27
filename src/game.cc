@@ -16,7 +16,7 @@ void Game::init()
     int h = 1080;
     printf("loading assets\n");
 
-	std::string textures = Config::assetpath() + "textures/";
+    std::string textures = Config::assetpath() + "textures/";
     std::string maps = Config::assetpath() + "maps/";
     std::string root = Config::assetpath();
     std::string sprites = Config::assetpath() + "sprites/";
@@ -67,21 +67,21 @@ void Game::init()
     Assets::getFutures();
 
     light.querytexture();
-	hero.queryTexture();
-	monster.queryTexture();
-	background.queryTexture();
+    hero.queryTexture();
+    monster.queryTexture();
+    background.queryTexture();
     doortest.queryTexture();
 
-	hero.pos((w / 2) - (hero.w / 2), (h / 2) - (hero.h / 2));
+    hero.pos((w / 2) - (hero.w / 2), (h / 2) - (hero.h / 2));
 
     //testroom.init_from_json(maps + "testroom.json");
 
-	groups_.setcamera(&camera);
-	groups_.setfocus(&hero);
+    groups_.setcamera(&camera);
+    groups_.setfocus(&hero);
     groups_.loadgroup("room", maps + "testroom.json");
-	groups_.addgroup("stage", &stage);
+    groups_.addgroup("stage", &stage);
     //groups_.addgroup("room", &testroom);
-	groups_.setactive("stage");
+    groups_.setactive("stage");
     //groups_.setactive("room");
 
     printf("done!\n");
@@ -105,10 +105,10 @@ void Game::update(float delta, const uint8_t* keys)
     bool r = keys[SDL_SCANCODE_R];
     bool p = keys[SDL_SCANCODE_P];
     bool l = keys[SDL_SCANCODE_L];
-	//bool up = keys[SDL_SCANCODE_UP];
-	//bool down = keys[SDL_SCANCODE_DOWN];
-	//bool left = keys[SDL_SCANCODE_LEFT];
-	//bool right = keys[SDL_SCANCODE_RIGHT];
+    //bool up = keys[SDL_SCANCODE_UP];
+    //bool down = keys[SDL_SCANCODE_DOWN];
+    //bool left = keys[SDL_SCANCODE_LEFT];
+    //bool right = keys[SDL_SCANCODE_RIGHT];
 
     if (r)
     {
@@ -208,7 +208,7 @@ void Game::update(float delta, const uint8_t* keys)
 void Game::render()
 {
     groups_.getactive()->draw(renderer);
-    //ight.draw(renderer);
+    //light.draw(renderer);
 }
 
 void Game::destroy()

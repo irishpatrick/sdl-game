@@ -17,8 +17,8 @@ std::vector<std::string> split(const std::string& s, char delim)
 }
 
 void parallel_load(
-    std::map<std::string, Texture*>& map, 
-    const std::string& fn, 
+    std::map<std::string, Texture*>& map,
+    const std::string& fn,
     const std::string& key)
 {
     SDL_Surface* s = IMG_Load(fn.c_str());
@@ -57,7 +57,7 @@ void Assets::getFutures()
     }
 	for (auto& e : texMap)
 	{
-		e.second->use();
+    e.second->use();
 	}
 }
 

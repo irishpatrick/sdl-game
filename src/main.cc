@@ -45,21 +45,21 @@ void init()
     if (Config::fullscreen())
     {
         window = SDL_CreateWindow(
-            "Hello World!", 
-            SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 
+            "Hello World!",
+            SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
             current.w, current.h, SDL_WINDOW_SHOWN);
     }
     else
     {
         window = SDL_CreateWindow(
-            "Hello World!", 
-            SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 
+            "Hello World!",
+            SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
             Config::screenwidth(), Config::screenheight(), SDL_WINDOW_SHOWN);
     }
 
     if (window == NULL)
     {
-        printf("SDL_CreateWindow error: %s\n", SDL_GetError());
+    	printf("SDL_CreateWindow error: %s\n", SDL_GetError());
         SDL_Quit();
         exit(1);
     }
@@ -71,8 +71,8 @@ void init()
     }
 
     renderer = SDL_CreateRenderer(
-        window, 
-        -1, 
+        window,
+        -1,
         SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
     if (renderer == NULL)
@@ -81,7 +81,7 @@ void init()
         printf("SDL_CreateRenderer error: %s\n", SDL_GetError());
         SDL_Quit();
         exit(1);
-    } 
+    }
     if (Config::fullscreen())
     {
         SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
@@ -110,7 +110,7 @@ void render()
 
             Controllers::ProcessEvent(e);
         }
-        
+
         const uint8_t* state = SDL_GetKeyboardState(nullptr);
         if (state[SDL_SCANCODE_ESCAPE])
         {
@@ -139,7 +139,7 @@ void cleanup()
 int main(int argc, char** argv)
 {
     printf("Hello World!\n");
-    
+
     init();
 
     current = new Game(renderer);

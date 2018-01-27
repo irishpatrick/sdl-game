@@ -27,8 +27,6 @@ void ParticleEngine::LoadEffect(const std::string& fn)
 	}
 	nlohmann::json o;
 	i >> o;
-
-    
 }
 
 void ParticleEngine::Play()

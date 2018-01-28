@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <cstdlib>
 #include <json.hpp>
 
 class Particle;
@@ -20,7 +21,9 @@ public:
     void Play();
 
 private:
-    Particle* list[MAX_PARTICLES];
+    std::string name_;
+    Particle* list_;
+    uint32_t count_;
 };
 
 #endif /* PARTICLEENGINE_H */

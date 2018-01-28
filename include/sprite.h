@@ -32,11 +32,7 @@ public:
     Sprite* GetCollision();
     bool IsVisible();
     void SetVisible(bool);
-    inline void pos(float a, float b)
-    {
-        x = a;
-        y = b;
-    }
+    void pos(float, float);
     virtual void setParent(Group*);
     virtual Group* getParent();
 

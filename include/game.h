@@ -19,6 +19,7 @@
 #include "animation.h"
 #include "camera.h"
 #include "door.h"
+#include "particleengine.h"
 
 class Game: public State
 {
@@ -44,6 +45,7 @@ private:
     Light light;
     Animation test;
     Door doortest;
+    ParticleEngine engine;
 };
 
 #endif /* GAME_H */

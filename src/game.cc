@@ -29,7 +29,6 @@ void Game::init()
     Assets::loadTexture(textures + "opposite.png", renderer);
     Assets::loadTexture(textures + "animtest.png", renderer);
     Assets::loadTexture(textures + "door.png", renderer);
-
     camera.screen(w, h);
     camera.setFocus(&hero);
 
@@ -93,6 +92,8 @@ void Game::init()
     animtest.GetAnimation()->Start("all", true);
     stage.add(&animtest);
 
+    engine.LoadEffect(root + "particles.json");
+
     printf("done!\n");
 }
 
@@ -104,7 +105,7 @@ void Game::update(float delta, const uint8_t* keys)
     bool d = keys[SDL_SCANCODE_D];
     bool r = keys[SDL_SCANCODE_R];
     bool p = keys[SDL_SCANCODE_P];
-    bool l = keys[SDL_SCANCODE_L];
+    //bool l = keys[SDL_SCANCODE_L];
     //bool up = keys[SDL_SCANCODE_UP];
     //bool down = keys[SDL_SCANCODE_DOWN];
     //bool left = keys[SDL_SCANCODE_LEFT];
@@ -153,6 +154,7 @@ void Game::update(float delta, const uint8_t* keys)
             {
                 // success
                 d->Enter();
+                hero.ResetCollision();
             }
         }
     }

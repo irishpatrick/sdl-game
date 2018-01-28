@@ -1,20 +1,16 @@
 #include "particleengine.h"
 #include "particle.h"
+#include "util.h"
 
 ParticleEngine::ParticleEngine()
 {
-    for (int i=0; i<MAX_PARTICLES; i++)
-    {
-        list[i] = new Particle();
-    }
+    list_ = nullptr;
+    name_ = "";
 }
 
 ParticleEngine::~ParticleEngine()
 {
-    for (int i=0; i<MAX_PARTICLES; i++)
-    {
-        delete list[i];
-    }
+    delete[] list_;
 }
 
 void ParticleEngine::LoadEffect(const std::string& fn)
@@ -27,6 +23,18 @@ void ParticleEngine::LoadEffect(const std::string& fn)
 	}
 	nlohmann::json o;
 	i >> o;
+
+    if (!Util::JsonExists(o, "count"))
+    {
+        return;
+    }
+    uint32_t n = o["count"];
+    list_ = new Particle[n];
+
+    if (Util::JsonExists(o, "name"))
+    {
+        name_ = o["name"];
+    }
 }
 
 void ParticleEngine::Play()

@@ -60,6 +60,12 @@ Animation* Sprite::GetAnimation()
     return anim;
 }
 
+void Sprite::pos(float a, float b)
+{
+    x = a;
+    y = b;
+}
+
 void Sprite::setTexture(Texture *t)
 {
     if (t == NULL)

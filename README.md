@@ -5,8 +5,9 @@
 ## Dependencies
 1. SDL2
 2. SDL2_image
-3. Boost
-4. nlohmann json ([Website](https://nlohmann.github.io/json/))
+3. SDL2_ttf
+4. Boost
+5. nlohmann json ([Website](https://nlohmann.github.io/json/))
 
 ## Building
 ### Requirements

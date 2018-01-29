@@ -118,6 +118,7 @@ void Game::update(float delta, const uint8_t* keys)
 
     if ((w || s) && (a || d))
     {
+        hero.ResetCollision();
         float v = sqrt(pow(hero.speed, 2) / 2.0);
         hero.xvel = v;
         hero.yvel = v;
@@ -143,20 +144,6 @@ void Game::update(float delta, const uint8_t* keys)
     if (d)
     {
         hero.x += hero.xvel * delta;
-    }
-
-    if (p)
-    {
-        Sprite* collider = hero.GetCollision();
-        if (collider != nullptr)
-        {
-            if (Door* d = dynamic_cast<Door*>(collider))
-            {
-                // success
-                d->Enter();
-                hero.ResetCollision();
-            }
-        }
     }
 
     std::vector<Sprite*>::iterator it;
@@ -189,6 +176,20 @@ void Game::update(float delta, const uint8_t* keys)
         if (result == "west")
         {
             hero.x += hero.xvel * delta;
+        }
+    }
+
+    if (p)
+    {
+        Sprite* collider = hero.GetCollision();
+        if (collider != nullptr)
+        {
+            if (Door* d = dynamic_cast<Door*>(collider))
+            {
+                // success
+                d->Enter();
+                hero.ResetCollision();
+            }
         }
     }
 

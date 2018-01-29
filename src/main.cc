@@ -23,7 +23,7 @@ State* current;
 void init()
 {
 	Config::load("../assets/config.json");
-
+    
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) != 0)
     {
         printf("SDL_Init error: %s\n", SDL_GetError());

@@ -3,6 +3,7 @@ add_global_arguments(['-DBOOST_LOG_DYN_LINK', '-std=c++11', '-g', '-Wall', '-Og'
 
 sdl2 = dependency('sdl2')
 sdl2_image = dependency('SDL2_image')
+sdl2_ttf = dependency('SDL2_ttf')
 python3 = dependency('python3')
 threads = dependency('threads')
 
@@ -29,6 +30,7 @@ timer = 'src/timer.cc'
 particle = 'src/particle.cc'
 particleengine = 'src/particleengine.cc'
 npc = 'src/npc.cc'
+text = 'src/text.cc'
 
 #game
 game = 'src/game.cc'
@@ -55,8 +57,9 @@ executable(
     particle,
     particleengine,
     npc,
+    text,
 
     game,
 
     include_directories: [inc],
-    dependencies: [sdl2, sdl2_image, threads])
+    dependencies: [sdl2, sdl2_image, sdl2_ttf, threads])

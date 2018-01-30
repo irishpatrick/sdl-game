@@ -1,6 +1,7 @@
 #include "util.h"
 #include "sprite.h"
 #include "line.h"
+#include "group.h"
 
 /*uint32_t Util::getNow()
 {
@@ -71,6 +72,25 @@ std::string Util::checkCollision(Sprite* a, Sprite* b)
     }
 
     return "no collision";
+}
+
+std::vector<Sprite*> Util::GetCollisions(Sprite* s, Group* g)
+{
+    std::vector<Sprite*> collisions;
+    auto sprites = g->getSprites();
+    for (auto& e : sprites)
+    {
+        if (e->getUUID() == s->getUUID())
+        {
+            continue;
+        }
+
+        if (checkCollision(s, e) != "no collision")
+        {
+            collisions.push_back(e);
+        }
+    }
+    return collisions;
 }
 
 bool Util::JsonExists(nlohmann::json& o, const std::string& key)

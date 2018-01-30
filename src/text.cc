@@ -33,7 +33,7 @@ Text::~Text()
 
 void Text::reset()
 {
-    
+
 }
 
 void Text::update()

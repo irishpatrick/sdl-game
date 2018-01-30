@@ -33,14 +33,16 @@ void Game::init()
     camera.setFocus(&hero);
 
     hero.setTexture(Assets::getTexture("hero.png"));
-
+    hero.name = "hero";
     hero.speed = 250.0f;
 
     monster.setTexture(Assets::getTexture("monster.png"));
     monster.pos(150, 150);
+    monster.name = "monster";
 
     background.setTexture(Assets::getTexture("med-background.png"));
     background.name = "background";
+    background.solid = false;
 
     light.x = 60;
     light.y = 60;
@@ -49,6 +51,7 @@ void Game::init()
 
     doortest.x = 500;
     doortest.y = 500;
+    doortest.name = "door";
     doortest.setTexture(Assets::getTexture("door.png"));
     doortest.SetManager(&groups_);
     doortest.SetDest("room");
@@ -111,6 +114,8 @@ void Game::update(float delta, const uint8_t* keys)
     //bool left = keys[SDL_SCANCODE_LEFT];
     //bool right = keys[SDL_SCANCODE_RIGHT];
 
+    //printf("%d\n", hero_collisions.size());
+
     if (r)
     {
         groups_.setactive("room");
@@ -146,6 +151,22 @@ void Game::update(float delta, const uint8_t* keys)
         hero.x += hero.xvel * delta;
     }
 
+    auto hero_collisions = Util::GetCollisions(&hero, groups_.getactive());
+
+    if (p)
+    {
+        if (hero_collisions.size() > 0)
+        {
+            Sprite* collider = hero_collisions[0];
+            if (Door* d = dynamic_cast<Door*>(collider))
+            {
+                // success
+                d->Enter();
+                hero.ResetCollision();
+            }
+        }
+    }
+
     std::vector<Sprite*>::iterator it;
     std::vector<Sprite*> list = groups_.getactive()->getSprites();
     for (it = list.begin(); it != list.end(); it++)
@@ -176,20 +197,6 @@ void Game::update(float delta, const uint8_t* keys)
         if (result == "west")
         {
             hero.x += hero.xvel * delta;
-        }
-    }
-
-    if (p)
-    {
-        Sprite* collider = hero.GetCollision();
-        if (collider != nullptr)
-        {
-            if (Door* d = dynamic_cast<Door*>(collider))
-            {
-                // success
-                d->Enter();
-                hero.ResetCollision();
-            }
         }
     }
 

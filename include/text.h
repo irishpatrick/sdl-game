@@ -18,6 +18,7 @@ public:
 
     void update();
     void draw(SDL_Renderer*);
+    void reset();
 
     float x;
     float y;

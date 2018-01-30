@@ -11,7 +11,7 @@ Text::Text(const std::string& str)
     y = 0;
     w = 0;
     h = 0;
-    depth_ = 0;
+    depth_ = 1;
     text_ = str;
 
     buffer_ = (char*)malloc(text_.size());
@@ -31,12 +31,22 @@ Text::~Text()
     free(buffer_);
 }
 
+void Text::reset()
+{
+    
+}
+
 void Text::update()
 {
     if (timer_->Tick())
     {
+        if (depth_ > text_.size())
+        {
+            return;
+        }
         redraw_ = true;
-
+        strncpy(buffer_, text_.c_str(), depth_);
+        depth_++;
     }
 }
 

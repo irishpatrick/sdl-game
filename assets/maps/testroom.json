@@ -19,6 +19,7 @@
   {
       "name": "door",
       "type": "door",
+      "exit": {"x": 90, "y": 40},
       "dest": "stage",
       "x": 80,
       "y": 0,

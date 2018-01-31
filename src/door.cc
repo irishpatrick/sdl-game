@@ -22,6 +22,11 @@ void Door::SetDest(const std::string& d)
     dest_ = d;
 }
 
+void Door::SetExit(float a, float b)
+{
+    exit_.Set(a, b);
+}
+
 void Door::Enter()
 {
     if (dest_ != "")
@@ -34,4 +39,9 @@ void Door::OnCollision(Sprite* sprite)
 {
     Sprite::OnCollision(sprite);
     //Enter();
+}
+
+Point* Door::GetExit()
+{
+    return &exit_;
 }

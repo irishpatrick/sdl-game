@@ -175,6 +175,7 @@ void Game::update(float delta, const uint8_t* keys)
             {
                 // success
                 d->Enter();
+                hero.pos(d->GetExit()->x, d->GetExit()->y);
                 //hero.ResetCollision();
             }
         }

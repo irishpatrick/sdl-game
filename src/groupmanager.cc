@@ -65,6 +65,11 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
                         ref->SetDest(e["dest"]);
                         ref->SetManager(this);
                     }
+                    if (e.find("exit") != e.end())
+                    {
+                        ref->SetExit(e["exit"]["x"], e["exit"]["y"]);
+                    }
+
                 }
                 else
                 {

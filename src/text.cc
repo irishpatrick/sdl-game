@@ -8,6 +8,8 @@ Text::Text(): Text("")
 Text::Text(const std::string& str)
 {
     redraw_ = false;
+    surface_ = nullptr;
+    texture_ = nullptr;
     timer_ = new Timer();
     font_ = TTF_OpenFont("Sans.ttf", 24);
     color_ = {255, 255, 255};
@@ -33,6 +35,7 @@ Text::~Text()
         SDL_DestroyTexture(texture_);
     }
     free(buffer_);
+    printf("destroyed text!\n");
 }
 
 void Text::setText(const std::string& str)
@@ -40,6 +43,11 @@ void Text::setText(const std::string& str)
     free(buffer_);
     text_ = str;
     buffer_ = (char*)malloc(text_.size());
+}
+
+void Text::setSpeed(double a)
+{
+    timer_->SetInterval(a);
 }
 
 void Text::reset()
@@ -66,6 +74,7 @@ void Text::draw(SDL_Renderer* r)
     if (redraw_)
     {
         redraw_ = false;
+        surface_ = TTF_RenderText_Solid(font_, buffer_, color_);
         texture_ = SDL_CreateTextureFromSurface(r, surface_);
     }
 

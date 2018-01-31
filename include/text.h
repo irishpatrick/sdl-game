@@ -21,6 +21,7 @@ public:
     void draw(SDL_Renderer*);
     void reset();
     void setText(const std::string&);
+    void setSpeed(double);
 
     float x;
     float y;

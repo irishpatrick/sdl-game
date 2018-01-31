@@ -10,7 +10,11 @@ ParticleEngine::ParticleEngine()
 
 ParticleEngine::~ParticleEngine()
 {
-    delete[] list_;
+    if (list_ != nullptr)
+    {
+        printf("delete list_\n");
+        delete[] list_;
+    }
 }
 
 void ParticleEngine::LoadEffect(const std::string& fn)

@@ -3,6 +3,8 @@
 #include "group.h"
 #include "sprite.h"
 #include "camera.h"
+#include "util.h"
+#include "door.h"
 
 GroupManager::GroupManager()
 {
@@ -39,7 +41,7 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
 		g->sx = o["entry"]["x"];
 		g->sy = o["entry"]["y"];
 	}
-	if (o.find("sprites") != o.end())
+	if (Util::JsonExists(o, "sprites"))
 	{
 		for (const auto& e : o["sprites"])
 		{
@@ -50,7 +52,23 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
             std::string texture = e["texture"];
 
             // test initialize
-            Sprite* temp = new Sprite();
+            Sprite* temp = nullptr;
+            if (e.find("type") != e.end())
+            {
+                std::string type = e["type"];
+                if (type == "door")
+                {
+                    temp = new Door();
+                }
+                else
+                {
+                    temp = new Sprite();
+                }
+            }
+            else
+            {
+                temp = new Sprite();
+            }
             temp->dynamic = true;
 			temp->name = name;
             temp->x = x;

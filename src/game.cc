@@ -88,21 +88,21 @@ void Game::init()
 
     printf("done!\n");
 
-    printf("starting tests...\n");
-
     //test.InitFromJson(root + "animtest.json");
     animtest.InitAnimation(sprites + "animtest.json");
     animtest.GetAnimation()->Start("all", true);
     stage.add(&animtest);
 
-    engine.LoadEffect(root + "particles.json");
+    //engine.LoadEffect(root + "particles.json");
 
-    printf("done!\n");
+    tests();
 }
 
 void Game::tests()
 {
     printf("starting tests...\n");
+
+    text.setText("hello world!\n");
 
     printf("done!\n");
 }

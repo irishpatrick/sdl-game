@@ -15,6 +15,13 @@
       "x": 20,
       "y": 20,
       "texture": "monster.png"
-    }
+  },
+  {
+      "name": "door",
+      "type": "door",
+      "x": 80,
+      "y": 0,
+      "texture": "door.png"
+  }
   ]
 }

@@ -19,7 +19,7 @@
 #include "animation.h"
 #include "camera.h"
 #include "door.h"
-#include "particleengine.h"
+//#include "particleengine.h"
 #include "text.h"
 
 class Game: public State
@@ -47,7 +47,6 @@ private:
     Light light;
     Animation test;
     Door doortest;
-    ParticleEngine engine;
     Text text;
 };
 

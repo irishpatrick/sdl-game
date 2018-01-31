@@ -19,6 +19,7 @@
   {
       "name": "door",
       "type": "door",
+      "dest": "stage",
       "x": 80,
       "y": 0,
       "texture": "door.png"

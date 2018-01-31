@@ -59,6 +59,12 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
                 if (type == "door")
                 {
                     temp = new Door();
+                    Door* ref = (Door*)temp;
+                    if (e.find("dest") != e.end())
+                    {
+                        ref->SetDest(e["dest"]);
+                        ref->SetManager(this);
+                    }
                 }
                 else
                 {

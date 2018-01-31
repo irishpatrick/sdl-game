@@ -48,6 +48,7 @@ private:
     Animation test;
     Door doortest;
     Text text;
+    std::vector<Sprite*> hero_collisions;
 };
 
 #endif /* GAME_H */

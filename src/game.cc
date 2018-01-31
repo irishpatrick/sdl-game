@@ -96,6 +96,8 @@ void Game::init()
     //engine.LoadEffect(root + "particles.json");
 
     tests();
+
+    hero_collisions = Util::GetCollisions(&hero, groups_.getactive());
 }
 
 void Game::tests()
@@ -130,7 +132,7 @@ void Game::update(float delta, const uint8_t* keys)
 
     if ((w || s) && (a || d))
     {
-        hero.ResetCollision();
+        hero_collisions = Util::GetCollisions(&hero, groups_.getactive());
         float v = sqrt(pow(hero.speed, 2) / 2.0);
         hero.xvel = v;
         hero.yvel = v;
@@ -158,8 +160,12 @@ void Game::update(float delta, const uint8_t* keys)
         hero.x += hero.xvel * delta;
     }
 
-    auto hero_collisions = Util::GetCollisions(&hero, groups_.getactive());
+    if ((w || s) || (a || d))
+    {
+        hero_collisions = Util::GetCollisions(&hero, groups_.getactive());
+    }
 
+    //hero_collisions = Util::GetCollisions(&hero, groups_.getactive());
     if (p)
     {
         if (hero_collisions.size() > 0)
@@ -169,7 +175,7 @@ void Game::update(float delta, const uint8_t* keys)
             {
                 // success
                 d->Enter();
-                hero.ResetCollision();
+                //hero.ResetCollision();
             }
         }
     }

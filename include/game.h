@@ -20,6 +20,7 @@
 #include "camera.h"
 #include "door.h"
 #include "particleengine.h"
+#include "text.h"
 
 class Game: public State
 {
@@ -28,6 +29,7 @@ public:
     ~Game();
 
     void init();
+    void tests();
     void update(float, const uint8_t*);
     void render();
     void destroy();
@@ -46,6 +48,7 @@ private:
     Animation test;
     Door doortest;
     ParticleEngine engine;
+    Text text;
 };
 
 #endif /* GAME_H */

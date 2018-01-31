@@ -13,12 +13,14 @@ class Timer;
 class Text
 {
 public:
+    Text();
     Text(const std::string&);
     ~Text();
 
     void update();
     void draw(SDL_Renderer*);
     void reset();
+    void setText(const std::string&);
 
     float x;
     float y;

@@ -1,6 +1,10 @@
 #include "text.h"
 #include "timer.h"
 
+Text::Text(): Text("")
+{
+}
+
 Text::Text(const std::string& str)
 {
     redraw_ = false;
@@ -29,6 +33,13 @@ Text::~Text()
         SDL_DestroyTexture(texture_);
     }
     free(buffer_);
+}
+
+void Text::setText(const std::string& str)
+{
+    free(buffer_);
+    text_ = str;
+    buffer_ = (char*)malloc(text_.size());
 }
 
 void Text::reset()

@@ -100,6 +100,13 @@ void Game::init()
     printf("done!\n");
 }
 
+void Game::tests()
+{
+    printf("starting tests...\n");
+
+    printf("done!\n");
+}
+
 void Game::update(float delta, const uint8_t* keys)
 {
     bool w = keys[SDL_SCANCODE_W];

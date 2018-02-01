@@ -1,13 +1,18 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 project(sdl-game)
 
-#option(RELEASE "Build release binary" OFF)
+option(RELEASE "Build release binary" OFF)
+option(PKGCONFIG "Use pkg-config to find libraries" ON)
 
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(SDL2 REQUIRED sdl2)
-pkg_check_modules(SDL2_IMAGE REQUIRED SDL2_image)
-pkg_check_modules(SDL2_TTF REQUIRED SDL2_ttf)
+if (PKGCONFIG)
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(SDL2 REQUIRED sdl2)
+    pkg_check_modules(SDL2_IMAGE REQUIRED SDL2_image)
+    pkg_check_modules(SDL2_TTF REQUIRED SDL2_ttf)
+else()
+
+endif (PKGCONFIG)
 
 file(GLOB sources src/*.cc)
 add_executable(a ${sources})

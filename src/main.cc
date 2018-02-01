@@ -22,8 +22,8 @@ State* current;
 
 void init()
 {
-	Config::load("../assets/config.json");
-    
+    Config::load("../assets/config.json");
+
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) != 0)
     {
         printf("SDL_Init error: %s\n", SDL_GetError());
@@ -93,12 +93,12 @@ void render()
 {
     float delta;
     uint32_t now;
-	uint32_t then = SDL_GetTicks();
+    uint32_t then = SDL_GetTicks();
 
     quit = false;
     while (!quit)
     {
-		now = SDL_GetTicks();
+        now = SDL_GetTicks();
         delta = now - then;
 
         while (SDL_PollEvent(&e))

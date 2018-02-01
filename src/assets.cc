@@ -55,10 +55,10 @@ void Assets::getFutures()
     {
         e.get();
     }
-	for (auto& e : texMap)
-	{
-    e.second->use();
-	}
+    for (auto& e : texMap)
+    {
+        e.second->use();
+    }
 }
 
 void Assets::destroy()

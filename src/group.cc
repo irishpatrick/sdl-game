@@ -15,12 +15,12 @@ Group::Group()
 
 Group::~Group()
 {
-    
+
 }
 
 void Group::init(SDL_Renderer* r)
 {
-    
+
 }
 
 void Group::init_from_json(const std::string& fn)
@@ -36,15 +36,15 @@ void Group::init_from_json(const std::string& fn)
 
     if (o.find("entry") != o.end())
     {
-        
+
     }
 
 	if (o.find("sprites") != o.end())
 	{
-		for (const auto& e : o["sprites"])
-		{
+        for (const auto& e : o["sprites"])
+        {
             // assume sprite object has all required fields
-			float x = (float)e["x"];
+            float x = (float)e["x"];
             float y = (float)e["y"];
             std::string name = e["name"];
             std::string texture = e["texture"];
@@ -57,8 +57,8 @@ void Group::init_from_json(const std::string& fn)
             temp->setTexture(Assets::getTexture(texture));
             renderList.push_back(temp);
             //delete temp;
-		}
-	}
+        }
+    }
 }
 
 Sprite* Group::get_sprite_by_name(const std::string& name)
@@ -93,10 +93,10 @@ float Group::screenY()
 
 void Group::queryAll()
 {
-	for (auto& e : renderList)
-	{
-		e->queryTexture();
-	}
+    for (auto& e : renderList)
+    {
+        e->queryTexture();
+    }
 }
 
 void Group::add(Sprite* a)
@@ -107,8 +107,8 @@ void Group::add(Sprite* a)
 
 void Group::remove(Sprite* s)
 {
-	auto pos = std::find(renderList.begin(), renderList.end(), s);
-	renderList.erase(pos);
+    auto pos = std::find(renderList.begin(), renderList.end(), s);
+    renderList.erase(pos);
 }
 
 void Group::update(float delta)
@@ -132,7 +132,7 @@ void Group::setCamera(Camera* c)
 
 void Group::sort()
 {
-    std::sort(renderList.begin(), renderList.end(), 
+    std::sort(renderList.begin(), renderList.end(),
         [] (Sprite* a, Sprite* b) {return a->y < b->y;});
 }
 

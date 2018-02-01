@@ -14,6 +14,7 @@ add_executable(a ${sources})
 
 target_link_libraries(a -pthread ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2_TTF_LIBRARIES})
 target_include_directories(a PUBLIC include ${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${SDL2_TTF_INCLUDE_DIRS})
+
 if (RELEASE)
     target_compile_options(a PUBLIC -std=c++11 -s -O3 -funroll-loops)
 else ()

@@ -8,57 +8,57 @@ bool Config::FULLSCREEN = false;
 
 int Config::screenwidth()
 {
-	return SCREENWIDTH;
+    return SCREENWIDTH;
 }
 
 int Config::screenheight()
 {
-	return SCREENHEIGHT;
+    return SCREENHEIGHT;
 }
 
 std::string Config::assetpath()
 {
-	return ASSETPATH;
+    return ASSETPATH;
 }
 
 bool Config::fullscreen()
 {
-	return FULLSCREEN;
+    return FULLSCREEN;
 }
 
 void Config::load(const std::string& fn)
 {
-	std::ifstream i(fn);
-	if (!i)
-	{
-		printf("failed to open %s\n", fn.c_str());
-		exit(1);
-	}
-	nlohmann::json o;
-	i >> o;
+    std::ifstream i(fn);
+    if (!i)
+    {
+    	printf("failed to open %s\n", fn.c_str());
+    	exit(1);
+    }
+    nlohmann::json o;
+    i >> o;
 
-	if (Util::JsonExists(o, "screenWidth"))
-	{
-		SCREENWIDTH = o["screenWidth"];
-	}
-	if (Util::JsonExists(o, "screenHeight"))
-	{
-		SCREENHEIGHT = o["screenHeight"];
-	}
-	if (Util::JsonExists(o, "assetPath"))
-	{
-		ASSETPATH = o["assetPath"];
-	}
-	if (Util::JsonExists(o, "fullscreen"))
-	{
-		int res = o["fullscreen"];
-		if (res == 1)
-		{
-			FULLSCREEN = true;
-		}
-		else if (res == 0)
-		{
-			FULLSCREEN = false;
-		}
-	}
+    if (Util::JsonExists(o, "screenWidth"))
+    {
+    	SCREENWIDTH = o["screenWidth"];
+    }
+    if (Util::JsonExists(o, "screenHeight"))
+    {
+    	SCREENHEIGHT = o["screenHeight"];
+    }
+    if (Util::JsonExists(o, "assetPath"))
+    {
+    	ASSETPATH = o["assetPath"];
+    }
+    if (Util::JsonExists(o, "fullscreen"))
+    {
+    	int res = o["fullscreen"];
+    	if (res == 1)
+    	{
+    		FULLSCREEN = true;
+    	}
+    	else if (res == 0)
+    	{
+    		FULLSCREEN = false;
+    	}
+    }
 }

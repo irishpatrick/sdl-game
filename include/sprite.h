@@ -10,11 +10,13 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/uuid/uuid_io.hpp>
 
+#include "entity.h"
+
 class Animation;
 class Group;
 class Texture;
 
-class Sprite
+class Sprite: public Entity
 {
 public:
     Sprite();
@@ -32,19 +34,14 @@ public:
     Sprite* GetCollision();
     bool IsVisible();
     void SetVisible(bool);
-    void pos(float, float);
     virtual void setParent(Group*);
     virtual Group* getParent();
 
     virtual const std::string getUUID();
 
-    float x;
-    float y;
     float xvel;
     float yvel;
     float speed;
-    uint32_t w;
-    uint32_t h;
     Texture* texture;
     bool solid;
     bool dynamic;

@@ -8,9 +8,11 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 
+#include "entity.h"
+
 class Timer;
 
-class Text
+class Text: public Entity
 {
 public:
     Text();
@@ -22,11 +24,6 @@ public:
     void reset();
     void setText(const std::string&);
     void setSpeed(double);
-
-    float x;
-    float y;
-    uint32_t w;
-    uint32_t h;
 
 private:
     std::string text_;

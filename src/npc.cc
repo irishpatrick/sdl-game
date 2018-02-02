@@ -1,13 +1,14 @@
 #include "npc.h"
+#include "text.h"
 #include "util.h"
 
 Npc::Npc()
 {
-
+    text_ = new Text();
 }
 Npc::~Npc()
 {
-
+    delete text_;
 }
 
 void Npc::Json(const std::string& fn)

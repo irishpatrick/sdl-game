@@ -105,6 +105,9 @@ void Game::tests()
     printf("starting tests...\n");
 
     text.setText("hello world!\n");
+    text.x = 400;
+    text.y = 400;
+    text.setSpeed(1);
 
     printf("done!\n");
 }
@@ -216,6 +219,7 @@ void Game::update(float delta, const uint8_t* keys)
     }
 
     animtest.update(delta);
+    text.update();
 
     Util::contain(&hero, groups_.getactive()->get_sprite_by_name("background"));
 
@@ -233,6 +237,7 @@ void Game::update(float delta, const uint8_t* keys)
 void Game::render()
 {
     groups_.getactive()->draw(renderer);
+    text.draw(renderer);
     //light.draw(renderer);
 }
 

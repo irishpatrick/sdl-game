@@ -3,6 +3,7 @@
 
 #include <cstdio>
 #include <cstdint>
+#include <string>
 #include <SDL.h>
 
 class Texture
@@ -24,6 +25,7 @@ public:
 private:
     uint32_t w;
     uint32_t h;
+    std::string name_;
     SDL_Texture* tex;
     SDL_Surface* surf;
     SDL_Renderer* renderer;

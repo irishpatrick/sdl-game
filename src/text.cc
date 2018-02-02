@@ -52,7 +52,8 @@ void Text::setSpeed(double a)
 
 void Text::reset()
 {
-
+    free(buffer_);
+    buffer_ = (char*)malloc(text_.size());
 }
 
 void Text::update()

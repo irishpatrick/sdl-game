@@ -34,7 +34,7 @@ void Config::load(const std::string& fn)
     	printf("failed to open %s\n", fn.c_str());
     	exit(1);
     }
-    nlohmann::json o;
+    json o;
     i >> o;
 
     if (Util::JsonExists(o, "screenWidth"))

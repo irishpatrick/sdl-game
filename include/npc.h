@@ -8,6 +8,8 @@
 
 #include "sprite.h"
 
+class Text;
+
 class Npc: public Sprite
 {
 public:
@@ -18,6 +20,7 @@ public:
 
 private:
     std::vector<std::string> dialogue_;
+    Text* text_;
 };
 
 #endif /* NPC_H */

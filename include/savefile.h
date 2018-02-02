@@ -4,7 +4,10 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <iostream>
 #include <json.hpp>
+
+using json = nlohmann::json;
 
 class Sprite;
 
@@ -16,7 +19,7 @@ public:
     static void Read(const std::string&);
 
 private:
-    std::vector<Sprite*> sprites_;
+    static std::vector<Sprite*> sprites_;
 };
 
 #endif /* SAVEFILE_H */

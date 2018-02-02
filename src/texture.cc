@@ -2,7 +2,7 @@
 
 Texture::Texture()
 {
-
+    name_ = "";
 }
 
 Texture::Texture(SDL_Renderer* r)

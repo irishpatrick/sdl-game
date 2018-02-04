@@ -48,6 +48,7 @@ private:
     Animation test;
     Door doortest;
     Text text;
+    Text othr;
     std::vector<Sprite*> hero_collisions;
 };
 

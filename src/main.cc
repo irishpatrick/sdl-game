@@ -42,6 +42,11 @@ void init()
         exit(1);
     }
 
+    if (TTF_Init() == -1)
+    {
+        printf("font error: %s\n", TTF_GetError());
+    }
+
     if (Config::fullscreen())
     {
         window = SDL_CreateWindow(

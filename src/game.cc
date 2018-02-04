@@ -104,10 +104,13 @@ void Game::tests()
 {
     printf("starting tests...\n");
 
-    text.setText("hello world!\n");
+    text.setText("hello world!");
     text.x = 400;
     text.y = 400;
-    text.setSpeed(1);
+    text.setSpeed(1000);
+
+    othr.setText("simple test of text class!");
+    othr.pos(500,500);
 
     printf("done!\n");
 }
@@ -238,6 +241,7 @@ void Game::render()
 {
     groups_.getactive()->draw(renderer);
     text.draw(renderer);
+    othr.staticDraw(renderer);
     //light.draw(renderer);
 }
 

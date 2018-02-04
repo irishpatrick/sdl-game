@@ -3,6 +3,7 @@
 
 Text::Text(): Text("")
 {
+
 }
 
 Text::Text(const std::string& str)
@@ -11,7 +12,11 @@ Text::Text(const std::string& str)
     surface_ = nullptr;
     texture_ = nullptr;
     timer_ = new Timer();
-    font_ = TTF_OpenFont("Sans.ttf", 24);
+    font_ = TTF_OpenFont("../assets/fonts/IndieFlower-Regular.ttf", 400);
+    if (font_ == nullptr)
+    {
+        std::cout << "font error: " << TTF_GetError() << std::endl;
+    }
     color_ = {255, 255, 255};
     x = 0;
     y = 0;
@@ -75,9 +80,30 @@ void Text::draw(SDL_Renderer* r)
     if (redraw_)
     {
         redraw_ = false;
+        SDL_FreeSurface(surface_);
+        SDL_DestroyTexture(texture_);
         surface_ = TTF_RenderText_Solid(font_, buffer_, color_);
         texture_ = SDL_CreateTextureFromSurface(r, surface_);
     }
+
+    SDL_Rect rect;
+    rect.x = x;
+    rect.y = y;
+    rect.w = w;
+    rect.h = h;
+
+    SDL_RenderCopy(r, texture_, nullptr, &rect);
+}
+
+void Text::staticDraw(SDL_Renderer* r)
+{
+    //std::cout << "staticDraw" << std::endl;
+    SDL_FreeSurface(surface_);
+    SDL_DestroyTexture(texture_);
+    surface_ = TTF_RenderText_Solid(font_, text_.c_str(), color_);
+    texture_ = SDL_CreateTextureFromSurface(r, surface_);
+    w = 300;
+    h = 100;
 
     SDL_Rect rect;
     rect.x = x;

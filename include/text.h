@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <cstdint>
+#include <iostream>
 #include <SDL.h>
 #include <SDL_ttf.h>
 
@@ -21,6 +22,7 @@ public:
 
     void update();
     void draw(SDL_Renderer*);
+    void staticDraw(SDL_Renderer*);
     void reset();
     void setText(const std::string&);
     void setSpeed(double);

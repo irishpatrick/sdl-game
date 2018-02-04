@@ -47,7 +47,7 @@ void Text::setText(const std::string& str)
 {
     free(buffer_);
     text_ = str;
-    buffer_ = (char*)malloc(text_.size());
+    buffer_ = (char*)malloc(text_.size() + 1);
 }
 
 void Text::setSpeed(double a)
@@ -65,13 +65,17 @@ void Text::update()
 {
     if (timer_->Tick())
     {
+        std::cout << "tick: ";
         if (depth_ > text_.size())
         {
             return;
         }
         redraw_ = true;
         strncpy(buffer_, text_.c_str(), depth_);
+        buffer_[depth_] = '\0';
         depth_++;
+
+        std::cout << buffer_ << std::endl;
     }
 }
 
@@ -85,6 +89,9 @@ void Text::draw(SDL_Renderer* r)
         surface_ = TTF_RenderText_Solid(font_, buffer_, color_);
         texture_ = SDL_CreateTextureFromSurface(r, surface_);
     }
+
+    w = 300;
+    h = 100;
 
     SDL_Rect rect;
     rect.x = x;

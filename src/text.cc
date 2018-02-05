@@ -22,7 +22,7 @@ Text::Text(const std::string& str)
     y = 0;
     w = 0;
     h = 0;
-    size_ = 10;
+    size_ = 30;
     depth_ = 1;
     text_ = str;
 
@@ -99,7 +99,7 @@ void Text::draw(SDL_Renderer* r)
     SDL_Rect rect;
     rect.x = x;
     rect.y = y;
-    rect.w = size_ + (size_ * strlen(buffer_));
+    rect.w = (size_ * strlen(buffer_));
     rect.h = size_;
 
     SDL_RenderCopy(r, texture_, nullptr, &rect);

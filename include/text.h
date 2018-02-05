@@ -26,8 +26,10 @@ public:
     void reset();
     void setText(const std::string&);
     void setSpeed(double);
+    void setSize(uint32_t);
 
 private:
+    uint32_t size_;
     std::string text_;
     uint32_t depth_;
     char* buffer_;

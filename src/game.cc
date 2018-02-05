@@ -107,7 +107,7 @@ void Game::tests()
     text.setText("hello world!");
     text.x = 400;
     text.y = 400;
-    text.setSpeed(1000);
+    text.setSpeed(200);
 
     othr.setText("simple test of text class!");
     othr.pos(500,500);

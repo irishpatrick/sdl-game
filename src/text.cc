@@ -22,6 +22,7 @@ Text::Text(const std::string& str)
     y = 0;
     w = 0;
     h = 0;
+    size_ = 10;
     depth_ = 1;
     text_ = str;
 
@@ -41,6 +42,11 @@ Text::~Text()
     }
     free(buffer_);
     printf("destroyed text!\n");
+}
+
+void Text::setSize(uint32_t n)
+{
+    size_ = n;
 }
 
 void Text::setText(const std::string& str)
@@ -90,14 +96,11 @@ void Text::draw(SDL_Renderer* r)
         texture_ = SDL_CreateTextureFromSurface(r, surface_);
     }
 
-    w = 300;
-    h = 100;
-
     SDL_Rect rect;
     rect.x = x;
     rect.y = y;
-    rect.w = w;
-    rect.h = h;
+    rect.w = size_ + (size_ * strlen(buffer_));
+    rect.h = size_;
 
     SDL_RenderCopy(r, texture_, nullptr, &rect);
 }

@@ -1,11 +1,17 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.0)
 
 project(missiles C CXX)
 
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(SDL2 REQUIRED sdl2)
-pkg_check_modules(SDL2_IMAGE REQUIRED SDL2_image)
-pkg_check_modules(SDL2_TTF REQUIRED SDL2_ttf)
+if (UNIX)
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(SDL2 REQUIRED sdl2)
+    pkg_check_modules(SDL2_IMAGE REQUIRED SDL2_image)
+    pkg_check_modules(SDL2_TTF REQUIRED SDL2_ttf)
+endif (UNIX)
+
+if (MSVC)
+
+endif (MSVC)
 
 file(GLOB sources src/*.cc)
 add_executable(${PROJECT_NAME} ${sources})

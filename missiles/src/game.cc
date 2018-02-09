@@ -1,6 +1,5 @@
 #include "game.h"
 #include "plane.h"
-#include "assets.h"
 
 double deg(double r)
 {
@@ -9,7 +8,7 @@ double deg(double r)
 
 double rad(double d)
 {
-    return d / (M_PI / 180.0);
+    return d * (180.0 / M_PI);
 }
 
 Game::Game(SDL_Renderer* r): State(r)

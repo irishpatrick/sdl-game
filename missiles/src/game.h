@@ -2,7 +2,7 @@
 #define GAME_H
 
 #include <SDL.h>
-#include "state.h"
+#include "engine.h"
 
 class Plane;
 

@@ -2,7 +2,7 @@
 #define PLANE_H
 
 #include <cmath>
-#include "sprite.h"
+#include "engine.h"
 
 class Plane: public Sprite
 {

@@ -1,7 +1,4 @@
 #include "plane.h"
-#include "animation.h"
-#include "texture.h"
-#include "group.h"
 
 Plane::Plane()
 {

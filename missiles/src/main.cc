@@ -8,6 +8,7 @@
 
 #include "util.h"
 #include "state.h"
+#include "game.h"
 
 SDL_Window *window;
 SDL_Renderer *renderer = nullptr;
@@ -121,6 +122,7 @@ int main(int argc, char** argv)
     std::cout << "hello world!" << std::endl;
 
     init();
+    current = new Game(renderer);
     render();
     cleanup();
 

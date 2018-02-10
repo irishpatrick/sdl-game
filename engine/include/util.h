@@ -10,7 +10,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <boost/lexical_cast.hpp>
-#include <json.hpp>
+#include <nlohmann/json.hpp>
 
 class Sprite;
 class Group;

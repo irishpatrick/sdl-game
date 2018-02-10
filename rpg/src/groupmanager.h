@@ -5,7 +5,7 @@
 #include <string>
 #include <fstream>
 #include <streambuf>
-#include "json.hpp"
+#include <nlohmann/json.hpp>
 //#include <rapidjson/document.h>
 class Group;
 class Sprite;

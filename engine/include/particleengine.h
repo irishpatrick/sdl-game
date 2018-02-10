@@ -7,7 +7,7 @@
 #include <string>
 #include <fstream>
 #include <cstdlib>
-#include <json.hpp>
+#include <nlohmann/json.hpp>
 
 class Particle;
 

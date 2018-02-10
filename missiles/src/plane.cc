@@ -33,6 +33,7 @@ void Plane::draw(SDL_Renderer* r)
     rect.h = h;
 
     SDL_Point center = {rect.x + (rect.w / 2), rect.y + (rect.h / 2)};
+    SDL_RendererFlip flip = SDL_FLIP_NONE;
 
     //if (texture->use() == nullptr) return;
     if (anim->GetTexture() != nullptr)
@@ -41,6 +42,6 @@ void Plane::draw(SDL_Renderer* r)
     }
     else
     {
-        //SDL_RenderCopyEx(r, texture->use(), NULL, &rect);
+        SDL_RenderCopyEx(r, texture->use(), NULL, &rect, (double)angle, &center, flip);
     }
 }

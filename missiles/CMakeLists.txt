@@ -12,6 +12,6 @@ set_target_properties(${PROJECT_NAME}
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/../${PROJECT_NAME}/bin"
 )
 
-target_include_directories(${PROJECT_NAME} PUBLIC include ${SDL2_INC_DIRS} ${engine_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} -pthread ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2_TTF_LIBRARIES} engine)
+target_include_directories(${PROJECT_NAME} PUBLIC include ${SDL2_INC_DIR} ${engine_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} -pthread ${SDL2_LIB} ${SDL2_IMAGE_LIB} ${SDL2_TTF_LIB} engine)
 target_compile_options(${PROJECT_NAME} PUBLIC -std=c++11 -Wall -g -D_REENTRANT)

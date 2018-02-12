@@ -96,6 +96,13 @@ void render()
             }
         }
 
+        const uint8_t* keys = SDL_GetKeyboardState(nullptr);
+        if (keys[SDL_SCANCODE_ESCAPE])
+        {
+            quit = true;
+        }
+        current->update(delta/1000.0, keys);
+
         SDL_RenderClear(renderer);
         if (current != nullptr)
         {
@@ -123,6 +130,7 @@ int main(int argc, char** argv)
 
     init();
     current = new Game(renderer);
+    current->init();
     render();
     cleanup();
 

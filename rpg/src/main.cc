@@ -116,12 +116,14 @@ void render()
             Controllers::ProcessEvent(e);
         }
 
+
+
         const uint8_t* state = SDL_GetKeyboardState(nullptr);
         if (state[SDL_SCANCODE_ESCAPE])
         {
             quit = true;
         }
-
+        
         current->update(delta/1000.0f, state);
 
         SDL_RenderClear(renderer);

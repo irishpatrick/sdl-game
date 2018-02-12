@@ -96,11 +96,21 @@ void render()
             }
         }
 
+        SDL_PumpEvents();
+
+        int x, y = 0;
+        SDL_GetMouseState(&x, &y);
+
         const uint8_t* keys = SDL_GetKeyboardState(nullptr);
         if (keys[SDL_SCANCODE_ESCAPE])
         {
             quit = true;
         }
+
+        //printf("direct: %d, %d\n", x, y);
+
+        Game* g = (Game*)current;
+        g->setMousePos(x, y);
         current->update(delta/1000.0, keys);
 
         SDL_RenderClear(renderer);
@@ -109,6 +119,8 @@ void render()
             current->render();
         }
         SDL_RenderPresent(renderer);
+
+        then = now;
     }
 }
 

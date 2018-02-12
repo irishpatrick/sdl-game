@@ -5,11 +5,25 @@ Plane::Plane()
     vx = 0;
     vy = 0;
     angle = 0;
+    max_speed = 200;
+    thrust = 20;
+    camera = nullptr;
 }
 
 Plane::~Plane()
 {
 
+}
+
+void Plane::setCamera(Camera* c)
+{
+    camera = c;
+}
+
+void Plane::update(float delta)
+{
+    x += xvel * delta;
+    y += yvel * delta;
 }
 
 void Plane::draw(SDL_Renderer* r)
@@ -19,10 +33,10 @@ void Plane::draw(SDL_Renderer* r)
 
     //printf("%d, %d\n", w, h);
     SDL_Rect rect;
-    if (parent != NULL)
+    if (camera != nullptr)
     {
-        rect.x = x + parent->screenX();
-        rect.y = y + parent->screenY();
+        rect.x = x + camera->x;
+        rect.y = y + camera->y;
     }
     else
     {
@@ -32,7 +46,7 @@ void Plane::draw(SDL_Renderer* r)
     rect.w = w;
     rect.h = h;
 
-    SDL_Point center = {rect.x + (rect.w / 2), rect.y + (rect.h / 2)};
+    SDL_Point center = {rect.w / 2, rect.h / 2};
     SDL_RendererFlip flip = SDL_FLIP_NONE;
 
     //if (texture->use() == nullptr) return;

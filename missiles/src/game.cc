@@ -1,5 +1,6 @@
 #include "game.h"
 #include "plane.h"
+#include "missile.h"
 
 double rad(double r)
 {
@@ -16,6 +17,8 @@ Game::Game(SDL_Renderer* r): State(r)
     plane = new Plane();
     camera = new Camera();
     bg = new Plane();
+    timer = new Timer();
+    timer->SetInterval(1000);
     mx = 0;
     my = 0;
 }
@@ -25,6 +28,11 @@ Game::~Game()
     delete bg;
     delete plane;
     delete camera;
+    delete timer;
+    for (auto& e : missiles)
+    {
+        delete e;
+    }
 }
 
 void Game::setMousePos(int x, int y)
@@ -37,6 +45,7 @@ void Game::init()
 {
     std::string textures = "../../missiles/assets/textures/";
     Assets::loadTexture(textures + "plane.png", renderer);
+    Assets::loadTexture(textures + "missile.png", renderer);
     Assets::loadTexture(textures + "test-bg.png", renderer);
 
     Assets::getFutures();
@@ -77,18 +86,29 @@ void Game::update(float delta, const uint8_t* keys)
 
     }
 
-    int x = mx - (640 / 2 + 32);
-    int y = my - (480 / 2 + 32);
+    float x = mx - (640 / 2 + 32);
+    float y = my - (480 / 2 + 32);
+    float dist = sqrt(pow(x,2) + pow(y,2));
+
     if (x > 0)
     {
-        plane->angle = deg(atan((float)x / (float)y));
+        plane->angle = deg(atan(y / x)) + 90;
     }
     else if (x < 0)
     {
-        plane->angle = deg(-atan((float)x / (float)y));
+        plane->angle = 270 + deg(atan(y / x));
     }
-
-    //printf("%d, %d\n", mx, my);
+    else
+    {
+        if (y > 0)
+        {
+            plane->angle = 180;
+        }
+        if (y < 0)
+        {
+            plane->angle = 0;
+        }
+    }
 
     plane->xvel += (sin(rad(plane->angle)) * plane->thrust);
     plane->yvel += (-cos(rad(plane->angle)) * plane->thrust);
@@ -115,6 +135,13 @@ void Game::update(float delta, const uint8_t* keys)
 
     //printf("x: %f y: %f\n", plane->xvel, plane->yvel);
     //printf("thrust: %f\n", plane->thrust);
+
+    if (timer->Tick())
+    {
+        Missile* m = new Missile();
+
+        missiles.push_back(m);
+    }
 
     plane->update(delta);
     bg->update(delta);

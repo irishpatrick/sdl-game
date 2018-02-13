@@ -2,10 +2,12 @@
 #define GAME_H
 
 #include <algorithm>
+#include <vector>
 #include <SDL.h>
 #include "engine.h"
 
 class Plane;
+class Missile;
 
 class Game: public State
 {
@@ -25,6 +27,8 @@ private:
     Plane* bg;
     Plane* plane;
     Camera* camera;
+    Timer* timer;
+    std::vector<Missile*> missiles;
 };
 
 #endif /* GAME_H */

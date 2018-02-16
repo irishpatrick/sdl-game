@@ -1,16 +1,8 @@
 #include "game.h"
 #include "plane.h"
 #include "missile.h"
-
-double rad(double r)
-{
-    return r * (M_PI / 180.0);
-}
-
-double deg(double d)
-{
-    return d * (180.0 / M_PI);
-}
+#include "myutil.h"
+#include "config.h"
 
 Game::Game(SDL_Renderer* r): State(r)
 {
@@ -18,7 +10,7 @@ Game::Game(SDL_Renderer* r): State(r)
     camera = new Camera();
     bg = new Plane();
     timer = new Timer();
-    timer->SetInterval(1000);
+    timer->SetInterval(5000);
     mx = 0;
     my = 0;
 }
@@ -43,7 +35,7 @@ void Game::setMousePos(int x, int y)
 
 void Game::init()
 {
-    std::string textures = "../../missiles/assets/textures/";
+    std::string textures = Config::getAssetPath() + "textures/";
     Assets::loadTexture(textures + "plane.png", renderer);
     Assets::loadTexture(textures + "missile.png", renderer);
     Assets::loadTexture(textures + "test-bg.png", renderer);
@@ -51,16 +43,14 @@ void Game::init()
     Assets::getFutures();
 
     plane->setTexture(Assets::getTexture("plane.png"));
-    plane->pos(640 / 2 + 32, 480 / 2 + 32);
+    plane->pos(Config::getScreenWidth() / 2 + 32, Config::getScreenHeight() / 2 + 32);
     plane->setCamera(camera);
-    plane->queryTexture();
 
     bg->setTexture(Assets::getTexture("test-bg.png"));
-    bg->queryTexture();
     bg->setCamera(camera);
 
     camera->setFocus(plane);
-    camera->screen(640, 480);
+    camera->screen(Config::getScreenWidth(), Config::getScreenHeight());
 }
 
 void Game::update(float delta, const uint8_t* keys)
@@ -81,22 +71,17 @@ void Game::update(float delta, const uint8_t* keys)
         plane->angle += 160 * delta;
     }
 
-    if (mx - plane->x == 0)
-    {
-
-    }
-
-    float x = mx - (640 / 2 + 32);
-    float y = my - (480 / 2 + 32);
-    float dist = sqrt(pow(x,2) + pow(y,2));
+    float x = mx - (Config::getScreenWidth() / 2 + 32);
+    float y = my - (Config::getScreenHeight() / 2 + 32);
+    //float dist = sqrt(pow(x,2) + pow(y,2));
 
     if (x > 0)
     {
-        plane->angle = deg(atan(y / x)) + 90;
+        plane->angle = MyUtil::deg(atan(y / x)) + 90;
     }
     else if (x < 0)
     {
-        plane->angle = 270 + deg(atan(y / x));
+        plane->angle = 270 + MyUtil::deg(atan(y / x));
     }
     else
     {
@@ -110,48 +95,48 @@ void Game::update(float delta, const uint8_t* keys)
         }
     }
 
-    plane->xvel += (sin(rad(plane->angle)) * plane->thrust);
-    plane->yvel += (-cos(rad(plane->angle)) * plane->thrust);
-
-    plane->xvel -= (plane->xvel/50);
-    plane->yvel -= (plane->yvel/50);
-
-    /*if (plane->xvel > plane->max_speed)
-    {
-        plane->xvel = plane->max_speed;
-    }
-    else if (plane->xvel < -plane->max_speed)
-    {
-        plane->xvel = -plane->max_speed;
-    }
-    if (plane->yvel > plane->max_speed)
-    {
-        plane->yvel = plane->max_speed;
-    }
-    else if (plane->yvel < -plane->max_speed)
-    {
-        plane->yvel = -plane->max_speed;
-    }*/
-
-    //printf("x: %f y: %f\n", plane->xvel, plane->yvel);
-    //printf("thrust: %f\n", plane->thrust);
+    plane->xvel = (sin(MyUtil::rad(plane->angle)) * plane->max_speed);
+    plane->yvel = (-cos(MyUtil::rad(plane->angle)) * plane->max_speed);
+    /*plane->xvel -= (plane->xvel/Config::getDrag());
+    plane->yvel -= (plane->yvel/Config::getDrag());*/
 
     if (timer->Tick())
     {
+        printf("tick!\n");
         Missile* m = new Missile();
-
+        m->setTexture(Assets::getTexture("missile.png"));
+        m->setCamera(camera);
+        m->setTarget(plane);
+        m->launch();
         missiles.push_back(m);
+    }
+
+    for (auto& e: missiles)
+    {
+        e->update(delta);
     }
 
     plane->update(delta);
     bg->update(delta);
     camera->update(delta);
+
+    for (auto& e: missiles)
+    {
+        if (MyUtil::checkCollision(plane, e))
+        {
+            printf("hit!\n");
+        }
+    }
 }
 
 void Game::render()
 {
     bg->draw(renderer);
     plane->draw(renderer);
+    for (auto& e: missiles)
+    {
+        e->draw(renderer);
+    }
 }
 
 void Game::destroy()

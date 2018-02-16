@@ -9,6 +9,7 @@
 #include "util.h"
 #include "state.h"
 #include "game.h"
+#include "config.h"
 
 SDL_Window *window;
 SDL_Renderer *renderer = nullptr;
@@ -19,6 +20,8 @@ State* current;
 
 void init()
 {
+    Config::loadFile("../../missiles/assets/config.json");
+
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) != 0)
     {
         printf("SDL_Init error: %s\n", SDL_GetError());
@@ -47,7 +50,7 @@ void init()
         window = SDL_CreateWindow(
             "Hello World!",
             SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-            640, 480, SDL_WINDOW_SHOWN);
+            Config::getScreenWidth(), Config::getScreenHeight(), SDL_WINDOW_SHOWN);
     }
 
     if (window == NULL)

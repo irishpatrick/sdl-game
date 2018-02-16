@@ -1,27 +1,28 @@
 #ifndef MISSILE_H
 #define MISSILE_H
 
+#include <cassert>
+#include <cstdlib>
+#include <ctime>
+#include <cmath>
 #include <SDL.h>
 #include "engine.h"
+#include "projectile.h"
 
-class Missile: public Sprite
+class Plane;
+
+class Missile: public Projectile
 {
 public:
     Missile();
     ~Missile();
 
     void update(float);
-    void draw(SDL_Renderer*);
-    void setCamera(Camera*);
-
-    float vx;
-    float vy;
-    float angle;
-    float max_speed;
-    float thrust;
+    void launch();
+    void setTarget(Plane*);
 
 private:
-    Camera* camera;
+    Plane* target;
 };
 
 #endif /* MISSILE_H */

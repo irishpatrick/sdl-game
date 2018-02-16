@@ -1,0 +1,8 @@
+{
+    "screen_width": 1280,
+    "screen_height": 720,
+    "asset_path": "../../missiles/assets/",
+    "drag": 20,
+    "plane_speed": 600,
+    "missile_acceleration": 1200
+}

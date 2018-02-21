@@ -5,17 +5,9 @@ project(engine C CXX)
 file(GLOB sources src/*.cc)
 add_library(${PROJECT_NAME} SHARED ${sources})
 
-#target_link_libraries(${PROJECT_NAME} -pthread ${SDL2_LIB} ${SDL2_IMAGE_LIB} ${SDL2_TTF_LIB})
-#target_include_directories(${PROJECT_NAME} PUBLIC include ${SDL2_INC_DIR})
-#target_compile_options(${PROJECT_NAME} PUBLIC -std=c++11 -Wall -g -D_REENTRANT)
-
-message(STATUS "${SDL2_INC_DIR}")
-message(STATUS "${SDL2_LIB_DIR}")
-message(STATUS "${SDL2_LIBS}")
-
-target_include_directories(${PROJECT_NAME} PUBLIC include ${SDL2_INC_DIR})
-link_directories(${PROJECT_NAME} PUBLIC include ${SDL2_LIB_DIR})
+target_include_directories(${PROJECT_NAME} PUBLIC include ${SDL_INCLUDE_DIR} ${engine_INCLUDE_DIRS})
+link_directories(${PROJECT_NAME} PUBLIC include ${SDL_LIBRARY_DIR})
 target_compile_options(${PROJECT_NAME} PUBLIC -std=c++11 -Wall -g -D_REENTRANT)
-target_link_libraries(${PROJECT_NAME} -pthread ${SDL2_LIBS})
+target_link_libraries(${PROJECT_NAME} -pthread ${SDL_LIBRARIES})
 
 set(${PROJECT_NAME}_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/include CACHE INTERNAL "${PROJECT_NAME}: Include Directories" FORCE)

@@ -3,8 +3,9 @@ cmake_minimum_required(VERSION 3.0)
 project(sdl-game)
 
 if (UNIX)
+    message(STATUS "Unix")
     set(SDL2_INC_DIR "/usr/include/SDL2" CACHE STRING "include dirs")
-    set(SDL2_LIB_DIR "/usr/lib/x86_64-linux-gnu" CACHE STRING "library dirs")
+    set(SDL2_LIB_DIR "/usr/lib/" CACHE STRING "library dirs")
 endif (UNIX)
 
 if (MSVC)
@@ -12,9 +13,10 @@ if (MSVC)
     set(SDL2_LIB_DIR "" CACHE STRING "")
 endif (MSVC)
 
-find_library(SDL2_LIB NAMES SDL2 PATHS ${SDL2_LIB_DIR})
-find_library(SDL2_IMAGE_LIB NAMES SDL2_image PATHS ${SDL2_LIB_DIR})
-find_library(SDL2_TTF_LIB NAMES SDL2_ttf PATHS ${SDL2_LIB_DIR})
+set(SDL2_LIBS "-lSDL2 -lSDL2_image -lSDL2_ttf" CACHE STRING "string")
+
+message(STATUS "${SDL2_INC_DIR}")
+message(STATUS "${SDL2_LIB_DIR}")
 
 add_subdirectory(engine)
 add_subdirectory(rpg)

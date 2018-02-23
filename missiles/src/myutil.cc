@@ -25,7 +25,7 @@ SDL_Point MyUtil::getVelocity(double xvel, double yvel, double force, double ang
     double p = 1.225;
     double drag = c * (p * pow(v,2)) / 2 * a;
 
-    printf("FORCEDRAG: %f, %f\n", force, drag);
+    //printf("FORCEDRAG: %f, %f\n", force, drag);
 
     vel.x = (sin(rad(angle)) * force) - (sin(rad(angle)) * drag);
     vel.y = (-cos(rad(angle)) * force) - (-cos(rad(angle)) * drag);

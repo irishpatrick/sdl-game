@@ -24,6 +24,7 @@ public:
 private:
     int mx;
     int my;
+    float target_angle;
     Plane* bg;
     Plane* plane;
     Camera* camera;

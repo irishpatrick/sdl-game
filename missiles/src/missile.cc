@@ -37,23 +37,37 @@ void Missile::update(float delta)
 
     if (tx > 0)
     {
-        angle = MyUtil::deg(atan(ty / tx)) + 90 - 180;
+        target_angle = MyUtil::deg(atan(ty / tx)) + 90 - 180;
     }
     else if (tx < 0)
     {
-        angle = 270 + MyUtil::deg(atan(ty / tx)) - 180;
+        target_angle = 270 + MyUtil::deg(atan(ty / tx)) - 180;
     }
     else
     {
         if (ty > 0)
         {
-            angle = 0;
+            target_angle = 0;
         }
         if (ty < 0)
         {
-            angle = 180;
+            target_angle = 180;
         }
     }
+
+    float distl = fmod(target_angle, 360.0f);
+    float distr = -360.0f + distl;
+
+    if (distl < distr)
+    {
+        angle -= 100 * delta;
+    }
+    else if (distr < distl)
+    {
+        angle += 100 * delta;
+    }
+
+    printf("%f, %f\n", distl, distr);
 
     double drag = 100;
 

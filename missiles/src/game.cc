@@ -13,6 +13,7 @@ Game::Game(SDL_Renderer* r): State(r)
     timer->SetInterval(5000);
     mx = 0;
     my = 0;
+    target_angle = 0;
 }
 
 Game::~Game()
@@ -71,7 +72,7 @@ void Game::update(float delta, const uint8_t* keys)
         plane->angle += 160 * delta;
     }
 
-    float x = mx - (Config::getScreenWidth() / 2 + 32);
+    /*float x = mx - (Config::getScreenWidth() / 2 + 32);
     float y = my - (Config::getScreenHeight() / 2 + 32);
     //float dist = sqrt(pow(x,2) + pow(y,2));
 
@@ -93,7 +94,7 @@ void Game::update(float delta, const uint8_t* keys)
         {
             plane->angle = 0;
         }
-    }
+    }*/
 
     plane->xvel = (sin(MyUtil::rad(plane->angle)) * plane->max_speed);
     plane->yvel = (-cos(MyUtil::rad(plane->angle)) * plane->max_speed);
@@ -102,7 +103,7 @@ void Game::update(float delta, const uint8_t* keys)
 
     if (timer->Tick())
     {
-        printf("tick!\n");
+        //printf("tick!\n");
         Missile* m = new Missile();
         m->setTexture(Assets::getTexture("missile.png"));
         m->setCamera(camera);
@@ -124,7 +125,7 @@ void Game::update(float delta, const uint8_t* keys)
     {
         if (MyUtil::checkCollision(plane, e))
         {
-            printf("hit!\n");
+            //printf("hit!\n");
         }
     }
 }

@@ -3,6 +3,6 @@
     "screen_height": 720,
     "asset_path": "../../missiles/assets/",
     "drag": 20,
-    "plane_speed": 600,
-    "missile_acceleration": 1200
+    "plane_speed": 100,
+    "missile_acceleration": 200
 }

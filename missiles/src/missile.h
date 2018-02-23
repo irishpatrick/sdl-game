@@ -23,6 +23,7 @@ public:
 
 private:
     Plane* target;
+    float target_angle;
 };
 
 #endif /* MISSILE_H */

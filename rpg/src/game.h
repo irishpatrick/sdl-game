@@ -7,20 +7,11 @@
 #include <ctime>
 #include <future>
 
+#include "engine.h"
 #include "groupmanager.h"
-#include "state.h"
-#include "assets.h"
-#include "sprite.h"
-#include "group.h"
-#include "util.h"
-#include "config.h"
-#include "texture.h"
-#include "light.h"
-#include "animation.h"
-#include "camera.h"
 #include "door.h"
-//#include "particleengine.h"
-#include "text.h"
+#include "config.h"
+#include "player.h"
 
 class Game: public State
 {
@@ -35,7 +26,7 @@ public:
     void destroy();
 
 private:
-    Sprite hero;
+    Player hero;
     Sprite monster;
     Sprite background;
     Sprite animtest;
@@ -47,8 +38,6 @@ private:
     Light light;
     Animation test;
     Door doortest;
-    Text text;
-    Text othr;
     std::vector<Sprite*> hero_collisions;
 };
 

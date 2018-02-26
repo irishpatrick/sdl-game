@@ -5,12 +5,12 @@ class Point
 {
 public:
     Point();
-    Point(double, double);
+    Point(float, float);
 
-    void Set(double, double);
+    void Set(float, float);
 
-    double x;
-    double y;
+    float x;
+    float y;
 };
 
 #endif /* POINT_H */

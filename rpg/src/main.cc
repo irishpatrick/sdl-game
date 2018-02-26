@@ -22,7 +22,7 @@ State* current;
 
 void init()
 {
-    Config::load("../assets/config.json");
+    Config::load("../../rpg/assets/config.json");
 
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) != 0)
     {
@@ -123,7 +123,7 @@ void render()
         {
             quit = true;
         }
-        
+
         current->update(delta/1000.0f, state);
 
         SDL_RenderClear(renderer);

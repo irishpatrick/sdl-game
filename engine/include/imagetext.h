@@ -5,6 +5,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <SDL.h>
+#include "engine.h"
 
 #include "entity.h"
 
@@ -15,11 +16,10 @@ public:
     ImageText(const std::string&);
     ~ImageText();
 
-    void setText(const std::string&);
-
 private:
-    std::string str_;
-    char* buffer_;
+    std::string text;
+    Texture* font;
+    std::map<char, SDL_Rect> charmap;
 };
 
 #endif /* IMAGETEXT_H */

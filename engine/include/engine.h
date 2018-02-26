@@ -20,5 +20,6 @@
 #include "texture.h"
 #include "timer.h"
 #include "util.h"
+#include "locationstack.h"
 
 #endif /* ENGINE_H */

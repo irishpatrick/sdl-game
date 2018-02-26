@@ -67,6 +67,7 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
                     }
                     if (e.find("exit") != e.end())
                     {
+                        printf("setting door exits\n");
                         ref->SetExit(e["exit"]["x"], e["exit"]["y"]);
                     }
 
@@ -146,8 +147,8 @@ void GroupManager::setactive(const std::string& id)
     	{
     		active_->add(focus_);
     	}
-    	focus_->x = active_->sx;
-    	focus_->y = active_->sy;
+    	//focus_->x = active_->sx;
+    	//focus_->y = active_->sy;
     }
 }
 

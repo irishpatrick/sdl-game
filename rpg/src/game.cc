@@ -104,13 +104,13 @@ void Game::tests()
 {
     printf("starting tests...\n");
 
-    text.setText("hello world!  this is going to be a very long string with the purpose of demonstrating the functionality of the text.cc class!");
+    /*text.setText("hello world!  this is going to be a very long string with the purpose of demonstrating the functionality of the text.cc class!");
     text.x = 400;
     text.y = 400;
     text.setSpeed(20);
 
     othr.setText("I am writing a very long string to this class in order to try to replicate the bug that currently resides in the text.cc class!");
-    othr.pos(500,500);
+    othr.pos(500,500);*/
 
     printf("done!\n");
 }
@@ -180,10 +180,21 @@ void Game::update(float delta, const uint8_t* keys)
             if (Door* d = dynamic_cast<Door*>(collider))
             {
                 // success
-                d->Enter();
-                hero.pos(d->GetExit()->x, d->GetExit()->y);
-                d->SetExit(hero.x, hero.y);
+                printf("entering door!\n");
+                //hero.pos(d->GetExit()->x, d->GetExit()->y);
+                //d->SetExit(hero.x, hero.y);
+                if (!hero.getDoorStack()->isEmpty())
+                {
+                    printf("stack not empty!\n");
+                    Point pos = hero.getDoorStack()->pop();
+                    printf("popped %f, %f\n", pos.x, pos.y);
+                    hero.x = pos.x;
+                    hero.y = pos.y;
+                }
+                hero.getDoorStack()->push(Point(hero.x, hero.y));
                 //hero.ResetCollision();
+
+                d->Enter();
             }
         }
     }
@@ -222,7 +233,6 @@ void Game::update(float delta, const uint8_t* keys)
     }
 
     animtest.update(delta);
-    text.update();
 
     Util::contain(&hero, groups_.getactive()->get_sprite_by_name("background"));
 
@@ -240,8 +250,7 @@ void Game::update(float delta, const uint8_t* keys)
 void Game::render()
 {
     groups_.getactive()->draw(renderer);
-    text.draw(renderer);
-    othr.staticDraw(renderer);
+    //othr.staticDraw(renderer);
     //light.draw(renderer);
 }
 

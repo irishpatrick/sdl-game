@@ -31,43 +31,58 @@ void Missile::setTarget(Plane* p)
 
 void Missile::update(float delta)
 {
-    float tx = x - target->x;
-    float ty = y - target->y;
+    float tx = target->x - x;
+    float ty = target->y - y;
     //float dist = sqrt(pow(tx,2) + pow(ty,2));
+
+    float target_angle = 0;
+
+    //float dist = sqrt(pow(x,2) + pow(y,2));
 
     if (tx > 0)
     {
-        target_angle = MyUtil::deg(atan(ty / tx)) + 90 - 180;
+        target_angle = MyUtil::deg(atan(ty / tx));
     }
     else if (tx < 0)
     {
-        target_angle = 270 + MyUtil::deg(atan(ty / tx)) - 180;
+        target_angle = MyUtil::deg(atan(ty / tx));
     }
     else
     {
         if (ty > 0)
         {
-            target_angle = 0;
+            target_angle = 180;
         }
         if (ty < 0)
         {
-            target_angle = 180;
+            target_angle = 0;
         }
     }
 
-    float distl = fmod(target_angle, 360.0f);
-    float distr = -360.0f + distl;
+    float t_angle_x = cos(MyUtil::rad(target_angle));
+    float t_angle_y = sin(MyUtil::rad(target_angle));
+    float angle_x = cos(MyUtil::rad(angle));
+    float angle_y = sin(MyUtil::rad(angle));
+    //printf("%f,%f %f,%f\n", angle_x, angle_y, t_angle_x, t_angle_y);
 
-    if (distl < distr)
-    {
-        angle -= 100 * delta;
-    }
-    else if (distr < distl)
+    printf("%f, %f\n", angle, target_angle);
+
+    if (angle_x < t_angle_x && angle_y < t_angle_y)
     {
         angle += 100 * delta;
     }
-
-    printf("%f, %f\n", distl, distr);
+    else if (angle_x > t_angle_x && angle_y < t_angle_y)
+    {
+        angle -= 100 * delta;
+    }
+    else if (angle_x < t_angle_x && angle_y > t_angle_y)
+    {
+        angle += 100 * delta;
+    }
+    else if (angle_x > t_angle_x && angle_y > t_angle_y)
+    {
+        angle -= 100 * delta;
+    }
 
     double drag = 100;
 

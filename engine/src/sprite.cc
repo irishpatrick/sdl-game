@@ -2,6 +2,7 @@
 #include "animation.h"
 #include "group.h"
 #include "texture.h"
+#include "camera.h"
 
 Sprite::Sprite()
 {
@@ -21,6 +22,7 @@ Sprite::Sprite()
     anim = new Animation();
     tag = boost::uuids::random_generator()();
     collision_ = nullptr;
+    camera = nullptr;
 }
 
 Sprite::~Sprite()
@@ -82,6 +84,11 @@ void Sprite::loadTexture(const std::string& fn, SDL_Renderer* r)
     }
     texture = new Texture();
     texture->set(t);*/
+}
+
+void Sprite::setCamera(Camera* c)
+{
+    camera = c;
 }
 
 void Sprite::setParent(Group* g)

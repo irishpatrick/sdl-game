@@ -15,8 +15,9 @@
 class Animation;
 class Group;
 class Texture;
+class Camera;
 
-class Sprite: public Entity
+class Sprite: public Entity // entity has x, y, w, h
 {
 public:
     Sprite();
@@ -36,6 +37,8 @@ public:
     void SetVisible(bool);
     virtual void setParent(Group*);
     virtual Group* getParent();
+    void setCamera(Camera*);
+
 
     virtual const std::string getUUID();
 
@@ -51,6 +54,7 @@ protected:
     bool visible_;
     Group* parent;
     Sprite* collision_;
+    Camera* camera;
 
 private:
     boost::uuids::uuid tag;

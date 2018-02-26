@@ -74,7 +74,8 @@ void Game::init()
     background.queryTexture();
     doortest.queryTexture();
 
-    hero.pos((w / 2) - (hero.w / 2), (h / 2) - (hero.h / 2));
+    //hero.pos((w / 2) - (hero.w / 2), (h / 2) - (hero.h / 2));
+    hero.pos(10,10);
 
     //testroom.init_from_json(maps + "testroom.json");
 
@@ -172,7 +173,9 @@ void Game::update(float delta, const uint8_t* keys)
     }
 
     //hero_collisions = Util::GetCollisions(&hero, groups_.getactive());
-    if (p)
+
+    op.check(p);
+    if (op.fire())
     {
         if (hero_collisions.size() > 0)
         {
@@ -180,18 +183,21 @@ void Game::update(float delta, const uint8_t* keys)
             if (Door* d = dynamic_cast<Door*>(collider))
             {
                 // success
-                printf("entering door!\n");
+                //printf("entering door!\n");
                 //hero.pos(d->GetExit()->x, d->GetExit()->y);
                 //d->SetExit(hero.x, hero.y);
                 if (!hero.getDoorStack()->isEmpty())
                 {
-                    printf("stack not empty!\n");
+                    //printf("stack not empty!\n");
+                    //printf("popped %f, %f\n", pos.x, pos.y);
                     Point pos = hero.getDoorStack()->pop();
-                    printf("popped %f, %f\n", pos.x, pos.y);
                     hero.x = pos.x;
                     hero.y = pos.y;
                 }
-                hero.getDoorStack()->push(Point(hero.x, hero.y));
+                else
+                {
+                    hero.getDoorStack()->push(Point(hero.x, hero.y));
+                }
                 //hero.ResetCollision();
 
                 d->Enter();

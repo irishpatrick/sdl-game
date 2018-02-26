@@ -21,5 +21,6 @@
 #include "timer.h"
 #include "util.h"
 #include "locationstack.h"
+#include "oneshot.h"
 
 #endif /* ENGINE_H */

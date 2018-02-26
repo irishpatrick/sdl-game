@@ -38,6 +38,7 @@ private:
     Light light;
     Animation test;
     Door doortest;
+    OneShot op;
     std::vector<Sprite*> hero_collisions;
 };
 

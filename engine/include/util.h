@@ -7,8 +7,8 @@
 #include <cstdint>
 #include <cmath>
 #include <vector>
-#include <SDL.h>
-#include <SDL_image.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <boost/lexical_cast.hpp>
 #include <nlohmann/json.hpp>
 

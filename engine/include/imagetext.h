@@ -4,7 +4,7 @@
 #include <string>
 #include <cstring>
 #include <cstdlib>
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include "engine.h"
 
 #include "entity.h"

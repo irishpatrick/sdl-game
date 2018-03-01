@@ -1,7 +1,7 @@
 #ifndef GROUP_H
 #define GROUP_H
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <vector>
 #include <cstdlib>
 #include <cstdio>

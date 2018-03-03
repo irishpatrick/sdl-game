@@ -143,6 +143,7 @@ void cleanup()
     SDL_Quit();
 }
 
+#undef main
 int main(int argc, char** argv)
 {
     printf("Hello World!\n");

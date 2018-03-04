@@ -7,6 +7,7 @@
 #include <fstream>
 #include <streambuf>
 #include <nlohmann/json.hpp>
+#include <engine.h>
 
 using json = nlohmann::json;
 

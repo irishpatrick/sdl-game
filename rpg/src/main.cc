@@ -2,15 +2,13 @@
 #include <cstdlib>
 #include <cstdint>
 #include <iostream>
-#include "SDL.h"
-#include "SDL_image.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
-#include "util.h"
-#include "state.h"
-#include "game.h"
+#include <engine.h>
+
 #include "config.h"
-#include "gamepad.h"
-#include "controllers.h"
+#include "game.h"
 
 SDL_Window *window;
 SDL_Renderer *renderer;

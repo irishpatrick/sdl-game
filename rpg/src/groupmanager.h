@@ -6,11 +6,7 @@
 #include <fstream>
 #include <streambuf>
 #include <nlohmann/json.hpp>
-//#include <rapidjson/document.h>
-class Group;
-class Sprite;
-class Camera;
-
+#include <engine.h>
 
 class GroupManager
 {

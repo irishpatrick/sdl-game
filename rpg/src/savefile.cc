@@ -1,5 +1,4 @@
 #include "savefile.h"
-#include "sprite.h"
 
 std::vector<Sprite*> SaveFile::sprites_ = std::vector<Sprite*>();
 

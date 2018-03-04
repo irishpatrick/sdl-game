@@ -6,9 +6,7 @@
 #include <fstream>
 #include <nlohmann/json.hpp>
 
-#include "sprite.h"
-
-class Text;
+#include <engine.h>
 
 class Npc: public Sprite
 {

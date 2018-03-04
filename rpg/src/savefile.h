@@ -7,9 +7,9 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 
-using json = nlohmann::json;
+#include <engine.h>
 
-class Sprite;
+using json = nlohmann::json;
 
 class SaveFile
 {

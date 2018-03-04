@@ -1,17 +1,18 @@
 #ifndef ANIMATION_H
 #define ANIMATION_H
 
-#include "SDL.h"
 #include <vector>
 #include <map>
 #include <string>
 #include <fstream>
-#include "nlohmann/json.hpp"
 #include <cstdio>
 #include <cstdlib>
 #include <cstdint>
 #include <cstring>
 #include <cmath>
+
+#include <SDL2/SDL.h>
+#include <nlohmann/json.hpp>
 
 class Texture;
 class Timer;

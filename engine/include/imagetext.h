@@ -2,12 +2,14 @@
 #define IMAGETEXT_H
 
 #include <string>
+#include <map>
 #include <cstring>
 #include <cstdlib>
-#include "SDL.h"
-#include "engine.h"
+#include <SDL2/SDL.h>
 
 #include "entity.h"
+
+class Texture;
 
 class ImageText: public Entity
 {

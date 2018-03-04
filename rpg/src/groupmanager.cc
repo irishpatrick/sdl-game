@@ -1,9 +1,4 @@
 #include "groupmanager.h"
-#include "assets.h"
-#include "group.h"
-#include "sprite.h"
-#include "camera.h"
-#include "util.h"
 #include "door.h"
 
 GroupManager::GroupManager()

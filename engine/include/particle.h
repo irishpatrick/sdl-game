@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include "sprite.h"
+
 class Animation;
 class Texture;
 class Timer;

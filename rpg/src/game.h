@@ -6,12 +6,12 @@
 #include <cstdlib>
 #include <ctime>
 #include <future>
+#include <engine.h>
 
-#include "engine.h"
-#include "groupmanager.h"
-#include "door.h"
 #include "config.h"
+#include "groupmanager.h"
 #include "player.h"
+#include "door.h"
 
 class Game: public State
 {

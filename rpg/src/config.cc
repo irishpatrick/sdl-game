@@ -1,5 +1,4 @@
 #include "config.h"
-#include "util.h"
 
 int Config::SCREENWIDTH = 0;
 int Config::SCREENHEIGHT = 0;

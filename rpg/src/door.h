@@ -4,8 +4,7 @@
 #include <cstdint>
 #include <string>
 
-#include "sprite.h"
-#include "point.h"
+#include <engine.h>
 
 class GroupManager;
 

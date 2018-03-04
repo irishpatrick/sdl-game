@@ -1,6 +1,4 @@
 #include "npc.h"
-#include "text.h"
-#include "util.h"
 
 Npc::Npc()
 {

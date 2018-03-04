@@ -1,7 +1,7 @@
 #ifndef GAMEPAD_H
 #define GAMEPAD_H
 
-#include <SDL2/SDL.h>
+#include "SDL.h"
 
 class Gamepad
 {

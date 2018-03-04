@@ -3,7 +3,7 @@
 
 #define MAX_CONTROLLERS 4
 
-#include <SDL2/SDL.h>
+#include "SDL.h"
 #include "gamepad.h"
 
 class Controllers

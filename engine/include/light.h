@@ -1,7 +1,7 @@
 #ifndef LIGHT_H
 #define LIGHT_H
 
-#include <SDL2/SDL.h>
+#include "SDL.h"
 class Texture;
 class Group;
 

@@ -2,7 +2,7 @@
 #define STATE_H
 
 #include <cstdint>
-#include <SDL2/SDL.h>
+#include "SDL.h"
 
 class State
 {

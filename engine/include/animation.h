@@ -1,12 +1,12 @@
 #ifndef ANIMATION_H
 #define ANIMATION_H
 
-#include <SDL2/SDL.h>
+#include "SDL.h"
 #include <vector>
 #include <map>
 #include <string>
 #include <fstream>
-#include <nlohmann/json.hpp>
+#include "nlohmann/json.hpp"
 #include <cstdio>
 #include <cstdlib>
 #include <cstdint>

@@ -1,14 +1,14 @@
 #ifndef GROUP_H
 #define GROUP_H
 
-#include <SDL2/SDL.h>
+#include "SDL.h"
 #include <vector>
 #include <cstdlib>
 #include <cstdio>
 #include <string>
 #include <fstream>
 #include <streambuf>
-#include <nlohmann/json.hpp>
+#include "nlohmann/json.hpp"
 
 class Sprite;
 class Camera;

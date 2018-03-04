@@ -3,7 +3,7 @@
 
 #include <algorithm>
 #include <vector>
-#include <SDL.h>
+#include "SDL2/SDL.h"
 #include "engine.h"
 
 class Plane;

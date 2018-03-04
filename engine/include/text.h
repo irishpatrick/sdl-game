@@ -6,8 +6,8 @@
 #include <cstring>
 #include <cstdint>
 #include <iostream>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
+#include "SDL.h"
+#include "SDL_ttf.h"
 
 #include "entity.h"
 

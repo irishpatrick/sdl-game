@@ -1,7 +1,19 @@
 {
     "entry": {},
     "sprites": [
-        {"name": "background", "x": 0, "y": 0, "texture": "med-background.png"}
-        {"name": "monster", "x": 150, "y": 150, "texture": "monster.png"}
+        {
+            "type": "sprite",
+            "name": "background",
+            "x": 0,
+            "texture": "med-background.png",
+            "y": 0
+        },
+        {
+            "type": "sprite",
+            "name": "monster",
+            "x": 150,
+            "texture": "monster.png",
+            "y": 150
+        }
     ]
 }

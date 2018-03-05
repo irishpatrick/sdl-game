@@ -4,33 +4,53 @@ import sys
 import os.path
 import json
 
+help_page = """
+usage: <command> [args]
+commands:
+q(uit)
+h(elp), ?
+n(ew)
+w(rite) <file>
+o(pen) <file>
+s(prite)
+e(dit) <field> <name>
+l(ist) [field]
+"""
+
 def new_map():
     return {"entry": {}, "sprites": []}
 
 def edit_sprite(sprite):
     running = True
     while running:
-        command = input("(genmap) (sprite editor) ")
+        command = input("(sprite-editor) ")
 
+        # quit
         if command.startswith("q"):
             return
 
+        # new
         elif command.startswith("n"):
             sprite["name"] = command.split(" ")[1]
 
+        # type
         elif command.startswith("t"):
             sprite["type"] = command.split(" ")[1]
 
+        # x
         elif command.startswith("x"):
             sprite["x"] = int(command.split(" ")[1])
 
+        # y
         elif command.startswith("y"):
             sprite["y"] = int(command.split(" ")[1])
 
+        # image
         elif command.startswith("i"):
             sprite["texture"] = command.split(" ")[1]
 
-        elif command.startswith("f"):
+        # manual
+        elif command.startswith("m"):
             fmt = command.split(" ")[1]
             args = command.split(" ")[2:]
             if fmt == "str":
@@ -45,48 +65,66 @@ def new_sprite(current):
     edit_sprite(sprite)
     current["sprites"].append(sprite)
 
-def find_sprite(name):
-    pass
-
 def run():
     running = True
     current = None
     while running:
         command = input("(genmap) ")
 
+        # quit
         if command.startswith("q"):
             return
 
+        # help
         elif command.startswith("h") or command.startswith("?"):
-            fp = open("help.txt", "r")
-            print(fp.read())
-            fp.close()
+            print(help_page)
 
+        # new
         elif command.startswith("n"):
             current = new_map()
 
+        # write
         elif command.startswith("w"):
             fn = os.path.join(*command.split(" ")[1].split("/"))
             fp = open(fn, "w")
             fp.write(json.dumps(current, indent=4))
             fp.close()
 
+        # open
         elif command.startswith("o"):
             fn = os.path.join(*command.split(" ")[1].split("/"))
             fp = open(fn, "r")
             current = json.loads(fp.read())
             fp.close()
 
+        # sprite
         elif command.startswith("s"):
             if not current == None:
                 new_sprite(current)
             else:
                 print("error: create new map first!")
 
+        # edit
         elif command.startswith("e"):
-            pass
+            args = command.split(" ")[1:]
+            field = args[0]
+            name = arg
+            found = None
+            for item in current[field]:
+                if item["name"] == name:
+                    found = item
+            if field == "sprites":
+                edit_sprite(found)
 
-        elif command.startswith(""):
+        # list
+        elif command.startswith("l"):
+            args = command.split(" ")[1:]
+            if len(args) == 0:
+                print(json.dumps(current, indent=4))
+            else:
+                json.dumps(current[args[0]], indent=4)
+
+        elif len(command) == 0:
             pass
 
         else:

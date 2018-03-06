@@ -6,8 +6,9 @@ import json
 
 help_page = """
 usage: <command> [args]
-commands:
+commands (genmap):
 q(uit)
+d(ir) <directory>
 h(elp), ?
 n(ew)
 w(rite) <file>
@@ -15,6 +16,17 @@ o(pen) <file>
 s(prite)
 e(dit) <field> <name>
 l(ist) [field]
+"""
+
+sprite_editor_help_page = """
+commands (sprite-editor)
+q(uit)
+n(ew)
+t(ype)
+x
+y
+i(mage)
+m(anual)
 """
 
 def new_map():
@@ -28,6 +40,9 @@ def edit_sprite(sprite):
         # quit
         if command.startswith("q"):
             return
+
+        elif command.startswith("h"):
+            print(sprite_editor_help_page)
 
         # new
         elif command.startswith("n"):
@@ -68,12 +83,19 @@ def new_sprite(current):
 def run():
     running = True
     current = None
+    workingdir = os.getcwd()
+
     while running:
         command = input("(genmap) ")
 
         # quit
         if command.startswith("q"):
             return
+
+        # dir
+        elif command.startswith("d"):
+            workingdir = os.path.abspath(command.split(" ")[1])
+            print("working directory is now {}\n".format(workingdir))
 
         # help
         elif command.startswith("h") or command.startswith("?"):
@@ -86,14 +108,14 @@ def run():
         # write
         elif command.startswith("w"):
             fn = os.path.join(*command.split(" ")[1].split("/"))
-            fp = open(fn, "w")
+            fp = open(os.path.join(workingdir, fn), "w")
             fp.write(json.dumps(current, indent=4))
             fp.close()
 
         # open
         elif command.startswith("o"):
             fn = os.path.join(*command.split(" ")[1].split("/"))
-            fp = open(fn, "r")
+            fp = open(os.path.join(workingdir, fn), "r")
             current = json.loads(fp.read())
             fp.close()
 

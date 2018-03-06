@@ -82,11 +82,9 @@ void Game::init()
     groups_.setcamera(&camera);
     groups_.setfocus(&hero);
     groups_.loadgroup("room", maps + "testroom.json");
+    groups_.loadgroup("town1", maps + "town1.json");
     groups_.addgroup("stage", &stage);
-    //groups_.addgroup("room", &testroom);
-    groups_.setactive("stage");
-    //groups_.setactive("room");
-
+    groups_.setactive("town1");
     printf("done!\n");
 
     //test.InitFromJson(root + "animtest.json");
@@ -189,14 +187,14 @@ void Game::update(float delta, const uint8_t* keys)
                 if (!hero.getDoorStack()->isEmpty())
                 {
                     //printf("stack not empty!\n");
-                    //printf("popped %f, %f\n", pos.x, pos.y);
                     Point pos = hero.getDoorStack()->pop();
+                    printf("popped %f, %f\n", pos.x, pos.y);
                     hero.x = pos.x;
                     hero.y = pos.y;
                 }
                 else
                 {
-                    hero.getDoorStack()->push(Point(hero.x, hero.y));
+                    hero.getDoorStack()->push(*d->GetExit());
                 }
                 //hero.ResetCollision();
 

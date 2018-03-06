@@ -6,6 +6,6 @@
   "sprites": [
     {"name": "background", "x": 0, "y": 0, "texture": "room-bg.png"},
     {"name": "monster", "x": 20, "y": 20, "texture": "monster.png"},
-    {"name": "door", "type": "door", "exit": {"x": 90, "y": 80}, "dest": "stage", "x": 80, "y": 0, "texture": "door.png"}
+    {"name": "door", "type": "door", "exit": {"x": 90, "y": 80}, "dest": "town1", "x": 80, "y": 0, "texture": "door.png"}
   ]
 }

@@ -16,7 +16,8 @@ public:
 
 	void addgroup(const std::string&, Group*);
 	void loadgroup(const std::string&, const std::string&);
-	void setactive(const std::string &);
+	void setactive(const std::string&);
+    void setEntry(const std::string&);
 	void setcamera(Camera*);
 	void setfocus(Sprite*);
 

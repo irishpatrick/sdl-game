@@ -4,6 +4,7 @@
 Door::Door(): Sprite()
 {
     dest_ = "";
+    tag = "";
     manager_ = nullptr;
 }
 
@@ -22,6 +23,16 @@ void Door::SetDest(const std::string& d)
     dest_ = d;
 }
 
+void Door::setTag(const std::string& s)
+{
+    tag = s;
+}
+
+std::string Door::getTag()
+{
+    return tag;
+}
+
 void Door::SetExit(float a, float b)
 {
     exit_.Set(a, b);
@@ -32,6 +43,7 @@ void Door::Enter()
     if (dest_ != "")
     {
         manager_->setactive(dest_);
+        manager_->setEntry(getTag());
     }
 }
 

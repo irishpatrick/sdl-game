@@ -65,6 +65,10 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
                         printf("setting door exits\n");
                         ref->SetExit(e["exit"]["x"], e["exit"]["y"]);
                     }
+                    if (e.find("tag") != e.end())
+                    {
+                        ref->setTag(e["tag"]);
+                    }
 
                 }
                 else
@@ -124,6 +128,26 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
     addgroup(id, g);*/
 }
 
+void GroupManager::setEntry(const std::string& tag)
+{
+    // find entry
+    for (auto& e : active_->getSprites())
+    {
+        if (Door* d = dynamic_cast<Door*>(e))
+        {
+            // found door
+            if (d->getTag() == tag)
+            {
+                if (focus_ != nullptr)
+                {
+                    focus_->x = d->GetExit()->x;
+                    focus_->y = d->GetExit()->y;
+                }
+            }
+        }
+    }
+}
+
 void GroupManager::setactive(const std::string& id)
 {
     std::map<std::string, Group*>::const_iterator it = groupmap_.find(id);
@@ -134,16 +158,18 @@ void GroupManager::setactive(const std::string& id)
     		active_->remove(focus_);
     	}
     	active_ = groupmap_[id];
-    	if (camera_ != nullptr)
+
+        // add camera
+        if (camera_ != nullptr)
     	{
     		active_->setCamera(camera_);
     	}
+
+        // add focus
     	if (focus_ != nullptr)
     	{
     		active_->add(focus_);
     	}
-    	//focus_->x = active_->sx;
-    	//focus_->y = active_->sy;
     }
 }
 

@@ -19,7 +19,7 @@ public:
     void render();
 
 private:
-    Sprite* player;
+    Player* player;
     Background* background;
 };
 

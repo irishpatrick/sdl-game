@@ -20,12 +20,18 @@ void Game::init() {
 
     player = new Player();
     player->x = 10;
-    player->y = 11;
+    player->y = 10;
+    player->setGround(440);
+
     background = new Background();
 
 }
 
 void Game::update(float delta, const uint8_t* keys) {
+    if (keys[SDL_SCANCODE_SPACE]) {
+        player->jump(40);
+    }
+
     player->update(delta);
     background->update(delta);
 }

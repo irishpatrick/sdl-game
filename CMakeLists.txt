@@ -4,6 +4,7 @@ project(sdl-game)
 
 option (BUILD_MISSILES "build missiles game" OFF)
 option (BUILD_RPG "build rpg game" OFF)
+option (BUILD_RUNNER "build runner game" OFF)
 
 set(SDL_LIBRARIES "SDL2;SDL2_image;SDL2_ttf" CACHE STRING "string")
 
@@ -16,10 +17,15 @@ else(UNIX)
 endif (UNIX)
 
 add_subdirectory(engine)
+
 if (BUILD_RPG)
     add_subdirectory(rpg)
-endif(BUILD_RPG)
+endif (BUILD_RPG)
 
 if (BUILD_MISSILES)
     add_subdirectory(missiles)
-endif(BUILD_MISSILES)
+endif (BUILD_MISSILES)
+
+if (BUILD_RUNNER)
+    add_subdirectory(runner)
+endif (BUILD_RUNNER)

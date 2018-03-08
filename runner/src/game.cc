@@ -20,7 +20,7 @@ void Game::init() {
 
     player = new Player();
     player->x = 10;
-    player->y = 10;
+    player->y = 440 - player->h;
     player->setGround(440);
 
     background = new Background();

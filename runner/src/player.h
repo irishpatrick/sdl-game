@@ -5,8 +5,6 @@
 #include <iostream>
 #include <cmath>
 #include <engine.h>
-#include "quadratic.h"
-#include "sigmoid.h"
 
 using namespace std;
 
@@ -28,9 +26,6 @@ private:
     bool last;
     float t;
     float velocity;
-    Quadratic path;
-    Sigmoid grav;
-    Sigmoid thrust;
 
     // physics
     float Fg;

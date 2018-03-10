@@ -7,8 +7,6 @@ Player::Player(): Sprite() {
     jumping = false;
     velocity = 0;
     t = 0;
-    path = Quadratic(300,1);
-    thrust = Sigmoid(0.1,5,10);
 
     Fg = 30;
     Ft = 0;
@@ -32,7 +30,7 @@ void Player::jump(float j) {
 
 void Player::update(float delta) {
     if (jumping) {
-        Ft = 300;//thrust.solve(t);
+        Ft = 300;
     } else {
         Ft = 0;
     }

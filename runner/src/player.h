@@ -3,6 +3,7 @@
 
 #include <cstdio>
 #include <iostream>
+#include <cmath>
 #include <engine.h>
 #include "quadratic.h"
 #include "sigmoid.h"
@@ -35,6 +36,7 @@ private:
     float Fg;
     float Fn;
     float Ft;
+    float Fa;
     float mass;
     float gravity;
     float vi;

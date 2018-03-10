@@ -10,9 +10,10 @@ Player::Player(): Sprite() {
     path = Quadratic(300,1);
     thrust = Sigmoid(0.1,5,10);
 
-    Fg = 15;
+    Fg = 30;
     Ft = 0;
     Fn = 0;
+    Fa = 0;
     mass = 5;
     vi = 0;
 }
@@ -31,14 +32,21 @@ void Player::jump(float j) {
 
 void Player::update(float delta) {
     if (jumping) {
-        Ft = 200;//thrust.solve(t);
-        t += delta;
+        Ft = 300;//thrust.solve(t);
     } else {
         Ft = 0;
-        t = 0;
     }
 
-    float Fsum = Ft - (Fg * mass);
+    float k;
+    if (velocity != 0) {
+        k = (velocity / fabs(velocity)) * 1.2;
+    } else {
+        k = 0;
+    }
+
+    Fa = k * (velocity * velocity);
+
+    float Fsum = Ft - (Fg * mass) - Fa;
     float a = Fsum / mass;
 
     velocity += a * delta;
@@ -57,7 +65,7 @@ void Player::update(float delta) {
 
     jumping = false;
 
-    cout << "velocity: " << velocity << " Ft: " << Ft << endl;
+    cout << "velocity: " << velocity << " Ft: " << Ft << " Fa: " << Fa << endl;
 }
 
 /*void Player::update(float delta) {
@@ -96,7 +104,7 @@ void Player::update(float delta) {
 
     y -= velocity;
 
-    /*if (jumping) {
+    if (jumping) {
         velocity = -grav.solve(t);
         t += delta;
     } else {
@@ -112,9 +120,9 @@ void Player::update(float delta) {
             y = ground - h;
             jumping = false;
         }
-    }*/
+    }
 
-    /*y += velocity;
+    y += velocity;
 
     if (y > ground - h) {
         y = ground - h;

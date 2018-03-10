@@ -8,7 +8,13 @@ Player::Player(): Sprite() {
     velocity = 0;
     t = 0;
     path = Quadratic(300,1);
-    grav = Sigmoid(10,5,1);
+    thrust = Sigmoid(0.1,5,10);
+
+    Fg = 15;
+    Ft = 0;
+    Fn = 0;
+    mass = 5;
+    vi = 0;
 }
 
 Player::~Player() {
@@ -24,24 +30,80 @@ void Player::jump(float j) {
 }
 
 void Player::update(float delta) {
+    if (jumping) {
+        Ft = 200;//thrust.solve(t);
+        t += delta;
+    } else {
+        Ft = 0;
+        t = 0;
+    }
 
-    cout << "jumping: " << jumping << " change: " << change << " time: " << t << endl;
+    float Fsum = Ft - (Fg * mass);
+    float a = Fsum / mass;
+
+    velocity += a * delta;
+
+    y -= velocity;
+
+    if (y > ground - h) {
+        y = ground - h;
+        velocity = 0;
+    }
+
+    if (y < 0) {
+        y = 0;
+        velocity = 0;
+    }
+
+    jumping = false;
+
+    cout << "velocity: " << velocity << " Ft: " << Ft << endl;
+}
+
+/*void Player::update(float delta) {
+
+    cout << "jumping: " << jumping << " change: " << change << " time: " << t << " velocity: " << velocity << endl;
 
     if (last == !jumping) {
         change = true;
-        t = 0;
+        //t = 0;
     } else {
         change = false;
     }
 
-    if (jumping) {
-        velocity = -1 * grav.solve(t);
+    if (jumping)
+    {
+        Ft += 10 * delta;
     } else {
-        velocity = grav.solve(t);
+        Ft = 0;
     }
 
+    if (change) {
+        vi = velocity;
+    }
+
+    float Fsum = Ft - Fg + Fn;
+    float a = Fsum / mass;
+    velocity = vi + (a * t);
+
     t += delta;
-    /*if (jumping && t < path.d) {
+
+    if (y > ground - h) {
+        y = ground - h;
+        velocity = 0;
+        t = 0;
+    }
+
+    y -= velocity;
+
+    /*if (jumping) {
+        velocity = -grav.solve(t);
+        t += delta;
+    } else {
+        velocity = grav.solve(t);
+        t -= delta;
+    }
+    if (jumping && t < path.d) {
         printf("%f: %f\n", t, path.solve(t));
         y = ground - h + path.solve(t);
         t += delta;
@@ -52,15 +114,16 @@ void Player::update(float delta) {
         }
     }*/
 
-    /*if (y > ground - h) {
-        y = ground - h;
-        t = 0;
-        fall = 0;
-        jumping = true;
-    }*/
+    /*y += velocity;
 
-    y += velocity;
+    if (y > ground - h) {
+        y = ground - h;
+        velocity = 0;
+        t = 0;
+    }
+
+    cout << " velocity: " << velocity << " y: " << y << endl;
 
     last = jumping;
     jumping = false;
-}
+}*/

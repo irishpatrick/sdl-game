@@ -35,6 +35,13 @@ void Assets::loadTexture(const std::string& fn, SDL_Renderer* r)
     std::vector<std::string> vec = split(fn, '/');
     std::string key = vec[vec.size() - 1];
 
+    /*if (texMap.find(key) != texMap.end()) {
+        texMap[key] = new Texture(r);
+        futures.push_back(std::async(std::launch::async, parallel_load, std::ref(texMap), fn, key));
+    } else {
+        std::cout << "key does not exist" << std::endl;
+    }*/
+
     texMap[key] = new Texture(r);
     futures.push_back(std::async(std::launch::async, parallel_load, std::ref(texMap), fn, key));
 }
@@ -68,10 +75,8 @@ void Assets::destroy()
         e.get();
     }*/
 
-    std::map<std::string, Texture*>::iterator it;
-    for (it = texMap.begin(); it != texMap.end(); it++)
-    {
-        Texture* t = it->second;
+    for (auto& e : texMap) {
+        Texture* t = e.second;
         t->destroy();
         delete t;
     }

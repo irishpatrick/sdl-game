@@ -31,6 +31,14 @@ private:
     Sigmoid grav;
     Sigmoid thrust;
 
+    // physics
+    float Fg;
+    float Fn;
+    float Ft;
+    float mass;
+    float gravity;
+    float vi;
+
 };
 
 #endif /* PLAYER_H */

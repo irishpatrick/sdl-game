@@ -1,7 +1,7 @@
 #ifndef IMAGEFONT_H
 #define IMAGEFONT_H
 
-#include "engine.h"
+class Texture;
 
 class ImageFont
 {

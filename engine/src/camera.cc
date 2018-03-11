@@ -1,6 +1,8 @@
 #include "camera.h"
 #include "sprite.h"
 
+namespace engine {
+
 Camera::Camera()
 {
     x = 0;
@@ -35,4 +37,6 @@ void Camera::update(float delta)
 void Camera::setFocus(Sprite* s)
 {
     focus = s;
+}
+
 }

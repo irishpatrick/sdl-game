@@ -2,6 +2,8 @@
 #include "particle.h"
 #include "util.h"
 
+namespace engine {
+
 ParticleEngine::ParticleEngine()
 {
     list_ = nullptr;
@@ -43,5 +45,7 @@ void ParticleEngine::LoadEffect(const std::string& fn)
 
 void ParticleEngine::Play()
 {
+
+}
 
 }

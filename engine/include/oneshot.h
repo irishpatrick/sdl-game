@@ -3,6 +3,8 @@
 
 #include <cstdio>
 
+namespace engine {
+
 class OneShot
 {
 public:
@@ -16,5 +18,7 @@ private:
     bool state;
     bool reset;
 };
+
+}
 
 #endif /* ONESHOT_H */

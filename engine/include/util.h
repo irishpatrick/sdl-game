@@ -12,6 +12,8 @@
 #include <SDL2/SDL_image.h>
 #include <nlohmann/json.hpp>
 
+namespace engine {
+
 class Sprite;
 class Group;
 
@@ -27,5 +29,7 @@ public:
     static bool JsonExists(nlohmann::json&, const std::string&);
     static std::vector<Sprite*> GetCollisions(Sprite*, Group*);
 };
+
+}
 
 #endif /* UTIL_H */

@@ -12,6 +12,8 @@
 
 #include "entity.h"
 
+namespace engine {
+
 class Animation;
 class Group;
 class Texture;
@@ -59,5 +61,7 @@ protected:
 private:
     boost::uuids::uuid tag;
 };
+
+}
 
 #endif /* SPRITE_H */

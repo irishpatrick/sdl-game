@@ -1,5 +1,7 @@
 #include "oneshot.h"
 
+namespace engine {
+
 OneShot::OneShot()
 {
     state = false;
@@ -33,4 +35,6 @@ void OneShot::check(bool b)
 bool OneShot::fire()
 {
     return state;
+}
+
 }

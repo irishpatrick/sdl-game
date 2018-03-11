@@ -1,6 +1,8 @@
 #ifndef POINT_H
 #define POINT_H
 
+namespace engine {
+
 class Point
 {
 public:
@@ -12,5 +14,7 @@ public:
     float x;
     float y;
 };
+
+}
 
 #endif /* POINT_H */

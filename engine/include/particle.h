@@ -4,6 +4,8 @@
 #include <cstdint>
 #include "sprite.h"
 
+namespace engine {
+
 class Animation;
 class Texture;
 class Timer;
@@ -23,5 +25,7 @@ private:
     Timer* life_;
     Timer* clock_;
 };
+
+}
 
 #endif /* PARTICLE_H */

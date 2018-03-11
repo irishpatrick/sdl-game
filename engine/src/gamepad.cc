@@ -1,5 +1,7 @@
 #include "gamepad.h"
 
+namespace engine {
+
 Gamepad::Gamepad()
 {
     id_ = 0;
@@ -36,4 +38,6 @@ int Gamepad::GetId()
 void Gamepad::Close()
 {
     SDL_GameControllerClose(pad_);
+}
+
 }

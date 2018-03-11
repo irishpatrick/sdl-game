@@ -6,6 +6,8 @@
 #include <string>
 #include <SDL2/SDL.h>
 
+namespace engine {
+
 class Texture
 {
 public:
@@ -30,5 +32,7 @@ private:
     SDL_Surface* surf;
     SDL_Renderer* renderer;
 };
+
+}
 
 #endif /* TEXTURE_H */

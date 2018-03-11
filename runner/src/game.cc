@@ -2,7 +2,7 @@
 #include "background.h"
 #include "player.h"
 
-Game::Game(SDL_Renderer* r): State(r) {
+Game::Game(SDL_Renderer* r): engine::State(r) {
 }
 
 Game::~Game() {
@@ -13,13 +13,13 @@ Game::~Game() {
 void Game::init() {
     std::string assets = "../../runner/assets/";
 
-    Assets::loadTexture(assets + "player.png", renderer);
-    Assets::loadTexture(assets + "background.png", renderer);
+    engine::Assets::loadTexture(assets + "player.png", renderer);
+    engine::Assets::loadTexture(assets + "background.png", renderer);
 
-    Assets::getFutures();
+    engine::Assets::getFutures();
 
     player = new Player();
-    player->x = 10;
+    player->x = 30;
     player->y = 440 - player->h;
     player->setGround(440);
 

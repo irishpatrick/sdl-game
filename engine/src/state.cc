@@ -1,5 +1,7 @@
 #include "state.h"
 
+namespace engine {
+
 State::State(SDL_Renderer* r)
 {
     renderer = r;
@@ -22,10 +24,12 @@ void State::update(float delta, const uint8_t* keys)
 
 void State::render()
 {
-    
+
 }
 
 void State::destroy()
 {
-    
+
+}
+
 }

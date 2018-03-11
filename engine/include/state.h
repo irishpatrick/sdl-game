@@ -4,6 +4,8 @@
 #include <cstdint>
 #include <SDL2/SDL.h>
 
+namespace engine {
+
 class State
 {
 public:
@@ -19,5 +21,7 @@ public:
 protected:
     SDL_Renderer* renderer;
 };
+
+}
 
 #endif /* STATE_H */

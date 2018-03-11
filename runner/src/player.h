@@ -8,7 +8,7 @@
 
 using namespace std;
 
-class Player: public Sprite {
+class Player: public engine::Sprite {
 
 public:
     Player();

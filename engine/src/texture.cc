@@ -1,5 +1,7 @@
 #include "texture.h"
 
+namespace engine {
+
 Texture::Texture()
 {
     name_ = "";
@@ -57,4 +59,6 @@ SDL_Texture* Texture::use()
 void Texture::destroy()
 {
     SDL_DestroyTexture(tex);
+}
+
 }

@@ -1,6 +1,8 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
+namespace engine {
+
 class Sprite;
 
 class Camera
@@ -23,5 +25,7 @@ private:
 	float fy;
     Sprite* focus;
 };
+
+}
 
 #endif /* CAMERA_H */

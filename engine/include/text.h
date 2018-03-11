@@ -11,6 +11,8 @@
 
 #include "entity.h"
 
+namespace engine {
+
 class Timer;
 
 class Text: public Entity
@@ -40,5 +42,7 @@ private:
     SDL_Surface* surface_;
     SDL_Texture* texture_;
 };
+
+}
 
 #endif /* TEXT_H */

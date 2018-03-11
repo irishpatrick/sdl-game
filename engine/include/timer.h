@@ -4,6 +4,8 @@
 #include <cstdint>
 #include <SDL2/SDL.h>
 
+namespace engine {
+
 class Timer
 {
 public:
@@ -19,5 +21,7 @@ private:
     uint32_t then_;
     uint32_t now_;
 };
+
+}
 
 #endif /* TIMER_H */

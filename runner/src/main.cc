@@ -14,7 +14,7 @@ SDL_Surface* icon;
 SDL_Event e;
 bool quit;
 
-State* current;
+engine::State* current;
 
 void init() {
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) != 0) {

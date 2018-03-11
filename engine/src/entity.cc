@@ -1,5 +1,7 @@
 #include "entity.h"
 
+namespace engine {
+
 Entity::Entity()
 {
     x = 0;
@@ -17,4 +19,6 @@ void Entity::pos(float a, float b)
 {
     x = a;
     y = b;
+}
+
 }

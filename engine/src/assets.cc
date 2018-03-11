@@ -1,6 +1,8 @@
 #include "assets.h"
 #include "texture.h"
 
+namespace engine {
+
 std::map<std::string, Texture*> Assets::texMap = std::map<std::string, Texture*>();
 std::vector<std::future<void>> Assets::futures = std::vector<std::future<void>>();
 
@@ -80,4 +82,6 @@ void Assets::destroy()
         t->destroy();
         delete t;
     }
+}
+
 }

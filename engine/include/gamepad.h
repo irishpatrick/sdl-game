@@ -3,6 +3,8 @@
 
 #include <SDL2/SDL.h>
 
+namespace engine {
+
 class Gamepad
 {
 public:
@@ -20,5 +22,7 @@ private:
     SDL_Joystick* joy_;
 
 };
+
+}
 
 #endif /* GAMEPAD_H */

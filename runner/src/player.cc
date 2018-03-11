@@ -1,7 +1,7 @@
 #include "player.h"
 
-Player::Player(): Sprite() {
-    setTexture(Assets::getTexture("player.png"));
+Player::Player(): engine::Sprite() {
+    setTexture(engine::Assets::getTexture("player.png"));
     ground = 0;
     fall = 0;
     jumping = false;
@@ -63,7 +63,7 @@ void Player::update(float delta) {
 
     jumping = false;
 
-    cout << "velocity: " << velocity << " Ft: " << Ft << " Fa: " << Fa << endl;
+    //cout << "velocity: " << velocity << " Ft: " << Ft << " Fa: " << Fa << endl;
 }
 
 /*void Player::update(float delta) {

@@ -1,5 +1,7 @@
 #include "locationstack.h"
 
+namespace engine {
+
 LocationStack::LocationStack()
 {
 
@@ -32,4 +34,6 @@ bool LocationStack::isEmpty()
 void LocationStack::clear()
 {
     stack.clear();
+}
+
 }

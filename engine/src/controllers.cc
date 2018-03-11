@@ -1,5 +1,7 @@
 #include "controllers.h"
 
+namespace engine {
+
 Gamepad Controllers::gamepads_[MAX_CONTROLLERS];
 
 int Controllers::GetControllerIndex(SDL_JoystickID instance)
@@ -44,4 +46,6 @@ void Controllers::CloseAll()
     {
         e.Close();
     }
+}
+
 }

@@ -8,14 +8,14 @@ int mod(int a, int b)
 
 Background::Background() {
     for (int i=0; i<3; i++) {
-        Sprite* n = new Sprite();
-        n->setTexture(Assets::getTexture("background.png"));
+        engine::Sprite* n = new engine::Sprite();
+        n->setTexture(engine::Assets::getTexture("background.png"));
         n->x = (512 * i) - 512;
         n->y = 0;
         frames.push_back(n);
     }
 
-    speed = 200.0f;
+    speed = 400.0f;
 }
 
 Background::~Background() {

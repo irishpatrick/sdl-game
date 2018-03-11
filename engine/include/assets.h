@@ -11,6 +11,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+namespace engine {
+
 class Texture;
 
 class Assets
@@ -27,5 +29,7 @@ private:
     static std::map<std::string, Texture*> texMap;
     static std::vector<std::future<void>> futures;
 };
+
+}
 
 #endif /* ASSETS_H */

@@ -3,6 +3,8 @@
 #include "line.h"
 #include "group.h"
 
+namespace engine {
+
 /*uint32_t Util::getNow()
 {
     std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>(
@@ -127,4 +129,6 @@ std::string Util::RectToString(SDL_Rect* r)
         ", y: " + boost::lexical_cast<std::string>(r->y) +
         ", w: " + boost::lexical_cast<std::string>(r->w) +
         ", h: " + boost::lexical_cast<std::string>(r->h) + "]";
+}
+
 }

@@ -1,5 +1,7 @@
 #include "timer.h"
 
+namespace engine {
+
 Timer::Timer()
 {
     duration_ = 0.0;
@@ -33,4 +35,6 @@ bool Timer::Tick()
         return true;
     }
     return false;
+}
+
 }

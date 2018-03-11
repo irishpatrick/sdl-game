@@ -4,6 +4,8 @@
 #include "timer.h"
 #include "assets.h"
 
+namespace engine {
+
 Animation::Animation()
 {
     tex_ = nullptr;
@@ -178,4 +180,6 @@ void Animation::Kill()
 {
     running_ = false;
     looping_ = false;
+}
+
 }

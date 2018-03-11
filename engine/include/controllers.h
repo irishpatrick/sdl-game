@@ -6,6 +6,8 @@
 #include <SDL2/SDL.h>
 #include "gamepad.h"
 
+namespace engine {
+
 class Controllers
 {
 public:
@@ -17,5 +19,7 @@ public:
 private:
     static Gamepad gamepads_[MAX_CONTROLLERS];
 };
+
+}
 
 #endif /* CONTROLLERS_H */

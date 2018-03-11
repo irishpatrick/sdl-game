@@ -20,7 +20,7 @@ public:
     void setSpeed(float);
 
 private:
-    vector<Sprite*> frames;
+    vector<engine::Sprite*> frames;
     float speed;
 };
 

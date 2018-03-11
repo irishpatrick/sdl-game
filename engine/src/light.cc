@@ -2,6 +2,8 @@
 #include "texture.h"
 #include "group.h"
 
+namespace engine {
+
 Light::Light()
 {
     x = 0;
@@ -32,4 +34,6 @@ void Light::draw(SDL_Renderer* r)
     rect.w = size;
     rect.h = size;
     SDL_RenderCopy(r, texture_->use(), nullptr, &rect);
+}
+
 }

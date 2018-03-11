@@ -3,6 +3,8 @@
 #include "camera.h"
 #include "assets.h"
 
+namespace engine {
+
 Group::Group()
 {
     x = 0;
@@ -165,4 +167,6 @@ void Group::destroy()
             delete e;
         }
     }
+}
+
 }

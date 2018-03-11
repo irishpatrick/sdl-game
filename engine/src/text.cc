@@ -1,6 +1,8 @@
 #include "text.h"
 #include "timer.h"
 
+namespace engine {
+
 Text::Text(): Text("")
 {
 
@@ -127,4 +129,6 @@ void Text::staticDraw(SDL_Renderer* r)
     rect.h = h;
 
     SDL_RenderCopy(r, texture_, nullptr, &rect);
+}
+
 }

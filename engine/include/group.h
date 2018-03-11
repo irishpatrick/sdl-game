@@ -11,6 +11,8 @@
 #include <SDL2/SDL.h>
 #include <nlohmann/json.hpp>
 
+namespace engine {
+
 class Sprite;
 class Camera;
 
@@ -48,5 +50,7 @@ private:
     std::vector<Sprite*> renderList;
     Camera* camera;
 };
+
+}
 
 #endif /* GROUP_H */

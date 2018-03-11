@@ -14,6 +14,8 @@
 #include <SDL2/SDL.h>
 #include <nlohmann/json.hpp>
 
+namespace engine {
+
 class Texture;
 class Timer;
 
@@ -55,5 +57,7 @@ private:
     uint32_t framewidth_;
     uint32_t frameheight_;
 };
+
+}
 
 #endif /* ANIMATION_H */

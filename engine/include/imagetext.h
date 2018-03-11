@@ -9,6 +9,8 @@
 
 #include "entity.h"
 
+namespace engine {
+
 class Texture;
 
 class ImageText: public Entity
@@ -23,5 +25,7 @@ private:
     Texture* font;
     std::map<char, SDL_Rect> charmap;
 };
+
+}
 
 #endif /* IMAGETEXT_H */

@@ -6,6 +6,8 @@
 
 #include "point.h"
 
+namespace engine {
+
 class LocationStack
 {
 public:
@@ -20,5 +22,7 @@ public:
 private:
     std::vector<Point> stack;
 };
+
+}
 
 #endif /* LOCATIONSTACK_H */

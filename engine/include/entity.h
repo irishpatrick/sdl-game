@@ -3,6 +3,8 @@
 
 #include <cstdint>
 
+namespace engine {
+
 class Entity
 {
 public:
@@ -16,5 +18,7 @@ public:
     uint32_t w;
     uint32_t h;
 };
+
+}
 
 #endif /* ENTITY_H */

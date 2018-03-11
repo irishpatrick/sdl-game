@@ -3,6 +3,8 @@
 #include "texture.h"
 #include "timer.h"
 
+namespace engine {
+
 Particle::Particle(): Sprite()
 {
     life_ = new Timer();
@@ -41,4 +43,6 @@ void Particle::update(float delta)
     }
     x += xvel;
     y += yvel;
+}
+
 }

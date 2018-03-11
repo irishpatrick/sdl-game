@@ -3,6 +3,8 @@
 
 #include <SDL2/SDL.h>
 
+namespace engine {
+
 class Texture;
 class Group;
 
@@ -25,5 +27,7 @@ private:
     Texture* texture_;
     Group* parent;
 };
+
+}
 
 #endif /* LIGHT_H */

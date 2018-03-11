@@ -8,7 +8,7 @@
 class Player;
 class Background;
 
-class Game: public State {
+class Game: public engine::State {
 
 public:
     Game(SDL_Renderer*);

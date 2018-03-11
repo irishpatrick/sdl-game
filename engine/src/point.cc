@@ -1,5 +1,7 @@
 #include "point.h"
 
+namespace engine {
+
 Point::Point(): Point(0,0)
 {
 
@@ -15,4 +17,6 @@ void Point::Set(float a, float b)
 {
     x = a;
     y = b;
+}
+
 }

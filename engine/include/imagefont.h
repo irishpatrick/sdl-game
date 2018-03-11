@@ -1,6 +1,8 @@
 #ifndef IMAGEFONT_H
 #define IMAGEFONT_H
 
+namespace engine {
+
 class Texture;
 
 class ImageFont
@@ -12,5 +14,7 @@ public:
 private:
     Texture* tex;
 };
+
+}
 
 #endif /* IMAGEFONT_H */

@@ -4,6 +4,8 @@
 #include "texture.h"
 #include "camera.h"
 
+namespace engine {
+
 Sprite::Sprite()
 {
     x = 0;
@@ -157,4 +159,6 @@ void Sprite::draw(SDL_Renderer* r)
     {
         SDL_RenderCopy(r, texture->use(), NULL, &rect);
     }
+}
+
 }

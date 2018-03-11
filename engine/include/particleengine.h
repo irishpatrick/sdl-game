@@ -9,6 +9,8 @@
 #include <cstdlib>
 #include <nlohmann/json.hpp>
 
+namespace engine {
+
 class Particle;
 
 class ParticleEngine
@@ -25,5 +27,7 @@ private:
     Particle* list_;
     uint32_t count_;
 };
+
+}
 
 #endif /* PARTICLEENGINE_H */

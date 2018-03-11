@@ -20,6 +20,7 @@ else(UNIX)
 endif (UNIX)
 
 add_subdirectory(engine)
+add_subdirectory(particles)
 
 if (BUILD_RPG)
     add_subdirectory(rpg)

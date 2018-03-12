@@ -45,10 +45,10 @@ void Particle::draw(SDL_Renderer* renderer) {
     for (int i=0; i<(int)mylua["num_particles"]; i++) {
         SDL_Rect rect;
         sol::table particle = mylua["getparticle"](i);
-        rect.x = x + particle["x"];
-        rect.y = y + particle["y"];
-        rect.w = particle["w"];
-        rect.h = particle["h"];
+        rect.x = x + (float)particle["x"];
+        rect.y = y + (float)particle["y"];
+        rect.w = (int)particle["w"];
+        rect.h = (int)particle["h"];
         SDL_Texture* tex = Assets::getTexture(particle["texture"]);
 
         SDL_RenderCopyEx(renderer, tex, nullptr, &rect, particle["angle"], nullptr, SDL_FLIP_NONE);

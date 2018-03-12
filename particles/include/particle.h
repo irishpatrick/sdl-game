@@ -23,6 +23,9 @@ public:
     void update();
     string toString();
 
+    float x;
+    float y;
+
     int iterations;
     string texture;
     sol::state mylua;

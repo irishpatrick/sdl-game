@@ -14,6 +14,8 @@ Player::Player(): engine::Sprite() {
     Fa = 0;
     mass = 5;
     vi = 0;
+
+    jet.script("../../runner/assets/jet.lua");
 }
 
 Player::~Player() {
@@ -63,73 +65,14 @@ void Player::update(float delta) {
 
     jumping = false;
 
+    jet.x = x;
+    jet.y = y;
+    jet.update(delta);
+
     //cout << "velocity: " << velocity << " Ft: " << Ft << " Fa: " << Fa << endl;
 }
 
-/*void Player::update(float delta) {
-
-    cout << "jumping: " << jumping << " change: " << change << " time: " << t << " velocity: " << velocity << endl;
-
-    if (last == !jumping) {
-        change = true;
-        //t = 0;
-    } else {
-        change = false;
-    }
-
-    if (jumping)
-    {
-        Ft += 10 * delta;
-    } else {
-        Ft = 0;
-    }
-
-    if (change) {
-        vi = velocity;
-    }
-
-    float Fsum = Ft - Fg + Fn;
-    float a = Fsum / mass;
-    velocity = vi + (a * t);
-
-    t += delta;
-
-    if (y > ground - h) {
-        y = ground - h;
-        velocity = 0;
-        t = 0;
-    }
-
-    y -= velocity;
-
-    if (jumping) {
-        velocity = -grav.solve(t);
-        t += delta;
-    } else {
-        velocity = grav.solve(t);
-        t -= delta;
-    }
-    if (jumping && t < path.d) {
-        printf("%f: %f\n", t, path.solve(t));
-        y = ground - h + path.solve(t);
-        t += delta;
-        if (t > path.d) {
-            t = 0;
-            y = ground - h;
-            jumping = false;
-        }
-    }
-
-    y += velocity;
-
-    if (y > ground - h) {
-        y = ground - h;
-        velocity = 0;
-        t = 0;
-    }
-
-    cout << " velocity: " << velocity << " y: " << y << endl;
-
-    last = jumping;
-    jumping = false;
-}*/
+void Player::draw(SDL_Renderer* r) {
+    Sprite::draw(r);
+    jet.draw(r);
+}

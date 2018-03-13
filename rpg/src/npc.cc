@@ -2,7 +2,7 @@
 
 Npc::Npc()
 {
-    text_ = new Text();
+    text_ = new engine::Text();
 }
 Npc::~Npc()
 {
@@ -22,9 +22,9 @@ void Npc::Json(const std::string& fn)
     x = o["x"];
     y = o["y"];
 
-    if (Util::JsonExists(o, "dialogue"))
+    if (engine::Util::JsonExists(o, "dialogue"))
     {
-        for (std::string line : o["dialogue"])
+        for (string line : o["dialogue"])
         {
             dialogue_.push_back(line);
         }

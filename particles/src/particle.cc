@@ -37,14 +37,14 @@ void Particle::script(const string& fn) {
     mylua["init"]();
 }
 
-void Particle::update() {
-    mylua["update"]();
+void Particle::update(float delta) {
+    mylua["update"](delta);
 }
 
 void Particle::draw(SDL_Renderer* renderer) {
     for (int i=0; i<(int)mylua["num_particles"]; i++) {
         SDL_Rect rect;
-        sol::table particle = mylua["getparticle"](i);
+        sol::table particle = mylua["particles"][i];
         rect.x = x + (float)particle["x"];
         rect.y = y + (float)particle["y"];
         rect.w = (int)particle["w"];

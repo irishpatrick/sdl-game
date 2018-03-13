@@ -8,26 +8,28 @@
 #include <nlohmann/json.hpp>
 #include <engine.h>
 
+using namespace std;
+
 class GroupManager
 {
 public:
 	GroupManager();
 	~GroupManager();
 
-	void addgroup(const std::string&, Group*);
-	void loadgroup(const std::string&, const std::string&);
-	void setactive(const std::string&);
-    void setEntry(const std::string&);
-	void setcamera(Camera*);
-	void setfocus(Sprite*);
+	void addgroup(const string&, engine::Group*);
+	void loadgroup(const string&, const string&);
+	void setactive(const string&);
+    void setEntry(const string&);
+	void setcamera(engine::Camera*);
+	void setfocus(engine::Sprite*);
 
-	Group* getactive();
+	engine::Group* getactive();
 
 private:
-	std::map<std::string, Group*> groupmap_;
-	Group* active_;
-	Camera* camera_;
-	Sprite* focus_;
+	map<string, engine::Group*> groupmap_;
+	engine::Group* active_;
+	engine::Camera* camera_;
+	engine::Sprite* focus_;
 };
 
 #endif /* GROUPMANAGER_H */

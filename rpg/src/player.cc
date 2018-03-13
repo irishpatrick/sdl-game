@@ -10,7 +10,7 @@ Player::~Player()
 
 }
 
-LocationStack* Player::getDoorStack()
+engine::LocationStack* Player::getDoorStack()
 {
     return &doorstack;
 }

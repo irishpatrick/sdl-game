@@ -20,7 +20,7 @@ public:
     void draw(SDL_Renderer*);
     void script(const string&);
     void getFields();
-    void update();
+    void update(float);
     string toString();
 
     float x;

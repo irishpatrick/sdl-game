@@ -9,22 +9,23 @@
 #include <nlohmann/json.hpp>
 #include <engine.h>
 
+using namespace std;
 using json = nlohmann::json;
 
 class Config
 {
 public:
-    static void load(const std::string&);
+    static void load(const string&);
 
 	static int screenwidth();
 	static int screenheight();
-	static std::string assetpath();
+	static string assetpath();
 	static bool fullscreen();
 
 private:
 	static int SCREENWIDTH;
 	static int SCREENHEIGHT;
-	static std::string ASSETPATH;
+	static string ASSETPATH;
 	static bool FULLSCREEN;
 };
 

@@ -5,20 +5,21 @@
 #include <string>
 #include <fstream>
 #include <nlohmann/json.hpp>
-
 #include <engine.h>
 
-class Npc: public Sprite
+using namespace std;
+
+class Npc: public engine::Sprite
 {
 public:
     Npc();
     ~Npc();
 
-    void Json(const std::string&);
+    void Json(const string&);
 
 private:
-    std::vector<std::string> dialogue_;
-    Text* text_;
+    vector<string> dialogue_;
+    engine::Text* text_;
 };
 
 #endif /* NPC_H */

@@ -1,7 +1,7 @@
 #include "door.h"
 #include "groupmanager.h"
 
-Door::Door(): Sprite()
+Door::Door(): engine::Sprite()
 {
     dest_ = "";
     tag = "";
@@ -18,17 +18,17 @@ void Door::SetManager(GroupManager* m)
     manager_ = m;
 }
 
-void Door::SetDest(const std::string& d)
+void Door::SetDest(const string& d)
 {
     dest_ = d;
 }
 
-void Door::setTag(const std::string& s)
+void Door::setTag(const string& s)
 {
     tag = s;
 }
 
-std::string Door::getTag()
+string Door::getTag()
 {
     return tag;
 }
@@ -53,7 +53,7 @@ void Door::OnCollision(Sprite* sprite)
     //Enter();
 }
 
-Point* Door::GetExit()
+engine::Point* Door::GetExit()
 {
     return &exit_;
 }

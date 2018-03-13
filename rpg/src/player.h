@@ -3,16 +3,16 @@
 
 #include <engine.h>
 
-class Player: public Sprite
+class Player: public engine::Sprite
 {
 public:
     Player();
     ~Player();
 
-    LocationStack* getDoorStack();
+    engine::LocationStack* getDoorStack();
 
 private:
-    LocationStack doorstack;
+    engine::LocationStack doorstack;
 };
 
 #endif /* PLAYER_H */

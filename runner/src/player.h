@@ -4,7 +4,9 @@
 #include <cstdio>
 #include <iostream>
 #include <cmath>
-#include <engine.h>
+#include "SDL2/SDL.h"
+#include "engine.h"
+#include "particles.h"
 
 using namespace std;
 
@@ -17,6 +19,7 @@ public:
     void update(float);
     void setGround(float);
     void jump(float);
+    void draw(SDL_Renderer*);
 
 private:
     float ground;
@@ -35,6 +38,7 @@ private:
     float mass;
     float gravity;
     float vi;
+    particles::Particle jet;
 
 };
 

@@ -13,7 +13,9 @@
 #include "player.h"
 #include "door.h"
 
-class Game: public State
+using namespace std;
+
+class Game: public engine::State
 {
 public:
     Game(SDL_Renderer*);
@@ -27,19 +29,19 @@ public:
 
 private:
     Player hero;
-    Sprite monster;
-    Sprite background;
-    Sprite animtest;
-    std::vector<Sprite*> grass;
-    Group stage;
-    Group testroom;
-    Camera camera;
+    engine::Sprite monster;
+    engine::Sprite background;
+    engine::Sprite animtest;
+    vector<engine::Sprite*> grass;
+    engine::Group stage;
+    engine::Group testroom;
+    engine::Camera camera;
     GroupManager groups_;
-    Light light;
-    Animation test;
+    engine::Light light;
+    engine::Animation test;
     Door doortest;
-    OneShot op;
-    std::vector<Sprite*> hero_collisions;
+    engine::OneShot op;
+    vector<engine::Sprite*> hero_collisions;
 };
 
 #endif /* GAME_H */

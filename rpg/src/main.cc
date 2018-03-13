@@ -16,7 +16,7 @@ SDL_Surface* icon;
 SDL_Event e;
 bool quit;
 
-State* current;
+engine::State* current;
 
 void init()
 {
@@ -111,7 +111,7 @@ void render()
                 quit = true;
             }
 
-            Controllers::ProcessEvent(e);
+            engine::Controllers::ProcessEvent(e);
         }
 
 

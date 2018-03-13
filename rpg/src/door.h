@@ -6,29 +6,31 @@
 
 #include <engine.h>
 
+using namespace std;
+
 class GroupManager;
 
-class Door: public Sprite
+class Door: public engine::Sprite
 {
 public:
     Door();
     ~Door();
 
-    Point* GetExit();
+    engine::Point* GetExit();
     void SetManager(GroupManager*);
-    void SetDest(const std::string&);
+    void SetDest(const string&);
     void SetExit(float, float);
     void Enter();
     void OnCollision(Sprite*);
 
-    void setTag(const std::string&);
-    std::string getTag();
+    void setTag(const string&);
+    string getTag();
 
 private:
     GroupManager* manager_;
-    std::string dest_;
-    Point exit_;
-    std::string tag;
+    string dest_;
+    engine::Point exit_;
+    string tag;
 };
 
 #endif /* DOOR_H */

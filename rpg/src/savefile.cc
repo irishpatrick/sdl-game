@@ -1,26 +1,26 @@
 #include "savefile.h"
 
-std::vector<Sprite*> SaveFile::sprites_ = std::vector<Sprite*>();
+vector<engine::Sprite*> SaveFile::sprites_ = vector<engine::Sprite*>();
 
-void SaveFile::AddSprite(Sprite* s)
+void SaveFile::AddSprite(engine::Sprite* s)
 {
     sprites_.push_back(s);
 }
 
-void SaveFile::Write(const std::string& fn)
+void SaveFile::Write(const string& fn)
 {
     json j;
 
-    std::ofstream fp;
+    ofstream fp;
     fp.open(fn);
     if (fp.is_open())
     {
-        fp << j.dump() << std::endl;
+        fp << j.dump() << endl;
         fp.close();
     }
     else
     {
-        std::cout << "Cannot open file: " << fn << std::endl;
+        cout << "Cannot open file: " << fn << endl;
     }
 
     j["sprites"] = {};
@@ -36,9 +36,9 @@ void SaveFile::Write(const std::string& fn)
     }
 }
 
-void SaveFile::Read(const std::string& fn)
+void SaveFile::Read(const string& fn)
 {
-    std::ifstream i(fn);
+    ifstream i(fn);
     json j;
     i >> j;
     i.close();

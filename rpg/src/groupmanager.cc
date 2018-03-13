@@ -17,18 +17,18 @@ GroupManager::~GroupManager()
 	}
 }
 
-void GroupManager::addgroup(const std::string& id, Group* g)
+void GroupManager::addgroup(const string& id, engine::Group* g)
 {
-	groupmap_.insert(std::pair<std::string, Group*>(id, g));
+    groupmap_.insert(pair<string, engine::Group*>(id, g));
 }
 
 void GroupManager::loadgroup(const std::string& id, const std::string& fn)
 {
-    std::ifstream i(fn);
+    ifstream i(fn);
     nlohmann::json o;
     i >> o;
 
-    Group* g = new Group();
+    engine::Group* g = new engine::Group();
     g->dynamic = true;
 
     if (o.find("entry") != o.end())
@@ -36,21 +36,21 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
     	g->sx = o["entry"]["x"];
     	g->sy = o["entry"]["y"];
     }
-    if (Util::JsonExists(o, "sprites"))
+    if (engine::Util::JsonExists(o, "sprites"))
     {
         for (const auto& e : o["sprites"])
         {
             // assume sprite object has all required fields
             float x = (float)e["x"];
             float y = (float)e["y"];
-            std::string name = e["name"];
-            std::string texture = e["texture"];
+            string name = e["name"];
+            string texture = e["texture"];
 
             // test initialize
-            Sprite* temp = nullptr;
+            engine::Sprite* temp = nullptr;
             if (e.find("type") != e.end())
             {
-                std::string type = e["type"];
+                string type = e["type"];
                 if (type == "door")
                 {
                     temp = new Door();
@@ -73,18 +73,18 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
                 }
                 else
                 {
-                    temp = new Sprite();
+                    temp = new engine::Sprite();
                 }
             }
             else
             {
-                temp = new Sprite();
+                temp = new engine::Sprite();
             }
             temp->dynamic = true;
     		temp->name = name;
             temp->x = x;
             temp->y = y;
-            temp->setTexture(Assets::getTexture(texture));
+            temp->setTexture(engine::Assets::getTexture(texture));
             g->add(temp);
             //delete temp;
     	}
@@ -150,7 +150,7 @@ void GroupManager::setEntry(const std::string& tag)
 
 void GroupManager::setactive(const std::string& id)
 {
-    std::map<std::string, Group*>::const_iterator it = groupmap_.find(id);
+    map<string, engine::Group*>::const_iterator it = groupmap_.find(id);
     if (it != groupmap_.end())
     {
     	if (active_ != nullptr)
@@ -173,17 +173,17 @@ void GroupManager::setactive(const std::string& id)
     }
 }
 
-Group* GroupManager::getactive()
+engine::Group* GroupManager::getactive()
 {
     return active_;
 }
 
-void GroupManager::setcamera(Camera* c)
+void GroupManager::setcamera(engine::Camera* c)
 {
     camera_ = c;
 }
 
-void GroupManager::setfocus(Sprite* s)
+void GroupManager::setfocus(engine::Sprite* s)
 {
     focus_ = s;
 }

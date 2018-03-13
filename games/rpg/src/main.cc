@@ -20,7 +20,7 @@ engine::State* current;
 
 void init()
 {
-    Config::load("../../rpg/assets/config.json");
+    Config::load("../../games/rpg/assets/config.json");
 
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) != 0)
     {

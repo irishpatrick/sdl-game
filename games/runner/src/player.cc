@@ -15,7 +15,7 @@ Player::Player(): engine::Sprite() {
     mass = 5;
     vi = 0;
 
-    jet.script("../../runner/assets/jet.lua");
+    jet.script("../../games/runner/assets/jet.lua");
 }
 
 Player::~Player() {

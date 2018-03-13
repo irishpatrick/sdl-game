@@ -11,7 +11,7 @@ Game::~Game() {
 }
 
 void Game::init() {
-    std::string assets = "../../runner/assets/";
+    std::string assets = "../../games/runner/assets/";
 
     engine::Assets::loadTexture(assets + "player.png", renderer);
     engine::Assets::loadTexture(assets + "background.png", renderer);

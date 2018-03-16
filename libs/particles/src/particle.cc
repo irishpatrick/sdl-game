@@ -1,6 +1,12 @@
 #include "particle.h"
 #include "assets.h"
 
+string rectToString(SDL_Rect* r) {
+    ostringstream os;
+    os << "x: " << r->x << " y: " << r->y << " w: " << r->w << " h: " << r->h;
+    return os.str();
+}
+
 namespace particles {
 
 Particle::Particle() {
@@ -45,12 +51,16 @@ void Particle::draw(SDL_Renderer* renderer) {
     for (int i=0; i<(int)mylua["num_particles"]; i++) {
         SDL_Rect rect;
         sol::table particle = mylua["particles"][i];
-        rect.x = x + (float)particle["x"];
-        rect.y = y + (float)particle["y"];
+        mylua["set_start"](x,y);
+        rect.x = (float)particle["x"];
+        rect.y = (float)particle["y"];
         rect.w = (int)particle["w"];
         rect.h = (int)particle["h"];
         SDL_Texture* tex = Assets::getTexture(particle["texture"]);
-
+        if (tex == nullptr) {
+            cout << "tex not found!" << endl;
+        }
+        //cout << rectToString(&rect) << endl;
         SDL_RenderCopyEx(renderer, tex, nullptr, &rect, particle["angle"], nullptr, SDL_FLIP_NONE);
     }
 }

@@ -18,9 +18,11 @@ class Assets {
 
 public:
     static void registerAll(sol::state&);
-    static int loadTexture(const string&);
+    static string loadTexture(const string&);
     static void setRenderer(SDL_Renderer*);
     static SDL_Texture* getTexture(const string&);
+
+private:
 };
 
 }

@@ -8,7 +8,6 @@
 #include "entity.h"
 #include "gamepad.h"
 #include "group.h"
-#include "imagetext.h"
 #include "light.h"
 #include "line.h"
 #include "particle.h"

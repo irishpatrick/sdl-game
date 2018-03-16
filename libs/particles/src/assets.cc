@@ -3,7 +3,7 @@
 namespace particles {
 
 static map<string, SDL_Texture*> texmap;
-static SDL_Renderer* renderer;
+static SDL_Renderer* renderer = nullptr;
 
 vector<string> split(const string& s, char delim) {
     stringstream ss(s);
@@ -19,14 +19,15 @@ void Assets::registerAll(sol::state& lua) {
     lua["loadTexture"] = Assets::loadTexture;
 }
 
-int Assets::loadTexture(const string& fn) {
+string Assets::loadTexture(const string& fn) {
     if (renderer == nullptr) {
-        return -1;
+        return "bad renderer";
     }
     SDL_Texture* t = IMG_LoadTexture(renderer, fn.c_str());
-    cout << "fn: " << fn << endl;
     if (t == nullptr) {
-        return -1;
+        ostringstream os;
+        os << IMG_GetError();
+        return os.str();
     }
 
     auto keys = split(fn, '/');
@@ -34,7 +35,7 @@ int Assets::loadTexture(const string& fn) {
 
     texmap[key] = t;
 
-    return 0;
+    return "ok";
 }
 
 SDL_Texture* Assets::getTexture(const string& key) {

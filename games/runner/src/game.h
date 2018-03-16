@@ -21,6 +21,7 @@ public:
 private:
     Player* player;
     Background* background;
+    float score;
 };
 
 #endif /* GAME_H */

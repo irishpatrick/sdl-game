@@ -27,6 +27,11 @@ void init() {
         exit(1);
     }
 
+    if (TTF_Init() != 0) {
+        cout << "TTF_Init error: " << TTF_GetError() << endl;
+        exit(1);
+    }
+
     window = SDL_CreateWindow(
         "Title",
         SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,

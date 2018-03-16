@@ -15,7 +15,7 @@ Player::Player(): engine::Sprite() {
     mass = 5;
     vi = 0;
 
-    jet.script("../../games/runner/assets/jet.lua");
+    //jet.script("../../games/runner/assets/jet.lua");
 }
 
 Player::~Player() {
@@ -67,12 +67,12 @@ void Player::update(float delta) {
 
     jet.x = x;
     jet.y = y;
-    jet.update(delta);
+    //jet.update(delta);
 
     //cout << "velocity: " << velocity << " Ft: " << Ft << " Fa: " << Fa << endl;
 }
 
 void Player::draw(SDL_Renderer* r) {
     Sprite::draw(r);
-    jet.draw(r);
+    //jet.draw(r);
 }

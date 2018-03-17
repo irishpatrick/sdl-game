@@ -7,10 +7,10 @@
 #include <cstdint>
 #include <cmath>
 #include <vector>
-#include <boost/lexical_cast.hpp>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <nlohmann/json.hpp>
+#include "boost/lexical_cast.hpp"
+#include "SDL2/SDL.h"
+#include "SDL2/SDL_image.h"
+#include "nlohmann/json.hpp"
 
 namespace engine {
 

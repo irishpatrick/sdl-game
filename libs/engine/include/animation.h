@@ -11,8 +11,8 @@
 #include <cstring>
 #include <cmath>
 
-#include <SDL2/SDL.h>
-#include <nlohmann/json.hpp>
+#include "SDL2/SDL.h"
+#include "nlohmann/json.hpp"
 
 namespace engine {
 

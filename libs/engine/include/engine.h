@@ -10,8 +10,6 @@
 #include "group.h"
 #include "light.h"
 #include "line.h"
-#include "particle.h"
-#include "particleengine.h"
 #include "point.h"
 #include "sprite.h"
 #include "state.h"

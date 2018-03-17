@@ -1,7 +1,7 @@
 #ifndef LIGHT_H
 #define LIGHT_H
 
-#include <SDL2/SDL.h>
+#include "SDL2/SDL.h"
 
 namespace engine {
 

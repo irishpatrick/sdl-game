@@ -2,6 +2,7 @@
 #define IMAGEFONT_H
 
 #include <map>
+#include <string>
 #include <cstdint>
 #include "SDL2/SDL.h"
 
@@ -19,6 +20,9 @@ public:
 
     void setCharSize(uint32_t, uint32_t);
     void setTexture(Texture*);
+    void buildMap();
+    void renderChar(char, float, float, SDL_Renderer*);
+    void renderString(const string&, float, float, SDL_Renderer*);
 
 private:
     Texture* tex;

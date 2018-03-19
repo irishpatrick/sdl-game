@@ -3,6 +3,8 @@
 
 #include <engine.h>
 
+#include "stats.h"
+
 class Player: public engine::Sprite
 {
 public:
@@ -13,6 +15,7 @@ public:
 
 private:
     engine::LocationStack doorstack;
+    Stats stats;
 };
 
 #endif /* PLAYER_H */

@@ -6,8 +6,7 @@
 
 namespace engine {
 
-Sprite::Sprite()
-{
+Sprite::Sprite() {
     x = 0;
     y = 0;
     w = 0;
@@ -27,47 +26,41 @@ Sprite::Sprite()
     camera = nullptr;
 }
 
-Sprite::~Sprite()
-{
+Sprite::~Sprite() {
     delete anim;
 }
 
-void Sprite::InitAnimation(const std::string& fn)
-{
+void Sprite::InitAnimation(const std::string& fn) {
     anim->InitFromJson(fn);
     w = anim->GetFrameWidth();
     h = anim->GetFrameHeight();
     texture = anim->GetTexture();
 }
 
-void Sprite::SetVisible(bool state)
-{
+void Sprite::SetVisible(bool state) {
     visible_ = state;
 }
 
-bool Sprite::IsVisible()
-{
+bool Sprite::IsVisible() {
     return visible_;
 }
 
-void Sprite::update(float delta)
-{
-    if (!visible_) return;
-    if (anim->GetTexture() != nullptr)
-    {
+void Sprite::update(float delta) {
+    if (!visible_) {
+        return;
+    }
+
+    if (anim->GetTexture() != nullptr) {
         anim->Update();
     }
 }
 
-Animation* Sprite::GetAnimation()
-{
+Animation* Sprite::GetAnimation() {
     return anim;
 }
 
-void Sprite::setTexture(Texture *t)
-{
-    if (t == NULL)
-    {
+void Sprite::setTexture(Texture *t) {
+    if (t == NULL) {
         printf("texture was null!\n");
         return;
     }
@@ -76,8 +69,7 @@ void Sprite::setTexture(Texture *t)
     h = texture->getH();
 }
 
-void Sprite::loadTexture(const std::string& fn, SDL_Renderer* r)
-{
+void Sprite::loadTexture(const std::string& fn, SDL_Renderer* r) {
     /*SDL_Texture* t = IMG_LoadTexture(r, fn.c_str());
     //setTexture(IMG_LoadTexture(r, fn.c_str()));
     if (t == NULL)
@@ -88,62 +80,53 @@ void Sprite::loadTexture(const std::string& fn, SDL_Renderer* r)
     texture->set(t);*/
 }
 
-void Sprite::setCamera(Camera* c)
-{
+void Sprite::setCamera(Camera* c) {
     camera = c;
 }
 
-void Sprite::setParent(Group* g)
-{
+void Sprite::setParent(Group* g) {
     parent = g;
 }
 
-Group* Sprite::getParent()
-{
+Group* Sprite::getParent() {
     return parent;
 }
 
-const std::string Sprite::getUUID()
-{
+const std::string Sprite::getUUID() {
     const std::string s = boost::lexical_cast<std::string>(tag);
     return s;
 }
 
-void Sprite::OnCollision(Sprite* sprite)
-{
+void Sprite::OnCollision(Sprite* sprite) {
     collision_ = sprite;
 }
 
-Sprite* Sprite::GetCollision()
-{
+Sprite* Sprite::GetCollision() {
     return collision_;
 }
 
-void Sprite::ResetCollision()
-{
+void Sprite::ResetCollision() {
     collision_ = nullptr;
 }
 
-void Sprite::queryTexture()
-{
+void Sprite::queryTexture() {
 	w = texture->getW();
 	h = texture->getH();
 }
 
-void Sprite::draw(SDL_Renderer* r)
-{
-    if (!visible_) return;
+void Sprite::draw(SDL_Renderer* r) {
+    if (!visible_) {
+        return;
+    }
     //printf("%x\n", texture->use());
 
     //printf("%d, %d\n", w, h);
     SDL_Rect rect;
-    if (parent != NULL)
-    {
+    if (parent != NULL) {
         rect.x = x + parent->screenX();
         rect.y = y + parent->screenY();
     }
-    else
-    {
+    else {
         rect.x = x;
         rect.y = y;
     }
@@ -151,12 +134,10 @@ void Sprite::draw(SDL_Renderer* r)
     rect.h = h;
 
     //if (texture->use() == nullptr) return;
-    if (anim->GetTexture() != nullptr)
-    {
+    if (anim->GetTexture() != nullptr) {
         SDL_RenderCopy(r, texture->use(), anim->GetCurrentFrame(), &rect);
     }
-    else
-    {
+    else {
         SDL_RenderCopy(r, texture->use(), NULL, &rect);
     }
 }

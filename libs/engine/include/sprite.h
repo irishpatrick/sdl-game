@@ -19,8 +19,8 @@ class Group;
 class Texture;
 class Camera;
 
-class Sprite: public Entity // entity has x, y, w, h
-{
+// entity has x, y, w, h
+class Sprite: public Entity {
 public:
     Sprite();
     virtual ~Sprite();

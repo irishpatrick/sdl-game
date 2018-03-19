@@ -7,6 +7,8 @@
 #include <nlohmann/json.hpp>
 #include <engine.h>
 
+#include "stats.h"
+
 using namespace std;
 
 class Npc: public engine::Sprite
@@ -20,6 +22,7 @@ public:
 private:
     vector<string> dialogue_;
     engine::Text* text_;
+    Stats stats;
 };
 
 #endif /* NPC_H */

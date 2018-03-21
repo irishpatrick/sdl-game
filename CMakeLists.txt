@@ -25,6 +25,7 @@ endif (UNIX)
 
 add_subdirectory(libs/engine)
 add_subdirectory(libs/particles)
+add_subdirectory(libs/gui)
 
 if (BUILD_RPG)
     add_subdirectory(games/rpg)

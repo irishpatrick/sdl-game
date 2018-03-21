@@ -19,6 +19,7 @@ public:
 
 protected:
     string m_description;
+    string m_name;
     bool m_usable;
 };
 

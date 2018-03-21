@@ -2,6 +2,7 @@
 
 Item::Item() {
     m_description = "";
+    m_name = "";
     m_usable = true;
 }
 

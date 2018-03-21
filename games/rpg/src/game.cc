@@ -142,7 +142,6 @@ void Game::update(float delta, const uint8_t* keys) {
                 if (!hero.getDoorStack()->isEmpty()) {
                     //printf("stack not empty!\n");
                     engine::Point pos = hero.getDoorStack()->pop();
-                    printf("popped %f, %f\n", pos.x, pos.y);
                     hero.x = pos.x;
                     hero.y = pos.y;
                 }

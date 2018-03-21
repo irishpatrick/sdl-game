@@ -21,11 +21,11 @@ public:
     Game(SDL_Renderer*);
     ~Game();
 
-    void init();
+    void init() override;
     void tests();
-    void update(float, const uint8_t*);
-    void render();
-    void destroy();
+    void update(float, const uint8_t*) override;
+    void render() override;
+    void destroy() override;
 
 private:
     Player hero;

@@ -1,9 +1,13 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <engine.h>
-
+#include <map>
+#include <vector>
+#include <string>
+#include "engine.h"
 #include "stats.h"
+
+using namespace std;
 
 class Player: public engine::Sprite
 {

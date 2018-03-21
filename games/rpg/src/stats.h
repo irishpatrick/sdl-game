@@ -5,6 +5,7 @@
 #include <map>
 #include <string>
 #include <cstdint>
+#include "nlohmann/json.hpp"
 
 using namespace std;
 

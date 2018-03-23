@@ -91,6 +91,10 @@ void Game::init() {
 void Game::tests() {
     printf("starting tests...\n");
 
+    list.setFont(renderer, "../../games/rpg/assets/fonts/font");
+    list.addItem("hi");
+    list.addItem("world");
+
     printf("done!\n");
 }
 
@@ -189,6 +193,7 @@ void Game::update(float delta, const uint8_t* keys) {
 
 void Game::render() {
     groups_.getactive()->draw(renderer);
+    list.draw(renderer);
 }
 
 void Game::destroy() {

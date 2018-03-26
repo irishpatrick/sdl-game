@@ -11,6 +11,7 @@ public:
     Widget();
     virtual ~Widget();
 
+    void setVisible(bool);
     virtual void draw(SDL_Renderer*);
 
     float x;
@@ -19,6 +20,7 @@ public:
 protected:
     int w;
     int h;
+    bool visible;
 
 };
 

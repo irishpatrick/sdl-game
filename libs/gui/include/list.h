@@ -25,13 +25,15 @@ public:
     void draw(SDL_Renderer*) override;
     void setFont(SDL_Renderer*, const string&);
     void addItem(const string&);
+    void setCurrent(unsigned int);
 
 private:
     vector<string> items;
     map<char, SDL_Texture*> font;
     int font_w;
     int font_h;
-    int current;
+    float padding;
+    unsigned int current;
 
     SDL_Texture* background;
 };

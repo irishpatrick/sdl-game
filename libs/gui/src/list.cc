@@ -5,6 +5,8 @@ namespace gui {
 List::List() : Widget() {
     font_w = 0;
     font_h = 0;
+    padding = 4;
+    current = 2;
 }
 
 List::~List() {
@@ -31,9 +33,24 @@ void List::addItem(const string& str) {
     items.push_back(str);
 }
 
+void List::setCurrent(unsigned int c) {
+    current = c;
+}
+
 void List::draw(SDL_Renderer* renderer) {
+    if (!visible) {
+        return;
+    }
+
+    unsigned int longest = items[0].size();
+    for (unsigned int i=1; i<items.size(); i++) {
+        if (items[i].size() > longest) {
+            longest = items[i].size();
+        }
+    }
+
     // draw background
-    w = 100;
+    w = longest * font_w + padding + 40;
     h = items.size() * (font_h + 2);
 
     SDL_Surface* s = SDL_CreateRGBSurface(
@@ -56,9 +73,20 @@ void List::draw(SDL_Renderer* renderer) {
 
     cairo_t* cr = cairo_create(c);
 
+    cairo_set_line_width(cr, 0.1);
+    cairo_set_antialias(cr, CAIRO_ANTIALIAS_GOOD);
+
     cairo_set_source_rgb(cr, 1.0, 1.0, 1.0);
     cairo_rectangle(cr, 0, 0, w, h);
     cairo_stroke_preserve(cr);
+    cairo_fill(cr);
+
+    cairo_set_source_rgb(cr, 0.0, 0.0, 0.0);
+    cairo_move_to(cr, 2, 4 + (current * font_h));
+    cairo_line_to(cr, 2, 4 + (current + 1) * font_h);
+    cairo_line_to(cr, 5, ((4 + current * font_h) + (5 + (current + 1) * font_h)) / 2);
+    //cairo_close_path(cr);
+    //cairo_stroke_preserve(cr);
     cairo_fill(cr);
 
     SDL_UnlockSurface(s);
@@ -71,7 +99,7 @@ void List::draw(SDL_Renderer* renderer) {
     SDL_Rect r;
     r.x = x;
     r.y = y;
-    r.w = w;
+    r.w = longest * font_w + padding + 40;
     r.h = h;
     SDL_RenderCopy(renderer, background, nullptr, &r);
 
@@ -81,8 +109,8 @@ void List::draw(SDL_Renderer* renderer) {
 
         }
         // draw text
-        int text_x = x;
-        int text_y = y; // + (i * h);
+        int text_x = x + padding + 40;
+        int text_y = y + padding; // + (i * h);
         string word = items[i];
         for (unsigned int j=0; j<word.size(); j++) {
             SDL_Rect r;

@@ -36,10 +36,8 @@ private:
     engine::Sprite animtest;
     vector<engine::Sprite*> grass;
     engine::Group stage;
-    engine::Group testroom;
     engine::Camera camera;
     GroupManager groups_;
-    engine::Light light;
     engine::Animation test;
     Door doortest;
     engine::OneShot op;

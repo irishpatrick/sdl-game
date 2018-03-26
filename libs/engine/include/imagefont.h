@@ -1,5 +1,5 @@
-#ifndef IMAGEFONT_H
-#define IMAGEFONT_H
+#ifndef ENGINE_IMAGEFONT_H
+#define ENGINE_IMAGEFONT_H
 
 #include <map>
 #include <string>
@@ -33,4 +33,4 @@ private:
 
 }
 
-#endif /* IMAGEFONT_H */
+#endif /* ENGINE_IMAGEFONT_H */

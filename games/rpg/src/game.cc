@@ -5,7 +5,7 @@ Game::Game(SDL_Renderer* r): engine::State(r) {
 }
 
 Game::~Game() {
-    testroom.destroy();
+
 }
 
 void Game::init() {
@@ -91,9 +91,13 @@ void Game::init() {
 void Game::tests() {
     printf("starting tests...\n");
 
+    list.x = 100;
+    list.y = 100;
     list.setFont(renderer, "../../games/rpg/assets/fonts/font");
     list.addItem("hi");
     list.addItem("world");
+    list.addItem("very long item in list");
+    list.setVisible(true);
 
     printf("done!\n");
 }

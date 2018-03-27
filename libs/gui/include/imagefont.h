@@ -19,6 +19,13 @@ public:
 
     void setScale(double);
     void setFont(SDL_Renderer*, const string&);
+    void drawChar(SDL_Renderer*, char, float, float);
+
+    SDL_Texture* getChar(char);
+    int getFontWidth();
+    int getFontHeight();
+    int getScaleWidth();
+    int getScaleHeight();
 
 private:
     map<char, SDL_Texture*> font;

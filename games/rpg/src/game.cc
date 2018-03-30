@@ -91,13 +91,13 @@ void Game::init() {
 void Game::tests() {
     printf("starting tests...\n");
 
-    list.x = 100;
+    /*list.x = 100;
     list.y = 100;
     list.setFont(renderer, "../../games/rpg/assets/fonts/font");
     list.addItem("hi");
     list.addItem("world");
     list.addItem("very long item in list");
-    list.setVisible(true);
+    list.setVisible(true);*/
 
     printf("done!\n");
 }
@@ -197,7 +197,7 @@ void Game::update(float delta, const uint8_t* keys) {
 
 void Game::render() {
     groups_.getactive()->draw(renderer);
-    list.draw(renderer);
+    //list.draw(renderer);
 }
 
 void Game::destroy() {

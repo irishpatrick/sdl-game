@@ -15,7 +15,7 @@ List::~List() {
 
 void List::setFont(SDL_Renderer* renderer, const string& dir) {
     for (char i=32; i<123; i++) {
-        cout << "loading " << dir << "/" << i << endl;
+        //cout << "loading " << dir << "/" << i << endl;
         string fn = dir + "/" + i + ".png";
         font[i] = IMG_LoadTexture(renderer, fn.c_str());
         if (font[i] == nullptr) {
@@ -25,7 +25,7 @@ void List::setFont(SDL_Renderer* renderer, const string& dir) {
         // scale
         font_w = font_w * 0.2;
         font_h = font_h * 0.2;
-        cout << "scale: " << font_w << ", " << font_h << endl;
+        //cout << "scale: " << font_w << ", " << font_h << endl;
     }
 }
 

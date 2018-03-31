@@ -7,5 +7,5 @@ add_executable(${PROJECT_NAME} ${sources})
 
 target_include_directories(${PROJECT_NAME} PUBLIC include ${INCLUDE_DIR} ${engine_INCLUDE_DIR} ${gui_INCLUDE_DIR})
 link_directories(${PROJECT_NAME} PUBLIC ${LIBRARY_DIR})
-target_compile_options(${PROJECT_NAME} PUBLIC -std=c++14 -Wall -g -O2 -D_REENTRANT)
-target_link_libraries(${PROJECT_NAME} -pthread ${SDL_LIBRARIES} engine gui)
+target_compile_options(${PROJECT_NAME} PUBLIC ${COMPILE_OPTIONS})
+target_link_libraries(${PROJECT_NAME} ${SDL_LIBRARIES} engine gui)

@@ -32,11 +32,14 @@ public:
     virtual Animation* GetAnimation();
     virtual void ResetCollision();
     virtual void update(float);
+    virtual void velocityUpdate(float);
 	void queryTexture();
     virtual void OnCollision(Sprite*);
     Sprite* GetCollision();
     bool IsVisible();
     void SetVisible(bool);
+    void setSolid(bool);
+    bool isSolid();
     virtual void setParent(Group*);
     virtual Group* getParent();
     void setCamera(Camera*);

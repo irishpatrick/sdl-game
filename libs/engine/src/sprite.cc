@@ -45,6 +45,14 @@ bool Sprite::IsVisible() {
     return visible_;
 }
 
+void Sprite::setSolid(bool val) {
+    solid = val;
+}
+
+bool Sprite::isSolid() {
+    return solid;
+}
+
 void Sprite::update(float delta) {
     if (!visible_) {
         return;
@@ -53,6 +61,11 @@ void Sprite::update(float delta) {
     if (anim->GetTexture() != nullptr) {
         anim->Update();
     }
+}
+
+void Sprite::velocityUpdate(float delta) {
+    x += xvel * delta;
+    y += yvel * delta;
 }
 
 Animation* Sprite::GetAnimation() {

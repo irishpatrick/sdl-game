@@ -76,6 +76,32 @@ std::string Util::checkCollision(Sprite* a, Sprite* b)
     return "no collision";
 }
 
+std::string Util::checkVelocityCollision(Sprite* a, Sprite* b, float delta) {
+    if (!a->isSolid() || !b->isSolid()) {
+        return "no collision";
+    }
+    SDL_Rect abox = getAABB(a, 16);
+    SDL_Rect bbox = getAABB(b, 16);
+    abox.x += a->xvel * delta;
+    abox.y += a->yvel * delta;
+    bbox.x += b->xvel * delta;
+    bbox.y += b->yvel * delta;
+
+    if (
+        abox.x < bbox.x + bbox.w &&
+        abox.x + abox.w > bbox.x &&
+        abox.y < bbox.y + bbox.h &&
+        abox.y + abox.h > bbox.y
+    ) {
+        a->OnCollision(b);
+        b->OnCollision(a);
+
+
+    }
+
+    return "no collision";
+}
+
 std::vector<Sprite*> Util::GetCollisions(Sprite* s, Group* g)
 {
     std::vector<Sprite*> collisions;

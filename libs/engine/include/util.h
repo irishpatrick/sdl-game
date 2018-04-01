@@ -17,12 +17,15 @@ namespace engine {
 class Sprite;
 class Group;
 
+enum Direction {NORTH, EAST, SOUTH, WEST, NONE};
+
 class Util
 {
 public:
     //static uint32_t getNow();
     static SDL_Texture* loadTexture(const std::string&, SDL_Renderer*);
     static std::string checkCollision(Sprite*, Sprite*);
+    static std::string checkVelocityCollision(Sprite*, Sprite*, float);
     static void contain(Sprite*, Sprite*);
     static SDL_Rect getAABB(Sprite*, uint32_t);
     static std::string RectToString(SDL_Rect*);

@@ -3,9 +3,9 @@
 
 #include <string>
 #include <sstream>
-#include "sol/sol.hpp"
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
+#include "sol/sol.hpp"
 
 using namespace std;
 

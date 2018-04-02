@@ -31,8 +31,8 @@ void Game::init() {
     camera.setFocus(&hero);
 
     hero.setTexture(engine::Assets::getTexture("hero.png"));
+    hero.setMaxSpeed(250.0f);
     hero.name = "hero";
-    hero.speed = 250.0f;
 
     /*monster.setTexture(engine::Assets::getTexture("monster.png"));
     monster.pos(150, 150);
@@ -109,27 +109,25 @@ void Game::update(float delta, const uint8_t* keys) {
     bool d = keys[SDL_SCANCODE_D];
     bool p = keys[SDL_SCANCODE_P];
 
-    if ((w || s) && (a || d)) {
+    /*if ((w || s) && (a || d)) {
         hero_collisions = engine::Util::GetCollisions(&hero, groups_.getactive());
-        float v = sqrt(pow(hero.speed, 2) / 2.0);
-        hero.xvel = v;
-        hero.yvel = v;
+        float v = sqrt(pow(hero.getMaxSpeed(), 2) / 2.0);
+        hero.speed = v;
     } else {
-        hero.xvel = hero.speed;
-        hero.yvel = hero.speed;
+        hero.speed = hero.getMaxSpeed();
     }
 
     if (w) {
-        hero.y -= hero.yvel * delta;
+        hero.y -= hero.speed * delta;
     }
     if (s) {
-        hero.y += hero.yvel * delta;
+        hero.y += hero.speed * delta;
     }
     if (a) {
-        hero.x -= hero.xvel * delta;
+        hero.x -= hero.speed * delta;
     }
     if (d) {
-        hero.x += hero.xvel * delta;
+        hero.x += hero.speed * delta;
     }
 
     if ((w || s) || (a || d)) {
@@ -173,18 +171,55 @@ void Game::update(float delta, const uint8_t* keys) {
 
         const string result = engine::Util::checkCollision(&hero, e);
         if (result == "north") {
-            hero.y += hero.yvel * delta;
+            hero.y += hero.speed * delta;
         }
         if (result == "south") {
-            hero.y -= hero.yvel * delta;
+            hero.y -= hero.speed * delta;
         }
         if (result == "east") {
-            hero.x -= hero.xvel * delta;
+            hero.x -= hero.speed * delta;
         }
         if (result == "west") {
-            hero.x += hero.xvel * delta;
+            hero.x += hero.speed * delta;
+        }
+    }*/
+
+    if (w) {
+        hero.yvel = -hero.speed;
+    }
+    if (s) {
+        hero.yvel = hero.speed;
+    }
+    if (a) {
+        hero.xvel = -hero.speed;
+    }
+    if (d) {
+        hero.xvel = hero.speed;
+    }
+
+    auto collisions = engine::Util::getVelocityCollisions(&hero, groups_.getactive(), delta);
+    if (collisions.size() > 0) {
+        for (auto& e : collisions) {
+            string result = engine::Util::checkVelocityCollision(&hero, e, delta);
+            if (result == "north") {
+                hero.yvel = 0;
+            }
+            else if (result == "south") {
+                hero.yvel = 0;
+            }
+            else if (result == "east") {
+                hero.xvel = 0;
+            }
+            else if (result == "west") {
+                hero.xvel = 0;
+            }
+            else {
+                cout << "collision detection problem" << endl;
+            }
         }
     }
+
+    hero.velocityUpdate(delta);
 
     animtest.update(delta);
 

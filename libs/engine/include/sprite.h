@@ -36,20 +36,40 @@ public:
 	void queryTexture();
     virtual void OnCollision(Sprite*);
     Sprite* GetCollision();
-    bool IsVisible();
-    void SetVisible(bool);
-    void setSolid(bool);
-    bool isSolid();
     virtual void setParent(Group*);
     virtual Group* getParent();
     void setCamera(Camera*);
 
+    inline void setSolid(bool b) {
+        solid = b;
+    }
+
+    inline bool isSolid() {
+        return solid;
+    }
+
+    inline void SetVisible(bool b) {
+        visible_ = b;
+    }
+
+    inline bool IsVisible() {
+        return visible_;
+    }
+
+    inline void setMaxSpeed(float a) {
+        maxSpeed = a;
+    }
+
+    inline float getMaxSpeed() {
+        return maxSpeed;
+    }
 
     virtual const std::string getUUID();
 
     float xvel;
     float yvel;
     float speed;
+    float maxSpeed;
     Texture* texture;
     bool solid;
     bool dynamic;

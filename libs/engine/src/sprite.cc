@@ -14,8 +14,9 @@ Sprite::Sprite() {
     xvel = 0;
     yvel = 0;
     speed = 0;
-    texture = NULL;
-    parent = NULL;
+    maxSpeed = 0;
+    texture = nullptr;
+    parent = nullptr;
     solid = true;
     dynamic = false;
     visible_ = true;
@@ -35,22 +36,6 @@ void Sprite::InitAnimation(const std::string& fn) {
     w = anim->GetFrameWidth();
     h = anim->GetFrameHeight();
     texture = anim->GetTexture();
-}
-
-void Sprite::SetVisible(bool state) {
-    visible_ = state;
-}
-
-bool Sprite::IsVisible() {
-    return visible_;
-}
-
-void Sprite::setSolid(bool val) {
-    solid = val;
-}
-
-bool Sprite::isSolid() {
-    return solid;
 }
 
 void Sprite::update(float delta) {

@@ -42,7 +42,7 @@ private:
     Door doortest;
     engine::OneShot op;
     vector<engine::Sprite*> hero_collisions;
-    gui::List list;
+    //gui::List list;
 };
 
 #endif /* GAME_H */

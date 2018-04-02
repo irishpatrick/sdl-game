@@ -150,6 +150,20 @@ std::vector<Sprite*> Util::GetCollisions(Sprite* s, Group* g)
     return collisions;
 }
 
+std::vector<Sprite*> Util::getVelocityCollisions(Sprite* s, Group* g, float delta) {
+    std::vector<Sprite*> collisions;
+    auto sprites = g->getSprites();
+    for (auto& e : sprites) {
+        if (e->getUUID() == s->getUUID()) {
+            continue;
+        }
+        if (checkVelocityCollision(s, e, delta) != "no collision") {
+            collisions.push_back(e);
+        }
+    }
+    return collisions;
+}
+
 bool Util::JsonExists(nlohmann::json& o, const std::string& key)
 {
     return o.find(key) != o.end();

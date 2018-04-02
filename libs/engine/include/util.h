@@ -31,6 +31,7 @@ public:
     static std::string RectToString(SDL_Rect*);
     static bool JsonExists(nlohmann::json&, const std::string&);
     static std::vector<Sprite*> GetCollisions(Sprite*, Group*);
+    static std::vector<Sprite*> getVelocityCollisions(Sprite*, Group*, float);
 };
 
 }

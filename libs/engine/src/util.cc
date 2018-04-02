@@ -96,7 +96,36 @@ std::string Util::checkVelocityCollision(Sprite* a, Sprite* b, float delta) {
         a->OnCollision(b);
         b->OnCollision(a);
 
+        Line d1(
+            (float)bbox.x, (float)bbox.y,
+            (float)bbox.x + (float)bbox.w, (float)bbox.y + (float)bbox.h);
+        Line d2(
+            (float)bbox.x + (float)bbox.w, (float)bbox.y,
+            (float)bbox.x, (float)bbox.y + (float)bbox.h);
 
+        float cx = abox.x + (abox.w / 2.0f);
+        float cy = abox.y + (abox.h / 2.0f);
+        bool aboveD1 = cy < d1.solve(cx);
+        bool aboveD2 = cy < d2.solve(cx);
+
+        if (aboveD1 && aboveD2)
+        {
+            return "south";
+        }
+        else if (!aboveD1 && !aboveD2)
+        {
+            return "north";
+        }
+        else if (!aboveD1 && aboveD2)
+        {
+            return "east";
+        }
+        else if (aboveD1 && !aboveD2)
+        {
+            return "west";
+        }
+
+        return "error";
     }
 
     return "no collision";

@@ -30,5 +30,5 @@ current issues
 
 ## building
 
-- cmake (3.5)
+- cmake (3.0)
 - pkg-config (optional)

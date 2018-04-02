@@ -1,6 +1,6 @@
 # sdl-game
 
-##about
+## about
 
 A game engine using SDL 2.0.8 consisting of multiple libraries and games that test different features of the engine.
 

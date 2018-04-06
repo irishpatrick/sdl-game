@@ -13,7 +13,7 @@
 #include "player.h"
 #include "door.h"
 
-#include "gui.h"
+//#include "gui.h"
 
 using namespace std;
 

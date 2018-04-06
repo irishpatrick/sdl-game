@@ -1,5 +1,5 @@
 {
-  "fullscreen": 1,
+  "fullscreen": 0,
   "screenWidth": 512,
   "screenHeight": 480,
   "assetPath": "../../games/rpg/assets/"

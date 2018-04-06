@@ -5,6 +5,7 @@
 #include <sstream>
 #include <chrono>
 #include <cstdint>
+#include <iostream>
 #include <cmath>
 #include <vector>
 #include "boost/lexical_cast.hpp"
@@ -32,6 +33,7 @@ public:
     static bool JsonExists(nlohmann::json&, const std::string&);
     static std::vector<Sprite*> GetCollisions(Sprite*, Group*);
     static std::vector<Sprite*> getVelocityCollisions(Sprite*, Group*, float);
+    static int initSDL(SDL_Window**, SDL_Renderer**, const std::string&, int, int, bool);
 };
 
 }

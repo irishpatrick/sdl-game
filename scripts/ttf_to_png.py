@@ -20,7 +20,7 @@ def main(argv):
 
     for c in chars:
         try:
-            subprocess.call(["convert -background none -fill black -font " + font + " -pointsize " + pointsize + " label:\"" + c + "\" " + os.path.join(png_dir, c + ".png"])
+            subprocess.call(["convert -background none -fill black -font " + font + " -pointsize " + pointsize + " label:\"" + c + "\" " + os.path.join(png_dir, c + ".png")])
         except OSError:
             print ("you might need to install imagemagik")
             sys.exit(1)

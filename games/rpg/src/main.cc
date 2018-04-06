@@ -22,16 +22,10 @@ void init()
 {
     Config::load("../../games/rpg/assets/config.json");
 
-    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) != 0)
-    {
-        printf("SDL_Init error: %s\n", SDL_GetError());
-        exit(1);
-    }
+    engine::Util::initSDL(&window, &renderer, "Hello, World!", 512, 480, Config::fullscreen());
 
-    SDL_DisplayMode current;
-    if (SDL_GetDesktopDisplayMode(0, &current) != 0)
-    {
-        printf("Display Mode error: %s\n", SDL_GetError());
+    if (window == nullptr || renderer == nullptr) {
+        printf("engine::Util::initSDL failed!\n");
     }
 
     if (!IMG_Init(IMG_INIT_PNG))
@@ -43,6 +37,18 @@ void init()
     if (TTF_Init() == -1)
     {
         printf("font error: %s\n", TTF_GetError());
+    }
+
+    /*if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) != 0)
+    {
+        printf("SDL_Init error: %s\n", SDL_GetError());
+        exit(1);
+    }
+
+    SDL_DisplayMode current;
+    if (SDL_GetDesktopDisplayMode(0, &current) != 0)
+    {
+        printf("Display Mode error: %s\n", SDL_GetError());
     }
 
     if (Config::fullscreen())
@@ -89,7 +95,7 @@ void init()
     {
         SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
         SDL_RenderSetLogicalSize(renderer, 1920, 1080);
-    }
+    }*/
 }
 
 void render()

@@ -9,8 +9,8 @@ Game::~Game() {
 }
 
 void Game::init() {
-    int w = 1920;
-    int h = 1080;
+    int w = Config::screenwidth();
+    int h = Config::screenheight();
     printf("loading assets\n");
 
     string textures = Config::assetpath() + "textures/";
@@ -184,6 +184,25 @@ void Game::update(float delta, const uint8_t* keys) {
         }
     }*/
 
+    // lag
+    //SDL_Delay(70);
+
+    hero.xvel = 0;
+    hero.yvel = 0;
+
+    if ((w || s) && (a || d)) {
+        hero_collisions = engine::Util::getVelocityCollisions(
+            &hero,
+            groups_.getactive(),
+            delta
+        );
+        //cout << hero_collisions.size() << endl;
+        float v = sqrt(pow(hero.getMaxSpeed(), 2) / 2.0);
+        hero.speed = v;
+    } else {
+        hero.speed = hero.getMaxSpeed();
+    }
+
     if (w) {
         hero.yvel = -hero.speed;
     }
@@ -197,21 +216,69 @@ void Game::update(float delta, const uint8_t* keys) {
         hero.xvel = hero.speed;
     }
 
-    auto collisions = engine::Util::getVelocityCollisions(&hero, groups_.getactive(), delta);
+    if (w || s || a || d) {
+        hero_collisions = engine::Util::getVelocityCollisions(
+            &hero,
+            groups_.getactive(),
+            delta
+        );
+    }
+
+    op.check(p);
+    if (op.fire()) {
+        if (hero_collisions.size() > 0) {
+            engine::Sprite* collider = hero_collisions[0];
+            if (Door* d = dynamic_cast<Door*>(collider)) {
+                // success
+                //printf("entering door!\n");
+                //hero.pos(d->GetExit()->x, d->GetExit()->y);
+                //d->SetExit(hero.x, hero.y);
+                if (!hero.getDoorStack()->isEmpty()) {
+                    //printf("stack not empty!\n");
+                    engine::Point pos = hero.getDoorStack()->pop();
+                    hero.x = pos.x;
+                    hero.y = pos.y;
+                }
+                else {
+                    hero.getDoorStack()->push(*d->GetExit());
+                }
+                //hero.ResetCollision();
+
+                d->Enter();
+            }
+        }
+    }
+
+    auto collisions = engine::Util::getVelocityCollisions(
+        &hero,
+        groups_.getactive(),
+        delta
+    );
+
     if (collisions.size() > 0) {
         for (auto& e : collisions) {
-            string result = engine::Util::checkVelocityCollision(&hero, e, delta);
+            string result = engine::Util::checkVelocityCollision(
+                &hero,
+                e,
+                delta
+            );
+            SDL_Rect ebox = engine::Util::getAABB(e, 16);
+            SDL_Rect hbox = engine::Util::getAABB(&hero, 16);
             if (result == "north") {
                 hero.yvel = 0;
+                hero.y = ebox.y + ebox.h - hbox.h;
             }
             else if (result == "south") {
                 hero.yvel = 0;
+                hero.y = ebox.y - hero.h;
             }
             else if (result == "east") {
                 hero.xvel = 0;
+                hero.x = ebox.x - hero.w;
             }
             else if (result == "west") {
                 hero.xvel = 0;
+                hero.x = ebox.x + ebox.w;
             }
             else {
                 cout << "collision detection problem" << endl;
@@ -223,7 +290,10 @@ void Game::update(float delta, const uint8_t* keys) {
 
     animtest.update(delta);
 
-    engine::Util::contain(&hero, groups_.getactive()->get_sprite_by_name("background"));
+    engine::Util::contain(
+        &hero,
+        groups_.getactive()->get_sprite_by_name("background")
+    );
 
     camera.update(delta);
 

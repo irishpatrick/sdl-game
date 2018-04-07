@@ -1,6 +1,6 @@
 #include "game.h"
 
-Game::Game(SDL_Renderer* r): engine::State(r) {
+Game::Game(engine::Context* c): engine::State(c) {
 
 }
 
@@ -9,8 +9,6 @@ Game::~Game() {
 }
 
 void Game::init() {
-    int w = Config::screenwidth();
-    int h = Config::screenheight();
     printf("loading assets\n");
 
     string textures = Config::assetpath() + "textures/";
@@ -18,15 +16,17 @@ void Game::init() {
     string root = Config::assetpath();
     string sprites = Config::assetpath() + "sprites/";
 
-    engine::Assets::loadTexture(textures + "med-background.png", renderer);
-    engine::Assets::loadTexture(textures + "hero.png", renderer);
-    engine::Assets::loadTexture(textures + "monster.png", renderer);
-    engine::Assets::loadTexture(textures + "grass1.png", renderer);
-    engine::Assets::loadTexture(textures + "room-bg.png", renderer);
-    engine::Assets::loadTexture(textures + "opposite.png", renderer);
-    engine::Assets::loadTexture(textures + "animtest.png", renderer);
-    engine::Assets::loadTexture(textures + "door.png", renderer);
-    camera.screen(w, h);
+    SDL_Renderer* r = ctx->getRenderer();
+
+    engine::Assets::loadTexture(textures + "med-background.png", r);
+    engine::Assets::loadTexture(textures + "hero.png", r);
+    engine::Assets::loadTexture(textures + "monster.png", r);
+    engine::Assets::loadTexture(textures + "grass1.png", r);
+    engine::Assets::loadTexture(textures + "room-bg.png", r);
+    engine::Assets::loadTexture(textures + "opposite.png", r);
+    engine::Assets::loadTexture(textures + "animtest.png", r);
+    engine::Assets::loadTexture(textures + "door.png", r);
+    camera.screen(ctx->getWidth(), ctx->getHeight());
 
     camera.setFocus(&hero);
 
@@ -301,7 +301,7 @@ void Game::update(float delta, const uint8_t* keys) {
 }
 
 void Game::render() {
-    groups_.getactive()->draw(renderer);
+    groups_.getactive()->draw(ctx->getRenderer());
     //list.draw(renderer);
 }
 

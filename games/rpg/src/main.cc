@@ -10,11 +10,11 @@
 #include "config.h"
 #include "game.h"
 
-SDL_Window *window;
-SDL_Renderer *renderer;
 SDL_Surface* icon;
 SDL_Event e;
 bool quit;
+
+engine::Context ctx;
 
 engine::State* current;
 
@@ -22,11 +22,9 @@ void init()
 {
     Config::load("../../games/rpg/assets/config.json");
 
-    engine::Util::initSDL(&window, &renderer, "Hello, World!", 512, 480, Config::fullscreen());
+    ctx.init(512, 480, "hello world!", false);
 
-    if (window == nullptr || renderer == nullptr) {
-        printf("engine::Util::initSDL failed!\n");
-    }
+    //engine::Util::initSDL(&window, &renderer, "Hello, World!", 512, 480, Config::fullscreen());
 
     if (!IMG_Init(IMG_INIT_PNG))
     {
@@ -130,9 +128,9 @@ void render()
 
         current->update(delta/1000.0f, state);
 
-        SDL_RenderClear(renderer);
+        ctx.clear();
         current->render();
-        SDL_RenderPresent(renderer);
+        ctx.render();
 
         then = now;
     }
@@ -142,8 +140,8 @@ void cleanup()
 {
     current->destroy();
     SDL_FreeSurface(icon);
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(ctx.getRenderer());
+    SDL_DestroyWindow(ctx.getWindow());
     SDL_Quit();
 }
 
@@ -154,7 +152,7 @@ int main(int argc, char** argv)
 
     init();
 
-    current = new Game(renderer);
+    current = new Game(&ctx);
     current->init();
 
     render();

@@ -18,5 +18,6 @@
 #include "util.h"
 #include "locationstack.h"
 #include "oneshot.h"
+#include "context.h"
 
 #endif /* ENGINE_H */

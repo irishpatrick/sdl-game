@@ -29,8 +29,8 @@ int Context::init(int a, int b, const string& title, bool fullscreen) {
         height = b;
     }
 
-    window = SDL_CreateWindow(
-        title,
+    w = SDL_CreateWindow(
+        title.c_str(),
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
         width,
@@ -38,12 +38,20 @@ int Context::init(int a, int b, const string& title, bool fullscreen) {
         SDL_WINDOW_SHOWN
     );
 
-    if (window == nullptr) {
-        cout << "SDL_CreateWindow error: " << SDL_GetError(); << endl;
+    if (w == nullptr) {
+        cout << "SDL_CreateWindow error: " << SDL_GetError() << endl;
         return -1;
     }
 
-    
+    r = SDL_CreateRenderer(
+        w,
+        -1,
+        SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
+    );
+
+    if (r == nullptr) {
+        cout << "SDL_CreateRenderer error: " << SDL_GetError() << endl;
+    }
 }
 
 };

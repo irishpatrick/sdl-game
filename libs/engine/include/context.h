@@ -34,11 +34,11 @@ public:
     }
 
     inline void clear() {
-        SDL_RendererClear(r);
+        SDL_RenderClear(r);
     }
 
     inline void render() {
-        SDL_RenderCopy(r);
+        SDL_RenderPresent(r);
     }
 
 private:

@@ -4,12 +4,14 @@
 #include <cstdint>
 #include "SDL2/SDL.h"
 
+#include "context.h"
+
 namespace engine {
 
 class State
 {
 public:
-    State(SDL_Renderer*);
+    State(Context*);
     virtual ~State();
 
     virtual void init();
@@ -19,7 +21,7 @@ public:
     virtual void destroy();
 
 protected:
-    SDL_Renderer* renderer;
+    Context* ctx;
 };
 
 }

@@ -2,9 +2,8 @@
 
 namespace engine {
 
-State::State(SDL_Renderer* r)
-{
-    renderer = r;
+State::State(Context* c) {
+    ctx = c;
 }
 
 State::~State()

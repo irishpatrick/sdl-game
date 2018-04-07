@@ -20,7 +20,7 @@ using namespace std;
 class Game: public engine::State
 {
 public:
-    Game(SDL_Renderer*);
+    Game(engine::Context*);
     ~Game();
 
     void init() override;

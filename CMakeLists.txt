@@ -49,6 +49,8 @@ else (USE_PKGCONFIG)
 
 endif (USE_PKGCONFIG)
 
+message(INFO ${COMPILE_OPTIONS})
+
 add_subdirectory(libs/engine)
 set(MY_LIBS engine)
 

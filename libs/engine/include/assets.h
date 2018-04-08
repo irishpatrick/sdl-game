@@ -16,8 +16,7 @@ namespace engine {
 
 class Texture;
 
-class Assets
-{
+class Assets {
 public:
 
     static void loadTexture(const std::string&, SDL_Renderer*);

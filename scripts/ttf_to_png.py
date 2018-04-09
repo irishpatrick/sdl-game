@@ -19,18 +19,13 @@ def main(argv):
     chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
 
     for c in chars:
-        try:
-            subprocess.call(["convert -background none -fill black -font " + font + " -pointsize " + pointsize + " label:\"" + c + "\" " + os.path.join(png_dir, c + ".png")])
-        except OSError:
-            print ("you might need to install imagemagik")
-            sys.exit(1)
-
+        os.system("convert -background none -fill black -font " + font + " -pointsize " + pointsize + " label:\"" + c + "\" " + os.path.join(png_dir, c + ".png"))
     try:
         tmp = Image.open(os.path.join(png_dir, "a.png"))
     except IOError:
         exit(1)
 
-    out = Image.new("RGBA", (tmp.size[0] * len(chars), tmp.size[1]), "none")
+    out = Image.new("RGBA", (tmp.size[0] * len(chars), tmp.size[1]))
 
     x = 0
     y = 0
@@ -39,7 +34,8 @@ def main(argv):
 
     n = 0;
     for c in chars:
-        img = Image.open(os.path.join(png_dir, c + ".png"))
+        img = Image.new(os.path.join(png_dir, c + ".png"))
+        img.convert("RGBA")
         reigon = img.crop((0,0,w,h))
         out.paste(reigon, ((x,y,w,h)))
         x += w * n

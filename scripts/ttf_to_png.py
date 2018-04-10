@@ -34,7 +34,7 @@ def main(argv):
 
     n = 0;
     for c in chars:
-        img = Image.new(os.path.join(png_dir, c + ".png"))
+        img = Image.open(os.path.join(png_dir, c + ".png"))
         img.convert("RGBA")
         reigon = img.crop((0,0,w,h))
         out.paste(reigon, ((x,y,w,h)))

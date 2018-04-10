@@ -33,3 +33,11 @@ uint32_t Stats::get(const string& str) {
 uint32_t Stats::getBase(const string& str) {
     return stats[str];
 }
+
+void Stats::load(const string& str) {
+    ifstream in(str);
+    string src((istreambuf_iterator<char>(in)), istreambuf_iterator<char>());
+
+    json o;
+    o.parse(src);
+}

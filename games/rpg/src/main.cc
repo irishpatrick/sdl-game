@@ -22,7 +22,7 @@ void init()
 {
     Config::load("../../games/rpg/assets/config.json");
 
-    ctx.init(512, 480, "hello world!", false);
+    ctx.init(Config::screenwidth(), Config::screenheight(), "hello world!", false);
 
     //engine::Util::initSDL(&window, &renderer, "Hello, World!", 512, 480, Config::fullscreen());
 
@@ -36,64 +36,6 @@ void init()
     {
         printf("font error: %s\n", TTF_GetError());
     }
-
-    /*if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) != 0)
-    {
-        printf("SDL_Init error: %s\n", SDL_GetError());
-        exit(1);
-    }
-
-    SDL_DisplayMode current;
-    if (SDL_GetDesktopDisplayMode(0, &current) != 0)
-    {
-        printf("Display Mode error: %s\n", SDL_GetError());
-    }
-
-    if (Config::fullscreen())
-    {
-        window = SDL_CreateWindow(
-            "Hello World!",
-            SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-            current.w, current.h, SDL_WINDOW_SHOWN);
-    }
-    else
-    {
-        window = SDL_CreateWindow(
-            "Hello World!",
-            SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-            Config::screenwidth(), Config::screenheight(), SDL_WINDOW_SHOWN);
-    }
-
-    if (window == NULL)
-    {
-    	printf("SDL_CreateWindow error: %s\n", SDL_GetError());
-        SDL_Quit();
-        exit(1);
-    }
-
-    icon = IMG_Load("../assets/icon.png");
-    if (icon != nullptr)
-    {
-        SDL_SetWindowIcon(window, icon);
-    }
-
-    renderer = SDL_CreateRenderer(
-        window,
-        -1,
-        SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-
-    if (renderer == NULL)
-    {
-        SDL_DestroyWindow(window);
-        printf("SDL_CreateRenderer error: %s\n", SDL_GetError());
-        SDL_Quit();
-        exit(1);
-    }
-    if (Config::fullscreen())
-    {
-        SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
-        SDL_RenderSetLogicalSize(renderer, 1920, 1080);
-    }*/
 }
 
 void render()

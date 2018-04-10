@@ -5,9 +5,12 @@
 #include <map>
 #include <string>
 #include <cstdint>
-#include "nlohmann/json.hpp"
+#include <fstream>
+#include <streambuf>
+#include <nlohmann/json.hpp>
 
 using namespace std;
+using json = nlohmann::json;
 
 class Stats {
 public:
@@ -21,6 +24,8 @@ public:
 
     uint32_t get(const string&);
     uint32_t getBase(const string&);
+
+    void load(const string&);
 
 
 private:

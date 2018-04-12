@@ -36,8 +36,22 @@ uint32_t Stats::getBase(const string& str) {
 
 void Stats::load(const string& str) {
     ifstream in(str);
-    string src((istreambuf_iterator<char>(in)), istreambuf_iterator<char>());
-
     json o;
-    o.parse(src);
+    in >> o;
+
+    for (json::iterator it = o.begin(); it != o.end(); it++) {
+        stats[it.key()] = it.value();
+        modifiers[it.key()] = 0;
+    }
+}
+
+void Stats::write(const string& str) {
+    json o;
+
+    for (auto const& e : stats) {
+        o[e.first] = e.second;
+    }
+
+    ofstream out(str);
+    out << setw(4) << o << endl;
 }

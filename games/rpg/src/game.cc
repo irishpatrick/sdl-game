@@ -91,6 +91,9 @@ void Game::init() {
 void Game::tests() {
     printf("starting tests...\n");
 
+    Stats s;
+    s.load(Config::assetpath() + "stats.json");
+
     /*list.x = 100;
     list.y = 100;
     list.setFont(renderer, "../../games/rpg/assets/fonts/font");

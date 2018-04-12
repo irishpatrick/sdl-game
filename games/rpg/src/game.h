@@ -12,6 +12,7 @@
 #include "groupmanager.h"
 #include "player.h"
 #include "door.h"
+#include "stats.h"
 
 //#include "gui.h"
 

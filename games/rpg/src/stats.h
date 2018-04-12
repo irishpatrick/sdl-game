@@ -2,6 +2,7 @@
 #define STATS_H
 
 #include <iostream>
+#include <iomanip>
 #include <map>
 #include <string>
 #include <cstdint>
@@ -26,6 +27,7 @@ public:
     uint32_t getBase(const string&);
 
     void load(const string&);
+    void write(const string&);
 
 
 private:

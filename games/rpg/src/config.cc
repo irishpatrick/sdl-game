@@ -1,28 +1,28 @@
 #include "config.h"
 
-int Config::SCREENWIDTH = 0;
-int Config::SCREENHEIGHT = 0;
-string Config::ASSETPATH = "";
-bool Config::FULLSCREEN = false;
+int Config::screenWidth = 0;
+int Config::screenHeight = 0;
+string Config::assetPath = string();
+bool Config::fullscreen = false;
 
-int Config::screenwidth()
+int Config::getScreenWidth()
 {
-    return SCREENWIDTH;
+    return screenWidth;
 }
 
-int Config::screenheight()
+int Config::getScreenHeight()
 {
-    return SCREENHEIGHT;
+    return screenHeight;
 }
 
-std::string Config::assetpath()
+std::string Config::getAssetPath()
 {
-    return ASSETPATH;
+    return assetPath;
 }
 
-bool Config::fullscreen()
+bool Config::getFullscreen()
 {
-    return FULLSCREEN;
+    return fullscreen;
 }
 
 void Config::load(const string& fn)
@@ -38,26 +38,26 @@ void Config::load(const string& fn)
 
     if (engine::Util::JsonExists(o, "screenWidth"))
     {
-    	SCREENWIDTH = o["screenWidth"];
+    	screenWidth = o["screenWidth"];
     }
     if (engine::Util::JsonExists(o, "screenHeight"))
     {
-    	SCREENHEIGHT = o["screenHeight"];
+    	screenHeight = o["screenHeight"];
     }
     if (engine::Util::JsonExists(o, "assetPath"))
     {
-    	ASSETPATH = o["assetPath"];
+    	assetPath = o["assetPath"];
     }
     if (engine::Util::JsonExists(o, "fullscreen"))
     {
     	int res = o["fullscreen"];
     	if (res == 1)
     	{
-    		FULLSCREEN = true;
+    		fullscreen = true;
     	}
     	else if (res == 0)
     	{
-    		FULLSCREEN = false;
+    		fullscreen = false;
     	}
     }
 }

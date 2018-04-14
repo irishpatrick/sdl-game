@@ -11,18 +11,6 @@ void SaveFile::Write(const string& fn)
 {
     json j;
 
-    ofstream fp;
-    fp.open(fn);
-    if (fp.is_open())
-    {
-        fp << j.dump() << endl;
-        fp.close();
-    }
-    else
-    {
-        cout << "Cannot open file: " << fn << endl;
-    }
-
     j["sprites"] = {};
 
     uint32_t i = 0;
@@ -33,6 +21,18 @@ void SaveFile::Write(const string& fn)
             {"y", e->y},
             {"texture", ""}
         };
+    }
+
+    ofstream fp;
+    fp.open(fn);
+    if (fp.is_open())
+    {
+        fp << j.dump() << endl;
+        fp.close();
+    }
+    else
+    {
+        cout << "Cannot open file: " << fn << endl;
     }
 }
 

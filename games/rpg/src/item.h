@@ -2,25 +2,43 @@
 #define ITEM_H
 
 #include <string>
-#include "engine.h"
-#include "nlohmann/json.hpp"
+#include <map>
+#include <cstdint>
+#include <experimental/filesystem>
+#include <engine.h>
+#include <nlohmann/json.hpp>
 
 using namespace std;
+namespace fs = std::experimental::filesystem;
+using json = nlohmann::json;
+
+enum Mode {CONSUMABLE = 0, EQUIPPABLE = 1};
 
 class Item {
-
 public:
     Item();
-    virtual ~Item();
+    ~Item();
 
-    string getDescription();
-    bool isUsable();
-    virtual void use(engine::Sprite*);
+    // getters
+    inline Mode getMode() {
+        return mode;
+    }
 
-protected:
-    string m_description;
-    string m_name;
-    bool m_usable;
+    json toJson();
+
+    // setters
+
+    // static
+    static void loadItems(const string&);
+
+private:
+    Mode mode;
+    uint32_t hp;
+    uint32_t atk;
+    uint32_t def;
+    uint32_t spd;
+    // static
+    static json o;
 };
 
 #endif /* ITEM_H */

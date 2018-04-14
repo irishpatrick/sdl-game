@@ -1,23 +1,26 @@
 #include "item.h"
 
+json Item::o = json();
+
 Item::Item() {
-    m_description = "";
-    m_name = "";
-    m_usable = true;
+
 }
 
 Item::~Item() {
 
 }
 
-void Item::use(engine::Sprite* user) {
-
+void Item::loadItems(const string& fn) {
+    ifstream in(fn);
+    if (!in.good()) {
+        cout << "file error" << endl;
+        return;
+    }
+    in >> o;
 }
 
-string Item::getDescription() {
-    return m_description;
-}
-
-bool Item::isUsable() {
-    return m_usable;
+json Item::toJson() {
+    json o = json::object();
+    o["mode"] = mode;
+    return o;
 }

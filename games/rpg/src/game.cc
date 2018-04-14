@@ -11,10 +11,10 @@ Game::~Game() {
 void Game::init() {
     printf("loading assets\n");
 
-    string textures = Config::assetpath() + "textures/";
-    string maps = Config::assetpath() + "maps/";
-    string root = Config::assetpath();
-    string sprites = Config::assetpath() + "sprites/";
+    string textures = Config::getAssetPath() + "textures/";
+    string maps = Config::getAssetPath() + "maps/";
+    string root = Config::getAssetPath();
+    string sprites = Config::getAssetPath() + "sprites/";
 
     SDL_Renderer* r = ctx->getRenderer();
 
@@ -92,8 +92,8 @@ void Game::tests() {
     printf("starting tests...\n");
 
     Stats s;
-    s.load(Config::assetpath() + "stats.json");
-
+    s.load(Config::getAssetPath() + "stats.json");
+    s.write(Config::getAssetPath() + "stats.json");
     /*list.x = 100;
     list.y = 100;
     list.setFont(renderer, "../../games/rpg/assets/fonts/font");

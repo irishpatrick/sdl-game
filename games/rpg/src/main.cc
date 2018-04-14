@@ -22,7 +22,7 @@ void init()
 {
     Config::load("../../games/rpg/assets/config.json");
 
-    ctx.init(Config::screenwidth(), Config::screenheight(), "hello world!", false);
+    ctx.init(Config::getScreenWidth(), Config::getScreenHeight(), "hello world!", false);
 
     //engine::Util::initSDL(&window, &renderer, "Hello, World!", 512, 480, Config::fullscreen());
 

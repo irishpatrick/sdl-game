@@ -9,6 +9,7 @@
 #include <fstream>
 #include <streambuf>
 #include <nlohmann/json.hpp>
+#include <boost/algorithm/string.hpp>
 
 using namespace std;
 using json = nlohmann::json;

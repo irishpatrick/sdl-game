@@ -3,12 +3,12 @@
 
 #include <string>
 #include <cstdint>
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_image.h"
-#include "boost/uuid/uuid.hpp"
-#include "boost/uuid/uuid_generators.hpp"
-#include "boost/lexical_cast.hpp"
-#include "boost/uuid/uuid_io.hpp"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_generators.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/uuid/uuid_io.hpp>
 
 #include "entity.h"
 

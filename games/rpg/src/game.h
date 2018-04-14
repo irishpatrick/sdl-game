@@ -1,26 +1,25 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <string>
-#include <vector>
-#include <cstdlib>
-#include <ctime>
-#include <future>
-#include <engine.h>
-
 #include "config.h"
 #include "groupmanager.h"
 #include "player.h"
 #include "door.h"
 #include "stats.h"
 
+#include <engine.h>
+#include <cstdlib>
+#include <ctime>
+#include <string>
+#include <vector>
+#include <future>
+
 //#include "gui.h"
 
 using namespace std;
 
-class Game: public engine::State
-{
-public:
+class Game: public engine::State {
+ public:
     Game(engine::Context*);
     ~Game();
 
@@ -30,7 +29,7 @@ public:
     void render() override;
     void destroy() override;
 
-private:
+ private:
     Player hero;
     engine::Sprite monster;
     engine::Sprite background;

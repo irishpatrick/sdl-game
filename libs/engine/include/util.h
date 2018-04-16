@@ -34,6 +34,7 @@ public:
     static std::vector<Sprite*> GetCollisions(Sprite*, Group*);
     static std::vector<Sprite*> getVelocityCollisions(Sprite*, Group*, float);
     static int initSDL(SDL_Window**, SDL_Renderer**, const std::string&, int, int, bool);
+    static float lerp(float, float, float);
 };
 
 }

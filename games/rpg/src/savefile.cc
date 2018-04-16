@@ -1,10 +1,10 @@
 #include "savefile.h"
 
-vector<engine::Sprite*> SaveFile::sprites_ = vector<engine::Sprite*>();
+vector<engine::Sprite*> SaveFile::sprites = vector<engine::Sprite*>();
 
 void SaveFile::AddSprite(engine::Sprite* s)
 {
-    sprites_.push_back(s);
+    sprites.push_back(s);
 }
 
 void SaveFile::Write(const string& fn)
@@ -14,7 +14,7 @@ void SaveFile::Write(const string& fn)
     j["sprites"] = {};
 
     uint32_t i = 0;
-    for (auto& e : sprites_)
+    for (auto& e : sprites)
     {
         j["sprites"][i++] = {
             {"x", e->x},

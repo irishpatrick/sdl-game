@@ -259,4 +259,8 @@ std::string Util::RectToString(SDL_Rect* r)
         ", h: " + boost::lexical_cast<std::string>(r->h) + "]";
 }
 
+float Util::lerp(float t, float a, float b) {
+    return (1-t) * a + t * b;
+}
+
 }

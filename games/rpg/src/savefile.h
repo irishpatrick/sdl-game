@@ -10,7 +10,6 @@
 #include <engine.h>
 
 using namespace std;
-
 using json = nlohmann::json;
 
 class SaveFile
@@ -21,7 +20,7 @@ public:
     static void Read(const string&);
 
 private:
-    static vector<engine::Sprite*> sprites_;
+    static vector<engine::Sprite*> sprites;
 };
 
 #endif /* SAVEFILE_H */

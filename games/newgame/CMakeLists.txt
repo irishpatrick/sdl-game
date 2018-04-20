@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(garden C CXX)
+project(newgame C CXX)
 
 file(GLOB sources src/*.cc)
 

@@ -33,6 +33,7 @@ public:
     virtual void ResetCollision();
     virtual void update(float);
     virtual void velocityUpdate(float);
+    void setSpeed(float);
 	void queryTexture();
     virtual void OnCollision(Sprite*);
     Sprite* GetCollision();

@@ -31,6 +31,10 @@ Sprite::~Sprite() {
     delete anim;
 }
 
+void Sprite::setSpeed(float s) {
+    speed = s;
+}
+
 void Sprite::InitAnimation(const std::string& fn) {
     anim->InitFromJson(fn);
     w = anim->GetFrameWidth();

@@ -9,8 +9,8 @@
 #include <iostream>
 #include <thread>
 
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_image.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 namespace engine {
 
@@ -20,7 +20,7 @@ class Assets {
 public:
 
     static void loadTexture(const std::string&, SDL_Renderer*);
-    static void loadTexturesFromVector(const std::string&, std::vector<std::string>&, SDL_Renderer*);
+    static void loadTexturesFromVector(const std::string&, std::vector<std::string>, SDL_Renderer*);
     static Texture* getTexture(const std::string&);
     static void destroy();
     static void getFutures();

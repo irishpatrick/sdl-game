@@ -75,6 +75,22 @@ Sprite* Group::get_sprite_by_name(const std::string& name)
     return nullptr;
 }
 
+Sprite* Group::getSpriteAtLocation(float x, float y) {
+    sort();
+    for (auto& e : renderList) {
+        if (
+            x >= e->x &&
+            x <= e->x + e->w &&
+            y >= e->y &&
+            y <= e->y + e->h
+        ) {
+            return e;
+        }
+    }
+
+    return nullptr;
+}
+
 float Group::screenX()
 {
     if (camera != nullptr)

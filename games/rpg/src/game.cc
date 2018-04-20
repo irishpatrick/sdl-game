@@ -190,6 +190,13 @@ void Game::update(float delta, const uint8_t* keys) {
     // lag
     //SDL_Delay(70);
 
+    //cout << engine::Mouse::left << endl;
+    //cout << engine::Mouse::x << ", " << engine::Mouse::y << endl;
+
+    if (engine::Mouse::left) {
+        cout << "click: " << engine::Mouse::x << ", " << engine::Mouse::y << endl;
+    }
+
     hero.xvel = 0;
     hero.yvel = 0;
 

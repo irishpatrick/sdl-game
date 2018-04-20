@@ -32,6 +32,7 @@ public:
 	void queryAll();
     void sort();
     Sprite* get_sprite_by_name(const std::string&);
+    Sprite* getSpriteAtLocation(float, float);
 
 	void remove(Sprite*);
 

@@ -10,6 +10,8 @@
 #include "config.h"
 #include "game.h"
 
+using namespace std;
+
 SDL_Surface* icon;
 SDL_Event e;
 bool quit;
@@ -56,11 +58,45 @@ void render()
             {
                 quit = true;
             }
-
+            else if (e.type == SDL_MOUSEMOTION) {
+                engine::Mouse::x = e.button.x;
+                engine::Mouse::y = e.button.y;
+            }
+            else if (e.type == SDL_MOUSEBUTTONDOWN) {
+                //cout << "mouse button down ";
+                switch (e.button.button) {
+                    case SDL_BUTTON_LEFT:
+                        engine::Mouse::left = true;
+                        break;
+                    case SDL_BUTTON_MIDDLE:
+                        engine::Mouse::middle = true;
+                        break;
+                    case SDL_BUTTON_RIGHT:
+                        engine::Mouse::right = true;
+                        break;
+                }
+                cout << endl;
+            }
+            else if (e.type == SDL_MOUSEBUTTONUP) {
+                //cout << "mouse button up" << endl;
+                switch (e.button.button) {
+                    case SDL_BUTTON_LEFT:
+                        engine::Mouse::left = false;
+                        break;
+                    case SDL_BUTTON_MIDDLE:
+                        engine::Mouse::middle = false;
+                        break;
+                    case SDL_BUTTON_RIGHT:
+                        engine::Mouse::right = false;
+                        break;
+                }
+            }
             engine::Controllers::ProcessEvent(e);
         }
 
-
+        int x;
+        int y;
+        SDL_GetMouseState(&x, &y);
 
         const uint8_t* state = SDL_GetKeyboardState(nullptr);
         if (state[SDL_SCANCODE_ESCAPE])

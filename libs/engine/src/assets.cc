@@ -48,7 +48,7 @@ void Assets::loadTexture(const std::string& fn, SDL_Renderer* r)
     futures.push_back(std::async(std::launch::async, parallel_load, std::ref(texMap), fn, key));
 }
 
-void Assets::loadTexturesFromVector(const std::string& dir, std::vector<std::string>& files, SDL_Renderer* r) {
+void Assets::loadTexturesFromVector(const std::string& dir, std::vector<std::string> files, SDL_Renderer* r) {
     for (auto& e : files) {
         loadTexture(dir + e, r);
     }

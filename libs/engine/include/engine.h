@@ -19,5 +19,6 @@
 #include "locationstack.h"
 #include "oneshot.h"
 #include "context.h"
+#include "mouse.h"
 
 #endif /* ENGINE_H */

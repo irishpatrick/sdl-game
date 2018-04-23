@@ -7,6 +7,7 @@
 #include <nlohmann/json.hpp>
 
 #include "player.h"
+#include "floor.h"
 
 using namespace std;
 using json = nlohmann::json;
@@ -25,6 +26,7 @@ private:
     json config;
     Player player;
     GridSprite bg;
+    Floor f;
     engine::Camera camera;
     engine::Group stage;
 };

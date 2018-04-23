@@ -9,7 +9,7 @@ Game::~Game() {
 }
 
 void Game::init() {
-    ifstream in("../../games/newgame/assets/config.json");
+    ifstream in("../games/newgame/assets/config.json");
     in >> config;
 
     camera.screen(ctx->getWidth(), ctx->getHeight());
@@ -37,6 +37,10 @@ void Game::init() {
     camera.setFocus(&player);
     stage.setCamera(&camera);
     stage.add(&player);
+
+    f.setGridSize(32);
+    f.generate(10);
+    f.printMap();
 }
 
 void Game::update(float delta, const uint8_t* keys) {

@@ -22,7 +22,7 @@ engine::State* current;
 
 void init()
 {
-    Config::load("../../games/rpg/assets/config.json");
+    Config::load("../games/rpg/assets/config.json");
 
     ctx.init(Config::getScreenWidth(), Config::getScreenHeight(), "hello world!", false);
 

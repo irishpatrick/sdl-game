@@ -1,5 +1,11 @@
 #include "floor.h"
 
+void destroy_room(Room* r) {
+    if (r->connections != nullptr) {
+        free(r->connections);
+    }
+}
+
 bool inside(int x, int y, Room* a) {
     return (
         x <= a->x + a->h &&
@@ -29,55 +35,66 @@ Floor::Floor(): GridSprite() {
 }
 
 Floor::~Floor() {
+    for (int i=0;i<nrooms;i++) {
+        destroy_room(&rooms[i]);
+    }
     free(rooms);
 }
 
-void Floor::generate(int numrooms) {
+void Floor::generate(int n) {
     srand(time(nullptr));
-    nrooms = numrooms;
+
+    nrooms = n;
     rooms = (Room*)malloc(nrooms * sizeof(Room));
-    int padding = 4;
-    world = 64;
 
-    // generate rooms
-    for (int i=0; i<nrooms; i++) {
-        rooms[i].w = random(2,8);
-        rooms[i].h = random(2,8);
-    }
-
-    // place first room
-    rooms[0].x = random(0,world);
-    rooms[0].y = random(0,world);
-
-    // place remaining rooms
-    for (int i=1; i<nrooms; i++) {
-        Room* last = &rooms[i-1];
-        Room* current = &rooms[i];
-
-        int xmin = last->x - current->w - padding;
-        int xmax = last->x + last->w + padding;
-        int ymin = last->y - current->h - padding;
-        int ymax = last->y + last->h + padding;
-
-        if (xmin <= 0 || ymin <= 0) {
-            cout << "bad placement! moving on..." << endl;
-            continue;
-        }
-
-        int xopts[] = {random(0,xmin), random(xmax,world)};
-        int yopts[] = {random(0,ymin), random(ymax,world)};
-
-        current->x = xopts[random(0,1)];
-        current->y = yopts[random(0,1)];
-        //current->x = random(0,64);
-        //current->y = random(0,64);
-    }
-
-    cout << "final positions:" << endl;
-    for (int i=0; i<nrooms; i++) {
+    // randomly generate rooms
+    for (int i=0;i<nrooms;i++) {
         Room* c = &rooms[i];
-        cout << i << ": " << c->x << "," << c->y << "," << c->w << "," << c->h << endl;
+        c->w = random(3,6);
+        c->h = random(3,6);
     }
+
+    // randomly place rooms
+    int padding = 1;
+    int dist = 8;
+    int last_side = -1;
+    rooms[0].x = 0;
+    rooms[0].y = 0;
+    for (int i=1;i<nrooms;i++) {
+        Room* l = &rooms[i-1];
+        Room* c = &rooms[i];
+        int side = random(0,3);
+        if (last_side == side) {
+            side = (side + 1) % 3;
+        }
+        switch (side) {
+            case 0:
+            // north
+            c->x = l->x; // temporary
+            c->y = random(l->y - padding, l->y - dist);
+            last_side = 0;
+            break;
+
+            case 1:
+            // east
+            last_side = 1;
+            break;
+
+            case 2:
+            // south
+            c->x = l->x;
+            c->y = random(l->y + l->h + padding, l->y + l->h + dist);
+            last_side = 2;
+            break;
+
+            case 3:
+            // west
+            last_side = 3;
+            break;
+        }
+    }
+
+    // connect rooms
 }
 
 void Floor::printMap() {

@@ -1,5 +1,4 @@
-#ifndef GRIDSPRITE_H
-#define GRIDSPRITE_H
+#pragma once
 
 #include <iostream>
 #include <engine.h>
@@ -56,5 +55,3 @@ private:
     float sx;
     float sy;
 };
-
-#endif /* GRIDSPRITE_H */

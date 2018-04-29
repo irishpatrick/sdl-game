@@ -1,5 +1,4 @@
-#ifndef GAME_H
-#define GAME_H
+#pragma once
 
 #include <iostream>
 #include <fstream>
@@ -30,5 +29,3 @@ private:
     engine::Camera camera;
     engine::Group stage;
 };
-
-#endif /* GAME_H */

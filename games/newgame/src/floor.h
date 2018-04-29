@@ -1,5 +1,4 @@
-#ifndef FLOOR_H
-#define FLOOR_H
+#pragma once
 
 #include <iostream>
 #include <map>
@@ -14,8 +13,14 @@ using namespace std;
 typedef struct {
     int x;
     int y;
+} Point;
+
+typedef struct {
+    int x;
+    int y;
     int w;
     int h;
+    Point* connections;
 } Room;
 
 class Floor: public GridSprite {
@@ -37,5 +42,3 @@ private:
     int world;
     SDL_Texture* t;
 };
-
-#endif /* FLOOR_H */

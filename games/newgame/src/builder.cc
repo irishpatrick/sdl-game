@@ -28,10 +28,10 @@ Builder::~Builder() {
 string Builder::genRoomInstruction(int x, int y, int w, int h) {
     return
         "R" +
-        to_string(x) +
-        to_string(y) +
-        to_string(w) +
-        to_string(h) +
+        to_string(x) + "," +
+        to_string(y) + "," +
+        to_string(w) + "," +
+        to_string(h) + "," +
         "E";
 }
 
@@ -48,6 +48,10 @@ string Builder::genLoopMap() {
         int w = r(2,6);
         int h = r(2,6);
         instructions.push_back(genRoomInstruction(x,y,w,h));
+    }
+
+    for (int i=1;i<3;i++) {
+        
     }
 
     for (auto const& s : instructions) {

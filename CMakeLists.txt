@@ -1,6 +1,18 @@
 cmake_minimum_required(VERSION 3.0)
 
+include("cmake/HunterGate.cmake")
+HunterGate(
+    URL "https://github.com/ruslo/hunter/archive/v0.20.62.tar.gz"
+    SHA1 "10ffae63cf7b07193d6d7b459c1d0cfa242fad5b"
+)
+
 project(sdl-game)
+
+hunter_add_package(SDL2)
+hunter_add_package(SDL_image)
+
+find_package(SDL2 REQUIRED)
+find_package(SDL_image REQUIRED)
 
 option (USE_PKGCONFIG "use pkg-config" OFF)
 option (BUILD_MISSILES "build missiles game" OFF)

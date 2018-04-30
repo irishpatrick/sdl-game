@@ -1,11 +1,5 @@
 #include "floor.h"
 
-void destroy_room(Room* r) {
-    if (r->connections != nullptr) {
-        free(r->connections);
-    }
-}
-
 bool inside(int x, int y, Room* a) {
     return (
         x <= a->x + a->h &&
@@ -35,9 +29,6 @@ Floor::Floor(): GridSprite() {
 }
 
 Floor::~Floor() {
-    for (int i=0;i<nrooms;i++) {
-        destroy_room(&rooms[i]);
-    }
     free(rooms);
 }
 

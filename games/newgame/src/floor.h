@@ -20,7 +20,6 @@ typedef struct {
     int y;
     int w;
     int h;
-    Point* connections;
 } Room;
 
 class Floor: public GridSprite {

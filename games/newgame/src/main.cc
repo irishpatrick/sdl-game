@@ -93,6 +93,10 @@ void destroy() {
     delete current;
 }
 
+#ifdef main
+#undef main
+#endif // main
+
 int main(int argc, char** argv) {
     cout << "hello, world!" << endl;
     init();

@@ -4,12 +4,10 @@
 #include <string>
 #include <map>
 #include <cstdint>
-#include <experimental/filesystem>
 #include <engine.h>
 #include <nlohmann/json.hpp>
 
 using namespace std;
-namespace fs = std::experimental::filesystem;
 using json = nlohmann::json;
 
 enum Mode {CONSUMABLE = 0, EQUIPPABLE = 1};

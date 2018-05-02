@@ -4,7 +4,7 @@
 namespace engine {
 
 std::map<std::string, Texture*> Assets::texMap = std::map<std::string, Texture*>();
-std::vector<std::future<void>> Assets::futures = std::vector<std::future<void>>();
+std::vector<boost::future<void>> Assets::futures = std::vector<boost::future<void>>();
 
 std::vector<std::string> split(const std::string& s, char delim)
 {
@@ -46,7 +46,7 @@ void Assets::loadTexture(const std::string& fn, SDL_Renderer* r)
 
     texMap[key] = new Texture(r);
     //futures.push_back(std::async(std::launch::async, parallel_load, std::ref(texMap), fn, key));
-    futures.push_back(boost::async(boost::launch::async, parallel_load, std::ref(texMap), fn, key));
+    futures.push_back(boost::async(boost::launch::async, boost::bind(parallel_load, std::ref(texMap), fn, key)));
 
 }
 

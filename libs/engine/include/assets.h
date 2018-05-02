@@ -1,14 +1,15 @@
 #ifndef ASSETS_H
 #define ASSETS_H
 
+#define BOOST_THREAD_PROVIDES_FUTURE
+#include <boost/thread.hpp>
+#include <boost/thread/future.hpp>
+#include <functional>
 #include <map>
 #include <string>
 #include <vector>
 #include <sstream>
-#include <future>
 #include <iostream>
-#include <thread>
-
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
@@ -28,7 +29,7 @@ public:
 
 private:
     static std::map<std::string, Texture*> texMap;
-    static std::vector<std::future<void>> futures;
+    static std::vector<boost::future<void>> futures;
 };
 
 }

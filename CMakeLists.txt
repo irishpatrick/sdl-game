@@ -11,6 +11,7 @@ HunterGate(
 
 project(sdl-game)
 
+hunter_add_package(Boost COMPONENTS regex system filesystem thread)
 hunter_add_package(SDL2)
 hunter_add_package(SDL_image)
 hunter_add_package(SDL_ttf)
@@ -43,10 +44,11 @@ if (USE_PKGCONFIG)
 
 elseif (USE_HUNTER)
 
+    set(INCLUDE_DIR "${CMAKE_SOURCE_DIR}/deps/include")
     set(LIBRARIES "SDL2::SDL2main;SDL2::SDL2;SDL_image::SDL_image;SDL_ttf::SDL_ttf;m" CACHE STRING "string")
     if (UNIX)
         message(STATUS "UNIX")
-        set(INCLUDE_DIR "/usr/include/" CACHE PATH "include dirs")
+        set(INCLUDE_DIR "${INCLUDE_DIR};/usr/include/" CACHE PATH "include dirs")
         set(LIBRARY_DIR "/usr/lib/" CACHE PATH "library dirs")
         set(LINK_OPTIONS "")
         set(COMPILE_OPTIONS "-std=c++17;-Wall;-D_REENTRANT;-O2;")
@@ -56,7 +58,7 @@ elseif (USE_HUNTER)
 
     elseif (MSVC)
         message(STATUS "MSVC")
-        set(INCLUDE_DIR "" CACHE PATH "")
+        set(INCLUDE_DIR "${INCLUDE_DIR};" CACHE PATH "")
         set(LIBRARY_DIR "" CACHE PATH "")
         set(LINK_OPTIONS "")
         set(COMPILE_OPTIONS "/std:c++17;/Wall;/D_REENTRANT;/O2")

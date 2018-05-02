@@ -45,7 +45,9 @@ void Assets::loadTexture(const std::string& fn, SDL_Renderer* r)
     }*/
 
     texMap[key] = new Texture(r);
-    futures.push_back(std::async(std::launch::async, parallel_load, std::ref(texMap), fn, key));
+    //futures.push_back(std::async(std::launch::async, parallel_load, std::ref(texMap), fn, key));
+    futures.push_back(boost::async(boost::launch::async, parallel_load, std::ref(texMap), fn, key));
+
 }
 
 void Assets::loadTexturesFromVector(const std::string& dir, std::vector<std::string> files, SDL_Renderer* r) {

@@ -1,4 +1,4 @@
-#include "text.h"
+/*#include "text.h"
 #include "timer.h"
 
 namespace engine {
@@ -132,3 +132,4 @@ void Text::staticDraw(SDL_Renderer* r)
 }
 
 }
+*/

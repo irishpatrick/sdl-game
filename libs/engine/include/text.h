@@ -7,7 +7,7 @@
 #include <cstdint>
 #include <iostream>
 #include "SDL2/SDL.h"
-#include "SDL2/SDL_ttf.h"
+//#include "SDL2/SDL_ttf.h"
 
 #include "entity.h"
 
@@ -37,7 +37,7 @@ private:
     char* buffer_;
     Timer* timer_;
     bool redraw_;
-    TTF_Font* font_;
+    //TTF_Font* font_;
     SDL_Color color_;
     SDL_Surface* surface_;
     SDL_Texture* texture_;

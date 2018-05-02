@@ -2,11 +2,11 @@
 
 Npc::Npc()
 {
-    text_ = new engine::Text();
+    //text_ = new engine::Text();
 }
 Npc::~Npc()
 {
-    delete text_;
+    //delete text_;
 }
 
 void Npc::Json(const std::string& fn)

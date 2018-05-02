@@ -21,7 +21,7 @@ public:
 
 private:
     vector<string> dialogue_;
-    engine::Text* text_;
+    //engine::Text* text_;
     Stats stats;
 };
 

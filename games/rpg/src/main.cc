@@ -34,10 +34,10 @@ void init()
         exit(1);
     }
 
-    if (TTF_Init() == -1)
+    /*if (TTF_Init() == -1)
     {
         printf("font error: %s\n", TTF_GetError());
-    }
+    }*/
 }
 
 void render()

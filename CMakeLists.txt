@@ -11,16 +11,6 @@ HunterGate(
 
 project(sdl-game)
 
-hunter_add_package(Boost COMPONENTS regex system filesystem thread)
-hunter_add_package(SDL2)
-hunter_add_package(SDL_image)
-hunter_add_package(SDL_ttf)
-
-find_package(Boost CONFIG REQUIRED regex system filesystem thread)
-find_package(SDL2 CONFIG REQUIRED)
-find_package(SDL_image CONFIG REQUIRED)
-find_package(SDL_ttf CONFIG REQUIRED)
-
 option (USE_PKGCONFIG "use pkg-config" OFF)
 option (USE_HUNTER "use hunter" ON)
 option (BUILD_MISSILES "build missiles game" OFF)
@@ -35,18 +25,37 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
 
+if (USE_HUNTER)
+    hunter_add_package(Boost COMPONENTS system filesystem thread)
+    hunter_add_package(SDL2)
+    hunter_add_package(SDL_image)
+    hunter_add_package(SDL_ttf)
+
+    find_package(Boost CONFIG REQUIRED system filesystem thread)
+    find_package(SDL2 CONFIG REQUIRED)
+    find_package(SDL_image CONFIG REQUIRED)
+    find_package(SDL_ttf CONFIG REQUIRED)
+
+endif (USE_HUNTER)
+
 if (USE_PKGCONFIG)
 
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(cairo REQUIRED cairo)
-    pkg_check_modules(sdl2 REQUIRED sdl2)
+    pkg_check_modules(SDL2 REQUIRED sdl2)
     pkg_check_modules(SDL2_image REQUIRED SDL2_image)
     pkg_check_modules(SDL2_ttf REQUIRED SDL2_ttf)
+
+    find_package(Boost 1.58 COMPONENTS thread system filesystem REQUIRED)
+
+    set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/include ${Boost_INCLUDE_DIR} ${SDL2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS} ${SDL2_ttf_INCLUDE_DIRS})
+    set(LIBRARY_DIR ${SDL2_LIBRARY_DIRS} ${SDL2_image_LIBRARY_DIRS} ${SDL2_ttf_LIBRARY_DIRS})
+    set(LIBRARIES SDL2 SDL2_image SDL2_ttf ${Boost_LIBRARIES})
 
 elseif (USE_HUNTER)
 
     set(INCLUDE_DIR "${CMAKE_SOURCE_DIR}/deps/include")
-    set(LIBRARIES Boost::regex Boost::system Boost::filesystem Boost::thread SDL2::SDL2main SDL2::SDL2 SDL_image::SDL_image SDL_ttf::SDL_ttf m CACHE STRING "string")
+    set(LIBRARIES Boost::system Boost::filesystem Boost::thread SDL2::SDL2main SDL2::SDL2 SDL_image::SDL_image SDL_ttf::SDL_ttf m CACHE STRING "string")
     if (UNIX)
         message(STATUS "UNIX")
         set(INCLUDE_DIR "${INCLUDE_DIR};/usr/include/" CACHE PATH "include dirs")

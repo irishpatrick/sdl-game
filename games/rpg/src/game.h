@@ -42,6 +42,7 @@ class Game: public engine::State {
     Door doortest;
     engine::OneShot op;
     vector<engine::Sprite*> hero_collisions;
+    engine::ImageFont font;
     //gui::List list;
 };
 

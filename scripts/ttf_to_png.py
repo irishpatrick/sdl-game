@@ -32,13 +32,13 @@ def main(argv):
     w = tmp.size[0]
     h = tmp.size[1]
 
-    n = 0;
+    n = 1;
     for c in chars:
         img = Image.open(os.path.join(png_dir, c + ".png"))
         img.convert("RGBA")
         reigon = img.crop((0,0,w,h))
-        out.paste(reigon, ((x,y,w,h)))
-        x += w * n
+        out.paste(reigon, ((x,y)))
+        x = w * n
         n += 1
 
     out.save(os.path.join(png_dir, "out.png"), "PNG")

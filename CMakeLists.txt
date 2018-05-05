@@ -5,7 +5,7 @@ include("cmake/HunterGate.cmake")
 option(HUNTER_BUILD_SHARED_LIBS "build shared libs" ON)
 
 HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.20.62.tar.gz"
+    URL "https://github.com/ruslo/hunter/archive/v0.20.66.tar.gz"
     SHA1 "10ffae63cf7b07193d6d7b459c1d0cfa242fad5b"
 )
 

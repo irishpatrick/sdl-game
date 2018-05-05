@@ -26,6 +26,7 @@ void Game::init() {
     engine::Assets::loadTexture(textures + "opposite.png", r);
     engine::Assets::loadTexture(textures + "animtest.png", r);
     engine::Assets::loadTexture(textures + "door.png", r);
+    engine::Assets::loadTexture(Config::getAssetPath() + "font/font.png", r);
     camera.screen(ctx->getWidth(), ctx->getHeight());
 
     camera.setFocus(&hero);
@@ -101,6 +102,11 @@ void Game::tests() {
     list.addItem("world");
     list.addItem("very long item in list");
     list.setVisible(true);*/
+
+    font.setTexture(engine::Assets::getTexture("font.png"));
+    font.buildMap();
+    font.setCharSize(32, 32);
+
 
     printf("done!\n");
 }
@@ -312,6 +318,7 @@ void Game::update(float delta, const uint8_t* keys) {
 
 void Game::render() {
     groups_.getactive()->draw(ctx->getRenderer());
+    font.renderString("hello, world", 32, 32, ctx->getRenderer());
     //list.draw(renderer);
 }
 

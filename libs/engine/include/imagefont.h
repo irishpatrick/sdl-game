@@ -1,10 +1,9 @@
-#ifndef ENGINE_IMAGEFONT_H
-#define ENGINE_IMAGEFONT_H
+#pragma once
 
 #include <map>
 #include <string>
 #include <cstdint>
-#include "SDL2/SDL.h"
+#include <SDL2/SDL.h>
 
 using namespace std;
 
@@ -32,5 +31,3 @@ private:
 };
 
 }
-
-#endif /* ENGINE_IMAGEFONT_H */

@@ -17,6 +17,7 @@
 #include "timer.h"
 #include "util.h"
 #include "locationstack.h"
+#include "imagefont.h"
 #include "oneshot.h"
 #include "context.h"
 #include "mouse.h"

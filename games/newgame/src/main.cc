@@ -1,10 +1,6 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <engine.h>
-#include <boost/log/core.hpp>
-#include <boost/log/trivial.hpp>
-#include <boost/log/expressions.hpp>
-#include <boost/log/utility/setup/file.hpp>
 
 #include "game.h"
 
@@ -19,10 +15,10 @@ engine::Context ctx;
 engine::State* current;
 
 void init() {
-    boost::log::add_file_log("newgame.log");
+    /*boost::log::add_file_log("newgame.log");
     boost::log::core::get()->set_filter(
         boost::log::trivial::severity >= boost::log::trivial::info
-    );
+    );*/
     ctx.init(512, 480, "title", false);
     current = new Game(&ctx);
     current->init();
@@ -106,7 +102,9 @@ void destroy() {
 #endif // main
 
 int main(int argc, char** argv) {
-    cout << "hello, world!" << endl;
+    //auto console = spdlog::stdout_color_mt("console");
+    //console->info("hello, world!");
+    //BOOST_LOG_TRIVIAL(debug) << "debug message";
     init();
     render();
     destroy();

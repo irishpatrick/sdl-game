@@ -126,9 +126,9 @@ void cleanup()
 #undef main
 int main(int argc, char** argv)
 {
-    printf("Hello World!\n");
+    cout << "hello, world!" << endl;
 
-    init();
+    /*init();
 
     current = new Game(&ctx);
     current->init();
@@ -137,6 +137,6 @@ int main(int argc, char** argv)
     cleanup();
 
     delete current;
-
+    */
     return 0;
 }

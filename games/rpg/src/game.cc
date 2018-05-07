@@ -103,10 +103,13 @@ void Game::tests() {
     list.addItem("very long item in list");
     list.setVisible(true);*/
 
-    font.setTexture(engine::Assets::getTexture("font.png"));
-    font.buildMap();
-    font.setCharSize(32, 32);
+    cout << "starting font test" << endl;
 
+    font.setTexture(engine::Assets::getTexture("font.png"));
+    cout << "building map" << endl;
+    font.buildMap();
+    font.setCharSize(100, 177);
+    font.setScale(0.25f);
 
     printf("done!\n");
 }

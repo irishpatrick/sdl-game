@@ -18,6 +18,7 @@ public:
     ~ImageFont();
 
     void setCharSize(uint32_t, uint32_t);
+    void setScale(float);
     void setTexture(Texture*);
     void buildMap();
     void renderChar(char, float, float, SDL_Renderer*);
@@ -27,7 +28,9 @@ private:
     Texture* tex;
     uint32_t w;
     uint32_t h;
+    float scale;
     map<char, SDL_Rect> charMap;
+    SDL_Rect* crects;
 };
 
 }

@@ -2,17 +2,19 @@ cmake_minimum_required(VERSION 3.0)
 
 include("cmake/HunterGate.cmake")
 
+option (USE_HUNTER "use hunter" ON)
 option(HUNTER_BUILD_SHARED_LIBS "build shared libs" ON)
 
-HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.20.66.tar.gz"
-    SHA1 "10ffae63cf7b07193d6d7b459c1d0cfa242fad5b"
-)
+if (USE_HUNTER)
+    HunterGate(
+        URL "https://github.com/ruslo/hunter/archive/v0.20.66.tar.gz"
+        SHA1 "10ffae63cf7b07193d6d7b459c1d0cfa242fad5b"
+    )
+endif (USE_HUNTER)
 
 project(sdl-game)
 
 option (USE_PKGCONFIG "use pkg-config" OFF)
-option (USE_HUNTER "use hunter" ON)
 option (BUILD_MISSILES "build missiles game" OFF)
 option (BUILD_RPG "build rpg game" OFF)
 option (BUILD_RUNNER "build runner game" OFF)

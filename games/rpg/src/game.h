@@ -34,7 +34,6 @@ class Game: public engine::State {
     engine::Sprite monster;
     engine::Sprite background;
     engine::Sprite animtest;
-    vector<engine::Sprite*> grass;
     engine::Group stage;
     engine::Camera camera;
     GroupManager groups_;

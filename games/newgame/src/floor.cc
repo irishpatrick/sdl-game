@@ -1,4 +1,9 @@
 #include "floor.h"
+#include <iostream>
+#include <map>
+#include <cstdlib>
+#include <ctime>
+#include <engine.h>
 
 bool inside(int x, int y, Room* a) {
     return (

@@ -1,5 +1,4 @@
-#ifndef GAME_H
-#define GAME_H
+#pragma once
 
 #include "config.h"
 #include "groupmanager.h"
@@ -48,5 +47,3 @@ class Game: public engine::State {
     Dialogue dlg;
     //gui::List list;
 };
-
-#endif /* GAME_H */

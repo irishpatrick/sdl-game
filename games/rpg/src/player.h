@@ -1,5 +1,4 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#pragma once
 
 #include <map>
 #include <vector>
@@ -25,5 +24,3 @@ private:
     vector<string> inventory;
     Stats stats;
 };
-
-#endif /* PLAYER_H */

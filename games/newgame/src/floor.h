@@ -1,11 +1,5 @@
 #pragma once
 
-#include <iostream>
-#include <map>
-#include <cstdlib>
-#include <ctime>
-#include <engine.h>
-
 #include "gridsprite.h"
 
 using namespace std;

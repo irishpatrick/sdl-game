@@ -1,5 +1,4 @@
-#ifndef CONFIG_H
-#define CONFIG_H
+#pragma once
 
 #include <engine.h>
 
@@ -28,5 +27,3 @@ class Config {
     static string assetPath;
     static bool fullscreen;
 };
-
-#endif /* CONFIG_H */

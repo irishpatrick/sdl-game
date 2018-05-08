@@ -1,5 +1,4 @@
-#ifndef NPC_H
-#define NPC_H
+#pragma once
 
 #include <vector>
 #include <string>
@@ -24,5 +23,3 @@ private:
     //engine::Text* text_;
     Stats stats;
 };
-
-#endif /* NPC_H */

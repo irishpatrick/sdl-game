@@ -1,5 +1,4 @@
-#ifndef ITEM_H
-#define ITEM_H
+#pragma once
 
 #include <string>
 #include <map>
@@ -38,5 +37,3 @@ private:
     // static
     static json o;
 };
-
-#endif /* ITEM_H */

@@ -1,5 +1,4 @@
-#ifndef GROUPMANAGER_H
-#define GROUPMANAGER_H
+#pragma once
 
 #include <map>
 #include <string>
@@ -31,5 +30,3 @@ private:
 	engine::Camera* camera_;
 	engine::Sprite* focus_;
 };
-
-#endif /* GROUPMANAGER_H */

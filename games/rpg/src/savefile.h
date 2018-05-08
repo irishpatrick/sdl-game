@@ -1,5 +1,4 @@
-#ifndef SAVEFILE_H
-#define SAVEFILE_H
+#pragma once
 
 #include <vector>
 #include <string>
@@ -22,5 +21,3 @@ public:
 private:
     static vector<engine::Sprite*> sprites;
 };
-
-#endif /* SAVEFILE_H */

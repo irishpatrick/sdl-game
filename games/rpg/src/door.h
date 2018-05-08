@@ -1,5 +1,4 @@
-#ifndef DOOR_H
-#define DOOR_H
+#pragma once
 
 #include <cstdint>
 #include <string>
@@ -32,5 +31,3 @@ private:
     engine::Point exit_;
     string tag;
 };
-
-#endif /* DOOR_H */

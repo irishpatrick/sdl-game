@@ -1,5 +1,4 @@
-#ifndef STATS_H
-#define STATS_H
+#pragma once
 
 #include <iostream>
 #include <iomanip>
@@ -35,5 +34,3 @@ private:
     map<string, uint32_t> stats;
     map<string, uint32_t> modifiers;
 };
-
-#endif /* STATS_H */

@@ -18,7 +18,7 @@ ImageFont::~ImageFont() {
     if (crects != nullptr) {
         free(crects);
     } else {
-        cout << "crects var was nullptr" << endl;
+        std::cout << "crects var was nullptr" << std::endl;
     }
 }
 
@@ -33,7 +33,7 @@ void ImageFont::setTexture(Texture* t) {
 void ImageFont::buildMap(uint32_t a, uint32_t b) {
     w = a;
     h = b;
-    cout << "building map...";
+    std::cout << "building map...";
     crects = (SDL_Rect*)malloc(63 * sizeof(SDL_Rect));
     for (int i=0; i<63; i++) {
         crects[i].x = i * w;
@@ -41,12 +41,12 @@ void ImageFont::buildMap(uint32_t a, uint32_t b) {
         crects[i].w = w;
         crects[i].h = h;
     }
-    cout << "ok" << endl;
+    std::cout << "ok" << std::endl;
 }
 
-void ImageFont::renderChar(const string& c, float x, float y, SDL_Renderer* r) {
+void ImageFont::renderChar(const std::string& c, float x, float y, SDL_Renderer* r) {
     size_t found = charMap.find(c);
-    if (found == string::npos) {
+    if (found == std::string::npos) {
         //cout << "unknown char!" << endl;
         return;
     }
@@ -62,13 +62,14 @@ void ImageFont::renderChar(const string& c, float x, float y, SDL_Renderer* r) {
     SDL_RenderCopy(r, tex->use(), src, &dst);
 }
 
-void ImageFont::renderString(const string& str, float ox, float oy, SDL_Renderer* r) {
+void ImageFont::renderString(const std::string& str, float ox, float oy, SDL_Renderer* r) {
     float x = ox;
     float y = oy;
+    //std::cout << "renderString() " << str << std::endl;
     for (uint32_t i=0; i<str.length(); i++) {
         char c = str[i];
-        string s;
-        stringstream ss;
+        std::string s;
+        std::stringstream ss;
         ss << c;
         getline(ss, s);
         renderChar(s, x + (i * w * scale), y, r);

@@ -1,7 +1,6 @@
 #ifndef ENGINE_CONTEXT_H
 #define ENGINE_CONTEXT_H
 
-#include <iostream>
 #include <string>
 #include <SDL2/SDL.h>
 
@@ -39,6 +38,14 @@ public:
 
     inline void render() {
         SDL_RenderPresent(r);
+    }
+
+    inline float coordX(float x) {
+        return (0.5f * x * width) + (width / 2.0f);
+    }
+
+    inline float coordY(float y) {
+        return (0.5f * y * height) + (height / 2.0f);
     }
 
 private:

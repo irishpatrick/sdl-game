@@ -8,7 +8,7 @@
             "x": 0
         },
         {
-            "type": "sprite",
+            "type": "npc",
             "texture": "monster.png",
             "name": "monster",
             "y": 150,

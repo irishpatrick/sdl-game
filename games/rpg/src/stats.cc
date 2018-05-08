@@ -35,13 +35,11 @@ uint32_t Stats::getBase(const string& str) {
 }
 
 void Stats::load(const string& str) {
-    cout << "loading..." << endl;
     ifstream in(str);
     json o;
     in >> o;
 
     for (json::iterator it = o.begin(); it != o.end(); it++) {
-        cout << "key: " << it.key() << endl;
         if (boost::algorithm::ends_with(it.key(), "_mod")) {
             vector<string> v;
             const string& str(it.key());
@@ -55,12 +53,10 @@ void Stats::load(const string& str) {
 void Stats::write(const string& str) {
     json o;
 
-    cout << "writing stats..." << endl;
     for (auto const& e : stats) {
         o[e.first] = e.second;
     }
 
-    cout << "writing modifiers..." << endl;
     for (auto const& e : modifiers) {
         o[e.first + "_mod"] = e.second;
     }

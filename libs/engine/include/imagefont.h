@@ -16,7 +16,7 @@ class ImageFont
 public:
     ImageFont();
     ~ImageFont();
-    
+
     void setScale(float);
     void setTexture(Texture*);
     void buildMap(uint32_t, uint32_t);

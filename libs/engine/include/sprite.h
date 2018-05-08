@@ -65,6 +65,10 @@ public:
         return maxSpeed;
     }
 
+    inline std::string getName() {
+        return name;
+    }
+
     virtual const std::string getUUID();
 
     float xvel;

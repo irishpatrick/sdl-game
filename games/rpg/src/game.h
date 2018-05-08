@@ -6,6 +6,8 @@
 #include "player.h"
 #include "door.h"
 #include "stats.h"
+#include "dialogue.h"
+#include "npc.h"
 
 #include <engine.h>
 #include <cstdlib>
@@ -31,7 +33,7 @@ class Game: public engine::State {
 
  private:
     Player hero;
-    engine::Sprite monster;
+    Npc monster;
     engine::Sprite background;
     engine::Sprite animtest;
     engine::Group stage;
@@ -40,8 +42,10 @@ class Game: public engine::State {
     engine::Animation test;
     Door doortest;
     engine::OneShot op;
+    engine::OneShot ol;
     vector<engine::Sprite*> hero_collisions;
     engine::ImageFont font;
+    Dialogue dlg;
     //gui::List list;
 };
 

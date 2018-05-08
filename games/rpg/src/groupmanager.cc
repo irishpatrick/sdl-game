@@ -1,5 +1,6 @@
 #include "groupmanager.h"
 #include "door.h"
+#include "npc.h"
 
 GroupManager::GroupManager()
 {
@@ -70,6 +71,9 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
                         ref->setTag(e["tag"]);
                     }
 
+                }
+                else if (type == "npc") {
+                    temp = new Npc();
                 }
                 else
                 {

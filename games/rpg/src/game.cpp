@@ -9,24 +9,8 @@ Game::~Game() {
 }
 
 void Game::init() {
-    printf("loading assets\n");
-
-    string textures = Config::getAssetPath() + "textures/";
-    string maps = Config::getAssetPath() + "maps/";
-    string root = Config::getAssetPath();
-    string sprites = Config::getAssetPath() + "sprites/";
-
-    SDL_Renderer* r = ctx->getRenderer();
-
-    engine::Assets::loadTexture(textures + "med-background.png", r);
-    engine::Assets::loadTexture(textures + "hero.png", r);
-    engine::Assets::loadTexture(textures + "monster.png", r);
-    engine::Assets::loadTexture(textures + "grass1.png", r);
-    engine::Assets::loadTexture(textures + "room-bg.png", r);
-    engine::Assets::loadTexture(textures + "opposite.png", r);
-    engine::Assets::loadTexture(textures + "animtest.png", r);
-    engine::Assets::loadTexture(textures + "door.png", r);
-    engine::Assets::loadTexture(Config::getAssetPath() + "font/out.png", r);
+    std::string maps = Config::getAssetPath() + "maps/";
+    std::string sprites = Config::getAssetPath() + "sprites/";
     camera.screen(ctx->getWidth(), ctx->getHeight());
 
     camera.setFocus(&hero);
@@ -34,8 +18,6 @@ void Game::init() {
     hero.setTexture(engine::Assets::getTexture("hero.png"));
     hero.setMaxSpeed(250.0f);
     hero.name = "hero";
-
-    engine::Assets::getFutures();
 
     hero.queryTexture();
 

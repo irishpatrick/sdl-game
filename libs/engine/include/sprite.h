@@ -41,6 +41,10 @@ public:
     virtual Group* getParent();
     void setCamera(Camera*);
 
+    inline Texture* getTexture() {
+        return texture;
+    }
+
     inline void setSolid(bool b) {
         solid = b;
     }

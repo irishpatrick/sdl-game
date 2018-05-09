@@ -37,7 +37,7 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
     	g->sx = o["entry"]["x"];
     	g->sy = o["entry"]["y"];
     }
-    if (engine::Util::JsonExists(o, "sprites"))
+    if (o.find("sprites") != o.end())
     {
         for (const auto& e : o["sprites"])
         {
@@ -95,41 +95,6 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
     }
 
     addgroup(id, g);
-
-    /*rapidjson::Document json;
-    json.Parse(data.c_str());
-
-    Group* g = new Group();
-    g->dynamic = true;
-
-    if (json.HasMember("entry"))
-    {
-        focus_->x = json["entry"]["x"].GetInt();
-    	focus_->y = json["entry"]["y"].GetInt();
-    }
-
-    if (json.HasMember("sprites"))
-    {
-    	for (const auto& e : json["sprites"].GetArray())
-    	{
-            // assume sprite object has all required fields
-    		float x = (float)e["x"].GetInt();
-            float y = (float)e["y"].GetInt();
-            std::string name = e["name"].GetString();
-            std::string texture = e["texture"].GetString();
-
-            // test initialize
-            Sprite* temp = new Sprite();
-            temp->dynamic = true;
-            temp->x = x;
-            temp->y = y;
-            temp->setTexture(assets_->getTexture(texture));
-            g->add(temp);
-            //delete temp;
-    	}
-    }
-
-    addgroup(id, g);*/
 }
 
 void GroupManager::setEntry(const std::string& tag)
@@ -152,42 +117,34 @@ void GroupManager::setEntry(const std::string& tag)
     }
 }
 
-void GroupManager::setactive(const std::string& id)
-{
+void GroupManager::setactive(const std::string& id) {
     map<string, engine::Group*>::const_iterator it = groupmap_.find(id);
-    if (it != groupmap_.end())
-    {
-    	if (active_ != nullptr)
-    	{
+    if (it != groupmap_.end()) {
+    	if (active_ != nullptr) {
     		active_->remove(focus_);
     	}
     	active_ = groupmap_[id];
 
         // add camera
-        if (camera_ != nullptr)
-    	{
+        if (camera_ != nullptr) {
     		active_->setCamera(camera_);
     	}
 
         // add focus
-    	if (focus_ != nullptr)
-    	{
+    	if (focus_ != nullptr) {
     		active_->add(focus_);
     	}
     }
 }
 
-engine::Group* GroupManager::getactive()
-{
+engine::Group* GroupManager::getactive() {
     return active_;
 }
 
-void GroupManager::setcamera(engine::Camera* c)
-{
+void GroupManager::setcamera(engine::Camera* c) {
     camera_ = c;
 }
 
-void GroupManager::setfocus(engine::Sprite* s)
-{
+void GroupManager::setfocus(engine::Sprite* s) {
     focus_ = s;
 }

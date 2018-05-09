@@ -22,6 +22,10 @@ public:
     SDL_Texture* use();
     void destroy();
 
+    inline std::string getName() {
+        return name_;
+    }
+
     bool ready;
 
 private:

@@ -123,12 +123,27 @@ void cleanup()
     SDL_Quit();
 }
 
+#ifdef main
 #undef main
+#endif /* main */
 int main(int argc, char** argv)
 {
     cout << "hello, world!" << endl;
 
     init();
+
+    string textures = Config::getAssetPath() + "textures/";
+    SDL_Renderer* r = ctx.getRenderer();
+    engine::Assets::loadTexture(textures + "med-background.png", r);
+    engine::Assets::loadTexture(textures + "hero.png", r);
+    engine::Assets::loadTexture(textures + "monster.png", r);
+    engine::Assets::loadTexture(textures + "grass1.png", r);
+    engine::Assets::loadTexture(textures + "room-bg.png", r);
+    engine::Assets::loadTexture(textures + "opposite.png", r);
+    engine::Assets::loadTexture(textures + "animtest.png", r);
+    engine::Assets::loadTexture(textures + "door.png", r);
+    engine::Assets::loadTexture(Config::getAssetPath() + "font/out.png", r);
+    engine::Assets::getFutures();
 
     current = new Game(&ctx);
     current->init();

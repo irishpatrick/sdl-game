@@ -15,12 +15,10 @@
 #include <vector>
 #include <future>
 
-//#include "gui.h"
-
 using namespace std;
 
 class Game: public engine::State {
- public:
+public:
     Game(engine::Context*);
     ~Game();
 
@@ -30,7 +28,7 @@ class Game: public engine::State {
     void render() override;
     void destroy() override;
 
- private:
+private:
     Player hero;
     Npc monster;
     engine::Sprite background;

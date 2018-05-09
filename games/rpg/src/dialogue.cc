@@ -38,11 +38,7 @@ void Dialogue::push(const std::string& str) {
         int len = str.size();
         int lines = len / MAXLEN;
         int extra = len % MAXLEN;
-        std::cout << "len: " << len << std::endl;
-        std::cout << "lines: " << lines << std::endl;
-        std::cout << "extra: " << extra << std::endl;
         for (int i=0; i<lines; i++) {
-            std::cout << "loop from " << i*MAXLEN << " to " << (i+1)*MAXLEN << std::endl;
             stack.push_back(str.substr(i*MAXLEN, MAXLEN));
         }
         stack.push_back(str.substr(lines*MAXLEN, lines*MAXLEN+extra));

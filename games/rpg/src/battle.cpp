@@ -19,12 +19,19 @@ void Battle::init() {
 }
 
 void Battle::addCombatants(std::vector<engine::Sprite*>& a, std::vector<engine::Sprite*>& e) {
-    for (auto& sprite : a) {
+    int n;
 
+    n = 0;
+    std::string name;
+    for (auto& sprite : a) {
+        name = "battle-" + sprite->getTexture()->getName();
+        allies[n++].setTexture(engine::Assets::getTexture(name));
     }
 
+    n = 0;
     for (auto& sprite : e) {
-
+        name = "battle-" + sprite->getTexture()->getName();
+        enemies[n++].setTexture(engine::Assets::getTexture(name));
     }
 }
 

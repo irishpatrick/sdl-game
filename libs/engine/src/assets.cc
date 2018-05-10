@@ -1,5 +1,8 @@
 #include "assets.h"
 #include "texture.h"
+#include <fstream>
+#include <nlohmann/json.hpp>
+#include <boost/filesystem.hpp>
 
 namespace engine {
 
@@ -56,11 +59,27 @@ void Assets::loadTexturesFromVector(const std::string& dir, std::vector<std::str
     }
 }
 
+void Assets::loadTexturesFromJson(const std::string& fn, const std::string& rootstr, SDL_Renderer* r) {
+    std::ifstream in(rootstr + fn);
+    nlohmann::json o;
+    in >> o;
+
+    boost::filesystem::path root(rootstr);
+    boost::filesystem::path dir(o["dir"].get<std::string>());
+
+    for (auto& current : o["files"]) {
+        std::cout << "loading " << current << std::endl;
+        boost::filesystem::path file(current.get<std::string>());
+        boost::filesystem::path full = root / dir / file;
+        loadTexture(full.string(), r);
+    }
+}
+
 Texture* Assets::getTexture(const std::string& key)
 {
     if (texMap.find(key) == texMap.end())
     {
-        printf("not found!\n");
+        printf("key %s not found!\n", key.c_str());
         return NULL;
     }
     return texMap[key];

@@ -20,8 +20,8 @@ public:
     void destroy() override;
 
 private:
-    std::vector<engine::Sprite*> enemies;
-    std::vector<engine::Sprite*> allies;
+    std::vector<engine::Sprite> enemies;
+    std::vector<engine::Sprite> allies;
     engine::Sprite bg;
     engine::ImageFont font;
     Dialogue dialogue;

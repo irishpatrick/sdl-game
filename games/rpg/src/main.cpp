@@ -134,7 +134,7 @@ int main(int argc, char** argv)
 
     string textures = Config::getAssetPath() + "textures/";
     SDL_Renderer* r = ctx.getRenderer();
-    engine::Assets::loadTexture(textures + "med-background.png", r);
+    /*engine::Assets::loadTexture(textures + "med-background.png", r);
     engine::Assets::loadTexture(textures + "hero.png", r);
     engine::Assets::loadTexture(textures + "monster.png", r);
     engine::Assets::loadTexture(textures + "grass1.png", r);
@@ -142,7 +142,8 @@ int main(int argc, char** argv)
     engine::Assets::loadTexture(textures + "opposite.png", r);
     engine::Assets::loadTexture(textures + "animtest.png", r);
     engine::Assets::loadTexture(textures + "door.png", r);
-    engine::Assets::loadTexture(Config::getAssetPath() + "font/out.png", r);
+    engine::Assets::loadTexture(Config::getAssetPath() + "font/out.png", r);*/
+    engine::Assets::loadTexturesFromJson("textures-all.json", Config::getAssetPath(), r);
     engine::Assets::getFutures();
 
     current = new Game(&ctx);

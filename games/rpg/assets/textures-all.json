@@ -1,0 +1,13 @@
+{
+    "dir": "textures",
+    "files": [
+        "animtest.png",
+        "battle-bg.png",
+        "door.png",
+        "hero.png",
+        "med-background.png",
+        "monster.png",
+        "room-bg.png",
+        "out.png"
+    ]
+}

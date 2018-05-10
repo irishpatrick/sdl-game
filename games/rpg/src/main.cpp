@@ -26,18 +26,11 @@ void init()
 
     ctx.init(Config::getScreenWidth(), Config::getScreenHeight(), "hello world!", false);
 
-    //engine::Util::initSDL(&window, &renderer, "Hello, World!", 512, 480, Config::fullscreen());
-
     if (!IMG_Init(IMG_INIT_PNG))
     {
         printf("IMG_Init error: %s\n", IMG_GetError());
         exit(1);
     }
-
-    /*if (TTF_Init() == -1)
-    {
-        printf("font error: %s\n", TTF_GetError());
-    }*/
 }
 
 void render()
@@ -134,15 +127,6 @@ int main(int argc, char** argv)
 
     string textures = Config::getAssetPath() + "textures/";
     SDL_Renderer* r = ctx.getRenderer();
-    /*engine::Assets::loadTexture(textures + "med-background.png", r);
-    engine::Assets::loadTexture(textures + "hero.png", r);
-    engine::Assets::loadTexture(textures + "monster.png", r);
-    engine::Assets::loadTexture(textures + "grass1.png", r);
-    engine::Assets::loadTexture(textures + "room-bg.png", r);
-    engine::Assets::loadTexture(textures + "opposite.png", r);
-    engine::Assets::loadTexture(textures + "animtest.png", r);
-    engine::Assets::loadTexture(textures + "door.png", r);
-    engine::Assets::loadTexture(Config::getAssetPath() + "font/out.png", r);*/
     engine::Assets::loadTexturesFromJson("textures-all.json", Config::getAssetPath(), r);
     engine::Assets::getFutures();
 

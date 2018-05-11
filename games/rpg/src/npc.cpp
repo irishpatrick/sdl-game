@@ -1,4 +1,5 @@
 #include "npc.hpp"
+#include <iostream>
 
 Npc::Npc()
 {
@@ -7,6 +8,12 @@ Npc::Npc()
 Npc::~Npc()
 {
     //delete text_;
+}
+
+void Npc::interact(engine::Sprite* sprite) {
+    if (Player* player = dynamic_cast<Player*>(sprite)) {
+        std::cout << "interacting with player" << endl;
+    }
 }
 
 void Npc::Json(const std::string& fn)

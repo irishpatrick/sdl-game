@@ -7,6 +7,7 @@
 #include <engine.h>
 
 #include "stats.hpp"
+#include "player.hpp"
 
 using namespace std;
 
@@ -17,6 +18,7 @@ public:
     ~Npc();
 
     void Json(const string&);
+    void interact(engine::Sprite* s);
 
 private:
     vector<string> dialogue_;

@@ -74,6 +74,12 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
                 }
                 else if (type == "npc") {
                     temp = new Npc();
+                    Npc* ref = (Npc*)temp;
+                    if (e.find("dialogue") != e.end()) {
+                        for (auto& line : e["dialogue"]) {
+                            ref->pushLine(line.get<std::string>());
+                        }
+                    }
                 }
                 else
                 {

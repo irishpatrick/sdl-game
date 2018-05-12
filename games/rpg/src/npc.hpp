@@ -8,8 +8,7 @@
 
 #include "stats.hpp"
 #include "player.hpp"
-
-using namespace std;
+#include "dialogue.hpp"
 
 class Npc: public engine::Sprite
 {
@@ -17,11 +16,13 @@ public:
     Npc();
     ~Npc();
 
-    void Json(const string&);
-    void interact(engine::Sprite* s);
+    inline void pushLine(const std::string& line) {
+        lines.push_back(line);
+    }
+    void loadJson(const std::string&);
+    void interact(engine::Sprite* s, Dialogue*);
 
 private:
-    vector<string> dialogue_;
-    //engine::Text* text_;
+    std::vector<std::string> lines;
     Stats stats;
 };

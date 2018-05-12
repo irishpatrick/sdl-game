@@ -1,26 +1,26 @@
 #include "npc.hpp"
 #include <iostream>
 
-Npc::Npc()
-{
-    //text_ = new engine::Text();
-}
-Npc::~Npc()
-{
-    //delete text_;
+Npc::Npc() {
+
 }
 
-void Npc::interact(engine::Sprite* sprite) {
+Npc::~Npc() {
+
+}
+
+void Npc::interact(engine::Sprite* sprite, Dialogue* d) {
+    std::cout << "lines.size() " << lines.size() << std::endl;
     if (Player* player = dynamic_cast<Player*>(sprite)) {
-        std::cout << "interacting with player" << endl;
+        std::cout << "interacting with player" << std::endl;
+        d->push(lines[0]);
     }
 }
 
-void Npc::Json(const std::string& fn)
-{
+void Npc::loadJson(const std::string& fn) {
     std::ifstream in(fn);
-    if (!in)
-    {
+    if (!in) {
+        cout << "Npc: cannot load json " << fn << std::endl;
         return;
     }
     nlohmann::json o;
@@ -29,11 +29,9 @@ void Npc::Json(const std::string& fn)
     x = o["x"];
     y = o["y"];
 
-    if (engine::Util::JsonExists(o, "dialogue"))
-    {
-        for (string line : o["dialogue"])
-        {
-            dialogue_.push_back(line);
+    if (o.find("dialogue") != o.end()) {
+        for (std::string line : o["dialogue"]) {
+            lines.push_back(line);
         }
     }
 }

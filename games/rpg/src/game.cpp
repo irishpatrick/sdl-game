@@ -143,7 +143,7 @@ void Game::update(float delta, const uint8_t* keys) {
             }
             else if (Npc* npc = dynamic_cast<Npc*>(collider)) {
                 std::cout << "interacting with " << npc->getName() << std::endl;
-                npc->interact(&hero);
+                npc->interact(&hero, &dlg);
             }
         }
     }

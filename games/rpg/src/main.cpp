@@ -22,7 +22,12 @@ engine::State* current;
 
 void init()
 {
-    Config::load("../../games/rpg/assets/config.json");
+    // a more elegant solution is needed
+    #ifdef _WIN32
+        Config::load("../../games/rpg/assets/config-win.json");
+    #elif __linux__
+        Config::load("../games/rpg/assets/config.json");
+    #endif
 
     ctx.init(Config::getScreenWidth(), Config::getScreenHeight(), "hello world!", false);
 

@@ -1,20 +1,9 @@
 cmake_minimum_required(VERSION 3.0)
 
-include("cmake/HunterGate.cmake")
-
-option (USE_HUNTER "use hunter" ON)
-option(HUNTER_BUILD_SHARED_LIBS "build shared libs" ON)
-
-if (USE_HUNTER)
-    HunterGate(
-        URL "https://github.com/ruslo/hunter/archive/v0.20.66.tar.gz"
-        SHA1 "10ffae63cf7b07193d6d7b459c1d0cfa242fad5b"
-    )
-endif (USE_HUNTER)
-
-project(sdl-game)
-
+option (USE_HUNTER "use hunter" OFF)
+option (HUNTER_BUILD_SHARED_LIBS "hunter build shared libs" ON)
 option (USE_PKGCONFIG "use pkg-config" OFF)
+option (USE_MSVC "use msvc" OFF)
 option (BUILD_MISSILES "build missiles game" OFF)
 option (BUILD_RPG "build rpg game" OFF)
 option (BUILD_RUNNER "build runner game" OFF)
@@ -27,26 +16,38 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
 
+set(COMPILE_OPTIONS "")
+set(LINK_OPTIONS "")
+
+if (USE_HUNTER)
+	include("cmake/HunterGate.cmake")
+    HunterGate(
+        URL "https://github.com/ruslo/hunter/archive/v0.20.66.tar.gz"
+        SHA1 "10ffae63cf7b07193d6d7b459c1d0cfa242fad5b"
+    )
+endif (USE_HUNTER)
+
+project(sdl-game)
 
 if (MSVC)
-    set(COMPILE_OPTIONS /std:c++17 /Wall /D_REENTRANT /O2)
+    message(STATUS "MSVC")
+    set(COMPILE_OPTIONS /std:c++14 /W3 /D_REENTRANT /O2 /MP)
     if (DEBUG_SYMBOLS)
-        set(COMPILE_OPTIONS ${COMPILE_OPTIONS} /DEBUG)
+        set(COMPILE_OPTIONS ${COMPILE_OPTIONS} /DEBUG /Od)
     endif (DEBUG_SYMBOLS)
 elseif (UNIX)
-    set(COMPILE_OPTIONS -std=c++17 -D_REENTRANT -O2 -Wall -pthread)
+	message(STATUS "UNIX")
+    set(COMPILE_OPTIONS -std=c++14 -D_REENTRANT -O2 -Wall -pthread)
     if (DEBUG_SYMBOLS)
         set(COMPILE_OPTIONS ${COMPILE_OPTIONS} -g)
     endif (DEBUG_SYMBOLS)
 else (MSVC)
-    message(STATUS "first os check: undefined")
-    set(COMPILE_OPTIONS -std=c++17 -D_REENTRANT -O2 -Wall)
+    message(STATUS "UNKNOWN")
+    set(COMPILE_OPTIONS -std=c++14 -D_REENTRANT -O2 -Wall)
     if (DEBUG_SYMBOLS)
         set(COMPILE_OPTIONS ${COMPILE_OPTIONS} -g)
     endif (DEBUG_SYMBOLS)
 endif (MSVC)
-
-set(LINK_OPTIONS "")
 
 if (USE_HUNTER)
     message(STATUS "using hunter")
@@ -112,6 +113,12 @@ if (USE_PKGCONFIG)
     endif (UNIX)
 
 endif (USE_PKGCONFIG)
+
+if (USE_MSVC)
+	set(INCLUDE_DIR "" CACHE PATH "")
+    set(LIBRARY_DIR "" CACHE PATH "")
+    set(LIBRARIES SDL2.lib SDL2main.lib SDL2_image.lib libboost_system-vc140-mt-gd-1_62.lib libboost_filesystem-vc140-mt-gd-1_62.lib)
+endif (USE_MSVC)
 
 add_subdirectory(libs/engine)
 set(MY_LIBS engine)

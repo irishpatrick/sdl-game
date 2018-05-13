@@ -18,6 +18,8 @@ json Player::toJson() {
 
         o["inventory"][i++] = e;
     }
+
+	return o;
 }
 
 engine::LocationStack* Player::getDoorStack()

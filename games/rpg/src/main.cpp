@@ -22,7 +22,7 @@ engine::State* current;
 
 void init()
 {
-    Config::load("../games/rpg/assets/config.json");
+    Config::load("../../games/rpg/assets/config.json");
 
     ctx.init(Config::getScreenWidth(), Config::getScreenHeight(), "hello world!", false);
 
@@ -128,7 +128,7 @@ int main(int argc, char** argv)
     string textures = Config::getAssetPath() + "textures/";
     SDL_Renderer* r = ctx.getRenderer();
     engine::Assets::loadTexturesFromJson("textures-all.json", Config::getAssetPath(), r);
-    engine::Assets::getFutures();
+    engine::Assets::useAll();
 
     current = new Game(&ctx);
     current->init();

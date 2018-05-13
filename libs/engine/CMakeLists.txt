@@ -5,10 +5,14 @@ project(engine C CXX)
 file(GLOB sources src/*.cc)
 
 link_directories(${PROJECT_NAME} PUBLIC ${LIBRARY_DIR})
-add_library(${PROJECT_NAME} SHARED ${sources})
+if (MSVC)
+	add_library(${PROJECT_NAME} STATIC ${sources})
+else (MSVC)
+	add_library(${PROJECT_NAME} SHARED ${sources})
+endif (MSVC)
 
 target_include_directories(${PROJECT_NAME} PUBLIC include ${INCLUDE_DIR})
-target_compile_options(${PROJECT_NAME} PUBLIC ${COMPILE_OPTIONS} -std=c++14 -Wall -g -O2 -fPIC -D_REENTRANT)
+target_compile_options(${PROJECT_NAME} PUBLIC ${COMPILE_OPTIONS})
 target_link_libraries(${PROJECT_NAME} PUBLIC ${LIBRARIES})
 
 set(${PROJECT_NAME}_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/include CACHE INTERNAL "${PROJECT_NAME}: Include Directories" FORCE)

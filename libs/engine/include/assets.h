@@ -1,10 +1,10 @@
 #ifndef ASSETS_H
 #define ASSETS_H
 
-#define BOOST_THREAD_PROVIDES_FUTURE
-#include <boost/thread.hpp>
-#include <boost/thread/future.hpp>
-#include <functional>
+//#define BOOST_THREAD_PROVIDES_FUTURE
+//#include <boost/thread.hpp>
+//#include <boost/thread/future.hpp>
+//#include <functional>
 #include <map>
 #include <string>
 #include <vector>
@@ -23,12 +23,12 @@ public:
     static void loadTexturesFromJson(const std::string&, const std::string&, SDL_Renderer*);
     static Texture* getTexture(const std::string&);
     static void destroy();
-    static void getFutures();
+    //static void getFutures();
     static void useAll();
 
 private:
     static std::map<std::string, Texture*> texMap;
-    static std::vector<boost::future<void>> futures;
+    //static std::vector<boost::future<void>> futures;
 };
 
 }

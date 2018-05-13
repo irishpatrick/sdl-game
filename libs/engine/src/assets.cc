@@ -9,7 +9,7 @@
 namespace engine {
 
 std::map<std::string, Texture*> Assets::texMap = std::map<std::string, Texture*>();
-std::vector<boost::future<void>> Assets::futures = std::vector<boost::future<void>>();
+//std::vector<boost::future<void>> Assets::futures = std::vector<boost::future<void>>();
 
 std::vector<std::string> split(const std::string& s, char delim)
 {
@@ -37,9 +37,18 @@ void parallel_load(
     map[key]->set(s);
 }
 
+void single_load(Texture* t, const std::string& fn) {
+	SDL_Surface* s = IMG_Load(fn.c_str());
+	if (s == nullptr) {
+		std::cout << "surface " << fn << " failed to load" << std::endl;
+		exit(1);
+	}
+	t->set(s);
+}
+
 void Assets::loadTexture(const std::string& fn, SDL_Renderer* r)
 {
-    std::vector<std::string> vec = split(fn, '/');
+    std::vector<std::string> vec = split(fn, boost::filesystem::path::preferred_separator);
     std::string key = vec[vec.size() - 1];
 
     /*if (texMap.find(key) != texMap.end()) {
@@ -50,18 +59,23 @@ void Assets::loadTexture(const std::string& fn, SDL_Renderer* r)
     }*/
 
     texMap[key] = new Texture(r);
+	parallel_load(texMap, fn, key);
+	//single_load(texMap[key], fn);
     //futures.push_back(std::async(std::launch::async, parallel_load, std::ref(texMap), fn, key));
-    futures.push_back(boost::async(boost::launch::async, boost::bind(parallel_load, std::ref(texMap), fn, key)));
+    //futures.push_back(boost::async(boost::launch::async, boost::bind(std::ref(parallel_load), std::ref(texMap), fn, key)));
 
 }
 
 void Assets::loadTexturesFromVector(const std::string& dir, std::vector<std::string> files, SDL_Renderer* r) {
-    for (auto& e : files) {
+	std::cout << "loading textures from vector..." << std::endl;
+	for (auto& e : files) {
         loadTexture(dir + e, r);
     }
+	std::cout << "done!" << std::endl;
 }
 
 void Assets::loadTexturesFromJson(const std::string& fn, const std::string& rootstr, SDL_Renderer* r) {
+	std::cout << "loading textures from json..." << std::endl;
     std::ifstream in(rootstr + fn);
     nlohmann::json o;
     in >> o;
@@ -75,6 +89,7 @@ void Assets::loadTexturesFromJson(const std::string& fn, const std::string& root
         boost::filesystem::path full = root / dir / file;
         loadTexture(full.string(), r);
     }
+	std::cout << "done!" << std::endl;
 }
 
 Texture* Assets::getTexture(const std::string& key)
@@ -87,7 +102,13 @@ Texture* Assets::getTexture(const std::string& key)
     return texMap[key];
 }
 
-void Assets::getFutures()
+void Assets::useAll() {
+	for (auto& e : texMap) {
+		e.second->use();
+	}
+}
+
+/*void Assets::getFutures()
 {
     for (auto& e : futures)
     {
@@ -97,7 +118,7 @@ void Assets::getFutures()
     {
         e.second->use();
     }
-}
+}*/
 
 void Assets::destroy()
 {

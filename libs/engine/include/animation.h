@@ -1,5 +1,4 @@
-#ifndef ANIMATION_H
-#define ANIMATION_H
+#pragma once
 
 #include <vector>
 #include <map>
@@ -19,8 +18,7 @@ namespace engine {
 class Texture;
 class Timer;
 
-typedef struct FrameSet_
-{
+typedef struct {
     char* name;
     uint32_t fps;
     uint32_t count;
@@ -59,5 +57,3 @@ private:
 };
 
 }
-
-#endif /* ANIMATION_H */

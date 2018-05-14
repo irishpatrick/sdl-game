@@ -6,8 +6,12 @@
 // method to pop front of vector
 template<typename T>
 void pop_front(std::vector<T>& v) {
-    assert(!v.empty());
-    v.erase(v.begin());
+	if (!v.empty()) {
+		v.erase(v.begin());
+	}
+	else {
+		std::cout << "stack empty" << std::endl;
+	}
 }
 
 Dialogue::Dialogue() {
@@ -24,7 +28,7 @@ Dialogue::~Dialogue() {
 
 void Dialogue::initFont(engine::Texture* t) {
     font.setTexture(t);
-    font.buildMap(202, 201);
+    font.buildMap();
     font.setScale(0.055f);
 }
 

@@ -3,6 +3,7 @@
 #include "util.h"
 #include "timer.h"
 #include "assets.h"
+#include <iostream>
 
 namespace engine {
 
@@ -21,11 +22,14 @@ Animation::Animation()
 
 Animation::~Animation()
 {
-    delete timer_;
+	std::cout << "destroying animation object..." << std::endl;
+	std::cout << "animations.size(): " << animations_.size() << std::endl;
+	delete timer_;
     for (auto& e: animations_)
     {
         free(e->frames);
         free(e->name);
+		// something is going on here
         free(e);
     }
 

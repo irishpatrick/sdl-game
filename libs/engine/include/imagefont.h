@@ -19,7 +19,7 @@ public:
 
     void setScale(float);
     void setTexture(Texture*);
-    void buildMap(uint32_t, uint32_t);
+    void buildMap();
     void renderChar(const string&, float, float, SDL_Renderer*);
     void renderString(const string&, float, float, SDL_Renderer*);
 

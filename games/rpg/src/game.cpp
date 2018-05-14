@@ -37,7 +37,7 @@ void Game::init() {
     stage.add(&animtest);
 
     dlg.setWidth(300, 80);
-    dlg.push("this is a very very long string that will hopefully get divided up");
+	dlg.push("this is a very very long string that will hopefully get divided up");
     dlg.initFont(engine::Assets::getTexture("out.png"));
 
     tests();
@@ -51,13 +51,6 @@ void Game::tests() {
     Stats s;
     s.load(Config::getAssetPath() + "stats.json");
     s.write(Config::getAssetPath() + "stats.json");
-
-    cout << "starting font test" << endl;
-
-    font.setTexture(engine::Assets::getTexture("out.png"));
-    cout << "building map" << endl;
-    font.buildMap(202, 201);
-    font.setScale(0.075f);
 
     printf("done!\n");
 }

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <sstream>
+#include <cmath>
 
 namespace engine {
 
@@ -11,15 +12,11 @@ ImageFont::ImageFont() {
     h = 0;
     scale = 1.0f;
     tex = nullptr;
-    crects = nullptr;
+    crects = (SDL_Rect*)malloc(63 * sizeof(SDL_Rect));
 }
 
 ImageFont::~ImageFont() {
-    if (crects != nullptr) {
-        free(crects);
-    } else {
-        std::cout << "crects var was nullptr" << std::endl;
-    }
+	free(crects);
 }
 
 void ImageFont::setScale(float s) {
@@ -28,13 +25,13 @@ void ImageFont::setScale(float s) {
 
 void ImageFont::setTexture(Texture* t) {
     tex = t;
+	w = ceil((double)tex->getW() / 63.0) + 3;
+	h = tex->getH();
+	std::cout << "setting dimensions to " << w << ", " << h << std::endl;
 }
 
-void ImageFont::buildMap(uint32_t a, uint32_t b) {
-    w = a;
-    h = b;
+void ImageFont::buildMap() {
     std::cout << "building map...";
-    crects = (SDL_Rect*)malloc(63 * sizeof(SDL_Rect));
     for (int i=0; i<63; i++) {
         crects[i].x = i * w;
         crects[i].y = 0;

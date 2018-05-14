@@ -37,7 +37,7 @@ void Game::init() {
     stage.add(&animtest);
 
     dlg.setWidth(300, 80);
-	dlg.push("this is a very very long string that will hopefully get divided up");
+	//dlg.push("this is a very very long string that will hopefully get divided up");
     dlg.initFont(engine::Assets::getTexture("out.png"));
 
     tests();

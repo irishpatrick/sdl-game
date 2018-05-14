@@ -15,7 +15,7 @@ void pop_front(std::vector<T>& v) {
 }
 
 Dialogue::Dialogue() {
-    visible = true;
+    visible = false;
     width = 0;
     height = 0;
     x = 0.0f;
@@ -87,6 +87,9 @@ void Dialogue::render(engine::Context* ctx) {
     SDL_RenderFillRect(ctx->getRenderer(), fg);
 
     // text
+	if (!visible) {
+		return;
+	}
     SDL_SetRenderDrawColor(ctx->getRenderer(), 0x00, 0x00, 0x00, 0xff);
     font.renderString(stack[0], cx + 10, cy + 10, ctx->getRenderer());
 }

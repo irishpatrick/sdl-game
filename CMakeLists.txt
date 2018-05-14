@@ -22,8 +22,8 @@ set(LINK_OPTIONS "")
 if (USE_HUNTER)
 	include("cmake/HunterGate.cmake")
     HunterGate(
-        URL "https://github.com/ruslo/hunter/archive/v0.20.66.tar.gz"
-        SHA1 "10ffae63cf7b07193d6d7b459c1d0cfa242fad5b"
+        URL "https://github.com/ruslo/hunter/archive/v0.20.74.tar.gz"
+        SHA1 "88e3c806f0ff640c0e3cbc32b340ae2c370b31f5"
     )
 endif (USE_HUNTER)
 

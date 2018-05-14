@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0)
 
 project(engine C CXX)
 
-file(GLOB sources src/*.cc)
+file(GLOB sources src/*.cpp)
 
 link_directories(${PROJECT_NAME} PUBLIC ${LIBRARY_DIR})
 if (MSVC)

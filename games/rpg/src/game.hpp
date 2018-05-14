@@ -8,7 +8,7 @@
 #include "dialogue.hpp"
 #include "npc.hpp"
 
-#include <engine.h>
+#include <engine.hpp>
 #include <cstdlib>
 #include <ctime>
 #include <string>
@@ -36,7 +36,6 @@ private:
     engine::Group stage;
     engine::Camera camera;
     GroupManager groups_;
-    engine::Animation test;
     Door doortest;
     engine::OneShot op;
     engine::OneShot ol;

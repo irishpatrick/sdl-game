@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 #include <nlohmann/json.hpp>
-#include <engine.h>
+#include <engine.hpp>
 #include "stats.hpp"
 
 using namespace std;

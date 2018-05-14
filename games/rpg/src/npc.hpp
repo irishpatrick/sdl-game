@@ -4,7 +4,7 @@
 #include <string>
 #include <fstream>
 #include <nlohmann/json.hpp>
-#include <engine.h>
+#include <engine.hpp>
 
 #include "stats.hpp"
 #include "player.hpp"

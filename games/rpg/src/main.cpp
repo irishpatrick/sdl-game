@@ -5,7 +5,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-#include <engine.h>
+#include <engine.hpp>
 
 #include "config.hpp"
 #include "game.hpp"

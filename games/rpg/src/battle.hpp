@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 #include <cstdint>
-#include <engine.h>
+#include <engine.hpp>
 
 class Battle: public engine::State {
 public:

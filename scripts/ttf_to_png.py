@@ -19,7 +19,10 @@ def main(argv):
     chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
 
     for c in chars:
-        os.system("convert -background none -fill black -font " + font + " -pointsize " + pointsize + " label:\"" + c + "\" " + os.path.join(png_dir, c + ".png"))
+        os.system(
+            "convert -background none -fill black -font " + font +
+            " -pointsize " + pointsize +
+            " label:\"" + c + "\" " + os.path.join(png_dir, c + ".png"))
     try:
         tmp = Image.open(os.path.join(png_dir, "a.png"))
     except IOError:

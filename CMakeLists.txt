@@ -115,7 +115,7 @@ if (USE_PKGCONFIG)
 endif (USE_PKGCONFIG)
 
 if (USE_MSVC)
-	set(INCLUDE_DIR "" CACHE PATH "")
+    set(INCLUDE_DIR "" CACHE PATH "")
     set(LIBRARY_DIR "" CACHE PATH "")
     set(LIBRARIES SDL2.lib SDL2main.lib SDL2_image.lib libboost_system-vc140-mt-gd-1_62.lib libboost_filesystem-vc140-mt-gd-1_62.lib)
 endif (USE_MSVC)

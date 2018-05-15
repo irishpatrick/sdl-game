@@ -18,12 +18,8 @@
         {
             "texture": "door.png",
             "name": "door",
-            "exit": {
-                "y": 340,
-                "x": 300
-            },
             "y": 300,
-            "dest": "room",
+            "dest": "room1",
             "type": "door",
             "x": 300
         }

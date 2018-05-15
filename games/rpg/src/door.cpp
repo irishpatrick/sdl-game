@@ -43,7 +43,7 @@ void Door::Enter()
     if (dest_ != "")
     {
         manager_->setactive(dest_);
-        manager_->setEntry(getTag());
+        //manager_->setEntry(getTag());
     }
 }
 

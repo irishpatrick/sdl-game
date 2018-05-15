@@ -1,0 +1,30 @@
+{
+    "entry": {
+        "x": 100,
+        "y": 100
+    },
+    "sprites": [
+        {
+            "name": "background",
+            "x": 0,
+            "y": 0,
+            "texture": "room-bg.png"
+        },
+        {
+            "name": "monster",
+            "type": "npc",
+            "dialogue": ["hello from room 2"],
+            "x": 200,
+            "y": 20,
+            "texture": "monster.png"
+        },
+        {
+            "name": "door",
+            "type": "door",
+            "dest": "room1",
+            "x": 80,
+            "y": 0,
+            "texture": "door.png"
+        }
+    ]
+}

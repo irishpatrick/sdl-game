@@ -33,6 +33,9 @@ public:
     Sprite* get_sprite_by_name(const std::string&);
     Sprite* getSpriteAtLocation(float, float);
 
+    template <class T>
+    void getSpritesByType(std::vector<T*>&);
+
 	void remove(Sprite*);
 
     void setCamera(Camera*);
@@ -52,3 +55,5 @@ private:
 };
 
 }
+
+#include "group.tpp"

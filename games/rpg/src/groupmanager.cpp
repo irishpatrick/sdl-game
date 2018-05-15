@@ -5,6 +5,7 @@
 GroupManager::GroupManager()
 {
 	active_ = nullptr;
+    active_id = "";
 }
 
 GroupManager::~GroupManager()
@@ -18,14 +19,14 @@ GroupManager::~GroupManager()
 	}
 }
 
-void GroupManager::addgroup(const string& id, engine::Group* g)
+void GroupManager::addgroup(const std::string& id, engine::Group* g)
 {
     groupmap_.insert(pair<string, engine::Group*>(id, g));
 }
 
 void GroupManager::loadgroup(const std::string& id, const std::string& fn)
 {
-    ifstream i(fn);
+    std::ifstream i(fn);
     nlohmann::json o;
     i >> o;
 
@@ -44,27 +45,24 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
             // assume sprite object has all required fields
             float x = (float)e["x"];
             float y = (float)e["y"];
-            string name = e["name"];
-            string texture = e["texture"];
+            std::string name = e["name"];
+            std::string texture = e["texture"];
 
             // test initialize
             engine::Sprite* temp = nullptr;
             if (e.find("type") != e.end())
             {
-                string type = e["type"];
+                std::string type = e["type"];
                 if (type == "door")
                 {
                     temp = new Door();
                     Door* ref = (Door*)temp;
+                    printf("setting door exits\n");
+                    ref->SetExit(e["x"], e["y"].get<int>()+40);
                     if (e.find("dest") != e.end())
                     {
                         ref->SetDest(e["dest"]);
                         ref->SetManager(this);
-                    }
-                    if (e.find("exit") != e.end())
-                    {
-                        printf("setting door exits\n");
-                        ref->SetExit(e["exit"]["x"], e["exit"]["y"]);
                     }
                     if (e.find("tag") != e.end())
                     {
@@ -124,7 +122,8 @@ void GroupManager::setEntry(const std::string& tag)
 }
 
 void GroupManager::setactive(const std::string& id) {
-    map<string, engine::Group*>::const_iterator it = groupmap_.find(id);
+    active_id = id;
+    std::map<std::string, engine::Group*>::const_iterator it = groupmap_.find(id);
     if (it != groupmap_.end()) {
     	if (active_ != nullptr) {
     		active_->remove(focus_);

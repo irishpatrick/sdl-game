@@ -25,8 +25,10 @@ void Game::init() {
 
     groups_.setcamera(&camera);
     groups_.setfocus(&hero);
-    groups_.loadgroup("room", maps + "testroom.json");
+    groups_.loadgroup("room1", maps + "room1.json");
     groups_.loadgroup("town1", maps + "town1.json");
+    std::cout << "loading room2.json" << std::endl;
+    groups_.loadgroup("room2", maps + "room2.json");
     //groups_.addgroup("stage", &stage);
     groups_.setactive("town1");
     printf("done!\n");
@@ -116,20 +118,48 @@ void Game::update(float delta, const uint8_t* keys) {
         }
         else if (hero_collisions.size() > 0) {
             engine::Sprite* collider = hero_collisions[0];
+
             if (Door* d = dynamic_cast<Door*>(collider)) {
+                engine::Group* g = groups_.getGroup(d->getDest());
+                std::vector<Door*> doors;
+                g->getSpritesByType<Door>(doors);
+                for (auto& e : doors) {
+                    if (e->getDest() == "town1") {
+                        std::cout << "found a door that leads to town1" << std::endl;
+                        std::cout << e->getExit().x << "," << e->getExit().y << std::endl;
+                        hero.x = e->getExit().x;
+                        hero.y = e->getExit().y;
+                        //hero.getDoorStack()->push(e->getExit());
+                        break;
+                    }
+                }
                 // success
                 //printf("entering door!\n");
                 //hero.pos(d->GetExit()->x, d->GetExit()->y);
                 //d->SetExit(hero.x, hero.y);
-                if (!hero.getDoorStack()->isEmpty()) {
-                    //printf("stack not empty!\n");
+                /*if (!hero.getDoorStack()->isEmpty()) {
+                    //printf("stack not emp
+                        std::cout << "found a door that leadsty!\n");
                     engine::Point pos = hero.getDoorStack()->pop();
-                    hero.x = pos.x;
-                    hero.y = pos.y;
+                    //hero.x = pos.x;
+                    //hero.y = pos.y;
                 }
                 else {
-                    hero.getDoorStack()->push(*d->GetExit());
-                }
+                    engine::Group* g = groups_.getGroup(d->getDest());
+                    std::vector<Door*> doors;
+                    g->getSpritesByType<Door>(doors);
+                    for (auto& e : doors) {
+                        if (e->getDest() == "town1") {
+                            std::cout << "found a door that leads to town1" << std::endl;
+                            std::cout << e->getExit().x << "," << e->getExit().y << std::endl;
+                            hero.x = e->getExit().x;
+                            hero.y = e->getExit().y;
+                            //hero.getDoorStack()->push(e->getExit());
+                            break;
+                        }
+                    }
+                    //hero.getDoorStack()->push(*d->GetExit());
+                }*/
                 //hero.ResetCollision();
 
                 d->Enter();

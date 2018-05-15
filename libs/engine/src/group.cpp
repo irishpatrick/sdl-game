@@ -25,6 +25,15 @@ void Group::init(SDL_Renderer* r)
 
 }
 
+/*template <class T>
+void Group::getSpritesByType(std::vector<T*>& vec) {
+    for (auto& e : renderList) {
+        if (T* type = dynamic_cast<T*>(e)) {
+            vec.push_back(type);
+        }
+    }
+}*/
+
 void Group::init_from_json(const std::string& fn)
 {
     std::ifstream in(fn);

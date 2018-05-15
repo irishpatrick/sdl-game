@@ -25,6 +25,14 @@ public:
     void setTag(const string&);
     string getTag();
 
+    inline string getDest() {
+        return dest_;
+    }
+
+    inline engine::Point& getExit() {
+        return exit_;
+    }
+
 private:
     GroupManager* manager_;
     string dest_;

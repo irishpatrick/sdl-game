@@ -1,4 +1,5 @@
 #include "locationstack.hpp"
+#include <iostream>
 
 namespace engine {
 
@@ -12,6 +13,16 @@ LocationStack::~LocationStack()
 
 }
 
+template<typename T>
+void pop_front(std::vector<T>& v) {
+	if (!v.empty()) {
+		v.erase(v.begin());
+	}
+	else {
+		std::cout << "stack empty" << std::endl;
+	}
+}
+
 void LocationStack::push(Point p)
 {
     stack.push_back(p);
@@ -19,8 +30,8 @@ void LocationStack::push(Point p)
 
 Point& LocationStack::pop()
 {
-    Point& p = stack.back();
-    stack.pop_back();
+    Point& p = stack[0];
+    pop_front(stack);
     return p;
 }
 

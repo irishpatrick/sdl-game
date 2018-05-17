@@ -48,13 +48,13 @@ void Game::init() {
 }
 
 void Game::tests() {
-    printf("starting tests...\n");
+    /*printf("starting tests...\n");
 
     Stats s;
     s.load(Config::getAssetPath() + "stats.json");
     s.write(Config::getAssetPath() + "stats.json");
 
-    printf("done!\n");
+    printf("done!\n");*/
 }
 
 void Game::update(float delta, const uint8_t* keys) {

@@ -24,7 +24,7 @@ void init()
 {
     // a more elegant solution is needed
     #ifdef _WIN32
-        Config::load("../../games/rpg/assets/config-win.json");
+        Config::load("E:/GitHub/sdl-game/games/rpg/assets/config-win.json");
     #elif __linux__
         Config::load("../games/rpg/assets/config.json");
     #endif

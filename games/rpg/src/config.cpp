@@ -31,7 +31,7 @@ void Config::load(const string& fn)
     if (!i)
     {
     	printf("failed to open %s\n", fn.c_str());
-    	exit(1);
+    	exit(404);
     }
     json o;
     i >> o;

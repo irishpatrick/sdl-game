@@ -5,7 +5,7 @@ Transition::Transition() {
     sustain = 0.0f;
     release = 0.0f;
     running = false;
-    Type = NONE;
+    type = NONE;
 }
 
 Transition::~Transition() {

@@ -120,47 +120,18 @@ void Game::update(float delta, const uint8_t* keys) {
             engine::Sprite* collider = hero_collisions[0];
 
             if (Door* d = dynamic_cast<Door*>(collider)) {
-                engine::Group* g = groups_.getGroup(d->getDest());
+                auto g = groups_.getGroup(d->getDest());
                 std::vector<Door*> doors;
                 g->getSpritesByType<Door>(doors);
                 for (auto& e : doors) {
-                    if (e->getDest() == "town1") {
-                        std::cout << "found a door that leads to town1" << std::endl;
+                    if (e->getDest() == groups_.getActiveId()) {
+                        std::cout << "found a door that leads to " << groups_.getActiveId() << std::endl;
                         std::cout << e->getExit().x << "," << e->getExit().y << std::endl;
                         hero.x = e->getExit().x;
                         hero.y = e->getExit().y;
-                        //hero.getDoorStack()->push(e->getExit());
                         break;
                     }
                 }
-                // success
-                //printf("entering door!\n");
-                //hero.pos(d->GetExit()->x, d->GetExit()->y);
-                //d->SetExit(hero.x, hero.y);
-                /*if (!hero.getDoorStack()->isEmpty()) {
-                    //printf("stack not emp
-                        std::cout << "found a door that leadsty!\n");
-                    engine::Point pos = hero.getDoorStack()->pop();
-                    //hero.x = pos.x;
-                    //hero.y = pos.y;
-                }
-                else {
-                    engine::Group* g = groups_.getGroup(d->getDest());
-                    std::vector<Door*> doors;
-                    g->getSpritesByType<Door>(doors);
-                    for (auto& e : doors) {
-                        if (e->getDest() == "town1") {
-                            std::cout << "found a door that leads to town1" << std::endl;
-                            std::cout << e->getExit().x << "," << e->getExit().y << std::endl;
-                            hero.x = e->getExit().x;
-                            hero.y = e->getExit().y;
-                            //hero.getDoorStack()->push(e->getExit());
-                            break;
-                        }
-                    }
-                    //hero.getDoorStack()->push(*d->GetExit());
-                }*/
-                //hero.ResetCollision();
 
                 d->Enter();
             }

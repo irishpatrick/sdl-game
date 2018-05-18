@@ -19,3 +19,4 @@
 #include "oneshot.hpp"
 #include "context.hpp"
 #include "mouse.hpp"
+#include "transition.hpp"

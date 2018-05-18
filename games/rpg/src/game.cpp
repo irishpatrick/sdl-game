@@ -125,8 +125,6 @@ void Game::update(float delta, const uint8_t* keys) {
                 g->getSpritesByType<Door>(doors);
                 for (auto& e : doors) {
                     if (e->getDest() == groups_.getActiveId()) {
-                        std::cout << "found a door that leads to " << groups_.getActiveId() << std::endl;
-                        std::cout << e->getExit().x << "," << e->getExit().y << std::endl;
                         hero.x = e->getExit().x;
                         hero.y = e->getExit().y;
                         break;

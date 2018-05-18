@@ -115,7 +115,7 @@ void render()
 void cleanup()
 {
     current->destroy();
-    SDL_FreeSurface(icon);
+    //SDL_FreeSurface(icon);
     SDL_DestroyRenderer(ctx.getRenderer());
     SDL_DestroyWindow(ctx.getWindow());
     SDL_Quit();
@@ -130,13 +130,30 @@ int main(int argc, char** argv)
 
     init();
 
+
     string textures = Config::getAssetPath() + "textures/";
     SDL_Renderer* r = ctx.getRenderer();
+
+    SDL_RenderClear(r);
+
+    SDL_Rect c;
+    c.x = 10;
+    c.y = 10;
+    c.w = 20;
+    c.h = 20;
+    SDL_SetRenderDrawColor(r, 0, 200, 100, 255);
+    SDL_RenderDrawRect(r, &c);
+    SDL_RenderPresent(r);
+
+    //SDL_Delay(200);
+
     engine::Assets::loadTexturesFromJson("textures-all.json", Config::getAssetPath(), r);
     engine::Assets::useAll();
 
     current = new Game(&ctx);
     current->init();
+
+    SDL_SetRenderDrawColor(r, 0, 0, 0, 255);
 
     render();
     cleanup();

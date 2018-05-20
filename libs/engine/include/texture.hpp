@@ -15,6 +15,7 @@ public:
     ~Texture();
 
     void set(SDL_Surface*);
+    void copy(Texture*);
     void create(SDL_Renderer*);
     uint32_t getW();
     uint32_t getH();

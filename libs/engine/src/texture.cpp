@@ -41,6 +41,13 @@ void Texture::set(SDL_Surface* s)
     ready = true;
 }
 
+void Texture::copy(Texture* t) {
+    w = t->getW();
+    h = t->getH();
+    tex = t->use();
+    ready = true;
+}
+
 void Texture::create(SDL_Renderer* r)
 {
     tex = SDL_CreateTextureFromSurface(r, surf);

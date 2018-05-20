@@ -10,6 +10,8 @@ namespace engine {
 
 std::map<std::string, Texture*> Assets::texMap = std::map<std::string, Texture*>();
 //std::vector<boost::future<void>> Assets::futures = std::vector<boost::future<void>>();
+Texture* Assets::missing = nullptr;
+Context* Assets::ctx = nullptr;
 
 std::vector<std::string> split(const std::string& s, char delim)
 {
@@ -32,18 +34,57 @@ void parallel_load(
     if (s == nullptr)
     {
         printf("surface failed to load!\n");
-        exit(1);
+        //exit(1);
+    } else {
+        map[key]->set(s);
     }
-    map[key]->set(s);
 }
 
-void single_load(Texture* t, const std::string& fn) {
+void Assets::single_load(Texture* t, const std::string& fn) {
 	SDL_Surface* s = IMG_Load(fn.c_str());
 	if (s == nullptr) {
 		std::cout << "surface " << fn << " failed to load" << std::endl;
-		exit(1);
-	}
-	t->set(s);
+		//exit(1);
+    } else {
+        t->set(s);
+    }
+}
+
+void Assets::getMissingTexture() {
+    if (missing != nullptr) {
+        return;
+    }
+    uint32_t rmask, gmask, bmask, amask, magenta;
+    #if SDL_BYTEORDER == SDL_BIG_ENDIAN
+        rmask = 0xff000000;
+        gmask = 0x00ff0000;
+        bmask = 0x0000ff00;
+        amask = 0x000000ff;
+        magenta = 0xff00ffff;
+    #else
+        rmask = 0x000000ff;
+        gmask = 0x0000ff00;
+        bmask = 0x00ff0000;
+        amask = 0xff000000;
+        magenta = 0xffff00ff;
+    #endif
+    Texture* t = new Texture(ctx->getRenderer());
+    SDL_Surface* s = SDL_CreateRGBSurface(0, 32, 32, 32, rmask, gmask, bmask, amask);
+
+    if (s == nullptr) {
+        std::cout << "getMissingTexture error" << std::endl;
+        exit(1);
+    }
+
+    for (uint32_t i=0; i<32*32; i++) {
+        uint32_t* target = (uint32_t*)s->pixels + i;
+        *target = magenta;
+    }
+
+    t->set(s);
+    t->use();
+
+    missing = t;
 }
 
 void Assets::loadTexture(const std::string& fn, SDL_Renderer* r)
@@ -97,7 +138,8 @@ Texture* Assets::getTexture(const std::string& key)
     if (texMap.find(key) == texMap.end())
     {
         printf("key %s not found!\n", key.c_str());
-        return NULL;
+        getMissingTexture();
+        return missing;
     }
     return texMap[key];
 }

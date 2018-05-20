@@ -29,11 +29,24 @@ void init() {
     #endif
 
     ctx.init(Config::getScreenWidth(), Config::getScreenHeight(), "hello world!", false);
+    engine::Assets::setContext(&ctx);
 
     if (!IMG_Init(IMG_INIT_PNG)) {
         printf("IMG_Init error: %s\n", IMG_GetError());
         exit(1);
     }
+}
+
+void loadingScreen() {
+    SDL_RenderClear(ctx.getRenderer());
+    SDL_Texture* t = IMG_LoadTexture(ctx.getRenderer(), string(Config::getAssetPath() + "textures/loading.png").c_str());
+    SDL_Rect rect;
+    rect.x = 0;
+    rect.y = 0;
+    rect.w = 512;
+    rect.h = 480;
+    SDL_RenderCopy(ctx.getRenderer(), t, NULL, &rect);
+    SDL_RenderPresent(ctx.getRenderer());
 }
 
 void render() {
@@ -122,12 +135,10 @@ int main(int argc, char** argv) {
 
     init();
 
-
     string textures = Config::getAssetPath() + "textures/";
     SDL_Renderer* r = ctx.getRenderer();
 
-    SDL_RenderClear(r);
-
+    /*SDL_RenderClear(r);
     SDL_Rect c;
     c.x = 10;
     c.y = 10;
@@ -136,8 +147,9 @@ int main(int argc, char** argv) {
     SDL_SetRenderDrawColor(r, 0, 200, 100, 255);
     SDL_RenderDrawRect(r, &c);
     SDL_RenderPresent(r);
+    //SDL_Delay(200);*/
 
-    //SDL_Delay(200);
+    loadingScreen();
 
     engine::Assets::loadTexturesFromJson("textures-all.json", Config::getAssetPath(), r);
     engine::Assets::useAll();

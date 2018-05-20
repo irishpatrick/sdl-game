@@ -20,8 +20,7 @@ engine::Context ctx;
 
 engine::State* current;
 
-void init()
-{
+void init() {
     // a more elegant solution is needed
     #ifdef _WIN32
         Config::load("E:/GitHub/sdl-game/games/rpg/assets/config-win.json");
@@ -31,29 +30,24 @@ void init()
 
     ctx.init(Config::getScreenWidth(), Config::getScreenHeight(), "hello world!", false);
 
-    if (!IMG_Init(IMG_INIT_PNG))
-    {
+    if (!IMG_Init(IMG_INIT_PNG)) {
         printf("IMG_Init error: %s\n", IMG_GetError());
         exit(1);
     }
 }
 
-void render()
-{
+void render() {
     float delta;
     uint32_t now;
     uint32_t then = SDL_GetTicks();
 
     quit = false;
-    while (!quit)
-    {
+    while (!quit) {
         now = SDL_GetTicks();
         delta = now - then;
 
-        while (SDL_PollEvent(&e))
-        {
-            if (e.type == SDL_QUIT)
-            {
+        while (SDL_PollEvent(&e)) {
+            if (e.type == SDL_QUIT) {
                 quit = true;
             }
             else if (e.type == SDL_MOUSEMOTION) {
@@ -112,8 +106,7 @@ void render()
     }
 }
 
-void cleanup()
-{
+void cleanup() {
     current->destroy();
     //SDL_FreeSurface(icon);
     SDL_DestroyRenderer(ctx.getRenderer());
@@ -124,8 +117,7 @@ void cleanup()
 #ifdef main
 #undef main
 #endif /* main */
-int main(int argc, char** argv)
-{
+int main(int argc, char** argv) {
     cout << "hello, world!" << endl;
 
     init();

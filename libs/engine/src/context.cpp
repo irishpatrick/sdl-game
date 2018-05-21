@@ -48,7 +48,7 @@ int Context::init(int a, int b, const string& title, bool fullscreen) {
     r = SDL_CreateRenderer(
         w,
         -1,
-        SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
+        SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_TARGETTEXTURE
     );
 
     if (r == nullptr) {

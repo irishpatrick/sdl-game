@@ -1,19 +1,31 @@
 #pragma once
 
-enum Type {NONE, FADE};
+#include <cstdint>
+
+namespace engine {
+
+class Context;
+
+enum Type {DUMMY, FADE};
 
 class Transition {
 public:
-    Transition();
+    Transition(Context*);
     ~Transition();
 
-    void start(Type, float, float, float);
-    void update(float);
+    void start(Type, uint32_t, uint32_t, uint32_t);
+    void update();
 
 private:
-    float attack;
-    float sustain;
-    float release;
+    void fill(uint8_t);
+
+    uint32_t initial;
+    uint32_t attack;
+    uint32_t sustain;
+    uint32_t release;
     bool running;
     Type type;
+    Context* ctx;
 };
+
+}

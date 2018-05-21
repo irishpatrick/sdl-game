@@ -87,7 +87,7 @@ if (USE_PKGCONFIG)
     pkg_check_modules(SDL2 REQUIRED sdl2)
     pkg_check_modules(SDL2_image REQUIRED SDL2_image)
 
-    find_package(Boost 1.58 COMPONENTS thread system filesystem REQUIRED)
+    find_package(Boost 1.58 COMPONENTS system filesystem REQUIRED)
 
     set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/include ${Boost_INCLUDE_DIR} ${SDL2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS})
     set(LIBRARY_DIR ${SDL2_LIBRARY_DIRS} ${SDL2_image_LIBRARY_DIRS})

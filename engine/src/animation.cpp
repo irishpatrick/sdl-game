@@ -22,23 +22,13 @@ Animation::Animation()
 
 Animation::~Animation()
 {
-	std::cout << "destroying animation object..." << std::endl;
-	std::cout << "animations.size(): " << animations_.size() << std::endl;
 	delete timer_;
 	int n = 0;
     for (auto& e: animations_)
     {
-		std::cout << "n=" << n++ << std::endl;
-		std::cout << "free(e->frames)";
         free(e->frames);
-		std::cout << "- success" << std::endl;
-		std::cout << "free(e->name)";
         free(e->name);
-		std::cout << "- success" << std::endl;
-		std::cout << "free(e)";
-		// something is going on here
         free(e);
-		std::cout << "- success" << std::endl;
     }
 
     for (auto& e: frames_)

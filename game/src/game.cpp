@@ -1,11 +1,11 @@
 #include "game.hpp"
 
 Game::Game(engine::Context* c): engine::State(c) {
-
+    transition = new engine::Transition(c);
 }
 
 Game::~Game() {
-
+    delete transition;
 }
 
 void Game::init() {
@@ -198,6 +198,7 @@ void Game::update(float delta, const uint8_t* keys) {
 
 void Game::render() {
     groups_.getactive()->draw(ctx->getRenderer());
+    t->start(engine::FADE, 1000, 1000, 1000);
     dlg.render(ctx);
 }
 

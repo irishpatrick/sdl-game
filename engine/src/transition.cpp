@@ -6,18 +6,34 @@
 namespace engine {
 
 Transition::Transition(Context* c) {
-    ctx = c;
-    initial = 0;
-    attack = 0;
-    sustain = 0;
-    release = 0;
+	alpha = 0;
+	duration = 0;
+	running = false;
 }
 
 Transition::~Transition() {
 
 }
 
-void Transition::fill(uint8_t alpha) {
+void Transition::fadeOut(uint32_t d) {
+	if (!running) {
+		running = true;
+		duration = d;
+		start = SDL_GetTicks();
+		fade = OUT;
+	}
+}
+
+void Transition::fadeIn(uint32_t d) {
+	if (!running) {
+		running = true;
+		duration = d;
+		start = SDL_GetTicks();
+		fade = IN;
+	}
+}
+
+void Transition::fill(Context* ctx, uint8_t alpha) {
     SDL_SetRenderDrawColor(ctx->getRenderer(), 0, 0, 0, alpha);
     SDL_Rect rect;
     rect.x = 0;
@@ -27,31 +43,20 @@ void Transition::fill(uint8_t alpha) {
     SDL_RenderFillRect(ctx->getRenderer(), &rect);
 }
 
-// type of transition, attack, sustain, release
-void Transition::start(Type t, uint32_t a, uint32_t s, uint32_t r) {
-    type = t;
-    attack = a;
-    sustain = s;
-    release = r;
-    running = true;
-    initial = SDL_GetTicks();
-}
-
 void Transition::update() {
     if (running) {
-        uint32_t current = SDL_GetTicks();
-        if (current < initial + attack) {
-            float t = (float)current / (float)(initial + attack);
-            fill((uint8_t)Util::lerp(0, 255, t));
-        }
-        else if (current < initial + attack + sustain) {
-            //float t = (float)current / (float)(initial + attack + sustain);
-            fill(255);
-        }
-        else if (current < initial + attack + sustain + release) {
-            float t = (float)current / (float)(initial + attack + sustain + release);
-            fill((uint8_t)Util::lerp(255, 0, t));
-        }
+		uint32_t now = SDL_GetTicks();
+		float t = (float)now / (float)(start + duration);
+		if (now > start + duration) {
+			running = false;
+			t = 1.0f;
+		}
+		if (fade == OUT) {
+			alpha = Util::lerp(0.0f, 255.0f, t);
+		}
+		else if (fade == IN) {
+			alpha = Util::lerp(255.0f, 0.0f, t);
+		}
     }
 }
 

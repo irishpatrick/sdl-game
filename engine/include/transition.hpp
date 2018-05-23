@@ -6,26 +6,26 @@ namespace engine {
 
 class Context;
 
-enum Type {DUMMY, FADE};
+enum Fade {IN, OUT};
 
 class Transition {
 public:
     Transition(Context*);
     ~Transition();
 
-    void start(Type, uint32_t, uint32_t, uint32_t);
     void update();
+	void draw(Context*);
+	void fadeOut(uint32_t);
+	void fadeIn(uint32_t);
 
 private:
-    void fill(uint8_t);
+    void fill(Context*, uint8_t);
 
-    uint32_t initial;
-    uint32_t attack;
-    uint32_t sustain;
-    uint32_t release;
+	uint32_t start;
+	uint32_t duration;
+	uint8_t alpha;
+	Fade fade;
     bool running;
-    Type type;
-    Context* ctx;
 };
 
 }

@@ -42,6 +42,6 @@ private:
     vector<engine::Sprite*> hero_collisions;
     engine::ImageFont font;
     Dialogue dlg;
-    engine::Transition *transition;
+    engine::Transition transition;
     //gui::List list;
 };

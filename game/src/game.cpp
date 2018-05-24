@@ -199,6 +199,7 @@ void Game::update(float delta, const uint8_t* keys) {
 void Game::render() {
     groups_.getactive()->draw(ctx->getRenderer());
     dlg.render(ctx);
+	//transition.draw(ctx);
 }
 
 void Game::destroy() {

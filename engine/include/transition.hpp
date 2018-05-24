@@ -10,11 +10,14 @@ enum Fade {IN, OUT};
 
 class Transition {
 public:
-    Transition(Context*);
+    Transition();
     ~Transition();
 
+	inline void draw(Context* ctx) {
+		fill(ctx, alpha);
+	}
+
     void update();
-	void draw(Context*);
 	void fadeOut(uint32_t);
 	void fadeIn(uint32_t);
 

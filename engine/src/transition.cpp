@@ -5,7 +5,7 @@
 
 namespace engine {
 
-Transition::Transition(Context* c) {
+Transition::Transition() {
 	alpha = 0;
 	duration = 0;
 	running = false;
@@ -34,13 +34,14 @@ void Transition::fadeIn(uint32_t d) {
 }
 
 void Transition::fill(Context* ctx, uint8_t alpha) {
-    SDL_SetRenderDrawColor(ctx->getRenderer(), 0, 0, 0, alpha);
+    /*SDL_SetRenderDrawColor(ctx->getRenderer(), 0, 0, 0, alpha);
     SDL_Rect rect;
     rect.x = 0;
     rect.y = 0;
     rect.w = 512;
     rect.h = 480;
     SDL_RenderFillRect(ctx->getRenderer(), &rect);
+	SDL_SetRenderDrawColor(ctx->getRenderer(), 0, 0, 0, 255);*/
 }
 
 void Transition::update() {

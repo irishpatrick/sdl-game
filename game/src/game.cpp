@@ -142,7 +142,8 @@ void Game::update(float delta, const uint8_t* keys) {
 
     ol.check(l);
     if (ol.fire()) {
-
+        std::cout << "fade out" << std::endl;
+        transition.fadeOut(1000);
     }
 
     auto collisions = engine::Util::getVelocityCollisions(
@@ -182,6 +183,7 @@ void Game::update(float delta, const uint8_t* keys) {
         }
     }
 
+    transition.update();
     hero.velocityUpdate(delta);
 
     animtest.update(delta);
@@ -199,7 +201,7 @@ void Game::update(float delta, const uint8_t* keys) {
 void Game::render() {
     groups_.getactive()->draw(ctx->getRenderer());
     dlg.render(ctx);
-	//transition.draw(ctx);
+	transition.draw(ctx);
 }
 
 void Game::destroy() {

@@ -18,7 +18,7 @@ Transition::~Transition() {
 void Transition::fadeOut(uint32_t d) {
 	if (!running) {
 		running = true;
-		duration = d;
+		duration = d * 1000;
 		start = SDL_GetTicks();
 		fade = OUT;
 	}
@@ -34,14 +34,15 @@ void Transition::fadeIn(uint32_t d) {
 }
 
 void Transition::fill(Context* ctx, uint8_t alpha) {
-    /*SDL_SetRenderDrawColor(ctx->getRenderer(), 0, 0, 0, alpha);
+    SDL_SetRenderDrawBlendMode(ctx->getRenderer(), SDL_BLENDMODE_BLEND);
+    SDL_SetRenderDrawColor(ctx->getRenderer(), 0, 0, 0, alpha);
     SDL_Rect rect;
     rect.x = 0;
     rect.y = 0;
     rect.w = 512;
     rect.h = 480;
     SDL_RenderFillRect(ctx->getRenderer(), &rect);
-	SDL_SetRenderDrawColor(ctx->getRenderer(), 0, 0, 0, 255);*/
+	SDL_SetRenderDrawColor(ctx->getRenderer(), 0, 0, 0, 255);
 }
 
 void Transition::update() {

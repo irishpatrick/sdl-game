@@ -143,7 +143,7 @@ void Game::update(float delta, const uint8_t* keys) {
     ol.check(l);
     if (ol.fire()) {
         std::cout << "fade out" << std::endl;
-        transition.fadeOut(1000);
+        transition.fadeOut(800);
     }
 
     auto collisions = engine::Util::getVelocityCollisions(

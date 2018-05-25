@@ -2,6 +2,7 @@
 #include "util.hpp"
 #include "context.hpp"
 #include <SDL2/SDL.h>
+#include <cmath>
 
 namespace engine {
 
@@ -18,7 +19,7 @@ Transition::~Transition() {
 void Transition::fadeOut(uint32_t d) {
 	if (!running) {
 		running = true;
-		duration = d * 1000;
+		duration = d;
 		start = SDL_GetTicks();
 		fade = OUT;
 	}
@@ -48,17 +49,22 @@ void Transition::fill(Context* ctx, uint8_t alpha) {
 void Transition::update() {
     if (running) {
 		uint32_t now = SDL_GetTicks();
-		float t = (float)now / (float)(start + duration);
-		if (now > start + duration) {
+        uint32_t delta = now - start;
+		float t = (float)delta / (float)(duration);
+        std::cout << "t: " << t << std::endl;
+		if (t >= 1.0f) {
 			running = false;
 			t = 1.0f;
 		}
+        float lerp;
 		if (fade == OUT) {
-			alpha = Util::lerp(0.0f, 255.0f, t);
+			lerp = Util::lerp(t, 0.0f, 255.0f);
 		}
 		else if (fade == IN) {
-			alpha = Util::lerp(255.0f, 0.0f, t);
+			lerp = Util::lerp(t, 255.0f, 0.0f);
 		}
+        std::cout << "lerp: " << lerp << std::endl;
+        alpha = (uint8_t)lerp;
     }
 }
 

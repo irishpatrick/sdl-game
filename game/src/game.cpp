@@ -1,7 +1,10 @@
 #include "game.hpp"
 
 Game::Game(engine::Context* c): engine::State(c) {
-
+    playerInput = true;
+    todo = nullptr;
+    todo_x = 0;
+    todo_y = 0;
 }
 
 Game::~Game() {
@@ -57,130 +60,152 @@ void Game::tests() {
     printf("done!\n");*/
 }
 
-void Game::update(float delta, const uint8_t* keys) {
+/*void Game::input(uint8_t* keys) {
     bool w = keys[SDL_SCANCODE_W];
     bool s = keys[SDL_SCANCODE_S];
     bool a = keys[SDL_SCANCODE_A];
     bool d = keys[SDL_SCANCODE_D];
     bool p = keys[SDL_SCANCODE_P];
     bool l = keys[SDL_SCANCODE_L];
+}*/
+
+void Game::update(float delta, const uint8_t* keys) {
+
+    playerInput = !transition.isRunning();
 
     //cout << engine::Mouse::left << endl;
     //cout << engine::Mouse::x << ", " << engine::Mouse::y << endl;
 
-    if (engine::Mouse::left) {
-        cout << "click: " << engine::Mouse::x << ", " << engine::Mouse::y << endl;
-    }
-
     hero.xvel = 0;
     hero.yvel = 0;
 
-    if (!dlg.isVisible()) {
-        if ((w || s) && (a || d)) {
-            hero_collisions = engine::Util::getVelocityCollisions(
-                &hero,
-                groups_.getactive(),
-                delta
-            );
-            //cout << hero_collisions.size() << endl;
-            float v = sqrt(pow(hero.getMaxSpeed(), 2) / 2.0);
-            hero.speed = v;
-        } else {
-            hero.speed = hero.getMaxSpeed();
+    if (playerInput) {
+        bool w = keys[SDL_SCANCODE_W];
+        bool s = keys[SDL_SCANCODE_S];
+        bool a = keys[SDL_SCANCODE_A];
+        bool d = keys[SDL_SCANCODE_D];
+        bool p = keys[SDL_SCANCODE_P];
+        bool l = keys[SDL_SCANCODE_L];
+
+        if (engine::Mouse::left) {
+            cout << "click: " << engine::Mouse::x << ", " << engine::Mouse::y << endl;
         }
 
-        if (w) {
-            hero.yvel = -hero.speed;
-        }
-        if (s) {
-            hero.yvel = hero.speed;
-        }
-        if (a) {
-            hero.xvel = -hero.speed;
-        }
-        if (d) {
-            hero.xvel = hero.speed;
+        if (!dlg.isVisible()) {
+            if ((w || s) && (a || d)) {
+                hero_collisions = engine::Util::getVelocityCollisions(
+                    &hero,
+                    groups_.getactive(),
+                    delta
+                );
+                //cout << hero_collisions.size() << endl;
+                float v = sqrt(pow(hero.getMaxSpeed(), 2) / 2.0);
+                hero.speed = v;
+            } else {
+                hero.speed = hero.getMaxSpeed();
+            }
+
+            if (w) {
+                hero.yvel = -hero.speed;
+            }
+            if (s) {
+                hero.yvel = hero.speed;
+            }
+            if (a) {
+                hero.xvel = -hero.speed;
+            }
+            if (d) {
+                hero.xvel = hero.speed;
+            }
+
+            if (w || s || a || d) {
+                hero_collisions = engine::Util::getVelocityCollisions(
+                    &hero,
+                    groups_.getactive(),
+                    delta
+                );
+            }
         }
 
-        if (w || s || a || d) {
-            hero_collisions = engine::Util::getVelocityCollisions(
-                &hero,
-                groups_.getactive(),
-                delta
-            );
-        }
-    }
+        op.check(p);
+        if (op.fire()) {
+            if (dlg.isVisible()) {
+                dlg.pop();
+            }
+            else if (hero_collisions.size() > 0) {
+                engine::Sprite* collider = hero_collisions[0];
 
-    op.check(p);
-    if (op.fire()) {
-        if (dlg.isVisible()) {
-            dlg.pop();
-        }
-        else if (hero_collisions.size() > 0) {
-            engine::Sprite* collider = hero_collisions[0];
-
-            if (Door* d = dynamic_cast<Door*>(collider)) {
-                auto g = groups_.getGroup(d->getDest());
-                std::vector<Door*> doors;
-                g->getSpritesByType<Door>(doors);
-                for (auto& e : doors) {
-                    if (e->getDest() == groups_.getActiveId()) {
-                        hero.x = e->getExit().x;
-                        hero.y = e->getExit().y;
-                        break;
+                if (Door* d = dynamic_cast<Door*>(collider)) {
+                    auto g = groups_.getGroup(d->getDest());
+                    std::vector<Door*> doors;
+                    g->getSpritesByType<Door>(doors);
+                    for (auto& e : doors) {
+                        if (e->getDest() == groups_.getActiveId()) {
+                            todo_x = e->getExit().x;
+                            todo_y = e->getExit().y;
+                            break;
+                        }
                     }
+                    transition.fadeOut(500);
+                    //d->Enter();
+                    todo = d;
                 }
-
-                d->Enter();
+                else if (Npc* npc = dynamic_cast<Npc*>(collider)) {
+                    std::cout << "interacting with " << npc->getName() << std::endl;
+                    npc->interact(&hero, &dlg);
+                }
             }
-            else if (Npc* npc = dynamic_cast<Npc*>(collider)) {
-                std::cout << "interacting with " << npc->getName() << std::endl;
-                npc->interact(&hero, &dlg);
+        }
+
+        ol.check(l);
+        if (ol.fire()) {
+
+        }
+
+        auto collisions = engine::Util::getVelocityCollisions(
+            &hero,
+            groups_.getactive(),
+            delta
+        );
+
+        if (collisions.size() > 0) {
+            for (auto& e : collisions) {
+                string result = engine::Util::checkVelocityCollision(
+                    &hero,
+                    e,
+                    delta
+                );
+                SDL_Rect ebox = engine::Util::getAABB(e, 16);
+                SDL_Rect hbox = engine::Util::getAABB(&hero, 16);
+                if (result == "north") {
+                    hero.yvel = 0;
+                    hero.y = ebox.y + ebox.h - hbox.h;
+                }
+                else if (result == "south") {
+                    hero.yvel = 0;
+                    hero.y = ebox.y - hero.h;
+                }
+                else if (result == "east") {
+                    hero.xvel = 0;
+                    hero.x = ebox.x - hero.w;
+                }
+                else if (result == "west") {
+                    hero.xvel = 0;
+                    hero.x = ebox.x + ebox.w;
+                }
+                else {
+                    cout << "collision detection problem" << endl;
+                }
             }
         }
     }
 
-    ol.check(l);
-    if (ol.fire()) {
-        std::cout << "fade out" << std::endl;
-        transition.fadeOut(800);
-    }
-
-    auto collisions = engine::Util::getVelocityCollisions(
-        &hero,
-        groups_.getactive(),
-        delta
-    );
-
-    if (collisions.size() > 0) {
-        for (auto& e : collisions) {
-            string result = engine::Util::checkVelocityCollision(
-                &hero,
-                e,
-                delta
-            );
-            SDL_Rect ebox = engine::Util::getAABB(e, 16);
-            SDL_Rect hbox = engine::Util::getAABB(&hero, 16);
-            if (result == "north") {
-                hero.yvel = 0;
-                hero.y = ebox.y + ebox.h - hbox.h;
-            }
-            else if (result == "south") {
-                hero.yvel = 0;
-                hero.y = ebox.y - hero.h;
-            }
-            else if (result == "east") {
-                hero.xvel = 0;
-                hero.x = ebox.x - hero.w;
-            }
-            else if (result == "west") {
-                hero.xvel = 0;
-                hero.x = ebox.x + ebox.w;
-            }
-            else {
-                cout << "collision detection problem" << endl;
-            }
-        }
+    if (!transition.isRunning() && todo != nullptr) {
+        todo->Enter();
+        todo = nullptr;
+        hero.x = todo_x;
+        hero.y = todo_y;
+        transition.fadeIn(500);
     }
 
     transition.update();

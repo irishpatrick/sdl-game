@@ -17,6 +17,10 @@ public:
 		fill(ctx, alpha);
 	}
 
+    inline bool isRunning() {
+        return running;
+    }
+
     void update();
 	void fadeOut(uint32_t);
 	void fadeIn(uint32_t);

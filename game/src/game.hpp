@@ -23,12 +23,14 @@ public:
     ~Game();
 
     void init() override;
+    void input(uint8_t*);
     void tests();
     void update(float, const uint8_t*) override;
     void render() override;
     void destroy() override;
 
 private:
+    bool playerInput;
     Player hero;
     Npc monster;
     engine::Sprite background;
@@ -43,5 +45,8 @@ private:
     engine::ImageFont font;
     Dialogue dlg;
     engine::Transition transition;
+    Door* todo;
+    float todo_x;
+    float todo_y;
     //gui::List list;
 };

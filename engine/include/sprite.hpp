@@ -73,7 +73,7 @@ public:
         return name;
     }
 
-    virtual const std::string getUUID();
+    virtual std::string getUUID();
 
     float xvel;
     float yvel;
@@ -89,6 +89,7 @@ protected:
     Group* parent;
     Sprite* collision_;
     Camera* camera;
+	std::string uuid_str;
 
 private:
     boost::uuids::uuid tag;

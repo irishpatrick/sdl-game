@@ -25,6 +25,7 @@ Sprite::Sprite() {
     tag = boost::uuids::random_generator()();
     collision_ = nullptr;
     camera = nullptr;
+	uuid_str = "";
 }
 
 Sprite::~Sprite() {
@@ -94,9 +95,12 @@ Group* Sprite::getParent() {
     return parent;
 }
 
-const std::string Sprite::getUUID() {
-    const std::string s = boost::lexical_cast<std::string>(tag);
-    return s;
+std::string Sprite::getUUID() {
+	if (uuid_str == "") {
+		uuid_str = boost::lexical_cast<std::string>(tag);
+	}
+	
+	return uuid_str;
 }
 
 void Sprite::OnCollision(Sprite* sprite) {

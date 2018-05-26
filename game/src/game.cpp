@@ -60,24 +60,21 @@ void Game::tests() {
     printf("done!\n");*/
 }
 
-/*void Game::input(uint8_t* keys) {
-    bool w = keys[SDL_SCANCODE_W];
-    bool s = keys[SDL_SCANCODE_S];
-    bool a = keys[SDL_SCANCODE_A];
-    bool d = keys[SDL_SCANCODE_D];
-    bool p = keys[SDL_SCANCODE_P];
-    bool l = keys[SDL_SCANCODE_L];
-}*/
-
 void Game::update(float delta, const uint8_t* keys) {
 
     playerInput = !transition.isRunning();
 
-    //cout << engine::Mouse::left << endl;
-    //cout << engine::Mouse::x << ", " << engine::Mouse::y << endl;
-
     hero.xvel = 0;
     hero.yvel = 0;
+
+	if (!transition.isRunning() && todo != nullptr) {
+		playerInput = false;
+		todo->Enter();
+		todo = nullptr;
+		hero.x = todo_x;
+		hero.y = todo_y;
+		transition.fadeIn(500);
+	}
 
     if (playerInput) {
         bool w = keys[SDL_SCANCODE_W];
@@ -159,7 +156,7 @@ void Game::update(float delta, const uint8_t* keys) {
 
         ol.check(l);
         if (ol.fire()) {
-
+			//transition.blockingFadeOut(ctx, 1000);
         }
 
         auto collisions = engine::Util::getVelocityCollisions(
@@ -198,14 +195,6 @@ void Game::update(float delta, const uint8_t* keys) {
                 }
             }
         }
-    }
-
-    if (!transition.isRunning() && todo != nullptr) {
-        todo->Enter();
-        todo = nullptr;
-        hero.x = todo_x;
-        hero.y = todo_y;
-        transition.fadeIn(500);
     }
 
     transition.update();

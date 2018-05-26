@@ -24,6 +24,8 @@ public:
     void update();
 	void fadeOut(uint32_t);
 	void fadeIn(uint32_t);
+	void blockingFadeOut(Context*, uint32_t);
+	void blockingFadeIn(Context*, uint32_t);
 
 private:
     void fill(Context*, uint8_t);

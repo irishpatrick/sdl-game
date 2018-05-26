@@ -16,6 +16,26 @@ Transition::~Transition() {
 
 }
 
+void Transition::blockingFadeOut(Context* ctx, uint32_t d) {
+	if (!running) {
+		fadeOut(d);
+	}
+	while (running) {
+		update();
+		draw(ctx);
+	}
+}
+
+void Transition::blockingFadeIn(Context* ctx, uint32_t d) {
+	if (!running) {
+		fadeIn(d);
+	}
+	while (running) {
+		update();
+		draw(ctx);
+	}
+}
+
 void Transition::fadeOut(uint32_t d) {
 	if (!running) {
 		running = true;
@@ -51,7 +71,6 @@ void Transition::update() {
 		uint32_t now = SDL_GetTicks();
         uint32_t delta = now - start;
 		float t = (float)delta / (float)(duration);
-        std::cout << "t: " << t << std::endl;
 		if (t >= 1.0f) {
 			running = false;
 			t = 1.0f;
@@ -63,7 +82,6 @@ void Transition::update() {
 		else if (fade == IN) {
 			lerp = Util::lerp(t, 255.0f, 0.0f);
 		}
-        std::cout << "lerp: " << lerp << std::endl;
         alpha = (uint8_t)lerp;
     }
 }

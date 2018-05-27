@@ -14,35 +14,35 @@ void Stats::reset() {
     }
 }
 
-void Stats::modify(const string& str, uint32_t n) {
+void Stats::modify(const std::string& str, uint32_t n) {
     modifiers[str] += n;
 }
 
-void Stats::change(const string& str, uint32_t n) {
+void Stats::change(const std::string& str, uint32_t n) {
     stats[str] += n;
 }
 
-void Stats::set(const string& str, uint32_t n) {
+void Stats::set(const std::string& str, uint32_t n) {
     stats[str] = n;
 }
 
-uint32_t Stats::get(const string& str) {
+uint32_t Stats::get(const std::string& str) {
     return stats[str] + modifiers[str];
 }
 
-uint32_t Stats::getBase(const string& str) {
+uint32_t Stats::getBase(const std::string& str) {
     return stats[str];
 }
 
-void Stats::load(const string& str) {
-    ifstream in(str);
+void Stats::load(const std::string& str) {
+    std::ifstream in(str);
     json o;
     in >> o;
 
     for (json::iterator it = o.begin(); it != o.end(); it++) {
         if (boost::algorithm::ends_with(it.key(), "_mod")) {
-            vector<string> v;
-            const string& str(it.key());
+            std::vector<std::string> v;
+            const std::string& str(it.key());
             boost::algorithm::split(v, str, boost::algorithm::is_any_of("_"));
             modifiers[v[0]] = it.value();
         }
@@ -50,7 +50,7 @@ void Stats::load(const string& str) {
     }
 }
 
-void Stats::write(const string& str) {
+void Stats::write(const std::string& str) {
     json o;
 
     for (auto const& e : stats) {
@@ -61,6 +61,6 @@ void Stats::write(const string& str) {
         o[e.first + "_mod"] = e.second;
     }
 
-    ofstream out(str);
-    out << setw(4) << o << endl;
+    std::ofstream out(str);
+    out << std::setw(4) << o << std::endl;
 }

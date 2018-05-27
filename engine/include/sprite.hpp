@@ -1,5 +1,4 @@
-#ifndef SPRITE_H
-#define SPRITE_H
+#pragma once
 
 #include <string>
 #include <cstdint>
@@ -96,5 +95,3 @@ private:
 };
 
 }
-
-#endif /* SPRITE_H */

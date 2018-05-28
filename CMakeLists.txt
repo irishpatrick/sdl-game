@@ -113,7 +113,8 @@ if (USE_MSVC)
 endif (USE_MSVC)
 
 add_subdirectory(engine)
-set(MY_LIBS ${MY_LIBS} engine)
+add_subdirectory(ui)
+set(MY_LIBS ${MY_LIBS} engine ui)
 
 if (BUILD_GAME)
     add_subdirectory(game)

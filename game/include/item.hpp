@@ -1,39 +1,21 @@
 #pragma once
 
 #include <string>
-#include <map>
-#include <cstdint>
 #include <engine.hpp>
 #include <nlohmann/json.hpp>
 
-using namespace std;
 using json = nlohmann::json;
 
-enum Mode {CONSUMABLE = 0, EQUIPPABLE = 1};
+enum Type {TEMPORARY, PERMANENT, EQUIPPABLE};
 
 class Item {
 public:
     Item();
     ~Item();
 
-    // getters
-    inline Mode getMode() {
-        return mode;
-    }
-
-    json toJson();
-
-    // setters
-
-    // static
-    static void loadItems(const string&);
+    void load(const std::string&);
+    void use(engine::Sprite*);
 
 private:
-    Mode mode;
-    uint32_t hp;
-    uint32_t atk;
-    uint32_t def;
-    uint32_t spd;
-    // static
-    static json o;
+    json o;
 };

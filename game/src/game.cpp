@@ -73,7 +73,7 @@ void Game::update(float delta, const uint8_t* keys) {
 		todo = nullptr;
 		hero.x = todo_x;
 		hero.y = todo_y;
-		transition.fadeIn(500);
+		transition.fadeIn(250);
 	}
 
     if (playerInput) {
@@ -143,7 +143,7 @@ void Game::update(float delta, const uint8_t* keys) {
                             break;
                         }
                     }
-                    transition.fadeOut(500);
+                    transition.fadeOut(250);
                     //d->Enter();
                     todo = d;
                 }

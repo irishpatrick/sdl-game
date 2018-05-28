@@ -16,17 +16,19 @@ public:
     Dialogue();
     ~Dialogue();
 
-    void initFont(engine::Texture*);
-    inline void setWidth(uint32_t a, uint32_t b) {
+    UI_API void initFont(engine::Texture*);
+    UI_API inline void setWidth(uint32_t a, uint32_t b) {
         width = a;
         height = b;
     }
-    inline bool isVisible() {
+
+    UI_API inline bool isVisible() {
         return visible;
     }
-    void push(const std::string&);
-    void pop();
-    void render(engine::Context*);
+
+    UI_API void push(const std::string&);
+    UI_API void pop();
+    UI_API void render(engine::Context*);
 
     float x;
     float y;

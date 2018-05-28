@@ -14,7 +14,7 @@ void Decision::update() {
 
 }
 
-void Decision::draw(engine::Context *) {
+void Decision::draw(engine::Context* ctx) {
 
 }
 

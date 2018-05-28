@@ -1,5 +1,7 @@
 #pragma once
 
+#include "dynamic.hpp"
+
 #include "animation.hpp"
 #include "assets.hpp"
 #include "camera.hpp"

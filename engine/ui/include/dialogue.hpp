@@ -1,5 +1,7 @@
 #pragma once
 
+#include "dynamic.hpp"
+
 #include <engine.hpp>
 #include <vector>
 #include <string>

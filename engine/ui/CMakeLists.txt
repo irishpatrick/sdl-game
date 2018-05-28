@@ -12,8 +12,8 @@ else (MSVC)
 	add_library(${PROJECT_NAME} SHARED ${sources} ${headers})
 endif (MSVC)
 
-target_include_directories(${PROJECT_NAME} PUBLIC include ${INCLUDE_DIR} ${engine_INCLUDE_DIR})
+target_include_directories(${PROJECT_NAME} PUBLIC include ${INCLUDE_DIR} ${core_INCLUDE_DIR})
 target_compile_options(${PROJECT_NAME} PUBLIC ${COMPILE_OPTIONS})
-target_link_libraries(${PROJECT_NAME} PUBLIC ${LIBRARIES} engine)
+target_link_libraries(${PROJECT_NAME} PUBLIC ${LIBRARIES} core)
 
 set(${PROJECT_NAME}_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/include CACHE INTERNAL "${PROJECT_NAME}: Include Directories" FORCE)

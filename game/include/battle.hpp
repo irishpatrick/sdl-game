@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dialogue.hpp"
+#include <ui.hpp>
 #include <vector>
 #include <string>
 #include <cstdint>
@@ -24,5 +24,5 @@ private:
     std::vector<engine::Sprite> allies;
     engine::Sprite bg;
     engine::ImageFont font;
-    Dialogue dialogue;
+    ui::Dialogue dialogue;
 };

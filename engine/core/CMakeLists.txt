@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(engine C CXX)
+project(core C CXX)
 
 file (GLOB sources src/*.cpp)
 file (GLOB headers include/*.hpp)

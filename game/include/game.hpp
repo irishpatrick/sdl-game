@@ -5,7 +5,7 @@
 #include "player.hpp"
 #include "door.hpp"
 #include "stats.hpp"
-#include "dialogue.hpp"
+#include <ui.hpp>
 #include "npc.hpp"
 
 #include <engine.hpp>
@@ -43,7 +43,7 @@ private:
     engine::OneShot ol;
     vector<engine::Sprite*> hero_collisions;
     engine::ImageFont font;
-    Dialogue dlg;
+    ui::Dialogue dlg;
     engine::Transition transition;
     Door* todo;
     float todo_x;

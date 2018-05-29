@@ -1,10 +1,10 @@
 #pragma once
 
-#include <ui.hpp>
 #include <vector>
 #include <string>
 #include <cstdint>
 #include <engine.hpp>
+#include <ui.hpp>
 
 class Battle: public engine::State {
 public:

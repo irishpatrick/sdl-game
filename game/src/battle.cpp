@@ -18,6 +18,10 @@ void Battle::init() {
     bg.y = 0;
 }
 
+void Battle::setBackground(const std::string& bg) {
+
+}
+
 void Battle::addCombatants(std::vector<engine::Sprite*>& a, std::vector<engine::Sprite*>& e) {
     int n;
 

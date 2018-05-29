@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dynamic.hpp"
+#include "ui_api.hpp"
 
 #include <engine.hpp>
 #include <vector>
@@ -13,8 +13,8 @@ namespace ui {
 class Dialogue {
 
 public:
-    Dialogue();
-    ~Dialogue();
+    UI_API Dialogue();
+    UI_API ~Dialogue();
 
     UI_API void initFont(engine::Texture*);
     UI_API inline void setWidth(uint32_t a, uint32_t b) {

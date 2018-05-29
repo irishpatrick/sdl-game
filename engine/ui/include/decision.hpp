@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dynamic.hpp"
+#include "ui_api.hpp"
 #include <cstdint>
 #include <engine.hpp>
 
@@ -8,8 +8,8 @@ namespace ui {
 
 class Decision {
 public:
-	Decision();
-	~Decision();
+	UI_API Decision();
+	UI_API ~Decision();
 
 	UI_API void update();
 	UI_API void draw(engine::Context*);

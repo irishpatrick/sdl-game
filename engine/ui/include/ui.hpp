@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dynamic.hpp"
+#include "ui_api.hpp"
 
 #include "decision.hpp"
 #include "dialogue.hpp"

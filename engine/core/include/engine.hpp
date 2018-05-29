@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dynamic.hpp"
+#include "core_api.hpp"
 
 #include "animation.hpp"
 #include "assets.hpp"

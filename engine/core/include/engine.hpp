@@ -2,8 +2,8 @@
 
 //#include "core_api.hpp"
 
-#include "animation.hpp"
 #include "assets.hpp"
+#include "animation.hpp"
 #include "camera.hpp"
 #include "entity.hpp"
 #include "group.hpp"

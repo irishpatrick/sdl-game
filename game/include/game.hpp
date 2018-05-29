@@ -5,9 +5,8 @@
 #include "player.hpp"
 #include "door.hpp"
 #include "stats.hpp"
-#include <ui.hpp>
 #include "npc.hpp"
-
+#include <ui.hpp>
 #include <engine.hpp>
 #include <cstdlib>
 #include <ctime>
@@ -15,15 +14,13 @@
 #include <vector>
 #include <future>
 
-using namespace std;
-
 class Game: public engine::State {
 public:
     Game(engine::Context*);
     ~Game();
 
     void init() override;
-    void input(uint8_t*);
+    //void input(uint8_t*);
     void tests();
     void update(float, const uint8_t*) override;
     void render() override;
@@ -41,9 +38,9 @@ private:
     Door doortest;
     engine::OneShot op;
     engine::OneShot ol;
-    vector<engine::Sprite*> hero_collisions;
+    std::vector<engine::Sprite*> hero_collisions;
     engine::ImageFont font;
-    ui::Dialogue dlg;
+    //ui::Dialogue dlg;
     engine::Transition transition;
     Door* todo;
     float todo_x;

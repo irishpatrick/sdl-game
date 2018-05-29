@@ -1,17 +1,20 @@
 #include "assets.hpp"
 #include "texture.hpp"
+#include "context.hpp"
 #include <fstream>
 #include <nlohmann/json.hpp>
 #include <boost/filesystem.hpp>
 #include <sstream>
 #include <iostream>
 
+engine::Context* engine::Assets::ctx = 0;
+
 namespace engine {
 
-	CORE_API std::map<std::string, Texture*> Assets::texMap = std::map<std::string, Texture*>();
+	std::map<std::string, Texture*> Assets::texMap = std::map<std::string, Texture*>();
 	//std::vector<boost::future<void>> Assets::futures = std::vector<boost::future<void>>();
-	CORE_API Texture* Assets::missing = nullptr;
-	CORE_API Context* Assets::ctx = nullptr;
+	Texture* Assets::missing = 0;
+	
 
 	std::vector<std::string> split(const std::string& s, char delim)
 	{

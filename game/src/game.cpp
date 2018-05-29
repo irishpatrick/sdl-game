@@ -41,9 +41,9 @@ void Game::init() {
     animtest.GetAnimation()->Start("all", true);
     stage.add(&animtest);
 
-    dlg.setWidth(300, 80);
+    //dlg.setWidth(300, 80);
 	//dlg.push("this is a very very long string that will hopefully get divided up");
-    dlg.initFont(engine::Assets::getTexture("out.png"));
+    //dlg.initFont(engine::Assets::getTexture("out.png"));
 
     tests();
 
@@ -84,7 +84,7 @@ void Game::update(float delta, const uint8_t* keys) {
         bool p = keys[SDL_SCANCODE_P];
         bool l = keys[SDL_SCANCODE_L];
 
-        if (!dlg.isVisible()) {
+        if (/*!dlg.isVisible()*/false) {
             if ((w || s) && (a || d)) {
                 hero_collisions = engine::Util::getVelocityCollisions(
                     &hero,
@@ -122,10 +122,10 @@ void Game::update(float delta, const uint8_t* keys) {
 
         op.check(p);
         if (op.fire()) {
-            if (dlg.isVisible()) {
+            /*if (dlg.isVisible()) {
                 dlg.pop();
             }
-            else if (hero_collisions.size() > 0) {
+            else*/ if (hero_collisions.size() > 0) {
                 engine::Sprite* collider = hero_collisions[0];
 
                 if (Door* d = dynamic_cast<Door*>(collider)) {
@@ -145,7 +145,7 @@ void Game::update(float delta, const uint8_t* keys) {
                 }
                 else if (Npc* npc = dynamic_cast<Npc*>(collider)) {
                     std::cout << "interacting with " << npc->getName() << std::endl;
-                    npc->interact(&hero, &dlg);
+                    //npc->interact(&hero, &dlg);
                 }
             }
         }
@@ -210,7 +210,7 @@ void Game::update(float delta, const uint8_t* keys) {
 
 void Game::render() {
     groups_.getactive()->draw(ctx->getRenderer());
-    dlg.render(ctx);
+    //dlg.render(ctx);
 	transition.draw(ctx);
 }
 

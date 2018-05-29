@@ -1,5 +1,7 @@
 #pragma once
 
+#include "core_api.hpp"
+
 #include <string>
 #include <sstream>
 #include <chrono>
@@ -22,18 +24,18 @@ enum Direction {NORTH, EAST, SOUTH, WEST, NONE};
 class Util
 {
 public:
-    //static uint32_t getNow();
-    static SDL_Texture* loadTexture(const std::string&, SDL_Renderer*);
-    static std::string checkCollision(Sprite*, Sprite*);
-    static std::string checkVelocityCollision(Sprite*, Sprite*, float);
-    static void contain(Sprite*, Sprite*);
-    static SDL_Rect getAABB(Sprite*, uint32_t);
-    static std::string RectToString(SDL_Rect*);
-    static bool JsonExists(nlohmann::json&, const std::string&);
-    static std::vector<Sprite*> GetCollisions(Sprite*, Group*);
-    static std::vector<Sprite*> getVelocityCollisions(Sprite*, Group*, float);
-    static int initSDL(SDL_Window**, SDL_Renderer**, const std::string&, int, int, bool);
-    static float lerp(float, float, float);
+    //CORE_API static uint32_t getNow();
+	CORE_API static SDL_Texture* loadTexture(const std::string&, SDL_Renderer*);
+	CORE_API static std::string checkCollision(Sprite*, Sprite*);
+	CORE_API static std::string checkVelocityCollision(Sprite*, Sprite*, float);
+	CORE_API static void contain(Sprite*, Sprite*);
+	CORE_API static SDL_Rect getAABB(Sprite*, uint32_t);
+	CORE_API static std::string RectToString(SDL_Rect*);
+	CORE_API static bool JsonExists(nlohmann::json&, const std::string&);
+	CORE_API static std::vector<Sprite*> GetCollisions(Sprite*, Group*);
+	CORE_API static std::vector<Sprite*> getVelocityCollisions(Sprite*, Group*, float);
+	CORE_API static int initSDL(SDL_Window**, SDL_Renderer**, const std::string&, int, int, bool);
+	CORE_API static float lerp(float, float, float);
 };
 
 }

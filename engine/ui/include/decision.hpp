@@ -19,8 +19,8 @@ public:
     float x;
     float y;
 
-    static const uint8_t YES = 1;
-    static const uint8_t NO = 0;
+	UI_API static const uint8_t YES = 1;
+	UI_API static const uint8_t NO = 0;
 
 private:
 	bool visible;

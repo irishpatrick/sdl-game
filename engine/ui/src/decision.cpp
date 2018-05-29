@@ -19,7 +19,7 @@ void Decision::update() {
 
 }
 
-void Decision::draw(engine::Context* ctx) {
+void Decision::draw(engine::Context* c) {
     if (!visible) { return; }
 
     SDL_Rect fg;
@@ -35,11 +35,11 @@ void Decision::draw(engine::Context* ctx) {
     fg.w = width - 2;
     fg.h = height + 2;
 
-    SDL_SetRenderDrawColor(ctx->getRenderer(), 0x00, 0x00, 0x00, 0xff);
-    SDL_RenderFillRect(ctx->getRenderer(), &bg);
+    SDL_SetRenderDrawColor(c->getRenderer(), 0x00, 0x00, 0x00, 0xff);
+    SDL_RenderFillRect(c->getRenderer(), &bg);
 
-    SDL_SetRenderDrawColor(ctx->getRenderer(), 0xff, 0xff, 0xff, 0xff);
-    SDL_RenderFillRect(ctx->getRenderer(), &fg);
+    SDL_SetRenderDrawColor(c->getRenderer(), 0xff, 0xff, 0xff, 0xff);
+    SDL_RenderFillRect(c->getRenderer(), &fg);
 }
 
 }

@@ -84,10 +84,6 @@ void Game::update(float delta, const uint8_t* keys) {
         bool p = keys[SDL_SCANCODE_P];
         bool l = keys[SDL_SCANCODE_L];
 
-        if (engine::Mouse::left) {
-            cout << "click: " << engine::Mouse::x << ", " << engine::Mouse::y << endl;
-        }
-
         if (!dlg.isVisible()) {
             if ((w || s) && (a || d)) {
                 hero_collisions = engine::Util::getVelocityCollisions(

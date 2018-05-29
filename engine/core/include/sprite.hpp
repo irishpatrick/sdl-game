@@ -1,5 +1,7 @@
 #pragma once
 
+#include "core_api.hpp"
+
 #include <string>
 #include <cstdint>
 #include <SDL2/SDL.h>
@@ -21,58 +23,58 @@ class Camera;
 // entity has x, y, w, h
 class Sprite: public Entity {
 public:
-    Sprite();
-    virtual ~Sprite();
+	CORE_API Sprite();
+	CORE_API virtual ~Sprite();
 
-    virtual void InitAnimation(const std::string&);
-    virtual void setTexture(Texture*);
-    virtual void loadTexture(const std::string&, SDL_Renderer*);
-    virtual void draw(SDL_Renderer*);
-    virtual Animation* GetAnimation();
-    virtual void ResetCollision();
-    virtual void update(float);
-    virtual void velocityUpdate(float);
-    void setSpeed(float);
-	void queryTexture();
-    virtual void OnCollision(Sprite*);
-    Sprite* GetCollision();
-    virtual void setParent(Group*);
-    virtual Group* getParent();
-    void setCamera(Camera*);
+	CORE_API virtual void InitAnimation(const std::string&);
+	CORE_API virtual void setTexture(Texture*);
+	CORE_API virtual void loadTexture(const std::string&, SDL_Renderer*);
+	CORE_API virtual void draw(SDL_Renderer*);
+	CORE_API virtual Animation* GetAnimation();
+	CORE_API virtual void ResetCollision();
+	CORE_API virtual void update(float);
+	CORE_API virtual void velocityUpdate(float);
+	CORE_API void setSpeed(float);
+	CORE_API void queryTexture();
+	CORE_API virtual void OnCollision(Sprite*);
+	CORE_API Sprite* GetCollision();
+	CORE_API virtual void setParent(Group*);
+	CORE_API virtual Group* getParent();
+	CORE_API void setCamera(Camera*);
 
-    inline Texture* getTexture() {
+	CORE_API inline Texture* getTexture() {
         return texture;
     }
 
-    inline void setSolid(bool b) {
+	CORE_API inline void setSolid(bool b) {
         solid = b;
     }
 
-    inline bool isSolid() {
+	CORE_API inline bool isSolid() {
         return solid;
     }
 
-    inline void SetVisible(bool b) {
+	CORE_API inline void SetVisible(bool b) {
         visible_ = b;
     }
 
-    inline bool IsVisible() {
+	CORE_API inline bool IsVisible() {
         return visible_;
     }
 
-    inline void setMaxSpeed(float a) {
+	CORE_API inline void setMaxSpeed(float a) {
         maxSpeed = a;
     }
 
-    inline float getMaxSpeed() {
+	CORE_API inline float getMaxSpeed() {
         return maxSpeed;
     }
 
-    inline std::string getName() {
+	CORE_API inline std::string getName() {
         return name;
     }
 
-    virtual std::string getUUID();
+	CORE_API virtual std::string getUUID();
 
     float xvel;
     float yvel;

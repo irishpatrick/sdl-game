@@ -1,5 +1,7 @@
 #pragma once
 
+#include "core_api.hpp"
+
 namespace engine {
 
 class Sprite;
@@ -7,12 +9,12 @@ class Sprite;
 class Camera
 {
 public:
-    Camera();
-    ~Camera();
+	CORE_API Camera();
+	CORE_API ~Camera();
 
-    void setFocus(Sprite*);
-    void update(float);
-    void screen(int, int);
+	CORE_API void setFocus(Sprite*);
+	CORE_API void update(float);
+	CORE_API void screen(int, int);
 
     float x;
     float y;

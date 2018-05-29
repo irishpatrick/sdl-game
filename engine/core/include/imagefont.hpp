@@ -1,5 +1,7 @@
 #pragma once
 
+#include "core_api.hpp"
+
 #include <map>
 #include <string>
 #include <cstdint>
@@ -14,14 +16,14 @@ class Texture;
 class ImageFont
 {
 public:
-    ImageFont();
-    ~ImageFont();
+	CORE_API ImageFont();
+	CORE_API ~ImageFont();
 
-    void setScale(float);
-    void setTexture(Texture*);
-    void buildMap();
-    void renderChar(const string&, float, float, SDL_Renderer*);
-    void renderString(const string&, float, float, SDL_Renderer*);
+	CORE_API void setScale(float);
+	CORE_API void setTexture(Texture*);
+	CORE_API void buildMap();
+	CORE_API void renderChar(const string&, float, float, SDL_Renderer*);
+	CORE_API void renderString(const string&, float, float, SDL_Renderer*);
 
 private:
     Texture* tex;

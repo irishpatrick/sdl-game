@@ -12,14 +12,14 @@ Context::~Context() {
 
 }
 
-int Context::init(int a, int b, const string& title, bool fullscreen) {
+int Context::init(int a, int b, const std::string& title, bool fullscreen) {
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) < 0) {
-        cout << "SDL_Init error: " << SDL_GetError() << endl;
+        std::cout << "SDL_Init error: " << SDL_GetError() << std::endl;
         return -1;
     }
 
     if (SDL_GetDesktopDisplayMode(0, &current) < 0) {
-        cout << "Display mode error " << SDL_GetTicks() << endl;
+        std::cout << "Display mode error " << SDL_GetTicks() << std::endl;
         return -1;
     }
 
@@ -41,7 +41,7 @@ int Context::init(int a, int b, const string& title, bool fullscreen) {
     );
 
     if (w == nullptr) {
-        cout << "SDL_CreateWindow error: " << SDL_GetError() << endl;
+        std::cout << "SDL_CreateWindow error: " << SDL_GetError() << std::endl;
         return -1;
     }
 
@@ -52,7 +52,7 @@ int Context::init(int a, int b, const string& title, bool fullscreen) {
     );
 
     if (r == nullptr) {
-        cout << "SDL_CreateRenderer error: " << SDL_GetError() << endl;
+        std::cout << "SDL_CreateRenderer error: " << SDL_GetError() << std::endl;
     }
 }
 

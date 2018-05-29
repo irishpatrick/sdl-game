@@ -1,5 +1,7 @@
 #pragma once
 
+#include "core_api.hpp"
+
 #include <cstdio>
 #include <vector>
 
@@ -10,13 +12,13 @@ namespace engine {
 class LocationStack
 {
 public:
-    LocationStack();
-    ~LocationStack();
+	CORE_API LocationStack();
+	CORE_API ~LocationStack();
 
-    void push(Point);
-    Point& pop();
-    bool isEmpty();
-    void clear();
+	CORE_API void push(Point);
+	CORE_API Point& pop();
+	CORE_API bool isEmpty();
+	CORE_API void clear();
 
 private:
     std::vector<Point> stack;

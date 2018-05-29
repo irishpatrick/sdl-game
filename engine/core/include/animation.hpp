@@ -1,5 +1,7 @@
 #pragma once
 
+#include "core_api.hpp"
+
 #include <vector>
 #include <map>
 #include <string>
@@ -28,18 +30,18 @@ typedef struct {
 class Animation
 {
 public:
-    Animation();
-    ~Animation();
+	CORE_API Animation();
+	CORE_API ~Animation();
 
-    void InitFromJson(const std::string&);
-    void Start(const std::string&, bool);
-    void Update();
-    void Stop();
-    void Kill();
-    SDL_Rect* GetCurrentFrame();
-    Texture* GetTexture();
-    uint32_t GetFrameWidth();
-    uint32_t GetFrameHeight();
+	CORE_API void InitFromJson(const std::string&);
+	CORE_API void Start(const std::string&, bool);
+	CORE_API void Update();
+	CORE_API void Stop();
+	CORE_API void Kill();
+	CORE_API SDL_Rect* GetCurrentFrame();
+	CORE_API Texture* GetTexture();
+	CORE_API uint32_t GetFrameWidth();
+	CORE_API uint32_t GetFrameHeight();
 
 private:
     //std::map<std::string, FrameSet> animmap_;

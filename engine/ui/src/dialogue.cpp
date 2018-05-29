@@ -58,7 +58,7 @@ void Dialogue::pop() {
     }
 }
 
-void Dialogue::render(engine::Context* ctx) {
+void Dialogue::render(engine::Context* c) {
     if (!visible) {
         return;
     }
@@ -67,8 +67,8 @@ void Dialogue::render(engine::Context* ctx) {
     SDL_Rect* bg = &box[0];
     SDL_Rect* fg = &box[1];
 
-    float cx = ctx->coordX(0.0f) - (width / 2.0f);
-    float cy = ctx->coordY(0.75) - (height / 2.0f);
+    float cx = c->coordX(0.0f) - (width / 2.0f);
+    float cy = c->coordY(0.75) - (height / 2.0f);
 
     bg->x = cx;
     bg->y = cy;
@@ -81,19 +81,19 @@ void Dialogue::render(engine::Context* ctx) {
     fg->h = height - 2;
 
     // background
-    SDL_SetRenderDrawColor(ctx->getRenderer(), 0x00, 0x00, 0x00, 0xff);
-    SDL_RenderFillRect(ctx->getRenderer(), bg);
+    SDL_SetRenderDrawColor(c->getRenderer(), 0x00, 0x00, 0x00, 0xff);
+    SDL_RenderFillRect(c->getRenderer(), bg);
 
     // foreground
-    SDL_SetRenderDrawColor(ctx->getRenderer(), 0xff, 0xff, 0xff, 0xff);
-    SDL_RenderFillRect(ctx->getRenderer(), fg);
+    SDL_SetRenderDrawColor(c->getRenderer(), 0xff, 0xff, 0xff, 0xff);
+    SDL_RenderFillRect(c->getRenderer(), fg);
 
     // text
 	if (!visible) {
 		return;
 	}
-    SDL_SetRenderDrawColor(ctx->getRenderer(), 0x00, 0x00, 0x00, 0xff);
-    font.renderString(stack[0], cx + 10, cy + 10, ctx->getRenderer());
+    SDL_SetRenderDrawColor(c->getRenderer(), 0x00, 0x00, 0x00, 0xff);
+    font.renderString(stack[0], cx + 10, cy + 10, c->getRenderer());
 }
 
 }

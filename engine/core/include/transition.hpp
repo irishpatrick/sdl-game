@@ -1,5 +1,7 @@
 #pragma once
 
+#include "core_api.hpp"
+
 #include <cstdint>
 
 namespace engine {
@@ -10,25 +12,25 @@ enum Fade {IN, OUT};
 
 class Transition {
 public:
-    Transition();
-    ~Transition();
+	CORE_API  Transition();
+	CORE_API ~Transition();
 
-	inline void draw(Context* ctx) {
+	CORE_API inline void draw(Context* ctx) {
 		fill(ctx, alpha);
 	}
 
-    inline bool isRunning() {
+	CORE_API inline bool isRunning() {
         return running;
     }
 
-    void update();
-	void fadeOut(uint32_t);
-	void fadeIn(uint32_t);
-	void blockingFadeOut(Context*, uint32_t);
-	void blockingFadeIn(Context*, uint32_t);
+	CORE_API void update();
+	CORE_API void fadeOut(uint32_t);
+	CORE_API void fadeIn(uint32_t);
+	CORE_API void blockingFadeOut(Context*, uint32_t);
+	CORE_API void blockingFadeIn(Context*, uint32_t);
 
 private:
-    void fill(Context*, uint8_t);
+	CORE_API void fill(Context*, uint8_t);
 
 	uint32_t start;
 	uint32_t duration;

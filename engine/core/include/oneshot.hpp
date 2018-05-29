@@ -1,5 +1,7 @@
 #pragma once
 
+#include "core_api.hpp"
+
 #include <cstdio>
 
 namespace engine {
@@ -7,11 +9,11 @@ namespace engine {
 class OneShot
 {
 public:
-    OneShot();
-    ~OneShot();
+	CORE_API OneShot();
+	CORE_API ~OneShot();
 
-    void check(bool);
-    bool fire();
+	CORE_API void check(bool);
+	CORE_API bool fire();
 
 private:
     bool state;

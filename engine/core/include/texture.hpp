@@ -1,5 +1,7 @@
 #pragma once
 
+#include "core_api.hpp"
+
 #include <cstdio>
 #include <cstdint>
 #include <string>
@@ -10,19 +12,19 @@ namespace engine {
 class Texture
 {
 public:
-    Texture();
-    Texture(SDL_Renderer*);
-    ~Texture();
+	CORE_API Texture();
+	CORE_API Texture(SDL_Renderer*);
+	CORE_API ~Texture();
 
-    void set(SDL_Surface*);
-    void copy(Texture*);
-    void create(SDL_Renderer*);
-    uint32_t getW();
-    uint32_t getH();
-    SDL_Texture* use();
-    void destroy();
+	CORE_API void set(SDL_Surface*);
+	CORE_API void copy(Texture*);
+	CORE_API void create(SDL_Renderer*);
+	CORE_API uint32_t getW();
+	CORE_API uint32_t getH();
+	CORE_API SDL_Texture* use();
+	CORE_API void destroy();
 
-    inline std::string getName() {
+	CORE_API inline std::string getName() {
         return name_;
     }
 

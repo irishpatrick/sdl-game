@@ -1,13 +1,11 @@
 #pragma once
 
-#include "core_api.hpp"
+//#include "core_api.hpp"
 
 #include "animation.hpp"
 #include "assets.hpp"
 #include "camera.hpp"
-#include "controllers.hpp"
 #include "entity.hpp"
-#include "gamepad.hpp"
 #include "group.hpp"
 #include "line.hpp"
 #include "point.hpp"
@@ -20,5 +18,4 @@
 #include "imagefont.hpp"
 #include "oneshot.hpp"
 #include "context.hpp"
-#include "mouse.hpp"
 #include "transition.hpp"

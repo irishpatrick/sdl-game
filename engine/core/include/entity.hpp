@@ -1,5 +1,7 @@
 #pragma once
 
+#include "core_api.hpp"
+
 #include <cstdint>
 
 namespace engine {
@@ -7,10 +9,10 @@ namespace engine {
 class Entity
 {
 public:
-    Entity();
-    virtual ~Entity();
+	CORE_API Entity();
+	CORE_API virtual ~Entity();
 
-    virtual void pos(float, float);
+	CORE_API virtual void pos(float, float);
 
     float x;
     float y;

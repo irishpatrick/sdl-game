@@ -1,5 +1,7 @@
 #pragma once
 
+#include "core_api.hpp"
+
 #include <cstdint>
 #include <SDL2/SDL.h>
 
@@ -10,14 +12,14 @@ namespace engine {
 class State
 {
 public:
-    State(Context*);
-    virtual ~State();
+	CORE_API State(Context*);
+	CORE_API virtual ~State();
 
-    virtual void init();
-    virtual void update(float, const uint8_t*);
-    virtual void render();
+	CORE_API virtual void init();
+	CORE_API virtual void update(float, const uint8_t*);
+	CORE_API virtual void render();
 
-    virtual void destroy();
+	CORE_API virtual void destroy();
 
 protected:
     Context* ctx;

@@ -1,49 +1,49 @@
 #pragma once
 
+#include "core_api.hpp"
+
 #include <string>
 #include <SDL2/SDL.h>
-
-using namespace std;
 
 namespace engine {
 
 class Context {
 
 public:
-    Context();
-    ~Context();
+	CORE_API Context();
+	CORE_API ~Context();
 
-    int init(int, int, const string&, bool);
+	CORE_API int init(int, int, const std::string&, bool);
 
-    inline int getWidth() {
+	CORE_API inline int getWidth() {
         return width;
     }
 
-    inline int getHeight() {
+	CORE_API inline int getHeight() {
         return height;
     }
 
-    inline SDL_Window* getWindow() {
+	CORE_API inline SDL_Window* getWindow() {
         return w;
     }
 
-    inline SDL_Renderer* getRenderer() {
+	CORE_API inline SDL_Renderer* getRenderer() {
         return r;
     }
 
-    inline void clear() {
+	CORE_API inline void clear() {
         SDL_RenderClear(r);
     }
 
-    inline void render() {
+	CORE_API inline void render() {
         SDL_RenderPresent(r);
     }
 
-    inline float coordX(float x) {
+	CORE_API inline float coordX(float x) {
         return (0.5f * x * width) + (width / 2.0f);
     }
 
-    inline float coordY(float y) {
+	CORE_API inline float coordY(float y) {
         return (0.5f * y * height) + (height / 2.0f);
     }
 

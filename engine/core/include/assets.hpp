@@ -1,5 +1,7 @@
 #pragma once
 
+#include "core_api.hpp"
+
 //#define BOOST_THREAD_PROVIDES_FUTURE
 //#include <boost/thread.hpp>
 //#include <boost/thread/future.hpp>
@@ -19,24 +21,24 @@ class Texture;
 class Assets {
 public:
 
-    static inline void setContext(Context* c) {
+	CORE_API static inline void setContext(Context* c) {
         ctx = c;
     }
-    static void loadTexture(const std::string&, SDL_Renderer*);
-    static void loadTexturesFromVector(const std::string&, std::vector<std::string>, SDL_Renderer*);
-    static void loadTexturesFromJson(const std::string&, const std::string&, SDL_Renderer*);
-    static Texture* getTexture(const std::string&);
-    static void getMissingTexture();
-    static void destroy();
-    //static void getFutures();
-    static void useAll();
+	CORE_API static void loadTexture(const std::string&, SDL_Renderer*);
+	CORE_API static void loadTexturesFromVector(const std::string&, std::vector<std::string>, SDL_Renderer*);
+	CORE_API static void loadTexturesFromJson(const std::string&, const std::string&, SDL_Renderer*);
+	CORE_API static Texture* getTexture(const std::string&);
+	CORE_API static void getMissingTexture();
+	CORE_API static void destroy();
+    //CORE_API static void getFutures();
+	CORE_API static void useAll();
 
 private:
-    static void single_load(Texture*, const std::string&);
+	//CORE_API static void single_load(Texture*, const std::string&);
 
-    static std::map<std::string, Texture*> texMap;
-    static Texture* missing;
-    static Context* ctx;
+	CORE_API static std::map<std::string, Texture*> texMap;
+	CORE_API static Texture* missing;
+	CORE_API static Context* ctx;
     //static std::vector<boost::future<void>> futures;
 };
 

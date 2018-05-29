@@ -1,5 +1,7 @@
 #pragma once
 
+#include "core_api.hpp"
+
 #include <cstdint>
 #include <SDL2/SDL.h>
 
@@ -8,12 +10,12 @@ namespace engine {
 class Timer
 {
 public:
-    Timer();
-    ~Timer();
+	CORE_API Timer();
+	CORE_API ~Timer();
 
-    void SetInterval(double);
-    void Reset();
-    bool Tick();
+	CORE_API void SetInterval(double);
+	CORE_API void Reset();
+	CORE_API bool Tick();
 
 private:
     double duration_;

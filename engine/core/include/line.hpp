@@ -1,14 +1,16 @@
 #pragma once
 
+#include "core_api.hpp"
+
 namespace engine {
 
 class Line
 {
 public:
-    Line(float, float, float, float);
-    ~Line();
+	CORE_API Line(float, float, float, float);
+	CORE_API ~Line();
 
-    float solve(float);
+	CORE_API float solve(float);
 
 private:
     float m;

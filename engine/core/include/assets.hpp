@@ -16,12 +16,7 @@ namespace engine {
 	class Assets {
 	public:
 
-		CORE_API static inline void setContext(Context* c) {
-			ctx = c;
-		}
-		CORE_API static inline Context* getContext() {
-			return ctx;
-		}
+		CORE_API static void setContext(Context*);
 		CORE_API static void loadTexture(const std::string&, SDL_Renderer*);
 		CORE_API static void loadTexturesFromVector(const std::string&, std::vector<std::string>, SDL_Renderer*);
 		CORE_API static void loadTexturesFromJson(const std::string&, const std::string&, SDL_Renderer*);
@@ -32,7 +27,7 @@ namespace engine {
 		CORE_API static void useAll();
 
 	private:
-		CORE_API static Context* ctx;
+		CORE_API static Context* context;
 		//CORE_API static void single_load(Texture*, const std::string&);
 		CORE_API static std::map<std::string, Texture*> texMap;
 		CORE_API static Texture* missing;

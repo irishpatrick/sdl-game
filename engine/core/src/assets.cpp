@@ -7,13 +7,12 @@
 #include <sstream>
 #include <iostream>
 
-engine::Context* engine::Assets::ctx = 0;
-
 namespace engine {
 
 	std::map<std::string, Texture*> Assets::texMap = std::map<std::string, Texture*>();
 	//std::vector<boost::future<void>> Assets::futures = std::vector<boost::future<void>>();
 	Texture* Assets::missing = 0;
+	Context* Assets::context = 0;
 	
 
 	std::vector<std::string> split(const std::string& s, char delim)
@@ -53,6 +52,10 @@ namespace engine {
 		}
 	}*/
 
+	void Assets::setContext(Context* c) {
+		context = c;
+	}
+
 	void Assets::getMissingTexture() {
 		if (missing != nullptr) {
 			return;
@@ -71,7 +74,7 @@ namespace engine {
 			amask = 0xff000000;
 			magenta = 0xffff00ff;
 		#endif
-		Texture* t = new Texture(ctx->getRenderer());
+		Texture* t = new Texture(context->getRenderer());
 		SDL_Surface* s = SDL_CreateRGBSurface(0, 32, 32, 32, rmask, gmask, bmask, amask);
 
 		if (s == nullptr) {

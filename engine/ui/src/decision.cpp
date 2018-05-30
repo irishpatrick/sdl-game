@@ -1,7 +1,8 @@
 #include "decision.hpp"
 #include <SDL2/SDL.h>
 
-engine::Context* engine::Assets::ctx = 0;
+// why is this here
+//engine::Context* engine::Assets::ctx = 0;
 
 namespace ui {
 

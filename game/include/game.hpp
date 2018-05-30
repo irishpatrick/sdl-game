@@ -40,10 +40,9 @@ private:
     engine::OneShot ol;
     std::vector<engine::Sprite*> hero_collisions;
     engine::ImageFont font;
-    //ui::Dialogue dlg;
+    ui::Dialogue dlg;
     engine::Transition transition;
     Door* todo;
     float todo_x;
     float todo_y;
-    //gui::List list;
 };

@@ -58,4 +58,4 @@ private:
 
 }
 
-#include "group.tpp"
+#include "group.inl"

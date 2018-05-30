@@ -26,6 +26,10 @@ public:
         return visible;
     }
 
+    UI_API inline engine::ImageFont& getFont() {
+        return font;
+    }
+
     UI_API void push(const std::string&);
     UI_API void pop();
     UI_API void render(engine::Context*);

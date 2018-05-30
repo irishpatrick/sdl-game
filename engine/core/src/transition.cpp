@@ -75,7 +75,7 @@ void Transition::update() {
 			running = false;
 			t = 1.0f;
 		}
-        float lerp;
+        float lerp = 0.0f;
 		if (fade == OUT) {
 			lerp = Util::lerp(t, 0.0f, 255.0f);
 		}

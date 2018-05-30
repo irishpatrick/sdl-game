@@ -43,8 +43,7 @@ void Game::init() {
 
     dlg.setWidth(300, 80);
 	//dlg.push("this is a very very long string that will hopefully get divided up");
-    dlg.initFont(engine::Assets::getTexture("out.png"));
-
+    dlg.initFont(engine::Assets::getTexture("white-font.png"));
     tests();
 
     hero_collisions = engine::Util::GetCollisions(&hero, groups_.getactive());

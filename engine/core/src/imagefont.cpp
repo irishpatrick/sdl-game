@@ -10,6 +10,9 @@ namespace engine {
 ImageFont::ImageFont() {
     w = 0;
     h = 0;
+    maskR = 0;
+    maskG = 0;
+    maskB = 0;
     scale = 1.0f;
     tex = nullptr;
     crects = (SDL_Rect*)malloc(63 * sizeof(SDL_Rect));
@@ -17,6 +20,12 @@ ImageFont::ImageFont() {
 
 ImageFont::~ImageFont() {
 	free(crects);
+}
+
+void ImageFont::setColor(uint8_t r, uint8_t g, uint8_t b) {
+    maskR = r;
+    maskG = g;
+    maskB = b;
 }
 
 void ImageFont::setScale(float s) {
@@ -55,7 +64,7 @@ void ImageFont::renderChar(const std::string& c, float x, float y, SDL_Renderer*
     dst.h = (uint32_t) (h * scale);
 
     SDL_Rect* src = &crects[found];
-
+    SDL_SetTextureColorMod(tex->use(), maskR, maskG, maskB);
     SDL_RenderCopy(r, tex->use(), src, &dst);
 }
 

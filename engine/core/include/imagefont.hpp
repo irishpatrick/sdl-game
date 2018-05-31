@@ -31,6 +31,7 @@ private:
     uint32_t w;
     uint32_t h;
 	uint8_t maskR, maskG, maskB;
+    bool isMaskSet;
     float scale;
     SDL_Rect* crects;
     const std::string charMap = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ";

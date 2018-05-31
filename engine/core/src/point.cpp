@@ -13,7 +13,7 @@ Point::Point(float a, float b)
     y = b;
 }
 
-void Point::Set(float a, float b)
+void Point::set(float a, float b)
 {
     x = a;
     y = b;

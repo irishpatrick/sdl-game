@@ -15,7 +15,7 @@ public:
 	~GroupManager();
 
 	void addgroup(const std::string&, engine::Group*);
-	void loadgroup(const std::string&, const string&);
+	void loadgroup(const std::string&, const std::string&);
 	void setactive(const std::string&);
     void setEntry(const std::string&);
 	void setcamera(engine::Camera*);

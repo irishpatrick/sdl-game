@@ -81,7 +81,7 @@ void ImageFont::renderString(const std::string& str, float ox, float oy, SDL_Ren
         std::string s;
         std::stringstream ss;
         ss << c;
-        getline(ss, s);
+        std::getline(ss, s);
         renderChar(s, x + (i * w * scale), y, r);
     }
 }

@@ -35,7 +35,7 @@ string Door::getTag()
 
 void Door::SetExit(float a, float b)
 {
-    exit_.Set(a, b);
+    exit_.set(a, b);
 }
 
 void Door::Enter()

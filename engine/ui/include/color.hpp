@@ -13,6 +13,11 @@ namespace ui {
 		UI_API ~Color();
 
 		UI_API uint8_t getChannel(uint8_t);
+        UI_API inline void set(uint8_t r, uint8_t g, uint8_t b) {
+            this->r = r;
+            this->g = g;
+            this->b = b;
+        }
 
 		UI_API static const uint8_t RED = 0;
 		UI_API static const uint8_t GREEN = 1;

@@ -9,6 +9,7 @@ namespace ui {
     class Config {
 	public:
 		UI_API static engine::ImageFont* getFont();
+        UI_API static void setDefaultColor(uint8_t);
 
 	private:
 		UI_API static engine::ImageFont* font;

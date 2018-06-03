@@ -14,7 +14,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
 set(COMPILE_OPTIONS "")
 set(LINK_OPTIONS "")
 
-set(INCLUDE_DIR "deps/include")
+set(INCLUDE_DIR deps/include CACHE PATH "")
 
 if (USE_HUNTER)
 	include("cmake/HunterGate.cmake")
@@ -66,7 +66,7 @@ if (USE_HUNTER)
 
     elseif (MSVC)
         message(STATUS "MSVC")
-        set(INCLUDE_DIR "${INCLUDE_DIR};" CACHE PATH "")
+        set(INCLUDE_DIR ${INCLUDE_DIR} CACHE PATH "")
         set(LIBRARY_DIR "" CACHE PATH "")
 
     else (UNIX)

@@ -41,6 +41,7 @@ private:
     std::vector<engine::Sprite*> hero_collisions;
     engine::ImageFont font;
     ui::Dialogue dlg;
+	ui::Decision dec;
     engine::Transition transition;
     Door* todo;
     float todo_x;

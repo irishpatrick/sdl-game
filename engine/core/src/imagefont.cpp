@@ -30,6 +30,13 @@ void ImageFont::setColor(uint8_t r, uint8_t g, uint8_t b) {
     isMaskSet = false;
 }
 
+void ImageFont::setColor(Color& c) {
+	maskR = c.getChannel(Color::RED);
+	maskG = c.getChannel(Color::GREEN);
+	maskB = c.getChannel(Color::BLUE);
+	isMaskSet = false;
+}
+
 void ImageFont::setScale(float s) {
     scale = s;
 }

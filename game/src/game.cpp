@@ -47,6 +47,14 @@ void Game::init() {
     tests();
 
     hero_collisions = engine::Util::GetCollisions(&hero, groups_.getactive());
+
+	ui::Config::initFont(engine::Assets::getTexture("white-font.png"), 0.055f);
+	ui::Config::setActiveColor(255, 255, 0);
+	ui::Config::setDefaultColor(0, 0, 0);
+	dec.setSelection(ui::Decision::NO);
+	dec.setVisible(false);
+	dec.x = 100;
+	dec.y = 100;
 }
 
 void Game::tests() {
@@ -76,50 +84,62 @@ void Game::update(float delta, const uint8_t* keys) {
 	}
 
     if (playerInput) {
-        bool w = keys[SDL_SCANCODE_W];
-        bool s = keys[SDL_SCANCODE_S];
-        bool a = keys[SDL_SCANCODE_A];
-        bool d = keys[SDL_SCANCODE_D];
-        bool p = keys[SDL_SCANCODE_P];
-        bool l = keys[SDL_SCANCODE_L];
+        bool up = keys[SDL_SCANCODE_UP];
+        bool down = keys[SDL_SCANCODE_DOWN];
+        bool left = keys[SDL_SCANCODE_LEFT];
+        bool right = keys[SDL_SCANCODE_RIGHT];
+        bool primary = keys[SDL_SCANCODE_Z];
+        bool secondary = keys[SDL_SCANCODE_X];
+		op.check(primary);
+		ol.check(secondary);
+
+		if (dec.isVisible()) {
+
+		}
+		else if (dlg.isVisible()) {
+
+		}
+		else {
+			if ((up || down) && (left || right)) {
+				hero_collisions = engine::Util::getVelocityCollisions(
+					&hero,
+					groups_.getactive(),
+					delta
+				);
+				//cout << hero_collisions.size() << endl;
+				float v = sqrt(pow(hero.getMaxSpeed(), 2) / 2.0);
+				hero.speed = v;
+			}
+			else {
+				hero.speed = hero.getMaxSpeed();
+			}
+
+			if (up) {
+				hero.yvel = -hero.speed;
+			}
+			if (down) {
+				hero.yvel = hero.speed;
+			}
+			if (left) {
+				hero.xvel = -hero.speed;
+			}
+			if (right) {
+				hero.xvel = hero.speed;
+			}
+
+			if (up || down || left || right) {
+				hero_collisions = engine::Util::getVelocityCollisions(
+					&hero,
+					groups_.getactive(),
+					delta
+				);
+			}
+		}
 
         if (!dlg.isVisible()) {
-            if ((w || s) && (a || d)) {
-                hero_collisions = engine::Util::getVelocityCollisions(
-                    &hero,
-                    groups_.getactive(),
-                    delta
-                );
-                //cout << hero_collisions.size() << endl;
-                float v = sqrt(pow(hero.getMaxSpeed(), 2) / 2.0);
-                hero.speed = v;
-            } else {
-                hero.speed = hero.getMaxSpeed();
-            }
-
-            if (w) {
-                hero.yvel = -hero.speed;
-            }
-            if (s) {
-                hero.yvel = hero.speed;
-            }
-            if (a) {
-                hero.xvel = -hero.speed;
-            }
-            if (d) {
-                hero.xvel = hero.speed;
-            }
-
-            if (w || s || a || d) {
-                hero_collisions = engine::Util::getVelocityCollisions(
-                    &hero,
-                    groups_.getactive(),
-                    delta
-                );
-            }
+            
         }
 
-        op.check(p);
         if (op.fire()) {
             if (dlg.isVisible()) {
                 dlg.pop();
@@ -149,9 +169,8 @@ void Game::update(float delta, const uint8_t* keys) {
             }
         }
 
-        ol.check(l);
         if (ol.fire()) {
-			//transition.blockingFadeOut(ctx, 1000);
+			
         }
 
         auto collisions = engine::Util::getVelocityCollisions(
@@ -210,6 +229,7 @@ void Game::update(float delta, const uint8_t* keys) {
 void Game::render() {
     groups_.getactive()->draw(ctx->getRenderer());
     dlg.render(ctx);
+	dec.draw(ctx);
 	transition.draw(ctx);
 }
 

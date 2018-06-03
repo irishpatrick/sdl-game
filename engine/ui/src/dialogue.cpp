@@ -89,9 +89,7 @@ void Dialogue::render(engine::Context* c) {
     SDL_RenderFillRect(c->getRenderer(), fg);
 
     // text
-	if (!visible) {
-		return;
-	}
+	if (!visible) { return; }
     SDL_SetRenderDrawColor(c->getRenderer(), 0x00, 0x00, 0x00, 0xff);
     font.renderString(stack[0], cx + 10, cy + 10, c->getRenderer());
 }

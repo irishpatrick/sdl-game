@@ -1,7 +1,5 @@
 #pragma once
 
-//#include "core_api.hpp"
-
 #include "assets.hpp"
 #include "animation.hpp"
 #include "camera.hpp"
@@ -19,3 +17,4 @@
 #include "oneshot.hpp"
 #include "context.hpp"
 #include "transition.hpp"
+#include "color.hpp"

@@ -7,6 +7,8 @@
 #include <cstdint>
 #include <SDL2/SDL.h>
 
+#include "color.hpp"
+
 namespace engine {
 
 class Texture;
@@ -21,6 +23,7 @@ public:
 	CORE_API void setTexture(Texture*);
 	CORE_API void buildMap();
 	CORE_API void setColor(uint8_t, uint8_t, uint8_t);
+	CORE_API void setColor(Color&);
 	CORE_API void renderChar(const std::string&, float, float, SDL_Renderer*);
 	CORE_API void renderString(const std::string&, float, float, SDL_Renderer*);
 

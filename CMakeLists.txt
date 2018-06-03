@@ -14,6 +14,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
 set(COMPILE_OPTIONS "")
 set(LINK_OPTIONS "")
 
+set(INCLUDE_DIR "deps/include")
+
 if (USE_HUNTER)
 	include("cmake/HunterGate.cmake")
     HunterGate(
@@ -78,7 +80,6 @@ if (USE_PKGCONFIG)
     message(STATUS "using pkg-config")
 
     find_package(PkgConfig REQUIRED)
-    pkg_check_modules(cairo REQUIRED cairo)
     pkg_check_modules(SDL2 REQUIRED sdl2)
     pkg_check_modules(SDL2_image REQUIRED SDL2_image)
 

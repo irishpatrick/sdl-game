@@ -52,7 +52,7 @@ void Game::init() {
 	ui::Config::setActiveColor(255, 255, 0);
 	ui::Config::setDefaultColor(0, 0, 0);
 	dec.setSelection(ui::Decision::NO);
-	dec.setVisible(false);
+	dec.setVisible(true);
 	dec.x = 100;
 	dec.y = 100;
 }
@@ -94,7 +94,15 @@ void Game::update(float delta, const uint8_t* keys) {
 		ol.check(secondary);
 
 		if (dec.isVisible()) {
-
+			if (up) {
+				dec.setSelection(ui::Decision::YES);
+			}
+			if (down) {
+				dec.setSelection(ui::Decision::NO);
+			}
+			if (op.fire()) {
+				dec.setVisible(false);
+			}
 		}
 		else if (dlg.isVisible()) {
 

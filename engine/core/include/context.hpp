@@ -39,6 +39,12 @@ namespace engine {
 			SDL_RenderPresent(r);
 		}
 
+		CORE_API inline void destroy() {
+			SDL_DestroyRenderer(r);
+			SDL_DestroyWindow(w);
+			SDL_Quit();
+		}
+
 		CORE_API inline float coordX(float x) {
 			return (0.5f * x * width) + (width / 2.0f);
 		}

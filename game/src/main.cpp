@@ -19,6 +19,7 @@ bool quit;
 engine::Context ctx;
 
 engine::State* current;
+Game game;
 
 void init() {
     // a more elegant solution is needed
@@ -29,12 +30,6 @@ void init() {
     #endif
 
     ctx.init(Config::getScreenWidth(), Config::getScreenHeight(), "hello world!", false);
-    engine::Assets::setContext(&ctx);
-
-    if (!IMG_Init(IMG_INIT_PNG)) {
-        printf("IMG_Init error: %s\n", IMG_GetError());
-        exit(1);
-    }
 }
 
 void loadingScreen() {
@@ -78,7 +73,7 @@ void render() {
         current->update(delta/1000.0f, state);
 
         ctx.clear();
-        current->render();
+        current->render(ctx);
         ctx.render();
 
         then = now;
@@ -86,11 +81,10 @@ void render() {
 }
 
 void cleanup() {
-    current->destroy();
+	current = nullptr;
+	game.destroy();
     //SDL_FreeSurface(icon);
-    SDL_DestroyRenderer(ctx.getRenderer());
-    SDL_DestroyWindow(ctx.getWindow());
-    SDL_Quit();
+	ctx.destroy();
 }
 
 #ifdef main
@@ -117,18 +111,17 @@ int main(int argc, char** argv) {
 
     loadingScreen();
 
-    engine::Assets::loadTexturesFromJson("textures-all.json", Config::getAssetPath(), r);
-    engine::Assets::useAll();
+    engine::Assets::loadTexturesFromJson("textures-all.json", Config::getAssetPath(), ctx);
+    engine::Assets::useAll(ctx);
 
-    current = new Game(&ctx);
-    current->init();
+	game.init(ctx);
+
+	current = &game;
 
     SDL_SetRenderDrawColor(r, 0, 0, 0, 255);
 
     render();
     cleanup();
-
-    delete current;
 
     return 0;
 }

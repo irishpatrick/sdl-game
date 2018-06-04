@@ -8,15 +8,15 @@
 
 class Battle: public engine::State {
 public:
-    Battle(engine::Context*);
+    Battle();
     ~Battle();
 
     void setBackground(const std::string&);
     void addCombatants(std::vector<engine::Sprite*>&, std::vector<engine::Sprite*>&);
 
-    void init() override;
+    void init(engine::Context&) override;
     void update(float, const uint8_t*) override;
-    void render() override;
+    void render(engine::Context&) override;
     void destroy() override;
 
 private:

@@ -1,6 +1,6 @@
 #include "game.hpp"
 
-Game::Game(engine::Context* c): engine::State(c) {
+Game::Game(): engine::State() {
     playerInput = true;
     todo = nullptr;
     todo_x = 0;
@@ -11,10 +11,10 @@ Game::~Game() {
 
 }
 
-void Game::init() {
+void Game::init(engine::Context& ctx) {
     std::string maps = Config::getAssetPath() + "maps/";
     std::string sprites = Config::getAssetPath() + "sprites/";
-    camera.screen(ctx->getWidth(), ctx->getHeight());
+    camera.screen(ctx.getWidth(), ctx.getHeight());
 
     camera.setFocus(&hero);
 
@@ -234,13 +234,13 @@ void Game::update(float delta, const uint8_t* keys) {
     groups_.getactive()->sort();
 }
 
-void Game::render() {
-    groups_.getactive()->draw(ctx->getRenderer());
-    dlg.render(ctx);
-	dec.draw(ctx);
-	transition.draw(ctx);
+void Game::render(engine::Context& ctx) {
+    groups_.getactive()->draw(ctx.getRenderer());
+    dlg.render(&ctx);
+	dec.draw(&ctx);
+	transition.draw(&ctx);
 }
 
 void Game::destroy() {
-    engine::Assets::destroy();
+
 }

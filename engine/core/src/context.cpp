@@ -1,4 +1,5 @@
 #include "context.hpp"
+#include <SDL2/SDL_image.h>
 #include <iostream>
 
 namespace engine {
@@ -14,6 +15,11 @@ namespace engine {
 	int Context::init(int a, int b, const std::string& title, bool fullscreen) {
 		if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) < 0) {
 			std::cout << "SDL_Init error: " << SDL_GetError() << std::endl;
+			return -1;
+		}
+
+		if (!IMG_Init(IMG_INIT_PNG)) {
+			std::cout << "IMG_Init error: " << IMG_GetError() << std::endl;
 			return -1;
 		}
 

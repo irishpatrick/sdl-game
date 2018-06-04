@@ -1,6 +1,6 @@
 #include "battle.hpp"
 
-Battle::Battle(engine::Context* c): engine::State(c) {
+Battle::Battle(): engine::State() {
 
 }
 
@@ -8,7 +8,7 @@ Battle::~Battle() {
 
 }
 
-void Battle::init() {
+void Battle::init(engine::Context& ctx) {
     dialogue.setWidth(300, 80);
     dialogue.initFont(engine::Assets::getTexture("out.png"));
 
@@ -45,8 +45,8 @@ void Battle::update(float delta, const uint8_t* keys) {
     bg.velocityUpdate(delta);
 }
 
-void Battle::render() {
-    bg.draw(ctx->getRenderer());
+void Battle::render(engine::Context& ctx) {
+    bg.draw(ctx.getRenderer());
 }
 
 void Battle::destroy() {

@@ -11,8 +11,7 @@ namespace engine {
 
 	std::map<std::string, Texture*> Assets::texMap = std::map<std::string, Texture*>();
 	//std::vector<boost::future<void>> Assets::futures = std::vector<boost::future<void>>();
-	Texture* Assets::missing = 0;
-	Context* Assets::context = 0;
+	Texture* Assets::missing = nullptr;
 	
 
 	std::vector<std::string> split(const std::string& s, char delim)
@@ -52,11 +51,7 @@ namespace engine {
 		}
 	}*/
 
-	void Assets::setContext(Context* c) {
-		context = c;
-	}
-
-	void Assets::getMissingTexture() {
+	void Assets::getMissingTexture(Context& ctx) {
 		if (missing != nullptr) {
 			return;
 		}
@@ -74,7 +69,7 @@ namespace engine {
 			amask = 0xff000000;
 			magenta = 0xffff00ff;
 		#endif
-		Texture* t = new Texture(context->getRenderer());
+		Texture* t = new Texture();
 		SDL_Surface* s = SDL_CreateRGBSurface(0, 32, 32, 32, rmask, gmask, bmask, amask);
 
 		if (s == nullptr) {
@@ -88,12 +83,13 @@ namespace engine {
 		}
 
 		t->set(s);
-		t->use();
+		t->create(ctx);
+		//t->use();
 
 		missing = t;
 	}
 
-	void Assets::loadTexture(const std::string& fn, SDL_Renderer* r)
+	void Assets::loadTexture(const std::string& fn, Context& ctx)
 	{
 		std::vector<std::string> vec = split(fn, boost::filesystem::path::preferred_separator);
 		std::string key = vec[vec.size() - 1];
@@ -105,7 +101,7 @@ namespace engine {
 			std::cout << "key does not exist" << std::endl;
 		}*/
 
-		texMap[key] = new Texture(r);
+		texMap[key] = new Texture();
 		parallel_load(texMap, fn, key);
 		//single_load(texMap[key], fn);
 		//futures.push_back(std::async(std::launch::async, parallel_load, std::ref(texMap), fn, key));
@@ -113,15 +109,15 @@ namespace engine {
 
 	}
 
-	void Assets::loadTexturesFromVector(const std::string& dir, std::vector<std::string> files, SDL_Renderer* r) {
+	void Assets::loadTexturesFromVector(const std::string& dir, std::vector<std::string> files, Context& ctx) {
 		std::cout << "loading textures from vector..." << std::endl;
 		for (auto& e : files) {
-			loadTexture(dir + e, r);
+			loadTexture(dir + e, ctx);
 		}
 		std::cout << "done!" << std::endl;
 	}
 
-	void Assets::loadTexturesFromJson(const std::string& fn, const std::string& rootstr, SDL_Renderer* r) {
+	void Assets::loadTexturesFromJson(const std::string& fn, const std::string& rootstr, Context& ctx) {
 		std::cout << "loading textures from json..." << std::endl;
 		std::ifstream in(rootstr + fn);
 		nlohmann::json o;
@@ -134,7 +130,7 @@ namespace engine {
 			std::cout << "loading " << current << std::endl;
 			boost::filesystem::path file(current.get<std::string>());
 			boost::filesystem::path full = root / dir / file;
-			loadTexture(full.string(), r);
+			loadTexture(full.string(), ctx);
 		}
 		std::cout << "done!" << std::endl;
 	}
@@ -144,14 +140,15 @@ namespace engine {
 		if (texMap.find(key) == texMap.end())
 		{
 			printf("key %s not found!\n", key.c_str());
-			getMissingTexture();
+			//getMissingTexture(ctx);
 			return missing;
 		}
 		return texMap[key];
 	}
 
-	void Assets::useAll() {
+	void Assets::useAll(Context& ctx) {
 		for (auto& e : texMap) {
+			e.second->create(ctx);
 			e.second->use();
 		}
 	}

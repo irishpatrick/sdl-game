@@ -2,33 +2,28 @@
 
 namespace engine {
 
-State::State(Context* c) {
-    ctx = c;
-}
+	State::State() {
 
-State::~State()
-{
+	}
 
-}
+	State::~State() {
 
-void State::init()
-{
+	}
 
-}
+	void State::init(Context& ctx) {
 
-void State::update(float delta, const uint8_t* keys)
-{
+	}
 
-}
+	void State::update(float delta, const uint8_t* keys) {
 
-void State::render()
-{
+	}
 
-}
+	void State::render(Context& ctx) {
 
-void State::destroy()
-{
+	}
 
-}
+	void State::destroy() {
+
+	}
 
 }

@@ -16,14 +16,14 @@
 
 class Game: public engine::State {
 public:
-    Game(engine::Context*);
+    Game();
     ~Game();
 
-    void init() override;
+    void init(engine::Context&) override;
     //void input(uint8_t*);
     void tests();
     void update(float, const uint8_t*) override;
-    void render() override;
+    void render(engine::Context&) override;
     void destroy() override;
 
 private:

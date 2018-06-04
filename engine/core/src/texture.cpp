@@ -4,17 +4,12 @@ namespace engine {
 
 Texture::Texture()
 {
-    name_ = "";
-}
-
-Texture::Texture(SDL_Renderer* r)
-{
     w = 0;
     h = 0;
     tex = NULL;
-    renderer = r;
     surf = NULL;
     ready = false;
+	name = "";
 }
 
 Texture::~Texture()
@@ -48,17 +43,18 @@ void Texture::copy(Texture* t) {
     ready = true;
 }
 
-void Texture::create(SDL_Renderer* r)
+void Texture::create(Context& ctx)
 {
-    tex = SDL_CreateTextureFromSurface(r, surf);
+    tex = SDL_CreateTextureFromSurface(ctx.getRenderer(), surf);
 }
 
 SDL_Texture* Texture::use()
 {
     if (ready && tex == NULL)
     {
+		std::cout << "error: need to create texture first" << std::endl;
         //printf("creating texture\n");
-        tex = SDL_CreateTextureFromSurface(renderer, surf);
+		//tex = SDL_CreateTextureFromSurface(renderer, surf);
     }
     return tex;
 }

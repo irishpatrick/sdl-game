@@ -2,10 +2,13 @@
 
 #include "core_api.hpp"
 
+#include <iostream>
 #include <cstdio>
 #include <cstdint>
 #include <string>
 #include <SDL2/SDL.h>
+
+#include "context.hpp"
 
 namespace engine {
 
@@ -13,19 +16,18 @@ class Texture
 {
 public:
 	CORE_API Texture();
-	CORE_API Texture(SDL_Renderer*);
 	CORE_API ~Texture();
 
 	CORE_API void set(SDL_Surface*);
 	CORE_API void copy(Texture*);
-	CORE_API void create(SDL_Renderer*);
+	CORE_API void create(Context&);
 	CORE_API uint32_t getW();
 	CORE_API uint32_t getH();
 	CORE_API SDL_Texture* use();
 	CORE_API void destroy();
 
 	CORE_API inline std::string getName() {
-        return name_;
+        return name;
     }
 
     bool ready;
@@ -33,10 +35,9 @@ public:
 private:
     uint32_t w;
     uint32_t h;
-    std::string name_;
+    std::string name;
     SDL_Texture* tex;
     SDL_Surface* surf;
-    SDL_Renderer* renderer;
 };
 
 }

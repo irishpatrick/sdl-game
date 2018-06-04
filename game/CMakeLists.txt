@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(rpg C CXX)
+project(game C CXX)
 
 file (GLOB sources src/*.cpp)
-file (GLOB headers include/*.hpp)
+file (GLOB headers include/*.hpp include/*.inl)
 
 link_directories(${PROJECT_NAME} PUBLIC ${LIBRARY_DIR})
 add_executable(${PROJECT_NAME} ${sources} ${headers})

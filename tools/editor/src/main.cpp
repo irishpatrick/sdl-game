@@ -12,7 +12,6 @@ Editor editor;
 
 void init() {
 	ctx.init(1024, 768, "Editor", false);
-	engine::Assets::setContext(&ctx);
 	quit = false;
 }
 

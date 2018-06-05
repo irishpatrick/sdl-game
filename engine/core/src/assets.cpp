@@ -14,13 +14,11 @@ namespace engine {
 	Texture* Assets::missing = nullptr;
 	
 
-	std::vector<std::string> split(const std::string& s, char delim)
-	{
+	std::vector<std::string> split(const std::string& s, char delim) {
 		std::stringstream ss(s);
 		std::string item;
 		std::vector<std::string> tokens;
-		while (std::getline(ss, item, delim))
-		{
+		while (std::getline(ss, item, delim)) {
 			tokens.push_back(item);
 		}
 		return tokens;
@@ -29,14 +27,13 @@ namespace engine {
 	void parallel_load(
 		std::map<std::string, Texture*>& map,
 		const std::string& fn,
-		const std::string& key)
-	{
+		const std::string& key) {
 		SDL_Surface* s = IMG_Load(fn.c_str());
-		if (s == nullptr)
-		{
+		if (s == nullptr) {
 			printf("surface failed to load!\n");
 			//exit(1);
-		} else {
+		} 
+		else {
 			map[key]->set(s);
 		}
 	}
@@ -89,8 +86,7 @@ namespace engine {
 		missing = t;
 	}
 
-	void Assets::loadTexture(const std::string& fn, Context& ctx)
-	{
+	void Assets::loadTexture(const std::string& fn, Context& ctx) {
 		std::vector<std::string> vec = split(fn, boost::filesystem::path::preferred_separator);
 		std::string key = vec[vec.size() - 1];
 
@@ -135,10 +131,8 @@ namespace engine {
 		std::cout << "done!" << std::endl;
 	}
 
-	Texture* Assets::getTexture(const std::string& key)
-	{
-		if (texMap.find(key) == texMap.end())
-		{
+	Texture* Assets::getTexture(const std::string& key) {
+		if (texMap.find(key) == texMap.end()) {
 			printf("key %s not found!\n", key.c_str());
 			//getMissingTexture(ctx);
 			return missing;
@@ -153,8 +147,7 @@ namespace engine {
 		}
 	}
 
-	/*void Assets::getFutures()
-	{
+	/*void Assets::getFutures() {
 		for (auto& e : futures)
 		{
 			e.get();
@@ -165,10 +158,8 @@ namespace engine {
 		}
 	}*/
 
-	void Assets::destroy()
-	{
-		/*for (auto &e : futures)
-		{
+	void Assets::destroy() {
+		/*for (auto &e : futures) {
 			e.get();
 		}*/
 

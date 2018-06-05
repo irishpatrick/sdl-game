@@ -3,46 +3,40 @@
 
 namespace engine {
 
-LocationStack::LocationStack()
-{
+	LocationStack::LocationStack() {
 
-}
-
-LocationStack::~LocationStack()
-{
-
-}
-
-template<typename T>
-void pop_front(std::vector<T>& v) {
-	if (!v.empty()) {
-		v.erase(v.begin());
 	}
-	else {
-		std::cout << "stack empty" << std::endl;
+
+	LocationStack::~LocationStack() {
+
 	}
-}
 
-void LocationStack::push(Point p)
-{
-    stack.push_back(p);
-}
+	template<typename T>
+	void pop_front(std::vector<T>& v) {
+		if (!v.empty()) {
+			v.erase(v.begin());
+		}
+		else {
+			std::cout << "stack empty" << std::endl;
+		}
+	}
 
-Point& LocationStack::pop()
-{
-    Point& p = stack[0];
-    pop_front(stack);
-    return p;
-}
+	void LocationStack::push(Point p) {
+		stack.push_back(p);
+	}
 
-bool LocationStack::isEmpty()
-{
-    return stack.size() == 0;
-}
+	Point& LocationStack::pop() {
+		Point& p = stack[0];
+		pop_front(stack);
+		return p;
+	}
 
-void LocationStack::clear()
-{
-    stack.clear();
-}
+	bool LocationStack::isEmpty() {
+		return stack.size() == 0;
+	}
+
+	void LocationStack::clear() {
+		stack.clear();
+	}
 
 }

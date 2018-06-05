@@ -31,7 +31,8 @@ namespace engine {
 		if (fullscreen) {
 			width = current.w;
 			height = current.h;
-		} else {
+		} 
+		else {
 			width = a;
 			height = b;
 		}

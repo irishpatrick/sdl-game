@@ -2,39 +2,32 @@
 
 namespace engine {
 
-OneShot::OneShot()
-{
-    state = false;
-    reset = false;
-}
+	OneShot::OneShot() {
+		state = false;
+		reset = false;
+	}
 
-OneShot::~OneShot()
-{
+	OneShot::~OneShot() {
 
-}
+	}
 
-void OneShot::check(bool b)
-{
-    if (reset)
-    {
-        state = false;
-    }
+	void OneShot::check(bool b) {
+		if (reset) {
+			state = false;
+		}
 
-    if (b && !reset)
-    {
-        state = true;
-        reset = true;
-    }
+		if (b && !reset) {
+			state = true;
+			reset = true;
+		}
 
-    if (!b && reset)
-    {
-        reset = false;
-    }
-}
+		if (!b && reset) {
+			reset = false;
+		}
+	}
 
-bool OneShot::fire()
-{
-    return state;
-}
+	bool OneShot::fire() {
+		return state;
+	}
 
 }

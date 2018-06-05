@@ -4,17 +4,18 @@
 
 namespace engine {
 
-class Line
-{
-public:
-	CORE_API Line(float, float, float, float);
-	CORE_API ~Line();
+	class Line
+	{
+	public:
+		CORE_API Line();
+		CORE_API Line(float, float, float, float);
+		CORE_API ~Line();
 
-	CORE_API float solve(float);
+		CORE_API float solve(float);
 
-private:
-    float m;
-    float b;
-};
+	private:
+		float m;
+		float b;
+	};
 
 }

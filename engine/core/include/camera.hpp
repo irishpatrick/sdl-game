@@ -6,25 +6,25 @@ namespace engine {
 
 class Sprite;
 
-class Camera
-{
-public:
-	CORE_API Camera();
-	CORE_API ~Camera();
+	class Camera
+	{
+	public:
+		CORE_API Camera();
+		CORE_API ~Camera();
 
-	CORE_API void setFocus(Sprite*);
-	CORE_API void update(float);
-	CORE_API void screen(int, int);
+		CORE_API void setFocus(Sprite*);
+		CORE_API void update(float);
+		CORE_API void screen(int, int);
 
-    float x;
-    float y;
+		float x;
+		float y;
 
-private:
-    int w;
-    int h;
-	float fx;
-	float fy;
-    Sprite* focus;
-};
+	private:
+		int w;
+		int h;
+		float fx;
+		float fy;
+		Sprite* focus;
+	};
 
 }

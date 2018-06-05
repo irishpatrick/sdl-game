@@ -12,4 +12,9 @@ public:
 	void update(float, const uint8_t*) override;
 	void render(engine::Context&) override;
 
+private:
+    engine::Texture* hotkeys[10];
+    engine::Point selected;
+    engine::OneShot setEntryKey;
+
 };

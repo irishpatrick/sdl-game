@@ -35,7 +35,7 @@ def main(argv):
     w = tmp.size[0]
     h = tmp.size[1]
 
-    n = 1;
+    n = 1
     for c in chars:
         img = Image.open(os.path.join(png_dir, c + ".png"))
         img.convert("RGBA")

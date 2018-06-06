@@ -123,5 +123,5 @@ if (BUILD_GAME)
 endif (BUILD_GAME)
 
 if (BUILD_EDITOR)
-	add_subdirectory(tools/editor)
+	add_subdirectory(tools/old)
 endif (BUILD_EDITOR)

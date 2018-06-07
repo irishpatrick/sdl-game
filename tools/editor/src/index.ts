@@ -7,9 +7,15 @@ let ctx = canvas.getContext('2d');
 let now: number, then: number, delta: number;
 let mouse: any = {x: 0, y: 0};
 
+canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+    canvas.height = window.innerHeight;
+});
+
 canvas.addEventListener('mousemove', (e: any) => {
-    mouse.x = e.x;
-    mouse.y = e.y;
+    mouse.x = e.offsetX;
+    mouse.y = e.offsetY;
     document.getElementById('mousepos').innerHTML = mouse.x + ',' + mouse.y;
 });
 
@@ -22,7 +28,7 @@ canvas.addEventListener('mouseup', (e: any) => {
 });
 
 function init() {
-    Util.setClearColor(100,100,100);
+    Util.setClearColor(180,180,180);
 
     then = Date.now();
 }

@@ -7,10 +7,6 @@ canvas, textarea {
     margin: 0px;
 }
 
-canvas {
-    height: 1000em;
-}
-
 html,
 body {
   height: 100%;

@@ -1,8 +1,6 @@
 class Util {
 
-    static test() {
-
-    }
+    private static clearColor: number[] = [0, 0, 0];
 
     static clear(ctx: any) {
         ctx.fillStyle = 'rgb(0,0,0)';

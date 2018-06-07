@@ -1,6 +1,9 @@
 import {Util} from "./util";
 import {Viewport} from "./viewport";
 
+let editor: any = ace.edit("editor");
+editor.setTheme("ace/theme/monokai");
+editor.session.setMode("ace/mode/json");
 let viewport: Viewport = new Viewport();
 let canvas: any = document.getElementById('canvas');
 let ctx = canvas.getContext('2d');

@@ -18,6 +18,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.js"></script>
     <script>if (window.module) module = window.module;</script>-->
 
+    <script src="./js/ace/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+
 </head>
 
 <body>
@@ -45,14 +47,18 @@
                 <canvas id="canvas"></canvas>
             </div>
             <div class="column">
-                <textarea></textarea>
+                <div id="editor">
+                function foo(items) {
+                    var x = "All this is syntax highlighted";
+                    return x;
+                }
+                </div>
             </div>
         </div>
         <div class="row footer">
-            <p><b>Mouse:</b> (<span id="mousepos">?,?</span>)</p>
+            <p><b>Mouse:</b> (<span id="mousepos">0,0</span>)</p>
         </div>
     </div>
-
     <script>require('./js/bundle.js');</script>
 </body>
 

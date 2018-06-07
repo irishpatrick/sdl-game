@@ -30,7 +30,7 @@ body {
 }
 
 .box .row {
-  border: 1px dotted grey;
+  border: 1px grey;
 }
 
 .box .row.header {

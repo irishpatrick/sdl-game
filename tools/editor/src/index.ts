@@ -1,7 +1,5 @@
 import {Util} from "./util";
 
-Util.test();
-
 let canvas: any = document.getElementById('canvas');
 let ctx = canvas.getContext('2d');
 let now, then, delta;

@@ -3,7 +3,8 @@
         "target": "es6",
         "module": "commonjs",
         "outDir": "dist/js",
-        "sourceMap": true
+        "sourceMap": true,
+        "noImplicitAny": true
     },
     "include": [
         "src/**/*.ts"

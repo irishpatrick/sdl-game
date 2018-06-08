@@ -52,7 +52,7 @@ void Game::init(engine::Context& ctx) {
 	ui::Config::setActiveColor(255, 255, 0);
 	ui::Config::setDefaultColor(0, 0, 0);
 	dec.setSelection(ui::Decision::NO);
-	dec.setVisible(true);
+	dec.setVisible(false);
 	dec.x = 100;
 	dec.y = 100;
 }

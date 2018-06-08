@@ -78,6 +78,11 @@ void Game::update(float delta, const uint8_t* keys) {
 		playerInput = false;
 		todo->Enter();
 		todo = nullptr;
+        hero_collisions = engine::Util::getVelocityCollisions(
+            &hero,
+            groups_.getactive(),
+            delta
+        );
 		hero.x = todo_x;
 		hero.y = todo_y;
 		transition.fadeIn(250);
@@ -109,12 +114,6 @@ void Game::update(float delta, const uint8_t* keys) {
 		}
 		else {
 			if ((up || down) && (left || right)) {
-				hero_collisions = engine::Util::getVelocityCollisions(
-					&hero,
-					groups_.getactive(),
-					delta
-				);
-				//cout << hero_collisions.size() << endl;
 				float v = sqrt(pow(hero.getMaxSpeed(), 2) / 2.0);
 				hero.speed = v;
 			}
@@ -145,7 +144,7 @@ void Game::update(float delta, const uint8_t* keys) {
 		}
 
         if (!dlg.isVisible()) {
-            
+
         }
 
         if (op.fire()) {
@@ -178,7 +177,7 @@ void Game::update(float delta, const uint8_t* keys) {
         }
 
         if (ol.fire()) {
-			
+
         }
 
         auto collisions = engine::Util::getVelocityCollisions(

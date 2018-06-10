@@ -13,10 +13,13 @@ namespace sc {
 	public:
 		SC_API static void init();
 		SC_API static void destroy();
+		SC_API static void play(float, int);
 		
 	private:
 		static ALCdevice* dev;
 		static ALCcontext* ctx;
+		static ALuint buf;
+		static ALuint src;
 	};
 
 }

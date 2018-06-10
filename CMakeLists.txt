@@ -28,6 +28,12 @@ project(sdl-game)
 
 if (MSVC)
     message(STATUS "MSVC")
+    
+    set(OPENAL_SDK "" CACHE PATH "")
+    set(INCLUDE_DIR "" CACHE PATH "")
+    set(LIBRARY_DIR "" CACHE PATH "")
+    set(LIBRARIES SDL2.lib SDL2main.lib SDL2_image.lib libboost_system-vc140-mt-gd-1_62.lib libboost_filesystem-vc140-mt-gd-1_62.lib)
+
     set(COMPILE_OPTIONS /std:c++14 /W3 /D_REENTRANT /O2 /MP)
     if (DEBUG_SYMBOLS)
         set(COMPILE_OPTIONS ${COMPILE_OPTIONS} /DEBUG /Od)
@@ -107,14 +113,9 @@ if (USE_PKGCONFIG)
 
 endif (USE_PKGCONFIG)
 
-if (USE_MSVC)
-    set(INCLUDE_DIR "" CACHE PATH "")
-    set(LIBRARY_DIR "" CACHE PATH "")
-    set(LIBRARIES SDL2.lib SDL2main.lib SDL2_image.lib libboost_system-vc140-mt-gd-1_62.lib libboost_filesystem-vc140-mt-gd-1_62.lib)
-endif (USE_MSVC)
-
 add_subdirectory(engine/core)
 add_subdirectory(engine/ui)
+add_subdirectory(engine/soundchip)
 set(MY_LIBS ${MY_LIBS} engine ui)
 
 if (BUILD_GAME)

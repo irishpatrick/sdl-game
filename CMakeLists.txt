@@ -33,7 +33,7 @@ set(INCLUDE_DIR ${INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/deps/include)
 if (MSVC)
 
     message(STATUS "MSVC")
-    
+
 	if (BUILD_SOUNDCHIP)
 		set(OPENAL_SDK "" CACHE PATH "")
 	endif (BUILD_SOUNDCHIP)
@@ -46,19 +46,19 @@ if (MSVC)
 	set(LIBRARIES SDL2.lib SDL2main.lib SDL2_image.lib libboost_system-vc140-mt-gd-1_62.lib libboost_filesystem-vc140-mt-gd-1_62.lib)
 
 elseif (UNIX)
-	
+
 	message(STATUS "UNIX")
-	
+
 	set(INCLUDE_DIR ${INCLUDE_DIR} /usr/include/)
     set(LIBRARY_DIR /usr/lib/)
     set(COMPILE_OPTIONS -std=c++14 -D_REENTRANT -O2 -Wall -pthread)
-    
+
 	if (DEBUG_SYMBOLS)
-        set(COMPILE_OPTIONS ${COMPILE_OPTIONS} -g)    
+        set(COMPILE_OPTIONS ${COMPILE_OPTIONS} -g)
 	endif (DEBUG_SYMBOLS)
 
 else (MSVC)
-    
+
 	message(STATUS "UNKNOWN")
     set(COMPILE_OPTIONS -std=c++14 -D_REENTRANT -O2 -Wall)
     if (DEBUG_SYMBOLS)

@@ -72,17 +72,6 @@ namespace engine {
 		h = texture->getH();
 	}
 
-	void Sprite::loadTexture(const std::string& fn, SDL_Renderer* r) {
-		/*SDL_Texture* t = IMG_LoadTexture(r, fn.c_str());
-		//setTexture(IMG_LoadTexture(r, fn.c_str()));
-		if (t == NULL)
-		{
-			printf("texture error: %s\n", IMG_GetError());
-		}
-		texture = new Texture();
-		texture->set(t);*/
-	}
-
 	void Sprite::setCamera(Camera* c) {
 		camera = c;
 	}
@@ -99,7 +88,7 @@ namespace engine {
 		if (uuid_str == "") {
 			uuid_str = boost::lexical_cast<std::string>(tag);
 		}
-	
+
 		return uuid_str;
 	}
 
@@ -119,6 +108,30 @@ namespace engine {
 		w = texture->getW();
 		h = texture->getH();
 	}
+
+    void Sprite::draw(Context& ctx) {
+        if (!visible_) return;
+
+        SDL_Rect rect;
+		if (parent != NULL) {
+			rect.x = x + parent->screenX();
+			rect.y = y + parent->screenY();
+		}
+		else {
+			rect.x = x;
+			rect.y = y;
+		}
+		rect.w = w;
+		rect.h = h;
+
+		//if (texture->use() == nullptr) return;
+		if (anim->GetTexture() != nullptr) {
+			SDL_RenderCopy(ctx.getRenderer(), texture->use(), anim->GetCurrentFrame(), &rect);
+		}
+		else {
+			SDL_RenderCopy(ctx.getRenderer(), texture->use(), NULL, &rect);
+		}
+    }
 
 	void Sprite::draw(SDL_Renderer* r) {
 		if (!visible_) {

@@ -20,7 +20,7 @@ namespace sc {
 			return;
 		}
 		std::cout << "PortAudio version: " << Pa_GetVersion() << std::endl;
-		std::cout << "Version text: " << Pa_GetVersionInfo()->versionText << std::endl;
+		std::cout << "Version text: " << Pa_GetVersionText() << std::endl;
 
 		inputParams.device = Pa_GetDefaultInputDevice();
 		if (inputParams.device = paNoDevice) {

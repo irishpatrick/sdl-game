@@ -12,88 +12,89 @@
 #include <boost/uuid/uuid_io.hpp>
 
 #include "entity.hpp"
+#include "context.hpp"
 
 namespace engine {
 
-class Animation;
-class Group;
-class Texture;
-class Camera;
+    class Animation;
+    class Group;
+    class Texture;
+    class Camera;
 
-// entity has x, y, w, h
-class Sprite: public Entity {
-public:
-	CORE_API Sprite();
-	CORE_API virtual ~Sprite();
+    // entity has x, y, w, h
+    class Sprite: public Entity {
+    public:
+    	CORE_API Sprite();
+    	CORE_API virtual ~Sprite();
 
-	CORE_API virtual void InitAnimation(const std::string&);
-	CORE_API virtual void setTexture(Texture*);
-	CORE_API virtual void loadTexture(const std::string&, SDL_Renderer*);
-	CORE_API virtual void draw(SDL_Renderer*);
-	CORE_API virtual Animation* GetAnimation();
-	CORE_API virtual void ResetCollision();
-	CORE_API virtual void update(float);
-	CORE_API virtual void velocityUpdate(float);
-	CORE_API void setSpeed(float);
-	CORE_API void queryTexture();
-	CORE_API virtual void OnCollision(Sprite*);
-	CORE_API Sprite* GetCollision();
-	CORE_API virtual void setParent(Group*);
-	CORE_API virtual Group* getParent();
-	CORE_API void setCamera(Camera*);
+        CORE_API virtual Animation* GetAnimation();
+    	CORE_API virtual void InitAnimation(const std::string&);
+    	CORE_API virtual void setTexture(Texture*);
+    	CORE_API virtual void draw(SDL_Renderer*);
+        CORE_API virtual void draw(Context&);
+    	CORE_API virtual void ResetCollision();
+    	CORE_API virtual void update(float);
+    	CORE_API virtual void velocityUpdate(float);
+    	CORE_API void setSpeed(float);
+    	CORE_API void queryTexture();
+    	CORE_API virtual void OnCollision(Sprite*);
+    	CORE_API Sprite* GetCollision();
+    	CORE_API virtual void setParent(Group*);
+    	CORE_API virtual Group* getParent();
+    	CORE_API void setCamera(Camera*);
 
-	CORE_API inline Texture* getTexture() {
-        return texture;
-    }
+    	CORE_API inline Texture* getTexture() {
+            return texture;
+        }
 
-	CORE_API inline void setSolid(bool b) {
-        solid = b;
-    }
+    	CORE_API inline void setSolid(bool b) {
+            solid = b;
+        }
 
-	CORE_API inline bool isSolid() {
-        return solid;
-    }
+    	CORE_API inline bool isSolid() {
+            return solid;
+        }
 
-	CORE_API inline void SetVisible(bool b) {
-        visible_ = b;
-    }
+    	CORE_API inline void SetVisible(bool b) {
+            visible_ = b;
+        }
 
-	CORE_API inline bool IsVisible() {
-        return visible_;
-    }
+    	CORE_API inline bool IsVisible() {
+            return visible_;
+        }
 
-	CORE_API inline void setMaxSpeed(float a) {
-        maxSpeed = a;
-    }
+    	CORE_API inline void setMaxSpeed(float a) {
+            maxSpeed = a;
+        }
 
-	CORE_API inline float getMaxSpeed() {
-        return maxSpeed;
-    }
+    	CORE_API inline float getMaxSpeed() {
+            return maxSpeed;
+        }
 
-	CORE_API inline std::string getName() {
-        return name;
-    }
+    	CORE_API inline std::string getName() {
+            return name;
+        }
 
-	CORE_API virtual std::string getUUID();
+    	CORE_API virtual std::string getUUID();
 
-    float xvel;
-    float yvel;
-    float speed;
-    float maxSpeed;
-    Texture* texture;
-    bool solid;
-    bool dynamic;
-    std::string name;
-    Animation* anim;
-protected:
-    bool visible_;
-    Group* parent;
-    Sprite* collision_;
-    Camera* camera;
-	std::string uuid_str;
+        float xvel;
+        float yvel;
+        float speed;
+        float maxSpeed;
+        Texture* texture;
+        bool solid;
+        bool dynamic;
+        std::string name;
+        Animation* anim;
+    protected:
+        bool visible_;
+        Group* parent;
+        Sprite* collision_;
+        Camera* camera;
+    	std::string uuid_str;
 
-private:
-    boost::uuids::uuid tag;
-};
+    private:
+        boost::uuids::uuid tag;
+    };
 
 }

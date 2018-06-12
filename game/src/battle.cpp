@@ -23,6 +23,8 @@ void Battle::setBackground(const std::string& bg) {
 }
 
 void Battle::addCombatants(std::vector<engine::Sprite*>& a, std::vector<engine::Sprite*>& e) {
+    // get the battle versions of each sprite
+
     int n;
 
     n = 0;
@@ -46,6 +48,9 @@ void Battle::update(float delta, const uint8_t* keys) {
 }
 
 void Battle::render(engine::Context& ctx) {
+    for (auto& e : enemies) {
+        e.draw(ctx);
+    }
     bg.draw(ctx.getRenderer());
 }
 

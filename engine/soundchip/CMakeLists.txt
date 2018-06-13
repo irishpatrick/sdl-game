@@ -7,7 +7,7 @@ if (USE_PKG_CONFIG)
     pkg_check_modules(portaudio REQUIRED portaudio-2.0)
     set(libs portaudio)
 elseif (MSVC)
-    set(libs portaudio_static_x64.lib)
+    set(libs portaudio_static_x86.lib)
 endif (USE_PKG_CONFIG)
 
 file (GLOB sources src/*.cpp)

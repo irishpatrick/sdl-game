@@ -43,7 +43,7 @@ if (MSVC)
     endif (DEBUG_SYMBOLS)
 
 	set(COMPILE_OPTIONS /std:c++14 /W3 /D_REENTRANT /Od /MP)
-	set(LIBRARIES SDL2.lib SDL2main.lib SDL2_image.lib libboost_system-vc140-mt-gd-1_62.lib libboost_filesystem-vc140-mt-gd-1_62.lib)
+	set(LIBRARIES SDL2.lib SDL2main.lib SDL2_image.lib libboost_system-vc141-mt-gd-x32-1_67.lib libboost_filesystem-vc141-mt-gd-x32-1_67.lib)
 
 elseif (UNIX)
 

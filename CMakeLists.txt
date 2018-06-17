@@ -6,7 +6,7 @@ option (USE_PKGCONFIG "use pkg-config" OFF)
 option (BUILD_GAME "build game" ON)
 option (BUILD_RASPBERRY_GAME "raspberry game" ON)
 option (BUILD_UI "build ui" ON)
-option (BUILD_SOUNDCHIP "build soundchip" ON)
+option (BUILD_SOUNDCHIP "build soundchip" OFF)
 option (DEBUG_SYMBOLS "enable debug symbols" ON)
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)

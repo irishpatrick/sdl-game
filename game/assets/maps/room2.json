@@ -8,7 +8,8 @@
             "name": "background",
             "x": 0,
             "y": 0,
-            "texture": "room-bg.png"
+            "texture": "room-bg.png",
+            "solid": false
         },
         {
             "name": "monster",
@@ -16,7 +17,8 @@
             "dialogue": ["hello from room 2"],
             "x": 200,
             "y": 20,
-            "texture": "monster.png"
+            "texture": "monster.png",
+            "solid": true
         },
         {
             "name": "door",
@@ -24,7 +26,8 @@
             "dest": "room1",
             "x": 80,
             "y": 0,
-            "texture": "door.png"
+            "texture": "door.png",
+            "solid": true
         }
     ]
 }

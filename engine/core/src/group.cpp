@@ -2,6 +2,7 @@
 #include "sprite.hpp"
 #include "camera.hpp"
 #include "assets.hpp"
+#include <iostream>
 
 namespace engine {
 
@@ -52,6 +53,7 @@ namespace engine {
 				std::string name = e["name"];
 				std::string texture = e["texture"];
 				bool solid = e["solid"];
+				std::cout << "group: solid=" << solid << std::endl;
 
 				// test initialize
 				Sprite* temp = new Sprite();
@@ -61,7 +63,6 @@ namespace engine {
 				temp->setSolid(solid);
 				temp->setTexture(Assets::getTexture(texture));
 				renderList.push_back(temp);
-				//delete temp;
 			}
 		}
 	}

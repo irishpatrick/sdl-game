@@ -17,7 +17,7 @@ namespace engine {
 		maxSpeed = 0;
 		texture = nullptr;
 		parent = nullptr;
-		solid = true;
+		solid = false;
 		dynamic = false;
 		visible = true;
 		name = "";

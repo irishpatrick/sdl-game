@@ -115,5 +115,5 @@ if (BUILD_GAME)
 endif (BUILD_GAME)
 
 if (BUILD_RASPBERRY_GAME)
-	add_subdirectory(raspberry-catch)
+	add_subdirectory(raspberry_catch)
 endif (BUILD_RASPBERRY_GAME)

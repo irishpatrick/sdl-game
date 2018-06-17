@@ -9,6 +9,7 @@ Spoon::~Spoon() {
 }
 
 void Spoon::init() {
-	this->setTexture(engine::Assets::getTexture("spoon.png"));
-	this->queryTexture();
+	setTexture(engine::Assets::getTexture("spoon.png"));
+	queryTexture();
+	setBoundingBox(w - 200, 0, (w - 200) - w, h);
 }

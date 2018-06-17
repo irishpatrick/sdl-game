@@ -10,6 +10,15 @@ Player::~Player()
 
 }
 
+void Player::init(engine::Context& ctx) {
+	setTexture(engine::Assets::getTexture("hero.png"));
+	setMaxSpeed(250.0f);
+	name = "hero";
+	setBoundingBox(0, 16, w, h);
+
+	queryTexture();
+}
+
 json Player::toJson() {
     json o;
 

@@ -51,12 +51,14 @@ namespace engine {
 				float y = (float)e["y"];
 				std::string name = e["name"];
 				std::string texture = e["texture"];
+				bool solid = e["solid"];
 
 				// test initialize
 				Sprite* temp = new Sprite();
 				temp->dynamic = true;
 				temp->x = x;
 				temp->y = y;
+				temp->setSolid(solid);
 				temp->setTexture(Assets::getTexture(texture));
 				renderList.push_back(temp);
 				//delete temp;

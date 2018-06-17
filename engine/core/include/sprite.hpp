@@ -27,6 +27,7 @@ namespace engine {
     	CORE_API Sprite();
     	CORE_API virtual ~Sprite();
 
+		CORE_API virtual void init(Context&);
         CORE_API virtual Animation* GetAnimation();
     	CORE_API virtual void InitAnimation(const std::string&);
     	CORE_API virtual void setTexture(Texture*);
@@ -42,6 +43,22 @@ namespace engine {
     	CORE_API virtual void setParent(Group*);
     	CORE_API virtual Group* getParent();
     	CORE_API void setCamera(Camera*);
+		CORE_API void setBoundingBox(int, int, int, int);
+		
+		CORE_API inline SDL_Rect& getBoundingBox() {
+			realBoundingBox.x = x + boundingBox.x;
+			realBoundingBox.y = y + boundingBox.y;
+			realBoundingBox.w = boundingBox.w;
+			realBoundingBox.h = boundingBox.h;
+			if (boundingBox.w == -1) {
+				realBoundingBox.w = w;
+			}
+			if (boundingBox.h == -1) {
+				realBoundingBox.h = h;
+			}
+
+			return realBoundingBox;
+		}
 
     	CORE_API inline Texture* getTexture() {
             return texture;
@@ -92,6 +109,8 @@ namespace engine {
         Sprite* collision_;
         Camera* camera;
     	std::string uuid_str;
+		SDL_Rect boundingBox;
+		SDL_Rect realBoundingBox;
 
     private:
         boost::uuids::uuid tag;

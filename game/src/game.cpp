@@ -18,12 +18,7 @@ void Game::init(engine::Context& ctx) {
 
     camera.setFocus(&hero);
 
-    hero.setTexture(engine::Assets::getTexture("hero.png"));
-    hero.setMaxSpeed(250.0f);
-    hero.name = "hero";
-
-    hero.queryTexture();
-
+	hero.init(ctx);
     hero.pos(10,10);
 
     groups_.setcamera(&camera);

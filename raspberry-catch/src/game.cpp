@@ -40,6 +40,14 @@ void Game::update(float delta, const uint8_t* keys) {
 	}
 	std::vector<engine::Sprite*> catches = engine::Util::getVelocityCollisions(&spoon, berry_sprites, delta);
 
+	for (auto& e : catches) {
+		std::cout << "catch!" << std::endl;
+		if (Raspberry* r = dynamic_cast<Raspberry*>(e)) {
+			std::cout << "successful cast" << std::endl;
+			r->reset();
+		}
+	}
+
 	for (auto& e : berries) {
 		e->SetVisible(true);
 		e->velocityUpdate(delta);

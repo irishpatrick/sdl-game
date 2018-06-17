@@ -5,7 +5,8 @@
             "texture": "med-background.png",
             "name": "background",
             "y": 0,
-            "x": 0
+            "x": 0,
+            "solid": false
         },
         {
             "type": "npc",
@@ -13,7 +14,8 @@
             "texture": "monster.png",
             "name": "monster",
             "y": 150,
-            "x": 150
+            "x": 150,
+            "solid": true
         },
         {
             "texture": "door.png",
@@ -21,7 +23,8 @@
             "y": 300,
             "dest": "room1",
             "type": "door",
-            "x": 300
+            "x": 300,
+            "solid": true
         }
     ],
     "entry": {

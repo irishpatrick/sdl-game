@@ -26,6 +26,10 @@ namespace engine {
 		collision_ = nullptr;
 		camera = nullptr;
 		uuid_str = "";
+		boundingBox.x = 0;
+		boundingBox.y = 0;
+		boundingBox.w = -1;
+		boundingBox.h = -1;
 	}
 
 	Sprite::~Sprite() {
@@ -34,6 +38,10 @@ namespace engine {
 
 	void Sprite::setSpeed(float s) {
 		speed = s;
+	}
+
+	void Sprite::init(Context&) {
+
 	}
 
 	void Sprite::InitAnimation(const std::string& fn) {
@@ -159,6 +167,13 @@ namespace engine {
 		else {
 			SDL_RenderCopy(r, texture->use(), NULL, &rect);
 		}
+	}
+
+	void Sprite::setBoundingBox(int bx, int by, int bw, int bh) {
+		boundingBox.x = bx;
+		boundingBox.y = by;
+		boundingBox.w = bw;
+		boundingBox.h = bh;
 	}
 
 }

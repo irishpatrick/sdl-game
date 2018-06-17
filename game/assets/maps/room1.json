@@ -6,6 +6,7 @@
   "sprites": [
     {
         "name": "background",
+        "solid": false,
         "x": 0,
         "y": 0,
         "texture": "room-bg.png"
@@ -13,6 +14,7 @@
     {
         "name": "monster",
         "type": "npc",
+        "solid": true,
         "dialogue": ["hello from room"],
         "x": 20,
         "y": 20,
@@ -21,6 +23,7 @@
     {
         "name": "door",
         "type": "door",
+        "solid": true,
         "dest": "town1",
         "x": 80,
         "y": 0,
@@ -32,7 +35,8 @@
         "dest": "room2",
         "x": 200,
         "y": 0,
-        "texture": "door.png"
+        "texture": "door.png",
+        "solid": true
     }
   ]
 }

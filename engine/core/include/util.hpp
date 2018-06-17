@@ -34,6 +34,7 @@ public:
 	CORE_API static bool JsonExists(nlohmann::json&, const std::string&);
 	CORE_API static std::vector<Sprite*> GetCollisions(Sprite*, Group*);
 	CORE_API static std::vector<Sprite*> getVelocityCollisions(Sprite*, Group*, float);
+	CORE_API static std::vector<Sprite*> getVelocityCollisions(Sprite*, std::vector<Sprite*>&, float);
 	CORE_API static int initSDL(SDL_Window**, SDL_Renderer**, const std::string&, int, int, bool);
 	CORE_API static float lerp(float, float, float);
 };

@@ -19,7 +19,7 @@ namespace engine {
 		parent = nullptr;
 		solid = true;
 		dynamic = false;
-		visible_ = true;
+		visible = true;
 		name = "";
 		anim = new Animation();
 		tag = boost::uuids::random_generator()();
@@ -44,7 +44,7 @@ namespace engine {
 	}
 
 	void Sprite::update(float delta) {
-		if (!visible_) {
+		if (!visible) {
 			return;
 		}
 
@@ -110,7 +110,7 @@ namespace engine {
 	}
 
     void Sprite::draw(Context& ctx) {
-        if (!visible_) return;
+        if (!visible) return;
 
         SDL_Rect rect;
 		if (parent != NULL) {
@@ -134,7 +134,7 @@ namespace engine {
     }
 
 	void Sprite::draw(SDL_Renderer* r) {
-		if (!visible_) {
+		if (!visible) {
 			return;
 		}
 		//printf("%x\n", texture->use());

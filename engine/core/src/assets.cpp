@@ -87,6 +87,7 @@ namespace engine {
 	}
 
 	void Assets::loadTexture(const std::string& fn, Context& ctx) {
+		std::cout << "loading texture " << fn << std::endl;
 		std::vector<std::string> vec = split(fn, boost::filesystem::path::preferred_separator);
 		std::string key = vec[vec.size() - 1];
 

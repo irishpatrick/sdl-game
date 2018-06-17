@@ -56,11 +56,11 @@ namespace engine {
         }
 
     	CORE_API inline void SetVisible(bool b) {
-            visible_ = b;
+            visible = b;
         }
 
     	CORE_API inline bool IsVisible() {
-            return visible_;
+            return visible;
         }
 
     	CORE_API inline void setMaxSpeed(float a) {
@@ -87,7 +87,7 @@ namespace engine {
         std::string name;
         Animation* anim;
     protected:
-        bool visible_;
+        bool visible;
         Group* parent;
         Sprite* collision_;
         Camera* camera;

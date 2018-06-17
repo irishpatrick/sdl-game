@@ -1,6 +1,8 @@
 #pragma once
 
 #include <engine.hpp>
+#include "spoon.hpp"
+#include "raspberry.hpp"
 #include <vector>
 
 class Game: public engine::State {
@@ -16,5 +18,8 @@ public:
 	void destroy();
 
 private:
-	
+	std::vector<Raspberry*> berries;
+	Spoon spoon;
+	int num_berries;
+	int score;
 };

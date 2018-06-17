@@ -223,6 +223,19 @@ namespace engine {
 		return collisions;
 	}
 
+	std::vector<Sprite*> Util::getVelocityCollisions(Sprite* sprite, std::vector<Sprite*>& vec, float delta) {
+		std::vector<Sprite*> collisions;
+		for (auto& e : vec) {
+			if (e->getUUID() == sprite->getUUID()) {
+				continue;
+			}
+			if (checkVelocityCollision(sprite, e, delta) != "no collision") {
+				collisions.push_back(e);
+			}
+		}
+		return collisions;
+	}
+
 	bool Util::JsonExists(nlohmann::json& o, const std::string& key)
 	{
 		return o.find(key) != o.end();

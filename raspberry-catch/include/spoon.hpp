@@ -7,4 +7,6 @@ class Spoon : public engine::Sprite {
 public:
 	Spoon();
 	~Spoon();
+
+	void init();
 };

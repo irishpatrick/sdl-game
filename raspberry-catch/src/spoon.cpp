@@ -1,9 +1,14 @@
 #include "spoon.hpp"
 
 Spoon::Spoon(): engine::Sprite() {
-	engine::Assets::getTexture("spoon.png");
+	
 }
 
 Spoon::~Spoon() {
 
+}
+
+void Spoon::init() {
+	this->setTexture(engine::Assets::getTexture("spoon.png"));
+	this->queryTexture();
 }

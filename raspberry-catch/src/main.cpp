@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <cstdint>
+#include <cstdlib>
 #include <SDL2/SDL.h>
 #include <engine.hpp>
 #include <nlohmann/json.hpp>
@@ -16,6 +17,7 @@ bool quit;
 json config;
 
 void init() {
+	srand(time(nullptr));
 	std::string fn;
 	#ifdef _WIN32
 		fn = "D:/GitHub/sdl-game/raspberry-catch/assets/config-win.json";

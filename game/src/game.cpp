@@ -19,6 +19,7 @@ void Game::init(engine::Context& ctx) {
     camera.setFocus(&hero);
 
 	hero.init(ctx);
+	hero.setSolid(true);
     hero.pos(10,10);
 
     groups_.setcamera(&camera);
@@ -188,11 +189,11 @@ void Game::update(float delta, const uint8_t* keys) {
                     e,
                     delta
                 );
-                SDL_Rect ebox = engine::Util::getAABB(e, 16);
-                SDL_Rect hbox = engine::Util::getAABB(&hero, 16);
+				SDL_Rect ebox = e->getBoundingBox();
+				SDL_Rect hbox = hero.getBoundingBox();
                 if (result == "north") {
                     hero.yvel = 0;
-                    hero.y = ebox.y + ebox.h - hbox.h;
+                    hero.y = ebox.y + ebox.h;
                 }
                 else if (result == "south") {
                     hero.yvel = 0;

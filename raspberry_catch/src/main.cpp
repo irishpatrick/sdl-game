@@ -20,12 +20,14 @@ void init() {
 	srand(time(nullptr));
 	std::string fn;
 	#ifdef _WIN32
-		fn = "D:/GitHub/sdl-game/raspberry-catch/assets/config-win.json";
+		fn = "D:/GitHub/sdl-game/raspberry_catch/assets/config-win.json";
 	#elif __linux__
 		fn = "../game/assets/config.json";
 	#endif
+
 	std::ifstream i(fn);
 	i >> config;
+	std::cout << "load config" << std::endl;
 	ctx.init(config["screenWidth"].get<int>(), config["screenHeight"].get<int>(), config["title"].get<std::string>(), false);
 	engine::Assets::loadTexturesFromJson("assets.json", config["assetPath"].get<std::string>(), ctx);
 	engine::Assets::useAll(ctx);

@@ -12,7 +12,7 @@ Game::~Game() {
 void Game::init(engine::Context& ctx) {
 	spoon.init();
 	spoon.x = 0;
-	spoon.y = ctx.getHeight() - spoon.h;
+	spoon.y = ctx.getHeight() - spoon.h - 20;
 
 	for (int i = 0; i < num_berries; i++) {
 		berries.push_back(new Raspberry());

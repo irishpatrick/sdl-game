@@ -136,15 +136,20 @@ namespace engine {
 	}
 
 	std::string Util::checkVelocityCollision(Sprite* a, Sprite* b, float delta) {
+		//std::cout << "collision between " << 
+		//	a->name << "(" << a->isSolid() << ")" <<
+		//	" and " << 
+		//	b->name << "(" << b->isSolid() << ")" << std::endl;
 		if (!a->isSolid() || !b->isSolid()) {
+			//std::cout << "no collision :(" << std::endl;
 			return "no collision";
 		}
 		//SDL_Rect abox = getAABB(a, 16);
 		//SDL_Rect bbox = getAABB(b, 16);
 		SDL_Rect abox = a->getBoundingBox();
 		SDL_Rect bbox = b->getBoundingBox();
-		std::cout << "abox: " << abox.w << "," << abox.h << std::endl;
-		std::cout << "bbox: " << bbox.w << "," << bbox.h << std::endl;
+		//std::cout << "abox: " << abox.w << "," << abox.h << std::endl;
+		//std::cout << "bbox: " << bbox.w << "," << bbox.h << std::endl;
 		abox.x += a->xvel * delta;
 		abox.y += a->yvel * delta;
 		bbox.x += b->xvel * delta;

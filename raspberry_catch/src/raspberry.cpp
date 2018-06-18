@@ -5,6 +5,8 @@
 
 Raspberry::Raspberry() : engine::Sprite() {
 	Sprite::setTexture(engine::Assets::getTexture("raspberry.png"));
+	setBoundingBox(0, 0, w, h);
+	setSolid(true);
 	reset();
 }
 
@@ -13,15 +15,15 @@ Raspberry::~Raspberry() {
 }
 
 void Raspberry::reset() {
-	x = rand() % (512 - Sprite::w);
+	x = rand() % (512 - w);
 	y = -1 * (rand() % (300 - 100) + 100);
-	fallSpeed = rand() % (200 - 80) + 80;
+	fallSpeed = rand() % (MAX_SPEED - MIN_SPEED) + MIN_SPEED;
 }
 
 void Raspberry::velocityUpdate(float delta) {
 	if (!visible) return;
 
-	if (y > 480) {
+	if (y > 580) {
 		reset();
 	}
 

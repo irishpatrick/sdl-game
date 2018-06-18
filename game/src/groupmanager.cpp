@@ -47,6 +47,7 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
             float y = (float)e["y"];
             std::string name = e["name"];
             std::string texture = e["texture"];
+			bool solid = e["solid"];
 
             // test initialize
             engine::Sprite* temp = nullptr;
@@ -92,6 +93,7 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
     		temp->name = name;
             temp->x = x;
             temp->y = y;
+			temp->setSolid(solid);
             temp->setTexture(engine::Assets::getTexture(texture));
             g->add(temp);
             //delete temp;

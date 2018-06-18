@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(raspberry_catch C CXX)
+project(catch C CXX)
 
 file (GLOB sources src/*.cpp)
 file (GLOB headers include/*.hpp include/*.inl)

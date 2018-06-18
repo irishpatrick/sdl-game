@@ -111,7 +111,7 @@ if (BUILD_SOUNDCHIP)
 endif (BUILD_SOUNDCHIP)
 
 if (BUILD_GAME)
-    add_subdirectory(game)
+    add_subdirectory(rpg)
 endif (BUILD_GAME)
 
 if (BUILD_RASPBERRY_GAME)

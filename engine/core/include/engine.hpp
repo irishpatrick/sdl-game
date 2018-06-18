@@ -18,3 +18,4 @@
 #include "context.hpp"
 #include "transition.hpp"
 #include "color.hpp"
+#include "boundingbox.hpp"

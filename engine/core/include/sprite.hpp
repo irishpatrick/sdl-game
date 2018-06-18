@@ -13,6 +13,7 @@
 
 #include "entity.hpp"
 #include "context.hpp"
+#include "boundingbox.hpp"
 
 namespace engine {
 
@@ -44,8 +45,19 @@ namespace engine {
     	CORE_API virtual Group* getParent();
     	CORE_API void setCamera(Camera*);
 		CORE_API void setBoundingBox(int, int, int, int);
-		
-		CORE_API inline SDL_Rect& getBoundingBox() {
+
+		CORE_API inline BoundingBox& getRelativeBoundingBox() {
+			if (boundingBox.w == -1) {
+				boundingBox.w = w;
+			}
+			if (boundingBox.h == -1) {
+				boundingBox.h = h;
+			}
+
+			return boundingBox;
+		}
+
+		CORE_API inline BoundingBox& getBoundingBox() {
 			realBoundingBox.x = x + boundingBox.x;
 			realBoundingBox.y = y + boundingBox.y;
 			realBoundingBox.w = boundingBox.w;
@@ -109,8 +121,8 @@ namespace engine {
         Sprite* collision_;
         Camera* camera;
     	std::string uuid_str;
-		SDL_Rect boundingBox;
-		SDL_Rect realBoundingBox;
+		BoundingBox boundingBox;
+		BoundingBox realBoundingBox;
 
     private:
         boost::uuids::uuid tag;

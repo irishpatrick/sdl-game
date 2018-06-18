@@ -189,23 +189,30 @@ void Game::update(float delta, const uint8_t* keys) {
                     e,
                     delta
                 );
-				SDL_Rect ebox = e->getBoundingBox();
-				SDL_Rect hbox = hero.getBoundingBox();
+				engine::BoundingBox& rebox = e->getRelativeBoundingBox();
+				engine::BoundingBox& rhbox = hero.getRelativeBoundingBox();
+				engine::BoundingBox& ebox = e->getBoundingBox();
+				engine::BoundingBox& hbox = hero.getBoundingBox();
+
+
                 if (result == "north") {
                     hero.yvel = 0;
-                    hero.y = ebox.y + ebox.h;
+                    //hero.y = ebox.y + hbox.h;
+					hero.y = ebox.y + ebox.h - rhbox.y;
                 }
                 else if (result == "south") {
                     hero.yvel = 0;
-                    hero.y = ebox.y - hero.h;
-                }
+					hero.y = ebox.y - (rhbox.y + hbox.h);
+					//hero.y = ebox.y - hero.h + hbox.y - hbox.h;
+					//hero.y = ebox.y + 
+				}
                 else if (result == "east") {
                     hero.xvel = 0;
-                    hero.x = ebox.x - hero.w;
+                    hero.x = ebox.x - (rhbox.x + hbox.w);
                 }
                 else if (result == "west") {
                     hero.xvel = 0;
-                    hero.x = ebox.x + ebox.w;
+                    hero.x = ebox.x + ebox.w - rhbox.x;
                 }
                 else {
                     cout << "collision detection problem" << endl;

@@ -2,6 +2,7 @@
 #include "sprite.hpp"
 #include "line.hpp"
 #include "group.hpp"
+//#include "boundingbox.hpp"
 
 namespace engine {
 
@@ -88,8 +89,8 @@ namespace engine {
 		{
 			return "no collision";
 		}
-		SDL_Rect abox = getAABB(a, 16);
-		SDL_Rect bbox = getAABB(b, 16);
+		BoundingBox abox = getAABB(a, 16);
+		BoundingBox bbox = getAABB(b, 16);
 
 		if (
 			abox.x < bbox.x + bbox.w &&
@@ -144,10 +145,10 @@ namespace engine {
 			//std::cout << "no collision :(" << std::endl;
 			return "no collision";
 		}
-		//SDL_Rect abox = getAABB(a, 16);
-		//SDL_Rect bbox = getAABB(b, 16);
-		SDL_Rect abox = a->getBoundingBox();
-		SDL_Rect bbox = b->getBoundingBox();
+		//BoundingBox& abox = getAABB(a, 16);
+		//BoundingBox& bbox = getAABB(b, 16);
+		BoundingBox& abox = a->getBoundingBox();
+		BoundingBox& bbox = b->getBoundingBox();
 		//std::cout << "abox: " << abox.w << "," << abox.h << std::endl;
 		//std::cout << "bbox: " << bbox.w << "," << bbox.h << std::endl;
 		abox.x += a->xvel * delta;
@@ -262,9 +263,9 @@ namespace engine {
 		else if (a->y + a->h > b->y + b->h) a->y = b->y + b->h - a->h;
 	}
 
-	SDL_Rect Util::getAABB(Sprite* a, uint32_t h)
+	BoundingBox Util::getAABB(Sprite* a, uint32_t h)
 	{
-		SDL_Rect aabb;
+		BoundingBox aabb;
 		aabb.x = (int)roundf(a->x);
 		aabb.y = (int)(roundf(a->y + a->h - h));
 		aabb.w = a->w;

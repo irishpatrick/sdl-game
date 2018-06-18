@@ -13,6 +13,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <nlohmann/json.hpp>
+#include "boundingbox.hpp"
 
 namespace engine {
 
@@ -29,7 +30,7 @@ public:
 	CORE_API static std::string checkCollision(Sprite*, Sprite*);
 	CORE_API static std::string checkVelocityCollision(Sprite*, Sprite*, float);
 	CORE_API static void contain(Sprite*, Sprite*);
-	CORE_API static SDL_Rect getAABB(Sprite*, uint32_t);
+	CORE_API static BoundingBox getAABB(Sprite*, uint32_t);
 	CORE_API static std::string RectToString(SDL_Rect*);
 	CORE_API static bool JsonExists(nlohmann::json&, const std::string&);
 	CORE_API static std::vector<Sprite*> GetCollisions(Sprite*, Group*);

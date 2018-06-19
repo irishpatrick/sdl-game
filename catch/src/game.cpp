@@ -1,7 +1,7 @@
 #include "game.hpp"
 
 Game::Game(): engine::State() {
-	num_berries = 5;
+	num_berries = 6;
 	score = 0;
 }
 
@@ -41,9 +41,9 @@ void Game::update(float delta, const uint8_t* keys) {
 	std::vector<engine::Sprite*> catches = engine::Util::getVelocityCollisions(&spoon, berry_sprites, delta);
 
 	for (auto& e : catches) {
-		std::cout << "catch!" << std::endl;
+		//std::cout << "catch!" << std::endl;
 		if (Raspberry* r = dynamic_cast<Raspberry*>(e)) {
-			std::cout << "successful cast" << std::endl;
+			//std::cout << "successful cast" << std::endl;
 			r->reset();
 		}
 	}

@@ -15,7 +15,7 @@ Raspberry::~Raspberry() {
 }
 
 void Raspberry::reset() {
-	x = rand() % (512 - w);
+	x = rand() % (640 - w);
 	y = -1 * (rand() % (300 - 100) + 100);
 	fallSpeed = rand() % (MAX_SPEED - MIN_SPEED) + MIN_SPEED;
 }

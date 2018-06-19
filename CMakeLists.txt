@@ -72,15 +72,15 @@ if (USE_HUNTER)
 
     message(STATUS "using hunter")
 
-    hunter_add_package(Boost COMPONENTS system filesystem)
+    hunter_add_package(Boost COMPONENTS system filesystem python)
     hunter_add_package(SDL2)
     hunter_add_package(SDL_image)
 
-    find_package(Boost CONFIG REQUIRED system filesystem)
+    find_package(Boost CONFIG REQUIRED system filesystem python)
     find_package(SDL2 CONFIG REQUIRED)
     find_package(SDL_image CONFIG REQUIRED)
 
-    set(LIBRARIES ${LIBRARIES} Boost::system Boost::filesystem SDL2::SDL2main SDL2::SDL2 SDL_image::SDL_image m CACHE STRING "string")
+    set(LIBRARIES ${LIBRARIES} Boost::system Boost::filesystem Boost::python SDL2::SDL2main SDL2::SDL2 SDL_image::SDL_image m CACHE STRING "string")
 
 endif(USE_HUNTER)
 

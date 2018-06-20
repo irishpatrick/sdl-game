@@ -1,0 +1,28 @@
+{
+    "texture": "monster_1.png",
+    "width": 32,
+    "height": 32,
+    
+    "animations": [
+        {
+            "name": "all",
+            "fps": 4,
+            "frames": [0,1,2,3]
+        },
+        {
+            "name": "walk",
+            "fps": 4,
+            "frames": [1,2]
+        },
+        {
+            "name": "stand",
+            "fps": 4,
+            "frames": [0]
+        },
+        {
+            "name": "attack",
+            "fps": 4,
+            "frames": [3]
+        }
+    ]
+}

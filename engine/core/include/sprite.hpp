@@ -11,7 +11,7 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/uuid/uuid_io.hpp>
 
-#include "entity.hpp"
+#include "object.hpp"
 #include "context.hpp"
 #include "boundingbox.hpp"
 
@@ -22,18 +22,18 @@ namespace engine {
     class Texture;
     class Camera;
 
-    // entity has x, y, w, h
-    class Sprite: public Entity {
+    class Sprite: public Object {
     public:
     	CORE_API Sprite();
     	CORE_API virtual ~Sprite();
 
 		CORE_API virtual void init(Context&);
-        CORE_API virtual Animation* GetAnimation();
+        CORE_API virtual Animation* getAnimation();
     	CORE_API virtual void InitAnimation(const std::string&);
     	CORE_API virtual void setTexture(Texture*);
     	CORE_API virtual void draw(SDL_Renderer*);
         CORE_API virtual void draw(Context&);
+		CORE_API virtual void draw(Object&, Context&);
     	CORE_API virtual void ResetCollision();
     	CORE_API virtual void update(float);
     	CORE_API virtual void velocityUpdate(float);
@@ -104,7 +104,7 @@ namespace engine {
             return name;
         }
 
-    	CORE_API virtual std::string getUUID();
+    	CORE_API inline std::string getUUID();
 
         float xvel;
         float yvel;
@@ -112,9 +112,10 @@ namespace engine {
         float maxSpeed;
         Texture* texture;
         bool solid;
-        bool dynamic;
         std::string name;
         Animation* anim;
+		int w;
+		int h;
     protected:
         bool visible;
         Group* parent;

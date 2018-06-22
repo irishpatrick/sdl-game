@@ -4,13 +4,13 @@
 
 GroupManager::GroupManager()
 {
-	active_ = nullptr;
-    active_id = "";
+	activeGroup = nullptr;
+    activeId = "";
 }
 
 GroupManager::~GroupManager()
 {
-	for (auto& e : groupmap_)
+	for (auto& e : groupMap)
 	{
 		if (e.second->dynamic)
 		{
@@ -21,14 +21,18 @@ GroupManager::~GroupManager()
 
 void GroupManager::addgroup(const std::string& id, engine::Group* g)
 {
-    groupmap_.insert(pair<string, engine::Group*>(id, g));
+    groupMap.insert(pair<string, engine::Group*>(id, g));
 }
 
 void GroupManager::loadgroup(const std::string& id, const std::string& fn)
 {
-    std::ifstream i(fn);
+    std::ifstream in(fn);
+    if (in.fail()) {
+        std::cout << "GroupManager: failed to open json file" << std::endl;
+        return;
+    }
     nlohmann::json o;
-    i >> o;
+    in >> o;
 
     engine::Group* g = new engine::Group();
     g->dynamic = true;
@@ -106,17 +110,17 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
 void GroupManager::setEntry(const std::string& tag)
 {
     // find entry
-    for (auto& e : active_->getSprites())
+    for (auto& e : activeGroup->getSprites())
     {
         if (Door* d = dynamic_cast<Door*>(e))
         {
             // found door
             if (d->getTag() == tag)
             {
-                if (focus_ != nullptr)
+                if (focus != nullptr)
                 {
-                    focus_->x = d->GetExit()->x;
-                    focus_->y = d->GetExit()->y;
+                    focus->x = d->GetExit()->x;
+                    focus->y = d->GetExit()->y;
                 }
             }
         }
@@ -124,34 +128,30 @@ void GroupManager::setEntry(const std::string& tag)
 }
 
 void GroupManager::setactive(const std::string& id) {
-    active_id = id;
-    std::map<std::string, engine::Group*>::const_iterator it = groupmap_.find(id);
-    if (it != groupmap_.end()) {
-    	if (active_ != nullptr) {
-    		active_->remove(focus_);
+    activeId = id;
+    std::map<std::string, engine::Group*>::const_iterator it = groupMap.find(id);
+    if (it != groupMap.end()) {
+    	if (activeGroup != nullptr) {
+    		activeGroup->remove(focus);
     	}
-    	active_ = groupmap_[id];
+    	activeGroup = groupMap[id];
 
         // add camera
-        if (camera_ != nullptr) {
-    		active_->setCamera(camera_);
-    	}
+        /*if (camera != nullptr) {
+    		activeGroup->setCamera(camera);
+    	}*/
 
         // add focus
-    	if (focus_ != nullptr) {
-    		active_->add(focus_);
+    	if (focus != nullptr) {
+    		activeGroup->add(focus);
     	}
     }
 }
 
 engine::Group* GroupManager::getactive() {
-    return active_;
-}
-
-void GroupManager::setcamera(engine::Camera* c) {
-    camera_ = c;
+    return activeGroup;
 }
 
 void GroupManager::setfocus(engine::Sprite* s) {
-    focus_ = s;
+    focus = s;
 }

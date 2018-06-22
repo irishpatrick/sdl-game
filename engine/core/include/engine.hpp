@@ -3,7 +3,6 @@
 #include "assets.hpp"
 #include "animation.hpp"
 #include "camera.hpp"
-#include "entity.hpp"
 #include "group.hpp"
 #include "line.hpp"
 #include "point.hpp"
@@ -19,3 +18,4 @@
 #include "transition.hpp"
 #include "color.hpp"
 #include "boundingbox.hpp"
+#include "object.hpp"

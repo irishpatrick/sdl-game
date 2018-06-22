@@ -14,15 +14,16 @@ Game::~Game() {
 void Game::init(engine::Context& ctx) {
     std::string maps = Config::getAssetPath() + "maps/";
     std::string sprites = Config::getAssetPath() + "sprites/";
-    camera.screen(ctx.getWidth(), ctx.getHeight());
+    camera.setScreen(ctx.getWidth(), ctx.getHeight());
 
     camera.setFocus(&hero);
 
 	hero.init(ctx);
 	hero.setSolid(true);
-    hero.pos(10,10);
+    hero.x = 10;
+    hero.y = 10;
 
-    groups_.setcamera(&camera);
+    //groups_.setcamera(&camera);
     groups_.setfocus(&hero);
     groups_.loadgroup("room1", maps + "room1.json");
     groups_.loadgroup("town1", maps + "town1.json");
@@ -34,7 +35,7 @@ void Game::init(engine::Context& ctx) {
 
     //test.InitFromJson(root + "animtest.json");
     animtest.InitAnimation(sprites + "animtest.json");
-    animtest.GetAnimation()->Start("all", true);
+    animtest.getAnimation()->Start("all", true);
     stage.add(&animtest);
 
     dlg.setWidth(300, 80);
@@ -237,7 +238,7 @@ void Game::update(float delta, const uint8_t* keys) {
 }
 
 void Game::render(engine::Context& ctx) {
-    groups_.getactive()->draw(ctx.getRenderer());
+    groups_.getactive()->draw(camera, ctx);
     dlg.render(&ctx);
 	dec.draw(&ctx);
 	transition.draw(&ctx);

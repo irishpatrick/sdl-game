@@ -33,7 +33,7 @@ namespace engine {
 		CORE_API Animation();
 		CORE_API ~Animation();
 
-		CORE_API void InitFromJson(const std::string&);
+		CORE_API void initFromJson(const std::string&);
 		CORE_API void Start(const std::string&, bool);
 		CORE_API void Update();
 		CORE_API void Stop();

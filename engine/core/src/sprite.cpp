@@ -6,9 +6,7 @@
 
 namespace engine {
 
-	Sprite::Sprite() {
-		x = 0;
-		y = 0;
+	Sprite::Sprite() : Object() {
 		w = 0;
 		h = 0;
 		xvel = 0;
@@ -18,7 +16,6 @@ namespace engine {
 		texture = nullptr;
 		parent = nullptr;
 		solid = false;
-		dynamic = false;
 		visible = true;
 		name = "";
 		anim = new Animation();
@@ -45,7 +42,7 @@ namespace engine {
 	}
 
 	void Sprite::InitAnimation(const std::string& fn) {
-		anim->InitFromJson(fn);
+		anim->initFromJson(fn);
 		w = anim->GetFrameWidth();
 		h = anim->GetFrameHeight();
 		texture = anim->GetTexture();
@@ -66,7 +63,7 @@ namespace engine {
 		y += yvel * delta;
 	}
 
-	Animation* Sprite::GetAnimation() {
+	Animation* Sprite::getAnimation() {
 		return anim;
 	}
 
@@ -117,13 +114,34 @@ namespace engine {
 		h = texture->getH();
 	}
 
+	void Sprite::draw(Object& obj, Context& ctx) {
+		if (!visible) return;
+
+		SDL_Rect rect;
+		rect.x = x + obj.x;
+		rect.y = y + obj.y;
+		rect.w = w;
+		rect.h = h;
+
+		if (anim->GetTexture() != nullptr) {
+			SDL_RenderCopy(ctx.getRenderer(), texture->use(), anim->GetCurrentFrame(), &rect);
+		}
+		else {
+			SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
+		}
+	}
+
     void Sprite::draw(Context& ctx) {
-        if (!visible) return;
+        /*if (!visible) return;
 
         SDL_Rect rect;
-		if (parent != NULL) {
+		if (parent != nullptr) {
 			rect.x = x + parent->screenX();
 			rect.y = y + parent->screenY();
+		}
+		else if (camera != nullptr) {
+			rect.x = x + camera->x;
+			rect.y = y + camera->y;
 		}
 		else {
 			rect.x = x;
@@ -132,17 +150,16 @@ namespace engine {
 		rect.w = w;
 		rect.h = h;
 
-		//if (texture->use() == nullptr) return;
 		if (anim->GetTexture() != nullptr) {
 			SDL_RenderCopy(ctx.getRenderer(), texture->use(), anim->GetCurrentFrame(), &rect);
 		}
 		else {
 			SDL_RenderCopy(ctx.getRenderer(), texture->use(), NULL, &rect);
-		}
+		}*/
     }
 
 	void Sprite::draw(SDL_Renderer* r) {
-		if (!visible) {
+		/*if (!visible) {
 			return;
 		}
 		//printf("%x\n", texture->use());
@@ -166,7 +183,7 @@ namespace engine {
 		}
 		else {
 			SDL_RenderCopy(r, texture->use(), NULL, &rect);
-		}
+		}*/
 	}
 
 	void Sprite::setBoundingBox(int bx, int by, int bw, int bh) {

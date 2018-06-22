@@ -1,15 +1,14 @@
 #include "camera.hpp"
 #include "sprite.hpp"
+#include <iostream>
 
 namespace engine {
 
-	Camera::Camera() {
-		x = 0;
-		y = 0;
+	Camera::Camera() : Object() {
 		fx = 0;
 		fy = 0;
-		w = 0;
-		h = 0;
+		w = -1;
+		h = -1;
 		focus = nullptr;
 	}
 
@@ -17,12 +16,15 @@ namespace engine {
 
 	}
 
-	void Camera::screen(int a, int b) {
+	void Camera::setScreen(int a, int b) {
 		w = a;
 		h = b;
 	}
 
-	void Camera::update(float delta ){
+	void Camera::update(float delta) {
+		if (w == -1 && h == -1) {
+			std::cout << "need to set screen dimensions" << std::endl;
+		}
 		if (focus != nullptr) {
 			x = (w / 2.0f) - focus->x - (focus->w / 2.0f);
 			y = (h / 2.0f) - focus->y - (focus->h / 2.0f);

@@ -24,5 +24,4 @@ BOOL APIENTRY DllMain(HMODULE hModule,
 	return TRUE;
 }
 
-
 #endif

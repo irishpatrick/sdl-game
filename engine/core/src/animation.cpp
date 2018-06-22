@@ -57,13 +57,14 @@ namespace engine {
 		return frameheight_;
 	}
 
-	void Animation::InitFromJson(const std::string& fn)
+	void Animation::initFromJson(const std::string& fn)
 	{
 		std::ifstream in(fn);
 		if (!in)
 		{
 			printf("failed to open %s\n", fn.c_str());
-			exit(1);
+			//exit(1);
+			return;
 		}
 		nlohmann::json o;
 		in >> o;

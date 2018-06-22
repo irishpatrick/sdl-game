@@ -18,23 +18,21 @@ public:
 	void loadgroup(const std::string&, const std::string&);
 	void setactive(const std::string&);
     void setEntry(const std::string&);
-	void setcamera(engine::Camera*);
 	void setfocus(engine::Sprite*);
 
     inline engine::Group* getGroup(const std::string& id) {
-        return groupmap_[id];
+        return groupMap[id];
     }
 
     inline std::string getActiveId() {
-        return active_id;
+        return activeId;
     }
 
 	engine::Group* getactive();
 
 private:
-	std::map<std::string, engine::Group*> groupmap_;
-	engine::Group* active_;
-	engine::Camera* camera_;
-	engine::Sprite* focus_;
-    std::string active_id;
+	std::map<std::string, engine::Group*> groupMap;
+	engine::Group* activeGroup;
+	engine::Sprite* focus;
+    std::string activeId;
 };

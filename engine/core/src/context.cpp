@@ -13,7 +13,7 @@ namespace engine {
 	}
 
 	int Context::init(int a, int b, const std::string& title, bool fullscreen) {
-		if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) < 0) {
+		if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 			std::cout << "SDL_Init error: " << SDL_GetError() << std::endl;
 			return -1;
 		}
@@ -37,14 +37,26 @@ namespace engine {
 			height = b;
 		}
 
-		w = SDL_CreateWindow(
-			title.c_str(),
-			SDL_WINDOWPOS_UNDEFINED,
-			SDL_WINDOWPOS_UNDEFINED,
-			width,
-			height,
-			SDL_WINDOW_SHOWN
-		);
+		if (fullscreen) {
+			w = SDL_CreateWindow(
+				title.c_str(),
+				SDL_WINDOWPOS_UNDEFINED,
+				SDL_WINDOWPOS_UNDEFINED,
+				width,
+				height,
+				SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN_DESKTOP
+			);
+		} 
+		else {
+			w = SDL_CreateWindow(
+				title.c_str(),
+				SDL_WINDOWPOS_UNDEFINED,
+				SDL_WINDOWPOS_UNDEFINED,
+				width,
+				height,
+				SDL_WINDOW_OPENGL
+			);
+		}
 
 		if (w == nullptr) {
 			std::cout << "SDL_CreateWindow error: " << SDL_GetError() << std::endl;
@@ -54,12 +66,14 @@ namespace engine {
 		r = SDL_CreateRenderer(
 			w,
 			-1,
-			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_TARGETTEXTURE
+			SDL_RENDERER_PRESENTVSYNC
 		);
 
 		if (r == nullptr) {
 			std::cout << "SDL_CreateRenderer error: " << SDL_GetError() << std::endl;
 		}
+
+		return 0;
 	}
 
 };

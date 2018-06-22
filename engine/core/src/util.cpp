@@ -2,6 +2,7 @@
 #include "sprite.hpp"
 #include "line.hpp"
 #include "group.hpp"
+#include <cmath>
 //#include "boundingbox.hpp"
 
 namespace engine {
@@ -82,10 +83,15 @@ namespace engine {
 		BoundingBox& bbox = b->getBoundingBox();
 		//std::cout << "abox: " << abox.w << "," << abox.h << std::endl;
 		//std::cout << "bbox: " << bbox.w << "," << bbox.h << std::endl;
-		abox.x += a->xvel * delta;
-		abox.y += a->yvel * delta;
-		bbox.x += b->xvel * delta;
-		bbox.y += b->yvel * delta;
+		//std::cout << "velocityCollision delta: " << ceil(delta + 0.001) << std::endl;
+		
+		//make sure delta times don't hit 0
+		double error = 0.01f;
+
+		abox.x += ceil(a->xvel * (delta + error));
+		abox.y += ceil(a->yvel * (delta + error));
+		bbox.x += ceil(b->xvel * (delta + error));
+		bbox.y += ceil(b->yvel * (delta + error));
 
 		if (
 			abox.x < bbox.x + bbox.w &&

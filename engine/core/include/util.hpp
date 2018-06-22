@@ -7,7 +7,6 @@
 #include <chrono>
 #include <cstdint>
 #include <iostream>
-#include <cmath>
 #include <vector>
 #include <boost/lexical_cast.hpp>
 #include <SDL2/SDL.h>

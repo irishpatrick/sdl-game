@@ -38,8 +38,8 @@ void loadingScreen() {
     SDL_Rect rect;
     rect.x = 0;
     rect.y = 0;
-    rect.w = 512;
-    rect.h = 480;
+    rect.w = ctx.getWidth();
+    rect.h = ctx.getHeight();
     SDL_RenderCopy(ctx.getRenderer(), t, NULL, &rect);
     SDL_RenderPresent(ctx.getRenderer());
 }

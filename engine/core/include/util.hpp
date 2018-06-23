@@ -19,8 +19,6 @@ namespace engine {
 class Sprite;
 class Group;
 
-enum Direction {NORTH, EAST, SOUTH, WEST, NONE};
-
 class Util
 {
 public:
@@ -35,6 +33,12 @@ public:
 	CORE_API static std::vector<Sprite*> getVelocityCollisions(Sprite*, Group*, float);
 	CORE_API static std::vector<Sprite*> getVelocityCollisions(Sprite*, std::vector<Sprite*>&, float);
 	CORE_API static float lerp(float, float, float);
+
+	CORE_API static const int UP = 0;
+	CORE_API static const int DOWN = 1;
+	CORE_API static const int LEFT = 2;
+	CORE_API static const int RIGHT = 3;
+	CORE_API static const int NO_COLLISION = 4;
 };
 
 }

@@ -104,7 +104,7 @@ namespace engine {
             return name;
         }
 
-    	CORE_API inline std::string getUUID();
+    	CORE_API std::string getUUID();
 
         float xvel;
         float yvel;

@@ -117,6 +117,10 @@ namespace engine {
 	void Assets::loadTexturesFromJson(const std::string& fn, const std::string& rootstr, Context& ctx) {
 		std::cout << "loading textures from json..." << std::endl;
 		std::ifstream in(rootstr + fn);
+		if (in.fail()) {
+			std::cout << "cannot open " << fn << std::endl;
+			return;
+		}
 		nlohmann::json o;
 		in >> o;
 

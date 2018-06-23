@@ -26,7 +26,7 @@ void init() {
     #ifdef _WIN32
         Config::load("D:/GitHub/sdl-game/rpg/assets/config-win.json");
     #elif __linux__
-        Config::load("../game/assets/config.json");
+        Config::load("../../rpg/assets/config.json");
     #endif
 
     ctx.init(Config::getScreenWidth(), Config::getScreenHeight(), "hello world!", false);

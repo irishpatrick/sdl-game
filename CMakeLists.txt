@@ -9,9 +9,9 @@ option (BUILD_UI "build ui" ON)
 option (BUILD_SOUNDCHIP "build soundchip" OFF)
 option (DEBUG_SYMBOLS "enable debug symbols" ON)
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
+#set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
+#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
+#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
 
 set(COMPILE_OPTIONS "")
 set(LINK_OPTIONS "")
@@ -72,15 +72,15 @@ if (USE_HUNTER)
 
     message(STATUS "using hunter")
 
-    hunter_add_package(Boost COMPONENTS system filesystem python)
+    hunter_add_package(Boost COMPONENTS system filesystem)
     hunter_add_package(SDL2)
     hunter_add_package(SDL_image)
 
-    find_package(Boost CONFIG REQUIRED system filesystem python)
+    find_package(Boost CONFIG REQUIRED system filesystem)
     find_package(SDL2 CONFIG REQUIRED)
     find_package(SDL_image CONFIG REQUIRED)
 
-    set(LIBRARIES ${LIBRARIES} Boost::system Boost::filesystem Boost::python SDL2::SDL2main SDL2::SDL2 SDL_image::SDL_image m CACHE STRING "string")
+    set(LIBRARIES ${LIBRARIES} Boost::system Boost::filesystem SDL2::SDL2main SDL2::SDL2 SDL_image::SDL_image m CACHE STRING "string")
 
 endif(USE_HUNTER)
 
@@ -100,20 +100,20 @@ if (USE_PKGCONFIG)
 
 endif (USE_PKGCONFIG)
 
-add_subdirectory(engine/core)
+add_subdirectory(./engine/core)
 
 if (BUILD_UI)
-	add_subdirectory(engine/ui)
+	add_subdirectory(./engine/ui)
 endif (BUILD_UI)
 
 if (BUILD_SOUNDCHIP)
-	add_subdirectory(engine/soundchip)
+	add_subdirectory(./engine/soundchip)
 endif (BUILD_SOUNDCHIP)
 
 if (BUILD_GAME)
-    add_subdirectory(rpg)
+    add_subdirectory(./rpg)
 endif (BUILD_GAME)
 
 if (BUILD_RASPBERRY_GAME)
-	add_subdirectory(catch)
+	add_subdirectory(./catch)
 endif (BUILD_RASPBERRY_GAME)

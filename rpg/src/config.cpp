@@ -1,4 +1,5 @@
 #include "config.hpp"
+#include <SDL2/SDL.h>
 
 int Config::screenWidth = 0;
 int Config::screenHeight = 0;
@@ -25,13 +26,19 @@ bool Config::getFullscreen()
     return fullscreen;
 }
 
-void Config::load(const string& fn)
+int Config::load(const string& fn)
 {
     ifstream i(fn);
     if (!i)
     {
     	printf("failed to open %s\n", fn.c_str());
-    	exit(404);
+    	SDL_ShowSimpleMessageBox(
+            SDL_MESSAGEBOX_ERROR,
+            "Error",
+            "Failed to load config",
+            nullptr
+        );
+        exit(1);
     }
     json o;
     i >> o;

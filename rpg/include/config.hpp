@@ -14,7 +14,7 @@ using json = nlohmann::json;
 
 class Config {
  public:
-    static void load(const string&);
+    static int load(const string&);
 
     static int getScreenWidth();
     static int getScreenHeight();

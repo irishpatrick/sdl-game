@@ -1,5 +1,6 @@
 #ifdef __linux__
 
+/*
 #include "msgbox.hpp"
 #include <X11/X.h>
 #include <X11/Xlib.h>
@@ -122,7 +123,6 @@ namespace core {
         XMapRaised(dpy, w);
         XFlush(dpy);
 
-        /* event loop */
         while (1) {
             XNextEvent(dpy &e);
             ok.clicked = 0;
@@ -170,6 +170,6 @@ namespace core {
         }
     }
     
-}
+}*/
 
 #endif /* __linux__ */

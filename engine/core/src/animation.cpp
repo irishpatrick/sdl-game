@@ -4,6 +4,7 @@
 #include "timer.hpp"
 #include "assets.hpp"
 #include <iostream>
+#include <nlohmann/json.hpp>
 
 namespace engine {
 
@@ -20,48 +21,42 @@ namespace engine {
 		currentindex_ = 0;
 	}
 
-	Animation::~Animation()
-	{
+	Animation::~Animation() {
 		delete timer_;
 		int n = 0;
-		for (auto& e: animations_)
-		{
+		for (auto& e: animations_) {
 			free(e->frames);
 			free(e->name);
 			free(e);
 		}
 
-		for (auto& e: frames_)
-		{
+		for (auto& e: frames_) {
 			free(e);
 		}
 	}
 
-	Texture* Animation::GetTexture()
-	{
+	Texture* Animation::GetTexture() {
 		return tex_;
 	}
 
-	SDL_Rect* Animation::GetCurrentFrame()
-	{
+	SDL_Rect* Animation::GetCurrentFrame() {
 		return currentframe_;
 	}
 
-	uint32_t Animation::GetFrameWidth()
-	{
+	uint32_t Animation::GetFrameWidth() {
 		return framewidth_;
 	}
 
-	uint32_t Animation::GetFrameHeight()
-	{
+	uint32_t Animation::GetFrameHeight() {
 		return frameheight_;
 	}
 
-	void Animation::initFromJson(const std::string& fn)
-	{
+	void Animation::initFromJson(const std::string& fn) {
+		std::cout << "load " << fn << " from json" << std::endl;
+		printf("THIS IS A TEST\n");
+
 		std::ifstream in(fn);
-		if (in.fail())
-		{
+		if (in.fail()) {
 			printf("failed to open %s\n", fn.c_str());
 			//exit(1);
 			return;
@@ -83,6 +78,7 @@ namespace engine {
 		printf("%d\n", n);
 
 		// map all frames in the texture
+		// single row, many columns
 		for (uint32_t i=0; i<n; i++)
 		{
 			/*SDL_Rect* r = (SDL_Rect*)malloc(sizeof(SDL_Rect));
@@ -144,8 +140,10 @@ namespace engine {
 			FrameSet* current = nullptr;
 			for (auto& e : animations_)
 			{
-				if (strcmp(e->name, name.c_str()) == 0)
-				{
+				/*if (strcmp(e->name, name.c_str()) == 0) {
+					current = e;
+				}*/
+				if (e->name == name) {
 					current = e;
 				}
 			}

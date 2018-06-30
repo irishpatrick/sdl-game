@@ -52,6 +52,9 @@ void Game::init(engine::Context& ctx) {
 	dec.setVisible(false);
 	dec.x = 100;
 	dec.y = 100;
+
+    enemytest.InitAnimation(sprites + "monster_1.json");
+    enemytest.getAnimation()->Start("all", true);
 }
 
 void Game::tests() {
@@ -226,6 +229,7 @@ void Game::update(float delta, const uint8_t* keys) {
     hero.velocityUpdate(delta);
 
     animtest.update(delta);
+    enemytest.update(delta);
 
     engine::Util::contain(
         &hero,
@@ -242,6 +246,7 @@ void Game::render(engine::Context& ctx) {
     dlg.render(&ctx);
 	dec.draw(&ctx);
 	transition.draw(&ctx);
+    enemytest.draw(ctx);
 }
 
 void Game::destroy() {

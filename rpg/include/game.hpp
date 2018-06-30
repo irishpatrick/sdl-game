@@ -6,6 +6,7 @@
 #include "door.hpp"
 #include "stats.hpp"
 #include "npc.hpp"
+#include "enemy.hpp"
 #include <ui.hpp>
 #include <engine.hpp>
 #include <cstdlib>
@@ -43,6 +44,7 @@ private:
     ui::Dialogue dlg;
 	ui::Decision dec;
     engine::Transition transition;
+    Enemy enemytest;
     Door* todo;
     float todo_x;
     float todo_y;

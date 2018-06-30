@@ -60,7 +60,7 @@ namespace engine {
 	void Animation::initFromJson(const std::string& fn)
 	{
 		std::ifstream in(fn);
-		if (!in)
+		if (in.fail())
 		{
 			printf("failed to open %s\n", fn.c_str());
 			//exit(1);
@@ -78,12 +78,14 @@ namespace engine {
 
 		uint32_t cx = 0;
 		uint32_t cy = 0;
-		uint32_t n = (tex_->getH() / h) * (tex_->getW() / w);
+		//uint32_t n = (tex_->getH() / h) * (tex_->getW() / w);
+		uint32_t n = tex_->getW() / framewidth_;
 		printf("%d\n", n);
 
+		// map all frames in the texture
 		for (uint32_t i=0; i<n; i++)
 		{
-			SDL_Rect* r = (SDL_Rect*)malloc(sizeof(SDL_Rect));
+			/*SDL_Rect* r = (SDL_Rect*)malloc(sizeof(SDL_Rect));
 			r->x = cx;
 			r->y = cy;
 			r->w = w;
@@ -96,7 +98,17 @@ namespace engine {
 			{
 				cx = 0;
 				cy += h;
-			}
+			}*/
+
+			SDL_Rect* r = (SDL_Rect*)malloc(sizeof(SDL_Rect));
+			r->x = cx;
+			r->y = 0;
+			r->w = framewidth_;
+			r->h = frameheight_;
+
+			frames_.push_back(r);
+
+			cx += framewidth_;
 		}
 
 		printf("done with frames!\n");

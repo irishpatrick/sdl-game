@@ -1,5 +1,6 @@
 #include "context.hpp"
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <iostream>
 
 namespace engine {
@@ -21,6 +22,10 @@ namespace engine {
 		if (!IMG_Init(IMG_INIT_PNG)) {
 			std::cout << "IMG_Init error: " << IMG_GetError() << std::endl;
 			return -1;
+		}
+
+		if (TTF_Init() < 0) {
+			std::cout << "TTF_Init error: " << TTF_GetError() << std::endl;
 		}
 
 		if (SDL_GetDesktopDisplayMode(0, &current) < 0) {

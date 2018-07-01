@@ -40,7 +40,8 @@ void Dialogue::push(const std::string& str) {
     }
     if (str.size() < MAXLEN) {
         stack.push_back(str);
-    } else {
+    } 
+    else {
         int len = str.size();
         int lines = len / MAXLEN;
         int extra = len % MAXLEN;

@@ -44,7 +44,7 @@ if (MSVC)
     endif (DEBUG_SYMBOLS)
 
 	set(COMPILE_OPTIONS /std:c++14 /W3 /D_REENTRANT /Od /MP)
-	set(LIBRARIES SDL2.lib SDL2main.lib SDL2_image.lib libboost_system-vc141-mt-gd-x32-1_67.lib libboost_filesystem-vc141-mt-gd-x32-1_67.lib)
+	set(LIBRARIES SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib libboost_system-vc141-mt-gd-x32-1_67.lib libboost_filesystem-vc141-mt-gd-x32-1_67.lib)
 
 elseif (UNIX)
 
@@ -75,12 +75,14 @@ if (USE_HUNTER)
     hunter_add_package(Boost COMPONENTS system filesystem)
     hunter_add_package(SDL2)
     hunter_add_package(SDL_image)
+    hunter_add_package(SDL_ttf)
 
     find_package(Boost CONFIG REQUIRED system filesystem)
     find_package(SDL2 CONFIG REQUIRED)
     find_package(SDL_image CONFIG REQUIRED)
+    find_package(SDL_ttf CONFIG REQUIRED)
 
-    set(LIBRARIES ${LIBRARIES} Boost::system Boost::filesystem SDL2::SDL2main SDL2::SDL2 SDL_image::SDL_image m CACHE STRING "string")
+    set(LIBRARIES ${LIBRARIES} Boost::system Boost::filesystem SDL2::SDL2main SDL2::SDL2 SDL_image::SDL_image SDL_ttf::SDL_ttf m CACHE STRING "string")
 
 endif(USE_HUNTER)
 
@@ -91,11 +93,12 @@ if (USE_PKGCONFIG)
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(SDL2 REQUIRED sdl2)
     pkg_check_modules(SDL2_image REQUIRED SDL2_image)
+    pkg_check_modules(SDL2_ttf REQUIRED SDL2_ttf)
 
     find_package(Boost 1.58 COMPONENTS system filesystem REQUIRED)
 
-    set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/include ${Boost_INCLUDE_DIR} ${SDL2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS})
-    set(LIBRARY_DIR ${SDL2_LIBRARY_DIRS} ${SDL2_image_LIBRARY_DIRS})
+    set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/include ${Boost_INCLUDE_DIR} ${SDL2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS} ${SDL2_ttf_INCLUDE_DIRS})
+    set(LIBRARY_DIR ${SDL2_LIBRARY_DIRS} ${SDL2_image_LIBRARY_DIRS} ${SDL2_ttf_LIBRARY_DIRS})
     set(LIBRARIES ${LIBRARIES} SDL2 SDL2_image ${Boost_LIBRARIES})
 
 endif (USE_PKGCONFIG)

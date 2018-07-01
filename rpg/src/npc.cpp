@@ -11,10 +11,10 @@ Npc::~Npc() {
 
 void Npc::interact(engine::Sprite* sprite, ui::Dialogue* d) {
     std::cout << "lines.size() " << lines.size() << std::endl;
-    if (Player* player = dynamic_cast<Player*>(sprite)) {
+    /*if (Player* player = dynamic_cast<Player*>(sprite)) {
         std::cout << "interacting with player" << std::endl;
         d->push(lines[0]);
-    }
+    }*/
 }
 
 void Npc::loadJson(const std::string& fn) {

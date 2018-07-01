@@ -28,11 +28,11 @@ Dialogue::~Dialogue() {
 
 }
 
-void Dialogue::initFont(engine::Texture* t) {
+/*void Dialogue::initFont(engine::Texture* t) {
     font.setTexture(t);
     font.buildMap();
     font.setScale(0.055f);
-}
+}*/
 
 void Dialogue::push(const std::string& str) {
     if (stack.empty()) {
@@ -91,7 +91,7 @@ void Dialogue::render(engine::Context* c) {
     // text
 	if (!visible) { return; }
     SDL_SetRenderDrawColor(c->getRenderer(), 0x00, 0x00, 0x00, 0xff);
-    font.renderString(stack[0], cx + 10, cy + 10, c->getRenderer());
+    Config::getFont()->renderString(stack[0], cx + 10, cy + 10, c->getRenderer());
 }
 
 }

@@ -26,6 +26,10 @@ public:
 	CORE_API SDL_Texture* use();
 	CORE_API void destroy();
 
+	CORE_API inline void setName(const std::string& str) {
+		name = str;
+	}
+
 	CORE_API inline std::string getName() {
         return name;
     }

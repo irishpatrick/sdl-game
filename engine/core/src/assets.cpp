@@ -30,7 +30,8 @@ namespace engine {
 		const std::string& key) {
 		SDL_Surface* s = IMG_Load(fn.c_str());
 		if (s == nullptr) {
-			printf("surface failed to load!\n");
+			std::cout << "surface for " << map[key]->getName() << " failed to load" << std::endl;
+			return;
 			//exit(1);
 		} 
 		else {
@@ -99,6 +100,7 @@ namespace engine {
 		}*/
 
 		texMap[key] = new Texture();
+		texMap[key]->setName(key);
 		parallel_load(texMap, fn, key);
 		//single_load(texMap[key], fn);
 		//futures.push_back(std::async(std::launch::async, parallel_load, std::ref(texMap), fn, key));
@@ -128,7 +130,7 @@ namespace engine {
 		boost::filesystem::path dir(o["dir"].get<std::string>());
 
 		for (auto& current : o["files"]) {
-			std::cout << "loading " << current << std::endl;
+			//std::cout << "loading " << current << std::endl;
 			boost::filesystem::path file(current.get<std::string>());
 			boost::filesystem::path full = root / dir / file;
 			loadTexture(full.string(), ctx);
@@ -146,7 +148,9 @@ namespace engine {
 	}
 
 	void Assets::useAll(Context& ctx) {
+		
 		for (auto& e : texMap) {
+			std::cout << "querying " << e.second->getName() << std::endl;
 			e.second->create(ctx);
 			e.second->use();
 		}

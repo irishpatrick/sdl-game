@@ -33,14 +33,8 @@ void Game::init(engine::Context& ctx) {
     groups_.setactive("town1");
     printf("done!\n");
 
-    //test.InitFromJson(root + "animtest.json");
-    animtest.InitAnimation(sprites + "animtest.json");
-    animtest.getAnimation()->Start("all", true);
-    stage.add(&animtest);
-
-    dlg.setWidth(300, 80);
 	//dlg.push("this is a very very long string that will hopefully get divided up");
-    dlg.initFont(engine::Assets::getTexture("white-font.png"));
+    //dlg.initFont(engine::Assets::getTexture("white-font.png"));
     tests();
 
     hero_collisions = engine::Util::GetCollisions(&hero, groups_.getactive());
@@ -52,6 +46,9 @@ void Game::init(engine::Context& ctx) {
 	dec.setVisible(false);
 	dec.x = 100;
 	dec.y = 100;
+
+    dlg.setWidth(300, 80);
+    //dlg.push("this is a very very long string that will hopefully get divided up");
 
     enemytest.InitAnimation(sprites + "monster_1.json");
     enemytest.getAnimation()->Start("all", true);
@@ -110,7 +107,7 @@ void Game::update(float delta, const uint8_t* keys) {
 			}
 		}
 		else if (dlg.isVisible()) {
-
+            std::cout << "dialogue is visible" << std::endl;
 		}
 		else {
 			if ((up || down) && (left || right)) {
@@ -143,9 +140,9 @@ void Game::update(float delta, const uint8_t* keys) {
 			}
 		}
 
-        if (!dlg.isVisible()) {
+        /*if (!dlg.isVisible()) {
 
-        }
+        }*/
 
         if (op.fire()) {
             if (dlg.isVisible()) {
@@ -188,12 +185,12 @@ void Game::update(float delta, const uint8_t* keys) {
 
         if (collisions.size() > 0) {
             for (auto& e : collisions) {
-                string result = engine::Util::checkVelocityCollision(
+                std::string result = engine::Util::checkVelocityCollision(
                     &hero,
                     e,
                     delta
                 );
-				engine::BoundingBox& rebox = e->getRelativeBoundingBox();
+				//engine::BoundingBox& rebox = e->getRelativeBoundingBox();
 				engine::BoundingBox& rhbox = hero.getRelativeBoundingBox();
 				engine::BoundingBox& ebox = e->getBoundingBox();
 				engine::BoundingBox& hbox = hero.getBoundingBox();
@@ -219,7 +216,7 @@ void Game::update(float delta, const uint8_t* keys) {
                     hero.x = ebox.x + ebox.w - rhbox.x;
                 }
                 else {
-                    cout << "collision detection problem" << endl;
+                    std::cout << "collision detection problem" << std::endl;
                 }
             }
         }
@@ -228,7 +225,6 @@ void Game::update(float delta, const uint8_t* keys) {
     transition.update();
     hero.velocityUpdate(delta);
 
-    animtest.update(delta);
     enemytest.update(delta);
 
     engine::Util::contain(

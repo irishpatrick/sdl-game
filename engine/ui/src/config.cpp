@@ -19,8 +19,8 @@ namespace ui {
 
 	void Config::initFont(engine::Texture* t, float scale) {
 		font.setTexture(t);
-		font.setScale(scale);
 		font.buildMap();
+		font.setScale(scale);
 	}
 
 	void Config::setActiveColor(uint8_t r, uint8_t g, uint8_t b) {

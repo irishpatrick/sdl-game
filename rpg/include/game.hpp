@@ -32,7 +32,6 @@ private:
     Player hero;
     Npc monster;
     engine::Sprite background;
-    engine::Sprite animtest;
     engine::Group stage;
     engine::Camera camera;
     GroupManager groups_;

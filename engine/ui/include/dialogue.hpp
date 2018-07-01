@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ui_api.hpp"
+#include "config.hpp"
 
 #include <engine.hpp>
 #include <vector>
@@ -16,7 +17,7 @@ public:
     UI_API Dialogue();
     UI_API ~Dialogue();
 
-    UI_API void initFont(engine::Texture*);
+    //UI_API void initFont(engine::Texture*);
     UI_API inline void setWidth(uint32_t a, uint32_t b) {
         width = a;
         height = b;
@@ -27,7 +28,8 @@ public:
     }
 
     UI_API inline engine::ImageFont& getFont() {
-        return font;
+        //return font;
+        return *Config::getFont();
     }
 
     UI_API void push(const std::string&);
@@ -39,7 +41,7 @@ public:
 
 private:
     bool visible;
-    engine::ImageFont font;
+    //engine::ImageFont font;
     std::vector<std::string> stack;
     uint32_t width;
     uint32_t height;

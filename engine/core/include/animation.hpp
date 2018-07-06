@@ -12,7 +12,7 @@
 #include <cstring>
 #include <cmath>
 
-#include <SDL2/SDL.h>
+#include "stdafx.hpp"
 
 namespace engine {
 

@@ -71,6 +71,12 @@ endif (MSVC)
 if (USE_HUNTER)
 
     message(STATUS "using hunter")
+    
+    if (UNIX)
+        set(COMPILE_OPTIONS ${COMPILE_OPTIONS} -DUSE_HUNTER)
+    elseif (MSVC)
+        set(COMPILE_OPTIONS ${COMPILE_OPTIONS} /DUSE_HUNTER)
+    endif (UNIX)
 
     hunter_add_package(Boost COMPONENTS system filesystem)
     hunter_add_package(SDL2)
@@ -102,6 +108,8 @@ if (USE_PKGCONFIG)
     set(LIBRARIES ${LIBRARIES} SDL2 SDL2_image ${Boost_LIBRARIES})
 
 endif (USE_PKGCONFIG)
+
+add_subdirectory(./sanity-check)
 
 add_subdirectory(./engine/core)
 

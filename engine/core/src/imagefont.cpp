@@ -43,7 +43,7 @@ namespace engine {
 
 	void ImageFont::setTexture(Texture* t) {
 		tex = t;
-		w = ceil((double)tex->getW() / 63.0) + 3;
+		w = (uint32_t)ceil((double)tex->getW() / 63.0) + 3;
 		h = tex->getH();
 		std::cout << "setting dimensions to " << w << ", " << h << std::endl;
 	}
@@ -67,8 +67,8 @@ namespace engine {
 		}
 
 		SDL_Rect dst;
-		dst.x = x;
-		dst.y = y;
+		dst.x = (int)x;
+		dst.y = (int)y;
 		dst.w = (uint32_t) (w * scale);
 		dst.h = (uint32_t) (h * scale);
 

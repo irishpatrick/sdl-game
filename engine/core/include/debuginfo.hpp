@@ -1,5 +1,6 @@
 #pragma once
 
+#include "core_api.hpp"
 #include "context.hpp"
 #include <vector>
 #include <string>
@@ -19,16 +20,16 @@ namespace engine {
 
     class DebugInfo {
     public:
-        DebugInfo();
-        ~DebugInfo();
-        void init(Context&);
-        void addLine(const std::string&);
-        void draw(Context&);
-        void flush();
+        CORE_API DebugInfo();
+        CORE_API ~DebugInfo();
+        CORE_API void init(const std::string&, Context&);
+        CORE_API void addLine(const std::string&);
+        CORE_API void draw(Context&);
+        CORE_API void flush();
     private:
         std::vector<std::string> lines;
         TTF_Font* font;
-        SDL_Surface* glyphCache;
+        SDL_Surface** glyphCache;
         GlyphMetrics* metrics;
     };
 

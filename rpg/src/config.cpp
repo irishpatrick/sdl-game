@@ -38,7 +38,8 @@ int Config::load(const string& fn)
             "Failed to load config",
             nullptr
         );
-        exit(1);
+        //exit(1);
+        return 1;
     }
     json o;
     i >> o;
@@ -67,4 +68,5 @@ int Config::load(const string& fn)
     		fullscreen = false;
     	}
     }
+    return 0;
 }

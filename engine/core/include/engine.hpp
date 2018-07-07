@@ -19,3 +19,4 @@
 #include "color.hpp"
 #include "boundingbox.hpp"
 #include "object.hpp"
+#include "debuginfo.hpp"

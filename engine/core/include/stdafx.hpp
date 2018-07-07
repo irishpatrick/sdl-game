@@ -1,5 +1,8 @@
 #pragma once
 
+#include <iostream>
+#include <string>
+
 #if defined USE_HUNTER
 
 #include <SDL2/SDL.h>

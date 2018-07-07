@@ -8,6 +8,7 @@ option (BUILD_RASPBERRY_GAME "raspberry game" ON)
 option (BUILD_UI "build ui" ON)
 option (BUILD_SOUNDCHIP "build soundchip" OFF)
 option (DEBUG_SYMBOLS "enable debug symbols" ON)
+option (BUILD_SANITY_CHECK "enable sanity check" OFF)
 
 #set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
 #set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
@@ -43,8 +44,8 @@ if (MSVC)
         set(COMPILE_OPTIONS ${COMPILE_OPTIONS} /DEBUG /Od)
     endif (DEBUG_SYMBOLS)
 
-	set(COMPILE_OPTIONS /std:c++14 /W3 /D_REENTRANT /Od /MP)
-	set(LIBRARIES SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib libboost_system-vc141-mt-gd-x32-1_67.lib libboost_filesystem-vc141-mt-gd-x32-1_67.lib)
+	set(COMPILE_OPTIONS /std:c++14 /W3 /D_REENTRANT /Od)
+	set(LIBRARIES SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib libboost_system-vc141-mt-gd-x64-1_67.lib libboost_filesystem-vc141-mt-gd-x64-1_67.lib)
 
 elseif (UNIX)
 
@@ -97,7 +98,7 @@ if (USE_PKGCONFIG)
     message(STATUS "using pkg-config")
 
     find_package(PkgConfig REQUIRED)
-    pkg_check_modules(SDL2 REQUIRED sdl2)
+    pkg_check_modules(SDL2 REQUIRED SDL2)
     pkg_check_modules(SDL2_image REQUIRED SDL2_image)
     pkg_check_modules(SDL2_ttf REQUIRED SDL2_ttf)
 
@@ -109,7 +110,9 @@ if (USE_PKGCONFIG)
 
 endif (USE_PKGCONFIG)
 
-add_subdirectory(./sanity-check)
+if (BUILD_SANITY_CHECK)
+    add_subdirectory(./sanity-check)
+endif (BUILD_SANITY_CHECK)
 
 add_subdirectory(./engine/core)
 

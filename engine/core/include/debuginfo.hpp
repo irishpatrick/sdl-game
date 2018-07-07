@@ -5,11 +5,13 @@
 #include <vector>
 #include <string>
 #include <cstdint>
-#include "stdafx.hpp"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 
 namespace engine {
 
-    typedef struct {
+	typedef struct {
         int minx;
         int maxx;
         int miny;
@@ -18,17 +20,22 @@ namespace engine {
     } GlyphMetrics;
 
     class DebugInfo {
+
     public:
         CORE_API DebugInfo();
         CORE_API ~DebugInfo();
         CORE_API void init(const std::string&, Context&);
         CORE_API void addLine(const std::string&);
         CORE_API void draw(Context&);
+        CORE_API void drawLine(float, float, const std::string&, Context&);
         CORE_API void flush();
+        CORE_API void test();
+
     private:
         std::vector<std::string> lines;
         TTF_Font* font;
         SDL_Surface** glyphCache;
+        SDL_Surface* out;
         GlyphMetrics* metrics;
     };
 

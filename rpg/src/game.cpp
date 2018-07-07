@@ -52,6 +52,13 @@ void Game::init(engine::Context& ctx) {
 
     enemytest.InitAnimation(sprites + "monster_1.json");
     enemytest.getAnimation()->Start("all", true);
+
+    std::cout << "running tests..." << std::endl;
+
+	debug.init(Config::getAssetPath() + "font.ttf", ctx);
+    debug.test();
+
+    std::cout << "ok" << std::endl;
 }
 
 void Game::tests() {

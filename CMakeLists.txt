@@ -88,8 +88,11 @@ if (USE_HUNTER)
     find_package(SDL2 CONFIG REQUIRED)
     find_package(SDL_image CONFIG REQUIRED)
     find_package(SDL_ttf CONFIG REQUIRED)
+    
+    message(STATUS ${SDL2_ROOT})
 
     set(LIBRARIES ${LIBRARIES} Boost::system Boost::filesystem SDL2::SDL2main SDL2::SDL2 SDL_image::SDL_image SDL_ttf::SDL_ttf m CACHE STRING "string")
+    set(INCLUDE_DIR ${INCLUDE_DIR} ${SDL2_ROOT}/include/SDL2 ${SDL_TTF_ROOT}/include/SDL_ttf)
 
 endif(USE_HUNTER)
 

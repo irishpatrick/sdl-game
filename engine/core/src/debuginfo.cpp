@@ -55,6 +55,7 @@ namespace engine {
             0,
             ctx.getWidth(),
             ctx.getHeight(),
+            32,
             rmask,
             gmask,
             bmask,
@@ -108,7 +109,7 @@ namespace engine {
             r.w = 100;
             r.h = 100;
 
-            SDL_RenderCopy(ctx.getRenderer())
+            //SDL_RenderCopy(ctx.getRenderer())
         }
     }
 

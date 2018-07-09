@@ -6,11 +6,7 @@ file (GLOB sources src/*.cpp)
 file (GLOB headers include/*.hpp)
 
 link_directories(${PROJECT_NAME} PUBLIC ${LIBRARY_DIR})
-if (MSVC)
-	add_library(${PROJECT_NAME} SHARED ${sources} ${headers})
-else (MSVC)
-	add_library(${PROJECT_NAME} SHARED ${sources} ${headers})
-endif (MSVC)
+add_library(${PROJECT_NAME} SHARED ${sources} ${headers})
 
 target_include_directories(${PROJECT_NAME} PUBLIC include ${INCLUDE_DIR})
 if (MSVC)

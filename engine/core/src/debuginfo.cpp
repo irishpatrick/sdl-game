@@ -84,7 +84,10 @@ namespace engine {
 
         // black
         SDL_Color color = {0,0,0};
-        
+        for (uint32_t i=0; i<chars.size(); i++) {
+			char c = chars.at(i);
+            glyphCache[i] = TTF_RenderGlyph_Solid(font, c, color);
+        }
     }
 
 	void DebugInfo::addLine(const std::string& str) {
@@ -109,7 +112,7 @@ namespace engine {
             r.w = 100;
             r.h = 100;
 
-            //SDL_RenderCopy(ctx.getRenderer())
+			//SDL_BlitSurface();
         }
     }
 

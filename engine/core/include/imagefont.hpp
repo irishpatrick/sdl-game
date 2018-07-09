@@ -5,7 +5,7 @@
 #include <map>
 #include <string>
 #include <cstdint>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 #include "color.hpp"
 

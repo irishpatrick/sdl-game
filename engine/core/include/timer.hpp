@@ -3,7 +3,7 @@
 #include "core_api.hpp"
 
 #include <cstdint>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 namespace engine {
 

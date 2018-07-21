@@ -18,8 +18,8 @@ void Game::init(engine::Context& ctx) {
 
     camera.setFocus(&hero);
 
-	hero.init(ctx);
-	hero.setSolid(true);
+    hero.init(ctx);
+    hero.setSolid(true);
     hero.x = 10;
     hero.y = 10;
 
@@ -33,19 +33,19 @@ void Game::init(engine::Context& ctx) {
     groups_.setactive("town1");
     printf("done!\n");
 
-	//dlg.push("this is a very very long string that will hopefully get divided up");
+    //dlg.push("this is a very very long string that will hopefully get divided up");
     //dlg.initFont(engine::Assets::getTexture("white-font.png"));
     tests();
 
     hero_collisions = engine::Util::GetCollisions(&hero, groups_.getactive());
 
-	ui::Config::initFont(engine::Assets::getTexture("white-font.png"), 0.055f);
-	ui::Config::setActiveColor(255, 255, 0);
-	ui::Config::setDefaultColor(0, 0, 0);
-	dec.setSelection(ui::Decision::NO);
-	dec.setVisible(false);
-	dec.x = 100;
-	dec.y = 100;
+    ui::Config::initFont(engine::Assets::getTexture("white-font.png"), 0.055f);
+    ui::Config::setActiveColor(255, 255, 0);
+    ui::Config::setDefaultColor(0, 0, 0);
+    dec.setSelection(ui::Decision::NO);
+    dec.setVisible(false);
+    dec.x = 100;
+    dec.y = 100;
 
     dlg.setWidth(300, 80);
     //dlg.push("this is a very very long string that will hopefully get divided up");
@@ -55,7 +55,7 @@ void Game::init(engine::Context& ctx) {
 
     std::cout << "running tests..." << std::endl;
 
-	debug.init(Config::getAssetPath() + "font.ttf", ctx);
+    debug.init(Config::getAssetPath() + "font.ttf", ctx);
     debug.test();
 
     std::cout << "ok" << std::endl;
@@ -212,7 +212,7 @@ void Game::update(float delta, const uint8_t* keys) {
                     hero.yvel = 0;
 					hero.y = ebox.y - (rhbox.y + hbox.h);
 					//hero.y = ebox.y - hero.h + hbox.y - hbox.h;
-					//hero.y = ebox.y + 
+					//hero.y = ebox.y +
 				}
                 else if (result == "east") {
                     hero.xvel = 0;

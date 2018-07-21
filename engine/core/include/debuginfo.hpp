@@ -34,9 +34,11 @@ namespace engine {
     private:
         std::vector<std::string> lines;
         TTF_Font* font;
-        SDL_Surface** glyphCache;
         SDL_Surface* out;
-        GlyphMetrics* metrics;
+        bool hasInit;
+
+		std::vector<GlyphMetrics*> metrics;
+		std::vector<SDL_Surface*> glyphCache;
     };
 
 }

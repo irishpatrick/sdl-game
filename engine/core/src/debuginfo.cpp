@@ -11,33 +11,11 @@ namespace engine {
     }
 
     DebugInfo::~DebugInfo() {
-        std::cout << "deallocating memory... " << std::endl;
-        if (metrics != nullptr) {
-            std::cout << "deallocating metrics... ";
-            free(metrics);
-            std::cout << "ok" << std::endl;
-        }
 
-        if (glyphCache != nullptr) {
-            std::cout << "deallocating glyphCache ";
-            for (uint32_t i=0; i<chars.size(); i++) {
-                if (glyphCache[i] != nullptr) {
-                    SDL_FreeSurface(glyphCache[i]);
-                    std::cout << ".";
-                }
-                else {
-                    std::cout << "x";
-                }
-            }
-            std::cout << " ok" << std::endl;
-            std::cout << "freeing glyphCache ponter... ";
-            free(glyphCache);
-            std::cout << "ok";
-        }
-        std::cout << "ok" << std::endl;
     }
 
     void DebugInfo::init(const std::string& fn, Context& ctx) {
+        hasInit = true;
         uint32_t rmask, gmask, bmask, amask;
         #if SDL_BYTEORDER == SDL_BIG_ENDIAN
             rmask = 0xff000000;
@@ -69,15 +47,16 @@ namespace engine {
         }
         std::cout << "ok" << std::endl;
 
-        std::cout << "allocating memory...";
-        metrics = (GlyphMetrics*)malloc(chars.size() * sizeof(GlyphMetrics));
-        glyphCache = (SDL_Surface**)malloc(chars.size());
-        std::cout << "ok" << std::endl;
+        //std::cout << "allocating memory...";
+        //metrics = (GlyphMetrics*)malloc(chars.size() * sizeof(GlyphMetrics));
+        //glyphCache = (SDL_Surface**)malloc(chars.size());
+        //std::cout << "ok" << std::endl;
 
         std::cout << "collecting glyph metrics... ";
         for (uint32_t i=0; i<chars.size(); i++) {
             char c = chars.at(i);
-            GlyphMetrics* gm = &metrics[i];
+            GlyphMetrics* gm = (GlyphMetrics*)malloc(sizeof(GlyphMetrics));
+            metrics.push_back(gm);
             TTF_GlyphMetrics(font, c, &gm->minx, &gm->maxx, &gm->miny, &gm->maxy, &gm->advance);
         }
         std::cout << "ok" << std::endl;
@@ -85,8 +64,8 @@ namespace engine {
         // black
         SDL_Color color = {0,0,0};
         for (uint32_t i=0; i<chars.size(); i++) {
-			char c = chars.at(i);
-            glyphCache[i] = TTF_RenderGlyph_Solid(font, c, color);
+            char c = chars.at(i);
+            glyphCache.push_back(TTF_RenderGlyph_Solid(font, c, color));
         }
     }
 
@@ -104,7 +83,7 @@ namespace engine {
         for (uint32_t i=0; i<str.size(); i++) {
             char c = str.at(i);
             std::size_t loc = chars.find(str.at(i));
-            GlyphMetrics* gm = &metrics[static_cast<int>(loc)];
+            GlyphMetrics* gm = metrics[static_cast<int>(loc)];
 
             SDL_Rect r;
             r.x = 10;
@@ -122,8 +101,8 @@ namespace engine {
 
     void DebugInfo::test() {
         for (uint32_t i=0; i<chars.size(); i++) {
-            GlyphMetrics* gm = &metrics[i];
-            std::cout << chars.at(i) << " {" << gm->minx << ", " << gm->maxx << ", " << gm->miny << ", " << gm->maxy << ", " << gm->advance << "}" << std::endl; 
+            GlyphMetrics* gm = metrics[i];
+            std::cout << chars.at(i) << " {" << gm->minx << ", " << gm->maxx << ", " << gm->miny << ", " << gm->maxy << ", " << gm->advance << "}" << std::endl;
         }
     }
 

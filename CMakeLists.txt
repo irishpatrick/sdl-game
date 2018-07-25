@@ -4,8 +4,8 @@ cmake_minimum_required(VERSION 3.0)
 option (USE_HUNTER "use hunter" OFF)
 option (HUNTER_BUILD_SHARED_LIBS "hunter build shared libs" ON)
 option (USE_PKGCONFIG "use pkg-config" OFF)
-option (BUILD_RPG "build game" ON)
-option (BUILD_RASPBERRY_GAME "raspberry game" ON)
+option (BUILD_RPG "build game" OFF)
+option (BUILD_RASPBERRY_GAME "raspberry game" OFF)
 option (BUILD_UI "build ui" ON)
 option (DEBUG_SYMBOLS "enable debug symbols" ON)
 
@@ -75,7 +75,7 @@ endif (MSVC)
 if (USE_HUNTER)
 
     message(STATUS "using hunter")
-    
+
     if (UNIX)
         set(COMPILE_OPTIONS ${COMPILE_OPTIONS} -DUSE_HUNTER)
     elseif (MSVC)
@@ -91,7 +91,7 @@ if (USE_HUNTER)
     find_package(SDL2 CONFIG REQUIRED)
     find_package(SDL_image CONFIG REQUIRED)
     find_package(SDL_ttf CONFIG REQUIRED)
-    
+
     message(STATUS ${SDL2_ROOT})
 
     set(LIBRARIES ${LIBRARIES} Boost::system Boost::filesystem SDL2::SDL2main SDL2::SDL2 SDL_image::SDL_image SDL_ttf::SDL_ttf m CACHE STRING "string")

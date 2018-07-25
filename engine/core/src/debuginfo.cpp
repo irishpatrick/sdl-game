@@ -74,8 +74,26 @@ namespace engine {
 	}
 
 	void DebugInfo::draw(Context& ctx) {
+        float x = 0;
+        float y = 0;
+        // loop through lines
         for (auto& line : lines) {
+            // loop through characters in line
+            for (auto& c : line) {
+                size_t index = chars.find(c);
+                GlyphMetrics* gm = metrics[static_cast<int>(index)];
+                SDL_Surface* surf = glyphCache[static_cast<int>(index)];
+                SDL_Rect rect;
+                rect.x = x;
+                rect.y = y;
+                // set rect w
+                // set rect h
+                // blit to surface
+                // increment xs
 
+            }
+            x = 0;
+            // add font height to y
         }
 	}
 

@@ -31,6 +31,7 @@ namespace engine {
         CORE_API void flush();
         CORE_API void test();
 
+
     private:
         std::vector<std::string> lines;
         TTF_Font* font;

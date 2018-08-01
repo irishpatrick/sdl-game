@@ -103,7 +103,7 @@ elseif (USE_PKGCONFIG)
     message(STATUS "using pkg-config")
 
     find_package(PkgConfig REQUIRED)
-    pkg_check_modules(SDL2 REQUIRED SDL2)
+    pkg_check_modules(SDL2 REQUIRED sdl2)
     pkg_check_modules(SDL2_image REQUIRED SDL2_image)
     pkg_check_modules(SDL2_ttf REQUIRED SDL2_ttf)
 
@@ -111,7 +111,7 @@ elseif (USE_PKGCONFIG)
 
     set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/include ${Boost_INCLUDE_DIR} ${SDL2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS} ${SDL2_ttf_INCLUDE_DIRS})
     set(LIBRARY_DIR ${SDL2_LIBRARY_DIRS} ${SDL2_image_LIBRARY_DIRS} ${SDL2_ttf_LIBRARY_DIRS})
-    set(LIBRARIES ${LIBRARIES} SDL2 SDL2_image ${Boost_LIBRARIES})
+    set(LIBRARIES ${LIBRARIES} SDL2 SDL2_image SDL2_ttf ${Boost_LIBRARIES})
 
 # we're on our own
 else (USE_HUNTER)
@@ -134,3 +134,5 @@ endif (BUILD_RPG)
 if (BUILD_RASPBERRY_GAME)
 	add_subdirectory(./catch)
 endif (BUILD_RASPBERRY_GAME)
+
+add_subdirectory(./ttftest)

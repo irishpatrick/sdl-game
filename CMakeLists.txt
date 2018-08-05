@@ -24,8 +24,8 @@ set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/include)
 if (USE_HUNTER)
 	include("cmake/HunterGate.cmake")
     HunterGate(
-        URL "https://github.com/ruslo/hunter/archive/v0.20.74.tar.gz"
-        SHA1 "88e3c806f0ff640c0e3cbc32b340ae2c370b31f5"
+        URL "https://github.com/ruslo/hunter/archive/v0.23.7.tar.gz"
+        SHA1 "183d23691c5bb2e3053bd6a7ad6021d16b24664d"
     )
 endif (USE_HUNTER)
 

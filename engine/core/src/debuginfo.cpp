@@ -87,14 +87,30 @@ namespace engine {
                 rect.x = x;
                 rect.y = y;
                 // set rect w
+                rect.w = gm->maxx;
                 // set rect h
+                rect.h = gm->maxy;
                 // blit to surface
+                SDL_BlitSurface(surf, &rect, out, nullptr);
+
                 // increment xs
+                x += gm->advance;
 
             }
             x = 0;
             // add font height to y
+            y += 10;
         }
+
+        // draw final surface out
+        SDL_Rect r;
+        r.x = 0;
+        r.y = 0;
+        r.w = ctx.getWidth();
+        r.h = ctx.getHeight();
+        SDL_Texture* t = SDL_CreateTextureFromSurface(ctx.getRenderer(), out);
+        SDL_RenderCopy(ctx.getRenderer(), t, NULL, &r);
+        SDL_DestroyTexture(t);
 	}
 
     void DebugInfo::drawLine(float x, float y, const std::string& str, Context& ctx) {

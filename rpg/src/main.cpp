@@ -86,6 +86,7 @@ void cleanup() {
 	ctx.destroy();
 }
 
+// for sdl on windows
 #ifdef main
 #undef main
 #endif /* main */

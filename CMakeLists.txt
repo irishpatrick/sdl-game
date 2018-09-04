@@ -45,7 +45,7 @@ if (MSVC)
     set(INCLUDE_DIR ${INCLUDE_DIR};${MSVC_INCLUDE};${MSVC_INCLUDE}/SDL2)
 	message(STATUS ${INCLUDE_DIR})
     set(LIBRARY_DIR ${LIBRARY_DIR} ${MSVC_LIB})
-	set(LIBRARIES SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib libboost_system-vc141-mt-gd-x64-1_67.lib libboost_filesystem-vc141-mt-gd-x64-1_67.lib)
+	set(LIBRARIES SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib libboost_system-vc141-mt-x64-1_67.lib libboost_filesystem-vc141-mt-x64-1_67.lib)
 
 # we're probably on linux
 elseif (UNIX)
@@ -61,15 +61,7 @@ elseif (UNIX)
 	endif (DEBUG_SYMBOLS)
 
 # we have no idea
-else (MSVC)
-
-	message(STATUS "UNKNOWN")
-    set(COMPILE_OPTIONS -std=c++14 -D_REENTRANT -Wall)
-    if (DEBUG_SYMBOLS)
-        set(COMPILE_OPTIONS ${COMPILE_OPTIONS} -g)
-    endif (DEBUG_SYMBOLS)
-
-endif (MSVC)
+endif ()
 
 # finding dependencies using hunter
 if (USE_HUNTER)
@@ -113,10 +105,29 @@ elseif (USE_PKGCONFIG)
     set(LIBRARY_DIR ${SDL2_LIBRARY_DIRS} ${SDL2_image_LIBRARY_DIRS} ${SDL2_ttf_LIBRARY_DIRS})
     set(LIBRARIES ${LIBRARIES} SDL2 SDL2_image SDL2_ttf ${Boost_LIBRARIES})
 
-# we're on our own
-else (USE_HUNTER)
+# use vcpkg
+else ()
+    find_package(SDL2 CONFIG REQUIRED)
+    find_library(SDL2_IMAGE_LIB SDL2_image REQUIRED)
+    find_library(SDL2_TTF_LIB SDL2_ttf REQUIRED)
+    find_library(CAIRO_LIB cairo REQUIRED)
+    find_library(BOOST_SYSTEM_LIB boost_system-vc140-mt REQUIRED)
+    find_library(BOOST_FILESYSTEM_LIB boost_filesystem-vc140-mt REQUIRED)
+    find_library(BOOST_RANDOM_LIB boost_random-vc140-mt REQUIRED)
 
-endif (USE_HUNTER)
+    set(LIBRARIES
+        SDL2::SDL2 
+        SDL2::SDL2main 
+        ${SDL2_IMAGE_LIB} 
+        ${SDL2_TTF_LIB}
+        ${CAIRO_LIB}
+        ${BOOST_SYSTEM_LIB}
+        ${BOOST_FILESYSTEM_LIB}
+        ${BOOST_RANDOM_LIB}
+		bcrypt
+    )
+
+endif ()
 
 
 # add all the projects

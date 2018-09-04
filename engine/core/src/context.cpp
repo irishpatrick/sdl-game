@@ -17,7 +17,7 @@ namespace engine {
 			return -1;
 		}
 
-		if (!IMG_Init(IMG_INIT_PNG)) {
+		if (!IMG_Init(IMG_INIT_TIF)) {
 			std::cout << "IMG_Init error: " << IMG_GetError() << std::endl;
 			return -1;
 		}

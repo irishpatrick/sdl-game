@@ -28,7 +28,11 @@ void init() {
         Config::load("assets/config.json");
     #endif
 
-    ctx.init(Config::getScreenWidth(), Config::getScreenHeight(), "hello world!", false);
+    int result = ctx.init(Config::getScreenWidth(), Config::getScreenHeight(), "hello world!", false);
+	if (result == -1) {
+		std::cout << "fatal error" << std::endl;
+		std::exit(-1);
+	}
 }
 
 void loadingScreen() {

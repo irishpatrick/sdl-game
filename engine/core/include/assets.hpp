@@ -5,8 +5,8 @@
 #include <map>
 #include <string>
 #include <vector>
-#include <SDL.h>
-#include <SDL_image.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 namespace engine {
 
@@ -26,6 +26,7 @@ namespace engine {
 		CORE_API static void useAll(Context&);
 
 	private:
+		CORE_API static std::vector<std::string> split(const std::string&, char);
 		//CORE_API static void single_load(Texture*, const std::string&);
 		CORE_API static std::map<std::string, Texture*> texMap;
 		CORE_API static Texture* missing;

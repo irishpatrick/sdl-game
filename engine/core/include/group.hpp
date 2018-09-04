@@ -9,7 +9,7 @@
 #include <fstream>
 #include <streambuf>
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <nlohmann/json.hpp>
 
 #include "object.hpp"

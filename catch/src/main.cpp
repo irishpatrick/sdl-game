@@ -20,7 +20,7 @@ void init() {
 	srand(time(nullptr));
 	std::string fn;
 	#ifdef _WIN32
-		fn = "D:/GitHub/sdl-game/catch/assets/config-win.json";
+		fn = "C:/Users/Patrick/Documents/GitHub/sdl-game/catch/assets/config-win.json";
 	#elif __linux__
 		fn = "../game/assets/config.json";
 	#endif
@@ -30,7 +30,7 @@ void init() {
 	std::cout << "load config" << std::endl;
 	ctx.init(config["screenWidth"].get<int>(), config["screenHeight"].get<int>(), config["title"].get<std::string>(), false);
 	engine::Assets::loadTexturesFromJson("assets.json", config["assetPath"].get<std::string>(), ctx);
-	engine::Assets::useAll(ctx);
+	//engine::Assets::useAll(ctx);
 }
 
 void render() {

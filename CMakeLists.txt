@@ -113,7 +113,7 @@ else ()
     find_library(CAIRO_LIB cairo REQUIRED)
     find_library(BOOST_SYSTEM_LIB boost_system-vc140-mt REQUIRED)
     find_library(BOOST_FILESYSTEM_LIB boost_filesystem-vc140-mt REQUIRED)
-    find_library(BOOST_RANDOM_LIB boost_random-vc140-mt REQUIRED)
+  
 
     set(LIBRARIES
         SDL2::SDL2 
@@ -123,7 +123,7 @@ else ()
         ${CAIRO_LIB}
         ${BOOST_SYSTEM_LIB}
         ${BOOST_FILESYSTEM_LIB}
-        ${BOOST_RANDOM_LIB}
+
 		bcrypt
     )
 

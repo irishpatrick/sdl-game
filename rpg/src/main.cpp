@@ -5,6 +5,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <engine.hpp>
+#include <boost/filesystem.hpp>
 
 #include "config.hpp"
 #include "game.hpp"
@@ -23,7 +24,7 @@ Game game;
 void init() {
     // a more elegant solution is needed
     #ifdef _WIN32
-        Config::load("../assets/config-win.json");
+		Config::load("../assets/config-win.json");
     #elif __linux__
         Config::load("assets/config.json");
     #endif

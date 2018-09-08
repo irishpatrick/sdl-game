@@ -6,9 +6,12 @@
 #include <SDL2/SDL.h>
 #include <engine.hpp>
 #include <nlohmann/json.hpp>
+#include <boost/filesystem.hpp>
 #include "game.hpp"
 
 using json = nlohmann::json;
+
+namespace fs = boost::filesystem;
 
 engine::Context ctx;
 Game game;
@@ -24,8 +27,15 @@ void init() {
 	#elif __linux__
 		fn = "../game/assets/config.json";
 	#endif
+	
+	fs::path config_file("C:/Users/Patrick/Documents/GitHub/sdl-game/catch/assets/config-win.json");
 
-	std::ifstream i(fn);
+	std::ifstream i(config_file.string());
+	if (i.fail())
+	{
+		std::cout << "failed to load " << config_file.string() << std::endl;
+		std::exit(1);
+	}
 	i >> config;
 	std::cout << "load config" << std::endl;
 	ctx.init(config["screenWidth"].get<int>(), config["screenHeight"].get<int>(), config["title"].get<std::string>(), false);

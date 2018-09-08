@@ -6,12 +6,9 @@
 #include <SDL2/SDL.h>
 #include <engine.hpp>
 #include <nlohmann/json.hpp>
-#include <boost/filesystem.hpp>
 #include "game.hpp"
 
 using json = nlohmann::json;
-
-namespace fs = boost::filesystem;
 
 engine::Context ctx;
 Game game;
@@ -21,24 +18,22 @@ json config;
 
 void init() {
 	srand(time(nullptr));
-	std::string fn;
-	#ifdef _WIN32
-		fn = "C:/Users/Patrick/Documents/GitHub/sdl-game/catch/assets/config-win.json";
-	#elif __linux__
-		fn = "../game/assets/config.json";
-	#endif
 	
-	fs::path config_file("C:/Users/Patrick/Documents/GitHub/sdl-game/catch/assets/config-win.json");
+	std::string config_file("D:/GitHub/sdl-game/catch/assets/config-win.json");
 
-	std::ifstream i(config_file.string());
+	std::ifstream i(config_file);
 	if (i.fail())
 	{
-		std::cout << "failed to load " << config_file.string() << std::endl;
+		std::cout << "failed to load " << config_file << std::endl;
 		std::exit(1);
 	}
 	i >> config;
 	std::cout << "load config" << std::endl;
-	ctx.init(config["screenWidth"].get<int>(), config["screenHeight"].get<int>(), config["title"].get<std::string>(), false);
+	int err = ctx.init(config["screenWidth"].get<int>(), config["screenHeight"].get<int>(), config["title"].get<std::string>(), false);
+	if (err < 0)
+	{
+		std::cout << "something is wrong here" << std::endl;
+	}
 	engine::Assets::loadTexturesFromJson("assets.json", config["assetPath"].get<std::string>(), ctx);
 	//engine::Assets::useAll(ctx);
 }

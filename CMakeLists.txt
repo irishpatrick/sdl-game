@@ -45,7 +45,7 @@ if (MSVC)
     set(INCLUDE_DIR ${INCLUDE_DIR};${MSVC_INCLUDE};${MSVC_INCLUDE}/SDL2)
 	message(STATUS ${INCLUDE_DIR})
     set(LIBRARY_DIR ${LIBRARY_DIR} ${MSVC_LIB})
-	set(LIBRARIES SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib libboost_system-vc141-mt-x64-1_67.lib libboost_filesystem-vc141-mt-x64-1_67.lib)
+	set(LIBRARIES SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib)
 
 # we're probably on linux
 elseif (UNIX)
@@ -74,19 +74,17 @@ if (USE_HUNTER)
         set(COMPILE_OPTIONS ${COMPILE_OPTIONS} /DUSE_HUNTER)
     endif (UNIX)
 
-    hunter_add_package(Boost COMPONENTS system filesystem)
     hunter_add_package(SDL2)
     hunter_add_package(SDL_image)
     hunter_add_package(SDL_ttf)
 
-    find_package(Boost CONFIG REQUIRED system filesystem)
     find_package(SDL2 CONFIG REQUIRED)
     find_package(SDL_image CONFIG REQUIRED)
     find_package(SDL_ttf CONFIG REQUIRED)
 
     message(STATUS ${SDL2_ROOT})
 
-    set(LIBRARIES ${LIBRARIES} Boost::system Boost::filesystem SDL2::SDL2main SDL2::SDL2 SDL_image::SDL_image SDL_ttf::SDL_ttf m CACHE STRING "string")
+    set(LIBRARIES ${LIBRARIES} SDL2::SDL2main SDL2::SDL2 SDL_image::SDL_image SDL_ttf::SDL_ttf m CACHE STRING "string")
     set(INCLUDE_DIR ${INCLUDE_DIR} ${SDL2_ROOT}/include/SDL2 ${SDL_TTF_ROOT}/include/SDL_ttf)
 
 # finding dependencies using pkg-config
@@ -99,11 +97,10 @@ elseif (USE_PKGCONFIG)
     pkg_check_modules(SDL2_image REQUIRED SDL2_image)
     pkg_check_modules(SDL2_ttf REQUIRED SDL2_ttf)
 
-    find_package(Boost 1.58 COMPONENTS system filesystem REQUIRED)
 
-    set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/include ${Boost_INCLUDE_DIR} ${SDL2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS} ${SDL2_ttf_INCLUDE_DIRS})
+    set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/include ${SDL2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS} ${SDL2_ttf_INCLUDE_DIRS})
     set(LIBRARY_DIR ${SDL2_LIBRARY_DIRS} ${SDL2_image_LIBRARY_DIRS} ${SDL2_ttf_LIBRARY_DIRS})
-    set(LIBRARIES ${LIBRARIES} SDL2 SDL2_image SDL2_ttf ${Boost_LIBRARIES})
+    set(LIBRARIES ${LIBRARIES} SDL2 SDL2_image SDL2_ttf)
 
 # use vcpkg
 else ()
@@ -111,8 +108,6 @@ else ()
     find_library(SDL2_IMAGE_LIB SDL2_image REQUIRED)
     find_library(SDL2_TTF_LIB SDL2_ttf REQUIRED)
     find_library(CAIRO_LIB cairo REQUIRED)
-    find_library(BOOST_SYSTEM_LIB boost_system-vc140-mt REQUIRED)
-    find_library(BOOST_FILESYSTEM_LIB boost_filesystem-vc140-mt REQUIRED)
   
 
     set(LIBRARIES
@@ -121,8 +116,6 @@ else ()
         ${SDL2_IMAGE_LIB} 
         ${SDL2_TTF_LIB}
         ${CAIRO_LIB}
-        ${BOOST_SYSTEM_LIB}
-        ${BOOST_FILESYSTEM_LIB}
 
 		bcrypt
     )

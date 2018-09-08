@@ -223,4 +223,19 @@ namespace engine {
 		return (1-t) * a + t * b;
 	}
 
+	void Util::formatPath(std::string& str)
+	{
+		int pos = str.size() - 1;
+		if (str[pos] == '\\')
+		{
+			str[pos] = '/';
+		}
+		else if (str[pos] != '/')
+		{
+			str += '/';
+		}
+
+
+	}
+
 }

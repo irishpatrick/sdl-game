@@ -17,9 +17,10 @@ namespace engine {
 			return -1;
 		}
 
-		if (!IMG_Init(IMG_INIT_TIF)) {
+		if (!IMG_Init(IMG_INIT_PNG)) {
 			std::cout << "IMG_Init error: " << IMG_GetError() << std::endl;
-			return -1;
+			//return -1;
+			std::cout << "We're not going to return, we'll just push on through" << std::endl;
 		}
 
 		if (TTF_Init() < 0) {
@@ -74,6 +75,7 @@ namespace engine {
 
 		if (r == nullptr) {
 			std::cout << "SDL_CreateRenderer error: " << SDL_GetError() << std::endl;
+			return -1;
 		}
 
 		return 0;

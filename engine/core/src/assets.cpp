@@ -1,9 +1,9 @@
 #include "assets.hpp"
 #include "texture.hpp"
 #include "context.hpp"
+#include "util.hpp"
 #include <fstream>
 #include <nlohmann/json.hpp>
-#include <boost/filesystem.hpp>
 #include <sstream>
 #include <iostream>
 
@@ -102,7 +102,7 @@ namespace engine
 	void Assets::loadTexture(const std::string& fn, Context& ctx) 
 	{
 		std::cout << "loading texture " << fn << std::endl;
-		std::vector<std::string> vec = split(fn, boost::filesystem::path::preferred_separator);
+		std::vector<std::string> vec = split(fn, '/');
 		std::string key = vec[vec.size() - 1];
 
 		/*if (texMap.find(key) != texMap.end()) {
@@ -161,16 +161,19 @@ namespace engine
 		in >> o;
 
 		// set current working directory
-		boost::filesystem::path root(rootstr);
-		boost::filesystem::path dir(o["dir"].get<std::string>());
+		std::string root = rootstr;
+		Util::formatPath(root);
+		std::string dir = o["dir"].get<std::string>();
+		Util::formatPath(dir);
 
 		// load textures
 		for (auto& current : o["files"])
 		{
 			//std::cout << "loading " << current << std::endl;
-			boost::filesystem::path file(current.get<std::string>());
-			boost::filesystem::path full = root / dir / file;
-			loadTexture(full.string(), ctx);
+			std::string texfile = current.get<std::string>();
+			Util::formatPath(texfile);
+			std::string full = root + dir + texfile;
+			loadTexture(full, ctx);
 		}
 		std::cout << "done!" << std::endl;
 	}

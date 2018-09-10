@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.0)
 
 project(rpg C CXX)
 
-file (GLOB_RECURSE sources src/*)
-file (GLOB_RECURSE headers include/*)
+file (GLOB_RECURSE sources src/*.cpp)
+file (GLOB_RECURSE headers src/*.hpp src/*.inl)
 #file (GLOB_RECURSE assets assets/*)
 
 link_directories(${PROJECT_NAME} PUBLIC ${LIBRARY_DIR})

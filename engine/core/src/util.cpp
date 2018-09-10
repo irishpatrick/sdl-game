@@ -21,8 +21,8 @@ namespace engine {
 		{
 			return "no collision";
 		}
-		BoundingBox abox = getAABB(a, 16);
-		BoundingBox bbox = getAABB(b, 16);
+		BoundingBox abox = getAABB(a, 16.0f);
+		BoundingBox bbox = getAABB(b, 16.0f);
 
 		if (
 			abox.x < bbox.x + bbox.w &&
@@ -86,7 +86,7 @@ namespace engine {
 		//std::cout << "velocityCollision delta: " << ceil(delta + 0.001) << std::endl;
 		
 		//make sure delta times don't hit 0
-		double error = 0.01f;
+		float error = 0.01f;
 
 		abox.x += ceil(a->xvel * (delta + error));
 		abox.y += ceil(a->yvel * (delta + error));
@@ -203,8 +203,8 @@ namespace engine {
 	BoundingBox Util::getAABB(Sprite* a, uint32_t h)
 	{
 		BoundingBox aabb;
-		aabb.x = (int)roundf(a->x);
-		aabb.y = (int)(roundf(a->y + a->h - h));
+		aabb.x = floorf(roundf(a->x));
+		aabb.y = floorf((roundf(a->y + a->h - h)));
 		aabb.w = a->w;
 		aabb.h = h;
 
@@ -234,8 +234,5 @@ namespace engine {
 		{
 			str += '/';
 		}
-
-
 	}
-
 }

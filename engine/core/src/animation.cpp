@@ -52,7 +52,6 @@ namespace engine {
 
     void Animation::initFromJson(const std::string& fn) {
         std::cout << "load " << fn << " from json" << std::endl;
-        printf("THIS IS A TEST\n");
 
         std::ifstream in(fn);
         if (in.fail()) {

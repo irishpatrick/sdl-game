@@ -9,10 +9,10 @@ namespace engine {
 	Sprite::Sprite() : Object() {
 		w = 0;
 		h = 0;
-		xvel = 0;
-		yvel = 0;
-		speed = 0;
-		maxSpeed = 0;
+		xvel = 0.0f;
+		yvel = 0.0f;
+		speed = 0.0f;
+		maxSpeed = 0.0f;
 		texture = nullptr;
 		parent = nullptr;
 		solid = false;
@@ -23,10 +23,10 @@ namespace engine {
 		collision_ = nullptr;
 		camera = nullptr;
 		uuid_str = "";
-		boundingBox.x = 0;
-		boundingBox.y = 0;
-		boundingBox.w = -1;
-		boundingBox.h = -1;
+		boundingBox.x = 0.0f;
+		boundingBox.y = 0.0f;
+		boundingBox.w = -1.0f;
+		boundingBox.h = -1.0f;
 	}
 
 	Sprite::~Sprite() {
@@ -132,12 +132,12 @@ namespace engine {
 	}
 
     void Sprite::draw(Context& ctx) {
-        /*if (!visible) return;
+        if (!visible) return;
 
         SDL_Rect rect;
 		if (parent != nullptr) {
-			rect.x = x + parent->screenX();
-			rect.y = y + parent->screenY();
+			rect.x = x + parent->getScreenX();
+			rect.y = y + parent->getScreenY();
 		}
 		else if (camera != nullptr) {
 			rect.x = x + camera->x;
@@ -155,7 +155,7 @@ namespace engine {
 		}
 		else {
 			SDL_RenderCopy(ctx.getRenderer(), texture->use(), NULL, &rect);
-		}*/
+		}
     }
 
 	void Sprite::draw(SDL_Renderer* r) {
@@ -187,10 +187,10 @@ namespace engine {
 	}
 
 	void Sprite::setBoundingBox(int bx, int by, int bw, int bh) {
-		boundingBox.x = bx;
-		boundingBox.y = by;
-		boundingBox.w = bw;
-		boundingBox.h = bh;
+		boundingBox.x = (float)bx;
+		boundingBox.y = (float)by;
+		boundingBox.w = (float)bw;
+		boundingBox.h = (float)bh;
 	}
 
 }

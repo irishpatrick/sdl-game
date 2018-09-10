@@ -44,6 +44,16 @@ namespace engine {
         template <class T>
         void getSpritesByType(std::vector<T*>&);
 
+		CORE_API inline float getScreenX()
+		{
+			return sx;
+		}
+
+		CORE_API inline float getScreenY()
+		{
+			return sy;
+		}
+
         float sx;
         float sy;
     private:

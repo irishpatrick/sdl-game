@@ -48,10 +48,10 @@ namespace engine {
 
 		CORE_API inline BoundingBox& getRelativeBoundingBox() {
 			if (boundingBox.w == -1) {
-				boundingBox.w = w;
+				boundingBox.w = (float)w;
 			}
 			if (boundingBox.h == -1) {
-				boundingBox.h = h;
+				boundingBox.h = (float)h;
 			}
 
 			return boundingBox;
@@ -63,10 +63,10 @@ namespace engine {
 			realBoundingBox.w = boundingBox.w;
 			realBoundingBox.h = boundingBox.h;
 			if (boundingBox.w == -1) {
-				realBoundingBox.w = w;
+				realBoundingBox.w = (float)w;
 			}
 			if (boundingBox.h == -1) {
-				realBoundingBox.h = h;
+				realBoundingBox.h = (float)h;
 			}
 
 			return realBoundingBox;

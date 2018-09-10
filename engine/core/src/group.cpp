@@ -7,8 +7,8 @@
 namespace engine {
 
     Group::Group(): Object() {
-        sx = 0;
-        sy = 0;
+        sx = 0.0f;
+        sy = 0.0f;
     }
 
     Group::~Group() {
@@ -142,5 +142,4 @@ namespace engine {
             }
         }
     }
-
 }

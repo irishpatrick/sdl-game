@@ -5,8 +5,8 @@
 namespace engine {
 
 	Camera::Camera() : Object() {
-		fx = 0;
-		fy = 0;
+		fx = 0.0f;
+		fy = 0.0f;
 		w = -1;
 		h = -1;
 		focus = nullptr;

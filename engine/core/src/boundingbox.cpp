@@ -3,10 +3,10 @@
 
 namespace engine {
 	BoundingBox::BoundingBox() {
-		x = 0;
-		y = 0;
-		w = 0;
-		h = 0;
+		x = 0.0f;
+		y = 0.0f;
+		w = 0.0f;
+		h = 0.0f;
 	}
 
 	BoundingBox::~BoundingBox() {

@@ -186,6 +186,10 @@ namespace engine
 			//getMissingTexture(ctx);
 			return missing;
 		}
+		if (texMap[key] == nullptr)
+		{
+			std::cout << "severe error: Assets::getTexture returned nullptr" << std::endl;
+		}
 		return texMap[key];
 	}
 

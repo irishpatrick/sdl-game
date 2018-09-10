@@ -2,7 +2,7 @@
 
 namespace engine {
 
-	Point::Point(): Point(0,0) {
+	Point::Point(): Point(0.0f,0.0f) {
 
 	}
 

@@ -3,8 +3,8 @@
 namespace engine {
 
 	Line::Line() {
-		m = 0;
-		b = 0;
+		m = 0.0f;
+		b = 0.0f;
 	}
 
 	Line::Line(float x1, float y1, float x2, float y2) {

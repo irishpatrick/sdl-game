@@ -47,6 +47,8 @@ namespace engine {
 
 	void Texture::create(Context& ctx, SDL_Surface* s)
 	{
+		surf = s;
+		std::cout << "sanity check! " << s->w << ", " << s->h << std::endl;
 		tex = SDL_CreateTextureFromSurface(ctx.getRenderer(), s);
 		if (tex == nullptr)
 		{
@@ -59,7 +61,7 @@ namespace engine {
 	}
 
 	SDL_Texture* Texture::use() {
-		if (ready && tex == nullptr) {
+		if (tex == nullptr) {
 			std::cout << "(" << name << ") error: need to create texture first" << std::endl;
 			//printf("creating texture\n");
 			//tex = SDL_CreateTextureFromSurface(renderer, surf);

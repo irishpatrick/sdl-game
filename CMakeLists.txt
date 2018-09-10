@@ -18,7 +18,7 @@ set(COMPILE_OPTIONS "")
 set(LINK_OPTIONS "")
 set(MSVC_INCLUDE "" CACHE PATH "")
 set(MSVC_LIB "" CACHE PATH "")
-set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/include)
+set(INCLUDE_DIR "")
 
 # initialize hunter
 if (USE_HUNTER)

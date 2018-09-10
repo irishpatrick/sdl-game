@@ -28,16 +28,16 @@ namespace engine
 	void parallel_load(
 		std::map<std::string, Texture*>& map,
 		const std::string& fn,
-		const std::string& key) 
+		const std::string& key)
 	{
 		SDL_Surface* s = IMG_Load(fn.c_str());
-		if (s == nullptr) 
+		if (s == nullptr)
 		{
 			std::cout << "surface for " << map[key]->getName() << " failed to load" << std::endl;
 			return;
 			//exit(1);
-		} 
-		else 
+		}
+		else
 		{
 			map[key]->set(s);
 		}
@@ -46,20 +46,20 @@ namespace engine
 	/*void Assets::single_load(Texture* t, const std::string& fn)
 	{
 		SDL_Surface* s = IMG_Load(fn.c_str());
-		if (s == nullptr) 
+		if (s == nullptr)
 		{
 			std::cout << "surface " << fn << " failed to load" << std::endl;
 			//exit(1);
 		}
-		else 
+		else
 		{
 			t->set(s);
 		}
 	}*/
 
-	void Assets::getMissingTexture(Context& ctx) 
+	void Assets::getMissingTexture(Context& ctx)
 	{
-		if (missing != nullptr) 
+		if (missing != nullptr)
 		{
 			return;
 		}
@@ -80,13 +80,13 @@ namespace engine
 		Texture* t = new Texture();
 		SDL_Surface* s = SDL_CreateRGBSurface(0, 32, 32, 32, rmask, gmask, bmask, amask);
 
-		if (s == nullptr) 
+		if (s == nullptr)
 		{
 			std::cout << "getMissingTexture error" << std::endl;
 			exit(1);
 		}
 
-		for (uint32_t i=0; i<32*32; i++) 
+		for (uint32_t i=0; i<32*32; i++)
 		{
 			uint32_t* target = (uint32_t*)s->pixels + i;
 			*target = magenta;
@@ -99,7 +99,7 @@ namespace engine
 		missing = t;
 	}
 
-	void Assets::loadTexture(const std::string& fn, Context& ctx) 
+	void Assets::loadTexture(const std::string& fn, Context& ctx)
 	{
 		std::cout << "loading texture " << fn << std::endl;
 		std::vector<std::string> vec = split(fn, '/');
@@ -117,13 +117,13 @@ namespace engine
 		t->setName(key);
 
 		SDL_Surface* s = IMG_Load(fn.c_str());
-		if (s == nullptr) 
+		if (s == nullptr)
 		{
 			std::cout << "surface for " << t->getName() << " failed to load: " << IMG_GetError() << std::endl;
 			return;
 			//exit(1);
-		} 
-		else 
+		}
+		else
 		{
 			t->create(ctx, s);
 		}
@@ -136,7 +136,7 @@ namespace engine
 
 	}
 
-	void Assets::loadTexturesFromVector(const std::string& dir, std::vector<std::string> files, Context& ctx) 
+	void Assets::loadTexturesFromVector(const std::string& dir, std::vector<std::string> files, Context& ctx)
 	{
 		std::cout << "loading textures from vector..." << std::endl;
 		for (auto& e : files) {
@@ -150,7 +150,7 @@ namespace engine
 		// read json file
 		std::cout << "loading textures from json..." << std::endl;
 		std::ifstream in(rootstr + fn);
-		if (in.fail()) 
+		if (in.fail())
 		{
 			std::cout << "cannot open " << fn << std::endl;
 			return;
@@ -171,7 +171,7 @@ namespace engine
 		{
 			//std::cout << "loading " << current << std::endl;
 			std::string texfile = current.get<std::string>();
-			Util::formatPath(texfile);
+			//Util::formatPath(texfile);
 			std::string full = root + dir + texfile;
 			loadTexture(full, ctx);
 		}
@@ -191,8 +191,8 @@ namespace engine
 
 	void Assets::useAll(Context& ctx)
 	{
-		
-		for (auto& e : texMap) 
+
+		for (auto& e : texMap)
 		{
 			std::cout << "querying " << e.second->getName() << std::endl;
 			e.second->create(ctx);

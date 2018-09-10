@@ -19,7 +19,8 @@ json config;
 void init() {
 	srand(time(nullptr));
 	
-	std::string config_file("D:/GitHub/sdl-game/catch/assets/config-win.json");
+	//std::string config_file("D:/GitHub/sdl-game/catch/assets/config-win.json");
+	std::string config_file = "C:/Users/Patrick/Documents/GitHub/sdl-game/catch/assets/config-win.json";
 
 	std::ifstream i(config_file);
 	if (i.fail())

@@ -13,6 +13,8 @@
 #include <SDL2/SDL_image.h>
 #include <nlohmann/json.hpp>
 #include "boundingbox.hpp"
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/basic_file_sink.h>
 
 namespace engine {
 
@@ -34,12 +36,14 @@ public:
 	CORE_API static std::vector<Sprite*> getVelocityCollisions(Sprite*, std::vector<Sprite*>&, float);
 	CORE_API static float lerp(float, float, float);
 	CORE_API static void formatPath(std::string&);
+	CORE_API static void initSpdlog();
 
 	CORE_API static const int UP = 0;
 	CORE_API static const int DOWN = 1;
 	CORE_API static const int LEFT = 2;
 	CORE_API static const int RIGHT = 3;
 	CORE_API static const int NO_COLLISION = 4;
+
 };
 
 }

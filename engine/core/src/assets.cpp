@@ -6,6 +6,9 @@
 #include <nlohmann/json.hpp>
 #include <sstream>
 #include <iostream>
+#include <experimental/filesystem>
+
+using path = std::experimental::filesystem::path;
 
 namespace engine
 {
@@ -149,7 +152,10 @@ namespace engine
 	{
 		// read json file
 		std::cout << "loading textures from json..." << std::endl;
-		std::ifstream in(rootstr + fn);
+		path rootpath(rootstr);
+		path pfn(fn);
+		rootpath /= pfn;
+		std::ifstream in(rootpath);
 		if (in.fail())
 		{
 			std::cout << "cannot open " << fn << std::endl;

@@ -41,7 +41,7 @@ namespace engine {
 			running = true;
 			duration = d;
 			start = SDL_GetTicks();
-			fade = OUT;
+			fade = FADE_OUT;
 		}
 	}
 
@@ -50,7 +50,7 @@ namespace engine {
 			running = true;
 			duration = d;
 			start = SDL_GetTicks();
-			fade = IN;
+			fade = FADE_IN;
 		}
 	}
 
@@ -76,10 +76,10 @@ namespace engine {
 				t = 1.0f;
 			}
 			float lerp = 0.0f;
-			if (fade == OUT) {
+			if (fade == FADE_OUT) {
 				lerp = Util::lerp(t, 0.0f, 255.0f);
 			}
-			else if (fade == IN) {
+			else if (fade == FADE_IN) {
 				lerp = Util::lerp(t, 255.0f, 0.0f);
 			}
 			alpha = (uint8_t)lerp;

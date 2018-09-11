@@ -105,6 +105,8 @@ elseif (USE_PKGCONFIG)
 # use vcpkg
 else ()
     find_package(SDL2 CONFIG REQUIRED)
+	find_package(spdlog CONFIG REQUIRED)
+	find_package(fmt CONFIG REQUIRED)
     find_library(SDL2_IMAGE_LIB SDL2_image REQUIRED)
     find_library(SDL2_TTF_LIB SDL2_ttf REQUIRED)
     find_library(CAIRO_LIB cairo REQUIRED)
@@ -116,6 +118,9 @@ else ()
         ${SDL2_IMAGE_LIB} 
         ${SDL2_TTF_LIB}
         ${CAIRO_LIB}
+		fmt::fmt
+		fmt::fmt-header-only
+		spdlog::spdlog
 
 		bcrypt
     )

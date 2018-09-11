@@ -2,5 +2,5 @@
     "screenWidth": 640,
     "screenHeight" : 480,
     "title": "Raspberry Catch",
-    "assetPath": "C:/Users/Patrick/Documents/GitHub/sdl-game/catch/assets/"
+    "assetPath": "../assets"
 }

@@ -4,11 +4,14 @@
 #include <cstdint>
 #include <cstdlib>
 #include <SDL2/SDL.h>
+#include <experimental/filesystem>
 #include <engine.hpp>
 #include <nlohmann/json.hpp>
 #include "game.hpp"
+#include <spdlog/spdlog.h>
 
 using json = nlohmann::json;
+using path = std::experimental::filesystem::path;
 
 engine::Context ctx;
 Game game;
@@ -16,15 +19,22 @@ SDL_Event e;
 bool quit;
 json config;
 
-engine::Sprite test;
-
 void init() {
 	srand(time(nullptr));
-	
-	//std::string config_file("D:/GitHub/sdl-game/catch/assets/config-win.json");
-	std::string config_file = "./assets/config-win.json";
 
-	std::ifstream i(config_file);
+	engine::Util::initSpdlog();
+	auto logger = spdlog::get("logger");
+	logger->info("this is a test of the logger");
+
+	//std::string config_file("D:/GitHub/sdl-game/catch/assets/config-win.json");
+	//std::string config_file = "./assets/config-win.json";
+	//std::string config_file = "../assets/config-win.json";
+
+	path root("./");
+	path config_file("assets/config-win.json");
+	path assetPath("assets");
+
+	std::ifstream i((root / config_file).generic_string());
 	if (i.fail())
 	{
 		std::cout << "failed to load " << config_file << std::endl;
@@ -37,26 +47,25 @@ void init() {
 	{
 		std::cout << "something is wrong here" << std::endl;
 	}
-	engine::Assets::loadTexturesFromJson("assets.json", config["assetPath"].get<std::string>(), ctx);
-	//engine::Assets::useAll(ctx);
-
-	test.x = 10;
-	test.y = 10;
-	test.setTexture(engine::Assets::getTexture("spoon.png"));
+	engine::Assets::loadTexturesFromJson("assets.json", (root / assetPath).generic_string(), ctx);
 }
 
-void render() {
+void render()
+{
 	float delta;
 	uint32_t now;
 	uint32_t then = SDL_GetTicks();
 	quit = false;
 
-	while (!quit) {
+	while (!quit)
+	{
 		now = SDL_GetTicks();
 		delta = now - then;
 
-		while (SDL_PollEvent(&e)) {
-			if (e.type == SDL_QUIT) {
+		while (SDL_PollEvent(&e))
+		{
+			if (e.type == SDL_QUIT)
+			{
 				quit = true;
 			}
 		}
@@ -66,7 +75,8 @@ void render() {
 		SDL_GetMouseState(&x, &y);
 
 		const uint8_t* state = SDL_GetKeyboardState(nullptr);
-		if (state[SDL_SCANCODE_ESCAPE]) {
+		if (state[SDL_SCANCODE_ESCAPE])
+		{
 			quit = true;
 		}
 
@@ -80,7 +90,8 @@ void render() {
 	}
 }
 
-void cleanup() {
+void cleanup()
+{
 	game.destroy();
 	ctx.destroy();
 }
@@ -88,8 +99,8 @@ void cleanup() {
 #ifdef main
 #undef main
 #endif /* main */
-int main(int argc, char** argv) {
-	std::cout << "hello world" << std::endl;
+int main(int argc, char** argv)
+{
 
 	init();
 

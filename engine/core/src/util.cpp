@@ -5,6 +5,8 @@
 #include <cmath>
 //#include "boundingbox.hpp"
 
+static bool isLoggerActive = false;
+
 namespace engine {
 
 	/*uint32_t Util::getNow()
@@ -234,5 +236,25 @@ namespace engine {
 		{
 			str += '/';
 		}
+	}
+
+	void Util::initSpdlog()
+	{
+		if (!isLoggerActive)
+		{
+			try
+			{
+				auto sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>("log.txt");
+				auto logger = std::make_shared<spdlog::logger>("logger", sink);
+				logger->set_level(spdlog::level::debug);
+				spdlog::register_logger(logger);
+			}
+			catch (const spdlog::spdlog_ex& ex)
+			{
+				std::cout << "Log init failed: " << ex.what() << std::endl;
+			}
+			isLoggerActive = true;
+		}
+
 	}
 }

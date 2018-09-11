@@ -8,7 +8,7 @@ namespace engine {
 
 class Context;
 
-enum Fade {IN, OUT};
+enum Fade {FADE_IN, FADE_OUT};
 
 class Transition {
 public:

@@ -1,4 +1,7 @@
 #include "game.hpp"
+#include <experimental/filesystem>
+
+namespace fs = std::experimental::filesystem;
 
 Game::Game(): engine::State() {
     playerInput = true;
@@ -12,8 +15,8 @@ Game::~Game() {
 }
 
 void Game::init(engine::Context& ctx) {
-    std::string maps = Config::getAssetPath() + "maps/";
-    std::string sprites = Config::getAssetPath() + "sprites/";
+	fs::path maps = Config::getAssetPath() / fs::path("maps");
+	fs::path sprites = Config::getAssetPath() / fs::path("sprites");
     camera.setScreen(ctx.getWidth(), ctx.getHeight());
 
     camera.setFocus(&hero);
@@ -25,10 +28,10 @@ void Game::init(engine::Context& ctx) {
 
     //groups_.setcamera(&camera);
     groups_.setfocus(&hero);
-    groups_.loadgroup("room1", maps + "room1.json");
-    groups_.loadgroup("town1", maps + "town1.json");
+    groups_.loadgroup("room1", (maps / fs::path("room1.json")).generic_string());
+    groups_.loadgroup("town1", (maps / fs::path("town1.json")).generic_string());
     std::cout << "loading room2.json" << std::endl;
-    groups_.loadgroup("room2", maps + "room2.json");
+    groups_.loadgroup("room2", (maps / fs::path("room2.json")).generic_string());
     //groups_.addgroup("stage", &stage);
     groups_.setactive("town1");
     printf("done!\n");
@@ -50,12 +53,12 @@ void Game::init(engine::Context& ctx) {
     dlg.setWidth(300, 80);
     //dlg.push("this is a very very long string that will hopefully get divided up");
 
-    enemytest.InitAnimation(sprites + "monster_1.json");
+    enemytest.InitAnimation((sprites / fs::path("monster1.json")).generic_string());
     enemytest.getAnimation()->Start("all", true);
 
     std::cout << "running tests..." << std::endl;
 
-    debug.init(Config::getAssetPath() + "font.ttf", ctx);
+	debug.init((Config::getAssetPath() / fs::path("font.ttf")).generic_string(), ctx);
     debug.test();
 
     std::cout << "ok" << std::endl;

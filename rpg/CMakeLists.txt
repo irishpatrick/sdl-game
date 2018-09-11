@@ -4,7 +4,7 @@ project(rpg C CXX)
 
 file (GLOB_RECURSE sources src/*.cpp)
 file (GLOB_RECURSE headers src/*.hpp src/*.inl)
-file (GLOB_RECURSE assets assets/*)
+file (GLOB assets assets/*)
 
 link_directories(${PROJECT_NAME} PRIVATE ${LIBRARY_DIR})
 add_executable(${PROJECT_NAME} ${sources} ${headers})

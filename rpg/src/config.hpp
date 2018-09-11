@@ -8,22 +8,24 @@
 #include <fstream>
 #include <streambuf>
 #include <nlohmann/json.hpp>
+#include <experimental/filesystem>
 
-using namespace std;
 using json = nlohmann::json;
+namespace fs = std::experimental::filesystem;
 
-class Config {
- public:
-    static int load(const string&);
+class Config 
+{
+	 public:
+		static int load(const std::string&);
 
-    static int getScreenWidth();
-    static int getScreenHeight();
-    static string getAssetPath();
-    static bool getFullscreen();
+		static int getScreenWidth();
+		static int getScreenHeight();
+		static fs::path getAssetPath();
+		static bool getFullscreen();
 
- private:
-    static int screenWidth;
-    static int screenHeight;
-    static string assetPath;
-    static bool fullscreen;
+	 private:
+		static int screenWidth;
+		static int screenHeight;
+		static fs::path assetPath;
+		static bool fullscreen;
 };

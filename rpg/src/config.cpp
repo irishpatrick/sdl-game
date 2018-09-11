@@ -3,7 +3,8 @@
 
 int Config::screenWidth = 0;
 int Config::screenHeight = 0;
-string Config::assetPath = string();
+//std::string Config::assetPath = std::string();
+fs::path Config::assetPath = fs::current_path();
 bool Config::fullscreen = false;
 
 int Config::getScreenWidth()
@@ -16,7 +17,7 @@ int Config::getScreenHeight()
     return screenHeight;
 }
 
-std::string Config::getAssetPath()
+fs::path Config::getAssetPath()
 {
     return assetPath;
 }
@@ -26,9 +27,9 @@ bool Config::getFullscreen()
     return fullscreen;
 }
 
-int Config::load(const string& fn)
+int Config::load(const std::string& fn)
 {
-    ifstream i(fn);
+    std::ifstream i(fn);
     if (!i)
     {
     	printf("failed to open %s\n", fn.c_str());
@@ -54,7 +55,9 @@ int Config::load(const string& fn)
     }
     if (engine::Util::JsonExists(o, "assetPath"))
     {
-    	assetPath = o["assetPath"];
+		// separate to resolve strange error
+		std::string str = o["assetPath"];
+		assetPath = fs::path(str);
     }
     if (engine::Util::JsonExists(o, "fullscreen"))
     {

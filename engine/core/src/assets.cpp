@@ -8,7 +8,7 @@
 #include <iostream>
 #include <experimental/filesystem>
 
-using path = std::experimental::filesystem::path;
+namespace fs = std::experimental::filesystem;
 
 namespace engine
 {
@@ -152,8 +152,8 @@ namespace engine
 	{
 		// read json file
 		std::cout << "loading textures from json..." << std::endl;
-		path rootpath(rootstr);
-		path pfn(fn);
+		fs::path rootpath(rootstr);
+		fs::path pfn(fn);
 		rootpath /= pfn;
 		std::ifstream in(rootpath);
 		if (in.fail())

@@ -11,7 +11,7 @@
 #include <spdlog/spdlog.h>
 
 using json = nlohmann::json;
-using path = std::experimental::filesystem::path;
+namespace fs = std::experimental::filesystem;
 
 engine::Context ctx;
 Game game;
@@ -30,11 +30,10 @@ void init() {
 	//std::string config_file = "./assets/config-win.json";
 	//std::string config_file = "../assets/config-win.json";
 
-	path root("./");
-	path config_file("assets/config-win.json");
-	path assetPath("assets");
+	fs::path config_file("assets/config-win.json");
+	fs::path assetPath("assets");
 
-	std::ifstream i((root / config_file).generic_string());
+	std::ifstream i((fs::current_path() / config_file).generic_string());
 	if (i.fail())
 	{
 		std::cout << "failed to load " << config_file << std::endl;
@@ -47,7 +46,7 @@ void init() {
 	{
 		std::cout << "something is wrong here" << std::endl;
 	}
-	engine::Assets::loadTexturesFromJson("assets.json", (root / assetPath).generic_string(), ctx);
+	engine::Assets::loadTexturesFromJson("assets.json", (fs::current_path() / assetPath).generic_string(), ctx);
 }
 
 void render()

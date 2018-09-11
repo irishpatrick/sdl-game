@@ -5,12 +5,13 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <engine.hpp>
-#include <boost/filesystem.hpp>
+#include <experimental/filesystem>
 
 #include "config.hpp"
 #include "game.hpp"
 
 using namespace std;
+namespace fs = std::experimental::filesystem;
 
 SDL_Surface* icon;
 SDL_Event e;
@@ -24,9 +25,10 @@ Game game;
 void init() {
     // a more elegant solution is needed
     #ifdef _WIN32
-		Config::load("../assets/config-win.json");
+		
+		Config::load((fs::current_path() / fs::path("assets/config-win.json")).generic_string());
     #elif __linux__
-        Config::load("assets/config.json");
+	Config::load((fs::current_path() / fs::path("assets/config.json")).generic_string());
     #endif
 
     int result = ctx.init(Config::getScreenWidth(), Config::getScreenHeight(), "hello world!", false);
@@ -38,7 +40,7 @@ void init() {
 
 void loadingScreen() {
     SDL_RenderClear(ctx.getRenderer());
-    SDL_Texture* t = IMG_LoadTexture(ctx.getRenderer(), string(Config::getAssetPath() + "textures/loading.png").c_str());
+    SDL_Texture* t = IMG_LoadTexture(ctx.getRenderer(), (fs::current_path() / fs::path("textures/loading.png")).generic_string().c_str());
     SDL_Rect rect;
     rect.x = 0;
     rect.y = 0;
@@ -100,8 +102,7 @@ int main(int argc, char** argv) {
 
     init();
 
-    string textures = Config::getAssetPath() + "textures/";
-    SDL_Renderer* r = ctx.getRenderer();
+	fs::path assetPath = fs::current_path() / Config::getAssetPath();
 
     /*SDL_RenderClear(r);
     SDL_Rect c;
@@ -114,16 +115,16 @@ int main(int argc, char** argv) {
     SDL_RenderPresent(r);
     //SDL_Delay(200);*/
 
-    loadingScreen();
+    //loadingScreen();
 
-    engine::Assets::loadTexturesFromJson("textures-all.json", Config::getAssetPath(), ctx);
-    engine::Assets::useAll(ctx);
+    engine::Assets::loadTexturesFromJson("textures-all.json", assetPath.generic_string(), ctx);
+    //engine::Assets::useAll(ctx);
 
 	game.init(ctx);
 
 	current = &game;
 
-    SDL_SetRenderDrawColor(r, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(ctx.getRenderer(), 0, 0, 0, 255);
 
     render();
     cleanup();

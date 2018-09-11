@@ -46,7 +46,8 @@ void init() {
 	{
 		std::cout << "something is wrong here" << std::endl;
 	}
-	engine::Assets::loadTexturesFromJson("assets.json", (fs::current_path() / assetPath).generic_string(), ctx);
+	engine::Assets::setCwd((fs::current_path() / assetPath).generic_string());
+	engine::Assets::loadTexturesFromJson(ctx, (fs::current_path() / assetPath / "assets.json").generic_string());
 }
 
 void render()

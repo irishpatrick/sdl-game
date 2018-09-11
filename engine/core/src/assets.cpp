@@ -6,9 +6,6 @@
 #include <nlohmann/json.hpp>
 #include <sstream>
 #include <iostream>
-#include <experimental/filesystem>
-
-namespace fs = std::experimental::filesystem;
 
 namespace engine
 {
@@ -16,6 +13,7 @@ namespace engine
 	std::map<std::string, Texture*> Assets::texMap = std::map<std::string, Texture*>();
 	//std::vector<boost::future<void>> Assets::futures = std::vector<boost::future<void>>();
 	Texture* Assets::missing = nullptr;
+	fs::path Assets::cwd = fs::path();
 
 	std::vector<std::string> Assets::split(const std::string& s, char delim)
 	{
@@ -102,7 +100,7 @@ namespace engine
 		missing = t;
 	}
 
-	void Assets::loadTexture(const std::string& fn, Context& ctx)
+	void Assets::loadTexture(Context& ctx, const std::string& fn)
 	{
 		std::cout << "loading texture " << fn << std::endl;
 		std::vector<std::string> vec = split(fn, '/');
@@ -143,19 +141,17 @@ namespace engine
 	{
 		std::cout << "loading textures from vector..." << std::endl;
 		for (auto& e : files) {
-			loadTexture(dir + e, ctx);
+			loadTexture(ctx, dir + e);
 		}
 		std::cout << "done!" << std::endl;
 	}
 
-	void Assets::loadTexturesFromJson(const std::string& fn, const std::string& rootstr, Context& ctx)
+	void Assets::loadTexturesFromJson(Context& ctx, const std::string& fn)
 	{
 		// read json file
 		std::cout << "loading textures from json..." << std::endl;
-		fs::path rootpath(rootstr);
 		fs::path pfn(fn);
-		rootpath /= pfn;
-		std::ifstream in(rootpath);
+		std::ifstream in(fn);
 		if (in.fail())
 		{
 			std::cout << "cannot open " << fn << std::endl;
@@ -167,10 +163,7 @@ namespace engine
 		in >> o;
 
 		// set current working directory
-		std::string root = rootstr;
-		Util::formatPath(root);
-		std::string dir = o["dir"].get<std::string>();
-		Util::formatPath(dir);
+		fs::path dir(o["dir"].get<std::string>());
 
 		// load textures
 		for (auto& current : o["files"])
@@ -178,8 +171,8 @@ namespace engine
 			//std::cout << "loading " << current << std::endl;
 			std::string texfile = current.get<std::string>();
 			//Util::formatPath(texfile);
-			std::string full = root + dir + texfile;
-			loadTexture(full, ctx);
+			std::string fn = current;
+			loadTexture(ctx, (cwd / dir / fn).generic_string());
 		}
 		std::cout << "done!" << std::endl;
 	}
@@ -231,6 +224,16 @@ namespace engine
 			t->destroy();
 			delete t;
 		}
+	}
+
+	void Assets::setCwd(const std::string& dir)
+	{
+		cwd = fs::path(dir);
+	}
+
+	void Assets::setCwd(fs::path p)
+	{
+		cwd = p;
 	}
 
 }

@@ -19,6 +19,8 @@ SDL_Event e;
 bool quit;
 json config;
 
+engine::KeyFrameSprite test;
+
 void init() {
 	srand(time(nullptr));
 
@@ -48,6 +50,8 @@ void init() {
 	}
 	engine::Assets::setCwd((fs::current_path() / assetPath).generic_string());
 	engine::Assets::loadTexturesFromJson(ctx, (fs::current_path() / assetPath / "assets.json").generic_string());
+
+	test.init(ctx, (fs::current_path() / "assets" / "test.json").generic_string());
 }
 
 void render()

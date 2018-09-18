@@ -20,3 +20,4 @@
 #include "boundingbox.hpp"
 #include "object.hpp"
 #include "debuginfo.hpp"
+#include "keyframesprite.hpp"

@@ -12,7 +12,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <nlohmann/json.hpp>
-#include "boundingbox.hpp"
+#include "BoundingBox.hpp"
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/basic_file_sink.h>
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "core_api.hpp"
-#include "object.hpp"
+#include "Object.hpp"
 
 namespace engine {
 

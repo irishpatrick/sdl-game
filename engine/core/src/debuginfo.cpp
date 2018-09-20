@@ -1,4 +1,4 @@
-#include "debuginfo.hpp"
+#include "DebugInfo.hpp"
 #include <iostream>
 #include <cstdio>
 

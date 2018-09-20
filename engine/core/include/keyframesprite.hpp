@@ -1,10 +1,10 @@
 #pragma once
 
 #include "core_api.hpp"
-#include "texture.hpp"
-#include "sprite.hpp"
-#include "context.hpp"
-#include "timer.hpp"
+#include "Texture.hpp"
+#include "Sprite.hpp"
+#include "Context.hpp"
+#include "Timer.hpp"
 #include <string>
 
 namespace engine
@@ -30,7 +30,7 @@ namespace engine
 	public:
 		KeyFrameSprite() : Sprite()
 		{
-			// dynamically allocated 
+			// dynamically allocated
 			animations = nullptr;
 			frameRef = nullptr;
 			numAnimations = 0;

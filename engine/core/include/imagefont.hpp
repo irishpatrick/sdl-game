@@ -7,7 +7,7 @@
 #include <cstdint>
 #include <SDL2/SDL.h>
 
-#include "color.hpp"
+#include "Color.hpp"
 
 namespace engine {
 

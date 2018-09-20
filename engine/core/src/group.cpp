@@ -1,7 +1,7 @@
-#include "group.hpp"
-#include "sprite.hpp"
-#include "camera.hpp"
-#include "assets.hpp"
+#include "Group.hpp"
+#include "Sprite.hpp"
+#include "Camera.hpp"
+#include "Assets.hpp"
 #include <iostream>
 
 namespace engine {

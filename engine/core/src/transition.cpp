@@ -1,6 +1,6 @@
-#include "transition.hpp"
-#include "util.hpp"
-#include "context.hpp"
+#include "Transition.hpp"
+#include "Util.hpp"
+#include "Context.hpp"
 #include <SDL2/SDL.h>
 #include <cmath>
 

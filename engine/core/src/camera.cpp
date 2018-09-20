@@ -1,5 +1,5 @@
-#include "camera.hpp"
-#include "sprite.hpp"
+#include "Camera.hpp"
+#include "Sprite.hpp"
 #include <iostream>
 
 namespace engine {

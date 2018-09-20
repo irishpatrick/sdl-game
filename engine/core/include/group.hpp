@@ -12,8 +12,8 @@
 #include <SDL2/SDL.h>
 #include <nlohmann/json.hpp>
 
-#include "object.hpp"
-#include "context.hpp"
+#include "Object.hpp"
+#include "Context.hpp"
 
 namespace engine {
 

@@ -8,9 +8,9 @@
 #include <string>
 #include <SDL2/SDL.h>
 
-#include "context.hpp"
+#include "Context.hpp"
 
-namespace engine 
+namespace engine
 {
 
 class Texture
@@ -28,12 +28,12 @@ public:
 	CORE_API SDL_Texture* use();
 	CORE_API void destroy();
 
-	CORE_API inline void setName(const std::string& str) 
+	CORE_API inline void setName(const std::string& str)
 	{
 		name = str;
 	}
 
-	CORE_API inline std::string getName() 
+	CORE_API inline std::string getName()
 	{
         return name;
     }

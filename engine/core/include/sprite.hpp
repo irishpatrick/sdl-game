@@ -11,9 +11,9 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/uuid/uuid_io.hpp>
 
-#include "object.hpp"
-#include "context.hpp"
-#include "boundingbox.hpp"
+#include "Object.hpp"
+#include "Context.hpp"
+#include "BoundingBox.hpp"
 
 namespace engine {
 

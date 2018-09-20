@@ -5,7 +5,7 @@
 #include <cstdio>
 #include <vector>
 
-#include "point.hpp"
+#include "Point.hpp"
 
 namespace engine {
 

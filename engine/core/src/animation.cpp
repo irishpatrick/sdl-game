@@ -1,8 +1,8 @@
-#include "animation.hpp"
-#include "texture.hpp"
-#include "util.hpp"
-#include "timer.hpp"
-#include "assets.hpp"
+#include "Animation.hpp"
+#include "Texture.hpp"
+#include "Util.hpp"
+#include "Timer.hpp"
+#include "Assets.hpp"
 #include <iostream>
 #include <nlohmann/json.hpp>
 

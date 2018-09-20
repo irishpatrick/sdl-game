@@ -1,4 +1,4 @@
-#include "context.hpp"
+#include "Context.hpp"
 #include <iostream>
 
 namespace engine {
@@ -35,7 +35,7 @@ namespace engine {
 		if (fullscreen) {
 			width = current.w;
 			height = current.h;
-		} 
+		}
 		else {
 			width = a;
 			height = b;
@@ -50,7 +50,7 @@ namespace engine {
 				height,
 				SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN_DESKTOP
 			);
-		} 
+		}
 		else {
 			w = SDL_CreateWindow(
 				title.c_str(),

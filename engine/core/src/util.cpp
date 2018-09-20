@@ -1,9 +1,9 @@
-#include "util.hpp"
-#include "sprite.hpp"
-#include "line.hpp"
-#include "group.hpp"
+#include "Util.hpp"
+#include "Sprite.hpp"
+#include "Line.hpp"
+#include "Group.hpp"
 #include <cmath>
-//#include "boundingbox.hpp"
+//#include "BoundingBox.hpp"
 
 static bool isLoggerActive = false;
 
@@ -71,9 +71,9 @@ namespace engine {
 	}
 
 	std::string Util::checkVelocityCollision(Sprite* a, Sprite* b, float delta) {
-		//std::cout << "collision between " << 
+		//std::cout << "collision between " <<
 		//	a->name << "(" << a->isSolid() << ")" <<
-		//	" and " << 
+		//	" and " <<
 		//	b->name << "(" << b->isSolid() << ")" << std::endl;
 		if (!a->isSolid() || !b->isSolid()) {
 			//std::cout << "no collision :(" << std::endl;
@@ -86,7 +86,7 @@ namespace engine {
 		//std::cout << "abox: " << abox.w << "," << abox.h << std::endl;
 		//std::cout << "bbox: " << bbox.w << "," << bbox.h << std::endl;
 		//std::cout << "velocityCollision delta: " << ceil(delta + 0.001) << std::endl;
-		
+
 		//make sure delta times don't hit 0
 		float error = 0.01f;
 

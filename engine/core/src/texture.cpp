@@ -1,4 +1,4 @@
-#include "texture.hpp"
+#include "Texture.hpp"
 
 namespace engine {
 

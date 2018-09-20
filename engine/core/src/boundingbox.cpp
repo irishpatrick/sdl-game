@@ -1,4 +1,4 @@
-#include "boundingbox.hpp"
+#include "BoundingBox.hpp"
 #include <iostream>
 
 namespace engine {

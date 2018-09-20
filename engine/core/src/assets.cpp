@@ -1,7 +1,7 @@
-#include "assets.hpp"
-#include "texture.hpp"
-#include "context.hpp"
-#include "util.hpp"
+#include "Assets.hpp"
+#include "Texture.hpp"
+#include "Context.hpp"
+#include "Util.hpp"
 #include <fstream>
 #include <nlohmann/json.hpp>
 #include <sstream>

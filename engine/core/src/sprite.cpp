@@ -1,8 +1,8 @@
-#include "sprite.hpp"
-#include "animation.hpp"
-#include "group.hpp"
-#include "texture.hpp"
-#include "camera.hpp"
+#include "Sprite.hpp"
+#include "Animation.hpp"
+#include "Group.hpp"
+#include "Texture.hpp"
+#include "Camera.hpp"
 
 namespace engine {
 

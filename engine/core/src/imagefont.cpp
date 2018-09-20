@@ -1,5 +1,5 @@
-#include "imagefont.hpp"
-#include "texture.hpp"
+#include "Imagefont.hpp"
+#include "Texture.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <sstream>

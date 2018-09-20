@@ -63,6 +63,7 @@ namespace engine
 			if (strncmp(name.c_str(), animations[i].name, strlen(animations[i].name)))
 			{
 				currentAnim = i;
+				timer.SetInterval(1.0f / animations[i].fps);
 				return;
 			}
 		}
@@ -70,13 +71,10 @@ namespace engine
 
 	void KeyFrameSprite::update(float delta)
 	{
-		timer.SetInterval(1.0f / animations[currentAnim].fps);
-
 		if (timer.Tick())
 		{
 			currentFrame = (currentFrame + 1) % animations[currentAnim].length;
 		}
-		
 	}
 
 	void KeyFrameSprite::draw(Context& ctx)

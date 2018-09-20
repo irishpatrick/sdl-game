@@ -4,6 +4,7 @@
 #include "texture.hpp"
 #include "sprite.hpp"
 #include "context.hpp"
+#include "timer.hpp"
 #include <string>
 
 namespace engine
@@ -21,6 +22,7 @@ namespace engine
 		int fps;
 		int length;
 		int* frames;
+		char* name;
 	} Anim;
 
 	class KeyFrameSprite : public Sprite
@@ -31,9 +33,10 @@ namespace engine
 			// dynamically allocated 
 			animations = nullptr;
 			frameRef = nullptr;
+			numAnimations = 0;
 
 			currentAnim = -1;
-			currentFrame = nullptr;
+			currentFrame = 0;
 		}
 
 		~KeyFrameSprite()
@@ -48,12 +51,17 @@ namespace engine
 			}
 		}
 
-		CORE_API void init(Context& ctx, const std::string&);
+		CORE_API void init(Context&, const std::string&);
+		CORE_API void setCurrentAnimation(const std::string&);
+		CORE_API void update(float);
+		CORE_API void draw(Context&);
 
 	private:
 		Anim* animations;
 		Frame* frameRef;
 		int currentAnim;
-		Frame* currentFrame;
+		int numAnimations;
+		int currentFrame;
+		Timer timer;
 	};
 }

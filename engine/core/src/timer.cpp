@@ -14,7 +14,7 @@ namespace engine {
 
 	void Timer::SetInterval(double ms) {
 		duration_ = ms;
-		then_ = SDL_GetTicks();
+		Reset();
 	}
 
 	void Timer::Reset() {

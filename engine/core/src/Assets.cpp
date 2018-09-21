@@ -11,7 +11,6 @@ namespace engine
 {
 
 	std::map<std::string, Texture*> Assets::texMap = std::map<std::string, Texture*>();
-	//std::vector<boost::future<void>> Assets::futures = std::vector<boost::future<void>>();
 	Texture* Assets::missing = nullptr;
 	fs::path Assets::cwd = fs::path();
 
@@ -25,38 +24,6 @@ namespace engine
 		}
 		return tokens;
 	}
-
-	void parallel_load(
-		std::map<std::string, Texture*>& map,
-		const std::string& fn,
-		const std::string& key)
-	{
-		SDL_Surface* s = IMG_Load(fn.c_str());
-		if (s == nullptr)
-		{
-			std::cout << "surface for " << map[key]->getName() << " failed to load" << std::endl;
-			return;
-			//exit(1);
-		}
-		else
-		{
-			map[key]->set(s);
-		}
-	}
-
-	/*void Assets::single_load(Texture* t, const std::string& fn)
-	{
-		SDL_Surface* s = IMG_Load(fn.c_str());
-		if (s == nullptr)
-		{
-			std::cout << "surface " << fn << " failed to load" << std::endl;
-			//exit(1);
-		}
-		else
-		{
-			t->set(s);
-		}
-	}*/
 
 	void Assets::getMissingTexture(Context& ctx)
 	{
@@ -93,9 +60,7 @@ namespace engine
 			*target = magenta;
 		}
 
-		t->set(s);
-		t->create(ctx);
-		//t->use();
+		t->create(ctx, s);
 
 		missing = t;
 	}
@@ -120,9 +85,9 @@ namespace engine
 		SDL_Surface* s = IMG_Load(fn.c_str());
 		if (s == nullptr)
 		{
+			delete t;
 			std::cout << "surface for " << t->getName() << " failed to load: " << IMG_GetError() << std::endl;
 			return;
-			//exit(1);
 		}
 		else
 		{
@@ -130,11 +95,6 @@ namespace engine
 		}
 
 		SDL_FreeSurface(s);
-		//parallel_load(texMap, fn, key);
-		//single_load(texMap[key], fn);
-		//futures.push_back(std::async(std::launch::async, parallel_load, std::ref(texMap), fn, key));
-		//futures.push_back(boost::async(boost::launch::async, boost::bind(std::ref(parallel_load), std::ref(texMap), fn, key)));
-
 	}
 
 	void Assets::loadTexturesFromVector(const std::string& dir, std::vector<std::string> files, Context& ctx)
@@ -160,7 +120,15 @@ namespace engine
 
 		// parse into object
 		nlohmann::json o;
-		in >> o;
+		try
+		{
+			in >> o;
+		}
+		catch (nlohmann::json::parse_error& e)
+		{
+			std::cout << e.what() << std::endl;
+			return;
+		}
 
 		// set current working directory
 		fs::path dir(o["dir"].get<std::string>());
@@ -168,9 +136,7 @@ namespace engine
 		// load textures
 		for (auto& current : o["files"])
 		{
-			//std::cout << "loading " << current << std::endl;
 			std::string texfile = current.get<std::string>();
-			//Util::formatPath(texfile);
 			std::string fn = current;
 			loadTexture(ctx, (cwd / dir / fn).generic_string());
 		}
@@ -203,21 +169,7 @@ namespace engine
 		}
 	}
 
-	/*void Assets::getFutures() {
-		for (auto& e : futures)
-		{
-			e.get();
-		}
-		for (auto& e : texMap)
-		{
-			e.second->use();
-		}
-	}*/
-
 	void Assets::destroy() {
-		/*for (auto &e : futures) {
-			e.get();
-		}*/
 
 		for (auto& e : texMap) {
 			Texture* t = e.second;

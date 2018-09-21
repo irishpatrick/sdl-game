@@ -52,9 +52,10 @@ namespace engine
 		}
 
 		CORE_API void init(Context&, const std::string&);
-		CORE_API void setCurrentAnimation(const std::string&);
+		CORE_API void setCurrentAnimation(const std::string&, bool);
 		CORE_API void update(float);
 		CORE_API void draw(Context&);
+		CORE_API void stop();
 
 	private:
 		Anim* animations;
@@ -63,5 +64,8 @@ namespace engine
 		int numAnimations;
 		int currentFrame;
 		Timer timer;
+		bool running;
+		bool repeat;
+		bool frameCount;
 	};
 }

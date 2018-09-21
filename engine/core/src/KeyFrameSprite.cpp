@@ -4,6 +4,7 @@
 #include <nlohmann/json.hpp>
 #include <cstdlib>
 #include <cstring>
+#include "Assets.hpp"
 
 namespace fs = std::experimental::filesystem;
 using json = nlohmann::json;
@@ -22,12 +23,22 @@ namespace engine
 			return;
 		}
 		json o;
-		o << in;
 
+		try
+		{
+			o << in;
+		}
+		catch (json::parse_error& e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+
+		setTexture(Assets::getTexture(o["texture"].get<std::string>()));
 		frameRef = (Frame*)malloc(sizeof(Frame) * o["frameList"].size());
 		numAnimations = o["animations"].size();
 		animations = (Anim*)malloc(sizeof(Anim) * numAnimations);
-		currentAnim = o["default"];
+		//currentAnim = o["default"];
+		currentAnim = 0;
 		int n;
 
 		n = 0;
@@ -40,24 +51,32 @@ namespace engine
 			c->h = e["h"];
 		}
 
-		n = 0;
-		for (auto& e : o["animations"])
+		try
 		{
-			Anim* c = &animations[n++];
-			c->name = (char*)malloc(e["name"].size());
-			strcpy(c->name, e[name].get<std::string>().c_str());
-			c->fps = e["fps"];
-			c->length = e["length"];
-			c->frames = (int*)malloc(sizeof(int) * c->length);
-			for (int i = 0; i < c->length; i++)
+			n = 0;
+			for (auto& e : o["animations"])
 			{
-				c->frames[i] = e["frames"][i];
+				Anim* c = &animations[n++];
+				c->name = (char*)malloc(e["name"].get<std::string>().size());
+				strcpy(c->name, e["name"].get<std::string>().c_str());
+				c->fps = e["fps"];
+				c->length = e["length"];
+				c->frames = (int*)malloc(sizeof(int) * c->length);
+				for (int i = 0; i < c->length; i++)
+				{
+					c->frames[i] = e["frames"][i];
+				}
 			}
+		}
+		catch (json::type_error& e)
+		{
+			std::cout << e.what() << std::endl;
 		}
 	}
 
-	void KeyFrameSprite::setCurrentAnimation(const std::string& name)
+	void KeyFrameSprite::setCurrentAnimation(const std::string& name, bool loop)
 	{
+		frameCount = 0;
 		for (int i = 0; i < numAnimations; i++)
 		{
 			if (strncmp(name.c_str(), animations[i].name, strlen(animations[i].name)))
@@ -67,14 +86,31 @@ namespace engine
 				return;
 			}
 		}
+		repeat = loop;
 	}
 
 	void KeyFrameSprite::update(float delta)
 	{
+		Sprite::velocityUpdate(delta);
+
+		if (!running)
+		{
+			return;
+		}
+
 		if (timer.Tick())
 		{
+			if (currentFrame + 1 == animations[currentAnim].length)
+			{
+				running = repeat;
+			}
 			currentFrame = (currentFrame + 1) % animations[currentAnim].length;
 		}
+	}
+
+	void KeyFrameSprite::stop()
+	{
+		repeat = false;
 	}
 
 	void KeyFrameSprite::draw(Context& ctx)

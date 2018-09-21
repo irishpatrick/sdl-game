@@ -51,6 +51,7 @@ void init() {
 	engine::Assets::setCwd((fs::current_path() / assetPath).generic_string());
 	engine::Assets::loadTexturesFromJson(ctx, (fs::current_path() / assetPath / "assets.json").generic_string());
 
+	std::cout << "init keyframe test" << std::endl;
 	test.init(ctx, (fs::current_path() / "assets" / "test.json").generic_string());
 }
 

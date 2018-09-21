@@ -27,7 +27,6 @@ namespace engine {
 		surf = s;
 		w = surf->w;
 		h = surf->h;
-		//printf("%d, %d\n", w, h);
 		ready = true;
 	}
 

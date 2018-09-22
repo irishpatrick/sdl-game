@@ -2,6 +2,7 @@
     "dir": "textures",
     "files": [
         "spoon.png",
-        "raspberry.png"
+        "raspberry.png",
+        "animtest.png"
     ] 
 }

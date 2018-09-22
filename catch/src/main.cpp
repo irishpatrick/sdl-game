@@ -53,6 +53,7 @@ void init() {
 
 	std::cout << "init keyframe test" << std::endl;
 	test.init(ctx, (fs::current_path() / "assets" / "test.json").generic_string());
+	test.setCurrentAnimation("walk", true);
 }
 
 void render()
@@ -86,9 +87,11 @@ void render()
 		}
 
 		game.update(delta / 1000.0f, state);
+		test.update(delta / 1000.0f);
 
 		ctx.clear();
 		game.render(ctx);
+		test.draw(ctx);
 		ctx.render();
 
 		then = now;

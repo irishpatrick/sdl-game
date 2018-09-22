@@ -37,6 +37,7 @@ namespace engine
 
 			currentAnim = -1;
 			currentFrame = 0;
+			running = true;
 		}
 
 		~KeyFrameSprite()

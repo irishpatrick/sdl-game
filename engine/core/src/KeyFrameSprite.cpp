@@ -79,14 +79,15 @@ namespace engine
 		frameCount = 0;
 		for (int i = 0; i < numAnimations; i++)
 		{
-			if (strncmp(name.c_str(), animations[i].name, strlen(animations[i].name)))
+			if (strncmp(name.c_str(), animations[i].name, strlen(animations[i].name)) == 0)
 			{
 				currentAnim = i;
-				timer.SetInterval(1.0f / animations[i].fps);
-				return;
+				timer.SetInterval((1.0f / animations[currentAnim].fps) * 1000);
+				break;
 			}
 		}
 		repeat = loop;
+		running = true;
 	}
 
 	void KeyFrameSprite::update(float delta)
@@ -95,16 +96,20 @@ namespace engine
 
 		if (!running)
 		{
+			std::cout << "not running" << std::endl;
 			return;
 		}
 
 		if (timer.Tick())
 		{
+			std::cout << "tick" << std::endl;
 			if (currentFrame + 1 == animations[currentAnim].length)
 			{
 				running = repeat;
 			}
 			currentFrame = (currentFrame + 1) % animations[currentAnim].length;
+			Frame* fr = &frameRef[currentFrame];
+			std::cout << "frame: " << currentFrame << " [" << fr->x << "," << fr->y << "," << fr->w << "," << fr->h << "]" << std::endl;
 		}
 	}
 

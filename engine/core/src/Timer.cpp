@@ -1,34 +1,40 @@
 #include "Timer.hpp"
 
-namespace engine {
+namespace engine
+{
 
-	Timer::Timer() {
-		duration_ = 0.0;
-		then_ = 0;
-		now_ = 0;
+	Timer::Timer()
+	{
+		duration = 0;
+		//then = 0;
+		//now = 0;
 	}
 
-	Timer::~Timer() {
+	Timer::~Timer()
+	{
 
 	}
 
-	void Timer::SetInterval(double ms) {
-		duration_ = ms;
+	void Timer::SetInterval(long ms)
+	{
+		duration = ms * 1000 * 1000;
 		Reset();
 	}
 
-	void Timer::Reset() {
-		then_ = SDL_GetTicks();
+	void Timer::Reset()
+	{
+		then = std::chrono::high_resolution_clock::now();
 	}
 
-	bool Timer::Tick() {
-		now_ = SDL_GetTicks();
-		double delta = now_ - then_;
-		if (delta >= duration_) {
-			then_ = now_;
+	bool Timer::Tick()
+	{
+		now = std::chrono::high_resolution_clock::now();
+		long delta = std::chrono::duration_cast<std::chrono::nanoseconds>(now - then).count();
+		if (delta >= duration)
+		{
+			then = std::chrono::high_resolution_clock::now();
 			return true;
 		}
 		return false;
 	}
-
 }

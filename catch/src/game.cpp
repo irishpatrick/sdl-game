@@ -15,7 +15,9 @@ void Game::init(engine::Context& ctx) {
 	spoon.y = ctx.getHeight() - spoon.h - 20;
 
 	for (int i = 0; i < num_berries; i++) {
-		berries.push_back(new Raspberry());
+		Raspberry* r = new Raspberry();
+		r->init(ctx);
+		berries.push_back(r);
 	}
 }
 

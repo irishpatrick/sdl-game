@@ -11,6 +11,7 @@ public:
 	Raspberry();
 	~Raspberry();
 
+	void init(engine::Context&);
 	void velocityUpdate(float);
 	void draw(engine::Context&);
 	void reset();

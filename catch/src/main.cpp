@@ -87,11 +87,11 @@ void render()
 		}
 
 		game.update(engine::Timer::toSeconds(delta, engine::Unit::NANO), state);
-		test.update(engine::Timer::toSeconds(delta, engine::Unit::NANO));
+		//test.update(engine::Timer::toSeconds(delta, engine::Unit::NANO));
 
 		ctx.clear();
 		game.render(ctx);
-		test.draw(ctx);
+		//test.draw(ctx);
 		ctx.render();
 
 		then = now;

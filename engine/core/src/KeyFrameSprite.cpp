@@ -133,8 +133,8 @@ namespace engine
 		SDL_Rect dst;
 		dst.x = x;
 		dst.y = y;
-		dst.w = w;
-		dst.h = h;
+		dst.w = cf->w;
+		dst.h = cf->h;
 
 		SDL_RenderCopy(ctx.getRenderer(), texture->use(), &src, &dst);
 	}

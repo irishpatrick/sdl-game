@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 
-Raspberry::Raspberry() : engine::Sprite() {
+Raspberry::Raspberry() : engine::KeyFrameSprite() {
 	Sprite::setTexture(engine::Assets::getTexture("raspberry.png"));
 	setBoundingBox(0, 0, w, h);
 	setSolid(true);

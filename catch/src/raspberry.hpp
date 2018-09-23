@@ -5,7 +5,7 @@
 
 #include <engine.hpp>
 
-class Raspberry : public engine::Sprite {
+class Raspberry : public engine::KeyFrameSprite {
 
 public:
 	Raspberry();

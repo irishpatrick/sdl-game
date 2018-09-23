@@ -58,14 +58,14 @@ void init() {
 
 void render()
 {
-	float delta;
-	uint32_t now;
-	uint32_t then = SDL_GetTicks();
+	long delta;
+	long now;
+	long then = engine::Timer::getNanoTime();
 	quit = false;
 
 	while (!quit)
 	{
-		now = SDL_GetTicks();
+		now = engine::Timer::getNanoTime();
 		delta = now - then;
 
 		while (SDL_PollEvent(&e))
@@ -86,8 +86,8 @@ void render()
 			quit = true;
 		}
 
-		game.update(delta / 1000.0f, state);
-		test.update(delta / 1000.0f);
+		game.update(engine::Timer::toSeconds(delta, engine::Unit::NANO), state);
+		test.update(engine::Timer::toSeconds(delta, engine::Unit::NANO));
 
 		ctx.clear();
 		game.render(ctx);

@@ -7,6 +7,8 @@
 
 namespace engine {
 
+enum Unit {NANO, MILLI};
+
 class Timer
 {
 public:
@@ -16,6 +18,9 @@ public:
 	CORE_API void SetInterval(long);
 	CORE_API void Reset();
 	CORE_API bool Tick();
+
+	CORE_API static long getNanoTime();
+	CORE_API static float toSeconds(long, Unit);
 
 private:
     //double duration;

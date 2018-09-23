@@ -96,20 +96,17 @@ namespace engine
 
 		if (!running)
 		{
-			std::cout << "not running" << std::endl;
 			return;
 		}
 
 		if (timer.Tick())
 		{
-			std::cout << "tick" << std::endl;
 			if (currentFrame + 1 == animations[currentAnim].length)
 			{
 				running = repeat;
 			}
 			currentFrame = (currentFrame + 1) % animations[currentAnim].length;
-			Frame* fr = &frameRef[currentFrame];
-			std::cout << "frame: " << currentFrame << " [" << fr->x << "," << fr->y << "," << fr->w << "," << fr->h << "]" << std::endl;
+			Frame* fr = &frameRef[currentFrame];	
 		}
 	}
 

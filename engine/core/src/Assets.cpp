@@ -82,10 +82,14 @@ namespace engine
 		texMap[key] = t;
 		t->setName(key);
 
+		std::cout << "successfully created texture" << std::endl;
+
 		SDL_Surface* s = IMG_Load(fn.c_str());
 		if (s == nullptr)
 		{
+			std::cout << "error!" << std::endl;
 			delete t;
+			std::cout << "t has been deleted" << std::endl;
 			std::cout << "surface for " << t->getName() << " failed to load: " << IMG_GetError() << std::endl;
 			return;
 		}

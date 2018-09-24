@@ -7,10 +7,9 @@
 #include <engine.hpp>
 #include "stats.hpp"
 
-using namespace std;
 using json = nlohmann::json;
 
-class Player: public engine::Sprite
+class Player: public engine::KeyFrameSprite
 {
 public:
     Player();
@@ -23,6 +22,6 @@ public:
 
 private:
     engine::LocationStack doorstack;
-    vector<string> inventory;
+    std::vector<std::string> inventory;
     Stats stats;
 };

@@ -53,18 +53,7 @@ namespace engine {
 		texture = anim->GetTexture();
 	}*/
 
-	void Sprite::update(float delta) {
-		if (!visible) {
-			return;
-		}
-
-		/*if (anim->GetTexture() != nullptr)
-		{
-			anim->Update();
-		}*/
-	}
-
-	void Sprite::velocityUpdate(float delta)
+	void Sprite::update(float delta)
 	{
 		x += xvel * delta;
 		y += yvel * delta;

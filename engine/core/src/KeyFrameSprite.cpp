@@ -92,7 +92,7 @@ namespace engine
 
 	void KeyFrameSprite::update(float delta)
 	{
-		Sprite::velocityUpdate(delta);
+		Sprite::update(delta);
 
 		if (!running)
 		{

@@ -36,7 +36,6 @@ namespace engine {
 		CORE_API virtual void draw(Object&, Context&);
     	CORE_API virtual void ResetCollision();
     	CORE_API virtual void update(float);
-    	CORE_API virtual void velocityUpdate(float);
     	CORE_API void setSpeed(float);
     	CORE_API void queryTexture();
     	CORE_API virtual void OnCollision(Sprite*);

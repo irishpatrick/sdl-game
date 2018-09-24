@@ -9,14 +9,6 @@ static bool isLoggerActive = false;
 
 namespace engine {
 
-	/*uint32_t Util::getNow()
-	{
-		std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>(
-			std::chrono::system_clock::now().time_since_epoch()
-		);
-		return ms.count();
-	}*/
-
 	std::string Util::checkCollision(Sprite* a, Sprite* b)
 	{
 		if (!a->solid || !b->solid)

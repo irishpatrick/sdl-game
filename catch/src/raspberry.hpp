@@ -14,8 +14,10 @@ public:
 	void init(engine::Context&);
 	void velocityUpdate(float);
 	void draw(engine::Context&);
+	void caught();
 	void reset();
 
 private:
 	float fallSpeed;
+	engine::Timer timer;
 };

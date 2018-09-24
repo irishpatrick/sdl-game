@@ -1,12 +1,13 @@
 #include "Sprite.hpp"
-#include "Animation.hpp"
+//#include "Animation.hpp"
 #include "Group.hpp"
 #include "Texture.hpp"
 #include "Camera.hpp"
 
 namespace engine {
 
-	Sprite::Sprite() : Object() {
+	Sprite::Sprite() : Object()
+	{
 		w = 0;
 		h = 0;
 		xvel = 0.0f;
@@ -18,7 +19,7 @@ namespace engine {
 		solid = false;
 		visible = true;
 		name = "";
-		anim = new Animation();
+		//anim = new Animation();
 		tag = boost::uuids::random_generator()();
 		collision_ = nullptr;
 		camera = nullptr;
@@ -29,45 +30,53 @@ namespace engine {
 		boundingBox.h = -1.0f;
 	}
 
-	Sprite::~Sprite() {
-		delete anim;
+	Sprite::~Sprite()
+	{
+		//delete anim;
 	}
 
-	void Sprite::setSpeed(float s) {
+	void Sprite::setSpeed(float s)
+	{
 		speed = s;
 	}
 
-	void Sprite::init(Context&) {
+	void Sprite::init(Context&)
+	{
 
 	}
 
-	void Sprite::InitAnimation(const std::string& fn) {
-		anim->initFromJson(fn);
+	/*void Sprite::InitAnimation(const std::string& fn)
+	{
+		//anim->initFromJson(fn);
 		w = anim->GetFrameWidth();
 		h = anim->GetFrameHeight();
 		texture = anim->GetTexture();
-	}
+	}*/
 
 	void Sprite::update(float delta) {
 		if (!visible) {
 			return;
 		}
 
-		if (anim->GetTexture() != nullptr) {
+		/*if (anim->GetTexture() != nullptr)
+		{
 			anim->Update();
-		}
+		}*/
 	}
 
-	void Sprite::velocityUpdate(float delta) {
+	void Sprite::velocityUpdate(float delta)
+	{
 		x += xvel * delta;
 		y += yvel * delta;
 	}
 
-	Animation* Sprite::getAnimation() {
+	/*Animation* Sprite::getAnimation()
+	{
 		return anim;
-	}
+	}*/
 
-	void Sprite::setTexture(Texture *t) {
+	void Sprite::setTexture(Texture *t)
+	{
 		if (t == NULL) {
 			printf("texture was null!\n");
 			return;
@@ -123,12 +132,14 @@ namespace engine {
 		rect.w = w;
 		rect.h = h;
 
-		if (anim->GetTexture() != nullptr) {
+		/*if (anim->GetTexture() != nullptr) {
 			SDL_RenderCopy(ctx.getRenderer(), texture->use(), anim->GetCurrentFrame(), &rect);
 		}
 		else {
 			SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
-		}
+		}*/
+
+		SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
 	}
 
     void Sprite::draw(Context& ctx) {
@@ -150,12 +161,14 @@ namespace engine {
 		rect.w = w;
 		rect.h = h;
 
-		if (anim->GetTexture() != nullptr) {
+		/*if (anim->GetTexture() != nullptr) {
 			SDL_RenderCopy(ctx.getRenderer(), texture->use(), anim->GetCurrentFrame(), &rect);
 		}
 		else {
 			SDL_RenderCopy(ctx.getRenderer(), texture->use(), NULL, &rect);
-		}
+		}*/
+
+		SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
     }
 
 	void Sprite::draw(SDL_Renderer* r) {
@@ -192,5 +205,4 @@ namespace engine {
 		boundingBox.w = (float)bw;
 		boundingBox.h = (float)bh;
 	}
-
 }

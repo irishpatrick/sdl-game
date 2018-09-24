@@ -49,6 +49,10 @@ void Raspberry::velocityUpdate(float delta)
 
 void Raspberry::draw(engine::Context& ctx)
 {
-	//Sprite::draw(ctx);
 	KeyFrameSprite::draw(ctx);
+}
+
+void Raspberry::caught()
+{
+
 }

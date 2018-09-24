@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Assets.hpp"
-#include "Animation.hpp"
+//#include "Animation.hpp"
 #include "Camera.hpp"
 #include "Group.hpp"
 #include "Line.hpp"

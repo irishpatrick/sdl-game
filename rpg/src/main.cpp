@@ -117,7 +117,7 @@ int main(int argc, char** argv) {
 
     //loadingScreen();
 
-    engine::Assets::loadTexturesFromJson("textures-all.json", assetPath.generic_string(), ctx);
+    engine::Assets::loadTexturesFromJson(ctx, fs::path(assetPath / fs::path("textures-all.json")).generic_string());
     //engine::Assets::useAll(ctx);
 
 	game.init(ctx);

@@ -1,11 +1,13 @@
 #include "game.hpp"
 
-Game::Game(): engine::State() {
+Game::Game(): engine::State() 
+{
 	num_berries = 6;
 	score = 0;
 }
 
-Game::~Game() {
+Game::~Game()
+{
 
 }
 

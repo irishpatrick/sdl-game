@@ -2,13 +2,13 @@
 
 #include <engine.hpp>
 
-class Enemy : public engine::Sprite {
+class Enemy : public engine::KeyFrameSprite {
 public:
     Enemy();
     ~Enemy();
 
     void init(engine::Context&);
-    void velocityUpdate(float);
+	void update(float);
 
     static void setTarget(engine::Sprite&);
 

@@ -1,8 +1,11 @@
 #include "enemy.hpp"
+#include <experimental/filesystem>
+
+namespace fs = std::experimental::filesystem;
 
 engine::Sprite* Enemy::target = nullptr;
 
-Enemy::Enemy(): Sprite() {
+Enemy::Enemy(): KeyFrameSprite() {
 
 }
 
@@ -10,11 +13,13 @@ Enemy::~Enemy() {
 
 }
 
-void Enemy::init(engine::Context& ctx) {
-
+void Enemy::init(engine::Context& ctx) 
+{
+	fs::path assetPath = fs::current_path() / "assets";
 }
 
-void Enemy::velocityUpdate(float delta) {
+void Enemy::update(float)
+{
 
 }
 

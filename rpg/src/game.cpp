@@ -53,8 +53,8 @@ void Game::init(engine::Context& ctx) {
     dlg.setWidth(300, 80);
     //dlg.push("this is a very very long string that will hopefully get divided up");
 
-    enemytest.InitAnimation((sprites / fs::path("monster1.json")).generic_string());
-    enemytest.getAnimation()->Start("all", true);
+    //enemytest.InitAnimation((sprites / fs::path("monster1.json")).generic_string());
+    //enemytest.getAnimation()->Start("all", true);
 
     std::cout << "running tests..." << std::endl;
 
@@ -233,7 +233,7 @@ void Game::update(float delta, const uint8_t* keys) {
     }
 
     transition.update();
-    hero.velocityUpdate(delta);
+    hero.update(delta);
 
     enemytest.update(delta);
 

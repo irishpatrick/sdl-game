@@ -10,7 +10,7 @@
 #include "player.hpp"
 #include <ui.hpp>
 
-class Npc: public engine::Sprite
+class Npc: public engine::KeyFrameSprite
 {
 public:
     Npc();

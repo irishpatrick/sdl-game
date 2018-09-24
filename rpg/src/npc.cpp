@@ -1,7 +1,8 @@
 #include "npc.hpp"
 #include <iostream>
 
-Npc::Npc() {
+Npc::Npc() : KeyFrameSprite()
+{
 
 }
 
@@ -20,7 +21,7 @@ void Npc::interact(engine::Sprite* sprite, ui::Dialogue* d) {
 void Npc::loadJson(const std::string& fn) {
     std::ifstream in(fn);
     if (!in) {
-        cout << "Npc: cannot load json " << fn << std::endl;
+        std::cout << "Npc: cannot load json " << fn << std::endl;
         return;
     }
     nlohmann::json o;

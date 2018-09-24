@@ -25,8 +25,7 @@ Game game;
 void init() {
     // a more elegant solution is needed
     #ifdef _WIN32
-		
-		Config::load((fs::current_path() / fs::path("assets/config-win.json")).generic_string());
+	Config::load((fs::current_path() / fs::path("assets/config-win.json")).generic_string());
     #elif __linux__
 	Config::load((fs::current_path() / fs::path("assets/config.json")).generic_string());
     #endif
@@ -102,7 +101,7 @@ int main(int argc, char** argv) {
 
     init();
 
-	fs::path assetPath = fs::current_path() / Config::getAssetPath();
+	fs::path assetPath = fs::current_path() / "assets";
 
     /*SDL_RenderClear(r);
     SDL_Rect c;
@@ -117,7 +116,7 @@ int main(int argc, char** argv) {
 
     //loadingScreen();
 
-    engine::Assets::loadTexturesFromJson(ctx, fs::path(assetPath / fs::path("textures-all.json")).generic_string());
+	engine::Assets::loadTexturesFromJson(ctx, fs::path(assetPath / "textures-all.json").generic_string());
     //engine::Assets::useAll(ctx);
 
 	game.init(ctx);

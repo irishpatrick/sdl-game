@@ -54,9 +54,9 @@ void Game::update(float delta, const uint8_t* keys) {
 
 	for (auto& e : berries) {
 		e->SetVisible(true);
-		e->velocityUpdate(delta);
+		e->update(delta);
 	}
-	spoon.velocityUpdate(delta);
+	spoon.update(delta);
 }
 
 void Game::render(engine::Context& ctx) {

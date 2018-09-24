@@ -17,7 +17,7 @@
 
 namespace engine {
 
-    class Animation;
+    //class Animation;
     class Group;
     class Texture;
     class Camera;
@@ -28,15 +28,14 @@ namespace engine {
     	CORE_API virtual ~Sprite();
 
 		CORE_API virtual void init(Context&);
-        CORE_API virtual Animation* getAnimation();
-    	CORE_API virtual void InitAnimation(const std::string&);
+        //CORE_API virtual Animation* getAnimation();
+    	//CORE_API virtual void InitAnimation(const std::string&);
     	CORE_API virtual void setTexture(Texture*);
     	CORE_API virtual void draw(SDL_Renderer*);
         CORE_API virtual void draw(Context&);
 		CORE_API virtual void draw(Object&, Context&);
     	CORE_API virtual void ResetCollision();
     	CORE_API virtual void update(float);
-    	CORE_API virtual void velocityUpdate(float);
     	CORE_API void setSpeed(float);
     	CORE_API void queryTexture();
     	CORE_API virtual void OnCollision(Sprite*);
@@ -113,7 +112,7 @@ namespace engine {
         Texture* texture;
         bool solid;
         std::string name;
-        Animation* anim;
+        //Animation* anim;
 		int w;
 		int h;
     protected:

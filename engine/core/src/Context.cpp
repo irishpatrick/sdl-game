@@ -1,47 +1,58 @@
 #include "Context.hpp"
 #include <iostream>
 
-namespace engine {
+namespace engine
+{
 
-	Context::Context() {
-
-	}
-
-	Context::~Context() {
+	Context::Context()
+	{
 
 	}
 
-	int Context::init(int a, int b, const std::string& title, bool fullscreen) {
-		if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+	Context::~Context()
+	{
+
+	}
+
+	int Context::init(int a, int b, const std::string& title, bool fullscreen)
+	{
+		if (SDL_Init(SDL_INIT_VIDEO) < 0)
+		{
 			std::cout << "SDL_Init error: " << SDL_GetError() << std::endl;
 			return -1;
 		}
 
-		if (!IMG_Init(IMG_INIT_PNG)) {
+		if (!IMG_Init(IMG_INIT_PNG))
+		{
 			std::cout << "IMG_Init error: " << IMG_GetError() << std::endl;
 			//return -1;
 			std::cout << "We're not going to return, we'll just push on through" << std::endl;
 		}
 
-		if (TTF_Init() < 0) {
+		if (TTF_Init() < 0)
+		{
 			std::cout << "TTF_Init error: " << TTF_GetError() << std::endl;
 		}
 
-		if (SDL_GetDesktopDisplayMode(0, &current) < 0) {
+		if (SDL_GetDesktopDisplayMode(0, &current) < 0)
+		{
 			std::cout << "Display mode error " << SDL_GetTicks() << std::endl;
 			return -1;
 		}
 
-		if (fullscreen) {
+		if (fullscreen)
+		{
 			width = current.w;
 			height = current.h;
 		}
-		else {
+		else
+		{
 			width = a;
 			height = b;
 		}
 
-		if (fullscreen) {
+		if (fullscreen)
+		{
 			w = SDL_CreateWindow(
 				title.c_str(),
 				SDL_WINDOWPOS_UNDEFINED,
@@ -51,7 +62,8 @@ namespace engine {
 				SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN_DESKTOP
 			);
 		}
-		else {
+		else
+		{
 			w = SDL_CreateWindow(
 				title.c_str(),
 				SDL_WINDOWPOS_UNDEFINED,
@@ -62,7 +74,8 @@ namespace engine {
 			);
 		}
 
-		if (w == nullptr) {
+		if (w == nullptr)
+		{
 			std::cout << "SDL_CreateWindow error: " << SDL_GetError() << std::endl;
 			return -1;
 		}
@@ -73,12 +86,12 @@ namespace engine {
 			SDL_RENDERER_PRESENTVSYNC
 		);
 
-		if (r == nullptr) {
+		if (r == nullptr)
+		{
 			std::cout << "SDL_CreateRenderer error: " << SDL_GetError() << std::endl;
 			return -1;
 		}
 
 		return 0;
 	}
-
-};
+}

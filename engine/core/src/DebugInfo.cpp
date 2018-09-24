@@ -4,17 +4,21 @@
 
 const std::string& chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 
-namespace engine {
+namespace engine
+{
 
-    DebugInfo::DebugInfo() {
-
-    }
-
-    DebugInfo::~DebugInfo() {
+    DebugInfo::DebugInfo()
+	{
 
     }
 
-    void DebugInfo::init(const std::string& fn, Context& ctx) {
+    DebugInfo::~DebugInfo()
+	{
+
+    }
+
+    void DebugInfo::init(const std::string& fn, Context& ctx)
+	{
         hasInit = true;
         uint32_t rmask, gmask, bmask, amask;
         #if SDL_BYTEORDER == SDL_BIG_ENDIAN
@@ -69,17 +73,21 @@ namespace engine {
         }
     }
 
-	void DebugInfo::addLine(const std::string& str) {
+	void DebugInfo::addLine(const std::string& str)
+	{
 		lines.push_back(str);
 	}
 
-	void DebugInfo::draw(Context& ctx) {
+	void DebugInfo::draw(Context& ctx)
+	{
         float x = 0;
         float y = 0;
         // loop through lines
-        for (auto& line : lines) {
+        for (auto& line : lines)
+		{
             // loop through characters in line
-            for (auto& c : line) {
+            for (auto& c : line)
+			{
                 size_t index = chars.find(c);
                 GlyphMetrics* gm = metrics[static_cast<int>(index)];
                 SDL_Surface* surf = glyphCache[static_cast<int>(index)];
@@ -113,8 +121,10 @@ namespace engine {
         SDL_DestroyTexture(t);
 	}
 
-    void DebugInfo::drawLine(float x, float y, const std::string& str, Context& ctx) {
-        for (uint32_t i=0; i<str.size(); i++) {
+    void DebugInfo::drawLine(float x, float y, const std::string& str, Context& ctx)
+	{
+        for (uint32_t i=0; i<str.size(); i++)
+		{
             char c = str.at(i);
             std::size_t loc = chars.find(str.at(i));
             GlyphMetrics* gm = metrics[static_cast<int>(loc)];
@@ -129,11 +139,13 @@ namespace engine {
         }
     }
 
-	void DebugInfo::flush() {
+	void DebugInfo::flush()
+	{
         lines.clear();
 	}
 
-    void DebugInfo::test() {
+    void DebugInfo::test()
+	{
         for (uint32_t i=0; i<chars.size(); i++) {
             GlyphMetrics* gm = metrics[i];
             std::cout << chars.at(i) << " {" << gm->minx << ", " << gm->maxx << ", " << gm->miny << ", " << gm->maxy << ", " << gm->advance << "}" << std::endl;

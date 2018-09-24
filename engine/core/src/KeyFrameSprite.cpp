@@ -92,7 +92,7 @@ namespace engine
 
 	void KeyFrameSprite::update(float delta)
 	{
-		Sprite::velocityUpdate(delta);
+		Sprite::update(delta);
 
 		if (!running)
 		{
@@ -124,6 +124,10 @@ namespace engine
 		Anim* ca = &animations[currentAnim];
 		Frame* cf = &frameRef[ca->frames[currentFrame]];
 
+		w = cf->w;
+		h = cf->h;
+		setBoundingBox(0, 0, w, h);
+		
 		SDL_Rect src;
 		src.x = cf->x;
 		src.y = cf->y;

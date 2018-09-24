@@ -32,7 +32,7 @@ void Raspberry::reset()
 	fallSpeed = rand() % (MAX_SPEED - MIN_SPEED) + MIN_SPEED;
 }
 
-void Raspberry::velocityUpdate(float delta)
+void Raspberry::update(float delta)
 {
 	KeyFrameSprite::update(delta);
 	if (!visible)
@@ -49,6 +49,10 @@ void Raspberry::velocityUpdate(float delta)
 
 void Raspberry::draw(engine::Context& ctx)
 {
-	//Sprite::draw(ctx);
 	KeyFrameSprite::draw(ctx);
+}
+
+void Raspberry::caught()
+{
+
 }

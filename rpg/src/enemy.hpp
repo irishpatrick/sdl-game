@@ -2,7 +2,8 @@
 
 #include <engine.hpp>
 
-class Enemy : public engine::KeyFrameSprite {
+class Enemy : public engine::KeyFrameSprite
+{
 public:
     Enemy();
     ~Enemy();

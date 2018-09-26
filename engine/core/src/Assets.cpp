@@ -88,9 +88,9 @@ namespace engine
 		if (s == nullptr)
 		{
 			std::cout << "error!" << std::endl;
-			delete t;
 			std::cout << "t has been deleted" << std::endl;
 			std::cout << "surface for " << t->getName() << " failed to load: " << IMG_GetError() << std::endl;
+			delete t;
 			return;
 		}
 		else

@@ -14,21 +14,23 @@ public:
 	GroupManager();
 	~GroupManager();
 
-	void addgroup(const std::string&, engine::Group*);
-	void loadgroup(const std::string&, const std::string&);
-	void setactive(const std::string&);
+	void addGroup(const std::string&, engine::Group*);
+	void loadGroup(const std::string&, const std::string&);
+	void setActive(const std::string&);
     void setEntry(const std::string&);
-	void setfocus(engine::Sprite*);
+	void setFocus(engine::Sprite*);
 
-    inline engine::Group* getGroup(const std::string& id) {
+    inline engine::Group* getGroup(const std::string& id)
+	{
         return groupMap[id];
     }
 
-    inline std::string getActiveId() {
+    inline std::string getActiveId()
+	{
         return activeId;
     }
 
-	engine::Group* getactive();
+	engine::Group* getActive();
 
 private:
 	std::map<std::string, engine::Group*> groupMap;

@@ -34,7 +34,7 @@ private:
     engine::Sprite background;
     engine::Group stage;
     engine::Camera camera;
-    GroupManager groups_;
+	GroupManager gm;
     Door doortest;
     engine::OneShot op;
     engine::OneShot ol;

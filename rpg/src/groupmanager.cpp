@@ -19,15 +19,16 @@ GroupManager::~GroupManager()
 	}
 }
 
-void GroupManager::addgroup(const std::string& id, engine::Group* g)
+void GroupManager::addGroup(const std::string& id, engine::Group* g)
 {
     groupMap.insert(pair<string, engine::Group*>(id, g));
 }
 
-void GroupManager::loadgroup(const std::string& id, const std::string& fn)
+void GroupManager::loadGroup(const std::string& id, const std::string& fn)
 {
     std::ifstream in(fn);
-    if (in.fail()) {
+    if (in.fail())
+	{
         std::cout << "GroupManager: failed to open json file" << std::endl;
         return;
     }
@@ -104,7 +105,7 @@ void GroupManager::loadgroup(const std::string& id, const std::string& fn)
     	}
     }
 
-    addgroup(id, g);
+    addGroup(id, g);
 }
 
 void GroupManager::setEntry(const std::string& tag)
@@ -127,7 +128,7 @@ void GroupManager::setEntry(const std::string& tag)
     }
 }
 
-void GroupManager::setactive(const std::string& id) {
+void GroupManager::setActive(const std::string& id) {
     activeId = id;
     std::map<std::string, engine::Group*>::const_iterator it = groupMap.find(id);
     if (it != groupMap.end()) {
@@ -148,10 +149,10 @@ void GroupManager::setactive(const std::string& id) {
     }
 }
 
-engine::Group* GroupManager::getactive() {
+engine::Group* GroupManager::getActive() {
     return activeGroup;
 }
 
-void GroupManager::setfocus(engine::Sprite* s) {
+void GroupManager::setFocus(engine::Sprite* s) {
     focus = s;
 }

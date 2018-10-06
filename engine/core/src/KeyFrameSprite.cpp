@@ -34,10 +34,13 @@ namespace engine
 		}
 
 		setTexture(Assets::getTexture(o["texture"].get<std::string>()));
-		frameRef = (Frame*)malloc(sizeof(Frame) * o["frameList"].size());
+		//frameRef = (Frame*)malloc(sizeof(Frame) * o["frameList"].size());
 		numAnimations = o["animations"].size();
-		animations = (Anim*)malloc(sizeof(Anim) * numAnimations);
+		int numFrames = o["frameList"].size();
+		//animations = (Anim*)malloc(sizeof(Anim) * numAnimations);
 		//currentAnim = o["default"];
+		animations = std::vector<Anim>(numAnimations);
+		frameRef = std::vector<Frame>(o["frameList"].size());
 		currentAnim = 0;
 		int n;
 
@@ -72,6 +75,8 @@ namespace engine
 		{
 			std::cout << e.what() << std::endl;
 		}
+
+		initialized = true;
 	}
 
 	void KeyFrameSprite::setCurrentAnimation(const std::string& name, bool loop)
@@ -121,25 +126,40 @@ namespace engine
 		{
 			return;
 		}
-		Anim* ca = &animations[currentAnim];
-		Frame* cf = &frameRef[ca->frames[currentFrame]];
 
-		w = cf->w;
-		h = cf->h;
-		setBoundingBox(0, 0, w, h);
+		SDL_Rect src, dst;
+
+		if (initialized)
+		{
+			Anim* ca = &animations[currentAnim];
+			Frame* cf = &frameRef[ca->frames[currentFrame]];
+
+			w = cf->w;
+			h = cf->h;
+			setBoundingBox(0, 0, w, h);
+
+			src.x = cf->x;
+			src.y = cf->y;
+			src.w = cf->w;
+			src.h = cf->h;
+
+			dst.x = x;
+			dst.y = y;
+			dst.w = cf->w;
+			dst.h = cf->h;
+
+			SDL_RenderCopy(ctx.getRenderer(), texture->use(), &src, &dst);
+		}
+		else
+		{
+			dst.x = x;
+			dst.y = y;
+			dst.w = w;
+			dst.h = h;
+
+			SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &dst);
+		}
+
 		
-		SDL_Rect src;
-		src.x = cf->x;
-		src.y = cf->y;
-		src.w = cf->w;
-		src.h = cf->h;
-
-		SDL_Rect dst;
-		dst.x = x;
-		dst.y = y;
-		dst.w = cf->w;
-		dst.h = cf->h;
-
-		SDL_RenderCopy(ctx.getRenderer(), texture->use(), &src, &dst);
 	}
 }

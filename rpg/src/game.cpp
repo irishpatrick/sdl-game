@@ -18,8 +18,8 @@ Game::~Game()
 
 void Game::init(engine::Context& ctx)
 {
-	fs::path maps = fs::current_path() / "assets/maps";
-	fs::path sprites = fs::current_path() / "assets/sprites";
+	fs::path maps = fs::current_path() / "assets" / "maps";
+	fs::path sprites = fs::current_path() / "assets" / "sprites";
     camera.setScreen(ctx.getWidth(), ctx.getHeight());
 
     camera.setFocus(&hero);
@@ -31,10 +31,10 @@ void Game::init(engine::Context& ctx)
 
     //gm.setcamera(&camera);
     gm.setFocus(&hero);
-    gm.loadGroup("room1", (maps / fs::path("room1.json")).generic_string());
-    gm.loadGroup("town1", (maps / fs::path("town1.json")).generic_string());
+    gm.loadGroup("room1", (maps / "room1.json").generic_string());
+    gm.loadGroup("town1", (maps / "town1.json").generic_string());
     std::cout << "loading room2.json" << std::endl;
-    gm.loadGroup("room2", (maps / fs::path("room2.json")).generic_string());
+    gm.loadGroup("room2", (maps / "room2.json").generic_string());
     //gm.addgroup("stage", &stage);
     gm.setActive("town1");
     printf("done!\n");
@@ -247,6 +247,7 @@ void Game::update(float delta, const uint8_t* keys) {
     }
 
     transition.update();
+	std::cout << "update hero" << std::endl;
     hero.update(delta);
 
     enemytest.update(delta);

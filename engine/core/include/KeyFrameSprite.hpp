@@ -6,6 +6,7 @@
 #include "Context.hpp"
 #include "Timer.hpp"
 #include <string>
+#include <vector>
 
 namespace engine
 {
@@ -31,25 +32,26 @@ namespace engine
 		KeyFrameSprite() : Sprite()
 		{
 			// dynamically allocated
-			animations = nullptr;
-			frameRef = nullptr;
+			//animations = nullptr;
+			//frameRef = nullptr;
 			numAnimations = 0;
 
 			currentAnim = -1;
 			currentFrame = 0;
 			running = true;
+			initialized = false;
 		}
 
 		~KeyFrameSprite()
 		{
-			if (animations != nullptr)
+			/*if (animations != nullptr)
 			{
 				free(animations);
 			}
 			if (frameRef != nullptr)
 			{
 				free(frameRef);
-			}
+			}*/
 		}
 
 		CORE_API void init(Context&, const std::string&);
@@ -59,8 +61,10 @@ namespace engine
 		CORE_API void stop();
 
 	private:
-		Anim* animations;
-		Frame* frameRef;
+		//Anim* animations;
+		//Frame* frameRef;
+		std::vector<Anim> animations;
+		std::vector<Frame> frameRef;
 		int currentAnim;
 		int numAnimations;
 		int currentFrame;
@@ -68,5 +72,6 @@ namespace engine
 		bool running;
 		bool repeat;
 		bool frameCount;
+		bool initialized;
 	};
 }

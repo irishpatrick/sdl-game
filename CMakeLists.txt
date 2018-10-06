@@ -18,7 +18,7 @@ set(COMPILE_OPTIONS "")
 set(LINK_OPTIONS "")
 set(MSVC_INCLUDE "" CACHE PATH "")
 set(MSVC_LIB "" CACHE PATH "")
-set(INCLUDE_DIR "")
+set(INCLUDE_DIR "include")
 
 # initialize hunter
 if (USE_HUNTER)
@@ -54,6 +54,7 @@ elseif (UNIX)
 
 	set(INCLUDE_DIR ${INCLUDE_DIR} /usr/include/)
     set(LIBRARY_DIR /usr/lib/)
+    set(LIBRARIES ${LIBRARIES} -lstdc++fs)
     set(COMPILE_OPTIONS -std=c++14 -D_REENTRANT -Wall -pthread)
 
 	if (DEBUG_SYMBOLS)
@@ -77,14 +78,18 @@ if (USE_HUNTER)
     hunter_add_package(SDL2)
     hunter_add_package(SDL_image)
     hunter_add_package(SDL_ttf)
+    hunter_add_package(cairo)
+    hunter_add_package(nlohmann-json)
 
     find_package(SDL2 CONFIG REQUIRED)
     find_package(SDL_image CONFIG REQUIRED)
     find_package(SDL_ttf CONFIG REQUIRED)
+    find_package(cairo CONFIG REQUIRED)
+    find_package(nlohmann-json CONFIG REQUIRED)
 
     message(STATUS ${SDL2_ROOT})
 
-    set(LIBRARIES ${LIBRARIES} SDL2::SDL2main SDL2::SDL2 SDL_image::SDL_image SDL_ttf::SDL_ttf m CACHE STRING "string")
+    set(LIBRARIES ${LIBRARIES} SDL2::SDL2main SDL2::SDL2 SDL_image::SDL_image SDL_ttf::SDL_ttf  m CACHE STRING "string")
     set(INCLUDE_DIR ${INCLUDE_DIR} ${SDL2_ROOT}/include/SDL2 ${SDL_TTF_ROOT}/include/SDL_ttf)
 
 # finding dependencies using pkg-config
@@ -96,6 +101,7 @@ elseif (USE_PKGCONFIG)
     pkg_check_modules(SDL2 REQUIRED sdl2)
     pkg_check_modules(SDL2_image REQUIRED SDL2_image)
     pkg_check_modules(SDL2_ttf REQUIRED SDL2_ttf)
+    #pkg_check_modules(nlohmann-json REQUIRED json)
 
 
     set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/include ${SDL2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS} ${SDL2_ttf_INCLUDE_DIRS})
@@ -105,8 +111,6 @@ elseif (USE_PKGCONFIG)
 # use vcpkg
 else ()
     find_package(SDL2 CONFIG REQUIRED)
-	find_package(spdlog CONFIG REQUIRED)
-	find_package(fmt CONFIG REQUIRED)
     find_library(SDL2_IMAGE_LIB SDL2_image REQUIRED)
     find_library(SDL2_TTF_LIB SDL2_ttf REQUIRED)
     find_library(CAIRO_LIB cairo REQUIRED)
@@ -118,9 +122,6 @@ else ()
         ${SDL2_IMAGE_LIB} 
         ${SDL2_TTF_LIB}
         ${CAIRO_LIB}
-		fmt::fmt
-		fmt::fmt-header-only
-		spdlog::spdlog
 
 		bcrypt
     )

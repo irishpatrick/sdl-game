@@ -230,7 +230,7 @@ namespace engine {
 		}
 	}
 
-	void Util::initSpdlog()
+	/*void Util::initSpdlog()
 	{
 		if (!isLoggerActive)
 		{
@@ -248,5 +248,5 @@ namespace engine {
 			isLoggerActive = true;
 		}
 
-	}
+	}*/
 }

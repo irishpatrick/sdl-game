@@ -27,8 +27,10 @@ private:
     //uint32_t then;
     //uint32_t now;
 	long duration;
-	std::chrono::time_point<std::chrono::steady_clock> now;
-	std::chrono::time_point<std::chrono::steady_clock> then;
+	std::chrono::time_point<std::chrono::high_resolution_clock> now;
+	std::chrono::time_point<std::chrono::high_resolution_clock> then;
+	//std::chrono::time_point<std::chrono::steady_clock> now;
+	//std::chrono::time_point<std::chrono::steady_clock> then;
 };
 
 }

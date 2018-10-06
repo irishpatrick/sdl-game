@@ -24,9 +24,9 @@ engine::KeyFrameSprite test;
 void init() {
 	srand(time(nullptr));
 
-	engine::Util::initSpdlog();
+	/*engine::Util::initSpdlog();
 	auto logger = spdlog::get("logger");
-	logger->info("this is a test of the logger");
+	logger->info("this is a test of the logger");*/
 
 	//std::string config_file("D:/GitHub/sdl-game/catch/assets/config-win.json");
 	//std::string config_file = "./assets/config-win.json";

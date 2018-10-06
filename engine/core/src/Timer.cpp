@@ -1,5 +1,8 @@
 #include "Timer.hpp"
 
+//auto then = std::chrono::high_resolution_clock::now();
+//auto now = std::chrono::high_resolution_clock::now();
+
 namespace engine
 {
 

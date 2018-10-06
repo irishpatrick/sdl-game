@@ -3,9 +3,11 @@
 #include "Context.hpp"
 #include "Util.hpp"
 #include <fstream>
-#include <nlohmann/json.hpp>
 #include <sstream>
 #include <iostream>
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
 
 namespace engine
 {
@@ -128,7 +130,7 @@ namespace engine
 		{
 			in >> o;
 		}
-		catch (nlohmann::json::parse_error& e)
+		catch(std::exception& e)
 		{
 			std::cout << e.what() << std::endl;
 			return;

@@ -28,7 +28,7 @@ namespace engine
 		{
 			o << in;
 		}
-		catch (json::parse_error& e)
+		catch (std::exception& e)
 		{
 			std::cout << e.what() << std::endl;
 		}
@@ -68,7 +68,7 @@ namespace engine
 				}
 			}
 		}
-		catch (json::type_error& e)
+		catch (std::exception& e)
 		{
 			std::cout << e.what() << std::endl;
 		}

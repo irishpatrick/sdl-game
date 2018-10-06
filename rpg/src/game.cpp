@@ -247,7 +247,6 @@ void Game::update(float delta, const uint8_t* keys) {
     }
 
     transition.update();
-	std::cout << "update hero" << std::endl;
     hero.update(delta);
 
     enemytest.update(delta);

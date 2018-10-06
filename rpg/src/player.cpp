@@ -1,4 +1,7 @@
 #include "player.hpp"
+#include <experimental/filesystem>
+
+namespace fs = std::experimental::filesystem;
 
 Player::Player(): KeyFrameSprite()
 {
@@ -11,12 +14,10 @@ Player::~Player()
 }
 
 void Player::init(engine::Context& ctx) {
-	setTexture(engine::Assets::getTexture("hero.png"));
+	KeyFrameSprite::init(ctx, (fs::current_path() / "assets" / "sprites" / "player.json").generic_string());
 	setMaxSpeed(250.0f);
 	name = "hero";
 	setBoundingBox(0, 0.35f * h, w, 0.65 * h);
-
-	queryTexture();
 }
 
 json Player::toJson() {

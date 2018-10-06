@@ -15,6 +15,8 @@ namespace engine
 	{
 		Sprite::init(ctx);
 
+		initialized = false;
+
 		fs::path fp(fn);
 		std::ifstream in(fp.generic_string());
 		if (in.fail())
@@ -77,10 +79,16 @@ namespace engine
 		}
 
 		initialized = true;
+
+		setCurrentAnimation(o["default"].get<std::string>(), true);
 	}
 
 	void KeyFrameSprite::setCurrentAnimation(const std::string& name, bool loop)
 	{
+		if (!initialized)
+		{
+			return;
+		}
 		frameCount = 0;
 		for (int i = 0; i < numAnimations; i++)
 		{
@@ -97,16 +105,18 @@ namespace engine
 
 	void KeyFrameSprite::update(float delta)
 	{
-		std::cout << "update sprite" << std::endl;
 		Sprite::update(delta);
-		std::cout << "rest of the KeyFrameSprite method" << std::endl;
 
-		if (!running)
+		if (!running || !initialized)
 		{
 			return;
 		}
 
-		if (timer.Tick())
+		if (animations[currentAnim].length < 2)
+		{
+
+		}
+		else if (timer.Tick())
 		{
 			if (currentFrame + 1 == animations[currentAnim].length)
 			{
@@ -154,12 +164,12 @@ namespace engine
 		}
 		else
 		{
-			dst.x = x;
+			/*dst.x = x;
 			dst.y = y;
 			dst.w = w;
 			dst.h = h;
 
-			SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &dst);
+			SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &dst);*/
 		}
 
 		

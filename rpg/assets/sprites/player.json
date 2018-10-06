@@ -1,0 +1,22 @@
+{
+	"texture": "hero.png",
+	"frameList": 
+	[
+		{
+			"x": 0,
+			"y": 0,
+			"w": 32,
+			"h": 32
+		}
+	],
+	"animations":
+	[
+		{
+			"name": "stand",
+			"fps": 1,
+			"length": 1,
+			"frames": [0]
+		}
+	],
+	"default": "stand"
+}

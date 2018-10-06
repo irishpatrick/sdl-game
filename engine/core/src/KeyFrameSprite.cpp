@@ -97,7 +97,9 @@ namespace engine
 
 	void KeyFrameSprite::update(float delta)
 	{
+		std::cout << "update sprite" << std::endl;
 		Sprite::update(delta);
+		std::cout << "rest of the KeyFrameSprite method" << std::endl;
 
 		if (!running)
 		{

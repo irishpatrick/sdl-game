@@ -37,7 +37,6 @@ void Game::init(engine::Context& ctx)
     gm.loadGroup("room2", (maps / "room2.json").generic_string());
     //gm.addgroup("stage", &stage);
     gm.setActive("town1");
-    printf("done!\n");
 
     //dlg.push("this is a very very long string that will hopefully get divided up");
     //dlg.initFont(engine::Assets::getTexture("white-font.png"));
@@ -60,12 +59,10 @@ void Game::init(engine::Context& ctx)
     //enemytest.InitAnimation((sprites / fs::path("monster1.json")).generic_string());
     //enemytest.getAnimation()->Start("all", true);
 
-    std::cout << "running tests..." << std::endl;
+	debug.init((fs::current_path() / "assets" / "font.ttf").generic_string(), ctx);
+    debug.test();
+	debug.addLine("hello debug");
 
-	//debug.init((Config::getAssetPath() / fs::path("font.ttf")).generic_string(), ctx);
-    //debug.test();
-
-    std::cout << "ok" << std::endl;
 }
 
 void Game::tests() {
@@ -109,43 +106,54 @@ void Game::update(float delta, const uint8_t* keys) {
 		op.check(primary);
 		ol.check(secondary);
 
-		if (dec.isVisible()) {
-			if (up) {
+		if (dec.isVisible()) 
+		{
+			if (up)
+			{
 				dec.setSelection(ui::Decision::YES);
 			}
-			if (down) {
+			if (down)
+			{
 				dec.setSelection(ui::Decision::NO);
 			}
-			if (op.fire()) {
+			if (op.fire())
+			{
 				dec.setVisible(false);
 			}
 		}
-		else if (dlg.isVisible()) {
+		else if (dlg.isVisible())
+		{
             std::cout << "dialogue is visible" << std::endl;
 		}
 		else {
-			if ((up || down) && (left || right)) {
+			if ((up || down) && (left || right))
+			{
 				float v = sqrt(pow(hero.getMaxSpeed(), 2) / 2.0);
 				hero.speed = v;
 			}
-			else {
+			else
+			{
 				hero.speed = hero.getMaxSpeed();
 			}
 
-			if (up) {
+			if (up)
+			{
 				hero.yvel = -hero.speed;
 			}
-			if (down) {
+			if (down)
+			{
 				hero.yvel = hero.speed;
 			}
 			if (left) {
 				hero.xvel = -hero.speed;
 			}
-			if (right) {
+			if (right)
+			{
 				hero.xvel = hero.speed;
 			}
 
-			if (up || down || left || right) {
+			if (up || down || left || right)
+			{
 				hero_collisions = engine::Util::getVelocityCollisions(
 					&hero,
 					gm.getActive(),
@@ -158,19 +166,24 @@ void Game::update(float delta, const uint8_t* keys) {
 
         }*/
 
-        if (op.fire()) {
-            if (dlg.isVisible()) {
+        if (op.fire())
+		{
+            if (dlg.isVisible())
+			{
                 dlg.pop();
             }
             else if (hero_collisions.size() > 0) {
                 engine::Sprite* collider = hero_collisions[0];
 
-				if (Door* d = dynamic_cast<Door*>(collider)) {
+				if (Door* d = dynamic_cast<Door*>(collider))
+				{
 					auto g = gm.getGroup(d->getDest());
 					std::vector<Door*> doors;
 					g->getSpritesByType<Door>(doors);
-					for (auto& e : doors) {
-						if (e->getDest() == gm.getActiveId()) {
+					for (auto& e : doors)
+					{
+						if (e->getDest() == gm.getActiveId())
+						{
 							todo_x = e->getExit().x;
 							todo_y = e->getExit().y;
 							break;
@@ -269,6 +282,7 @@ void Game::render(engine::Context& ctx)
 	dec.draw(&ctx);
 	transition.draw(&ctx);
     enemytest.draw(ctx);
+	debug.draw(ctx);
 }
 
 void Game::destroy()

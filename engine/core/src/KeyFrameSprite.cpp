@@ -35,19 +35,13 @@ namespace engine
 			std::cout << e.what() << std::endl;
 		}
 
-		//w = o["w"];
-		//h = o["h"];
-
 		std::string fmt = o["dataFormat"].get<std::string>();
 		bool verboseFormat = fmt == "verbose";
 		std::cout << verboseFormat << std::endl;
 
 		setTexture(Assets::getTexture(o["texture"].get<std::string>()));
-		//frameRef = (Frame*)malloc(sizeof(Frame) * o["frameList"].size());
 		numAnimations = o["animations"].size();
 		int numFrames = o["frameList"].size();
-		//animations = (Anim*)malloc(sizeof(Anim) * numAnimations);
-		//currentAnim = o["default"];
 		animations = std::vector<Anim>(numAnimations);
 		frameRef = std::vector<Frame>(numFrames);
 		currentAnim = 0;
@@ -76,7 +70,6 @@ namespace engine
 				c->h = e[3];
 			}
 		}
-		
 
 		try
 		{
@@ -154,7 +147,7 @@ namespace engine
 			return;
 		}
 
-		if (animations[currentAnim].length < 2)
+		if (animations[currentAnim].length == 0)
 		{
 
 		}
@@ -165,7 +158,6 @@ namespace engine
 				running = repeat;
 			}
 			currentFrame = (currentFrame + 1) % animations[currentAnim].length;
-			//Frame* fr = &frameRef[currentFrame];	
 		}
 	}
 

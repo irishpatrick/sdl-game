@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cstdio>
 
-const std::string& chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+const std::string& chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ";
 
 namespace engine
 {
@@ -45,16 +45,12 @@ namespace engine
         );
 
         std::cout << "loading font... ";
-        font = TTF_OpenFont(fn.c_str(), 200);
+        font = TTF_OpenFont(fn.c_str(), 100);
         if (font == nullptr) {
             std::cout << "error loading font: " << TTF_GetError() << std::endl;
-        }
+			return;
+		}
         std::cout << "ok" << std::endl;
-
-        //std::cout << "allocating memory...";
-        //metrics = (GlyphMetrics*)malloc(chars.size() * sizeof(GlyphMetrics));
-        //glyphCache = (SDL_Surface**)malloc(chars.size());
-        //std::cout << "ok" << std::endl;
 
         std::cout << "collecting glyph metrics... ";
         for (uint32_t i=0; i<chars.size(); i++) {
@@ -66,7 +62,7 @@ namespace engine
         std::cout << "ok" << std::endl;
 
         // black
-        SDL_Color color = {0,0,0};
+        SDL_Color color = {255,255,255};
         for (uint32_t i=0; i<chars.size(); i++) {
             char c = chars.at(i);
             glyphCache.push_back(TTF_RenderGlyph_Solid(font, c, color));
@@ -88,21 +84,22 @@ namespace engine
             // loop through characters in line
             for (auto& c : line)
 			{
+				//std::cout << "render " << c << std::endl;
                 size_t index = chars.find(c);
                 GlyphMetrics* gm = metrics[static_cast<int>(index)];
                 SDL_Surface* surf = glyphCache[static_cast<int>(index)];
                 SDL_Rect rect;
-                rect.x = x;
-                rect.y = y;
+                rect.x = x + gm->minx * 0.5;
+				rect.y = y + TTF_FontAscent(font); // -gm->maxy;
                 // set rect w
-                rect.w = gm->maxx;
+                rect.w = (gm->maxx - gm->minx) * 0.5;
                 // set rect h
-                rect.h = gm->maxy;
+                rect.h = (gm->maxy - gm->miny) * 0.5;
                 // blit to surface
-                SDL_BlitSurface(surf, &rect, out, nullptr);
+                SDL_BlitSurface(surf, nullptr, out, &rect);
 
                 // increment xs
-                x += gm->advance;
+                x += gm->advance * 0.5;
 
             }
             x = 0;

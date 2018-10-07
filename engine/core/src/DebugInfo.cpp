@@ -89,17 +89,24 @@ namespace engine
                 GlyphMetrics* gm = metrics[static_cast<int>(index)];
                 SDL_Surface* surf = glyphCache[static_cast<int>(index)];
                 SDL_Rect rect;
-                rect.x = x + gm->minx * 0.5;
+				SDL_Rect srcRect;
+                rect.x = x + gm->minx;
 				rect.y = y + TTF_FontAscent(font); // -gm->maxy;
                 // set rect w
-                rect.w = (gm->maxx - gm->minx) * 0.5;
+				rect.w = (gm->maxx - gm->minx);
                 // set rect h
-                rect.h = (gm->maxy - gm->miny) * 0.5;
+                rect.h = (gm->maxy - gm->miny);
+
+				srcRect.x = 0;
+				srcRect.y = 0;
+				srcRect.w = (gm->maxx - gm->minx);
+				srcRect.h = (gm->maxy - gm->miny);
+
                 // blit to surface
-                SDL_BlitSurface(surf, nullptr, out, &rect);
+                SDL_BlitSurface(surf, &srcRect, out, &rect);
 
                 // increment xs
-                x += gm->advance * 0.5;
+                x += gm->advance;
 
             }
             x = 0;

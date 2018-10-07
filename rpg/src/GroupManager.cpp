@@ -1,6 +1,6 @@
-#include "groupmanager.hpp"
-#include "door.hpp"
-#include "npc.hpp"
+#include "GroupManager.hpp"
+#include "Door.hpp"
+#include "Npc.hpp"
 
 GroupManager::GroupManager()
 {

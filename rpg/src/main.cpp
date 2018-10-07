@@ -7,8 +7,8 @@
 #include <engine.hpp>
 #include <experimental/filesystem>
 
-#include "config.hpp"
-#include "game.hpp"
+#include "Config.hpp"
+#include "Game.hpp"
 
 using namespace std;
 namespace fs = std::experimental::filesystem;

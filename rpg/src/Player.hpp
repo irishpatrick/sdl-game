@@ -5,7 +5,7 @@
 #include <string>
 #include <nlohmann/json.hpp>
 #include <engine.hpp>
-#include "stats.hpp"
+#include "Stats.hpp"
 
 using json = nlohmann::json;
 

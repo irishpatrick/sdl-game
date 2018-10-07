@@ -1,4 +1,4 @@
-#include "npc.hpp"
+#include "Npc.hpp"
 #include <iostream>
 
 Npc::Npc() : KeyFrameSprite()

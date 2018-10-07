@@ -1,5 +1,5 @@
-#include "door.hpp"
-#include "groupmanager.hpp"
+#include "Door.hpp"
+#include "GroupManager.hpp"
 
 Door::Door(): engine::Sprite()
 {

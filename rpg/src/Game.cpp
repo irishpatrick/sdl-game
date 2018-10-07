@@ -1,4 +1,4 @@
-#include "game.hpp"
+#include "Game.hpp"
 #include <experimental/filesystem>
 
 namespace fs = std::experimental::filesystem;

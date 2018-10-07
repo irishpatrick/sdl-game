@@ -1,4 +1,4 @@
-#include "stats.hpp"
+#include "Stats.hpp"
 
 Stats::Stats() {
 

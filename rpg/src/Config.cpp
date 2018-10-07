@@ -1,4 +1,4 @@
-#include "config.hpp"
+#include "Config.hpp"
 #include <SDL2/SDL.h>
 
 int Config::screenWidth = 0;

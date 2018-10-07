@@ -1,12 +1,12 @@
 #pragma once
 
-#include "config.hpp"
-#include "groupmanager.hpp"
-#include "player.hpp"
-#include "door.hpp"
-#include "stats.hpp"
-#include "npc.hpp"
-#include "enemy.hpp"
+#include "Config.hpp"
+#include "GroupManager.hpp"
+#include "Player.hpp"
+#include "Door.hpp"
+#include "Stats.hpp"
+#include "Npc.hpp"
+#include "Enemy.hpp"
 #include <ui.hpp>
 #include <engine.hpp>
 #include <cstdlib>

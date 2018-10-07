@@ -6,8 +6,8 @@
 #include <nlohmann/json.hpp>
 #include <engine.hpp>
 
-#include "stats.hpp"
-#include "player.hpp"
+#include "Stats.hpp"
+#include "Player.hpp"
 #include <ui.hpp>
 
 class Npc: public engine::KeyFrameSprite

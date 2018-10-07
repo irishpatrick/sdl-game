@@ -35,6 +35,13 @@ namespace engine
 			std::cout << e.what() << std::endl;
 		}
 
+		//w = o["w"];
+		//h = o["h"];
+
+		std::string fmt = o["dataFormat"].get<std::string>();
+		bool verboseFormat = fmt == "verbose";
+		std::cout << verboseFormat << std::endl;
+
 		setTexture(Assets::getTexture(o["texture"].get<std::string>()));
 		//frameRef = (Frame*)malloc(sizeof(Frame) * o["frameList"].size());
 		numAnimations = o["animations"].size();
@@ -42,39 +49,74 @@ namespace engine
 		//animations = (Anim*)malloc(sizeof(Anim) * numAnimations);
 		//currentAnim = o["default"];
 		animations = std::vector<Anim>(numAnimations);
-		frameRef = std::vector<Frame>(o["frameList"].size());
+		frameRef = std::vector<Frame>(numFrames);
 		currentAnim = 0;
 		int n;
 
 		n = 0;
-		for (auto& e : o["frameList"])
+		if (verboseFormat)
 		{
-			Frame* c = &frameRef[n++];
-			c->x = e["x"];
-			c->y = e["y"];
-			c->w = e["w"];
-			c->h = e["h"];
+			for (auto& e : o["frameList"])
+			{
+				Frame* c = &frameRef[n++];
+				c->x = e["x"];
+				c->y = e["y"];
+				c->w = e["w"];
+				c->h = e["h"];
+			}
 		}
+		else
+		{
+			for (auto& e : o["frameList"])
+			{
+				Frame* c = &frameRef[n++];
+				c->x = e[0];
+				c->y = e[1];
+				c->w = e[2];
+				c->h = e[3];
+			}
+		}
+		
 
 		try
 		{
 			n = 0;
-			for (auto& e : o["animations"])
+			if (verboseFormat)
 			{
-				Anim* c = &animations[n++];
-				c->name = (char*)malloc(e["name"].get<std::string>().size());
-				strcpy(c->name, e["name"].get<std::string>().c_str());
-				c->fps = e["fps"];
-				c->length = e["length"];
-				c->frames = (int*)malloc(sizeof(int) * c->length);
-				for (int i = 0; i < c->length; i++)
+				for (auto& e : o["animations"])
 				{
-					c->frames[i] = e["frames"][i];
+					Anim* c = &animations[n++];
+					c->name = (char*)malloc(e["name"].get<std::string>().size());
+					strcpy(c->name, e["name"].get<std::string>().c_str());
+					c->fps = e["fps"];
+					c->length = e["length"];
+					c->frames = (int*)malloc(sizeof(int) * c->length);
+					for (int i = 0; i < c->length; i++)
+					{
+						c->frames[i] = e["frames"][i];
+					}
+				}
+			}
+			else
+			{
+				for (auto& e : o["animations"])
+				{
+					Anim* c = &animations[n++];
+					c->name = (char*) malloc(e[0].get<std::string>().size());
+					strcpy(c->name, e[0].get<std::string>().c_str());
+					c->fps = e[1];
+					c->length = e[2];
+					c->frames = (int*)malloc(sizeof(int) * c->length);
+					for (int i = 0; i < c->length; i++)
+					{
+						c->frames[i] = e[3][i];
+					}
 				}
 			}
 		}
 		catch (std::exception& e)
 		{
+			std::cout << "exception thrown" << std::endl;
 			std::cout << e.what() << std::endl;
 		}
 
@@ -123,7 +165,7 @@ namespace engine
 				running = repeat;
 			}
 			currentFrame = (currentFrame + 1) % animations[currentAnim].length;
-			Frame* fr = &frameRef[currentFrame];	
+			//Frame* fr = &frameRef[currentFrame];	
 		}
 	}
 
@@ -161,17 +203,6 @@ namespace engine
 			dst.h = cf->h;
 
 			SDL_RenderCopy(ctx.getRenderer(), texture->use(), &src, &dst);
-		}
-		else
-		{
-			/*dst.x = x;
-			dst.y = y;
-			dst.w = w;
-			dst.h = h;
-
-			SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &dst);*/
-		}
-
-		
+		}		
 	}
 }

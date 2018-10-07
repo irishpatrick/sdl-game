@@ -1,5 +1,7 @@
 {
 	"texture": "hero.png",
+	
+	"dataFormat": "verbose",
 	"frameList": 
 	[
 		{

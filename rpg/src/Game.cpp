@@ -62,6 +62,7 @@ void Game::init(engine::Context& ctx)
 	debug.init((fs::current_path() / "assets" / "font.ttf").generic_string(), ctx);
     debug.test();
 	debug.addLine("hello debug");
+	debug.addLine("new line");
 
 }
 

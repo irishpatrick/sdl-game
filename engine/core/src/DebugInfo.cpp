@@ -45,7 +45,7 @@ namespace engine
         );
 
         std::cout << "loading font... ";
-        font = TTF_OpenFont(fn.c_str(), 100);
+        font = TTF_OpenFont(fn.c_str(), 30);
         if (font == nullptr) {
             std::cout << "error loading font: " << TTF_GetError() << std::endl;
 			return;
@@ -65,7 +65,7 @@ namespace engine
         SDL_Color color = {255,255,255};
         for (uint32_t i=0; i<chars.size(); i++) {
             char c = chars.at(i);
-            glyphCache.push_back(TTF_RenderGlyph_Solid(font, c, color));
+            glyphCache.push_back(TTF_RenderGlyph_Blended(font, c, color));
         }
     }
 
@@ -90,20 +90,17 @@ namespace engine
                 SDL_Surface* surf = glyphCache[static_cast<int>(index)];
                 SDL_Rect rect;
 				SDL_Rect srcRect;
-                rect.x = x + gm->minx;
-				rect.y = y + TTF_FontAscent(font); // -gm->maxy;
+				rect.x = x;// +gm->minx;
+				rect.y = y + TTF_FontDescent(font);
+				//rect.y = y + gm->maxy;
                 // set rect w
-				rect.w = (gm->maxx - gm->minx);
+				//rect.w = (gm->maxx - gm->minx);
                 // set rect h
-                rect.h = (gm->maxy - gm->miny);
-
-				srcRect.x = 0;
-				srcRect.y = 0;
-				srcRect.w = (gm->maxx - gm->minx);
-				srcRect.h = (gm->maxy - gm->miny);
+                //rect.h = (gm->maxy - gm->miny);
+				//std::cout << "rect: {" << rect.x << "," << rect.y << "}" << std::endl;
 
                 // blit to surface
-                SDL_BlitSurface(surf, &srcRect, out, &rect);
+                SDL_BlitSurface(surf, nullptr, out, &rect);
 
                 // increment xs
                 x += gm->advance;
@@ -111,7 +108,8 @@ namespace engine
             }
             x = 0;
             // add font height to y
-            y += 10;
+            //y += 10;
+			y += TTF_FontLineSkip(font) * 0.8;
         }
 
         // draw final surface out

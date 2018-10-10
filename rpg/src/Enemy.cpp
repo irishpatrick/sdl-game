@@ -17,7 +17,7 @@ Enemy::~Enemy()
 
 void Enemy::init(engine::Context& ctx) 
 {
-	fs::path assetPath = fs::current_path() / "assets";
+	KeyFrameSprite::init(ctx, (fs::current_path() / "assets" / "sprites" / "enemy.json").generic_string());
 }
 
 void Enemy::update(float delta)

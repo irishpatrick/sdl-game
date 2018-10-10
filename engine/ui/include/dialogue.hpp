@@ -9,25 +9,30 @@
 #include <iostream>
 #include <cstdint>
 
-namespace ui {
+namespace ui
+{
 
-class Dialogue {
+class Dialogue
+{
 
 public:
     UI_API Dialogue();
     UI_API ~Dialogue();
 
     //UI_API void initFont(engine::Texture*);
-    UI_API inline void setWidth(uint32_t a, uint32_t b) {
+    UI_API inline void setWidth(uint32_t a, uint32_t b)
+	{
         width = a;
         height = b;
     }
 
-    UI_API inline bool isVisible() {
+    UI_API inline bool isVisible()
+	{
         return visible;
     }
 
-    UI_API inline engine::ImageFont& getFont() {
+    UI_API inline engine::ImageFont& getFont()
+	{
         //return font;
         return *Config::getFont();
     }

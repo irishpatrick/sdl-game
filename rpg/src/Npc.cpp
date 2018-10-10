@@ -10,29 +10,20 @@ Npc::~Npc() {
 
 }
 
-void Npc::interact(engine::Sprite* sprite, ui::Dialogue* d) {
-    std::cout << "lines.size() " << lines.size() << std::endl;
-    /*if (Player* player = dynamic_cast<Player*>(sprite)) {
-        std::cout << "interacting with player" << std::endl;
-        d->push(lines[0]);
-    }*/
+void Npc::init(engine::Context& ctx, const std::string& fn)
+{
+	KeyFrameSprite::init(ctx, fn);
 }
 
-void Npc::loadJson(const std::string& fn) {
-    std::ifstream in(fn);
-    if (!in) {
-        std::cout << "Npc: cannot load json " << fn << std::endl;
-        return;
-    }
-    nlohmann::json o;
-    in >> o;
+void Npc::pushLine(const std::string& str)
+{
+	lines.push_back(str);
+}
 
-    x = o["x"];
-    y = o["y"];
-
-    if (o.find("dialogue") != o.end()) {
-        for (std::string line : o["dialogue"]) {
-            lines.push_back(line);
-        }
+void Npc::interact(engine::Sprite* sprite, ui::Dialogue* d) {
+    std::cout << "lines.size() " << lines.size() << std::endl;
+    if (Player* player = dynamic_cast<Player*>(sprite)) {
+        std::cout << "interacting with player" << std::endl;
+        //d->push(lines[0]);
     }
 }

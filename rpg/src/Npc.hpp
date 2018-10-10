@@ -16,10 +16,10 @@ public:
     Npc();
     ~Npc();
 
-    inline void pushLine(const std::string& line) {
-        lines.push_back(line);
-    }
-    void loadJson(const std::string&);
+	void init(engine::Context&, const std::string&);
+
+	void pushLine(const std::string&);
+
     void interact(engine::Sprite* s, ui::Dialogue*);
 
 private:

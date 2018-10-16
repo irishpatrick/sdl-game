@@ -8,16 +8,9 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
+#include "Font.hpp"
 
 namespace engine {
-
-	typedef struct {
-        int minx;
-        int maxx;
-        int miny;
-        int maxy;
-        int advance;
-    } GlyphMetrics;
 
     class DebugInfo {
 

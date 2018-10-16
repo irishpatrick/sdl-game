@@ -4,6 +4,7 @@
 #include "Context.hpp"
 #include "Texture.hpp"
 #include <string>
+#include <vector>
 
 namespace engine
 {
@@ -21,6 +22,8 @@ namespace engine
 		}
 
 		CORE_API void init(Context&, const std::string&);
+		CORE_API void update();
+		CORE_API void draw(Context&);
 
 	private:
 		Texture* t;

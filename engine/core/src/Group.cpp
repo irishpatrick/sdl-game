@@ -6,34 +6,42 @@
 
 namespace engine {
 
-    Group::Group(): Object() {
+    Group::Group(): Object()
+	{
         sx = 0.0f;
         sy = 0.0f;
     }
 
-    Group::~Group() {
+    Group::~Group()
+	{
 
     }
 
-    void Group::init(SDL_Renderer* r) {
+    void Group::init(SDL_Renderer* r)
+	{
 
     }
 
-    void Group::init_from_json(const std::string& fn) {
+    void Group::init_from_json(const std::string& fn)
+	{
         std::ifstream in(fn);
-        if (!in) {
+        if (!in)
+		{
             printf("failed to open %s\n", fn.c_str());
         }
         nlohmann::json o;
         in >> o;
         in.close();
 
-        if (o.find("entry") != o.end()) {
+        if (o.find("entry") != o.end())
+		{
 
         }
 
-        if (o.find("sprites") != o.end()) {
-            for (const auto& e : o["sprites"]) {
+        if (o.find("sprites") != o.end())
+		{
+            for (const auto& e : o["sprites"])
+			{
                 // assume sprite object has all required fields
                 float x = (float)e["x"];
                 float y = (float)e["y"];
@@ -54,9 +62,12 @@ namespace engine {
         }
     }
 
-    Sprite* Group::get_sprite_by_name(const std::string& name) {
-        for (auto& e : renderList) {
-            if (e->name == name) {
+    Sprite* Group::get_sprite_by_name(const std::string& name)
+	{
+        for (auto& e : renderList)
+		{
+            if (e->name == name)
+			{
                 return e;
             }
         }

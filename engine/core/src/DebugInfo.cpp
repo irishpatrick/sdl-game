@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cstdio>
 
-const std::string& chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ";
+//const std::string& chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ";
 
 namespace engine
 {
@@ -156,10 +156,10 @@ namespace engine
 
     void DebugInfo::test()
 	{
-        for (uint32_t i=0; i<chars.size(); i++) {
+        /*for (uint32_t i=0; i<chars.size(); i++) {
             GlyphMetrics* gm = metrics[i];
             std::cout << chars.at(i) << " {" << gm->minx << ", " << gm->maxx << ", " << gm->miny << ", " << gm->maxy << ", " << gm->advance << "}" << std::endl;
-        }
+        }*/
     }
 
 }

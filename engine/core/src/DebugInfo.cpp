@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cstdio>
 
-const std::string& chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ";
+//const std::string& chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ";
 
 namespace engine
 {
@@ -20,7 +20,7 @@ namespace engine
     void DebugInfo::init(const std::string& fn, Context& ctx)
 	{
         hasInit = true;
-        uint32_t rmask, gmask, bmask, amask;
+        /*uint32_t rmask, gmask, bmask, amask;
         #if SDL_BYTEORDER == SDL_BIG_ENDIAN
             rmask = 0xff000000;
             gmask = 0x00ff0000;
@@ -66,7 +66,9 @@ namespace engine
         for (uint32_t i=0; i<chars.size(); i++) {
             char c = chars.at(i);
             glyphCache.push_back(TTF_RenderGlyph_Blended(font, c, color));
-        }
+        }*/
+
+		font.init(ctx, fn);
     }
 
 	void DebugInfo::addLine(const std::string& str)
@@ -79,7 +81,7 @@ namespace engine
         float x = 0;
         float y = 0;
         // loop through lines
-        for (auto& line : lines)
+        /*for (auto& line : lines)
 		{
             // loop through characters in line
             for (auto& c : line)
@@ -110,7 +112,13 @@ namespace engine
             // add font height to y
             //y += 10;
 			y += TTF_FontLineSkip(font) * 0.8;
-        }
+        }*/
+
+		for (auto& line : lines)
+		{
+			font.renderString(ctx, out, line, x, y);
+			y += font.getLineSkip();
+		}
 
         // draw final surface out
         SDL_Rect r;
@@ -125,7 +133,7 @@ namespace engine
 
     void DebugInfo::drawLine(float x, float y, const std::string& str, Context& ctx)
 	{
-        for (uint32_t i=0; i<str.size(); i++)
+        /*for (uint32_t i=0; i<str.size(); i++)
 		{
             char c = str.at(i);
             std::size_t loc = chars.find(str.at(i));
@@ -138,7 +146,7 @@ namespace engine
             r.h = 100;
 
 			//SDL_BlitSurface();
-        }
+        }*/
     }
 
 	void DebugInfo::flush()
@@ -148,10 +156,10 @@ namespace engine
 
     void DebugInfo::test()
 	{
-        for (uint32_t i=0; i<chars.size(); i++) {
+        /*for (uint32_t i=0; i<chars.size(); i++) {
             GlyphMetrics* gm = metrics[i];
             std::cout << chars.at(i) << " {" << gm->minx << ", " << gm->maxx << ", " << gm->miny << ", " << gm->maxy << ", " << gm->advance << "}" << std::endl;
-        }
+        }*/
     }
 
 }

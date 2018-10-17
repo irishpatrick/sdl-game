@@ -145,4 +145,4 @@ if (BUILD_RASPBERRY_GAME)
 	add_subdirectory(./catch)
 endif (BUILD_RASPBERRY_GAME)
 
-add_subdirectory(./ttftest)
+#add_subdirectory(./ttftest)

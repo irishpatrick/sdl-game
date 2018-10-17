@@ -8,16 +8,9 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
+#include "Font.hpp"
 
 namespace engine {
-
-	typedef struct {
-        int minx;
-        int maxx;
-        int miny;
-        int maxy;
-        int advance;
-    } GlyphMetrics;
 
     class DebugInfo {
 
@@ -34,10 +27,11 @@ namespace engine {
 
     private:
         std::vector<std::string> lines;
-        TTF_Font* font;
+        //TTF_Font* font;
         SDL_Surface* out;
 		SDL_Texture* tex;
         bool hasInit;
+		Font font;
 
 		std::vector<GlyphMetrics*> metrics;
 		std::vector<SDL_Surface*> glyphCache;

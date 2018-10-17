@@ -14,7 +14,7 @@ namespace engine
 
 	}
 
-	void Font::init(const std::string& fn, Context& ctx)
+	void Font::init(Context& ctx, const std::string& fn)
 	{
 		font = TTF_OpenFont(fn.c_str(), 30);
 		if (font == nullptr)
@@ -33,9 +33,9 @@ namespace engine
 		}
 	}
 
-	SDL_Surface getChar(char c)
+	SDL_Surface* Font::getChar(char c)
 	{
-
+		return glyphCache[static_cast<int>(chars.find(c))];
 	}
 
 	void Font::renderString(Context& ctx, SDL_Surface* out, const std::string& str, int x0, int y0)
@@ -66,5 +66,10 @@ namespace engine
 			x += gm->advance;
 
 		}
+	}
+
+	int Font::getLineSkip()
+	{
+		return TTF_FontLineSkip(font);
 	}
 }

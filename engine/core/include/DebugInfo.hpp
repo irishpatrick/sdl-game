@@ -36,6 +36,7 @@ namespace engine {
         std::vector<std::string> lines;
         TTF_Font* font;
         SDL_Surface* out;
+		SDL_Texture* tex;
         bool hasInit;
 
 		std::vector<GlyphMetrics*> metrics;

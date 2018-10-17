@@ -118,9 +118,9 @@ namespace engine
         r.y = 0;
         r.w = ctx.getWidth();
         r.h = ctx.getHeight();
-        SDL_Texture* t = SDL_CreateTextureFromSurface(ctx.getRenderer(), out);
-        SDL_RenderCopy(ctx.getRenderer(), t, NULL, &r);
-        SDL_DestroyTexture(t);
+        tex = SDL_CreateTextureFromSurface(ctx.getRenderer(), out);
+        SDL_RenderCopy(ctx.getRenderer(), tex, NULL, &r);
+		SDL_DestroyTexture(tex);
 	}
 
     void DebugInfo::drawLine(float x, float y, const std::string& str, Context& ctx)

@@ -130,7 +130,7 @@ namespace engine
 			if (strncmp(name.c_str(), animations[i].name, strlen(animations[i].name)) == 0)
 			{
 				currentAnim = i;
-				timer.SetInterval((1.0f / animations[currentAnim].fps) * 1000);
+				timer.setInterval((1.0f / animations[currentAnim].fps) * 1000);
 				break;
 			}
 		}
@@ -151,7 +151,7 @@ namespace engine
 		{
 
 		}
-		else if (timer.Tick())
+		else if (timer.tick())
 		{
 			if (currentFrame + 1 == animations[currentAnim].length)
 			{

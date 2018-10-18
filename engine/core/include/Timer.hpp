@@ -15,9 +15,9 @@ public:
 	CORE_API Timer();
 	CORE_API ~Timer();
 
-	CORE_API void SetInterval(long);
-	CORE_API void Reset();
-	CORE_API bool Tick();
+	CORE_API void setInterval(long);
+	CORE_API void reset();
+	CORE_API bool tick();
 
 	CORE_API static long getNanoTime();
 	CORE_API static float toSeconds(long, Unit);

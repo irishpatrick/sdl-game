@@ -20,7 +20,6 @@ namespace engine {
         CORE_API void init(const std::string&, Context&);
         CORE_API void addLine(const std::string&);
         CORE_API void draw(Context&);
-        CORE_API void drawLine(float, float, const std::string&, Context&);
         CORE_API void flush();
         CORE_API void test();
 

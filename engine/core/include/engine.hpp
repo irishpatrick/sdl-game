@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Assets.hpp"
-//#include "Animation.hpp"
 #include "Camera.hpp"
 #include "Group.hpp"
 #include "Line.hpp"
@@ -21,3 +20,5 @@
 #include "Object.hpp"
 #include "DebugInfo.hpp"
 #include "KeyFrameSprite.hpp"
+#include "Font.hpp"
+#include "ScrollingText.hpp"

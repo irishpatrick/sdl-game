@@ -37,18 +37,18 @@ namespace engine
 
 	}
 
-	void Timer::SetInterval(long ms)
+	void Timer::setInterval(long ms)
 	{
 		duration = ms * 1000 * 1000;
-		Reset();
+		reset();
 	}
 
-	void Timer::Reset()
+	void Timer::reset()
 	{
 		then = std::chrono::high_resolution_clock::now();
 	}
 
-	bool Timer::Tick()
+	bool Timer::tick()
 	{
 		now = std::chrono::high_resolution_clock::now();
 		long delta = std::chrono::duration_cast<std::chrono::nanoseconds>(now - then).count();

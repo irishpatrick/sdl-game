@@ -152,7 +152,7 @@ namespace engine {
             }
 
             // calculate ms from fps
-            timer_->SetInterval(1.0/(double)current->fps*1000.0);
+            timer_->setInterval(1.0/(double)current->fps*1000.0);
             currentindex_ = current->frames[0];
             currentset_ = current;
             running_ = true;
@@ -164,7 +164,7 @@ namespace engine {
         if (running_)
         {
             currentframe_ = frames_[currentset_->frames[currentindex_]];
-            if (timer_->Tick())
+            if (timer_->tick())
             {
                 currentindex_++;
                 if (currentindex_ == currentset_->count)

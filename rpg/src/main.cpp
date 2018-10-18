@@ -10,8 +10,9 @@
 #include "Config.hpp"
 #include "Game.hpp"
 
-using namespace std;
 namespace fs = std::experimental::filesystem;
+
+bool fullscreen = false;
 
 SDL_Surface* icon;
 SDL_Event e;
@@ -30,7 +31,7 @@ void init() {
 	Config::load((fs::current_path() / fs::path("assets/config.json")).generic_string());
     #endif
 
-    int result = ctx.init(Config::getScreenWidth(), Config::getScreenHeight(), "hello world!", true);
+    int result = ctx.init(Config::getScreenWidth(), Config::getScreenHeight(), "hello world!", fullscreen);
 	if (result == -1) {
 		std::cout << "fatal error" << std::endl;
 		std::exit(-1);
@@ -97,7 +98,16 @@ void cleanup() {
 #undef main
 #endif /* main */
 int main(int argc, char** argv) {
-    cout << "hello, world!" << endl;
+    std::cout << "hello, world!" << std::endl;
+
+	if (argc > 1)
+	{
+		if (strcmp(argv[1], "-f") == 0)
+		{
+			fullscreen = true;
+			std::cout << "going fullscreen" << std::endl;
+		}
+	}
 
     init();
 

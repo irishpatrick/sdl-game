@@ -30,7 +30,7 @@ void init() {
 	Config::load((fs::current_path() / fs::path("assets/config.json")).generic_string());
     #endif
 
-    int result = ctx.init(Config::getScreenWidth(), Config::getScreenHeight(), "hello world!", false);
+    int result = ctx.init(Config::getScreenWidth(), Config::getScreenHeight(), "hello world!", true);
 	if (result == -1) {
 		std::cout << "fatal error" << std::endl;
 		std::exit(-1);

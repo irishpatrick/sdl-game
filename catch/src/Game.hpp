@@ -1,8 +1,8 @@
 #pragma once
 
 #include <engine.hpp>
-#include "spoon.hpp"
-#include "raspberry.hpp"
+#include "Spoon.hpp"
+#include "Raspberry.hpp"
 #include <vector>
 
 class Game: public engine::State {

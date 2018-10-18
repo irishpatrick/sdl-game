@@ -7,7 +7,7 @@
 #include <experimental/filesystem>
 #include <engine.hpp>
 #include <nlohmann/json.hpp>
-#include "game.hpp"
+#include "Game.hpp"
 #include <spdlog/spdlog.h>
 
 using json = nlohmann::json;

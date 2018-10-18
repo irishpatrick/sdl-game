@@ -1,8 +1,8 @@
-#include "spoon.hpp"
+#include "Spoon.hpp"
 #include <iostream>
 
 Spoon::Spoon(): engine::Sprite() {
-	
+
 }
 
 Spoon::~Spoon() {

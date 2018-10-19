@@ -3,7 +3,7 @@
 
 namespace fs = std::experimental::filesystem;
 
-Game::Game(): engine::State()
+Game::Game() : State()
 {
     playerInput = true;
     todo = nullptr;

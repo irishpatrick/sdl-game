@@ -7,6 +7,7 @@
 #include "Timer.hpp"
 #include <string>
 #include <deque>
+#include <vector>
 
 namespace engine
 {
@@ -33,6 +34,13 @@ namespace engine
 		Texture* tex;
 		Font font;
 		std::deque<std::string> lines;
+		std::vector<SDL_Surface*> renderList;
+		int lineIndex;
+		bool running;
+		int x;
+		int y;
+		SDL_Surface* surface;
+		std::string renderLine;
 		std::string currentLine;
 		Timer timer;
 	};

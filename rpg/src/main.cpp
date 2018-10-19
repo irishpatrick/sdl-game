@@ -9,8 +9,12 @@
 
 #include "Config.hpp"
 #include "Game.hpp"
+#include "Title.hpp"
+#include "StateManager.hpp"
 
 namespace fs = std::experimental::filesystem;
+
+StateManager sm;
 
 bool fullscreen = false;
 
@@ -19,8 +23,9 @@ SDL_Event e;
 bool quit;
 
 engine::Context ctx;
-
 engine::State* current;
+
+Title title;
 Game game;
 
 void init() {
@@ -36,6 +41,10 @@ void init() {
 		std::cout << "fatal error" << std::endl;
 		std::exit(-1);
 	}
+
+    StateManager::addState("game", &game);
+    StateManager::addState("title", &title);
+    StateManager::setCurrentState("game");
 }
 
 void loadingScreen() {
@@ -51,6 +60,7 @@ void loadingScreen() {
 }
 
 void render() {
+    current = StateManager::getCurrentState();
     float delta;
     uint32_t now;
     uint32_t then = SDL_GetTicks();
@@ -89,6 +99,7 @@ void render() {
 void cleanup() {
 	current = nullptr;
 	game.destroy();
+    title.destroy();
     //SDL_FreeSurface(icon);
 	ctx.destroy();
 }
@@ -130,9 +141,8 @@ int main(int argc, char** argv) {
 	engine::Assets::loadTexturesFromJson(ctx, fs::path(assetPath / "textures-all.json").generic_string());
     //engine::Assets::useAll(ctx);
 
-	game.init(ctx);
-
-	current = &game;
+    game.init(ctx);
+    title.init(ctx);
 
     SDL_SetRenderDrawColor(ctx.getRenderer(), 0, 0, 0, 255);
 

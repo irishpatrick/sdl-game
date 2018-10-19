@@ -155,7 +155,8 @@ namespace engine
 		{
 			printf("key %s not found!\n", key.c_str());
 			//getMissingTexture(ctx);
-			return missing;
+			//return missing;
+			return nullptr;
 		}
 		if (texMap[key] == nullptr)
 		{

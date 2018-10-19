@@ -11,6 +11,7 @@
 #include "Game.hpp"
 #include "Title.hpp"
 #include "StateManager.hpp"
+#include "Timer.hpp"
 
 namespace fs = std::experimental::filesystem;
 
@@ -44,7 +45,7 @@ void init() {
 
     StateManager::addState("game", &game);
     StateManager::addState("title", &title);
-    StateManager::setCurrentState("game");
+    StateManager::setCurrentState("title");
 }
 
 void loadingScreen() {
@@ -60,14 +61,14 @@ void loadingScreen() {
 }
 
 void render() {
-    current = StateManager::getCurrentState();
-    float delta;
-    uint32_t now;
-    uint32_t then = SDL_GetTicks();
+    long delta;
+    long now;
+    long then = engine::Timer::getNanoTime();
 
     quit = false;
     while (!quit) {
-        now = SDL_GetTicks();
+        current = StateManager::getCurrentState();
+        now = engine::Timer::getNanoTime();
         delta = now - then;
 
         while (SDL_PollEvent(&e)) {
@@ -86,7 +87,7 @@ void render() {
             quit = true;
         }
 
-        current->update(delta/1000.0f, state);
+        current->update((float)(delta/1e9), state);
 
         ctx.clear();
         current->render(ctx);

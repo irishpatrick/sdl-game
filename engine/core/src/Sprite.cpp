@@ -134,6 +134,12 @@ namespace engine {
     void Sprite::draw(Context& ctx) {
         if (!visible) return;
 
+		if (texture == nullptr)
+		{
+			std::cout << "error, texture is null" << std::endl;
+			return;
+		}
+
         SDL_Rect rect;
 		if (parent != nullptr) {
 			rect.x = x + parent->getScreenX();

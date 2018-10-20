@@ -74,8 +74,8 @@ namespace engine
 		SDL_Rect rect;
 		rect.x = 0;
 		rect.y = 0;
-		rect.w = 512;
-		rect.h = 480;
+		rect.w = ctx->getWidth();
+		rect.h = ctx->getHeight();
 		SDL_RenderFillRect(ctx->getRenderer(), &rect);
 		SDL_SetRenderDrawColor(ctx->getRenderer(), 0, 0, 0, 255);
 	}

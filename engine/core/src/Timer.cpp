@@ -59,4 +59,23 @@ namespace engine
 		}
 		return false;
 	}
+
+	void Timer::start()
+	{
+		reset();
+		initial = getNanoTime();
+	}
+
+	long Timer::getElapsed()
+	{
+		return getNanoTime() - initial;
+	}
+
+	long Timer::getDelta()
+	{
+		now = std::chrono::high_resolution_clock::now();
+		long delta = std::chrono::duration_cast<std::chrono::nanoseconds>(now - then).count();
+		then = std::chrono::high_resolution_clock::now();
+		return delta;
+	}
 }

@@ -5,8 +5,8 @@
 void Title::init(engine::Context& ctx)
 {
     background.setTexture(engine::Assets::getTexture("title.png"));
-    background.x = 0;
-    background.y = 0;
+    background.x = ctx.getWidth() / 2 - background.w / 2;
+    background.y = ctx.getHeight() / 2 - background.h / 2;
 }
 
 void Title::update(float delta, const unsigned char* keys)

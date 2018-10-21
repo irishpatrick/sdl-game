@@ -132,9 +132,11 @@ endif ()
 # add all the projects
 
 add_subdirectory(./engine/core)
+set(LIBRARIES ${LIBRARIES} core)
 
 if (BUILD_UI)
 	add_subdirectory(./engine/ui)
+    set(LIBRARIES ${LIBRARIES} ui)
 endif (BUILD_UI)
 
 if (BUILD_RPG)

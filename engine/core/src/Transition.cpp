@@ -3,6 +3,7 @@
 #include "Context.hpp"
 #include <SDL2/SDL.h>
 #include <cmath>
+#include <iostream>
 
 namespace engine
 {
@@ -50,9 +51,10 @@ namespace engine
 		if (!running)
 		{
 			running = true;
-			duration = d;
-			start = SDL_GetTicks();
+			duration = d * 1e6;
+			start = Timer::getNanoTime();
 			fade = FADE_OUT;
+			timer.start();
 		}
 	}
 
@@ -61,9 +63,10 @@ namespace engine
 		if (!running)
 		{
 			running = true;
-			duration = d;
-			start = SDL_GetTicks();
+			duration = d * 1e6;
+			start = Timer::getNanoTime();
 			fade = FADE_IN;
+			timer.start();
 		}
 	}
 
@@ -84,9 +87,10 @@ namespace engine
 	{
 		if (running)
 		{
-			uint32_t now = SDL_GetTicks();
-			uint32_t delta = now - start;
+			//std::cout << "running transition ";
+			long delta = timer.getElapsed();
 			float t = (float)delta / (float)(duration);
+			//std::cout << "t=" << t << std::endl;
 			if (t >= 1.0f)
 			{
 				running = false;

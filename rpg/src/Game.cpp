@@ -106,9 +106,9 @@ void Game::update(float delta, const uint8_t* keys) {
 		op.check(primary);
 		ol.check(secondary);
 
-		if (dec.isVisible()) 
+		if (/*dec.isVisible()*/0) 
 		{
-			if (up)
+			/*if (up)
 			{
 				dec.setSelection(ui::Decision::YES);
 			}
@@ -119,12 +119,12 @@ void Game::update(float delta, const uint8_t* keys) {
 			if (op.fire())
 			{
 				dec.setVisible(false);
-			}
+			}*/
 		}
-		else if (dlg.isVisible())
+		/*else if (dlg.isVisible())
 		{
             std::cout << "dialogue is visible" << std::endl;
-		}
+		}*/
 		else {
 			if ((up || down) && (left || right))
 			{
@@ -168,11 +168,11 @@ void Game::update(float delta, const uint8_t* keys) {
 
         if (op.fire())
 		{
-            if (dlg.isVisible())
+            /*if (dlg.isVisible())
 			{
                 dlg.pop();
             }
-            else if (hero_collisions.size() > 0) {
+            else*/ if (hero_collisions.size() > 0) {
                 engine::Sprite* collider = hero_collisions[0];
 
 				if (Door* d = dynamic_cast<Door*>(collider))
@@ -196,7 +196,7 @@ void Game::update(float delta, const uint8_t* keys) {
                 else if (Npc* npc = dynamic_cast<Npc*>(collider))
 				{
                     std::cout << "interacting with " << npc->getName() << std::endl;
-                    npc->interact(&hero, &dlg);
+                    //npc->interact(&hero, &dlg);
                 }
             }
         }
@@ -278,8 +278,8 @@ void Game::update(float delta, const uint8_t* keys) {
 void Game::render(engine::Context& ctx)
 {
     gm.getActive()->draw(camera, ctx);
-    dlg.render(&ctx);
-	dec.draw(&ctx);
+    //dlg.render(&ctx);
+	//dec.draw(&ctx);
 	transition.draw(&ctx);
     enemytest.draw(ctx);
 	debug.draw(ctx);

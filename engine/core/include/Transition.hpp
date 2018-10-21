@@ -1,7 +1,7 @@
 #pragma once
 
 #include "core_api.hpp"
-
+#include "Timer.hpp"
 #include <cstdint>
 
 namespace engine {
@@ -36,6 +36,7 @@ private:
 	uint32_t duration;
 	uint8_t alpha;
 	Fade fade;
+	Timer timer;
     bool running;
 };
 

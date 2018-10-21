@@ -40,8 +40,8 @@ private:
     engine::OneShot ol;
     std::vector<engine::Sprite*> hero_collisions;
     engine::ImageFont font;
-    ui::Dialogue dlg;
-	ui::Decision dec;
+    //ui::Dialogue dlg;
+	//ui::Decision dec;
     engine::Transition transition;
     Enemy enemytest;
     Door* todo;

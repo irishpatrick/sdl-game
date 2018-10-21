@@ -16,6 +16,12 @@ Game::~Game()
 
 }
 
+void Game::onEntry()
+{
+    transition.setAlpha(0);
+    transition.fadeIn(500);
+}
+
 void Game::init(engine::Context& ctx)
 {
 	fs::path maps = fs::current_path() / "assets" / "maps";

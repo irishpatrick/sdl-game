@@ -11,6 +11,7 @@ void StateManager::addState(const std::string& key, engine::State* state)
 void StateManager::setCurrentState(const std::string& key)
 {
     currentState = key;
+    states.at(key)->onEntry();
 }
 
 engine::State* StateManager::getCurrentState()

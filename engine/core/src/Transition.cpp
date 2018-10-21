@@ -21,6 +21,11 @@ namespace engine
 
 	}
 
+	void Transition::setAlpha(uint8_t a)
+	{
+		alpha = a;
+	}
+
 	void Transition::blockingFadeOut(Context* ctx, uint32_t d)
 	{
 		if (!running)

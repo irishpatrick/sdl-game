@@ -15,6 +15,8 @@ public:
 	CORE_API  Transition();
 	CORE_API ~Transition();
 
+	CORE_API void setAlpha(uint8_t);
+
 	CORE_API inline void draw(Context* ctx) {
 		fill(ctx, alpha);
 	}

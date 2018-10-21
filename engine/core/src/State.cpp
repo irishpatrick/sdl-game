@@ -26,4 +26,8 @@ namespace engine {
 
 	}
 
+	void State::onEntry()
+	{
+
+	}
 }

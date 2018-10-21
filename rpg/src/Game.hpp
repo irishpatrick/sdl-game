@@ -21,6 +21,7 @@ public:
 
     void init(engine::Context&) override;
     //void input(uint8_t*);
+    void onEntry() override;
     void tests();
     void update(float, const uint8_t*) override;
     void render(engine::Context&) override;

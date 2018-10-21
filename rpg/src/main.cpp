@@ -109,15 +109,22 @@ void cleanup() {
 #ifdef main
 #undef main
 #endif /* main */
-int main(int argc, char** argv) {
+int main(int argc, char* argv[]) {
     std::cout << "hello, world!" << std::endl;
 
 	if (argc > 1)
 	{
-		if (strcmp(argv[1], "-f") == 0)
+		for (int i = 1; i < argc; i++)
 		{
-			fullscreen = true;
-			std::cout << "going fullscreen" << std::endl;
+			if (strcmp(argv[i], "-f"))
+			{
+				fullscreen = true;
+			}
+			else if (strcmp(argv[i], "-s"))
+			{
+				std::string tag(&argv[i][2]);
+				StateManager::setCurrentState(tag);
+			}
 		}
 	}
 

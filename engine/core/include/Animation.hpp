@@ -14,12 +14,14 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-namespace engine {
+namespace engine
+{
 
 	class Texture;
 	class Timer;
 
-	typedef struct {
+	typedef struct
+	{
 		char* name;
 		uint32_t fps;
 		uint32_t count;

@@ -11,12 +11,14 @@
 
 namespace fs = std::experimental::filesystem;
 
-namespace engine {
+namespace engine
+{
 
 	class Context;
 	class Texture;
 
-	class Assets {
+	class Assets
+	{
 	public:
 
 		CORE_API static void loadTexture(Context& ctx, const std::string&);

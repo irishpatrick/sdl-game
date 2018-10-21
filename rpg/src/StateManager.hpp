@@ -13,4 +13,5 @@ public:
 private:
     static std::map<std::string, engine::State*> states;
     static std::string currentState;
+    static engine::Transition transition;
 };

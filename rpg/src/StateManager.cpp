@@ -2,6 +2,7 @@
 
 std::map<std::string, engine::State*> StateManager::states = std::map<std::string, engine::State*>();
 std::string StateManager::currentState = std::string();
+engine::Transition StateManager::transition = engine::Transition();
 
 void StateManager::addState(const std::string& key, engine::State* state)
 {

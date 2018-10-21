@@ -48,6 +48,7 @@ namespace engine
 
 	void Transition::fadeOut(uint32_t d)
 	{
+		status = 0;
 		if (!running)
 		{
 			running = true;
@@ -60,6 +61,7 @@ namespace engine
 
 	void Transition::fadeIn(uint32_t d)
 	{
+		status = 0;
 		if (!running)
 		{
 			running = true;
@@ -94,6 +96,7 @@ namespace engine
 			if (t >= 1.0f)
 			{
 				running = false;
+				status = 1;
 				t = 1.0f;
 			}
 			float lerp = 0.0f;

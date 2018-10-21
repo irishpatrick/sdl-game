@@ -21,5 +21,5 @@ public:
 
 private:
     engine::Sprite background;
-    
+	engine::Transition transition;
 };

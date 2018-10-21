@@ -23,6 +23,11 @@ public:
         return running;
     }
 
+	CORE_API int getStatus()
+	{
+		return status;
+	}
+
 	CORE_API void update();
 	CORE_API void fadeOut(uint32_t);
 	CORE_API void fadeIn(uint32_t);
@@ -33,6 +38,7 @@ private:
 	CORE_API void fill(Context*, uint8_t);
 
 	uint32_t start;
+	int status;
 	uint32_t duration;
 	uint8_t alpha;
 	Fade fade;

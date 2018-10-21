@@ -25,7 +25,18 @@ public:
 
 	CORE_API int getStatus()
 	{
+		if (status)
+		{
+			status = false;
+			return !status;
+		}
+		
 		return status;
+	}
+
+	CORE_API uint8_t getAlpha()
+	{
+		return alpha;
 	}
 
 	CORE_API void update();
@@ -38,7 +49,7 @@ private:
 	CORE_API void fill(Context*, uint8_t);
 
 	uint32_t start;
-	int status;
+	bool status;
 	uint32_t duration;
 	uint8_t alpha;
 	Fade fade;

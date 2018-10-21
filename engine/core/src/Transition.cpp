@@ -13,6 +13,7 @@ namespace engine
 		alpha = 0;
 		duration = 0;
 		running = false;
+		status = 0;
 	}
 
 	Transition::~Transition()
@@ -48,7 +49,7 @@ namespace engine
 
 	void Transition::fadeOut(uint32_t d)
 	{
-		status = 0;
+		status = false;
 		if (!running)
 		{
 			running = true;
@@ -61,7 +62,7 @@ namespace engine
 
 	void Transition::fadeIn(uint32_t d)
 	{
-		status = 0;
+		status = false;
 		if (!running)
 		{
 			running = true;

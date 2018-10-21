@@ -7,7 +7,7 @@ void Title::init(engine::Context& ctx)
     background.setTexture(engine::Assets::getTexture("title.png"));
     background.x = ctx.getWidth() / 2 - background.w / 2;
     background.y = ctx.getHeight() / 2 - background.h / 2;
-	
+
 }
 
 void Title::update(float delta, const unsigned char* keys)
@@ -15,10 +15,11 @@ void Title::update(float delta, const unsigned char* keys)
     if (keys[SDL_SCANCODE_RETURN])
     {
 		transition.fadeOut(200);
-        std::cout << "current state change to game" << std::endl;
     }
 
-	if (transition.getStatus() && !transition.isRunning())
+    transition.update();
+
+	if (transition.getStatus() == 1 && !transition.isRunning())
 	{
 		StateManager::setCurrentState("game");
 	}
@@ -26,6 +27,6 @@ void Title::update(float delta, const unsigned char* keys)
 
 void Title::render(engine::Context& ctx)
 {
-	transition.draw(&ctx);
     background.draw(ctx);
+	transition.draw(&ctx);
 }

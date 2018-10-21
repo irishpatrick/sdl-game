@@ -7,7 +7,6 @@
 #include "Stats.hpp"
 #include "Npc.hpp"
 #include "Enemy.hpp"
-#include <ui.hpp>
 #include <engine.hpp>
 #include <cstdlib>
 #include <ctime>

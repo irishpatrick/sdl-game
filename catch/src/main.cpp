@@ -8,7 +8,6 @@
 #include <engine.hpp>
 #include <nlohmann/json.hpp>
 #include "Game.hpp"
-#include <spdlog/spdlog.h>
 
 using json = nlohmann::json;
 namespace fs = std::experimental::filesystem;

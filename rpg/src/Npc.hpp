@@ -8,7 +8,6 @@
 
 #include "Stats.hpp"
 #include "Player.hpp"
-#include <ui.hpp>
 
 class Npc: public engine::KeyFrameSprite
 {
@@ -20,7 +19,7 @@ public:
 
 	void pushLine(const std::string&);
 
-    void interact(engine::Sprite* s, ui::Dialogue*);
+    void interact(engine::Sprite* s);
 
 private:
     std::vector<std::string> lines;

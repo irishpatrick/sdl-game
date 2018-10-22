@@ -53,7 +53,7 @@ namespace engine
 		if (lineCount > 3)
 		{
 			SDL_FillRect(surface, nullptr, 0x00000000);
-			lineCount = 0;
+			lineCount = 1;
 		}
 		font.renderString(ctx, surface, renderLine, x, y + (font.getLineSkip() * (lineCount - 1)));
 
@@ -77,6 +77,7 @@ namespace engine
 		if (running)
 		{
 			std::cout << "cannot advance deque while running" << std::endl;
+			return;
 		}
 		if (lines.size() == 0)
 		{

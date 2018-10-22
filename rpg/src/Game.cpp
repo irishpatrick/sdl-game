@@ -72,14 +72,14 @@ void Game::init(engine::Context& ctx)
     scTest.init(ctx, (fs::current_path() / "assets" / "font.ttf").generic_string());
     scTest.addLine("first line");
     scTest.addLine("second line");
-    scTest.addLine("first line");
-    scTest.addLine("second line");
-    scTest.addLine("first line");
-    scTest.addLine("second line");
-    scTest.addLine("first line");
-    scTest.addLine("second line");
-    scTest.addLine("first line");
-    scTest.addLine("second line");
+    scTest.addLine("third line");
+    scTest.addLine("fourth line");
+    scTest.addLine("fifth line");
+    scTest.addLine("sixth line");
+    scTest.addLine("seventh line");
+    scTest.addLine("eighth line");
+    scTest.addLine("ninth line");
+    scTest.addLine("tenth line");
 }
 
 void Game::tests() {

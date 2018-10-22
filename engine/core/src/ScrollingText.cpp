@@ -2,14 +2,14 @@
 
 namespace engine
 {
-	void ScrollingText::init(Context& ctx, const std::string& fn)
+	void ScrollingText::init(Context& ctx, const std::string& fn, int speed)
 	{
 		x = 0;
 		y = 0;
 		lineCount = 0;
 		lineIndex = 0;
 		font.init(ctx, fn);
-		timer.setInterval(40);
+		timer.setInterval(speed);
 
 		uint32_t rmask, gmask, bmask, amask;
         #if SDL_BYTEORDER == SDL_BIG_ENDIAN
@@ -55,7 +55,12 @@ namespace engine
 			SDL_FillRect(surface, nullptr, 0x00000000);
 			lineCount = 1;
 		}
+
 		font.renderString(ctx, surface, renderLine, x, y + (font.getLineSkip() * (lineCount - 1)));
+		if (!running)
+		{
+			renderLine = "";
+		}
 
 		tex = SDL_CreateTextureFromSurface(ctx.getRenderer(), surface);
 		SDL_Rect r;
@@ -65,6 +70,7 @@ namespace engine
         r.h = ctx.getHeight();
 		SDL_RenderCopy(ctx.getRenderer(), tex, nullptr, &r);
 		SDL_DestroyTexture(tex);
+
 	}
 
 	void ScrollingText::addLine(const std::string& str)
@@ -84,7 +90,7 @@ namespace engine
 			std::cout << "deque empty" << std::endl;
 			return;
 		}
-		lineIndex = 0;
+		lineIndex = 1;
 		running = true;
 		currentLine = lines.front();
 		lines.pop_front();

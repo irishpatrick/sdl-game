@@ -31,11 +31,12 @@ namespace engine
 		CORE_API void addLine(const std::string&);
 
 	private:
-		Texture* tex;
+		SDL_Texture* tex;
 		Font font;
 		std::deque<std::string> lines;
 		std::vector<SDL_Surface*> renderList;
 		int lineIndex;
+		int lineCount;
 		bool running;
 		int x;
 		int y;

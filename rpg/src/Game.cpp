@@ -69,6 +69,17 @@ void Game::init(engine::Context& ctx)
 	debug.addLine("hello debug");
 	debug.addLine("new line");
 
+    scTest.init(ctx, (fs::current_path() / "assets" / "font.ttf").generic_string());
+    scTest.addLine("first line");
+    scTest.addLine("second line");
+    scTest.addLine("first line");
+    scTest.addLine("second line");
+    scTest.addLine("first line");
+    scTest.addLine("second line");
+    scTest.addLine("first line");
+    scTest.addLine("second line");
+    scTest.addLine("first line");
+    scTest.addLine("second line");
 }
 
 void Game::tests() {
@@ -209,7 +220,8 @@ void Game::update(float delta, const uint8_t* keys) {
 
         if (ol.fire()) 
 		{
-
+            std::cout << "advance scrolling text" << std::endl;
+            scTest.next();
         }
 
         auto collisions = engine::Util::getVelocityCollisions
@@ -265,6 +277,8 @@ void Game::update(float delta, const uint8_t* keys) {
         }
     }
 
+    scTest.update();
+
     transition.update();
     hero.update(delta);
 
@@ -288,7 +302,8 @@ void Game::render(engine::Context& ctx)
 	//dec.draw(&ctx);
 	transition.draw(&ctx);
     enemytest.draw(ctx);
-	debug.draw(ctx);
+	//debug.draw(ctx);
+    scTest.draw(ctx);
 }
 
 void Game::destroy()

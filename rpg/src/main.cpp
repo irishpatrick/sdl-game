@@ -114,13 +114,13 @@ int main(int argc, char* argv[]) {
 
 	if (argc > 1)
 	{
-		for (int i = 1; i < argc; i++)
+        for (int i = 1; i < argc; i++)
 		{
-			if (strcmp(argv[i], "-f"))
+			if (strcmp(argv[i], "-f") == 0)
 			{
 				fullscreen = true;
 			}
-			else if (strcmp(argv[i], "-s"))
+			else if (strcmp(argv[i], "-s") == 0)
 			{
 				std::string tag(&argv[i][2]);
 				StateManager::setCurrentState(tag);

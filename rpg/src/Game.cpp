@@ -19,7 +19,7 @@ Game::~Game()
 void Game::onEntry()
 {
     transition.setAlpha(0);
-    transition.fadeIn(500);
+    transition.fadeIn(200);
 }
 
 void Game::init(engine::Context& ctx)
@@ -99,7 +99,7 @@ void Game::update(float delta, const uint8_t* keys) {
         );
 		hero.x = todo_x;
 		hero.y = todo_y;
-		transition.fadeIn(250);
+		transition.fadeIn(200);
 	}
 
     if (playerInput) {
@@ -195,7 +195,7 @@ void Game::update(float delta, const uint8_t* keys) {
 							break;
 						}
 					}
-					transition.fadeOut(250);
+					transition.fadeOut(200);
 					//d->Enter();
 					todo = d;
 				}

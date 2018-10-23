@@ -82,12 +82,10 @@ namespace engine
 	{
 		if (running)
 		{
-			std::cout << "cannot advance deque while running" << std::endl;
 			return;
 		}
 		if (lines.size() == 0)
 		{
-			std::cout << "deque empty" << std::endl;
 			return;
 		}
 		lineIndex = 1;

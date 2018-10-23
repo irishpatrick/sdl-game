@@ -1,15 +1,19 @@
 #pragma once
 
-class DialogueBox
+#include <engine.hpp>
+
+class DialogueBox : public engine::Sprite
 {
 public:
-    DialogueBox()
+    DialogueBox() : Sprite()
     {
 
     }
 
     ~DialogueBox()
     {
-        
+
     }
+
+    engine::ScrollingText text;
 };

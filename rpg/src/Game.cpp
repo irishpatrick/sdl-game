@@ -220,7 +220,6 @@ void Game::update(float delta, const uint8_t* keys) {
 
         if (ol.fire()) 
 		{
-            std::cout << "advance scrolling text" << std::endl;
             scTest.next();
         }
 

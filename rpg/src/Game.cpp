@@ -69,7 +69,7 @@ void Game::init(engine::Context& ctx)
 	debug.addLine("hello debug");
 	debug.addLine("new line");
 
-    scTest.init(ctx, (fs::current_path() / "assets" / "font.ttf").generic_string(), 20);
+    scTest.init(ctx, (fs::current_path() / "assets" / "font.ttf").generic_string(), 80, 20);
     scTest.addLine("first line");
     scTest.addLine("second line");
     scTest.addLine("third line");
@@ -80,6 +80,7 @@ void Game::init(engine::Context& ctx)
     scTest.addLine("eighth line");
     scTest.addLine("ninth line");
     scTest.addLine("tenth line");
+	scTest.addLine("testing the thickness line line line line line line line line line enil enil enil enil");
 }
 
 void Game::tests() {

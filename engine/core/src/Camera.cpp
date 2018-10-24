@@ -2,9 +2,11 @@
 #include "Sprite.hpp"
 #include <iostream>
 
-namespace engine {
+namespace engine
+{
 
-	Camera::Camera() : Object() {
+	Camera::Camera() : Object()
+	{
 		fx = 0.0f;
 		fy = 0.0f;
 		w = -1;
@@ -12,16 +14,19 @@ namespace engine {
 		focus = nullptr;
 	}
 
-	Camera::~Camera() {
+	Camera::~Camera()
+	{
 
 	}
 
-	void Camera::setScreen(int a, int b) {
+	void Camera::setScreen(int a, int b)
+	{
 		w = a;
 		h = b;
 	}
 
-	void Camera::update(float delta) {
+	void Camera::update(float delta)
+	{
 		if (w == -1 && h == -1) {
 			std::cout << "need to set screen dimensions" << std::endl;
 		}
@@ -31,7 +36,8 @@ namespace engine {
 		}
 	}
 
-	void Camera::setFocus(Sprite* s) {
+	void Camera::setFocus(Sprite* s)
+	{
 		focus = s;
 	}
 

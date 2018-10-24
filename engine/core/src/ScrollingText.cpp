@@ -2,13 +2,13 @@
 
 namespace engine
 {
-	void ScrollingText::init(Context& ctx, const std::string& fn, int speed)
+	void ScrollingText::init(Context& ctx, const std::string& fn, int size, int speed)
 	{
 		x = 0;
 		y = 0;
 		lineCount = 0;
 		lineIndex = 0;
-		font.init(ctx, fn);
+		font.init(ctx, fn, size);
 		timer.setInterval(speed);
 
 		uint32_t rmask, gmask, bmask, amask;

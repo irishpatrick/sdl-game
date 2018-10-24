@@ -22,6 +22,11 @@ namespace engine {
 
     }
 
+	CORE_API void Group::init(Context& ctx)
+	{
+		
+	}
+
     void Group::init_from_json(const std::string& fn)
 	{
         std::ifstream in(fn);

@@ -22,7 +22,7 @@ namespace engine
 	public:
 		Font();
 		~Font();
-		CORE_API void init(Context&, const std::string&);
+		CORE_API void init(Context&, const std::string&, int);
 		CORE_API void renderString(Context&, SDL_Surface*, const std::string&, int, int);
 		CORE_API SDL_Surface* getChar(char);
 		CORE_API int getLineSkip();

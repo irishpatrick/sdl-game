@@ -14,9 +14,9 @@ namespace engine
 
 	}
 
-	void Font::init(Context& ctx, const std::string& fn)
+	void Font::init(Context& ctx, const std::string& fn, int size)
 	{
-		font = TTF_OpenFont(fn.c_str(), 30);
+		font = TTF_OpenFont(fn.c_str(), size);
 		if (font == nullptr)
 		{
 			return;

@@ -24,7 +24,7 @@ namespace engine
 
 		}
 
-		CORE_API void init(Context&, const std::string&, int);
+		CORE_API void init(Context&, const std::string&, int, int);
 		CORE_API void update();
 		CORE_API void draw(Context&);
 		CORE_API void next();

@@ -7,7 +7,8 @@ namespace engine {
 
 class Sprite;
 
-	class Camera : public Object {
+	class Camera : public Object
+	{
 	public:
 		CORE_API Camera();
 		CORE_API ~Camera();

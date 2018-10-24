@@ -44,7 +44,7 @@ namespace engine
             amask
         );
 
-		font.init(ctx, fn);
+		font.init(ctx, fn, 40);
     }
 
 	void DebugInfo::addLine(const std::string& str)

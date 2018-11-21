@@ -94,4 +94,32 @@ namespace engine
 		lines.pop_front();
 		lineCount++;
 	}
+
+	void ScrollingText::addLines(const std::string& str, int width)
+	{
+		int start = 0;
+		int end = 1;
+		int current = 0;
+		int lastSpaceIndex = -1;
+		std::vector<int> spaces;
+		while (start+1 < str.size())
+		{
+			std::string newLine = "";
+			int calculatedW = 0;
+			while (calculatedW < width)
+			{
+				std::string c = str.substr(current, 1);
+				if (c == " ")
+				{
+					spaces.push_back(current);
+				}
+				newLine += c;
+				calculatedW += font.getCharWidth(c);
+				current++;
+			}
+			addLine(str.substr(start, current));
+			start = current;
+			calculatedW = 0;
+		}
+	}
 }

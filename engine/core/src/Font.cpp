@@ -72,4 +72,10 @@ namespace engine
 	{
 		return TTF_FontLineSkip(font);
 	}
+
+	int Font::getCharWidth(const std::string& c)
+	{
+		GlyphMetrics* gm = metrics[static_cast<int>(chars.find(c))];
+		return gm->advance;
+	}
 }

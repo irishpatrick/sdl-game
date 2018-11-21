@@ -8,6 +8,7 @@
 
 #include "Stats.hpp"
 #include "Player.hpp"
+#include "DialogueBox.hpp"
 
 class Npc: public engine::KeyFrameSprite
 {
@@ -16,12 +17,16 @@ public:
     ~Npc();
 
 	void init(engine::Context&, const std::string&);
-
 	void pushLine(const std::string&);
-
     void interact(engine::Sprite* s);
+
+	inline void setDialogueBox(DialogueBox* ptr)
+	{
+		dialogue = ptr;
+	}
 
 private:
     std::vector<std::string> lines;
     Stats stats;
+	DialogueBox* dialogue;
 };

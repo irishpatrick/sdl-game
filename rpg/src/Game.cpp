@@ -80,7 +80,7 @@ void Game::init(engine::Context& ctx)
     scTest.addLine("eighth line");
     scTest.addLine("ninth line");
     scTest.addLine("tenth line");
-	scTest.addLine("testing the thickness line line line line line line line line line enil enil enil enil");
+	scTest.addLine("testing the thickness line line line line line line line line line line line line line");
 }
 
 void Game::tests() {

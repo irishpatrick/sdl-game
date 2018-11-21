@@ -26,6 +26,7 @@ namespace engine
 		CORE_API void renderString(Context&, SDL_Surface*, const std::string&, int, int);
 		CORE_API SDL_Surface* getChar(char);
 		CORE_API int getLineSkip();
+		CORE_API int getCharWidth(const std::string&);
 
 	private:
 		TTF_Font* font;

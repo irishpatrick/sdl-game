@@ -15,7 +15,7 @@ void Dungeon::placeRoom()
 
 bool Dungeon::isRoomValid()
 {
-
+	return false;
 }
 
 void Dungeon::fill()

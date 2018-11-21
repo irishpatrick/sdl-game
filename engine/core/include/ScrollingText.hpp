@@ -29,6 +29,10 @@ namespace engine
 		CORE_API void draw(Context&);
 		CORE_API void next();
 		CORE_API void addLine(const std::string&);
+		CORE_API void addLines(const std::string&, int);
+
+		int x;
+		int y;
 
 	private:
 		SDL_Texture* tex;
@@ -38,8 +42,6 @@ namespace engine
 		int lineIndex;
 		int lineCount;
 		bool running;
-		int x;
-		int y;
 		SDL_Surface* surface;
 		std::string renderLine;
 		std::string currentLine;

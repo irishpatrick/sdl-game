@@ -19,6 +19,16 @@ public:
 	void update(float) override;
 	void draw(engine::Context&) override;
 
+	inline void addLine(const std::string& str)
+	{
+		text.addLine(str);
+	}
+
+	inline void next()
+	{
+		text.next();
+	}
+
     engine::ScrollingText text;
 	engine::Sprite textBox;
 };

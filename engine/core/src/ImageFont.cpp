@@ -83,7 +83,7 @@ namespace engine {
 		float x = ox;
 		float y = oy;
 		//std::cout << "renderString() " << str << std::endl;
-		for (uint32_t i=0; i<str.length(); i++) {
+		for (uint32_t i = 0; i < str.length(); i++) {
 			char c = str[i];
 			std::string s;
 			std::stringstream ss;
@@ -92,5 +92,4 @@ namespace engine {
 			renderChar(s, x + (i * w * scale), y, r);
 		}
 	}
-
 }

@@ -12,6 +12,7 @@ public:
     static void setFocus(engine::Sprite*);
     static engine::Group* getGroup(const std::string&);
     static const std::string& getActiveId();
+    static engine::Group* getActive();
 
 private:
     static std::map<std::string, engine::Group*> groupMap;

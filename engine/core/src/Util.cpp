@@ -187,6 +187,7 @@ namespace engine {
 		if (a == nullptr || b == nullptr)
 		{
 			printf("no nullptrs!\n");
+			return;
 		}
 		if (a->x < b->x) a->x = b->x;
 		else if (a->x + a->w > b->x + b->w) a->x = b->x + b->w - a->w;

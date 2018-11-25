@@ -1,5 +1,6 @@
 #include "Room.hpp"
 #include "Door.hpp"
+#include "Npc.hpp"
 #include <iostream>
 #include <fstream>
 #include <nlohmann/json.hpp>
@@ -8,6 +9,7 @@ using json = nlohmann::json;
 
 void Room::load(const std::string& fn)
 {
+	std::cout << "loading room " << fn << std::endl;
     std::ifstream in(fn);
     if (in.fail())
     {
@@ -23,7 +25,12 @@ void Room::load(const std::string& fn)
         sx = o["entry"]["x"];
         sy = o["entry"]["y"];
     }
-    if (o.find("prites") != o.end())
+	else
+	{
+		std::cout << "bad entry format" << std::endl;
+		return;
+	}
+    if (o.find("sprites") != o.end())
     {
         for (const auto& e : o["sprites"])
         {
@@ -34,7 +41,7 @@ void Room::load(const std::string& fn)
             std::string texture = e["texture"];
             bool solid = e["solid"];
 
-            engine::Sprite* sprite;
+            engine::Sprite* sprite = nullptr;
             if (e.find("type") != e.end())
             {
                 std::string type = e["type"];
@@ -52,9 +59,49 @@ void Room::load(const std::string& fn)
                         ref->setTag(e["tag"]);
                     }
                 }
+				else if (type == "npc")
+				{
+					sprite = new Npc();
+					Npc* ref = (Npc*)sprite;
+					if (e.find("dialogue") != e.end())
+					{
+						for (auto& line : e["dialogue"])
+						{
+							ref->pushLine(line.get<std::string>());
+						}
+					}
+				}
+				else
+				{
+					// possible leak
+					sprite = new engine::Sprite();
+				}
             }
+			else
+			{
+				sprite = new engine::Sprite();
+			}
+			if (sprite != nullptr)
+			{
+				sprite->dynamic = true;
+				sprite->name = name;
+				sprite->x = x;
+				sprite->y = y;
+				sprite->setSolid(solid);
+				sprite->setTexture(engine::Assets::getTexture(texture));
+				add(sprite);
+			}
+			else
+			{
+				std::cout << "error sprite was null" << std::endl;
+			}
         }
     }
+	else
+	{
+		std::cout << "bad sprite format" << std::endl;
+		return;
+	}
 }
 
 void Room::update(float delta)

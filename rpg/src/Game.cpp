@@ -1,6 +1,5 @@
 #include "Game.hpp"
 #include "StaticGM.hpp"
-#include "Room.hpp"
 #include <experimental/filesystem>
 
 namespace fs = std::experimental::filesystem;
@@ -38,18 +37,13 @@ void Game::init(engine::Context& ctx)
     hero.y = 10;
 
     //gm.setcamera(&camera);
-    /*gm.setFocus(&hero);
+    gm.setFocus(&hero);
     gm.loadGroup("room1", (maps / "room1.json").generic_string());
     gm.loadGroup("town1", (maps / "town1.json").generic_string());
     std::cout << "loading room2.json" << std::endl;
     gm.loadGroup("room2", (maps / "room2.json").generic_string());
     //gm.addgroup("stage", &stage);
     gm.setActive("town1");
-	*/
-
-	Room room1;
-	Room town1;
-	Room room2;
 
 	room1.load((maps / "room1.json").generic_string());
 	town1.load((maps / "town1.json").generic_string());
@@ -59,13 +53,15 @@ void Game::init(engine::Context& ctx)
 	StaticGM::addGroup("room1", &room1);
 	StaticGM::addGroup("town1", &town1);
 	StaticGM::addGroup("room2", &room2);
+	StaticGM::setActive("town1");
 
 
     //dlg.push("this is a very very long string that will hopefully get divided up");
     //dlg.initFont(engine::Assets::getTexture("white-font.png"));
     tests();
 
-    hero_collisions = engine::Util::GetCollisions(&hero, gm.getActive());
+    //hero_collisions = engine::Util::GetCollisions(&hero, gm.getActive());
+    hero_collisions = engine::Util::GetCollisions(&hero, StaticGM::getActive());
 
     /*ui::Config::initFont(engine::Assets::getTexture("white-font.png"), 0.055f);
     ui::Config::setActiveColor(255, 255, 0);
@@ -123,7 +119,8 @@ void Game::update(float delta, const uint8_t* keys) {
 		todo = nullptr;
         hero_collisions = engine::Util::getVelocityCollisions(
             &hero,
-            gm.getActive(),
+            //gm.getActive(),
+            StaticGM::getActive(),
             delta
         );
 		hero.x = todo_x;
@@ -191,7 +188,8 @@ void Game::update(float delta, const uint8_t* keys) {
 			{
 				hero_collisions = engine::Util::getVelocityCollisions(
 					&hero,
-					gm.getActive(),
+					//gm.getActive(),
+					StaticGM::getActive(),
 					delta
 				);
 			}
@@ -212,12 +210,14 @@ void Game::update(float delta, const uint8_t* keys) {
 
 				if (Door* d = dynamic_cast<Door*>(collider))
 				{
-					auto g = gm.getGroup(d->getDest());
+					//auto g = gm.getGroup(d->getDest());
+					auto g = StaticGM::getGroup(d->getDest());
 					std::vector<Door*> doors;
 					g->getSpritesByType<Door>(doors);
 					for (auto& e : doors)
 					{
-						if (e->getDest() == gm.getActiveId())
+						//if (e->getDest() == gm.getActiveId())
+						if (e->getDest() == StaticGM::getActiveId())
 						{
 							todo_x = e->getExit().x;
 							todo_y = e->getExit().y;
@@ -244,7 +244,8 @@ void Game::update(float delta, const uint8_t* keys) {
         auto collisions = engine::Util::getVelocityCollisions
 		(
             &hero,
-            gm.getActive(),
+            //gm.getActive(),
+            StaticGM::getActive(),
             delta
         );
 
@@ -304,17 +305,20 @@ void Game::update(float delta, const uint8_t* keys) {
     engine::Util::contain
 	(
         &hero,
-        gm.getActive()->get_sprite_by_name("background")
+        //gm.getActive()->get_sprite_by_name("background")
+        StaticGM::getActive()->get_sprite_by_name("background")
     );
 
     camera.update(delta);
 
-    gm.getActive()->sort();
+    //gm.getActive()->sort();
+	StaticGM::getActive()->sort();
 }
 
 void Game::render(engine::Context& ctx)
 {
-    gm.getActive()->draw(camera, ctx);
+    //gm.getActive()->draw(camera, ctx);
+    StaticGM::getActive()->draw(camera, ctx);
     //dlg.render(&ctx);
 	//dec.draw(&ctx);
 	transition.draw(&ctx);

@@ -6,6 +6,7 @@
 #include "Door.hpp"
 #include "Stats.hpp"
 #include "Npc.hpp"
+#include "Room.hpp"
 #include "Enemy.hpp"
 #include <engine.hpp>
 #include <cstdlib>
@@ -49,4 +50,8 @@ private:
     float todo_x;
     float todo_y;
     engine::ScrollingText scTest;
+
+	Room room1;
+	Room town1;
+	Room room2;
 };

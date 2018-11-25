@@ -9,11 +9,17 @@ std::string StaticGM::activeId = std::string();
 
 void StaticGM::addGroup(const std::string& id, engine::Group* group)
 {
+	std::cout << "adding group " << id << std::endl;
     groupMap.insert(std::pair<std::string, engine::Group*>(id, group));
 }
 
 void StaticGM::setEntry(const std::string& tag)
 {
+	if (activeGroup == nullptr)
+	{
+		std::cout << "no group was set active" << std::endl;
+		return;
+	}
 	for (auto& e : activeGroup->getSprites())
 	{
 		if (Door* d = dynamic_cast<Door*>(e))
@@ -35,17 +41,21 @@ void StaticGM::setActive(const std::string& id)
     activeId = id;
     if (groupMap.find(id) == groupMap.end())
     {
+		std::cout << "setActive() error" << std::endl;
         // todo handle error
         return;
     }
 
     activeGroup = groupMap[id];
+
+	activeGroup->add(focus);
 }
 
 engine::Group* StaticGM::getGroup(const std::string& id)
 {
     if (groupMap.find(id) == groupMap.end())
     {
+		std::cout << "getGroup() error" << std::endl;
         // todo handle error
         return nullptr;
     }

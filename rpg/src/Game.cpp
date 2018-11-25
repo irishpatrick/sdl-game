@@ -1,4 +1,6 @@
 #include "Game.hpp"
+#include "StaticGM.hpp"
+#include "Room.hpp"
 #include <experimental/filesystem>
 
 namespace fs = std::experimental::filesystem;
@@ -36,13 +38,28 @@ void Game::init(engine::Context& ctx)
     hero.y = 10;
 
     //gm.setcamera(&camera);
-    gm.setFocus(&hero);
+    /*gm.setFocus(&hero);
     gm.loadGroup("room1", (maps / "room1.json").generic_string());
     gm.loadGroup("town1", (maps / "town1.json").generic_string());
     std::cout << "loading room2.json" << std::endl;
     gm.loadGroup("room2", (maps / "room2.json").generic_string());
     //gm.addgroup("stage", &stage);
     gm.setActive("town1");
+	*/
+
+	Room room1;
+	Room town1;
+	Room room2;
+
+	room1.load((maps / "room1.json").generic_string());
+	town1.load((maps / "town1.json").generic_string());
+	room2.load((maps / "room2.json").generic_string());
+
+	StaticGM::setFocus(&hero);
+	StaticGM::addGroup("room1", &room1);
+	StaticGM::addGroup("town1", &town1);
+	StaticGM::addGroup("room2", &room2);
+
 
     //dlg.push("this is a very very long string that will hopefully get divided up");
     //dlg.initFont(engine::Assets::getTexture("white-font.png"));

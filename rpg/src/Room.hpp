@@ -11,4 +11,8 @@ public:
     void load(const std::string&);
     void update(float);
     void draw(engine::Context&);
+	engine::Point getEntry();
+
+private:
+	engine::Point entry;
 };

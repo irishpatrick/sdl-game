@@ -22,8 +22,9 @@ void Room::load(const std::string& fn)
 
     if (o.find("entry") != o.end())
     {
-        sx = o["entry"]["x"];
-        sy = o["entry"]["y"];
+        sx = o["entry"]["x"].get<float>();
+        sy = o["entry"]["y"].get<float>();
+		entry.set(sx, sy);
     }
 	else
 	{
@@ -34,7 +35,8 @@ void Room::load(const std::string& fn)
     {
         for (const auto& e : o["sprites"])
         {
-            // now we're making assumptions
+            // now we're assuming that the format is correct
+			// probably not a good idea for debugging
             float x = (float) e["x"];
             float y = (float) e["y"];
             std::string name = e["name"];
@@ -112,4 +114,9 @@ void Room::update(float delta)
 void Room::draw(engine::Context& ctx)
 {
     Group::draw(ctx);
+}
+
+engine::Point Room::getEntry()
+{
+	return entry;
 }

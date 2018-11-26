@@ -11,7 +11,6 @@
 #include "Timer.hpp"
 #include "Util.hpp"
 #include "LocationStack.hpp"
-#include "ImageFont.hpp"
 #include "OneShot.hpp"
 #include "Context.hpp"
 #include "Transition.hpp"

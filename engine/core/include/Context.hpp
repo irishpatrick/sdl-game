@@ -3,7 +3,7 @@
 #include "core_api.hpp"
 
 #include <string>
-#include "stdafx.hpp"
+#include <SDL2/SDL.h>
 
 namespace engine {
 

@@ -36,15 +36,6 @@ void Game::init(engine::Context& ctx)
     hero.x = 10;
     hero.y = 10;
 
-    //gm.setcamera(&camera);
-    gm.setFocus(&hero);
-    gm.loadGroup("room1", (maps / "room1.json").generic_string());
-    gm.loadGroup("town1", (maps / "town1.json").generic_string());
-    std::cout << "loading room2.json" << std::endl;
-    gm.loadGroup("room2", (maps / "room2.json").generic_string());
-    //gm.addgroup("stage", &stage);
-    gm.setActive("town1");
-
 	room1.load((maps / "room1.json").generic_string());
 	town1.load((maps / "town1.json").generic_string());
 	room2.load((maps / "room2.json").generic_string());
@@ -119,7 +110,6 @@ void Game::update(float delta, const uint8_t* keys) {
 		todo = nullptr;
         hero_collisions = engine::Util::getVelocityCollisions(
             &hero,
-            //gm.getActive(),
             StaticGM::getActive(),
             delta
         );
@@ -188,7 +178,6 @@ void Game::update(float delta, const uint8_t* keys) {
 			{
 				hero_collisions = engine::Util::getVelocityCollisions(
 					&hero,
-					//gm.getActive(),
 					StaticGM::getActive(),
 					delta
 				);
@@ -210,13 +199,11 @@ void Game::update(float delta, const uint8_t* keys) {
 
 				if (Door* d = dynamic_cast<Door*>(collider))
 				{
-					//auto g = gm.getGroup(d->getDest());
 					auto g = StaticGM::getGroup(d->getDest());
 					std::vector<Door*> doors;
 					g->getSpritesByType<Door>(doors);
 					for (auto& e : doors)
 					{
-						//if (e->getDest() == gm.getActiveId())
 						if (e->getDest() == StaticGM::getActiveId())
 						{
 							todo_x = e->getExit().x;
@@ -244,7 +231,6 @@ void Game::update(float delta, const uint8_t* keys) {
         auto collisions = engine::Util::getVelocityCollisions
 		(
             &hero,
-            //gm.getActive(),
             StaticGM::getActive(),
             delta
         );
@@ -305,19 +291,16 @@ void Game::update(float delta, const uint8_t* keys) {
     engine::Util::contain
 	(
         &hero,
-        //gm.getActive()->get_sprite_by_name("background")
         StaticGM::getActive()->get_sprite_by_name("background")
     );
 
     camera.update(delta);
 
-    //gm.getActive()->sort();
 	StaticGM::getActive()->sort();
 }
 
 void Game::render(engine::Context& ctx)
 {
-    //gm.getActive()->draw(camera, ctx);
     StaticGM::getActive()->draw(camera, ctx);
     //dlg.render(&ctx);
 	//dec.draw(&ctx);

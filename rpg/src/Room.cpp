@@ -1,5 +1,4 @@
 #include "Room.hpp"
-#include "Door.hpp"
 #include "Npc.hpp"
 #include <iostream>
 #include <fstream>
@@ -9,7 +8,7 @@ using json = nlohmann::json;
 
 void Room::load(const std::string& fn)
 {
-	std::cout << "loading room " << fn << std::endl;
+    std::cout << "loading room " << fn << std::endl;
     std::ifstream in(fn);
     if (in.fail())
     {
@@ -26,11 +25,17 @@ void Room::load(const std::string& fn)
         sy = o["entry"]["y"].get<float>();
 		entry.set(sx, sy);
     }
-	else
-	{
-		std::cout << "bad entry format" << std::endl;
-		return;
-	}
+    else
+    {
+        std::cout << "bad entry format" << std::endl;
+	return;
+    }
+
+    if (o.find("doorentry") != o.end())
+    {
+        doorEntryId = o["doorentry"].get<std::string>();
+    }
+
     if (o.find("sprites") != o.end())
     {
         for (const auto& e : o["sprites"])

@@ -1,6 +1,8 @@
 #pragma once
 
+#include <string>
 #include <engine.hpp>
+#include "Door.hpp"
 
 class Room : public engine::Group
 {
@@ -15,4 +17,5 @@ public:
 
 private:
 	engine::Point entry;
+        std::string doorEntryId;
 };

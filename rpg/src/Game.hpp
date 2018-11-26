@@ -35,8 +35,6 @@ private:
     engine::Sprite background;
     engine::Group stage;
     engine::Camera camera;
-	GroupManager gm;
-    Door doortest;
     engine::OneShot op;
     engine::OneShot ol;
     std::vector<engine::Sprite*> hero_collisions;

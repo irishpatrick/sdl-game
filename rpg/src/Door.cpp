@@ -1,5 +1,6 @@
 #include "Door.hpp"
 #include "GroupManager.hpp"
+#include "StaticGM.hpp"
 
 Door::Door(): engine::Sprite()
 {
@@ -42,8 +43,9 @@ void Door::Enter()
 {
     if (dest_ != "")
     {
-        manager_->setActive(dest_);
-        //manager_->setEntry(getTag());
+		StaticGM::setActive(dest_);
+		//manager_->setActive(dest_);
+		//manager_->setEntry(getTag());
     }
 }
 

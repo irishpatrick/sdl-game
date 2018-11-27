@@ -17,5 +17,5 @@ public:
 
 private:
 	engine::Point entry;
-        std::string doorEntryId;
+    std::string doorEntryId;
 };

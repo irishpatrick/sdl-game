@@ -63,4 +63,5 @@ namespace engine {
 
 }
 
+// getSpritesByType
 #include "Group.inl"

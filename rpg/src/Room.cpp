@@ -109,6 +109,13 @@ void Room::load(const std::string& fn)
 		std::cout << "bad sprite format" << std::endl;
 		return;
 	}
+
+	engine::Sprite* s = get_sprite_by_name(doorEntryId);
+	if (s != nullptr)
+	{
+		std::cout << "set doorentry field" << std::endl;
+		entry.set(s->x, s->y);
+	}
 }
 
 void Room::update(float delta)

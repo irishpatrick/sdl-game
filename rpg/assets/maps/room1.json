@@ -3,6 +3,7 @@
     "x": 100,
     "y": 100
   },
+  "doorentry": "door1",
   "sprites": [
     {
         "name": "background",

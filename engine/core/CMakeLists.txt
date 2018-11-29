@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.0)
 project(core C CXX)
 
 file (GLOB sources src/*.cpp)
-file (GLOB headers include/*.hpp)
+file (GLOB headers include/*.hpp include/*.inl)
 
 link_directories(${PROJECT_NAME} PUBLIC ${LIBRARY_DIR})
 add_library(${PROJECT_NAME} STATIC ${sources} ${headers})

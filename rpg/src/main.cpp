@@ -45,7 +45,7 @@ void init() {
 
     StateManager::addState("game", &game);
     StateManager::addState("title", &title);
-    StateManager::setCurrentState("title");
+    StateManager::setCurrentState("game");
 }
 
 void loadingScreen() {

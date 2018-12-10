@@ -8,6 +8,7 @@
 #include "Npc.hpp"
 #include "Room.hpp"
 #include "Enemy.hpp"
+#include "DialogueBox.hpp"
 #include <engine.hpp>
 #include <cstdlib>
 #include <ctime>
@@ -38,6 +39,7 @@ private:
     engine::OneShot op;
     engine::OneShot ol;
     std::vector<engine::Sprite*> hero_collisions;
+    DialogueBox box;
     //ui::Dialogue dlg;
 	//ui::Decision dec;
     engine::Transition transition;

@@ -69,6 +69,8 @@ void Game::init(engine::Context& ctx)
     //enemytest.InitAnimation((sprites / fs::path("monster1.json")).generic_string());
     //enemytest.getAnimation()->Start("all", true);
 
+    box.init(ctx, "fn");
+
 	debug.init((fs::current_path() / "assets" / "font.ttf").generic_string(), ctx);
 	debug.addLine("hello debug");
 	debug.addLine("new line");
@@ -308,6 +310,8 @@ void Game::render(engine::Context& ctx)
     enemytest.draw(ctx);
 	//debug.draw(ctx);
     scTest.draw(ctx);
+
+    box.draw(ctx);
 }
 
 void Game::destroy()

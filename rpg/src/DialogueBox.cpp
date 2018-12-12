@@ -9,8 +9,10 @@ void DialogueBox::init(engine::Context& ctx, const std::string& fn)
 	text.init(ctx, (fs::current_path() / "assets" / "font.ttf").generic_string(), 20, 20);
 
 	textBox.setTexture(engine::Assets::getTexture("dialoguebox.png"));
+	textBox.w = (int) ((float)ctx.getWidth() * 0.92f); 
+	textBox.h = (int) ((float)ctx.getHeight() * 0.3f);
 	textBox.x = ctx.getWidth() / 2 - (textBox.w / 2);
-	textBox.h = (ctx.getHeight() - 32) - textBox.h;
+	textBox.y = (ctx.getHeight() - 32) - textBox.h;
 
 	text.x = textBox.x + 10;
 	text.y = textBox.y + 10;

@@ -40,6 +40,7 @@ namespace engine
 	{
 		if (running && timer.tick())
 		{
+			std::cout << "tick" << std::endl;
 			renderLine = currentLine.substr(0, lineIndex++);
 			if (lineIndex > currentLine.size())
 			{
@@ -50,6 +51,7 @@ namespace engine
 
 	void ScrollingText::draw(Context& ctx)
 	{
+		std::cout << "running? " << running << std::endl;
 		if (lineCount > 3)
 		{
 			SDL_FillRect(surface, nullptr, 0x00000000);
@@ -71,6 +73,9 @@ namespace engine
 		SDL_RenderCopy(ctx.getRenderer(), tex, nullptr, &r);
 		SDL_DestroyTexture(tex);
 
+		std::cout << "renderLine: " << renderLine << std::endl;
+		std::cout << "rect: {" << r.x << "," << r.y << "," << r.w << "," << r.h << "}" << std::endl;
+		std::cout << std::endl;
 	}
 
 	void ScrollingText::addLine(const std::string& str)

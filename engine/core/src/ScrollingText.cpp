@@ -10,6 +10,7 @@ namespace engine
 		lineIndex = 0;
 		font.init(ctx, fn, size);
 		timer.setInterval(speed);
+		timer.start();
 
 		uint32_t rmask, gmask, bmask, amask;
         #if SDL_BYTEORDER == SDL_BIG_ENDIAN
@@ -40,7 +41,7 @@ namespace engine
 	{
 		if (running && timer.tick())
 		{
-			std::cout << "tick" << std::endl;
+			//std::cout << "tick" << std::endl;
 			renderLine = currentLine.substr(0, lineIndex++);
 			if (lineIndex > currentLine.size())
 			{
@@ -51,14 +52,14 @@ namespace engine
 
 	void ScrollingText::draw(Context& ctx)
 	{
-		std::cout << "running? " << running << std::endl;
+		//std::cout << "running? " << running << std::endl;
 		if (lineCount > 3)
 		{
 			SDL_FillRect(surface, nullptr, 0x00000000);
 			lineCount = 1;
 		}
 
-		font.renderString(ctx, surface, renderLine, x, y + (font.getLineSkip() * (lineCount - 1)));
+		font.renderString(ctx, surface, renderLine, 0, (font.getLineSkip() * (lineCount - 1)));
 		if (!running)
 		{
 			renderLine = "";
@@ -73,9 +74,9 @@ namespace engine
 		SDL_RenderCopy(ctx.getRenderer(), tex, nullptr, &r);
 		SDL_DestroyTexture(tex);
 
-		std::cout << "renderLine: " << renderLine << std::endl;
-		std::cout << "rect: {" << r.x << "," << r.y << "," << r.w << "," << r.h << "}" << std::endl;
-		std::cout << std::endl;
+		//std::cout << "renderLine: " << renderLine << std::endl;
+		//std::cout << "rect: {" << r.x << "," << r.y << "," << r.w << "," << r.h << "}" << std::endl;
+		//std::cout << std::endl;
 	}
 
 	void ScrollingText::addLine(const std::string& str)
@@ -93,6 +94,7 @@ namespace engine
 		{
 			return;
 		}
+		timer.reset();
 		lineIndex = 1;
 		running = true;
 		currentLine = lines.front();

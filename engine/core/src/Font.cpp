@@ -29,7 +29,7 @@ namespace engine
 			GlyphMetrics* gm = (GlyphMetrics*)malloc(sizeof(GlyphMetrics));
 			metrics.push_back(gm);
 			TTF_GlyphMetrics(font, c, &gm->minx, &gm->maxx, &gm->miny, &gm->maxy, &gm->advance);
-			glyphCache.push_back(TTF_RenderGlyph_Blended(font, c, color));
+			glyphCache.push_back(TTF_RenderGlyph_Solid(font, c, color));
 		}
 	}
 

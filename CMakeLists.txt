@@ -35,6 +35,8 @@ project(sdl-game)
 # we're on windows
 if (MSVC)
 
+	set(LIBRARIES ${LIBRARIES})
+
     message(STATUS "MSVC")
 
 	if (DEBUG_SYMBOLS)
@@ -45,7 +47,7 @@ if (MSVC)
     set(INCLUDE_DIR ${INCLUDE_DIR};${MSVC_INCLUDE};${MSVC_INCLUDE}/SDL2)
 	message(STATUS ${INCLUDE_DIR})
     set(LIBRARY_DIR ${LIBRARY_DIR} ${MSVC_LIB})
-	set(LIBRARIES SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib)
+	set(LIBRARIES ${LIBRARIES} SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib)
 
 # we're probably on linux
 elseif (UNIX)
@@ -54,7 +56,7 @@ elseif (UNIX)
 
 	set(INCLUDE_DIR ${INCLUDE_DIR} /usr/include/)
     set(LIBRARY_DIR /usr/lib/)
-    set(LIBRARIES ${LIBRARIES} -lstdc++fs)
+    set(LIBRARIES ${LIBRARIES} stdc++fs)
     set(COMPILE_OPTIONS -std=c++14 -D_REENTRANT -Wall -pthread)
 
 	if (DEBUG_SYMBOLS)
@@ -122,7 +124,6 @@ else ()
         ${SDL2_IMAGE_LIB} 
         ${SDL2_TTF_LIB}
         ${CAIRO_LIB}
-
 		bcrypt
     )
 

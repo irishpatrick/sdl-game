@@ -26,17 +26,11 @@ public:
 	CORE_API static float toSeconds(long, Unit);
 
 private:
-    //double duration;
-    //uint32_t then;
-    //uint32_t now;
 	long duration;
 	long initial;
-	
-	//std::chrono::time_point<std::chrono::high_resolution_clock> initial;
+
 	std::chrono::time_point<std::chrono::high_resolution_clock> now;
 	std::chrono::time_point<std::chrono::high_resolution_clock> then;
-	//std::chrono::time_point<std::chrono::steady_clock> now;
-	//std::chrono::time_point<std::chrono::steady_clock> then;
 };
 
 }

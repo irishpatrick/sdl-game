@@ -3,6 +3,15 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 
+#ifdef _WIN32
+#include <SDKDDKVer.h>
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+#include <ShellScalingApi.h>
+#include <comdef.h>
+#pragma comment(lib, "Shcore.lib")
+#endif
+
 namespace engine
 {
 
@@ -18,6 +27,14 @@ namespace engine
 
 	int Context::init(int a, int b, const std::string& title, bool fullscreen)
 	{
+		#ifdef _WIN32
+		HRESULT hr = SetProcessDpiAwareness(PROCESS_PER_MONITOR_DPI_AWARE);
+		if (FAILED(hr))
+		{
+			_com_error err(hr);
+			fwprintf(stderr, L"SetProcessDpiAwareness: %s\n", err.ErrorMessage());
+		}
+		#endif
 		if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		{
 			std::cout << "SDL_Init error: " << SDL_GetError() << std::endl;
@@ -64,12 +81,19 @@ namespace engine
 			flags = 0;
 		}
 
+		float ddpi;
+		int dpi = SDL_GetDisplayDPI(0, &ddpi, nullptr, nullptr);
+
+		int scale = current.h / 1080;
+
+		std::cout << "ddpi: " << ddpi << std::endl;
+
 		w = SDL_CreateWindow(
 			title.c_str(),
 			SDL_WINDOWPOS_UNDEFINED,
 			SDL_WINDOWPOS_UNDEFINED,
-			width,
-			height,
+			width * scale,
+			height * scale,
 			flags
 		);
 
@@ -84,6 +108,8 @@ namespace engine
 			-1,
 			SDL_RENDERER_PRESENTVSYNC
 		);
+
+		SDL_RenderSetScale(r, scale, scale);
 
 		if (r == nullptr)
 		{

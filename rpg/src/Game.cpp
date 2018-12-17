@@ -79,13 +79,6 @@ void Game::init(engine::Context& ctx)
     scTest.addLine("first line");
     scTest.addLine("second line");
     scTest.addLine("third line");
-    scTest.addLine("fourth line");
-    scTest.addLine("fifth line");
-    scTest.addLine("sixth line");
-    scTest.addLine("seventh line");
-    scTest.addLine("eighth line");
-    scTest.addLine("ninth line");
-    scTest.addLine("tenth line");
 	scTest.next();
 }
 
@@ -283,7 +276,7 @@ void Game::update(float delta, const uint8_t* keys) {
         }
     }
 
-    scTest.update();
+	box.update(delta);
 
     transition.update();
     hero.update(delta);
@@ -309,8 +302,6 @@ void Game::render(engine::Context& ctx)
 	transition.draw(&ctx);
     enemytest.draw(ctx);
 	//debug.draw(ctx);
-    scTest.draw(ctx);
-
     box.draw(ctx);
 }
 

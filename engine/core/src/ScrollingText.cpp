@@ -35,6 +35,9 @@ namespace engine
             bmask,
             amask
         );
+
+		//surfaceTexture = SDL_CreateTexture(ctx.getRenderer(), SDL_PIXELFORMAT_ABGR8888, SDL_TEXTUREACCESS_STREAMING, surface->w, surface->h);
+		surfaceTexture = SDL_CreateTextureFromSurface(ctx.getRenderer(), surface);
 	}
 
 	void ScrollingText::update()
@@ -65,14 +68,19 @@ namespace engine
 			renderLine = "";
 		}
 
-		tex = SDL_CreateTextureFromSurface(ctx.getRenderer(), surface);
+		SDL_UpdateTexture(
+			surfaceTexture,
+			nullptr,
+			surface->pixels,
+			surface->pitch
+		);
+		
 		SDL_Rect r;
         r.x = x;
         r.y = y;
         r.w = ctx.getWidth();
         r.h = ctx.getHeight();
-		SDL_RenderCopy(ctx.getRenderer(), tex, nullptr, &r);
-		SDL_DestroyTexture(tex);
+		SDL_RenderCopy(ctx.getRenderer(), surfaceTexture, nullptr, &r);
 
 		//std::cout << "renderLine: " << renderLine << std::endl;
 		//std::cout << "rect: {" << r.x << "," << r.y << "," << r.w << "," << r.h << "}" << std::endl;

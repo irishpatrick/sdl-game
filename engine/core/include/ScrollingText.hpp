@@ -16,7 +16,7 @@ namespace engine
 	public:
 		CORE_API ScrollingText()
 		{
-			tex = nullptr;
+			surfaceTexture = nullptr;
 		}
 
 		CORE_API ~ScrollingText()
@@ -35,7 +35,7 @@ namespace engine
 		int y;
 
 	private:
-		SDL_Texture* tex;
+		SDL_Texture* surfaceTexture;
 		Font font;
 		std::deque<std::string> lines;
 		std::vector<SDL_Surface*> renderList;

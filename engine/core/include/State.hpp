@@ -7,9 +7,10 @@
 
 #include "Context.hpp"
 
-namespace engine {
-
-	class State {
+namespace engine
+{
+	class State
+	{
 	public:
 		CORE_API State();
 		CORE_API virtual ~State();
@@ -20,7 +21,5 @@ namespace engine {
 		CORE_API virtual void render(Context&);
 
 		CORE_API virtual void destroy();
-
 	};
-
 }

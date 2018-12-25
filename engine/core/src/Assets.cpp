@@ -84,8 +84,6 @@ namespace engine
 		texMap[key] = t;
 		t->setName(key);
 
-		std::cout << "successfully created texture" << std::endl;
-
 		SDL_Surface* s = IMG_Load(fn.c_str());
 		if (s == nullptr)
 		{
@@ -105,17 +103,14 @@ namespace engine
 
 	void Assets::loadTexturesFromVector(const std::string& dir, std::vector<std::string> files, Context& ctx)
 	{
-		std::cout << "loading textures from vector..." << std::endl;
 		for (auto& e : files) {
 			loadTexture(ctx, dir + e);
 		}
-		std::cout << "done!" << std::endl;
 	}
 
 	void Assets::loadTexturesFromJson(Context& ctx, const std::string& fn)
 	{
 		// read json file
-		std::cout << "loading textures from json..." << std::endl;
 		fs::path pfn(fn);
 		std::ifstream in(fn);
 		if (in.fail())
@@ -146,7 +141,6 @@ namespace engine
 			std::string fn = current;
 			loadTexture(ctx, (cwd / dir / fn).generic_string());
 		}
-		std::cout << "done!" << std::endl;
 	}
 
 	Texture* Assets::getTexture(const std::string& key)

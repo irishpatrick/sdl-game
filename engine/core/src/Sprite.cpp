@@ -3,6 +3,7 @@
 #include "Group.hpp"
 #include "Texture.hpp"
 #include "Camera.hpp"
+#include <iostream>
 
 namespace engine {
 
@@ -66,8 +67,8 @@ namespace engine {
 
 	void Sprite::setTexture(Texture *t)
 	{
-		if (t == NULL) {
-			printf("texture was null!\n");
+		if (t == nullptr) {
+			std::cout << "texture was null" << std::endl;
 			return;
 		}
 		texture = t;

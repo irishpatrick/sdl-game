@@ -47,7 +47,6 @@ namespace engine {
 	void Texture::create(Context& ctx, SDL_Surface* s)
 	{
 		surf = s;
-		std::cout << "sanity check! " << s->w << ", " << s->h << std::endl;
 		tex = SDL_CreateTextureFromSurface(ctx.getRenderer(), s);
 		if (tex == nullptr)
 		{

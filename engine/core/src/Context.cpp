@@ -81,12 +81,8 @@ namespace engine
 			flags = 0;
 		}
 
-		float ddpi;
-		int dpi = SDL_GetDisplayDPI(0, &ddpi, nullptr, nullptr);
-
 		int scale = current.h / 1080;
-
-		std::cout << "ddpi: " << ddpi << std::endl;
+		if (scale < 1) scale = 1;
 
 		w = SDL_CreateWindow(
 			title.c_str(),

@@ -10,7 +10,7 @@
 #include "Player.hpp"
 #include "DialogueBox.hpp"
 
-class Npc: public engine::KeyFrameSprite
+class Npc : public engine::KeyFrameSprite
 {
 public:
     Npc();
@@ -18,12 +18,8 @@ public:
 
 	void init(engine::Context&, const std::string&);
 	void pushLine(const std::string&);
-    void interact(engine::Sprite* s);
-
-	inline void setDialogueBox(DialogueBox* ptr)
-	{
-		dialogue = ptr;
-	}
+	void interact(engine::Sprite* s);
+	void setDialogueBox(DialogueBox&);
 
 private:
     std::vector<std::string> lines;

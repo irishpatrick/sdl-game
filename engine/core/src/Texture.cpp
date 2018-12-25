@@ -71,5 +71,4 @@ namespace engine {
 	void Texture::destroy() {
 		SDL_DestroyTexture(tex);
 	}
-
 }

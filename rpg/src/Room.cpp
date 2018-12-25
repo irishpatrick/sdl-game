@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <nlohmann/json.hpp>
+#include <vector>
 
 using json = nlohmann::json;
 
@@ -116,6 +117,23 @@ void Room::load(const std::string& fn)
 		std::cout << "set doorentry field" << std::endl;
 		entry.set(s->x, s->y);
 	}
+}
+
+std::vector<Npc*> Room::getNpcs()
+{
+	std::vector<Npc*> npcList;
+
+	Npc* current;
+	for (auto& e : renderList)
+	{
+		
+		if ((current = dynamic_cast<Npc*>(e)))
+		{
+			npcList.push_back(current);
+		}
+	}
+
+	return npcList;
 }
 
 void Room::update(float delta)

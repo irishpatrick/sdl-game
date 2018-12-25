@@ -10,7 +10,7 @@
         },
         {
             "type": "npc",
-            "dialogue": ["hello player!"],
+            "dialogue": ["hello player"],
             "texture": "monster.png",
             "name": "monster",
             "y": 150,

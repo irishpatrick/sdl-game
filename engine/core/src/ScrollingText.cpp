@@ -36,8 +36,12 @@ namespace engine
             amask
         );
 
-		//surfaceTexture = SDL_CreateTexture(ctx.getRenderer(), SDL_PIXELFORMAT_ABGR8888, SDL_TEXTUREACCESS_STREAMING, surface->w, surface->h);
 		surfaceTexture = SDL_CreateTextureFromSurface(ctx.getRenderer(), surface);
+	}
+
+	bool ScrollingText::hasNext()
+	{
+		return lines.size() != 0;
 	}
 
 	void ScrollingText::update()
@@ -90,6 +94,13 @@ namespace engine
 	void ScrollingText::addLine(const std::string& str)
 	{
 		lines.push_back(str);
+	}
+
+	void ScrollingText::reset()
+	{
+		lines.clear();
+		SDL_FillRect(surface, nullptr, 0x00000000);
+		lineCount = 0;
 	}
 
 	void ScrollingText::next()

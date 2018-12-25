@@ -75,11 +75,20 @@ void Game::init(engine::Context& ctx)
 	debug.addLine("hello debug");
 	debug.addLine("new line");
 
-    scTest.init(ctx, (fs::current_path() / "assets" / "font.ttf").generic_string(), 80, 20);
-    scTest.addLine("first line");
-    scTest.addLine("second line");
-    scTest.addLine("third line");
-	scTest.next();
+	// need to optimize
+	for (auto& e : town1.getNpcs())
+	{
+		e->setDialogueBox(box);
+	}
+	for (auto& e : room1.getNpcs())
+	{
+		e->setDialogueBox(box);
+	}
+
+	for (auto& e : room2.getNpcs())
+	{
+		e->setDialogueBox(box);
+	}
 }
 
 void Game::tests() {
@@ -185,12 +194,13 @@ void Game::update(float delta, const uint8_t* keys) {
 
         if (op.fire())
 		{
-            /*if (dlg.isVisible())
+			if (box.isVisible())
 			{
-                dlg.pop();
-            }
-            else*/ if (hero_collisions.size() > 0) {
-                engine::Sprite* collider = hero_collisions[0];
+				box.next();
+			}
+            else if (hero_collisions.size() > 0)
+			{
+				engine::Sprite* collider = hero_collisions[0];
 
 				if (Door* d = dynamic_cast<Door*>(collider))
 				{
@@ -213,14 +223,14 @@ void Game::update(float delta, const uint8_t* keys) {
                 else if (Npc* npc = dynamic_cast<Npc*>(collider))
 				{
                     std::cout << "interacting with " << npc->getName() << std::endl;
-                    //npc->interact(&hero, &dlg);
+                    npc->interact(&hero);
                 }
             }
         }
 
         if (ol.fire()) 
 		{
-            scTest.next();
+
         }
 
         auto collisions = engine::Util::getVelocityCollisions
@@ -243,7 +253,6 @@ void Game::update(float delta, const uint8_t* keys) {
 				engine::BoundingBox& rhbox = hero.getRelativeBoundingBox();
 				engine::BoundingBox& ebox = e->getBoundingBox();
 				engine::BoundingBox& hbox = hero.getBoundingBox();
-
 
                 if (result == "north")
 				{

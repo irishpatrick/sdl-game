@@ -10,6 +10,7 @@ namespace engine {
 	{
         sx = 0.0f;
         sy = 0.0f;
+		visible = true;
     }
 
     Group::~Group()
@@ -112,6 +113,7 @@ namespace engine {
     }
 
     void Group::update(float delta) {
+		if (!visible) return;
         /*std::vector<Sprite*>::iterator it;
         for (it = renderList.begin(); it != renderList.end(); it++)
         {
@@ -129,18 +131,21 @@ namespace engine {
     }
 
     void Group::draw(Context& ctx) {
+		if (!visible) return;
         for (auto& e : renderList) {
             e->draw(ctx);
         }
     }
 
     void Group::draw(Object& obj, Context& ctx) {
+		if (!visible) return;
         for (auto& e : renderList) {
             e->draw(obj, ctx);
         }
     }
 
     void Group::draw(SDL_Renderer *r) {
+		if (!visible) return;
         for (auto& e : renderList) {
             e->draw(r);
         }
@@ -158,4 +163,14 @@ namespace engine {
             }
         }
     }
+
+	void Group::setVisible(bool value)
+	{
+		visible = value;
+	}
+
+	bool Group::isVisible()
+	{
+		return visible;
+	}
 }

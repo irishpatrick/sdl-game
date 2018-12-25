@@ -40,6 +40,8 @@ namespace engine {
         CORE_API Sprite* get_sprite_by_name(const std::string&);
         CORE_API Sprite* getSpriteAtLocation(float, float);
         CORE_API void remove(Sprite*);
+		CORE_API void setVisible(bool);
+		CORE_API bool isVisible();
 
         // defined in group.inl
         template <class T>
@@ -57,8 +59,11 @@ namespace engine {
 
         float sx;
         float sy;
-    private:
+    protected:
         std::vector<Sprite*> renderList;
+
+	private:
+		bool visible;
     };
 
 }

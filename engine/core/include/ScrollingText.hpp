@@ -8,10 +8,11 @@
 #include <string>
 #include <deque>
 #include <vector>
+#include "Sprite.hpp"
 
 namespace engine
 {
-	class ScrollingText
+	class ScrollingText : public Sprite
 	{
 	public:
 		CORE_API ScrollingText()
@@ -30,6 +31,8 @@ namespace engine
 		CORE_API void next();
 		CORE_API void addLine(const std::string&);
 		CORE_API void addLines(const std::string&, int);
+		CORE_API bool hasNext();
+		CORE_API void reset();
 
 		int x;
 		int y;

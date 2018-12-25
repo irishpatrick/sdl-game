@@ -25,6 +25,9 @@ void DialogueBox::init(engine::Context& ctx, const std::string& fn)
 	text.addLine("line test that really does go on for a while");
 	text.addLine("other line test");
 	text.next();
+
+	add(&textBox);
+	add(&text);
 }
 
 void DialogueBox::update(float delta)
@@ -33,8 +36,8 @@ void DialogueBox::update(float delta)
 	textBox.update(delta);
 }
 
-void DialogueBox::draw(engine::Context& ctx)
+/*void DialogueBox::draw(engine::Context& ctx)
 {
 	textBox.draw(ctx);
 	text.draw(ctx);
-}
+}*/

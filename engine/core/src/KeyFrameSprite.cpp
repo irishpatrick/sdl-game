@@ -37,7 +37,7 @@ namespace engine
 
 		std::string fmt = o["dataFormat"].get<std::string>();
 		bool verboseFormat = fmt == "verbose";
-		std::cout << verboseFormat << std::endl;
+		//std::cout << verboseFormat << std::endl;
 
 		setTexture(Assets::getTexture(o["texture"].get<std::string>()));
 		numAnimations = o["animations"].size();

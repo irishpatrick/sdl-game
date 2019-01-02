@@ -31,6 +31,7 @@ public:
 
 private:
     bool playerInput;
+	bool playerMovement;
     Player hero;
     Npc monster;
     engine::Sprite background;

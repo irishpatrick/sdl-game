@@ -11,6 +11,11 @@ namespace engine {
 
 	}
 
+	void OneShot::setPointer(bool* b)
+	{
+		ptr = b;
+	}
+
 	void OneShot::check(bool b) {
 		if (reset) {
 			state = false;
@@ -24,6 +29,27 @@ namespace engine {
 		if (!b && reset) {
 			reset = false;
 		}
+	}
+
+	bool OneShot::altFire()
+	{
+		if (reset)
+		{
+			state = false;
+		}
+
+		if (*ptr && !reset)
+		{
+			state = true;
+			reset = true;
+		}
+
+		if (!*ptr && reset)
+		{
+			reset = false;
+		}
+
+		return state;
 	}
 
 	bool OneShot::fire() {

@@ -27,15 +27,15 @@ public:
 
 	inline void next()
 	{
-		if (!text.hasNext())
+		if (!text.hasNext() && !text.isRunning())
 		{
-			std::cout << "text does not have next" << std::endl;
+			//std::cout << "text does not have next" << std::endl;
 			setVisible(false);
-			std::cout << "Group class visibility: " << isVisible() << std::endl;
+			//std::cout << "Group class visibility: " << isVisible() << std::endl;
 		}
 		else
 		{
-			std::cout << "text has next" << std::endl;
+			//std::cout << "text has next" << std::endl;
 			setVisible(true);
 			text.next();
 		}

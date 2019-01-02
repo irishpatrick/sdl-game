@@ -7,6 +7,7 @@ namespace fs = std::experimental::filesystem;
 Game::Game() : State()
 {
     playerInput = true;
+	playerMovement = true;
     todo = nullptr;
     todo_x = 0;
     todo_y = 0;
@@ -91,7 +92,8 @@ void Game::init(engine::Context& ctx)
 	}
 }
 
-void Game::tests() {
+void Game::tests()
+{
     /*printf("starting tests...\n");
 
     Stats s;
@@ -101,14 +103,18 @@ void Game::tests() {
     printf("done!\n");*/
 }
 
-void Game::update(float delta, const uint8_t* keys) {
-
-    playerInput = !transition.isRunning();
+void Game::update(float delta, const uint8_t* keys)
+{
+	op.setPointer((bool*)&keys[SDL_SCANCODE_Z]);
+	ol.setPointer((bool*)&keys[SDL_SCANCODE_X]);
+	playerInput = !transition.isRunning();
+	playerMovement = !box.isVisible();
 
     hero.xvel = 0;
     hero.yvel = 0;
 
-	if (!transition.isRunning() && todo != nullptr) {
+	if (!transition.isRunning() && todo != nullptr)
+	{
 		playerInput = false;
 		todo->Enter();
 		todo = nullptr;
@@ -129,29 +135,11 @@ void Game::update(float delta, const uint8_t* keys) {
         bool right = keys[SDL_SCANCODE_RIGHT];
         bool primary = keys[SDL_SCANCODE_Z];
         bool secondary = keys[SDL_SCANCODE_X];
-		op.check(primary);
-		ol.check(secondary);
+		//op.check(primary);
+		//ol.check(secondary);
 
-		if (/*dec.isVisible()*/0) 
+		if (playerMovement)
 		{
-			/*if (up)
-			{
-				dec.setSelection(ui::Decision::YES);
-			}
-			if (down)
-			{
-				dec.setSelection(ui::Decision::NO);
-			}
-			if (op.fire())
-			{
-				dec.setVisible(false);
-			}*/
-		}
-		/*else if (dlg.isVisible())
-		{
-            std::cout << "dialogue is visible" << std::endl;
-		}*/
-		else {
 			if ((up || down) && (left || right))
 			{
 				float v = sqrt(pow(hero.getMaxSpeed(), 2) / 2.0);
@@ -188,13 +176,9 @@ void Game::update(float delta, const uint8_t* keys) {
 			}
 		}
 
-        /*if (!dlg.isVisible()) {
-
-        }*/
-
-        if (op.fire())
+        if (op.altFire())
 		{
-			if (box.isVisible())
+			if (box.isVisible() && !playerMovement)
 			{
 				box.next();
 			}
@@ -228,7 +212,7 @@ void Game::update(float delta, const uint8_t* keys) {
             }
         }
 
-        if (ol.fire()) 
+        if (ol.altFire()) 
 		{
 
         }

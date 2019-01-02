@@ -44,6 +44,11 @@ namespace engine
 		return lines.size() != 0;
 	}
 
+	bool ScrollingText::isRunning()
+	{
+		return running;
+	}
+
 	void ScrollingText::update()
 	{
 		if (running && timer.tick())

@@ -33,6 +33,7 @@ namespace engine
 		CORE_API void addLines(const std::string&, int);
 		CORE_API bool hasNext();
 		CORE_API void reset();
+		CORE_API bool isRunning();
 
 		int x;
 		int y;

@@ -3,7 +3,6 @@
 
 int Config::screenWidth = 0;
 int Config::screenHeight = 0;
-//std::string Config::assetPath = std::string();
 fs::path Config::assetPath = fs::current_path();
 bool Config::fullscreen = false;
 
@@ -39,7 +38,6 @@ int Config::load(const std::string& fn)
             "Failed to load config",
             nullptr
         );
-        //exit(1);
         return 1;
     }
     json o;

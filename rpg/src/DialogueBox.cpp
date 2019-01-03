@@ -22,9 +22,7 @@ void DialogueBox::init(engine::Context& ctx, const std::string& fn)
 	text.x = textBox.x + 50;
 	text.y = textBox.y + 50;
 
-	text.addLine("line test that really does go on for a while");
-	text.addLine("other line test");
-	text.next();
+	setVisible(false);
 
 	add(&textBox);
 	add(&text);
@@ -36,8 +34,33 @@ void DialogueBox::update(float delta)
 	textBox.update(delta);
 }
 
-/*void DialogueBox::draw(engine::Context& ctx)
+void DialogueBox::addLine(const std::string& str)
 {
-	textBox.draw(ctx);
-	text.draw(ctx);
-}*/
+	text.addLine(str);
+}
+
+void DialogueBox::next()
+{
+	if (!text.hasNext() && !text.isRunning())
+	{
+		//std::cout << "text does not have next" << std::endl;
+		setVisible(false);
+		//std::cout << "Group class visibility: " << isVisible() << std::endl;
+	}
+	else
+	{
+		//std::cout << "text has next" << std::endl;
+		setVisible(true);
+		text.next();
+	}
+}
+
+bool DialogueBox::hasNext()
+{
+	return text.hasNext();
+}
+
+void DialogueBox::reset()
+{
+	text.reset();
+}

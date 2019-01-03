@@ -135,8 +135,6 @@ void Game::update(float delta, const uint8_t* keys)
         bool right = keys[SDL_SCANCODE_RIGHT];
         bool primary = keys[SDL_SCANCODE_Z];
         bool secondary = keys[SDL_SCANCODE_X];
-		//op.check(primary);
-		//ol.check(secondary);
 
 		if (playerMovement)
 		{

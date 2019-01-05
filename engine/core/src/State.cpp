@@ -3,7 +3,7 @@
 namespace engine {
 
 	State::State() {
-
+		kbd = nullptr;
 	}
 
 	State::~State() {
@@ -29,5 +29,10 @@ namespace engine {
 	void State::onEntry()
 	{
 
+	}
+
+	void State::updateKeys()
+	{
+		kbd = (uint8_t*)SDL_GetKeyboardState(nullptr);
 	}
 }

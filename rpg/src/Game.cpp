@@ -105,8 +105,10 @@ void Game::tests()
 
 void Game::update(float delta, const uint8_t* keys)
 {
-	op.setPointer((bool*)&keys[SDL_SCANCODE_Z]);
-	ol.setPointer((bool*)&keys[SDL_SCANCODE_X]);
+    updateKeys();
+
+	op.setPointer((bool*)&kbd[SDL_SCANCODE_Z]);
+	ol.setPointer((bool*)&kbd[SDL_SCANCODE_X]);
 	playerInput = !transition.isRunning();
 	playerMovement = !box.isVisible();
 
@@ -210,7 +212,7 @@ void Game::update(float delta, const uint8_t* keys)
             }
         }
 
-        if (ol.altFire()) 
+        if (ol.altFire())
 		{
 
         }

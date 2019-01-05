@@ -6,6 +6,7 @@ option (HUNTER_BUILD_SHARED_LIBS "hunter build shared libs" ON)
 option (USE_PKGCONFIG "use pkg-config" OFF)
 option (BUILD_RPG "build game" OFF)
 option (BUILD_RASPBERRY_GAME "raspberry game" OFF)
+option (BUILD_STRATEGY_GAME "strategy game" OFF)
 option (BUILD_UI "build ui" ON)
 option (DEBUG_SYMBOLS "enable debug symbols" ON)
 
@@ -116,12 +117,12 @@ else ()
     find_library(SDL2_IMAGE_LIB SDL2_image REQUIRED)
     find_library(SDL2_TTF_LIB SDL2_ttf REQUIRED)
     find_library(CAIRO_LIB cairo REQUIRED)
-  
+
 
     set(LIBRARIES
-        SDL2::SDL2 
-        SDL2::SDL2main 
-        ${SDL2_IMAGE_LIB} 
+        SDL2::SDL2
+        SDL2::SDL2main
+        ${SDL2_IMAGE_LIB}
         ${SDL2_TTF_LIB}
         ${CAIRO_LIB}
 		bcrypt
@@ -147,5 +148,9 @@ endif (BUILD_RPG)
 if (BUILD_RASPBERRY_GAME)
 	add_subdirectory(./catch)
 endif (BUILD_RASPBERRY_GAME)
+
+if (BUILD_STRATEGY_GAME)
+	add_subdirectory(./strategy)
+endif (BUILD_STRATEGY_GAME)
 
 #add_subdirectory(./ttftest)

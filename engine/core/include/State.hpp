@@ -1,10 +1,8 @@
 #pragma once
 
 #include "core_api.hpp"
-
 #include <cstdint>
 #include <SDL2/SDL.h>
-
 #include "Context.hpp"
 
 namespace engine
@@ -19,7 +17,10 @@ namespace engine
 		CORE_API virtual void init(Context&);
 		CORE_API virtual void update(float, const uint8_t*);
 		CORE_API virtual void render(Context&);
-
+		CORE_API void updateKeys();
 		CORE_API virtual void destroy();
+
+	protected:
+		uint8_t* kbd;
 	};
 }

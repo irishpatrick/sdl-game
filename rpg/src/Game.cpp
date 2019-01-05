@@ -131,12 +131,12 @@ void Game::update(float delta, const uint8_t* keys)
 	}
 
     if (playerInput) {
-        bool up = keys[SDL_SCANCODE_UP];
-        bool down = keys[SDL_SCANCODE_DOWN];
-        bool left = keys[SDL_SCANCODE_LEFT];
-        bool right = keys[SDL_SCANCODE_RIGHT];
-        bool primary = keys[SDL_SCANCODE_Z];
-        bool secondary = keys[SDL_SCANCODE_X];
+        bool up = kbd[SDL_SCANCODE_UP];
+        bool down = kbd[SDL_SCANCODE_DOWN];
+        bool left = kbd[SDL_SCANCODE_LEFT];
+        bool right = kbd[SDL_SCANCODE_RIGHT];
+        bool primary = kbd[SDL_SCANCODE_Z];
+        bool secondary = kbd[SDL_SCANCODE_X];
 
 		if (playerMovement)
 		{

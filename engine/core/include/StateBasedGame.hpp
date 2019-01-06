@@ -1,21 +1,25 @@
 #pragma once
 
 #include "core_api.hpp"
+#include "Game.hpp"
 #include "State.hpp"
 #include <string>
 #include <map>
 
-class StateBasedGame
+namespace engine
 {
-public:
-	StateBasedGame();
-	~StateBasedGame();
+	class StateBasedGame : public Game
+	{
+	public:
+		CORE_API StateBasedGame();
+		CORE_API ~StateBasedGame();
 
-	CORE_API static void addState(const std::string&, engine::State*);
-	CORE_API static void setCurrentState(const std::string&);
-	CORE_API static engine::State* getCurrentState();
+		CORE_API void addState(const std::string&, State*);
+		CORE_API void setCurrentState(const std::string&);
+		CORE_API State* getCurrentState();
 
-private:
-	static std::map<std::string, engine::State*> states;
-
-};
+	private:
+		std::map<std::string, State*> states;
+		std::string currentState;
+	};
+}

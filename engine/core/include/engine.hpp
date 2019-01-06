@@ -21,3 +21,6 @@
 #include "KeyFrameSprite.hpp"
 #include "Font.hpp"
 #include "ScrollingText.hpp"
+#include "Game.hpp"
+#include "SimpleGame.hpp"
+#include "StateBasedGame.hpp"

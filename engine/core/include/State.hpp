@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <SDL2/SDL.h>
 #include "Context.hpp"
+#include "Game.hpp"
 
 namespace engine
 {
@@ -19,8 +20,10 @@ namespace engine
 		CORE_API virtual void render(Context&);
 		CORE_API void updateKeys();
 		CORE_API virtual void destroy();
+		CORE_API void setGame(Game&);
 
 	protected:
 		uint8_t* kbd;
+		Game game;
 	};
 }

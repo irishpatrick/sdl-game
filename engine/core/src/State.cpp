@@ -35,4 +35,9 @@ namespace engine {
 	{
 		kbd = (uint8_t*)SDL_GetKeyboardState(nullptr);
 	}
+
+	void State::setGame(Game& g)
+	{
+		game = g;
+	}
 }

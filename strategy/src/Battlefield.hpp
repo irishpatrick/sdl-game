@@ -20,6 +20,6 @@ public:
 private:
     engine::Sprite background;
     engine::Group obstacles;
-    engine::Group playerTeam;
-    engine::Group enemyTeam;
+    Team playerTeam;
+    Team enemyTeam;
 };

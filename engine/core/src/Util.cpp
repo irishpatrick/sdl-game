@@ -15,8 +15,8 @@ namespace engine {
 		{
 			return "no collision";
 		}
-		BoundingBox abox = getAABB(a, 16.0f);
-		BoundingBox bbox = getAABB(b, 16.0f);
+		BoundingBox abox = getAABB(a, (uint32_t)16.0f);
+		BoundingBox bbox = getAABB(b, (uint32_t)16.0f);
 
 		if (
 			abox.x < bbox.x + bbox.w &&
@@ -200,8 +200,8 @@ namespace engine {
 		BoundingBox aabb;
 		aabb.x = floorf(roundf(a->x));
 		aabb.y = floorf((roundf(a->y + a->h - h)));
-		aabb.w = a->w;
-		aabb.h = h;
+		aabb.w = (float)a->w;
+		aabb.h = (float)h;
 
 		return aabb;
 	}

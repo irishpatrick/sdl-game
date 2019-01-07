@@ -23,7 +23,7 @@ namespace engine
 		}
 		
 		SDL_Color color = { 255,255,255 };
-		for (int i = 0; i < chars.size(); i++)
+		for (unsigned int i = 0; i < chars.size(); i++)
 		{
 			char c = chars.at(i);
 			GlyphMetrics* gm = (GlyphMetrics*)malloc(sizeof(GlyphMetrics));
@@ -49,7 +49,7 @@ namespace engine
 			GlyphMetrics* gm = metrics[static_cast<int>(index)];
 			SDL_Surface* surf = glyphCache[static_cast<int>(index)];
 			SDL_Rect rect;
-			SDL_Rect srcRect;
+			//SDL_Rect srcRect;
 			rect.x = x;// +gm->minx;
 			rect.y = y + TTF_FontDescent(font);
 			//rect.y = y + gm->maxy;

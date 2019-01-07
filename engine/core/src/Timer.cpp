@@ -10,24 +10,26 @@ namespace engine
 	{
 		auto n = std::chrono::high_resolution_clock::now();
 		auto duration = n.time_since_epoch();
-		return std::chrono::duration_cast<std::chrono::nanoseconds>(duration).count();
+		return (long)std::chrono::duration_cast<std::chrono::nanoseconds>(duration).count();
 	}
 
 	float Timer::toSeconds(long t, Unit u)
 	{
 		if (u == NANO)
 		{
-			return t / 1.0e+9;
+			return (float)(t / 1.0e+9);
 		}
 		else if (u == MILLI)
 		{
-			return t / 1.0e+3;
+			return (float)(t / 1.0e+3);
 		}
+		return -1.0f;
 	}
 
 	Timer::Timer()
 	{
 		duration = 0;
+		initial = 0;
 		//then = 0;
 		//now = 0;
 	}
@@ -51,7 +53,7 @@ namespace engine
 	bool Timer::tick()
 	{
 		now = std::chrono::high_resolution_clock::now();
-		long delta = std::chrono::duration_cast<std::chrono::nanoseconds>(now - then).count();
+		long delta = (long)std::chrono::duration_cast<std::chrono::nanoseconds>(now - then).count();
 		if (delta >= duration)
 		{
 			then = std::chrono::high_resolution_clock::now();
@@ -74,7 +76,7 @@ namespace engine
 	long Timer::getDelta()
 	{
 		now = std::chrono::high_resolution_clock::now();
-		long delta = std::chrono::duration_cast<std::chrono::nanoseconds>(now - then).count();
+		long delta = (long)std::chrono::duration_cast<std::chrono::nanoseconds>(now - then).count();
 		then = std::chrono::high_resolution_clock::now();
 		return delta;
 	}

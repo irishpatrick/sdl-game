@@ -4,7 +4,7 @@
 
 namespace fs = std::experimental::filesystem;
 
-Game::Game() : State()
+Game::Game() : engine::State()
 {
     playerInput = true;
 	playerMovement = true;

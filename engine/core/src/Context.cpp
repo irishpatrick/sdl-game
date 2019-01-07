@@ -32,7 +32,8 @@ namespace engine
 		if (FAILED(hr))
 		{
 			_com_error err(hr);
-			fwprintf(stderr, L"SetProcessDpiAwareness: %s\n", err.ErrorMessage());
+			std::cout << L"SetProcessDpiAwareness: " << err.ErrorMessage() << std::endl;
+			//fwprintf(stderr, L"SetProcessDpiAwareness: %s\n", err.ErrorMessage());
 		}
 		#endif
 		if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -105,7 +106,7 @@ namespace engine
 			SDL_RENDERER_PRESENTVSYNC
 		);
 
-		SDL_RenderSetScale(r, scale, scale);
+		SDL_RenderSetScale(r, (float)scale, (float)scale);
 
 		if (r == nullptr)
 		{

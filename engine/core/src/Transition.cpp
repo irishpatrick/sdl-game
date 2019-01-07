@@ -58,7 +58,7 @@ namespace engine
 		if (!running)
 		{
 			running = true;
-			duration = d * 1e6;
+			duration = (double)(d * 1e6);
 			start = Timer::getNanoTime();
 			fade = FADE_OUT;
 			timer.start();
@@ -71,7 +71,7 @@ namespace engine
 		if (!running)
 		{
 			running = true;
-			duration = d * 1e6;
+			duration = (double)(d * 1e6);
 			start = Timer::getNanoTime();
 			fade = FADE_IN;
 			timer.start();

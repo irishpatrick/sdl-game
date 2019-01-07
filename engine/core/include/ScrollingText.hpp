@@ -43,8 +43,8 @@ namespace engine
 		Font font;
 		std::deque<std::string> lines;
 		std::vector<SDL_Surface*> renderList;
-		int lineIndex;
-		int lineCount;
+		unsigned int lineIndex;
+		unsigned int lineCount;
 		bool running;
 		SDL_Surface* surface;
 		std::string renderLine;

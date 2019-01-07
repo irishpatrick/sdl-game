@@ -130,7 +130,7 @@ namespace engine
 			if (strncmp(name.c_str(), animations[i].name, strlen(animations[i].name)) == 0)
 			{
 				currentAnim = i;
-				timer.setInterval((1.0f / animations[currentAnim].fps) * 1000);
+				timer.setInterval((long)((1.0f / animations[currentAnim].fps) * 1000));
 				break;
 			}
 		}
@@ -184,15 +184,15 @@ namespace engine
 			h = cf->h;
 			setBoundingBox(0, 0, w, h);
 
-			src.x = cf->x;
-			src.y = cf->y;
-			src.w = cf->w;
-			src.h = cf->h;
+			src.x = (int)cf->x;
+			src.y = (int)cf->y;
+			src.w = (int)cf->w;
+			src.h = (int)cf->h;
 
-			dst.x = x;
-			dst.y = y;
-			dst.w = cf->w;
-			dst.h = cf->h;
+			dst.x = (int)x;
+			dst.y = (int)y;
+			dst.w = (int)cf->w;
+			dst.h = (int)cf->h;
 
 			SDL_RenderCopy(ctx.getRenderer(), texture->use(), &src, &dst);
 		}		

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "core_api.hpp"
-
 #include <map>
 #include <string>
 #include <vector>

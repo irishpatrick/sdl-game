@@ -25,3 +25,27 @@ void App::init()
 	addState("title", &title);
 	setCurrentState("game");
 }
+
+void App::render()
+{
+	long delta;
+	long now;
+	long then = engine::Timer::getNanoTime();
+
+	quit = false;
+	while (!quit)
+	{
+		now = engine::Timer::getNanoTime();
+		delta = now - then;
+
+		while (SDL_PollEvent(&e))
+		{
+			if (e.type == SDL_QUIT)
+			{
+				quit = true;
+			}
+		}
+
+		then = now;
+	}
+}

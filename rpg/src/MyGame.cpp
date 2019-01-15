@@ -1,10 +1,10 @@
-#include "Game.hpp"
+#include "MyGame.hpp"
 #include "StaticGM.hpp"
 #include <experimental/filesystem>
 
 namespace fs = std::experimental::filesystem;
 
-Game::Game() : engine::State()
+MyGame::MyGame() : engine::State()
 {
     playerInput = true;
 	playerMovement = true;
@@ -13,18 +13,18 @@ Game::Game() : engine::State()
     todo_y = 0;
 }
 
-Game::~Game()
+MyGame::~MyGame()
 {
 
 }
 
-void Game::onEntry()
+void MyGame::onEntry()
 {
     transition.setAlpha(0);
     transition.fadeIn(200);
 }
 
-void Game::init(engine::Context& ctx)
+void MyGame::init(engine::Context& ctx)
 {
 	fs::path maps = fs::current_path() / "assets" / "maps";
 	fs::path sprites = fs::current_path() / "assets" / "sprites";
@@ -92,7 +92,7 @@ void Game::init(engine::Context& ctx)
 	}
 }
 
-void Game::tests()
+void MyGame::tests()
 {
     /*printf("starting tests...\n");
 
@@ -103,7 +103,7 @@ void Game::tests()
     printf("done!\n");*/
 }
 
-void Game::update(float delta, const uint8_t* keys)
+void MyGame::update(float delta, const uint8_t* keys)
 {
     updateKeys();
 
@@ -287,7 +287,7 @@ void Game::update(float delta, const uint8_t* keys)
 	StaticGM::getActive()->sort();
 }
 
-void Game::render(engine::Context& ctx)
+void MyGame::render(engine::Context& ctx)
 {
     StaticGM::getActive()->draw(camera, ctx);
     //dlg.render(&ctx);
@@ -298,7 +298,7 @@ void Game::render(engine::Context& ctx)
     box.draw(ctx);
 }
 
-void Game::destroy()
+void MyGame::destroy()
 {
 
 }

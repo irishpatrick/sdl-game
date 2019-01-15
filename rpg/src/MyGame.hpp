@@ -16,10 +16,10 @@
 #include <vector>
 #include <future>
 
-class Game: public engine::State {
+class MyGame: public engine::State {
 public:
-    Game();
-    ~Game();
+    MyGame();
+    ~MyGame();
 
     void init(engine::Context&) override;
     //void input(uint8_t*);

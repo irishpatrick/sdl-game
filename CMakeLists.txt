@@ -7,7 +7,6 @@ option (USE_PKGCONFIG "use pkg-config" OFF)
 option (BUILD_RPG "build game" OFF)
 option (BUILD_RASPBERRY_GAME "raspberry game" OFF)
 option (BUILD_STRATEGY_GAME "strategy game" OFF)
-option (BUILD_UI "build ui" ON)
 option (DEBUG_SYMBOLS "enable debug symbols" ON)
 
 #set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
@@ -135,11 +134,6 @@ endif ()
 
 add_subdirectory(./engine/core)
 set(LIBRARIES ${LIBRARIES} core)
-
-if (BUILD_UI)
-	add_subdirectory(./engine/ui)
-    set(LIBRARIES ${LIBRARIES} ui)
-endif (BUILD_UI)
 
 if (BUILD_RPG)
     add_subdirectory(./rpg)

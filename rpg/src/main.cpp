@@ -8,7 +8,7 @@
 #include <experimental/filesystem>
 
 #include "Config.hpp"
-#include "Game.hpp"
+#include "MyGame.hpp"
 #include "Title.hpp"
 #include "StateManager.hpp"
 #include "Timer.hpp"
@@ -27,7 +27,7 @@ engine::Context ctx;
 engine::State* current;
 
 Title title;
-Game game;
+MyGame game;
 
 void init() {
     // a more elegant solution is needed

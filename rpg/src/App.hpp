@@ -1,7 +1,7 @@
 #pragma once
 
 #include <engine.hpp>
-#include "Game.hpp"
+#include "MyGame.hpp"
 #include "Title.hpp"
 
 class App : public engine::StateBasedGame
@@ -14,7 +14,7 @@ public:
 	void render();
 
 private:
-	Game game;
+	MyGame game;
 	Title title;
 	engine::Context ctx;
 	bool quit;

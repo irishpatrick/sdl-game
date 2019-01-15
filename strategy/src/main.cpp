@@ -1,6 +1,10 @@
 #include <iostream>
+#include "App.hpp"
 
 int main(int argc, char* argv[])
 {
-    std::cout << "strategy game" << std::endl;
+	App app;
+
+	app.init();
+	app.mainLoop();
 }

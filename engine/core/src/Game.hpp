@@ -9,5 +9,8 @@ namespace engine
 	public:
 		CORE_API Game();
 		CORE_API ~Game();
+
+	protected:
+		bool running;
 	};
 }

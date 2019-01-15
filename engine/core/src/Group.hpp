@@ -12,15 +12,15 @@
 #include <SDL2/SDL.h>
 #include <nlohmann/json.hpp>
 
-#include "Object.hpp"
 #include "Context.hpp"
 
-namespace engine {
-
+namespace engine 
+{
     class Sprite;
     class Camera;
 
-    class Group : public Object {
+    class Group 
+	{
     public:
         CORE_API Group();
         CORE_API ~Group();
@@ -31,7 +31,7 @@ namespace engine {
         CORE_API virtual void update(float);
         CORE_API void draw(SDL_Renderer*);
         CORE_API virtual void draw(Context&);
-        CORE_API void draw(Object&, Context&);
+        //CORE_API void draw(Object&, Context&);
         CORE_API void destroy();
         CORE_API std::vector<Sprite*> getSprites();
         CORE_API void add(Sprite*);
@@ -59,6 +59,10 @@ namespace engine {
 
         float sx;
         float sy;
+		bool dynamic;
+		float x;
+		float y;
+
     protected:
         std::vector<Sprite*> renderList;
 

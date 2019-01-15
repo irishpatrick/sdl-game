@@ -11,18 +11,19 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/uuid/uuid_io.hpp>
 
-#include "Object.hpp"
 #include "Context.hpp"
 #include "BoundingBox.hpp"
 
-namespace engine {
+namespace engine
+{
 
     //class Animation;
     class Group;
     class Texture;
     class Camera;
 
-    class Sprite: public Object {
+    class Sprite
+	{
     public:
     	CORE_API Sprite();
     	CORE_API virtual ~Sprite();
@@ -33,7 +34,7 @@ namespace engine {
     	CORE_API virtual void setTexture(Texture*);
     	CORE_API virtual void draw(SDL_Renderer*);
         CORE_API virtual void draw(Context&);
-		CORE_API virtual void draw(Object&, Context&);
+		//CORE_API virtual void draw(Object&, Context&);
     	CORE_API virtual void ResetCollision();
     	CORE_API virtual void update(float);
     	CORE_API void setSpeed(float);
@@ -115,6 +116,10 @@ namespace engine {
         //Animation* anim;
 		int w;
 		int h;
+		bool dynamic;
+		float x;
+		float y;
+
     protected:
         bool visible;
         Group* parent;

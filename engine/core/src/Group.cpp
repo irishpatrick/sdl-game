@@ -6,8 +6,10 @@
 
 namespace engine {
 
-    Group::Group(): Object()
+    Group::Group()
 	{
+		x = 0;
+		y = 0;
         sx = 0.0f;
         sy = 0.0f;
 		visible = true;
@@ -137,12 +139,12 @@ namespace engine {
         }
     }
 
-    void Group::draw(Object& obj, Context& ctx) {
+    /*void Group::draw(Object& obj, Context& ctx) {
 		if (!visible) return;
         for (auto& e : renderList) {
             e->draw(obj, ctx);
         }
-    }
+    }*/
 
     void Group::draw(SDL_Renderer *r) {
 		if (!visible) return;

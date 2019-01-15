@@ -1,5 +1,4 @@
 #include "Sprite.hpp"
-//#include "Animation.hpp"
 #include "Group.hpp"
 #include "Texture.hpp"
 #include "Camera.hpp"
@@ -7,8 +6,10 @@
 
 namespace engine {
 
-	Sprite::Sprite() : Object()
+	Sprite::Sprite()
 	{
+		x = 0;
+		y = 0;
 		w = 0;
 		h = 0;
 		xvel = 0.0f;
@@ -20,7 +21,6 @@ namespace engine {
 		solid = false;
 		visible = true;
 		name = "";
-		//anim = new Animation();
 		tag = boost::uuids::random_generator()();
 		collision_ = nullptr;
 		camera = nullptr;
@@ -33,7 +33,7 @@ namespace engine {
 
 	Sprite::~Sprite()
 	{
-		//delete anim;
+		
 	}
 
 	void Sprite::setSpeed(float s)
@@ -113,7 +113,7 @@ namespace engine {
 		h = texture->getH();
 	}
 
-	void Sprite::draw(Object& obj, Context& ctx) {
+	/*void Sprite::draw(Object& obj, Context& ctx) {
 		if (!visible) return;
 
 		SDL_Rect rect;
@@ -122,15 +122,15 @@ namespace engine {
 		rect.w = w;
 		rect.h = h;
 
-		/*if (anim->GetTexture() != nullptr) {
-			SDL_RenderCopy(ctx.getRenderer(), texture->use(), anim->GetCurrentFrame(), &rect);
-		}
-		else {
-			SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
-		}*/
+		//if (anim->GetTexture() != nullptr) {
+		//	SDL_RenderCopy(ctx.getRenderer(), texture->use(), anim->GetCurrentFrame(), &rect);
+		//}
+		//else {
+		//	SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
+		//}
 
 		SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
-	}
+	}*/
 
     void Sprite::draw(Context& ctx) {
         if (!visible) return;

@@ -10,9 +10,11 @@ void Title::init(engine::Context& ctx)
 
 }
 
-void Title::update(float delta, const unsigned char* keys)
+void Title::update(float delta)
 {
-    if (keys[SDL_SCANCODE_RETURN])
+    updateKeys();
+
+    if (kbd[SDL_SCANCODE_RETURN])
     {
 		transition.fadeOut(200);
     }

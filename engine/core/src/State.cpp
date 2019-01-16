@@ -1,28 +1,35 @@
 #include "State.hpp"
 
-namespace engine {
+namespace engine 
+{
 
-	State::State() {
+	State::State() 
+	{
 		kbd = nullptr;
 	}
 
-	State::~State() {
+	State::~State() 
+	{
 
 	}
 
-	void State::init(Context& ctx) {
+	void State::init(Context& ctx) 
+	{
 
 	}
 
-	void State::update(float delta, const uint8_t* keys) {
+	void State::update(float delta)
+	{
 
 	}
 
-	void State::render(Context& ctx) {
+	void State::render(Context& ctx) 
+	{
 
 	}
 
-	void State::destroy() {
+	void State::destroy() 
+	{
 
 	}
 

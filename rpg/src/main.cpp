@@ -1,19 +1,7 @@
-#include <cstdio>
-#include <cstdlib>
-#include <cstdint>
 #include <iostream>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <engine.hpp>
-#include <experimental/filesystem>
+#include "App.hpp"
 
-#include "Config.hpp"
-#include "MyGame.hpp"
-#include "Title.hpp"
-#include "StateManager.hpp"
-#include "Timer.hpp"
-
-namespace fs = std::experimental::filesystem;
+/*namespace fs = std::experimental::filesystem;
 
 StateManager sm;
 
@@ -87,7 +75,7 @@ void render() {
             quit = true;
         }
 
-        current->update((float)(delta/1e9), state);
+        current->update((float)(delta/1e9));
 
         ctx.clear();
         current->render(ctx);
@@ -103,7 +91,7 @@ void cleanup() {
     title.destroy();
     //SDL_FreeSurface(icon);
 	ctx.destroy();
-}
+}*/
 
 // for sdl on windows
 #ifdef main
@@ -112,7 +100,7 @@ void cleanup() {
 int main(int argc, char* argv[]) {
     std::cout << "hello, world!" << std::endl;
 
-	if (argc > 1)
+	/*if (argc > 1)
 	{
         for (int i = 1; i < argc; i++)
 		{
@@ -126,11 +114,9 @@ int main(int argc, char* argv[]) {
 				StateManager::setCurrentState(tag);
 			}
 		}
-	}
+	}*/
 
-    init();
-
-	fs::path assetPath = fs::current_path() / "assets";
+    //init();
 
     /*SDL_RenderClear(r);
     SDL_Rect c;
@@ -145,17 +131,22 @@ int main(int argc, char* argv[]) {
 
     //loadingScreen();
 
+    /*fs::path assetPath = fs::current_path() / "assets";
 	engine::Assets::setCwd(assetPath);
-	engine::Assets::loadTexturesFromJson(ctx, fs::path(assetPath / "textures-all.json").generic_string());
+	engine::Assets::loadTexturesFromJson(ctx, fs::path(assetPath / "textures-all.json").generic_string());*/
     //engine::Assets::useAll(ctx);
 
-    game.init(ctx);
+    /*game.init(ctx);
     title.init(ctx);
 
     SDL_SetRenderDrawColor(ctx.getRenderer(), 0, 0, 0, 255);
 
     render();
-    cleanup();
+    cleanup();*/
+
+    App app;
+    app.init();
+    app.render();
 
     return 0;
 }

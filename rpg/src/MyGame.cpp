@@ -103,7 +103,7 @@ void MyGame::tests()
     printf("done!\n");*/
 }
 
-void MyGame::update(float delta, const uint8_t* keys)
+void MyGame::update(float delta)
 {
     updateKeys();
 

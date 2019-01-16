@@ -16,7 +16,7 @@ public:
     }
 
     void init(engine::Context&) override;
-    void update(float, const unsigned char*) override;
+    void update(float) override;
     void render(engine::Context&) override;
 
 private:

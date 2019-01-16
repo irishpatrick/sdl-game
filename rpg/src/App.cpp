@@ -21,6 +21,14 @@ void App::init()
 	
 	int result = ctx.init(Config::getScreenWidth(), Config::getScreenHeight(), "title", false);
 	if (result < 0) std::exit(-1);
+
+	fs::path assetPath = fs::current_path() / "assets";
+	engine::Assets::setCwd(assetPath);
+	engine::Assets::loadTexturesFromJson(ctx, fs::path(assetPath / "textures-all.json").generic_string());
+
+	game.init(ctx);
+	title.init(ctx);
+
 	addState("game", &game);
 	addState("title", &title);
 	setCurrentState("game");
@@ -45,6 +53,12 @@ void App::render()
 				quit = true;
 			}
 		}
+
+		getCurrentState()->update((float)delta / (float)(1e9));
+
+		ctx.clear();
+		getCurrentState()->render(ctx);
+		ctx.render();
 
 		then = now;
 	}

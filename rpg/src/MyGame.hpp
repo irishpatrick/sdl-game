@@ -25,7 +25,7 @@ public:
     //void input(uint8_t*);
     void onEntry() override;
     void tests();
-    void update(float, const uint8_t*) override;
+    void update(float) override;
     void render(engine::Context&) override;
     void destroy() override;
 

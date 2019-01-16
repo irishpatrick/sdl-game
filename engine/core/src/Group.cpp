@@ -146,6 +146,15 @@ namespace engine {
         }
     }*/
 
+    void Group::draw(Camera& c, Context& ctx)
+    {
+        if (!visible) return;
+        for (auto& e : renderList)
+        {
+            e->draw(c, ctx);
+        }
+    }
+
     void Group::draw(SDL_Renderer *r) {
 		if (!visible) return;
         for (auto& e : renderList) {

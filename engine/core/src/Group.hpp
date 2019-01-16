@@ -32,6 +32,7 @@ namespace engine
         CORE_API void draw(SDL_Renderer*);
         CORE_API virtual void draw(Context&);
         //CORE_API void draw(Object&, Context&);
+        CORE_API void draw(Camera&, Context&);
         CORE_API void destroy();
         CORE_API std::vector<Sprite*> getSprites();
         CORE_API void add(Sprite*);

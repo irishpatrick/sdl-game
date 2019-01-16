@@ -167,6 +167,25 @@ namespace engine {
 		SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
     }
 
+	void Sprite::draw(Camera& c, Context& ctx)
+	{
+		if (!visible) return;
+
+		if (texture == nullptr)
+		{
+			std::cout << "error, texture is null" << std::endl;
+			return;
+		}
+
+        SDL_Rect rect;
+		rect.x = x + c.x;
+		rect.y = y + c.y;
+		rect.w = w;
+		rect.h = h;
+
+		SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
+	}
+
 	void Sprite::draw(SDL_Renderer* r) {
 		/*if (!visible) {
 			return;

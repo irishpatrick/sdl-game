@@ -3,7 +3,8 @@
 #include "core_api.hpp"
 #include <cstdio>
 
-namespace engine {
+namespace engine
+{
 
 class OneShot
 {

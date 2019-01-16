@@ -46,32 +46,8 @@ namespace engine
     	CORE_API virtual Group* getParent();
     	CORE_API void setCamera(Camera*);
 		CORE_API void setBoundingBox(int, int, int, int);
-
-		CORE_API inline BoundingBox& getRelativeBoundingBox() {
-			if (boundingBox.w == -1) {
-				boundingBox.w = (float)w;
-			}
-			if (boundingBox.h == -1) {
-				boundingBox.h = (float)h;
-			}
-
-			return boundingBox;
-		}
-
-		CORE_API inline BoundingBox& getBoundingBox() {
-			realBoundingBox.x = x + boundingBox.x;
-			realBoundingBox.y = y + boundingBox.y;
-			realBoundingBox.w = boundingBox.w;
-			realBoundingBox.h = boundingBox.h;
-			if (boundingBox.w == -1) {
-				realBoundingBox.w = (float)w;
-			}
-			if (boundingBox.h == -1) {
-				realBoundingBox.h = (float)h;
-			}
-
-			return realBoundingBox;
-		}
+		CORE_API BoundingBox& getRelativeBoundingBox();
+		CORE_API BoundingBox& getBoundingBox();
 
     	CORE_API inline Texture* getTexture() {
             return texture;

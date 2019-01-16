@@ -5,7 +5,8 @@
 #include <SDL.h>
 #include <chrono>
 
-namespace engine {
+namespace engine
+{
 
 enum Unit {NANO, MILLI};
 

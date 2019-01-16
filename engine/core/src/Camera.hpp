@@ -3,7 +3,8 @@
 #include "core_api.hpp"
 #include "Object.hpp"
 
-namespace engine {
+namespace engine
+{
 
 class Sprite;
 

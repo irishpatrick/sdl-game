@@ -10,9 +10,11 @@
 #include <SDL_ttf.h>
 #include "Font.hpp"
 
-namespace engine {
+namespace engine
+{
 
-    class DebugInfo {
+    class DebugInfo
+	{
 
     public:
         CORE_API DebugInfo();

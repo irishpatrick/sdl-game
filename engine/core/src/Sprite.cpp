@@ -220,4 +220,32 @@ namespace engine {
 		boundingBox.w = (float)bw;
 		boundingBox.h = (float)bh;
 	}
+
+	BoundingBox& Sprite::getRelativeBoundingBox()
+	{
+		if (boundingBox.w == -1) {
+			boundingBox.w = (float)w;
+		}
+		if (boundingBox.h == -1) {
+			boundingBox.h = (float)h;
+		}
+
+		return boundingBox;
+	}
+
+	BoundingBox& Sprite::getBoundingBox()
+	{
+		realBoundingBox.x = x + boundingBox.x;
+		realBoundingBox.y = y + boundingBox.y;
+		realBoundingBox.w = boundingBox.w;
+		realBoundingBox.h = boundingBox.h;
+		if (boundingBox.w == -1) {
+			realBoundingBox.w = (float)w;
+		}
+		if (boundingBox.h == -1) {
+			realBoundingBox.h = (float)h;
+		}
+
+		return realBoundingBox;
+	}
 }

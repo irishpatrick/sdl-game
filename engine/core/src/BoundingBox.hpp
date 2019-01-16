@@ -14,12 +14,7 @@ namespace engine
         CORE_API BoundingBox();
         CORE_API ~BoundingBox();
 
-		CORE_API inline std::string str()
-		{
-			std::stringstream ss;
-			ss << "BoundingBox { x: " << x << ", y: " << y << ", w: " << w << ", h" << h << std::endl;
-			return ss.str();
-		}
+		CORE_API std::string str();
 
         float x;
         float y;

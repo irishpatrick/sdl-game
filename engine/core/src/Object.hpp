@@ -2,9 +2,11 @@
 
 #include "core_api.hpp"
 
-namespace engine {
+namespace engine
+{
 
-    class Object {
+    class Object
+	{
     public:
         CORE_API Object();
         CORE_API ~Object();

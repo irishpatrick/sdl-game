@@ -4,24 +4,28 @@
 #include "Timer.hpp"
 #include <cstdint>
 
-namespace engine {
+namespace engine
+{
 
 class Context;
 
 enum Fade {FADE_IN, FADE_OUT};
 
-class Transition {
+class Transition
+{
 public:
 	CORE_API  Transition();
 	CORE_API ~Transition();
 
 	CORE_API void setAlpha(uint8_t);
 
-	CORE_API inline void draw(Context* ctx) {
+	CORE_API inline void draw(Context* ctx)
+	{
 		fill(ctx, alpha);
 	}
 
-	CORE_API inline bool isRunning() {
+	CORE_API inline bool isRunning()
+	{
         return running;
     }
 

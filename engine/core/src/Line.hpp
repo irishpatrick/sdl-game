@@ -2,7 +2,8 @@
 
 #include "core_api.hpp"
 
-namespace engine {
+namespace engine
+{
 
 	class Line
 	{

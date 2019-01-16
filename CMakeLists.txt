@@ -127,6 +127,13 @@ else ()
 		bcrypt
     )
 
+	find_path(SDL_INCLUDE_DIR NAMES SDL.h PATH_SUFFIXES SDL2)
+
+	set(INCLUDE_DIR 
+		${INCLUDE_DIR}
+		${SDL_INCLUDE_DIR}
+	)
+
 endif ()
 
 

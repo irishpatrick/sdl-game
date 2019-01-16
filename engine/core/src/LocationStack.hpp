@@ -1,13 +1,12 @@
 #pragma once
 
 #include "core_api.hpp"
-
 #include <cstdio>
 #include <vector>
-
 #include "Point.hpp"
 
-namespace engine {
+namespace engine
+{
 
 class LocationStack
 {

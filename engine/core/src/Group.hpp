@@ -8,8 +8,7 @@
 #include <string>
 #include <fstream>
 #include <streambuf>
-
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include <nlohmann/json.hpp>
 
 #include "Context.hpp"

@@ -48,18 +48,9 @@ namespace engine
 		CORE_API void setBoundingBox(int, int, int, int);
 		CORE_API BoundingBox& getRelativeBoundingBox();
 		CORE_API BoundingBox& getBoundingBox();
-
-    	CORE_API inline Texture* getTexture() {
-            return texture;
-        }
-
-    	CORE_API inline void setSolid(bool b) {
-            solid = b;
-        }
-
-    	CORE_API inline bool isSolid() {
-            return solid;
-        }
+		CORE_API Texture* getTexture();
+		CORE_API void setSolid(bool);
+		CORE_API bool isSolid();
 
     	CORE_API inline void SetVisible(bool b) {
             visible = b;

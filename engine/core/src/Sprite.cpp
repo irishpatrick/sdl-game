@@ -248,4 +248,19 @@ namespace engine {
 
 		return realBoundingBox;
 	}
+
+	Texture* Sprite::getTexture()
+	{
+		return texture;
+	}
+
+	void Sprite::setSolid(bool b)
+	{
+		solid = b;
+	}
+
+	bool Sprite::isSolid()
+	{
+		return solid;
+	}
 }

@@ -16,8 +16,6 @@
 
 namespace engine
 {
-
-    //class Animation;
     class Group;
     class Texture;
     class Camera;
@@ -29,13 +27,10 @@ namespace engine
     	CORE_API virtual ~Sprite();
 
 		CORE_API virtual void init(Context&);
-        //CORE_API virtual Animation* getAnimation();
-    	//CORE_API virtual void InitAnimation(const std::string&);
     	CORE_API virtual void setTexture(Texture*);
     	CORE_API virtual void draw(SDL_Renderer*);
         CORE_API virtual void draw(Context&);
 		CORE_API virtual void draw(Camera&, Context&);
-		//CORE_API virtual void draw(Object&, Context&);
     	CORE_API virtual void ResetCollision();
     	CORE_API virtual void update(float);
     	CORE_API void setSpeed(float);
@@ -51,27 +46,13 @@ namespace engine
 		CORE_API Texture* getTexture();
 		CORE_API void setSolid(bool);
 		CORE_API bool isSolid();
-
-    	CORE_API inline void SetVisible(bool b) {
-            visible = b;
-        }
-
-    	CORE_API inline bool IsVisible() {
-            return visible;
-        }
-
-    	CORE_API inline void setMaxSpeed(float a) {
-            maxSpeed = a;
-        }
-
-    	CORE_API inline float getMaxSpeed() {
-            return maxSpeed;
-        }
-
-    	CORE_API inline std::string getName() {
-            return name;
-        }
-
+		CORE_API void setVisible(bool);
+		CORE_API bool isVisible();
+		CORE_API void SetVisible(bool);
+		CORE_API bool IsVisible();
+		CORE_API void setMaxSpeed(float);
+		CORE_API float getMaxSpeed();
+		CORE_API std::string& getName();
     	CORE_API std::string getUUID();
 
         float xvel;
@@ -81,7 +62,6 @@ namespace engine
         Texture* texture;
         bool solid;
         std::string name;
-        //Animation* anim;
 		int w;
 		int h;
 		bool dynamic;

@@ -1,4 +1,5 @@
 #pragma once
+
 #include "core_api.hpp"
 #include <SDL.h>
 #include <SDL_ttf.h>

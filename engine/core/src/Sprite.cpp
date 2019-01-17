@@ -263,4 +263,39 @@ namespace engine {
 	{
 		return solid;
 	}
+
+	void Sprite::SetVisible(bool b)
+	{
+		visible = b;
+	}
+
+	bool Sprite::IsVisible()
+	{
+		return visible;
+	}
+
+	void Sprite::setVisible(bool b)
+	{
+		visible = b;
+	}
+
+	bool Sprite::isVisible()
+	{
+		return visible;
+	}
+
+	void Sprite::setMaxSpeed(float a)
+	{
+		maxSpeed = a;
+	}
+
+	float Sprite::getMaxSpeed()
+	{
+		return maxSpeed;
+	}
+
+	std::string& Sprite::getName()
+	{
+		return name;
+	}
 }

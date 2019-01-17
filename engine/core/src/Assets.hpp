@@ -25,14 +25,12 @@ namespace engine
 		CORE_API static Texture* getTexture(const std::string&);
 		CORE_API static void getMissingTexture(Context&);
 		CORE_API static void destroy();
-		//CORE_API static void getFutures();
 		CORE_API static void useAll(Context&);
 		CORE_API static void setCwd(const std::string&);
 		CORE_API static void setCwd(fs::path);
 
 	private:
 		CORE_API static std::vector<std::string> split(const std::string&, char);
-		//CORE_API static void single_load(Texture*, const std::string&);
 		CORE_API static std::map<std::string, Texture*> texMap;
 		CORE_API static Texture* missing;
 		CORE_API static fs::path cwd;

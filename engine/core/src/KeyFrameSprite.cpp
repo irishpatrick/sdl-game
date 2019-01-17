@@ -80,7 +80,7 @@ namespace engine
 				{
 					Anim* c = &animations[n++];
 					c->name = (char*)malloc(e["name"].get<std::string>().size());
-					strcpy_s(c->name, strlen(e["name"].get<std::string>().c_str()), e["name"].get<std::string>().c_str());
+					strcpy(c->name, e["name"].get<std::string>().c_str());
 					c->fps = e["fps"];
 					c->length = e["length"];
 					c->frames = (int*)malloc(sizeof(int) * c->length);

@@ -11,12 +11,12 @@ public:
 	~App();
 
 	void init();
-	void render();
+	void draw();
+	void mainLoop();
 
 private:
 	MyGame game;
 	Title title;
 	engine::Context ctx;
-	bool quit;
 	SDL_Event e;
 };

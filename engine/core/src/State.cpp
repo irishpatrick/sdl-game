@@ -45,6 +45,6 @@ namespace engine
 
 	void State::setGame(Game& g)
 	{
-		game = g;
+		game = &g;
 	}
 }

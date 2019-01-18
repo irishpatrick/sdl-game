@@ -25,11 +25,13 @@ public:
     void setTag(const string&);
     string getTag();
 
-    inline string getDest() {
+    inline string getDest()
+	{
         return dest_;
     }
 
-    inline engine::Point& getExit() {
+    inline engine::Point& getExit()
+	{
         return exit_;
     }
 

@@ -24,6 +24,6 @@ namespace engine
 
 	protected:
 		uint8_t* kbd;
-		Game game;
+		Game* game;
 	};
 }

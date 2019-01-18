@@ -34,14 +34,13 @@ void App::init()
 	setCurrentState("game");
 }
 
-void App::render()
+void App::draw()
 {
 	long delta;
 	long now;
 	long then = engine::Timer::getNanoTime();
 
-	quit = false;
-	while (!quit)
+	while (running)
 	{
 		now = engine::Timer::getNanoTime();
 		delta = now - then;
@@ -50,7 +49,7 @@ void App::render()
 		{
 			if (e.type == SDL_QUIT)
 			{
-				quit = true;
+				quit();
 			}
 		}
 
@@ -62,4 +61,9 @@ void App::render()
 
 		then = now;
 	}
+}
+
+void App::mainLoop()
+{
+
 }

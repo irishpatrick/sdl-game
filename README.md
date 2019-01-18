@@ -10,10 +10,14 @@ A game engine using SDL 2.0.8 consisting of multiple libraries and games that te
 
 - SDL2 (2.0.0 or higher)
 - SDL2_image (2.0.0 or higher)
+- SDL2_ttf
 - boost (1.58.0 or higher)
+- cairo
+- nlohmann json
 
 ## building
 
 - cmake (3.0 or higher)
 - pkg-config (optional)
 - hunter (optional)
+- vcpkg (optional)

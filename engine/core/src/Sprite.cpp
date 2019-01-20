@@ -4,7 +4,8 @@
 #include "Camera.hpp"
 #include <iostream>
 
-namespace engine {
+namespace engine
+{
 
 	Sprite::Sprite()
 	{

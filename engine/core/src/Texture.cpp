@@ -1,8 +1,10 @@
 #include "Texture.hpp"
 
-namespace engine {
+namespace engine
+{
 
-	Texture::Texture() {
+	Texture::Texture()
+	{
 		w = 0;
 		h = 0;
 		tex = NULL;
@@ -11,33 +13,39 @@ namespace engine {
 		name = "";
 	}
 
-	Texture::~Texture() {
+	Texture::~Texture()
+	{
 
 	}
 
-	uint32_t Texture::getW() {
+	uint32_t Texture::getW()
+	{
 		return w;
 	}
 
-	uint32_t Texture::getH() {
+	uint32_t Texture::getH()
+	{
 		return h;
 	}
 
-	void Texture::set(SDL_Surface* s) {
+	void Texture::set(SDL_Surface* s)
+	{
 		surf = s;
 		w = surf->w;
 		h = surf->h;
 		ready = true;
 	}
 
-	void Texture::copy(Texture* t) {
+	void Texture::copy(Texture* t)
+	{
 		w = t->getW();
 		h = t->getH();
 		tex = t->use();
 		ready = true;
 	}
 
-	void Texture::create(Context& ctx) {
+	void Texture::create(Context& ctx)
+	{
 		tex = SDL_CreateTextureFromSurface(ctx.getRenderer(), surf);
 		if (tex == nullptr) {
 			std::cout << "(" << name << ") error: cannot create texture: " << SDL_GetError() << std::endl;
@@ -58,7 +66,8 @@ namespace engine {
 		ready = true;
 	}
 
-	SDL_Texture* Texture::use() {
+	SDL_Texture* Texture::use()
+	{
 		if (tex == nullptr) {
 			std::cout << "(" << name << ") error: need to create texture first" << std::endl;
 			//printf("creating texture\n");
@@ -67,7 +76,8 @@ namespace engine {
 		return tex;
 	}
 
-	void Texture::destroy() {
+	void Texture::destroy()
+	{
 		SDL_DestroyTexture(tex);
 	}
 }

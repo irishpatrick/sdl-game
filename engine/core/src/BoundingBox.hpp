@@ -9,7 +9,6 @@ namespace engine
 
     class BoundingBox
 	{
-
     public:
         CORE_API BoundingBox();
         CORE_API ~BoundingBox();

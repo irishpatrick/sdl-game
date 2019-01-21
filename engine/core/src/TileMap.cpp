@@ -15,18 +15,28 @@ namespace engine
 		cols = 0;
 		gridSize = 0;
 		map_p = nullptr;
+		solids_p = nullptr;
 	}
 
 	TileMap::~TileMap()
 	{
 		// dealloc map_p if needed
-		if (map_p == nullptr)
+		if (map_p != nullptr)
 		{
 			for (int i = 0; i < rows; i++)
 			{
 				free(map_p[i]);
 			}
 			free(map_p);
+		}
+
+		if (solids_p != nullptr)
+		{
+			for (int i = 0; i < rows*cols; i++)
+			{
+				delete solids_p[i];
+			}
+			free(solids_p);
 		}
 	}
 
@@ -69,7 +79,11 @@ namespace engine
 		}
 
 		// build tilemap
+		initMap(o["rows"], o["cols"], o["tileSize"]);
 
+		for (auto& e : o["tiles"])
+		{
 
+		}
 	}
 }

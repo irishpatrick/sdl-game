@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Sprite.hpp"
+#include "BoundingBox.hpp"
 #include <string>
 #include <fstream>
 
@@ -16,7 +17,7 @@ namespace engine
 	{
 	public:
 		TileMap();
-		TileMap();
+		~TileMap();
 
 		void initMap(int, int, int);
 		void loadMap(const std::string&);
@@ -26,5 +27,6 @@ namespace engine
 		int rows;
 		int cols;
 		TILE** map_p;
+		BoundingBox** solids_p;
 	};
 };

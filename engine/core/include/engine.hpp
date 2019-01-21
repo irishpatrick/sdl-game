@@ -24,3 +24,4 @@
 #include "Game.hpp"
 #include "SimpleGame.hpp"
 #include "StateBasedGame.hpp"
+#include "TileMap.hpp"

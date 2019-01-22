@@ -1,18 +1,19 @@
 {
-    "rows": 10,
-    "cols": 10,
-    "tilesize": 32,
+    "rows": 4,
+    "cols": 4,
+    "tilesize": 64,
+    "map": "tilemap.png",
+    "subtextures": {
+        "grass": {"x": 0, "y": 0},
+        "wall": {"x": 1, "y": 1}
+    },
     "tiles": [
-        {"solid": true}, {"solid": true}, {"solid": true}, {"solid": true}, {"solid": true}, {"solid": true}, {"solid": true}, {"solid": true}, {"solid": true}, {"solid": true}, {"solid": true},
-        {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-        {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-        {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-        {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-        {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-        {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-        {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-        {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
-        {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+        {"solid": true, "texture": "wall"}, {"solid": true, "texture": "wall."}, {"solid": true, "texture": "wall"}, {"solid": true, "texture": "wall"},
 
+        {"solid": true, "texture": "wall"}, {"solid": false, "texture": "grass"}, {"solid": false, "texture": "grass"}, {"solid": true, "texture": "wall"},
+
+        {"solid": true, "texture": "wall"}, {"solid": false, "texture": "grass"}, {"solid": false, "texture": "grass"}, {"solid": true, "texture": "wall"},
+
+        {"solid": true, "texture": "wall"}, {"solid": true, "texture": "wall"}, {"solid": true, "texture": "wall"}, {"solid": true, "texture": "wall"},
     ]
 }

@@ -81,9 +81,20 @@ namespace engine
 		// build tilemap
 		initMap(o["rows"], o["cols"], o["tileSize"]);
 
+		int r = 0;
+		int c = 0;
+
 		for (auto& e : o["tiles"])
 		{
-
+			map_p[r][c].solid = e["solid"];
+			map_p[r][c].solid = e["texture"];
+			
+			r++;
+			if (r == rows)
+			{
+				r = 0;
+				c++;
+			}
 		}
 	}
 }

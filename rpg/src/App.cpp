@@ -18,7 +18,7 @@ void App::init()
 	#elif __linux__
 		Config::load((fs::current_path() / fs::path("assets/config.json")).generic_string());
 	#endif
-	
+
 	int result = ctx.init(Config::getScreenWidth(), Config::getScreenHeight(), "title", false);
 	if (result < 0) std::exit(-1);
 
@@ -28,9 +28,11 @@ void App::init()
 
 	game.init(ctx);
 	title.init(ctx);
+	mapTest.init(ctx);
 
 	addState("game", &game);
 	addState("title", &title);
+	addState("mapTest", &mapTest);
 	setCurrentState("game");
 }
 

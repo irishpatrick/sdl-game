@@ -3,6 +3,7 @@
 #include <engine.hpp>
 #include "MyGame.hpp"
 #include "Title.hpp"
+#include "MapTest.hpp"
 
 class App : public engine::StateBasedGame
 {
@@ -17,6 +18,7 @@ public:
 private:
 	MyGame game;
 	Title title;
+	MapTest mapTest;
 	engine::Context ctx;
 	SDL_Event e;
 };

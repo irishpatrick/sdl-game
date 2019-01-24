@@ -129,7 +129,7 @@ else ()
 
 	find_path(SDL_INCLUDE_DIR NAMES SDL.h PATH_SUFFIXES SDL2)
 
-	set(INCLUDE_DIR 
+	set(INCLUDE_DIR
 		${INCLUDE_DIR}
 		${SDL_INCLUDE_DIR}
 	)
@@ -141,6 +141,9 @@ endif ()
 
 add_subdirectory(./engine/core)
 set(LIBRARIES ${LIBRARIES} core)
+
+add_subdirectory(./stf)
+set(LIBRARIES ${LIBRARIES} stf)
 
 if (BUILD_RPG)
     add_subdirectory(./rpg)

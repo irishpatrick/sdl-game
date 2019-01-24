@@ -13,6 +13,7 @@ namespace stf
 
         void open(const std::string&);
 
-        std::map<std::string, Section> sectionMap;
+        std::map<std::string, Section*> sectionMap;
+        Section* currentSection;
     };
 }

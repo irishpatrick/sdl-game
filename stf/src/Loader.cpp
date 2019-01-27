@@ -51,7 +51,7 @@ namespace stf
 
             if (parts[0] == "end")
             {
-
+				currentSection = nullptr;
             }
         }
     }

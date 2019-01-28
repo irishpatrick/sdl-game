@@ -51,7 +51,7 @@ namespace stf
 
             if (parts[0] == "begin")
             {
-                std::cout << "new section" << std::endl;
+                std::cout << "new section: " << parts[1] << std::endl;
                 currentSection = new Section();
                 sectionMap[parts[1]] = currentSection;
             }
@@ -59,6 +59,11 @@ namespace stf
             if (parts[0] == "end")
             {
 				currentSection = nullptr;
+            }
+
+            if (currentSection != nullptr)
+            {
+                
             }
         }
     }

@@ -30,12 +30,18 @@ namespace stf
     {
         std::ifstream fp;
         fp.open(fs::path(fn).generic_string());
+        if (!fp.is_open())
+        {
+            std::cout << "error opening file " << fn << std::endl;
+            return;
+        }
         std::string line;
         std::vector<std::string> parts;
         std::string token;
         std::string delimiter = " ";
         while (std::getline(fp, line))
         {
+            std::cout << "line" << std::endl;
             parts.clear();
             std::istringstream ss(line);
             while (std::getline(ss, token, ' '))
@@ -45,6 +51,7 @@ namespace stf
 
             if (parts[0] == "begin")
             {
+                std::cout << "new section" << std::endl;
                 currentSection = new Section();
                 sectionMap[parts[1]] = currentSection;
             }

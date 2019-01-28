@@ -8,6 +8,7 @@ option (BUILD_RPG "build game" OFF)
 option (BUILD_RASPBERRY_GAME "raspberry game" OFF)
 option (BUILD_STRATEGY_GAME "strategy game" OFF)
 option (DEBUG_SYMBOLS "enable debug symbols" ON)
+option (BUILD_LIBTESTS "build library test programs" OFF)
 
 #set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
 #set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
@@ -144,6 +145,10 @@ set(LIBRARIES ${LIBRARIES} core)
 
 add_subdirectory(./stf)
 set(LIBRARIES ${LIBRARIES} stf)
+
+if (BUILD_LIBTESTS)
+	add_subdirectory(./stftest)
+endif (BUILD_LIBTESTS)
 
 if (BUILD_RPG)
     add_subdirectory(./rpg)

@@ -21,6 +21,7 @@ namespace stf
         {
             if (e.second != nullptr)
             {
+                std::cout << "delete section" << std::endl;
                 delete e.second;
             }
         }
@@ -41,7 +42,6 @@ namespace stf
         std::string delimiter = " ";
         while (std::getline(fp, line))
         {
-            std::cout << "line" << std::endl;
             parts.clear();
             std::istringstream ss(line);
             while (std::getline(ss, token, ' '))

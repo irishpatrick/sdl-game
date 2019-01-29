@@ -11,6 +11,8 @@ namespace stf
         Entry();
         ~Entry();
 
+        void setLine(const std::string&);
+
         template <class T>
         T getValue(int);
 

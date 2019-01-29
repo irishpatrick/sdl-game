@@ -12,6 +12,7 @@ namespace stf
         ~Loader();
 
         void open(const std::string&);
+        Section& getSection(const std::string&);
 
         std::map<std::string, Section*> sectionMap;
         Section* currentSection;

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(stftest C CXX)
+project(stufftest C CXX)
 
 file(GLOB sources src/*)
 file (GLOB assets assets/*)

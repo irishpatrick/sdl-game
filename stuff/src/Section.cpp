@@ -4,7 +4,12 @@ namespace stf
 {
     Section::Section()
     {
+        id = "";
+    }
 
+    Section::Section(const std::string& str)
+    {
+        id = str;
     }
 
     Section::~Section()
@@ -23,5 +28,10 @@ namespace stf
         Entry* e = new Entry();
         e->setLine(line);
         entries.push_back(e);
+    }
+
+    Entry& Section::getline(int pos)
+    {
+        return *entries[pos];
     }
 }

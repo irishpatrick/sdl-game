@@ -1,4 +1,6 @@
 begin section1
+v 1 2 3
+v 2 3 4
 end section1
 begin section2
 end section2

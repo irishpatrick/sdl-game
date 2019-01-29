@@ -14,9 +14,11 @@ namespace stf
         void setLine(const std::string&);
 
         template <class T>
-        T getValue(int);
+        T getValue(unsigned int);
 
     private:
         std::vector<std::string> parts;
     };
 }
+
+#include "Entry.inl"

@@ -27,6 +27,11 @@ namespace stf
         }
     }
 
+    Section& Loader::getSection(const std::string& id)
+    {
+        return *sectionMap[id];
+    }
+
     void Loader::open(const std::string& fn)
     {
         std::ifstream fp;
@@ -49,21 +54,27 @@ namespace stf
                 parts.push_back(token);
             }
 
+
             if (parts[0] == "begin")
             {
                 std::cout << "new section: " << parts[1] << std::endl;
-                currentSection = new Section();
+                currentSection = new Section(parts[1]);
                 sectionMap[parts[1]] = currentSection;
+                continue;
             }
 
             if (parts[0] == "end")
             {
+                std::cout << "end section" << std::endl;
 				currentSection = nullptr;
+                continue;
             }
 
             if (currentSection != nullptr)
             {
-                
+                std::cout << "add line: " << line << std::endl;
+                currentSection->addLine(line);
+                continue;
             }
         }
     }

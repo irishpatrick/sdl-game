@@ -143,11 +143,11 @@ endif ()
 add_subdirectory(./engine/core)
 set(LIBRARIES ${LIBRARIES} core)
 
-add_subdirectory(./stf)
-set(LIBRARIES ${LIBRARIES} stf)
+add_subdirectory(./stuff)
+set(LIBRARIES ${LIBRARIES} stuff)
 
 if (BUILD_LIBTESTS)
-	add_subdirectory(./stftest)
+	add_subdirectory(./stufftest)
 endif (BUILD_LIBTESTS)
 
 if (BUILD_RPG)

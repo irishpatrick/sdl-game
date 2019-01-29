@@ -20,6 +20,8 @@ namespace stf
 
     void Section::addLine(const std::string& line)
     {
-        //entries.push_back()
+        Entry* e = new Entry();
+        e->setLine(line);
+        entries.push_back(e);
     }
 }

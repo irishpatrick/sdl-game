@@ -6,7 +6,7 @@ file(GLOB sources src/*)
 file (GLOB assets assets/*)
 
 add_executable(${PROJECT_NAME} ${sources})
-target_include_directories(${PROJECT_NAME} PRIVATE ${stf_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} stf stdc++fs)
+target_include_directories(${PROJECT_NAME} PRIVATE ${stuff_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} stuff stdc++fs)
 
 file(COPY ${assets} DESTINATION ./assets)

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(stf C CXX)
+project(stuff C CXX)
 
 file(GLOB sources "src/*")
 file(GLOB headers "include/*")

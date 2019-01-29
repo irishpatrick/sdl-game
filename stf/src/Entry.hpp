@@ -11,6 +11,9 @@ namespace stf
         Entry();
         ~Entry();
 
+        template <class T>
+        T getValue(int);
+
     private:
         std::vector<std::string> parts;
     };

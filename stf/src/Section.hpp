@@ -11,6 +11,8 @@ namespace stf
         Section();
         ~Section();
 
+        void addLine(const std::string&);
+
     private:
         std::vector<Entry*> entries;
     };

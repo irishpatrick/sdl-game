@@ -30,8 +30,8 @@ namespace stf
         entries.push_back(e);
     }
 
-    Entry& Section::getline(int pos)
+    Entry* Section::getLine(int pos)
     {
-        return *entries[pos];
+        return entries[pos];
     }
 }

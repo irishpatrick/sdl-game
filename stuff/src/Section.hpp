@@ -15,7 +15,7 @@ namespace stf
 
         void addLine(const std::string&);
 
-        Entry& getline(int);
+        Entry* getLine(int);
 
     private:
         std::vector<Entry*> entries;

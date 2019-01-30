@@ -8,7 +8,7 @@ namespace stf
     {
         if (pos >= parts.size())
         {
-            throw std::invalid_argument("pos is out of range");
+            return T();
         }
 
         try

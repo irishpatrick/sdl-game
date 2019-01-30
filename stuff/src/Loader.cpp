@@ -27,9 +27,13 @@ namespace stf
         }
     }
 
-    Section& Loader::getSection(const std::string& id)
+    Section* Loader::getSection(const std::string& id)
     {
-        return *sectionMap[id];
+        if (sectionMap[id] == nullptr)
+        {
+            std::cout << "giving back a null" << std::endl;
+        }
+        return sectionMap[id];
     }
 
     void Loader::open(const std::string& fn)
@@ -57,7 +61,7 @@ namespace stf
 
             if (parts[0] == "begin")
             {
-                std::cout << "new section: " << parts[1] << std::endl;
+                std::cout << "new section: " << parts[1] << "check" << std::endl;
                 currentSection = new Section(parts[1]);
                 sectionMap[parts[1]] = currentSection;
                 continue;

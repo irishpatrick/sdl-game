@@ -13,6 +13,10 @@ int main()
     loader.open(fn.generic_string());
     std::cout << "get number" << std::endl;
     //std::flush(std::stdout);
-    int n = loader.getSection("section1").getline(0).getValue<int>(1);
-    std::cout << n << std::endl;
+    stf::Section* section = loader.getSection("section1");
+    if (section == nullptr)
+    {
+        std::cout << "section was null" << std::endl;
+    }
+    stf::Entry* entry = section->getLine(0);
 }

@@ -24,4 +24,5 @@ int main()
     char c = entry->getValue<char>(0);
     std::string str = entry->getValue<std::string>(0);
     std::cout << "c: " << c << "\nstr: " << str << std::endl;
+    section->getLineByVal<std::string>("linename");
 }

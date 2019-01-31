@@ -19,4 +19,9 @@ int main()
         std::cout << "section was null" << std::endl;
     }
     stf::Entry* entry = section->getLine(0);
+    int n = entry->getValue<int>(1);
+    std::cout << "number " <<  n << std::endl;
+    char c = entry->getValue<char>(0);
+    std::string str = entry->getValue<std::string>(0);
+    std::cout << "c: " << c << "\nstr: " << str << std::endl;
 }

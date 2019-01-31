@@ -16,6 +16,9 @@ namespace stf
         template <class T>
         T getValue(unsigned int);
 
+        template <class T>
+        std::vector<T> toVector();
+
     private:
         std::vector<std::string> parts;
     };

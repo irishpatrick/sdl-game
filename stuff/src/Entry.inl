@@ -21,5 +21,16 @@ namespace stf
         }
 
         return T();
-    }   
+    }
+
+    template<class T>
+    std::vector<T> Entry::toVector()
+    {
+        std::vector<T> out;
+        for (auto& e : parts)
+        {
+            out.push_back(boost::lexical_cast<T>(e));
+        }
+        return out;
+    }
 }

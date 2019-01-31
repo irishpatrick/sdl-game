@@ -14,7 +14,6 @@ namespace stf
         ~Section();
 
         void addLine(const std::string&);
-
         Entry* getLine(int);
 
     private:

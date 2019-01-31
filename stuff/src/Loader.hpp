@@ -1,6 +1,7 @@
 #pragma once
 
 #include <map>
+#include <vector>
 #include "Section.hpp"
 
 namespace stf
@@ -16,5 +17,8 @@ namespace stf
 
         std::map<std::string, Section*> sectionMap;
         Section* currentSection;
+
+    private:
+        std::vector<std::string> strsplit(const std::string&, const std::string&);
     };
 }

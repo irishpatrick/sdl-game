@@ -19,7 +19,7 @@ set(COMPILE_OPTIONS "")
 set(LINK_OPTIONS "")
 set(MSVC_INCLUDE "" CACHE PATH "")
 set(MSVC_LIB "" CACHE PATH "")
-set(INCLUDE_DIR "include")
+set(INCLUDE_DIR "lib/include")
 
 # initialize hunter
 if (USE_HUNTER)
@@ -58,7 +58,7 @@ elseif (UNIX)
 	set(INCLUDE_DIR ${INCLUDE_DIR} /usr/include/)
     set(LIBRARY_DIR /usr/lib/)
     set(LIBRARIES ${LIBRARIES} stdc++fs)
-    set(COMPILE_OPTIONS -std=c++14 -D_REENTRANT -Wall -pthread)
+    set(COMPILE_OPTIONS -std=c++14 -D_REENTRANT -Wall -Wextra -Wshadow -Wnon-virtual-dtor -pedantic -pthread)
 
 	if (DEBUG_SYMBOLS)
         set(COMPILE_OPTIONS ${COMPILE_OPTIONS} -g)

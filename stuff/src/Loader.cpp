@@ -21,7 +21,7 @@ namespace stf
         {
             if (e.second != nullptr)
             {
-                std::cout << "delete section" << std::endl;
+
                 delete e.second;
             }
         }
@@ -51,13 +51,7 @@ namespace stf
         std::string delimiter = " ";
         while (std::getline(fp, line))
         {
-            parts.clear();
-            std::istringstream ss(line);
-            while (std::getline(ss, token, ' '))
-            {
-                parts.push_back(token);
-            }
-
+            parts = strsplit(line, " ");
 
             if (parts[0] == "begin")
             {
@@ -81,5 +75,33 @@ namespace stf
                 continue;
             }
         }
+    }
+
+    std::vector<std::string> Loader::strsplit(const std::string& str, const std::string& delim)
+    { 
+        std::string append = "";
+        std::vector<std::string> out;
+        if (delim.size() < 1)
+        {
+            std::cout << "bad delim" << std::endl;
+            return std::vector<std::string>();
+        }
+        for (auto& c : str)
+        {
+            if (c == delim[0])
+            {
+                out.push_back(append);
+                append = "";
+                continue;
+            }
+            if (c == '\r' || c == '\n')
+            {
+                continue;
+            }
+            append.push_back(c);
+        }
+        out.push_back(append);
+
+        return out;
     }
 }

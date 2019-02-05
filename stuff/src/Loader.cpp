@@ -5,6 +5,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <queue>
 
 namespace fs = std::experimental::filesystem;
 
@@ -17,6 +18,7 @@ namespace stf
 
     Loader::~Loader()
     {
+
         for (auto& e : sectionMap)
         {
             if (e.second != nullptr)
@@ -38,42 +40,74 @@ namespace stf
 
     void Loader::open(const std::string& fn)
     {
+        std::queue<std::string> files;
+        std::vector<std::string> done;
+        files.push(fn);
         std::ifstream fp;
-        fp.open(fs::path(fn).generic_string());
-        if (!fp.is_open())
+        std::string cfn;
+
+        while (files.size() != 0)
         {
-            std::cout << "error opening file " << fn << std::endl;
-            return;
-        }
-        std::string line;
-        std::vector<std::string> parts;
-        std::string token;
-        std::string delimiter = " ";
-        while (std::getline(fp, line))
-        {
-            parts = strsplit(line, " ");
-
-            if (parts[0] == "begin")
+            cfn = files.front();
+            files.pop();
+            fp.open(fs::path(cfn).generic_string());
+            if (!fp.is_open())
             {
-                std::cout << "new section: " << parts[1] << "check" << std::endl;
-                currentSection = new Section(parts[1]);
-                sectionMap[parts[1]] = currentSection;
-                continue;
+                std::cout << "error opening file " << cfn << std::endl;
+                return;
             }
-
-            if (parts[0] == "end")
+            std::string line;
+            std::vector<std::string> parts;
+            std::string token;
+            std::string delimiter = " ";
+            while (std::getline(fp, line))
             {
-                std::cout << "end section" << std::endl;
-				currentSection = nullptr;
-                continue;
-            }
+                parts = strsplit(line, " ");
 
-            if (currentSection != nullptr)
-            {
-                std::cout << "add line: " << line << std::endl;
-                currentSection->addLine(line);
-                continue;
+                if (parts[0] == "begin")
+                {
+                    std::cout << "new section: " << parts[1] << "check" << std::endl;
+                    currentSection = new Section(parts[1]);
+                    sectionMap[parts[1]] = currentSection;
+                    continue;
+                }
+
+                if (parts[0] == "end")
+                {
+                    std::cout << "end section" << std::endl;
+                    currentSection = nullptr;
+                    continue;
+                }
+
+                if (currentSection != nullptr)
+                {
+                    std::cout << "add line: " << line << std::endl;
+                    currentSection->addLine(line);
+                    continue;
+                }
+
+                if (parts[0] == "use")
+                {
+                    const std::string& use_fn = parts[1];
+                    for (auto& e : done)
+                    {
+                        if (e == use_fn)
+                        {
+                            std::cout << "error: circular dep" << std::endl;
+                            continue;
+                        }
+                    }
+
+                    files.push(use_fn);
+                }
+
+                if (parts[0] == "set")
+                {
+                    fieldMap[parts[1]] = parts[2];
+                }
             }
+            done.push_back(files.front());
+            files.pop();
         }
     }
 

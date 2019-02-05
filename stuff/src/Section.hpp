@@ -13,6 +13,10 @@ namespace stf
         Section(const std::string&);
         ~Section();
 
+        void addValue(const std::string&);
+        template <class T>
+        T getValue(const std::string&);
+
         void addLine(const std::string&);
         Entry* getLine(int);
 

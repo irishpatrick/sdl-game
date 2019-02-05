@@ -3,6 +3,8 @@
 #include "Entry.hpp"
 #include <vector>
 #include <string>
+#include <cstdlib>
+#include <iterator>
 
 namespace stf
 {
@@ -17,11 +19,16 @@ namespace stf
         template <class T>
         T getValue(const std::string&);
 
+        template <class T>
+        std::vector<T> getValues(int);
+
         void addLine(const std::string&);
         Entry* getLine(int);
 
         template <class T>
         Entry* getLineByVal(const T&);
+
+        size_t getSize();
 
     private:
         std::vector<Entry*> entries;

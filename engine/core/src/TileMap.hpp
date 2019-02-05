@@ -29,4 +29,4 @@ namespace engine
 		TILE** map_p;
 		BoundingBox** solids_p;
 	};
-};
+}

@@ -18,7 +18,8 @@ namespace stf
 
     Loader::~Loader()
     {
-
+        currentSection = nullptr;
+        
         for (auto& e : sectionMap)
         {
             if (e.second != nullptr)
@@ -49,7 +50,7 @@ namespace stf
         while (files.size() != 0)
         {
             cfn = files.front();
-            files.pop();
+            //files.pop();
             fp.open(fs::path(cfn).generic_string());
             if (!fp.is_open())
             {
@@ -66,7 +67,7 @@ namespace stf
 
                 if (parts[0] == "begin")
                 {
-                    std::cout << "new section: " << parts[1] << "check" << std::endl;
+                    std::cout << "new section: " << parts[1] << std::endl;
                     currentSection = new Section(parts[1]);
                     sectionMap[parts[1]] = currentSection;
                     continue;
@@ -81,13 +82,15 @@ namespace stf
 
                 if (currentSection != nullptr)
                 {
-                    std::cout << "add line: " << line << std::endl;
+                    std::cout << "add line" << std::endl;
+                    if (line == "\n") continue;
                     currentSection->addLine(line);
                     continue;
                 }
 
                 if (parts[0] == "use")
                 {
+                    std::cout << "use" << std::endl;
                     const std::string& use_fn = parts[1];
                     for (auto& e : done)
                     {
@@ -103,6 +106,7 @@ namespace stf
 
                 if (parts[0] == "set")
                 {
+                    std::cout << "set" << std::endl;
                     fieldMap[parts[1]] = parts[2];
                 }
             }
@@ -137,5 +141,15 @@ namespace stf
         out.push_back(append);
 
         return out;
+    }
+
+    size_t Loader::numFields()
+    {
+        return fieldMap.size();
+    }
+
+    size_t Loader::numSections()
+    {
+        return sectionMap.size();
     }
 }

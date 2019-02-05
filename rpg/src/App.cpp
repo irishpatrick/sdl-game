@@ -1,5 +1,6 @@
 #include "App.hpp"
 #include "Config.hpp"
+#include <stuff.hpp>
 
 App::App()
 {
@@ -24,7 +25,14 @@ void App::init()
 
 	fs::path assetPath = fs::current_path() / "assets";
 	engine::Assets::setCwd(assetPath);
-	engine::Assets::loadTexturesFromJson(ctx, fs::path(assetPath / "textures-all.json").generic_string());
+
+	//engine::Assets::loadTexturesFromJson(ctx, fs::path(assetPath / "textures-all.json").generic_string());
+
+    stf::Loader ldr;
+    ldr.open((fs::current_path() / "assets" / "textures.stf").generic_string());
+    std::string dir = ldr.getField<std::string>("dir");
+    engine::Assets::loadTexturesFromVector(dir, ldr.getSection("files")->getValues<std::string>(0), ctx);
+
 
 	game.init(ctx);
 	title.init(ctx);

@@ -9,7 +9,7 @@ namespace engine
 	{
 	public:
 		CORE_API Game();
-		CORE_API ~Game();
+		CORE_API virtual ~Game();
 
 		CORE_API virtual void draw();
 		CORE_API virtual void mainLoop();

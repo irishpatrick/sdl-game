@@ -8,6 +8,6 @@ namespace engine
 	{
 	public:
 		CORE_API SimpleGame();
-		CORE_API ~SimpleGame();
+		CORE_API virtual ~SimpleGame();
 	};
 }

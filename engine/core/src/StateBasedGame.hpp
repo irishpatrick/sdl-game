@@ -12,7 +12,7 @@ namespace engine
 	{
 	public:
 		CORE_API StateBasedGame();
-		CORE_API ~StateBasedGame();
+		CORE_API virtual ~StateBasedGame();
 
 		CORE_API void addState(const std::string&, State*);
 		CORE_API void setCurrentState(const std::string&);

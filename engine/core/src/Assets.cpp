@@ -103,8 +103,11 @@ namespace engine
 
 	void Assets::loadTexturesFromVector(const std::string& dir, std::vector<std::string> files, Context& ctx)
 	{
+        std::cout << "vector size: " << files.size() << std::endl;
 		for (auto& e : files) {
-			loadTexture(ctx, dir + e);
+            std::string path = (cwd / dir / e).generic_string();
+            std::cout << "loading " << path << std::endl;
+			loadTexture(ctx, path);
 		}
 	}
 

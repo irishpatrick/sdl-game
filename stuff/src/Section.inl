@@ -1,4 +1,6 @@
-
+#include <vector>
+#include <iostream>
+#include <iostream>
 
 namespace stf 
 {
@@ -13,5 +15,19 @@ namespace stf
             }
         }
         return nullptr;
+    }
+
+    template <class T>
+    std::vector<T> Section::getValues(int pos)
+    {
+        std::vector<T> out;
+        for (auto& e : entries)
+        {
+            T value = e->getValue<T>(pos);
+            std::cout << "value: " << value << std::endl;
+            out.push_back(value);
+        }
+
+        return out;
     }
 }

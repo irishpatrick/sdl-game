@@ -22,7 +22,7 @@ namespace engine
 	{
     public:
         CORE_API Group();
-        CORE_API ~Group();
+        CORE_API virtual ~Group();
 
         CORE_API void init(SDL_Renderer*);
 		CORE_API void init(Context&);

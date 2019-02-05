@@ -3,6 +3,7 @@
 #include <map>
 #include <vector>
 #include "Section.hpp"
+#include <cstdlib>
 
 namespace stf
 {
@@ -17,6 +18,9 @@ namespace stf
 
         template <class T>
         T getField(const std::string&);
+
+        size_t numSections();
+        size_t numFields();
 
     private:
         std::vector<std::string> strsplit(const std::string&, const std::string&);

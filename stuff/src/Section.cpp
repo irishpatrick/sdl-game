@@ -34,4 +34,9 @@ namespace stf
     {
         return entries[pos];
     }
+
+    size_t Section::getSize()
+    {
+        return entries.size();
+    }
 }

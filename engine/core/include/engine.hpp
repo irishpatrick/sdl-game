@@ -14,7 +14,6 @@
 #include "OneShot.hpp"
 #include "Context.hpp"
 #include "Transition.hpp"
-#include "Color.hpp"
 #include "BoundingBox.hpp"
 #include "Object.hpp"
 #include "DebugInfo.hpp"

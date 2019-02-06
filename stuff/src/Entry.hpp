@@ -2,23 +2,27 @@
 
 #include <vector>
 #include <string>
+#include <cstdint>
 
 namespace stf
 {
+
     class Entry
     {
     public:
         Entry();
+        Entry(const std::string&);
         ~Entry();
 
-        void setLine(const std::string&);
+        void processLine(const std::string&);
 
-        template <class T>
-        T getValue(unsigned int);
+        std::string getName();
 
-        template <class T>
-        std::vector<T> toVector();
+        template <typename T>
+        T getPart(int);
 
+        size_t size();
+    
     private:
         std::vector<std::string> parts;
     };

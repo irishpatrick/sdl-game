@@ -9,9 +9,14 @@
 
 namespace stf
 {
-    Entry::Entry()
+    Entry::Entry() : Entry("")
     {
 
+    }
+
+    Entry::Entry(const std::string& line)
+    {
+        processLine(line);
     }
 
     Entry::~Entry()
@@ -19,9 +24,21 @@ namespace stf
 
     }
 
-    void Entry::setLine(const std::string& str)
+    void Entry::processLine(const std::string& line)
     {
-        std::istringstream in(str);
-        parts = std::vector<std::string>(std::istream_iterator<std::string>(in), std::istream_iterator<std::string>());
+        std::istringstream ss(line);
+        std::copy(std::istream_iterator<std::string>(ss),
+                std::istream_iterator<std::string>(),
+                std::back_inserter(parts));
+    }
+
+    std::string Entry::getName()
+    {
+        return parts[0];
+    }
+
+    size_t Entry::size()
+    {
+        return parts.size();
     }
 }

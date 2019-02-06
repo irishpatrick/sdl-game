@@ -25,18 +25,7 @@ namespace stf
 
     void Section::addLine(const std::string& line)
     {
-        Entry* e = new Entry();
-        e->setLine(line);
+        Entry* e = new Entry(line);
         entries.push_back(e);
-    }
-
-    Entry* Section::getLine(int pos)
-    {
-        return entries[pos];
-    }
-
-    size_t Section::getSize()
-    {
-        return entries.size();
     }
 }

@@ -4,28 +4,38 @@
 
 namespace stf 
 {
-    template <class T>
-    Entry* Section::getLineByVal(const T& val)
+    template <typename T>
+    T Section::getValue(const std::string& name)
     {
         for (auto& e : entries)
         {
-            if (e->getValue<T>(0) == val)
+            if (e->getName() == name)
             {
-                return e;
+                return e->getPart<T>(1);
             }
         }
-        return nullptr;
     }
 
-    template <class T>
-    std::vector<T> Section::getValues(int pos)
+    template <typename T>
+    T Section::getValue(int index, int pos)
+    {
+        return entries[index]->getPart<T>(pos);
+    }
+
+    template <typename T>
+    std::vector<T> Section::getVector(const std::string& name)
     {
         std::vector<T> out;
         for (auto& e : entries)
         {
-            T value = e->getValue<T>(pos);
-            std::cout << "value: " << value << std::endl;
-            out.push_back(value);
+            if (e->getName() == name)
+            {
+                int i;
+                for (i=1; i<e->size(); i++)
+                {
+                    out.push_back(e->getPart<T>(name));
+                }
+            }
         }
 
         return out;

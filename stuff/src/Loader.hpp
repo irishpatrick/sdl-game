@@ -16,8 +16,6 @@ namespace stf
         void open(const std::string&);
         Section* getSection(const std::string&);
 
-        template <class T>
-        T getField(const std::string&);
 
         size_t numSections();
         size_t numFields();
@@ -26,7 +24,6 @@ namespace stf
         std::vector<std::string> strsplit(const std::string&, const std::string&);
 
         std::map<std::string, Section*> sectionMap;
-        std::map<std::string, std::string> fieldMap;
         Section* currentSection;
 
     };

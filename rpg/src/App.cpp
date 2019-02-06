@@ -30,7 +30,7 @@ void App::init()
 
     stf::Loader ldr;
     ldr.open((fs::current_path() / "assets" / "textures.stf").generic_string());
-    std::string dir = ldr.getField<std::string>("dir");
+    std::string dir = ldr.getSection("data").getValue<std::string>("dir");
     engine::Assets::loadTexturesFromVector(dir, ldr.getSection("files")->getValues<std::string>(0), ctx);
 
 

@@ -103,12 +103,6 @@ namespace stf
 
                     files.push(use_fn);
                 }
-
-                if (parts[0] == "set")
-                {
-                    std::cout << "set" << std::endl;
-                    fieldMap[parts[1]] = parts[2];
-                }
             }
             done.push_back(files.front());
             files.pop();
@@ -141,11 +135,6 @@ namespace stf
         out.push_back(append);
 
         return out;
-    }
-
-    size_t Loader::numFields()
-    {
-        return fieldMap.size();
     }
 
     size_t Loader::numSections()

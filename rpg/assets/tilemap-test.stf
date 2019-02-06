@@ -1,0 +1,32 @@
+begin data
+si rows 4
+si cols 4
+si tilesize 64
+end data
+
+begin subtextures
+sii grass 0 0
+sii wall 1 0
+end subtextures
+
+begin tiles
+sbii wall t 0 0
+sbii wall t 1 0
+sbii wall t 2 0
+sbii wall t 3 0
+
+sbii wall t 0 1
+sbii grass f 1 1
+sbii grass f 2 1
+sbii wall t 3 1 
+
+sbii wall t 0 2
+sbii grass f 1 2
+sbii grass f 2 2
+sbii wall t 3 2 
+
+sbii wall t 0 3
+sbii wall t 1 3
+sbii wall t 2 3
+sbii wall t 3 3
+end tiles

@@ -31,7 +31,7 @@ void App::init()
     stf::Loader ldr;
     ldr.open((fs::current_path() / "assets" / "textures.stf").generic_string());
     std::string dir = ldr.getSection("data").getValue<std::string>("dir");
-    engine::Assets::loadTexturesFromVector(dir, ldr.getSection("files")->getValues<std::string>(0), ctx);
+    engine::Assets::loadTexturesFromVector(dir, ldr.getSection("files").getLines<std::string>(), ctx);
 
 
 	game.init(ctx);

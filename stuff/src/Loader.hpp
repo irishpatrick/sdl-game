@@ -14,7 +14,7 @@ namespace stf
         ~Loader();
 
         void open(const std::string&);
-        Section* getSection(const std::string&);
+        Section& getSection(const std::string&);
 
 
         size_t numSections();

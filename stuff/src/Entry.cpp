@@ -24,9 +24,10 @@ namespace stf
 
     }
 
-    void Entry::processLine(const std::string& line)
+    void Entry::processLine(const std::string& l)
     {
-        std::istringstream ss(line);
+        line = l;
+        std::istringstream ss(l);
         std::copy(std::istream_iterator<std::string>(ss),
                 std::istream_iterator<std::string>(),
                 std::back_inserter(parts));

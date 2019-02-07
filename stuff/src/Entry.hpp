@@ -21,9 +21,13 @@ namespace stf
         template <typename T>
         T getPart(int);
 
+        template <typename T>
+        T getLine();
+
         size_t size();
     
     private:
+        std::string line;
         std::vector<std::string> parts;
     };
 }

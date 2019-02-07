@@ -29,6 +29,9 @@ namespace stf
 
         void addLine(const std::string&);
 
+        template <typename T>
+        std::vector<T> getLines();
+
     private:
         std::vector<Entry*> entries;
         std::string id;

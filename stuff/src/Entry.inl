@@ -8,4 +8,10 @@ namespace stf
     {
         return boost::lexical_cast<T>(parts[index]);
     }
+
+    template <typename T>
+    T Entry::getLine()
+    {
+        return boost::lexical_cast<T>(line);
+    }
 }

@@ -30,13 +30,13 @@ namespace stf
         }
     }
 
-    Section* Loader::getSection(const std::string& id)
+    Section& Loader::getSection(const std::string& id)
     {
         if (sectionMap[id] == nullptr)
         {
             std::cout << "giving back a null" << std::endl;
         }
-        return sectionMap[id];
+        return *sectionMap[id];
     }
 
     void Loader::open(const std::string& fn)

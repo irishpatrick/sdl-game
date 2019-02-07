@@ -40,4 +40,14 @@ namespace stf
 
         return out;
     }
+
+    template <typename T>
+    std::vector<T> Section::getLines()
+    {
+        std::vector<T> out;
+        for (auto& e : entries)
+        {
+            out.push_back(e->getLine<T>());   
+        }
+    }
 }

@@ -12,6 +12,8 @@
         "selector.png",
         "monster_1.png",
         "title.png",
-        "dialoguebox.png"
+        "dialoguebox.png",
+        "grass.png",
+        "wall.png"
     ]
 }

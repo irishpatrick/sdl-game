@@ -93,7 +93,7 @@ void cleanup() {
 	ctx.destroy();
 }*/
 
-int main(int argc, char* argv[]) {
+int main() {
     std::cout << "hello, world!" << std::endl;
 
 	/*if (argc > 1)

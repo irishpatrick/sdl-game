@@ -3,6 +3,9 @@
 #include <nlohmann/json.hpp>
 #include <experimental/filesystem>
 #include <iostream>
+#include <cstring>
+#include "Assets.hpp"
+#include "Texture.hpp"
 
 namespace fs = std::experimental::filesystem;
 using json = nlohmann::json;
@@ -87,21 +90,33 @@ namespace engine
 
 		for (auto& e : o["tiles"])
 		{
-			std::cout << e << std::endl;
 			r = e[0].get<int>();
 			c = e[1].get<int>();
 
-			std::cout << "(r,c) == (" << r << "," << c << ")" << std::endl;
-
 			map_p[r][c].solid = e[3];
-			map_p[r][c].texture = e[2];
-			
-			/*r++;
-			if (r == rows)
+			strcpy(map_p[r][c].texture, e[2].get<std::string>().c_str());
+		}
+	}
+
+	void TileMap::draw(Context& ctx)
+	{
+		Texture* tex = nullptr;
+		int r = 0;
+		int c = 0;
+
+		for (r=0; r<rows; r++)
+		{
+			for (c=0; c<cols; c++)
 			{
-				r = 0;
-				c++;
-			}*/
+				TILE* tile = &map_p[r][c];
+				tex = Assets::getTexture(std::string(tile->texture));
+				SDL_Rect rect;
+				rect.x = r * gridSize;
+				rect.y = c * gridSize;
+				rect.w = gridSize;
+				rect.h = gridSize;
+				SDL_RenderCopy(ctx.getRenderer(), tex->use(), nullptr, &rect);
+			}
 		}
 	}
 }

@@ -25,5 +25,5 @@ void MapTest::update(float delta)
 
 void MapTest::render(engine::Context& ctx)
 {
-
+    map.draw(ctx);
 }

@@ -8,7 +8,6 @@ option (BUILD_RPG "build game" OFF)
 option (BUILD_RASPBERRY_GAME "raspberry game" OFF)
 option (BUILD_STRATEGY_GAME "strategy game" OFF)
 option (DEBUG_SYMBOLS "enable debug symbols" ON)
-option (BUILD_LIBTESTS "build library test programs" OFF)
 
 #set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
 #set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
@@ -143,13 +142,6 @@ endif ()
 add_subdirectory(./engine/core)
 set(LIBRARIES ${LIBRARIES} core)
 
-add_subdirectory(./stuff)
-set(LIBRARIES ${LIBRARIES} stuff)
-
-if (BUILD_LIBTESTS)
-	add_subdirectory(./stufftest)
-endif (BUILD_LIBTESTS)
-
 if (BUILD_RPG)
     add_subdirectory(./rpg)
 endif (BUILD_RPG)
@@ -161,5 +153,3 @@ endif (BUILD_RASPBERRY_GAME)
 if (BUILD_STRATEGY_GAME)
 	add_subdirectory(./strategy)
 endif (BUILD_STRATEGY_GAME)
-
-#add_subdirectory(./ttftest)

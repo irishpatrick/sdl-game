@@ -1,0 +1,17 @@
+{
+    "dir": "textures",
+    "files": [
+        "animtest.png",
+        "battle-bg.png",
+        "door.png",
+        "hero.png",
+        "med-background.png",
+        "monster.png",
+        "room-bg.png",
+        "white-font.png",
+        "selector.png",
+        "monster_1.png",
+        "title.png",
+        "dialoguebox.png"
+    ]
+}

@@ -46,7 +46,6 @@ private:
     engine::Transition transition;
     Enemy enemytest;
     Door* todo;
-    engine::DebugInfo debug;
     float todo_x;
     float todo_y;
     engine::ScrollingText scTest;

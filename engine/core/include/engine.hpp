@@ -15,8 +15,6 @@
 #include "Context.hpp"
 #include "Transition.hpp"
 #include "BoundingBox.hpp"
-#include "Object.hpp"
-#include "DebugInfo.hpp"
 #include "KeyFrameSprite.hpp"
 #include "Font.hpp"
 #include "ScrollingText.hpp"

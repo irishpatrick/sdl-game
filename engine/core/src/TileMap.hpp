@@ -9,7 +9,7 @@ namespace engine
 {
 	typedef struct _TILE
 	{
-		int texture;
+		std::string texture;
 		bool solid;
 	} TILE;
 

@@ -50,9 +50,9 @@ namespace engine
 		map_p = (TILE**)malloc(r * sizeof(TILE*));
 		
 		// allocate cols
-		for (int i = 0; i < r; i++)
+		for (int i = 0; i < c; i++)
 		{
-			map_p[i] = (TILE*)malloc(r * sizeof(TILE));
+			map_p[i] = (TILE*)malloc(c * sizeof(TILE));
 		}
 	}
 
@@ -75,26 +75,33 @@ namespace engine
 		}
 		catch (std::exception& e)
 		{
+			std::cout << "error caught!" << std::endl;
 			std::cout << e.what() << std::endl;
 		}
 
 		// build tilemap
-		initMap(o["rows"], o["cols"], o["tileSize"]);
+		initMap(o["rows"], o["cols"], o["tilesize"]);
 
 		int r = 0;
 		int c = 0;
 
 		for (auto& e : o["tiles"])
 		{
-			map_p[r][c].solid = e["solid"];
-			map_p[r][c].solid = e["texture"];
+			std::cout << e << std::endl;
+			r = e[0].get<int>();
+			c = e[1].get<int>();
+
+			std::cout << "(r,c) == (" << r << "," << c << ")" << std::endl;
+
+			map_p[r][c].solid = e[3];
+			map_p[r][c].texture = e[2];
 			
-			r++;
+			/*r++;
 			if (r == rows)
 			{
 				r = 0;
 				c++;
-			}
+			}*/
 		}
 	}
 }

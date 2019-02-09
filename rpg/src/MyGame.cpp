@@ -72,10 +72,6 @@ void MyGame::init(engine::Context& ctx)
 
     box.init(ctx, "fn");
 
-	debug.init((fs::current_path() / "assets" / "font.ttf").generic_string(), ctx);
-	debug.addLine("hello debug");
-	debug.addLine("new line");
-
 	// need to optimize
 	for (auto& e : town1.getNpcs())
 	{

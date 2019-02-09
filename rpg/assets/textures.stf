@@ -1,18 +1,18 @@
 begin data
-s textures
+textures
 end data
 
 begin files
-s animtest.png
-s battle-bg.png
-s door.png
-s hero.png
-s med-background.png
-s monster.png
-s room-bg.png
-s white-font.png
-s selector.png
-s monster_1.png
-s title.png
-s dialoguebox.png
+animtest.png
+battle-bg.png
+door.png
+hero.png
+med-background.png
+monster.png
+room-bg.png
+white-font.png
+selector.png
+monster_1.png
+title.png
+dialoguebox.png
 end files

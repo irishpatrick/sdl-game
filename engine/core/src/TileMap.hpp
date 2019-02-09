@@ -4,12 +4,13 @@
 #include "BoundingBox.hpp"
 #include <string>
 #include <fstream>
+#include <map>
 
 namespace engine
 {
 	typedef struct _TILE
 	{
-		int texture;
+		char texture[100];
 		bool solid;
 	} TILE;
 
@@ -21,6 +22,7 @@ namespace engine
 
 		void initMap(int, int, int);
 		void loadMap(const std::string&);
+		void draw(Context&) override;
 
 	private:
 		int gridSize;

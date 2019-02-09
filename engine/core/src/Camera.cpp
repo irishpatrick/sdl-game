@@ -5,8 +5,10 @@
 namespace engine
 {
 
-	Camera::Camera() : Object()
+	Camera::Camera()
 	{
+		x = 0;
+		y = 0;
 		fx = 0.0f;
 		fy = 0.0f;
 		w = -1;

@@ -22,3 +22,4 @@
 #include "SimpleGame.hpp"
 #include "StateBasedGame.hpp"
 #include "TileMap.hpp"
+#include "QTree.hpp"

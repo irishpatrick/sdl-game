@@ -4,21 +4,11 @@
 #include <fstream>
 #include <nlohmann/json.hpp>
 #include <vector>
-
 using json = nlohmann::json;
 
 void Room::load(const std::string& fn)
 {
-    std::cout << "loading room " << fn << std::endl;
-    std::ifstream in(fn);
-    if (in.fail())
-    {
-        std::cout << "failed to open " << fn << std::endl;
-        return;
-    }
-
-    json o;
-    in >> o;
+    json o = engine::Util::loadJson(fn);
 
     if (o.find("entry") != o.end())
     {
@@ -43,8 +33,8 @@ void Room::load(const std::string& fn)
         {
             // now we're assuming that the format is correct
 			// probably not a good idea for debugging
-            float x = (float) e["x"];
-            float y = (float) e["y"];
+            float nx = (float) e["x"];
+            float ny = (float) e["y"];
             std::string name = e["name"];
             std::string texture = e["texture"];
             bool solid = e["solid"];
@@ -93,8 +83,8 @@ void Room::load(const std::string& fn)
 			{
 				sprite->dynamic = true;
 				sprite->name = name;
-				sprite->x = x;
-				sprite->y = y;
+				sprite->x = nx;
+				sprite->y = ny;
 				sprite->setSolid(solid);
 				sprite->setTexture(engine::Assets::getTexture(texture));
 				add(sprite);

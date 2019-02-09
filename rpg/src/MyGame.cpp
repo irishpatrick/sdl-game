@@ -283,7 +283,7 @@ void MyGame::update(float delta)
         StaticGM::getActive()->get_sprite_by_name("background")
     );
 
-    camera.update(delta);
+    camera.update();
 
 	StaticGM::getActive()->sort();
 }

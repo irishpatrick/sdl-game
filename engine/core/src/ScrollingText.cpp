@@ -2,14 +2,14 @@
 
 namespace engine
 {
-	void ScrollingText::init(Context& ctx, const std::string& fn, int size, int speed)
+	void ScrollingText::init(Context& ctx, const std::string& fn, int size, int tspeed)
 	{
 		x = 0;
 		y = 0;
 		lineCount = 0;
 		lineIndex = 0;
-		font.init(ctx, fn, size);
-		timer.setInterval(speed);
+		font.init(fn, size);
+		timer.setInterval(tspeed);
 		timer.start();
 
 		uint32_t rmask, gmask, bmask, amask;
@@ -71,7 +71,7 @@ namespace engine
 			lineCount = 1;
 		}
 
-		font.renderString(ctx, surface, renderLine, 0, (font.getLineSkip() * (lineCount - 1)));
+		font.renderString(surface, renderLine, 0, (font.getLineSkip() * (lineCount - 1)));
 		if (!running)
 		{
 			renderLine = "";
@@ -128,12 +128,12 @@ namespace engine
 
 	void ScrollingText::addLines(const std::string& str, int width)
 	{
-		int start = 0;
-		int end = 1;
+		unsigned int start = 0;
+		//unsigned int end = 1;
 		int current = 0;
-		int lastSpaceIndex = -1;
+		//int lastSpaceIndex = -1;
 		std::vector<int> spaces;
-		while (start+1 < str.size())
+		while (start + 1 < str.size())
 		{
 			std::string newLine = "";
 			int calculatedW = 0;

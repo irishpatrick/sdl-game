@@ -27,7 +27,7 @@ namespace engine
 		h = b;
 	}
 
-	void Camera::update(float delta)
+	void Camera::update()
 	{
 		if (w == -1 && h == -1) {
 			std::cout << "need to set screen dimensions" << std::endl;

@@ -14,7 +14,7 @@ namespace engine
 
 	}
 
-	void Font::init(Context& ctx, const std::string& fn, int size)
+	void Font::init(const std::string& fn, int size)
 	{
 		font = TTF_OpenFont(fn.c_str(), size);
 		if (font == nullptr)
@@ -22,7 +22,7 @@ namespace engine
 			return;
 		}
 		
-		SDL_Color color = { 255,255,255 };
+		SDL_Color color = {255,255,255,255};
 		for (unsigned int i = 0; i < chars.size(); i++)
 		{
 			char c = chars.at(i);
@@ -38,7 +38,7 @@ namespace engine
 		return glyphCache[static_cast<int>(chars.find(c))];
 	}
 
-	void Font::renderString(Context& ctx, SDL_Surface* out, const std::string& str, int x0, int y0)
+	void Font::renderString(SDL_Surface* out, const std::string& str, int x0, int y0)
 	{
 		int x = x0;
 		int y = y0;

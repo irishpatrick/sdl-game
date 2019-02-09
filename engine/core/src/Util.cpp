@@ -5,8 +5,6 @@
 #include <cmath>
 //#include "BoundingBox.hpp"
 
-static bool isLoggerActive = false;
-
 namespace engine {
 
 	std::string Util::checkCollision(Sprite* a, Sprite* b)
@@ -180,6 +178,27 @@ namespace engine {
 	bool Util::JsonExists(nlohmann::json& o, const std::string& key)
 	{
 		return o.find(key) != o.end();
+	}
+
+	json Util::loadJson(const std::string& fn)
+	{
+		fs::path fp(fn);
+		std::ifstream in(fp.generic_string());
+		if (!in.is_open())
+		{
+			std::cout << "couldn't open file" << std::endl;
+		}
+		in.seekg(0, std::ios::end);
+		size_t size = in.tellg();
+		std::string buffer;
+		buffer.reserve(size);
+		in.seekg(0);
+		buffer.assign((std::istreambuf_iterator<char>(in)),
+			std::istreambuf_iterator<char>());
+
+		json o = json::parse(buffer.begin(), buffer.end());
+
+		return o;
 	}
 
 	void Util::contain(Sprite* a, Sprite* b)

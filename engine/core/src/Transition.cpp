@@ -78,10 +78,10 @@ namespace engine
 		}
 	}
 
-	void Transition::fill(Context* ctx, uint8_t alpha)
+	void Transition::fill(Context* ctx, uint8_t a)
 	{
 		SDL_SetRenderDrawBlendMode(ctx->getRenderer(), SDL_BLENDMODE_BLEND);
-		SDL_SetRenderDrawColor(ctx->getRenderer(), 0, 0, 0, alpha);
+		SDL_SetRenderDrawColor(ctx->getRenderer(), 0, 0, 0, a);
 		SDL_Rect rect;
 		rect.x = 0;
 		rect.y = 0;

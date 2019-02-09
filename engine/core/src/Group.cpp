@@ -3,6 +3,7 @@
 #include "Camera.hpp"
 #include "Assets.hpp"
 #include <iostream>
+#include "Util.hpp"
 
 namespace engine {
 
@@ -20,26 +21,14 @@ namespace engine {
 
     }
 
-    void Group::init(SDL_Renderer* r)
-	{
+    void Group::init(Context& ctx)
+    {
 
     }
 
-	CORE_API void Group::init(Context& ctx)
-	{
-		
-	}
-
     void Group::init_from_json(const std::string& fn)
 	{
-        std::ifstream in(fn);
-        if (!in)
-		{
-            printf("failed to open %s\n", fn.c_str());
-        }
-        nlohmann::json o;
-        in >> o;
-        in.close();
+        json o = Util::loadJson(fn);
 
         if (o.find("entry") != o.end())
 		{
@@ -51,8 +40,8 @@ namespace engine {
             for (const auto& e : o["sprites"])
 			{
                 // assume sprite object has all required fields
-                float x = (float)e["x"];
-                float y = (float)e["y"];
+                float nx = (float)e["x"];
+                float ny = (float)e["y"];
                 std::string name = e["name"];
                 std::string texture = e["texture"];
                 bool solid = e["solid"];
@@ -61,8 +50,8 @@ namespace engine {
                 // test initialize
                 Sprite* temp = new Sprite();
                 temp->dynamic = true;
-                temp->x = x;
-                temp->y = y;
+                temp->x = nx;
+                temp->y = ny;
                 temp->setSolid(solid);
                 temp->setTexture(Assets::getTexture(texture));
                 renderList.push_back(temp);
@@ -82,14 +71,14 @@ namespace engine {
         return nullptr;
     }
 
-    Sprite* Group::getSpriteAtLocation(float x, float y) {
+    Sprite* Group::getSpriteAtLocation(float nx, float ny) {
         sort();
         for (auto& e : renderList) {
             if (
-                x >= e->x &&
-                x <= e->x + e->w &&
-                y >= e->y &&
-                y <= e->y + e->h
+                nx >= e->x &&
+                nx <= e->x + e->w &&
+                ny >= e->y &&
+                ny <= e->y + e->h
             ) {
                 return e;
             }
@@ -152,13 +141,6 @@ namespace engine {
         for (auto& e : renderList)
         {
             e->draw(c, ctx);
-        }
-    }
-
-    void Group::draw(SDL_Renderer *r) {
-		if (!visible) return;
-        for (auto& e : renderList) {
-            e->draw(r);
         }
     }
 

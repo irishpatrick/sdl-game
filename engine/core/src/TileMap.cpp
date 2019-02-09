@@ -6,6 +6,7 @@
 #include <cstring>
 #include "Assets.hpp"
 #include "Texture.hpp"
+#include "Util.hpp"
 
 namespace fs = std::experimental::filesystem;
 using json = nlohmann::json;
@@ -62,25 +63,7 @@ namespace engine
 	void TileMap::loadMap(const std::string& fn)
 	{
 		// open json file
-		fs::path fp(fn);
-		std::ifstream in(fp.generic_string());
-		if (in.fail())
-		{
-			std::cout << "cannot open " << fn << std::endl;
-			return;
-		}
-		json o;
-
-		// parse json file
-		try
-		{
-			o << in;
-		}
-		catch (std::exception& e)
-		{
-			std::cout << "error caught!" << std::endl;
-			std::cout << e.what() << std::endl;
-		}
+		json o = Util::loadJson(fn);
 
 		// build tilemap
 		initMap(o["rows"], o["cols"], o["tilesize"]);

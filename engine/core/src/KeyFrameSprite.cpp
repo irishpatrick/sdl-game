@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <cstring>
 #include "Assets.hpp"
+#include "Util.hpp"
 
 namespace fs = std::experimental::filesystem;
 using json = nlohmann::json;
@@ -17,23 +18,7 @@ namespace engine
 
 		initialized = false;
 
-		fs::path fp(fn);
-		std::ifstream in(fp.generic_string());
-		if (in.fail())
-		{
-			std::cout << "cannot open " << fn << std::endl;
-			return;
-		}
-		json o;
-
-		try
-		{
-			o << in;
-		}
-		catch (std::exception& e)
-		{
-			std::cout << e.what() << std::endl;
-		}
+		json o = Util::loadJson(fn);
 
 		std::string fmt = o["dataFormat"].get<std::string>();
 		bool verboseFormat = fmt == "verbose";
@@ -118,7 +103,7 @@ namespace engine
 		setCurrentAnimation(o["default"].get<std::string>(), true);
 	}
 
-	void KeyFrameSprite::setCurrentAnimation(const std::string& name, bool loop)
+	void KeyFrameSprite::setCurrentAnimation(const std::string& aname, bool loop)
 	{
 		if (!initialized)
 		{
@@ -127,7 +112,7 @@ namespace engine
 		frameCount = 0;
 		for (int i = 0; i < numAnimations; i++)
 		{
-			if (strncmp(name.c_str(), animations[i].name, strlen(animations[i].name)) == 0)
+			if (strncmp(aname.c_str(), animations[i].name, strlen(animations[i].name)) == 0)
 			{
 				currentAnim = i;
 				timer.setInterval((long)((1.0f / animations[currentAnim].fps) * 1000));

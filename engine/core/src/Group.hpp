@@ -24,11 +24,9 @@ namespace engine
         CORE_API Group();
         CORE_API virtual ~Group();
 
-        CORE_API void init(SDL_Renderer*);
-		CORE_API void init(Context&);
+		CORE_API virtual void init(Context&);
         CORE_API void init_from_json(const std::string&);
         CORE_API virtual void update(float);
-        CORE_API void draw(SDL_Renderer*);
         CORE_API virtual void draw(Context&);
         //CORE_API void draw(Object&, Context&);
         CORE_API void draw(Camera&, Context&);

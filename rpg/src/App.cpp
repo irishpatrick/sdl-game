@@ -1,6 +1,7 @@
 #include "App.hpp"
 #include "Config.hpp"
 #include <nlohmann/json.hpp>
+#include <cstdlib>
 
 using json = nlohmann::json;
 
@@ -28,9 +29,8 @@ void App::init()
 	fs::path assetPath = fs::current_path() / "assets";
 	engine::Assets::setCwd(assetPath);
 
-	json o;
-	std::ifstream in((fs::current_path() / "assets" / "textures.json").generic_string());
-	in >> o;
+	std::string fn = (fs::current_path() / "assets" / "textures.json").generic_string();
+	json o = engine::Util::loadJson(fn);
 
 	engine::Assets::loadTexturesFromVector(o["dir"], o["files"], ctx);
 

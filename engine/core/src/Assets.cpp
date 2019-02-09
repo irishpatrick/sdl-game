@@ -114,25 +114,7 @@ namespace engine
 	void Assets::loadTexturesFromJson(Context& ctx, const std::string& fn)
 	{
 		// read json file
-		fs::path pfn(fn);
-		std::ifstream in(fn);
-		if (in.fail())
-		{
-			std::cout << "cannot open " << fn << std::endl;
-			return;
-		}
-
-		// parse into object
-		nlohmann::json o;
-		try
-		{
-			in >> o;
-		}
-		catch (std::exception& e)
-		{
-			std::cout << e.what() << std::endl;
-			return;
-		}
+		json o = Util::loadJson(fn);
 
 		// set current working directory
 		fs::path dir(o["dir"].get<std::string>());
@@ -141,8 +123,8 @@ namespace engine
 		for (auto& current : o["files"])
 		{
 			std::string texfile = current.get<std::string>();
-			std::string fn = current;
-			loadTexture(ctx, (cwd / dir / fn).generic_string());
+			std::string cfn = current;
+			loadTexture(ctx, (cwd / dir / cfn).generic_string());
 		}
 	}
 

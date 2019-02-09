@@ -13,11 +13,15 @@
 #include <SDL_image.h>
 #include <nlohmann/json.hpp>
 #include "BoundingBox.hpp"
+#include <experimental/filesystem>
 
 namespace engine {
 
 class Sprite;
 class Group;
+
+using json = nlohmann::json;
+namespace fs = std::experimental::filesystem;
 
 class Util
 {
@@ -33,6 +37,7 @@ public:
 	CORE_API static std::vector<Sprite*> getVelocityCollisions(Sprite*, std::vector<Sprite*>&, float);
 	CORE_API static float lerp(float, float, float);
 	CORE_API static void formatPath(std::string&);
+	CORE_API static json loadJson(const std::string&);
 
 	CORE_API static const int UP = 0;
 	CORE_API static const int DOWN = 1;

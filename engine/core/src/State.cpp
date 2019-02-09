@@ -10,10 +10,15 @@ namespace engine
 
 	State::~State() 
 	{
+	
+	}
+
+	void State::onEntry()
+	{
 
 	}
 
-	void State::init(Context& ctx) 
+	void State::init(Context& ctx)
 	{
 
 	}
@@ -23,21 +28,16 @@ namespace engine
 
 	}
 
-	void State::render(Context& ctx) 
+	void State::destroy()
+	{
+		
+	}
+
+	void State::render(Context& ctx)
 	{
 
 	}
-
-	void State::destroy() 
-	{
-
-	}
-
-	void State::onEntry()
-	{
-
-	}
-
+	
 	void State::updateKeys()
 	{
 		kbd = (uint8_t*)SDL_GetKeyboardState(nullptr);

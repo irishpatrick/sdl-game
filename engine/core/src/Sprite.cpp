@@ -187,34 +187,6 @@ namespace engine
 		SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
 	}
 
-	void Sprite::draw(SDL_Renderer* r) {
-		/*if (!visible) {
-			return;
-		}
-		//printf("%x\n", texture->use());
-
-		//printf("%d, %d\n", w, h);
-		SDL_Rect rect;
-		if (parent != NULL) {
-			rect.x = x + parent->screenX();
-			rect.y = y + parent->screenY();
-		}
-		else {
-			rect.x = x;
-			rect.y = y;
-		}
-		rect.w = w;
-		rect.h = h;
-
-		//if (texture->use() == nullptr) return;
-		if (anim->GetTexture() != nullptr) {
-			SDL_RenderCopy(r, texture->use(), anim->GetCurrentFrame(), &rect);
-		}
-		else {
-			SDL_RenderCopy(r, texture->use(), NULL, &rect);
-		}*/
-	}
-
 	void Sprite::setBoundingBox(int bx, int by, int bw, int bh) {
 		boundingBox.x = (float)bx;
 		boundingBox.y = (float)by;

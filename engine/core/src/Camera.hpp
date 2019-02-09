@@ -14,7 +14,7 @@ class Sprite;
 		CORE_API ~Camera();
 
 		CORE_API void setFocus(Sprite*);
-		CORE_API void update(float);
+		CORE_API void update();
 		CORE_API void setScreen(int, int);
 
 		float x;

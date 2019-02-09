@@ -28,7 +28,6 @@ namespace engine
 
 		CORE_API virtual void init(Context&);
     	CORE_API virtual void setTexture(Texture*);
-    	CORE_API virtual void draw(SDL_Renderer*);
         CORE_API virtual void draw(Context&);
 		CORE_API virtual void draw(Camera&, Context&);
     	CORE_API virtual void ResetCollision();

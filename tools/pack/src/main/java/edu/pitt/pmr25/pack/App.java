@@ -3,7 +3,8 @@ package edu.pitt.pmr25.pack;
 import java.io.File;
 import java.util.ArrayList;
 import org.apache.commons.io.FilenameUtils;
-import ar.com.hjg.pngj.*;
+import ar.com.hjg.pngj.PngWriter;
+import ar.com.hjg.pngj.PngReader;
 
 /**
  * Hello world!
@@ -11,10 +12,9 @@ import ar.com.hjg.pngj.*;
  */
 public class App 
 {
-    private static void pack(File[] inputs, File output)
+    private static void pack(ArrayList<File> inputs, File output)
     {
-        PngWriter out = new PngWriter(output);
-        PngWriter current = null;
+        PngReader current = null;
     }
 
     public static void main( String[] args )
@@ -58,6 +58,6 @@ public class App
             return;
         }
 
-        pack(imgList, File(output));
+        pack(imgList, new File(output));
     }
 }

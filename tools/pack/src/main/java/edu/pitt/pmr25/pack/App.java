@@ -54,6 +54,7 @@ public class App
             }
         }
 
+        // sort images by size
         i = 1;
         int j;
         while (i < images.length)

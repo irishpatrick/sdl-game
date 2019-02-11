@@ -15,6 +15,21 @@ import java.awt.image.BufferedImage;
  */
 public class App 
 {
+    private static int compare(BufferedImage a, BufferedImage b)
+    {
+        int sa = a.getWidth() * a.getHeight();
+        int sb = a.getWidth() * a.getHeight();
+
+        return sa - sb;
+    }
+
+    private static <T> void swap(T[] array, int a, int b)
+    {
+        T tmp = array[a];
+        array[a] = array[b];
+        array[b] = tmp;
+    }
+
     private static void pack(ArrayList<File> inputs, File output)
     {
         BufferedImage current = null;
@@ -24,39 +39,32 @@ public class App
         int x = 0;
         int y = 0;
 
+        BufferedImage[] images = new BufferedImage[inputs.size()];
+
+        int i = 0;
         for (File e : inputs)
         {
             try
             {
-                current = ImageIO.read(e);
+                images[i++] = ImageIO.read(e);
             }
             catch (IOException ex)
             {
-                System.out.println("failed to open image");
-                current = null;
-                continue;
-            }
 
-            if (current == null)
-            {
-                System.out.println("current is null");
-            }
-            g.drawImage(current, x*tileSize, y*tileSize, null);
-            x++;
-            if (x == 8)
-            {
-                x = 0;
-                y++;
             }
         }
 
-        try
+        i = 1;
+        int j;
+        while (i < images.length)
         {
-            ImageIO.write(out, "png", output);
-        }
-        catch (IOException ex)
-        {
-            System.out.println("couldn't write output image");
+            j = i;
+            while (j > 0 && compare(images[j-1], images[j]) > 0)
+            {
+                swap(images, j, j-1);
+                j--;
+            }
+            i++;
         }
     }
 

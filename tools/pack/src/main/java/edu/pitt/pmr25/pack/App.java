@@ -1,10 +1,13 @@
 package edu.pitt.pmr25.pack;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import org.apache.commons.io.FilenameUtils;
-import ar.com.hjg.pngj.PngWriter;
-import ar.com.hjg.pngj.PngReader;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 /**
  * Hello world!
@@ -14,7 +17,47 @@ public class App
 {
     private static void pack(ArrayList<File> inputs, File output)
     {
-        PngReader current = null;
+        BufferedImage current = null;
+        BufferedImage out = new BufferedImage(8*64, 8*64, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = (Graphics2D) out.getGraphics();
+        int tileSize = 64;
+        int x = 0;
+        int y = 0;
+
+        for (File e : inputs)
+        {
+            try
+            {
+                current = ImageIO.read(e);
+            }
+            catch (IOException ex)
+            {
+                System.out.println("failed to open image");
+                current = null;
+                continue;
+            }
+
+            if (current == null)
+            {
+                System.out.println("current is null");
+            }
+            g.drawImage(current, x*tileSize, y*tileSize, null);
+            x++;
+            if (x == 8)
+            {
+                x = 0;
+                y++;
+            }
+        }
+
+        try
+        {
+            ImageIO.write(out, "png", output);
+        }
+        catch (IOException ex)
+        {
+            System.out.println("couldn't write output image");
+        }
     }
 
     public static void main( String[] args )

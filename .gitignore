@@ -1,3 +1,14 @@
 build/
 .vscode/
 node_modules/
+
+tools/pack/target/
+tools/pack/pom.xml.tag
+tools/pack/pom.xml.releaseBackup
+tools/pack/pom.xml.versionsBackup
+tools/pack/pom.xml.next
+tools/pack/release.properties
+tools/pack/dependency-reduced-pom.xml
+tools/pack/buildNumber.properties
+tools/pack/.mvn/timing.properties
+tools/pack/.mvn/wrapper/maven-wrapper.jar

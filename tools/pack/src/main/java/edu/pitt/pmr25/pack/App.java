@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import org.apache.commons.io.FilenameUtils;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -17,10 +16,15 @@ public class App
 {
     private static int compare(BufferedImage a, BufferedImage b)
     {
-        int sa = a.getWidth() * a.getHeight();
-        int sb = a.getWidth() * a.getHeight();
+        int sa = a.getHeight();
+        int sb = a.getHeight();
 
         return sa - sb;
+    }
+
+    private static int getSize(BufferedImage a)
+    {
+        return a.getHeight();
     }
 
     private static <T> void swap(T[] array, int a, int b)
@@ -38,6 +42,7 @@ public class App
         int tileSize = 64;
         int x = 0;
         int y = 0;
+        int maxw = 64 * 4;
 
         BufferedImage[] images = new BufferedImage[inputs.size()];
 
@@ -66,6 +71,36 @@ public class App
                 j--;
             }
             i++;
+        }
+
+        for (i=0; i<images.length; i++)
+        {
+            System.out.println("size: " + getSize(images[i]));
+        }
+
+        // pack images
+        int ny = images[0].getHeight();
+        for (i=0; i<images.length; i++)
+        {
+            g.drawImage(images[i], x, y, null);
+            x += images[i].getWidth();
+            if (x > maxw)
+            {
+                x = 0;
+                y += ny;
+                if (i+1 < images.length)
+                {
+                    ny = images[i+1].getHeight();
+                }
+            }
+        }
+        try
+        {
+            ImageIO.write(out, "png", output);
+        }
+        catch (IOException e)
+        {
+
         }
     }
 

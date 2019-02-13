@@ -15,7 +15,7 @@ Player::~Player()
 
 void Player::init(engine::Context& ctx) {
 	KeyFrameSprite::init(ctx, (fs::current_path() / "assets" / "sprites" / "player.json").generic_string());
-	setMaxSpeed(250.0f);
+	setMaxSpeed(5.0f);
 	name = "hero";
 	setBoundingBox(0, 0.35f * h, w, 0.65 * h);
 }

@@ -3,6 +3,9 @@
 #include <nlohmann/json.hpp>
 #include <cstdlib>
 
+#define MS_PER_FRAME 16
+#define MS_PER_UPDATE 33
+
 using json = nlohmann::json;
 
 App::App()
@@ -46,14 +49,15 @@ void App::init()
 
 void App::draw()
 {
-	long delta;
+	long delta = 0;
 	long now;
-	long then = engine::Timer::getNanoTime();
-
+	long then = engine::Timer::getNanoTime() / 1e6;
+    double lag = 0;
 	while (running)
 	{
-		now = engine::Timer::getNanoTime();
-		delta = now - then;
+		now = engine::Timer::getNanoTime() / 1e6;
+        delta = now - then;
+        lag += delta;
 
 		while (SDL_PollEvent(&e))
 		{
@@ -63,7 +67,11 @@ void App::draw()
 			}
 		}
 
-		getCurrentState()->update((float)delta / (float)(1e9));
+        while (lag >= MS_PER_UPDATE)
+        {
+            getCurrentState()->update((float)lag / MS_PER_UPDATE);
+            lag -= MS_PER_UPDATE;
+        }
 
 		ctx.clear();
 		getCurrentState()->render(ctx);
@@ -71,6 +79,27 @@ void App::draw()
 
 		then = now;
 	}
+
+    /*while (running)
+    {
+        now = engine::Timer::getNanoTime();
+        while (SDL_PollEvent(&e))
+        {
+            if (e.type == SDL_QUIT)
+            {
+                quit();
+            }
+        }
+
+        getCurrentState()->update(1.0f);
+        ctx.clear();
+        getCurrentState()->render(ctx);
+        ctx.render();
+
+        long delay = (now/1e9) + MS_PER_FRAME - (engine::Timer::getNanoTime()/1e9);
+        //std::cout << "delay: " << delay << std::endl;
+        SDL_Delay(delay);
+    }*/
 }
 
 void App::mainLoop()

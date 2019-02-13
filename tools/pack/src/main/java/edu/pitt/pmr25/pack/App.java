@@ -37,12 +37,12 @@ public class App
     private static void pack(ArrayList<File> inputs, File output)
     {
         BufferedImage current = null;
-        BufferedImage out = new BufferedImage(8*64, 8*64, BufferedImage.TYPE_INT_ARGB);
+        BufferedImage out = new BufferedImage(8192, 8192, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = (Graphics2D) out.getGraphics();
         int tileSize = 64;
         int x = 0;
         int y = 0;
-        int maxw = 64 * 4;
+        int maxw = 1024;
 
         BufferedImage[] images = new BufferedImage[inputs.size()];
 
@@ -79,11 +79,15 @@ public class App
         }
 
         // pack images
-        int ny = images[0].getHeight();
+        int ny = 0;
         for (i=0; i<images.length; i++)
         {
             g.drawImage(images[i], x, y, null);
             x += images[i].getWidth();
+            if (images[i].getHeight() > ny)
+            {
+                ny = images[i].getHeight();
+            }
             if (x > maxw)
             {
                 x = 0;
@@ -92,6 +96,7 @@ public class App
                 {
                     ny = images[i+1].getHeight();
                 }
+                ny = 0;
             }
         }
         try

@@ -12,3 +12,4 @@ tools/pack/dependency-reduced-pom.xml
 tools/pack/buildNumber.properties
 tools/pack/.mvn/timing.properties
 tools/pack/.mvn/wrapper/maven-wrapper.jar
+tools/pack/out.png

@@ -139,6 +139,8 @@ endif ()
 
 # add all the projects
 
+add_subdirectory(./testbench)
+
 add_subdirectory(./engine/core)
 set(LIBRARIES ${LIBRARIES} core)
 

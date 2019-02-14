@@ -59,6 +59,7 @@ void App::draw()
 		now = engine::Timer::getNanoTime() / 1e6;
         delta = now - then;
         lag += delta;
+        then = now;
 
 		while (SDL_PollEvent(&e))
 		{
@@ -77,8 +78,6 @@ void App::draw()
 		ctx.clear();
 		getCurrentState()->render(ctx);
 		ctx.render();
-
-		then = now;
 	}
 
     /*while (running)

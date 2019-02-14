@@ -21,4 +21,5 @@ private:
 	MapTest mapTest;
 	engine::Context ctx;
 	SDL_Event e;
+	float deltaBuffer;
 };

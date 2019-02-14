@@ -4,13 +4,13 @@
 #include <cstdlib>
 
 #define MS_PER_FRAME 16
-#define MS_PER_UPDATE 33
+#define MS_PER_UPDATE 30
 
 using json = nlohmann::json;
 
 App::App()
 {
-
+	deltaBuffer = 0;
 }
 
 App::~App()
@@ -55,6 +55,7 @@ void App::draw()
     double lag = 0;
 	while (running)
 	{
+		
 		now = engine::Timer::getNanoTime() / 1e6;
         delta = now - then;
         lag += delta;
@@ -69,7 +70,7 @@ void App::draw()
 
         while (lag >= MS_PER_UPDATE)
         {
-            getCurrentState()->update((float)lag / MS_PER_UPDATE);
+            getCurrentState()->update((float)lag / (float)MS_PER_UPDATE);
             lag -= MS_PER_UPDATE;
         }
 

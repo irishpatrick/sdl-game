@@ -9,7 +9,6 @@ public:
     ~App();
 
     void init();
-    void update();
     void draw();
     void mainLoop();
 };

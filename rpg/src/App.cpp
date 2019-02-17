@@ -1,10 +1,10 @@
 #include "App.hpp"
 #include "Config.hpp"
+#include "Snapshot.hpp"
 #include <nlohmann/json.hpp>
 #include <cstdlib>
 
-#define MS_PER_FRAME 16
-#define MS_PER_UPDATE 30
+static long NS_PER_UPDATE = 40 * 1e6;
 
 using json = nlohmann::json;
 
@@ -49,17 +49,26 @@ void App::init()
 
 void App::draw()
 {
+	Snapshot snap;
+	snap.allocate(5);
+	snap.setWeight(0.2f, 0);
+	snap.setWeight(0.4f, 1);
+	snap.setWeight(3.0f, 2);
+	snap.setWeight(0.8f, 3);
+	snap.setWeight(0.6f, 4);
+
 	long delta = 0;
 	long now;
-	long then = engine::Timer::getNanoTime() / 1e6;
-    double lag = 0;
+	long then = engine::Timer::getNanoTime();
+    long lag = 0;
+
 	while (running)
 	{
-		
-		now = engine::Timer::getNanoTime() / 1e6;
-        delta = now - then;
-        lag += delta;
-        then = now;
+		now = engine::Timer::getNanoTime();
+		delta = now - then;
+		then = now;
+
+		snap.shiftIn(delta);
 
 		while (SDL_PollEvent(&e))
 		{
@@ -69,16 +78,41 @@ void App::draw()
 			}
 		}
 
-        while (lag >= MS_PER_UPDATE)
-        {
-            getCurrentState()->update((float)lag / (float)MS_PER_UPDATE);
-            lag -= MS_PER_UPDATE;
-        }
+		std::cout << "delta: " << delta << " avg: " << snap.getAverage() << std::endl;
+		//std::cout << "snap: " << snap.string() << std::endl;
+		//SDL_Delay(200);
+		getCurrentState()->update((float)(snap.getAverage()) / (float)(1e9));
 
 		ctx.clear();
 		getCurrentState()->render(ctx);
 		ctx.render();
 	}
+
+	/*while (running)
+	{
+
+		now = engine::Timer::getNanoTime();
+        delta = now - then;
+        lag += delta;
+        then = now;
+
+        while (lag >= NS_PER_UPDATE)
+        {
+			while (SDL_PollEvent(&e))
+			{
+				if (e.type == SDL_QUIT)
+				{
+					quit();
+				}
+			}
+            getCurrentState()->update(((float)lag / (float)1e6) / (float)(NS_PER_UPDATE / 1e6));
+            lag -= NS_PER_UPDATE;
+        }
+
+		ctx.clear();
+		getCurrentState()->render(ctx);
+		ctx.render();
+	}*/
 
     /*while (running)
     {

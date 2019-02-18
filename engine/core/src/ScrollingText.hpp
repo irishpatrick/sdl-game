@@ -24,9 +24,11 @@ namespace engine
 		{
 
 		}
-
+        
+        using Sprite::init;
 		CORE_API void init(Context&, const std::string&, int, int);
-		CORE_API void update();
+		using Sprite::update;
+        CORE_API void update();
 		CORE_API void draw(Context&);
 		CORE_API void next();
 		CORE_API void addLine(const std::string&);

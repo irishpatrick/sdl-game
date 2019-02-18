@@ -9,10 +9,10 @@ namespace engine
     {
         T data;
 
-        struct _QLeaf* q1;
-        struct _QLeaf* q2;
-        struct _QLeaf* q3;
-        struct _QLeaf* q4;
+        struct QLeaf* q1;
+        struct QLeaf* q2;
+        struct QLeaf* q3;
+        struct QLeaf* q4;
     };
 
     template <class T>

@@ -54,6 +54,7 @@ namespace engine
 			}*/
 		}
 
+        using Sprite::init;
 		CORE_API void init(Context&, const std::string&);
 		CORE_API void setCurrentAnimation(const std::string&, bool);
 		CORE_API void update(float);

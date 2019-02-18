@@ -4,7 +4,7 @@
 #include <nlohmann/json.hpp>
 #include <cstdlib>
 
-static long NS_PER_UPDATE = 40 * 1e6;
+static long NS_PER_UPDATE = 16 * 1e6;
 
 using json = nlohmann::json;
 
@@ -50,12 +50,12 @@ void App::init()
 void App::draw()
 {
 	Snapshot snap;
-	snap.allocate(5);
-	snap.setWeight(0.2f, 0);
+	snap.allocate(10);
+	/*snap.setWeight(0.2f, 0);
 	snap.setWeight(0.4f, 1);
-	snap.setWeight(3.0f, 2);
+	snap.setWeight(0.6f, 2);
 	snap.setWeight(0.8f, 3);
-	snap.setWeight(0.6f, 4);
+	snap.setWeight(3.0f, 4);*/
 
 	long delta = 0;
 	long now;
@@ -78,7 +78,7 @@ void App::draw()
 			}
 		}
 
-		std::cout << "delta: " << delta << " avg: " << snap.getAverage() << std::endl;
+		//std::cout << "delta: " << delta << " avg: " << snap.getAverage() << std::endl;
 		//std::cout << "snap: " << snap.string() << std::endl;
 		//SDL_Delay(200);
 		getCurrentState()->update((float)(snap.getAverage()) / (float)(1e9));
@@ -134,6 +134,27 @@ void App::draw()
         //std::cout << "delay: " << delay << std::endl;
         SDL_Delay(delay);
     }*/
+
+	/*while (running)
+	{
+		now = engine::Timer::getNanoTime();
+		delta = now - then;
+		then = now;
+
+		while (SDL_PollEvent(&e))
+		{
+			if (e.type == SDL_QUIT)
+			{
+				quit();
+			}
+		}
+
+		getCurrentState()->update((float)(delta * 1e-9));
+		
+		ctx.clear();
+		getCurrentState()->render(ctx);
+		ctx.render();
+	}*/
 }
 
 void App::mainLoop()

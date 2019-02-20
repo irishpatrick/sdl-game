@@ -5,7 +5,11 @@ floor = {}
 function backtrace(mat)
     if reject(mat) then return end
     if accept(mat) then output(mat) end
-    
+    s = first(mat)
+    while s != nil do
+        backtrace(s)
+        s = next(s)
+    end
 end
 
 function reject(mat)

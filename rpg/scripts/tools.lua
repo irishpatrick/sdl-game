@@ -1,3 +1,5 @@
+#!/usr/local/bin/lua
+
 tools = {}
 
 function tools.generate_matrix(N,M)

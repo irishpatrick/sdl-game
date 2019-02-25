@@ -148,6 +148,8 @@ if (BUILD_RPG)
     add_subdirectory(./rpg)
 endif (BUILD_RPG)
 
+add_subdirectory(./simple)
+
 if (BUILD_RASPBERRY_GAME)
 	add_subdirectory(./catch)
 endif (BUILD_RASPBERRY_GAME)

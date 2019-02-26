@@ -8,4 +8,5 @@ public:
     Ship();
     ~Ship();
 
+    void draw(engine::Context& ctx);
 };

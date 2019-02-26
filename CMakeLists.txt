@@ -141,6 +141,7 @@ endif ()
 
 add_subdirectory(./engine/core)
 set(LIBRARIES ${LIBRARIES} core)
+set(LIBRARIES ${LIBRARIES} lua)
 
 add_subdirectory(./testbench)
 

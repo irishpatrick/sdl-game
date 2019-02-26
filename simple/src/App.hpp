@@ -15,6 +15,7 @@ public:
 
 private:
     engine::Context ctx;
+    SDL_Event e;
     Ship player;
     Ship enemies[10];
 };

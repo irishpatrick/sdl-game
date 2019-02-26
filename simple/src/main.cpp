@@ -5,7 +5,6 @@ int main()
 {
     std::cout << "hello world" << std::endl;
     App app;
-    app.init();
-    app.draw();
+    app.mainLoop();
     return 0;
 }

@@ -1,6 +1,5 @@
 #include "App.hpp"
 #include "Config.hpp"
-#include "Snapshot.hpp"
 #include <nlohmann/json.hpp>
 #include <cstdlib>
 
@@ -49,8 +48,8 @@ void App::init()
 
 void App::draw()
 {
-	Snapshot snap;
-	snap.allocate(10);
+	engine::MovingAverage<long> avg;
+	avg.allocate(10);
 	/*snap.setWeight(0.2f, 0);
 	snap.setWeight(0.4f, 1);
 	snap.setWeight(0.6f, 2);
@@ -68,7 +67,7 @@ void App::draw()
 		delta = now - then;
 		then = now;
 
-		snap.shiftIn(delta);
+		avg.shiftIn(delta);
 
 		while (SDL_PollEvent(&e))
 		{
@@ -81,7 +80,7 @@ void App::draw()
 		//std::cout << "delta: " << delta << " avg: " << snap.getAverage() << std::endl;
 		//std::cout << "snap: " << snap.string() << std::endl;
 		//SDL_Delay(200);
-		getCurrentState()->update((float)(snap.getAverage()) / (float)(1e9));
+		getCurrentState()->update((float)(avg.getAverage()) / (float)(1e9));
 
 		ctx.clear();
 		getCurrentState()->render(ctx);
@@ -150,7 +149,7 @@ void App::draw()
 		}
 
 		getCurrentState()->update((float)(delta * 1e-9));
-		
+
 		ctx.clear();
 		getCurrentState()->render(ctx);
 		ctx.render();

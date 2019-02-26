@@ -23,3 +23,4 @@
 #include "StateBasedGame.hpp"
 #include "TileMap.hpp"
 #include "QTree.hpp"
+#include "MovingAverage.hpp"

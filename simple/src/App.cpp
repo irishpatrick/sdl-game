@@ -22,9 +22,21 @@ void App::init()
 
 void App::draw()
 {
+    engine::MovingAverage<long> avg;
+    avg.allocate(10);
+
+    long now, then, delta;
+    then = engine::Timer::getNanoTime();
+
     bool running = true;
     while (running)
     {
+        now = engine::Timer::getNanoTime();
+        delta = now - then;
+        then = now;
+
+        avg.shiftIn(delta);
+
         while (SDL_PollEvent(&e))
         {
             if (e.type == SDL_QUIT)
@@ -32,11 +44,11 @@ void App::draw()
                 running = false;
             }
         }
+        
+        player.update((float)avg.getAverage() / float(1e9));
 
         ctx.clear();
-
         player.draw(ctx);
-
         ctx.render();
     }
 }

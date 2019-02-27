@@ -19,7 +19,7 @@ namespace engine
 
         if (weight != nullptr)
         {
-            free(array);
+            free(weight);
         }
     }
 

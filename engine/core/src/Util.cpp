@@ -7,6 +7,19 @@
 
 namespace engine {
 
+	bool Util::simpleCollision(Sprite* a, Sprite* b)
+	{
+		if (
+			a->x < b->x + b->w &&
+			a->x + a->w > b->x &&
+			a->y < b->y + b->h &&
+			a->y + a->h > b->y)
+		{
+			return true;
+		}
+		return false;
+	}
+
 	std::string Util::checkCollision(Sprite* a, Sprite* b)
 	{
 		if (!a->solid || !b->solid)

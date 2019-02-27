@@ -2,6 +2,7 @@
 
 #include <engine.hpp>
 #include "Ship.hpp"
+#include "Enemy.hpp"
 
 class App : public engine::SimpleGame
 {
@@ -18,5 +19,5 @@ private:
     SDL_Event e;
     Ship player;
     engine::Sprite background;
-    Ship enemies[10];
+    Enemy enemies[10];
 };

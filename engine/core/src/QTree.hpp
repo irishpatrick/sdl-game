@@ -1,32 +1,32 @@
-#pragma once
+#pragma once 
 
 #include "Point.hpp"
 
 namespace engine
 {
-    template <class T>
+    template <class E>
     struct QLeaf
     {
-        T data;
+        E data;
 
-        struct QLeaf* q1;
-        struct QLeaf* q2;
-        struct QLeaf* q3;
-        struct QLeaf* q4;
+        struct QLeaf<E>* q1;
+        struct QLeaf<E>* q2;
+        struct QLeaf<E>* q3;
+        struct QLeaf<E>* q4;
     };
 
-    template <class T>
+    template <class E>
     class QTree
     {
     public:
-        QTree<T>();
-        ~QTree<T>();
+        QTree<E>();
+        ~QTree<E>();
 
-        void insert(T&, Point&);
+        void insert(E&, Point&);
         void clear();
         void trim();
 
-        struct QLeaf<T> root;
+        struct QLeaf<E> root;
     private:
 
     };

@@ -18,7 +18,6 @@ namespace engine
 		CORE_API void quit();
 
 	protected:
-		bool running;
 		Context* ctx;
 	};
 }

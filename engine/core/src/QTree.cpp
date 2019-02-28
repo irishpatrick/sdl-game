@@ -3,6 +3,16 @@
 
 namespace engine
 {
+    template <class T>
+    void allocate(struct QLeaf<T>* leaf)
+    {
+        leaf = (struct QLeaf<T>*)malloc(sizeof(struct QLeaf<T>));
+        leaf->q1 = nullptr;
+        leaf->q2 = nullptr;
+        leaf->q3 = nullptr;
+        leaf->q4 = nullptr;
+    }
+    
     template <class E>
     void r_insert(struct QLeaf<E>* leaf, E& data, Point& p)
     {
@@ -30,7 +40,7 @@ namespace engine
         {
             if (leaf->q1 == nullptr)
             {
-                leaf->q1 = (struct QLeaf<E>*)malloc(sizeof(struct QLeaf<E>));
+                allocate<E>(leaf->q1);
                 leaf->q1->data = data;
                 return;
             }
@@ -45,7 +55,8 @@ namespace engine
         {
             if (leaf->q2 == nullptr)
             {
-                leaf->q2 = (struct QLeaf<E>*)malloc(sizeof(struct QLeaf<E>));
+                //leaf->q2 = (struct QLeaf<E>*)malloc(sizeof(struct QLeaf<E>));
+                allocate<E>(leaf->q2);
                 leaf->q2->data = data;
                 return;
             }
@@ -60,7 +71,8 @@ namespace engine
         {
             if (leaf->q3 == nullptr)
             {
-                leaf->q3 = (struct QLeaf<E>*)malloc(sizeof(struct QLeaf<E>));
+                //leaf->q3 = (struct QLeaf<E>*)malloc(sizeof(struct QLeaf<E>));
+                allocate<E>(leaf->q3);
                 leaf->q3->data = data;
                 return;
             }
@@ -75,7 +87,8 @@ namespace engine
         {
             if (leaf->q4 == nullptr)
             {
-                leaf->q4 = (struct QLeaf<E>*)malloc(sizeof(struct QLeaf<E>));
+                //leaf->q4 = (struct QLeaf<E>*)malloc(sizeof(struct QLeaf<E>));
+                allocate<E>(leaf->q4);
                 leaf->q4->data = data;
                 return;
             }

@@ -22,4 +22,5 @@ private:
 	engine::Context ctx;
 	SDL_Event e;
 	float deltaBuffer;
+	bool running;
 };

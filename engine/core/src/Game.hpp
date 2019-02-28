@@ -15,7 +15,6 @@ namespace engine
 		CORE_API virtual void mainLoop();
 		CORE_API void attachContext(Context&);
 		CORE_API Context* getContext();
-		CORE_API void quit();
 
 	protected:
 		Context* ctx;

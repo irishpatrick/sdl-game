@@ -5,7 +5,6 @@ namespace engine
 	Game::Game()
 	{
 		ctx = nullptr;
-		running = true;
 	}
 
 	Game::~Game()
@@ -31,10 +30,5 @@ namespace engine
 	Context* Game::getContext()
 	{
 		return ctx;
-	}
-
-	void Game::quit()
-	{
-		running = false;
 	}
 }

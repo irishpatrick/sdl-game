@@ -15,7 +15,7 @@ public:
     Player();
     ~Player();
 
-	void init(engine::Context&) override;
+	void init(engine::Context&);
 
     json toJson();
     engine::LocationStack* getDoorStack();

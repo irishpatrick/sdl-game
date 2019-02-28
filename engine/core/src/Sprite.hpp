@@ -26,18 +26,18 @@ namespace engine
     	CORE_API Sprite();
     	CORE_API virtual ~Sprite();
 
-		CORE_API virtual void init(Context&);
-    	CORE_API virtual void setTexture(Texture*);
-        CORE_API virtual void draw(Context&);
-		CORE_API virtual void draw(Camera&, Context&);
-    	CORE_API virtual void ResetCollision();
-    	CORE_API virtual void update(float);
+		CORE_API void init(Context&);
+    	CORE_API void setTexture(Texture*);
+        CORE_API void draw(Context&);
+		CORE_API void draw(Camera&, Context&);
+    	CORE_API void ResetCollision();
+    	CORE_API void update(float);
     	CORE_API void setSpeed(float);
     	CORE_API void queryTexture();
-    	CORE_API virtual void OnCollision(Sprite*);
+    	CORE_API void OnCollision(Sprite*);
     	CORE_API Sprite* GetCollision();
-    	CORE_API virtual void setParent(Group*);
-    	CORE_API virtual Group* getParent();
+    	CORE_API void setParent(Group*);
+    	CORE_API Group* getParent();
     	CORE_API void setCamera(Camera*);
 		CORE_API void setBoundingBox(int, int, int, int);
 		CORE_API BoundingBox& getRelativeBoundingBox();

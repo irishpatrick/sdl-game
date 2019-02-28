@@ -20,7 +20,7 @@ public:
     void SetDest(const string&);
     void SetExit(float, float);
     void Enter();
-    void OnCollision(Sprite*) override;
+    void OnCollision(Sprite*);
 
     void setTag(const string&);
     string getTag();

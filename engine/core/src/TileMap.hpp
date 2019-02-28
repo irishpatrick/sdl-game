@@ -22,7 +22,7 @@ namespace engine
 
 		void initMap(int, int, int);
 		void loadMap(const std::string&);
-		void draw(Context&) override;
+		void draw(Context&);
 
 	private:
 		int gridSize;

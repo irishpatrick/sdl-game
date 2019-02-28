@@ -3,7 +3,6 @@
 #include <nlohmann/json.hpp>
 #include <cstdlib>
 
-static long NS_PER_UPDATE = 16 * 1e6;
 
 using json = nlohmann::json;
 
@@ -59,7 +58,7 @@ void App::draw()
 	long delta = 0;
 	long now;
 	long then = engine::Timer::getNanoTime();
-    long lag = 0;
+	running = true;
 
 	while (running)
 	{
@@ -73,7 +72,7 @@ void App::draw()
 		{
 			if (e.type == SDL_QUIT)
 			{
-				quit();
+				running = false;
 			}
 		}
 

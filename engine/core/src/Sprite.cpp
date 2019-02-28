@@ -34,7 +34,7 @@ namespace engine
 
 	Sprite::~Sprite()
 	{
-		
+
 	}
 
 	void Sprite::setSpeed(float s)

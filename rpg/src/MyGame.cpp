@@ -134,11 +134,6 @@ void MyGame::update(float delta)
         bool primary = kbd[SDL_SCANCODE_Z];
         bool secondary = kbd[SDL_SCANCODE_X];
 
-		if (kbd[SDL_SCANCODE_ESCAPE])
-		{
-			game->quit();
-		}
-
 		if (playerMovement)
 		{
 			if ((up || down) && (left || right))

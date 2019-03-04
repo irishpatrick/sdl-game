@@ -43,4 +43,8 @@ namespace engine
 		focus = s;
 	}
 
+    BoundingBox Camera::getViewport()
+    {
+        return BoundingBox(x, y, w, h);
+    }
 }

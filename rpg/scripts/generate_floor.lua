@@ -34,36 +34,42 @@ end
 function backtrace(prob)
     if reject(prob)
     then
+        print("reject")
         return
     end
 
     if accept(prob)
     then
+        print("accept")
         output(prob)
     end
 
-    s = first(mat)
+    print("generate first")
+    local s = first(prob)
 
     while s ~= nil
     do
+        print("backtrace")
         backtrace(s)
+        print("next")
         s = next(s)
     end
+    prob.rc = prob.rc - 1
 end
 
 function reject(prob)
-    for i=1,#mat
+    for i=1,#prob.mat
     do
-        for j=1,#mat[i]
+        for j=1,#prob.mat[i]
         do
-            if mat[i][j] > 1
+            if prob.mat[i][j] > 1
             then
-                return false
+                return true
             end
         end
     end
 
-    return true
+    return false
 end
 
 function accept(prob)
@@ -72,7 +78,7 @@ function accept(prob)
         return false
     end
 
-    if  reject(prob)
+    if reject(prob)
     then
         return false
     end
@@ -85,7 +91,7 @@ function output(prob)
 end
 
 function first(prob)
-    out = prob
+    local out = prob
     for i=1, out.y + out.rs
     do
         for j=1, out.x + out.rs
@@ -98,30 +104,39 @@ function first(prob)
 end
 
 function next(prob)
-    out = prob
-    for i=out.x, out.x + out.rs
+    local out = prob
+
+    for i=out.y, out.y + out.rs
     do
-        for j=out.y, out.y+out.rs
+        for j=out.x, out.x + out.rs
         do
+            print(string.format("%d, %d", out.x, out.y))
             out.mat[i][j] = out.mat[i][j] - 1
         end
     end
 
     out.x = out.x + 1
-    if out.x == out.rs
+    if out.x >= #out.mat[1] - out.rs
     then
-        out.x = 0
+        out.x = 1
         out.y = out.y + 1
     end
 
-    for i=1, #out.mat - out.rs
+    if out.y >= #out.mat - out.rs
+    then
+        return nil
+    end
+
+    for i=out.y, out.y + out.rs
     do
-        for j=1,#out.mat[i] - out.rs
+        for j=out.x, out.x + out.rs
         do
             out.mat[i][j] = out.mat[i][j] + 1
         end
     end
+
+    return out
 end
 
-problem = {}
+local problem = {}
 generate(problem)

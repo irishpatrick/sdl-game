@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
 # set options
-option (USE_HUNTER "use hunter" OFF)
 option (HUNTER_BUILD_SHARED_LIBS "hunter build shared libs" ON)
 option (USE_PKGCONFIG "use pkg-config" OFF)
 option (BUILD_RPG "build game" OFF)
@@ -19,15 +18,6 @@ set(LINK_OPTIONS "std=c++14")
 set(MSVC_INCLUDE "" CACHE PATH "")
 set(MSVC_LIB "" CACHE PATH "")
 set(INCLUDE_DIR "lib/include")
-
-# initialize hunter
-if (USE_HUNTER)
-	include("cmake/HunterGate.cmake")
-    HunterGate(
-        URL "https://github.com/ruslo/hunter/archive/v0.23.7.tar.gz"
-        SHA1 "183d23691c5bb2e3053bd6a7ad6021d16b24664d"
-    )
-endif (USE_HUNTER)
 
 # begin project
 project(sdl-game)
@@ -66,36 +56,8 @@ elseif (UNIX)
 # we have no idea
 endif ()
 
-# finding dependencies using hunter
-if (USE_HUNTER)
-
-    message(STATUS "using hunter")
-
-    if (UNIX)
-        set(COMPILE_OPTIONS ${COMPILE_OPTIONS} -DUSE_HUNTER)
-    elseif (MSVC)
-        set(COMPILE_OPTIONS ${COMPILE_OPTIONS} /DUSE_HUNTER)
-    endif (UNIX)
-
-    hunter_add_package(SDL2)
-    hunter_add_package(SDL_image)
-    hunter_add_package(SDL_ttf)
-    hunter_add_package(cairo)
-    hunter_add_package(nlohmann-json)
-
-    find_package(SDL2 CONFIG REQUIRED)
-    find_package(SDL_image CONFIG REQUIRED)
-    find_package(SDL_ttf CONFIG REQUIRED)
-    find_package(cairo CONFIG REQUIRED)
-    find_package(nlohmann-json CONFIG REQUIRED)
-
-    message(STATUS ${SDL2_ROOT})
-
-    set(LIBRARIES ${LIBRARIES} SDL2::SDL2main SDL2::SDL2 SDL_image::SDL_image SDL_ttf::SDL_ttf  m CACHE STRING "string")
-    set(INCLUDE_DIR ${INCLUDE_DIR} ${SDL2_ROOT}/include/SDL2 ${SDL_TTF_ROOT}/include/SDL_ttf)
-
 # finding dependencies using pkg-config
-elseif (USE_PKGCONFIG)
+if (USE_PKGCONFIG)
 
     message(STATUS "using pkg-config")
 

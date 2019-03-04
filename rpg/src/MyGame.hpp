@@ -16,7 +16,8 @@
 #include <vector>
 #include <future>
 
-class MyGame: public engine::State {
+class MyGame: public engine::State
+{
 public:
     MyGame();
     ~MyGame();

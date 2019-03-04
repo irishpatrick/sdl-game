@@ -32,11 +32,6 @@ namespace engine
 		boundingBox.h = -1.0f;
 	}
 
-	Sprite::~Sprite()
-	{
-
-	}
-
 	void Sprite::setSpeed(float s)
 	{
 		speed = s;
@@ -148,6 +143,10 @@ namespace engine
 			rect.y = y + parent->getScreenY();
 		}
 		else if (camera != nullptr) {
+            if (!isOnScreen())
+            {
+                return;
+            }
 			rect.x = x + camera->x;
 			rect.y = y + camera->y;
 		}
@@ -256,6 +255,13 @@ namespace engine
 	{
 		return visible;
 	}
+
+    bool Sprite::isOnScreen()
+    {
+        BoundingBox a = camera->getViewport();
+        BoundingBox b(x, y, w, h);
+        return a.isInside(b);
+    }
 
 	void Sprite::setMaxSpeed(float a)
 	{

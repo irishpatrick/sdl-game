@@ -1,6 +1,7 @@
 #pragma once
 
 #include "core_api.hpp"
+#include "BoundingBox.hpp"
 
 namespace engine
 {
@@ -16,6 +17,7 @@ class Sprite;
 		CORE_API void setFocus(Sprite*);
 		CORE_API void update();
 		CORE_API void setScreen(int, int);
+        CORE_API BoundingBox getViewport();
 
 		float x;
 		float y;

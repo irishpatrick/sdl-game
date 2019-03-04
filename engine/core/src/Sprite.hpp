@@ -24,7 +24,7 @@ namespace engine
 	{
     public:
     	CORE_API Sprite();
-    	CORE_API virtual ~Sprite();
+    	CORE_API virtual ~Sprite() {}
 
 		CORE_API void init(Context&);
     	CORE_API void setTexture(Texture*);
@@ -49,6 +49,7 @@ namespace engine
 		CORE_API bool isVisible();
 		CORE_API void SetVisible(bool);
 		CORE_API bool IsVisible();
+        CORE_API bool isOnScreen();
 		CORE_API void setMaxSpeed(float);
 		CORE_API float getMaxSpeed();
 		CORE_API std::string& getName();

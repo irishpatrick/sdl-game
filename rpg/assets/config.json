@@ -1,6 +1,6 @@
 {
   "fullscreen": 0,
-  "screenWidth": 1024,
-  "screenHeight": 768,
+  "screenWidth": 256,
+  "screenHeight": 256,
   "assetPath": "../../rpg/assets/"
 }

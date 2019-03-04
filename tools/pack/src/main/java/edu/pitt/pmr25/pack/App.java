@@ -8,10 +8,6 @@ import org.apache.commons.io.FilenameUtils;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     private static int compare(BufferedImage a, BufferedImage b)
@@ -105,7 +101,7 @@ public class App
         }
         catch (IOException e)
         {
-
+            
         }
     }
 

@@ -3,23 +3,19 @@
 
 namespace engine
 {
-	BoundingBox::BoundingBox()
-	{
-		x = 0.0f;
-		y = 0.0f;
-		w = 0.0f;
-		h = 0.0f;
-	}
-
-	BoundingBox::~BoundingBox()
-	{
-
-	}
-
-	std::string BoundingBox::str()
+    std::string BoundingBox::str()
 	{
 		std::stringstream ss;
 		ss << "BoundingBox { x: " << x << ", y: " << y << ", w: " << w << ", h" << h << std::endl;
 		return ss.str();
 	}
+
+    bool BoundingBox::isInside(BoundingBox& box)
+    {
+        return (
+			x < box.x + box.w &&
+			x + w > box.x &&
+			y < box.y + box.h &&
+			y + h > box.y);
+    }
 }

@@ -143,7 +143,7 @@ namespace engine
 			rect.y = y + parent->getScreenY();
 		}
 		else if (camera != nullptr) {
-            if (!isOnScreen())
+            if (!isOnScreen(camera))
             {
                 return;
             }
@@ -170,6 +170,11 @@ namespace engine
 	void Sprite::draw(Camera& c, Context& ctx)
 	{
 		if (!visible) return;
+
+        if (!isOnScreen(&c))
+        {
+            return;
+        }
 
 		if (texture == nullptr)
 		{
@@ -256,9 +261,9 @@ namespace engine
 		return visible;
 	}
 
-    bool Sprite::isOnScreen()
+    bool Sprite::isOnScreen(Camera* c)
     {
-        BoundingBox a = camera->getViewport();
+        BoundingBox a = c->getViewport();
         BoundingBox b(x, y, w, h);
         return a.isInside(b);
     }

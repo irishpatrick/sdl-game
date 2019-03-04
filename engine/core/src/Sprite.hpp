@@ -49,7 +49,7 @@ namespace engine
 		CORE_API bool isVisible();
 		CORE_API void SetVisible(bool);
 		CORE_API bool IsVisible();
-        CORE_API bool isOnScreen();
+        CORE_API bool isOnScreen(Camera*);
 		CORE_API void setMaxSpeed(float);
 		CORE_API float getMaxSpeed();
 		CORE_API std::string& getName();

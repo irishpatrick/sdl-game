@@ -24,9 +24,7 @@ class Sprite;
 	private:
 		int w;
 		int h;
-		float fx;
-		float fy;
-		
+
 		bool dynamic;
 		Sprite* focus;
 	};

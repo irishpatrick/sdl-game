@@ -183,8 +183,8 @@ namespace engine
 		}
 
         SDL_Rect rect;
-		rect.x = x + c.x;
-		rect.y = y + c.y;
+		rect.x = x - c.x;
+		rect.y = y - c.y;
 		rect.w = w;
 		rect.h = h;
 
@@ -264,7 +264,7 @@ namespace engine
     bool Sprite::isOnScreen(Camera* c)
     {
         BoundingBox a = c->getViewport();
-        BoundingBox b(x, y, w, h);
+        BoundingBox b(x - c->x, y - c->y, w, h);
         return a.isInside(b);
     }
 

@@ -30,7 +30,7 @@ void MyGame::init(engine::Context& ctx)
 	fs::path sprites = fs::current_path() / "assets" / "sprites";
     camera.setScreen(ctx.getWidth(), ctx.getHeight());
 
-    camera.setFocus(&hero);
+    //camera.setFocus(&hero);
 
     hero.init(ctx);
     hero.setSolid(true);
@@ -264,6 +264,9 @@ void MyGame::update(float delta)
             }
         }
     }
+
+    camera.x = hero.x + (hero.w / 2.0f) - (camera.getViewport().w / 2.0f);
+    camera.y = hero.y + (hero.h / 2.0f) - (camera.getViewport().h / 2.0f);
 
 	box.update(delta);
 

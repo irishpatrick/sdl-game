@@ -18,6 +18,7 @@ function generate(prob)
     init(prob)
     print_problem(prob)
     backtrace(prob)
+    --first(prob)
     print_problem(prob)
 end
 
@@ -26,8 +27,8 @@ function init(prob)
     prob.last = prob.mat
     prob.rc = 4
     prob.rs = 6
-    prob.x = 0
-    prob.y = 0
+    prob.x = 1
+    prob.y = 1
 end
 
 function backtrace(prob)
@@ -66,7 +67,7 @@ function reject(prob)
 end
 
 function accept(prob)
-    if prob.rc ~= 0
+    if prob.rc > 0
     then
         return false
     end
@@ -85,20 +86,22 @@ end
 
 function first(prob)
     out = prob
-    for i=0,out.rs
+    for i=1, out.y + out.rs
     do
-        for j=0,out.rs
+        for j=1, out.x + out.rs
         do
-            out.mat[i][j] = out.mat[i][j]+1
+            print(string.format("%d, %d", j, i))
+            out.mat[i][j] = out.mat[i][j] + 1
         end
     end
+    return out
 end
 
 function next(prob)
     out = prob
-    for i=x,x + out.rs
+    for i=out.x, out.x + out.rs
     do
-        for j=y,y+out.rs
+        for j=out.y, out.y+out.rs
         do
             out.mat[i][j] = out.mat[i][j] - 1
         end
@@ -111,9 +114,9 @@ function next(prob)
         out.y = out.y + 1
     end
 
-    for i=0,#out.mat - out.rs
+    for i=1, #out.mat - out.rs
     do
-        for j=0,#out.mat[i] - out.rs
+        for j=1,#out.mat[i] - out.rs
         do
             out.mat[i][j] = out.mat[i][j] + 1
         end

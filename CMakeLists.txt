@@ -15,7 +15,7 @@ option (DEBUG_SYMBOLS "enable debug symbols" ON)
 
 # set variables
 set(COMPILE_OPTIONS "")
-set(LINK_OPTIONS "")
+set(LINK_OPTIONS "std=c++14")
 set(MSVC_INCLUDE "" CACHE PATH "")
 set(MSVC_LIB "" CACHE PATH "")
 set(INCLUDE_DIR "lib/include")
@@ -57,7 +57,7 @@ elseif (UNIX)
 	set(INCLUDE_DIR ${INCLUDE_DIR} /usr/include/)
     set(LIBRARY_DIR /usr/lib/)
     set(LIBRARIES ${LIBRARIES} stdc++fs)
-    set(COMPILE_OPTIONS -std=c++14 -D_REENTRANT -Wall -Wextra -Wshadow -Wnon-virtual-dtor -pedantic -pthread)
+    set(COMPILE_OPTIONS -D_REENTRANT -Wall -Wextra -Wshadow -Wnon-virtual-dtor -pedantic -pthread)
 
 	if (DEBUG_SYMBOLS)
         set(COMPILE_OPTIONS ${COMPILE_OPTIONS} -g)

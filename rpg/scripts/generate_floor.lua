@@ -3,24 +3,23 @@
 local tools = require("tools")
 
 function print_problem(p)
-    local m = p.mat
-    for i, #m
+    for i=1, #p.mat
     do
-        for j, #m[i]
+        for j=1, #p.mat[i]
         do
-            print(m[i][j])
+            io.write(p.mat[i][j])
+            io.write(" ")
         end
-        print("")
+        io.write("\n")
     end
 end
 
-function generate()
-    init(problem)
-    print_problem(problem)
-    backtrace(problem)
+function generate(prob)
+    init(prob)
+    print_problem(prob)
+    backtrace(prob)
+    print_problem(prob)
 end
-
-problem = {}
 
 function init(prob)
     prob.mat = tools.generate_matrix(100, 100)
@@ -33,18 +32,18 @@ end
 
 function backtrace(prob)
     if reject(prob)
-    then 
-        return 
+    then
+        return
     end
 
-    if accept(prob) 
-    then 
-        output(prob) 
+    if accept(prob)
+    then
+        output(prob)
     end
 
     s = first(mat)
-    
-    while s ~= nil 
+
+    while s ~= nil
     do
         backtrace(s)
         s = next(s)
@@ -52,9 +51,9 @@ function backtrace(prob)
 end
 
 function reject(prob)
-    for i=1,#mat 
+    for i=1,#mat
     do
-        for j=1,#mat[i] 
+        for j=1,#mat[i]
         do
             if mat[i][j] > 1
             then
@@ -76,7 +75,7 @@ function accept(prob)
     then
         return false
     end
-    
+
     return true
 end
 
@@ -121,4 +120,5 @@ function next(prob)
     end
 end
 
-generate()
+problem = {}
+generate(problem)

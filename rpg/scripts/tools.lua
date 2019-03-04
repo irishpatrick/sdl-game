@@ -10,6 +10,8 @@ function tools.generate_matrix(N,M)
             mat[i][j] = 0
         end
     end
+
+    return mat
 end
 
 return tools

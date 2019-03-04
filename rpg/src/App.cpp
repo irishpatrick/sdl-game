@@ -3,7 +3,6 @@
 #include <nlohmann/json.hpp>
 #include <cstdlib>
 
-
 using json = nlohmann::json;
 
 App::App()

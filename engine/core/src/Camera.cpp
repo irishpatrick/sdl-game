@@ -31,8 +31,8 @@ namespace engine
 			std::cout << "need to set screen dimensions" << std::endl;
 		}
 		if (focus != nullptr) {
-			x = (w / 2.0f) - focus->x - (focus->w / 2.0f);
-			y = (h / 2.0f) - focus->y - (focus->h / 2.0f);
+			x = floorf(focus->x + (focus->w / 2.0f) - (getViewport().w / 2.0f));
+    		y = floorf(focus->y + (focus->h / 2.0f) - (getViewport().h / 2.0f));
 		}
 	}
 

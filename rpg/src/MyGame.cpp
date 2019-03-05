@@ -32,10 +32,10 @@ void MyGame::init(engine::Context& ctx)
 
     //camera.setFocus(&hero);
 
-    hero.init(ctx);
-    hero.setSolid(true);
-    hero.x = 10;
-    hero.y = 10;
+	hero.init(ctx);
+	hero.setSolid(true);
+	hero.x = 10;
+	hero.y = 10;
 
 	room1.load((maps / "room1.json").generic_string());
 	town1.load((maps / "town1.json").generic_string());
@@ -110,6 +110,8 @@ void MyGame::update(float delta)
 
     hero.xvel = 0;
     hero.yvel = 0;
+
+	camera.setFocus(&hero);
 
 	if (!transition.isRunning() && todo != nullptr)
 	{
@@ -274,9 +276,6 @@ void MyGame::update(float delta)
         &hero,
         StaticGM::getActive()->get_sprite_by_name("background")
     );
-	
-	camera.x = floorf(hero.x + (hero.w / 2.0f) - (camera.getViewport().w / 2.0f));
-    camera.y = floorf(hero.y + (hero.h / 2.0f) - (camera.getViewport().h / 2.0f));
 
     enemytest.update(delta);
 
@@ -288,11 +287,8 @@ void MyGame::update(float delta)
 void MyGame::render(engine::Context& ctx)
 {
     StaticGM::getActive()->draw(camera, ctx);
-    //dlg.render(&ctx);
-	//dec.draw(&ctx);
 	transition.draw(&ctx);
     enemytest.draw(ctx);
-	//debug.draw(ctx);
     box.draw(ctx);
 }
 

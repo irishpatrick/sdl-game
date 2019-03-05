@@ -269,16 +269,16 @@ void MyGame::update(float delta)
 
     transition.update();
     hero.update(delta);
-	camera.x = floorf(hero.x + (hero.w / 2.0f) - (camera.getViewport().w / 2.0f));
-    camera.y = floorf(hero.y + (hero.h / 2.0f) - (camera.getViewport().h / 2.0f));
-
-    enemytest.update(delta);
-
-    engine::Util::contain
+	engine::Util::contain
 	(
         &hero,
         StaticGM::getActive()->get_sprite_by_name("background")
     );
+	
+	camera.x = floorf(hero.x + (hero.w / 2.0f) - (camera.getViewport().w / 2.0f));
+    camera.y = floorf(hero.y + (hero.h / 2.0f) - (camera.getViewport().h / 2.0f));
+
+    enemytest.update(delta);
 
     camera.update();
 

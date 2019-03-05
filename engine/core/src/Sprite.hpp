@@ -54,6 +54,7 @@ namespace engine
 		CORE_API float getMaxSpeed();
 		CORE_API std::string& getName();
     	CORE_API std::string getUUID();
+		CORE_API void debugDraw(Camera&, Context&);
 
         float xvel;
         float yvel;

@@ -3,6 +3,7 @@
 #include "Texture.hpp"
 #include "Camera.hpp"
 #include <iostream>
+#include <cairo/cairo.h>
 
 namespace engine
 {
@@ -189,6 +190,11 @@ namespace engine
 		rect.h = h;
 
 		SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
+	}
+
+	void Sprite::debugDraw(Camera& camera, Context& ctx)
+	{
+
 	}
 
 	void Sprite::setBoundingBox(int bx, int by, int bw, int bh) {

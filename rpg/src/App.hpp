@@ -15,6 +15,8 @@ public:
 	void draw();
 	void mainLoop();
 
+	static void quitCallback();
+
 private:
 	MyGame game;
 	Title title;
@@ -22,5 +24,5 @@ private:
 	engine::Context ctx;
 	SDL_Event e;
 	float deltaBuffer;
-	bool running;
+	static bool running;
 };

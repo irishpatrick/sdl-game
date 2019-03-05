@@ -10,12 +10,15 @@ namespace engine
 
 	class Context 
 	{
-
+	
 	public:
 		CORE_API Context();
 		CORE_API ~Context();
 
 		CORE_API int init(int, int, const std::string&, bool);
+
+		CORE_API void pollEvents();
+		CORE_API void setQuitCallback(void( *)(void));
 
 		CORE_API inline int getWidth() 
 		{
@@ -71,6 +74,6 @@ namespace engine
 		SDL_DisplayMode current;
 		int width;
 		int height;
+		void (*quitCallback)(void);
 	};
-
 }

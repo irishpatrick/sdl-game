@@ -5,6 +5,8 @@
 
 using json = nlohmann::json;
 
+bool App::running = false;
+
 App::App()
 {
 	deltaBuffer = 0;
@@ -13,6 +15,11 @@ App::App()
 App::~App()
 {
 
+}
+
+void App::quitCallback()
+{
+	running = false;
 }
 
 void App::init()
@@ -25,6 +32,8 @@ void App::init()
 
 	int result = ctx.init(Config::getScreenWidth(), Config::getScreenHeight(), "title", false);
 	if (result < 0) std::exit(-1);
+
+	ctx.setQuitCallback(App::quitCallback);
 
 	fs::path assetPath = fs::current_path() / "assets";
 	engine::Assets::setCwd(assetPath);
@@ -67,13 +76,7 @@ void App::draw()
 
 		avg.shiftIn(delta);
 
-		while (SDL_PollEvent(&e))
-		{
-			if (e.type == SDL_QUIT)
-			{
-				running = false;
-			}
-		}
+		ctx.pollEvents();
 
 		//std::cout << "delta: " << delta << " avg: " << snap.getAverage() << std::endl;
 		//std::cout << "snap: " << snap.string() << std::endl;

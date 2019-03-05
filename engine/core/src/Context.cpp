@@ -17,7 +17,7 @@ namespace engine
 
 	Context::Context()
 	{
-
+		quitCallback = nullptr;
 	}
 
 	Context::~Context()
@@ -115,5 +115,24 @@ namespace engine
 		}
 
 		return 0;
+	}
+
+	void Context::setQuitCallback(void(*callback)(void))
+	{
+		quitCallback = callback;
+	}
+
+	void Context::pollEvents()
+	{
+		while (SDL_PollEvent(&e))
+		{
+			if (e.type == SDL_QUIT)
+			{
+				if (quitCallback != nullptr)
+				{
+					quitCallback();
+				}
+			}
+		}
 	}
 }

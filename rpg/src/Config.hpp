@@ -15,7 +15,7 @@ namespace fs = std::experimental::filesystem;
 
 class Config 
 {
-	 public:
+	public:
 		static int load(const std::string&);
 
 		static int getScreenWidth();
@@ -23,7 +23,7 @@ class Config
 		static fs::path getAssetPath();
 		static bool getFullscreen();
 
-	 private:
+	private:
 		static int screenWidth;
 		static int screenHeight;
 		static fs::path assetPath;

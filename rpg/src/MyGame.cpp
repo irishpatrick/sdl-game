@@ -265,13 +265,12 @@ void MyGame::update(float delta)
         }
     }
 
-    camera.x = hero.x + (hero.w / 2.0f) - (camera.getViewport().w / 2.0f);
-    camera.y = hero.y + (hero.h / 2.0f) - (camera.getViewport().h / 2.0f);
-
 	box.update(delta);
 
     transition.update();
     hero.update(delta);
+	camera.x = floorf(hero.x + (hero.w / 2.0f) - (camera.getViewport().w / 2.0f));
+    camera.y = floorf(hero.y + (hero.h / 2.0f) - (camera.getViewport().h / 2.0f));
 
     enemytest.update(delta);
 

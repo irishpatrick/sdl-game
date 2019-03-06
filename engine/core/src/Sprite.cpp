@@ -3,7 +3,7 @@
 #include "Texture.hpp"
 #include "Camera.hpp"
 #include <iostream>
-#include <cairo/cairo.h>
+#include <cairo.h>
 
 namespace engine
 {
@@ -31,6 +31,7 @@ namespace engine
 		boundingBox.y = 0.0f;
 		boundingBox.w = -1.0f;
 		boundingBox.h = -1.0f;
+        debug = false;
 	}
 
 	void Sprite::setSpeed(float s)
@@ -110,25 +111,6 @@ namespace engine
 		h = texture->getH();
 	}
 
-	/*void Sprite::draw(Object& obj, Context& ctx) {
-		if (!visible) return;
-
-		SDL_Rect rect;
-		rect.x = x + obj.x;
-		rect.y = y + obj.y;
-		rect.w = w;
-		rect.h = h;
-
-		//if (anim->GetTexture() != nullptr) {
-		//	SDL_RenderCopy(ctx.getRenderer(), texture->use(), anim->GetCurrentFrame(), &rect);
-		//}
-		//else {
-		//	SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
-		//}
-
-		SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
-	}*/
-
     void Sprite::draw(Context& ctx) {
         if (!visible) return;
 
@@ -190,11 +172,25 @@ namespace engine
 		rect.h = h;
 
 		SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
-	}
+        if (debug)
+        {
+            debugDraw(c, ctx);
+        }
+    }
 
 	void Sprite::debugDraw(Camera& camera, Context& ctx)
 	{
+        if (!canvas.isReady())
+        {
+            canvas.create(ctx, w, h);
+            return;
+        }
 
+        cairo_t* cr = canvas.getCairo();
+
+        cairo_rectangle(cr, 0, 0, 1, 1);
+        cairo_set_source_rgba(cr, 1, 0, 1, 0.5);
+        cairo_fill(cr);
 	}
 
 	void Sprite::setBoundingBox(int bx, int by, int bw, int bh) {
@@ -261,6 +257,11 @@ namespace engine
 	{
 		visible = b;
 	}
+
+    void Sprite::setDebug(bool state)
+    {
+        debug = state;
+    }
 
 	bool Sprite::isVisible()
 	{

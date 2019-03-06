@@ -38,6 +38,8 @@ namespace engine
         );
 
         cr = cairo_create(cairoSurface);
+
+        ready = true;
     }
 
     cairo_t* Canvas::getCairo()
@@ -67,5 +69,10 @@ namespace engine
     uint32_t Canvas::getHeight()
     {
         return h;
+    }
+
+    bool Canvas::isReady()
+    {
+        return ready;
     }
 }

@@ -11,6 +11,7 @@ namespace engine
     {
     public:
         Canvas() : 
+            ready(false),
             texture(nullptr), 
             surface(nullptr),
             cairoSurface(nullptr),
@@ -23,11 +24,12 @@ namespace engine
         void create(Context&, uint32_t, uint32_t);
         void draw(Context&);
         cairo_t* getCairo();
-
+        bool isReady();
         uint32_t getWidth();
         uint32_t getHeight();
 
     private:
+        bool ready;
         SDL_Texture* texture;
         SDL_Surface* surface;
         cairo_surface_t* cairoSurface;

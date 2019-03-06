@@ -65,12 +65,13 @@ if (USE_PKGCONFIG)
     pkg_check_modules(SDL2 REQUIRED sdl2)
     pkg_check_modules(SDL2_image REQUIRED SDL2_image)
     pkg_check_modules(SDL2_ttf REQUIRED SDL2_ttf)
+    pkg_check_modules(CAIRO REQUIRED cairo)
     #pkg_check_modules(nlohmann-json REQUIRED json)
 
 
-    set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/include ${SDL2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS} ${SDL2_ttf_INCLUDE_DIRS})
-    set(LIBRARY_DIR ${SDL2_LIBRARY_DIRS} ${SDL2_image_LIBRARY_DIRS} ${SDL2_ttf_LIBRARY_DIRS})
-    set(LIBRARIES ${LIBRARIES} SDL2 SDL2_image SDL2_ttf)
+    set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/include ${SDL2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS} ${SDL2_ttf_INCLUDE_DIRS} ${CAIRO_INCLUDE_DIRS})
+    set(LIBRARY_DIR ${SDL2_LIBRARY_DIRS} ${SDL2_image_LIBRARY_DIRS} ${SDL2_ttf_LIBRARY_DIRS} ${CAIRO_LIBRARY_DIRS})
+    set(LIBRARIES ${LIBRARIES} SDL2 SDL2_image SDL2_ttf cairo)
 
 # use vcpkg
 else ()
@@ -93,7 +94,8 @@ else ()
 
 	set(INCLUDE_DIR
 		${INCLUDE_DIR}
-		${SDL_INCLUDE_DIR}
+        ${SDL_INCLUDE_DIR}
+        ${CAIRO_INCLUDE_DIR}
 	)
 
 endif ()

@@ -65,6 +65,7 @@ namespace engine
 				{
 					Anim* c = &animations[n++];
 					c->name = (char*)malloc(e["name"].get<std::string>().size());
+					// leak
 					strcpy(c->name, e["name"].get<std::string>().c_str());
 					c->fps = e["fps"];
 					c->length = e["length"];
@@ -112,6 +113,7 @@ namespace engine
 		frameCount = 0;
 		for (int i = 0; i < numAnimations; i++)
 		{
+			// leak
 			if (strncmp(aname.c_str(), animations[i].name, strlen(animations[i].name)) == 0)
 			{
 				currentAnim = i;

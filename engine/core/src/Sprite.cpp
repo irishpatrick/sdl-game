@@ -192,10 +192,12 @@ namespace engine
 
         cairo_t* cr = canvas.getCairo();
 
-        cairo_rectangle(cr, 0, 0, 1, 1);
-        //cairo_set_source_rgba(cr, 1, 0, 1, 0.5);
-        cairo_set_source_rgb(cr, 1, 0, 1);
-		cairo_fill(cr);
+		cairo_set_source_rgba(cr, 1, 0, 1, 1);
+		BoundingBox& b = getRelativeBoundingBox();
+        cairo_rectangle(cr, b.x, b.y, b.w, b.h);
+		cairo_stroke(cr);
+
+		canvas.draw(ctx);
 	}
 
 	void Sprite::setBoundingBox(int bx, int by, int bw, int bh) {

@@ -28,14 +28,15 @@ namespace engine
         uint32_t getWidth();
         uint32_t getHeight();
 
+        float x;
+        float y;
+
     private:
         bool ready;
         SDL_Texture* texture;
         SDL_Surface* surface;
         cairo_surface_t* cairoSurface;
         cairo_t* cr;
-        float x;
-        float y;
         uint32_t w;
         uint32_t h;
     };

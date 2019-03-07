@@ -178,19 +178,24 @@ namespace engine
         }
     }
 
-	void Sprite::debugDraw(Camera& camera, Context& ctx)
+	void Sprite::debugDraw(Camera& c, Context& ctx)
 	{
         if (!canvas.isReady())
         {
+			std::cout << "not ready" << std::endl;
             canvas.create(ctx, w, h);
             return;
         }
 
+		canvas.x = x - c.x;
+		canvas.y = y - c.y;
+
         cairo_t* cr = canvas.getCairo();
 
         cairo_rectangle(cr, 0, 0, 1, 1);
-        cairo_set_source_rgba(cr, 1, 0, 1, 0.5);
-        cairo_fill(cr);
+        //cairo_set_source_rgba(cr, 1, 0, 1, 0.5);
+        cairo_set_source_rgb(cr, 1, 0, 1);
+		cairo_fill(cr);
 	}
 
 	void Sprite::setBoundingBox(int bx, int by, int bw, int bh) {

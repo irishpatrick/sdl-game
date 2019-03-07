@@ -36,6 +36,7 @@ void MyGame::init(engine::Context& ctx)
 	hero.setSolid(true);
 	hero.x = 10;
 	hero.y = 10;
+	hero.setDebug(true);
 
 	room1.load((maps / "room1.json").generic_string());
 	town1.load((maps / "town1.json").generic_string());

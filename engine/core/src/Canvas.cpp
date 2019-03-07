@@ -27,6 +27,8 @@ namespace engine
             0
         );
 
+        //SDL_LockSurface(surface);
+
         texture = SDL_CreateTextureFromSurface(ctx.getRenderer(), surface);
         cairoSurface = cairo_image_surface_create_for_data
         (
@@ -49,9 +51,9 @@ namespace engine
 
     void Canvas::draw(Context& ctx)
     {
-        SDL_UnlockSurface(surface);
+        //SDL_UnlockSurface(surface);
         SDL_UpdateTexture(texture, NULL, surface->pixels, surface->pitch);
-        SDL_LockSurface(surface);
+        //SDL_LockSurface(surface);
 
         SDL_Rect rect;
         rect.x = x;

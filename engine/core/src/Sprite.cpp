@@ -183,7 +183,7 @@ namespace engine
         if (!canvas.isReady())
         {
 			std::cout << "not ready" << std::endl;
-            canvas.create(ctx, w, h);
+            canvas.create(ctx, 32, 32);
             return;
         }
 

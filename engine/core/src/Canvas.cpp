@@ -1,4 +1,5 @@
 #include "Canvas.hpp"
+#include <iostream>
 
 namespace engine
 {
@@ -18,6 +19,10 @@ namespace engine
     {
         w = aw;
         h = ah;
+        if (w == 0 || h == 0)
+        {
+            std::cout << "warning: width and/or height could be zero" << std::endl;
+        }
         surface = SDL_CreateRGBSurface
         (
             0, w, h, 32,
@@ -51,9 +56,9 @@ namespace engine
 
     void Canvas::draw(Context& ctx)
     {
-        //SDL_UnlockSurface(surface);
+        SDL_UnlockSurface(surface);
         SDL_UpdateTexture(texture, NULL, surface->pixels, surface->pitch);
-        //SDL_LockSurface(surface);
+        SDL_LockSurface(surface);
 
         SDL_Rect rect;
         rect.x = x;

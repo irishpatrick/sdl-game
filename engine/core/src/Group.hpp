@@ -40,6 +40,7 @@ namespace engine
         CORE_API void remove(Sprite*);
 		CORE_API void setVisible(bool);
 		CORE_API bool isVisible();
+		CORE_API void setDebug(bool);
 
         // defined in group.inl
         template <class T>

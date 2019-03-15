@@ -2,12 +2,12 @@
 #include "Group.hpp"
 #include "Texture.hpp"
 #include "Camera.hpp"
+#include "CairoUtil.hpp"
 #include <iostream>
 #include <cairo.h>
 
 namespace engine
 {
-
 	Sprite::Sprite()
 	{
 		x = 0;
@@ -44,24 +44,11 @@ namespace engine
 
 	}
 
-	/*void Sprite::InitAnimation(const std::string& fn)
-	{
-		//anim->initFromJson(fn);
-		w = anim->GetFrameWidth();
-		h = anim->GetFrameHeight();
-		texture = anim->GetTexture();
-	}*/
-
 	void Sprite::update(float delta)
 	{
 		x += xvel * delta;
 		y += yvel * delta;
 	}
-
-	/*Animation* Sprite::getAnimation()
-	{
-		return anim;
-	}*/
 
 	void Sprite::setTexture(Texture *t)
 	{
@@ -74,19 +61,23 @@ namespace engine
 		h = texture->getH();
 	}
 
-	void Sprite::setCamera(Camera* c) {
+	void Sprite::setCamera(Camera* c)
+    {
 		camera = c;
 	}
 
-	void Sprite::setParent(Group* g) {
+	void Sprite::setParent(Group* g)
+    {
 		parent = g;
 	}
 
-	Group* Sprite::getParent() {
+	Group* Sprite::getParent()
+    {
 		return parent;
 	}
 
-	std::string Sprite::getUUID() {
+	std::string Sprite::getUUID()
+    {
 		if (uuid_str == "") {
 			uuid_str = boost::lexical_cast<std::string>(tag);
 		}
@@ -94,24 +85,29 @@ namespace engine
 		return uuid_str;
 	}
 
-	void Sprite::OnCollision(Sprite* sprite) {
+	void Sprite::OnCollision(Sprite* sprite)
+    {
 		collision_ = sprite;
 	}
 
-	Sprite* Sprite::GetCollision() {
+	Sprite* Sprite::GetCollision()
+    {
 		return collision_;
 	}
 
-	void Sprite::ResetCollision() {
+	void Sprite::ResetCollision()
+    {
 		collision_ = nullptr;
 	}
 
-	void Sprite::queryTexture() {
+	void Sprite::queryTexture() 
+    {
 		w = texture->getW();
 		h = texture->getH();
 	}
 
-    void Sprite::draw(Context& ctx) {
+    void Sprite::draw(Context& ctx)
+    {
         if (!visible) return;
 
 		if (texture == nullptr)
@@ -121,11 +117,13 @@ namespace engine
 		}
 
         SDL_Rect rect;
-		if (parent != nullptr) {
+		if (parent != nullptr)
+        {
 			rect.x = x + parent->getScreenX();
 			rect.y = y + parent->getScreenY();
 		}
-		else if (camera != nullptr) {
+		else if (camera != nullptr) 
+        {
             if (!isOnScreen(camera))
             {
                 return;
@@ -133,19 +131,13 @@ namespace engine
 			rect.x = x + camera->x;
 			rect.y = y + camera->y;
 		}
-		else {
+		else
+        {
 			rect.x = x;
 			rect.y = y;
 		}
 		rect.w = w;
 		rect.h = h;
-
-		/*if (anim->GetTexture() != nullptr) {
-			SDL_RenderCopy(ctx.getRenderer(), texture->use(), anim->GetCurrentFrame(), &rect);
-		}
-		else {
-			SDL_RenderCopy(ctx.getRenderer(), texture->use(), NULL, &rect);
-		}*/
 
 		SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
     }
@@ -183,7 +175,7 @@ namespace engine
         if (!canvas.isReady())
         {
 			std::cout << "not ready" << std::endl;
-            canvas.create(ctx, 32, 32);
+            canvas.create(ctx, w, h);
             return;
         }
 
@@ -192,15 +184,22 @@ namespace engine
 
         cairo_t* cr = canvas.getCairo();
 
+        cairo_set_source_rgba(cr, 0, 0.5, 1, 1);
+        cairo_rectangle(cr, 0, 0, w, h);
+        cairo_stroke(cr);
+
 		cairo_set_source_rgba(cr, 1, 0, 1, 1);
 		BoundingBox& b = getRelativeBoundingBox();
         cairo_rectangle(cr, b.x, b.y, b.w, b.h);
 		cairo_stroke(cr);
 
+        //CairoUtil::drawVector(cr, w/2, h/2, 16, 0);
+
 		canvas.draw(ctx);
 	}
 
-	void Sprite::setBoundingBox(int bx, int by, int bw, int bh) {
+	void Sprite::setBoundingBox(int bx, int by, int bw, int bh)
+    {
 		boundingBox.x = (float)bx;
 		boundingBox.y = (float)by;
 		boundingBox.w = (float)bw;
@@ -225,10 +224,12 @@ namespace engine
 		realBoundingBox.y = y + boundingBox.y;
 		realBoundingBox.w = boundingBox.w;
 		realBoundingBox.h = boundingBox.h;
-		if (boundingBox.w == -1) {
+		if (boundingBox.w == -1)
+        {
 			realBoundingBox.w = (float)w;
 		}
-		if (boundingBox.h == -1) {
+		if (boundingBox.h == -1)
+        {
 			realBoundingBox.h = (float)h;
 		}
 

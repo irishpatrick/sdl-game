@@ -1,7 +1,7 @@
 #pragma once
 
 #include <engine.hpp>
-#include <sol/sol.hpp>
+#include <sol.hpp>
 
 class Dungeon
 {

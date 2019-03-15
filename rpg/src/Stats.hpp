@@ -12,7 +12,8 @@
 
 using json = nlohmann::json;
 
-class Stats {
+class Stats
+{
 public:
     Stats();
     ~Stats();

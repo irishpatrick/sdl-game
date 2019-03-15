@@ -1,6 +1,9 @@
 #include <iostream>
 #include "App.hpp"
 
+#ifdef main
+#undef main
+#endif
 int main() {
     std::cout << "hello, world!" << std::endl;
     

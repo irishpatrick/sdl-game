@@ -40,6 +40,7 @@ void MyGame::init(engine::Context& ctx)
 
 	room1.load((maps / "room1.json").generic_string());
 	town1.load((maps / "town1.json").generic_string());
+	town1.setDebug(true);
 	room2.load((maps / "room2.json").generic_string());
 
 	StaticGM::setFocus(&hero);

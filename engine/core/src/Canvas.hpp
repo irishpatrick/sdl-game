@@ -11,13 +11,13 @@ namespace engine
     {
     public:
         Canvas() : 
+            x(0), y(0), 
+            w(0), h(0),
             ready(false),
             texture(nullptr), 
             surface(nullptr),
             cairoSurface(nullptr),
-            cr(nullptr),
-            x(0), y(0), 
-            w(0), h(0)
+            cr(nullptr)
         {}
         ~Canvas();
         

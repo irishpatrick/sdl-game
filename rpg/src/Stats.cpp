@@ -1,40 +1,50 @@
 #include "Stats.hpp"
 
-Stats::Stats() {
+Stats::Stats()
+{
 
 }
 
-Stats::~Stats() {
+Stats::~Stats()
+{
 
 }
 
-void Stats::reset() {
-    for (auto& e : modifiers) {
+void Stats::reset()
+{
+    for (auto& e : modifiers)
+    {
         e.second = 0;
     }
 }
 
-void Stats::modify(const std::string& str, uint32_t n) {
+void Stats::modify(const std::string& str, uint32_t n)
+{
     modifiers[str] += n;
 }
 
-void Stats::change(const std::string& str, uint32_t n) {
+void Stats::change(const std::string& str, uint32_t n)
+{
     stats[str] += n;
 }
 
-void Stats::set(const std::string& str, uint32_t n) {
+void Stats::set(const std::string& str, uint32_t n)
+{
     stats[str] = n;
 }
 
-uint32_t Stats::get(const std::string& str) {
+uint32_t Stats::get(const std::string& str)
+{
     return stats[str] + modifiers[str];
 }
 
-uint32_t Stats::getBase(const std::string& str) {
+uint32_t Stats::getBase(const std::string& str)
+{
     return stats[str];
 }
 
-void Stats::load(const std::string& str) {
+void Stats::load(const std::string& str)
+{
     std::ifstream in(str);
     json o;
     in >> o;
@@ -50,7 +60,8 @@ void Stats::load(const std::string& str) {
     }
 }
 
-void Stats::write(const std::string& str) {
+void Stats::write(const std::string& str)
+{
     json o;
 
     for (auto const& e : stats) {

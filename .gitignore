@@ -1,6 +1,8 @@
 build/
+winbuild/
 .vscode/
 node_modules/
+tools/tpack/textures/
 
 tools/pack/target/
 tools/pack/pom.xml.tag

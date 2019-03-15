@@ -44,7 +44,7 @@ elseif (UNIX)
 
 	message(STATUS "UNIX")
 
-	set(INCLUDE_DIR ${INCLUDE_DIR} /usr/include/)
+	set(INCLUDE_DIR ${INCLUDE_DIR} /usr/include/ /usr/local/include)
     set(LIBRARY_DIR /usr/lib/)
     set(LIBRARIES ${LIBRARIES} stdc++fs)
     set(COMPILE_OPTIONS -D_REENTRANT -Wall -Wextra -Wshadow -Wnon-virtual-dtor -pedantic -pthread)
@@ -69,16 +69,20 @@ if (USE_PKGCONFIG)
     #pkg_check_modules(nlohmann-json REQUIRED json)
 
 
-    set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/include ${SDL2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS} ${SDL2_ttf_INCLUDE_DIRS} ${CAIRO_INCLUDE_DIRS})
+    set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/include ${SDL2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS} ${SDL2_ttf_INCLUDE_DIRS} ${CAIRO_INCLUDE_DIRS} /usr/local/include/sol)
     set(LIBRARY_DIR ${SDL2_LIBRARY_DIRS} ${SDL2_image_LIBRARY_DIRS} ${SDL2_ttf_LIBRARY_DIRS} ${CAIRO_LIBRARY_DIRS})
-    set(LIBRARIES ${LIBRARIES} SDL2 SDL2_image SDL2_ttf cairo)
+    set(LIBRARIES ${LIBRARIES} SDL2 SDL2_image SDL2_ttf cairo lua)
 
 # use vcpkg
 else ()
     find_package(SDL2 CONFIG REQUIRED)
     find_library(SDL2_IMAGE_LIB SDL2_image REQUIRED)
     find_library(SDL2_TTF_LIB SDL2_ttf REQUIRED)
-    find_library(CAIRO_LIB cairo REQUIRED)
+    find_library(LUA_LIB lua REQUIRED)
+    find_package(unofficial-cairo CONFIG REQUIRED)
+    find_package(nlohmann_json CONFIG REQUIRED)
+    find_package(sol2 CONFIG REQUIRED)
+    find_package(Boost REQUIRED COMPONENTS filesystem)
 
 
     set(LIBRARIES
@@ -86,7 +90,13 @@ else ()
         SDL2::SDL2main
         ${SDL2_IMAGE_LIB}
         ${SDL2_TTF_LIB}
-        ${CAIRO_LIB}
+        ${Boost_LIBRARIES}
+        ${LUA_LIB}
+        unofficial::cairo::cairo
+        unofficial::cairo::cairo-gobject
+        nlohmann_json
+        nlohmann_json::nlohmann_json
+        sol2
 		bcrypt
     )
 
@@ -96,6 +106,7 @@ else ()
 		${INCLUDE_DIR}
         ${SDL_INCLUDE_DIR}
         ${CAIRO_INCLUDE_DIR}
+        ${Boost_INCLUDE_DIRS}
 	)
 
 endif ()
@@ -105,20 +116,20 @@ endif ()
 
 add_subdirectory(./engine/core)
 set(LIBRARIES ${LIBRARIES} core)
-set(LIBRARIES ${LIBRARIES} lua)
+#set(LIBRARIES ${LIBRARIES} lua)
 
-add_subdirectory(./testbench)
+#add_subdirectory(./testbench)
 
 if (BUILD_RPG)
     add_subdirectory(./rpg)
 endif (BUILD_RPG)
 
-add_subdirectory(./simple)
+#add_subdirectory(./simple)
 
 if (BUILD_RASPBERRY_GAME)
-	add_subdirectory(./catch)
+	#add_subdirectory(./catch)
 endif (BUILD_RASPBERRY_GAME)
 
 if (BUILD_STRATEGY_GAME)
-	add_subdirectory(./strategy)
+	#add_subdirectory(./strategy)
 endif (BUILD_STRATEGY_GAME)

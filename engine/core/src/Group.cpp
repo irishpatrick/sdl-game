@@ -157,6 +157,14 @@ namespace engine {
         }
     }
 
+	void Group::setDebug(bool value)
+	{
+		for (auto& e : renderList)
+		{
+			e->setDebug(value);
+		}
+	}
+
 	void Group::setVisible(bool value)
 	{
 		visible = value;

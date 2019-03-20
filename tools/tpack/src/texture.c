@@ -79,7 +79,31 @@ int texture_close_png(Texture* tex)
     return 0;
 }
 
+int texture_write_png(Texture* dest, Texture* src)
+{
+    png_bytep* dest_rows = png_get_rows(dest->png_ptr, dest->info_ptr);
+    png_bytep* src_rows = png_get_rows(src->png_ptr, src->info_ptr)
+    int i, j;
+    for (i=0; i<src->h; ++i)
+    {
+        for (j=0; j<src->w; ++j)
+        {
+
+        }
+    }
+    return 0;
+}
+
 uint32_t texture_get_area(Texture* tex)
 {
     return tex->w * tex->h;
+}
+
+Box texture_getbox(Texture* tex)
+{
+    Box b;
+    b.x = tex->x;
+    b.y = tex->y;
+    b.w = tex->w;
+    b.h = tex->h;
 }

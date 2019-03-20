@@ -63,7 +63,6 @@ namespace engine
         cr = cairo_create(cairoSurface);
 
         ready = true;
-        std::cout << "ready" << std::endl;
     }
 
     cairo_t* Canvas::getCairo()

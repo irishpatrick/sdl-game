@@ -32,12 +32,12 @@ namespace engine
         float y;
 
     private:
+        uint32_t w;
+        uint32_t h;
         bool ready;
         SDL_Texture* texture;
         SDL_Surface* surface;
         cairo_surface_t* cairoSurface;
         cairo_t* cr;
-        uint32_t w;
-        uint32_t h;
     };
 }

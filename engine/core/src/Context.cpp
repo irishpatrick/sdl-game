@@ -2,6 +2,7 @@
 #include <iostream>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
+#include <cstdint>
 
 #ifdef _WIN32
 #include <SDKDDKVer.h>
@@ -56,7 +57,7 @@ namespace engine
 
 		if (SDL_GetDesktopDisplayMode(0, &current) < 0)
 		{
-			std::cout << "Display mode error " << SDL_GetTicks() << std::endl;
+			std::cout << "Display mode error " << SDL_GetError() << std::endl;
 			return -1;
 		}
 
@@ -82,15 +83,16 @@ namespace engine
 			flags = 0;
 		}
 
-		int scale = current.h / 1080;
+		std::cout << "monitor height: " << current.h << std::endl;
+		double scale = (double)current.h / 1080;
 		if (scale < 1) scale = 1;
 
 		w = SDL_CreateWindow(
 			title.c_str(),
 			SDL_WINDOWPOS_UNDEFINED,
 			SDL_WINDOWPOS_UNDEFINED,
-			width * scale,
-			height * scale,
+			width * (uint32_t)scale,
+			height * (uint32_t)scale,
 			flags
 		);
 

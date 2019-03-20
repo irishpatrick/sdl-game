@@ -174,7 +174,6 @@ namespace engine
 	{
         if (!canvas.isReady())
         {
-			std::cout << "not ready" << std::endl;
             canvas.create(ctx, w, h);
             return;
         }
@@ -192,8 +191,6 @@ namespace engine
 		BoundingBox& b = getRelativeBoundingBox();
         cairo_rectangle(cr, b.x, b.y, b.w, b.h);
 		cairo_stroke(cr);
-
-        //CairoUtil::drawVector(cr, w/2, h/2, 16, 0);
 
 		canvas.draw(ctx);
 	}

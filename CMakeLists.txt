@@ -67,11 +67,12 @@ if (USE_PKGCONFIG)
     pkg_check_modules(SDL2_ttf REQUIRED SDL2_ttf)
     pkg_check_modules(CAIRO REQUIRED cairo)
     #pkg_check_modules(nlohmann-json REQUIRED json)
+    pkg_check_modules(lua REQUIRED lua5.3)
 
 
-    set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/include ${SDL2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS} ${SDL2_ttf_INCLUDE_DIRS} ${CAIRO_INCLUDE_DIRS} /usr/local/include/sol)
-    set(LIBRARY_DIR ${SDL2_LIBRARY_DIRS} ${SDL2_image_LIBRARY_DIRS} ${SDL2_ttf_LIBRARY_DIRS} ${CAIRO_LIBRARY_DIRS})
-    set(LIBRARIES ${LIBRARIES} SDL2 SDL2_image SDL2_ttf cairo lua)
+    set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/include ${SDL2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS} ${SDL2_ttf_INCLUDE_DIRS} ${CAIRO_INCLUDE_DIRS} ${lua_INCLUDE_DIRS} /usr/include/sol /usr/local/include/sol)
+    set(LIBRARY_DIR ${SDL2_LIBRARY_DIRS} ${SDL2_image_LIBRARY_DIRS} ${SDL2_ttf_LIBRARY_DIRS} ${CAIRO_LIBRARY_DIRS} ${lua_LIBRARY_DIRS})
+    set(LIBRARIES ${LIBRARIES} SDL2 SDL2_image SDL2_ttf cairo lua5.3)
 
 # use vcpkg
 else ()

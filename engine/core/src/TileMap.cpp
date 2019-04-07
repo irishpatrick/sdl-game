@@ -77,7 +77,8 @@ namespace engine
 			c = e[1].get<int>();
 
 			map_p[r][c].solid = e[3];
-			strcpy(map_p[r][c].texture, e[2].get<std::string>().c_str());
+			int tex = e[2].get<int>();
+			strcpy(map_p[r][c].texture, o["subtextures"][tex]["fn"].get<std::string>().c_str());
 		}
 	}
 

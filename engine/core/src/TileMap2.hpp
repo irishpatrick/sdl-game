@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Sprite.hpp"
-#include "Texture.h"
-#include "Assets.h"
+#include "Texture.hpp"
+#include "Assets.hpp"
 #include <string>
 #include <vector>
 #include <map>

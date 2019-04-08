@@ -46,7 +46,7 @@ void App::init()
 	addState("game", &game);
 	addState("title", &title);
 	addState("mapTest", &mapTest);
-	setCurrentState("game");
+	setCurrentState("mapTest");
 }
 
 void App::draw()

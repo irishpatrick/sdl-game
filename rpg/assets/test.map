@@ -1,0 +1,13 @@
+begin info
+w 5
+h 5
+tex map.png
+end
+
+begin textures
+
+end
+
+begin map
+
+end

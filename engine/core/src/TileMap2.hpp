@@ -27,7 +27,7 @@ namespace engine
     private:
         uint32_t w;
         uint32_t t;
-        Texture tex;
+        Texture* tex;
         std::vector<Tile> tilemap;
     };
 }

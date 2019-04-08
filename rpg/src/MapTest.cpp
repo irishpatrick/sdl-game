@@ -16,6 +16,7 @@ MapTest::~MapTest()
 void MapTest::init(engine::Context& ctx)
 {
     map.loadMap((fs::current_path() / "assets" / "tilemap-test.json").generic_string());
+    m2.open((fs::current_path() / "assets" / "test.map").generic_string());
 }
 
 void MapTest::update(float delta)

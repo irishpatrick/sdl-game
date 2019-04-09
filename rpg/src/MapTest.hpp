@@ -14,5 +14,4 @@ public:
 
 private:
     engine::TileMap map;
-    engine::TileMap2 m2;
 };

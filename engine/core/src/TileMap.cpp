@@ -54,7 +54,7 @@ namespace engine
 		map_p = (TILE**)malloc(r * sizeof(TILE*));
 		
 		// allocate cols
-		for (int i = 0; i < c; i++)
+		for (int i = 0; i < r; i++)
 		{
 			map_p[i] = (TILE*)malloc(c * sizeof(TILE));
 		}
@@ -76,7 +76,7 @@ namespace engine
 			r = e[0].get<int>();
 			c = e[1].get<int>();
 
-			map_p[r][c].solid = e[3];
+			map_p[r][c].solid = e[3].get<int>();
 			int tex = e[2].get<int>();
 			strcpy(map_p[r][c].texture, o["subtextures"][tex]["fn"].get<std::string>().c_str());
 		}

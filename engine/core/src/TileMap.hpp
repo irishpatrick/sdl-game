@@ -11,7 +11,7 @@ namespace engine
 	typedef struct _TILE
 	{
 		char texture[100];
-		bool solid;
+		int solid;
 	} TILE;
 
 	class TileMap : public Sprite

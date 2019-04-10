@@ -2,6 +2,7 @@
 
 #include <engine.hpp>
 #include "Button.hpp"
+#include "Slider.hpp"
 
 class App : public engine::SimpleGame
 {
@@ -16,10 +17,11 @@ public:
 
     static void quitCallback();
     static void testCallback();
-    void dragCallback();
+    static void dragCallback(void*);
 
 private:
     static int running;
     Button test;
+    Slider slider;
     engine::Context ctx;
 };

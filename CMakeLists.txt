@@ -129,7 +129,7 @@ endif (BUILD_RPG)
 #add_subdirectory(./simple)
 
 if (BUILD_RASPBERRY_GAME)
-	#add_subdirectory(./catch)
+	add_subdirectory(./catch)
 endif (BUILD_RASPBERRY_GAME)
 
 if (BUILD_STRATEGY_GAME)

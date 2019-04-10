@@ -16,9 +16,11 @@ void App::testCallback()
     printf("test button\n");
 }
 
-void App::dragCallback()
+void App::dragCallback(void* ptr)
 {
-    
+    Point* p = (Point*)ptr;
+    Point m = Mouse::getPos();
+    printf("%d, %d\n", p->x - m.x, p->y - m.y);
 }
 
 App::App() : SimpleGame()
@@ -48,6 +50,14 @@ void App::init()
     test.x = p.x;
     test.y = p.y;
     test.setClickCallback(this->testCallback);
+
+    slider.init(ctx);
+    slider.setTexture(engine::Assets::getTexture("test.png"));
+    pf = {0,0};
+    p = Util::toPixelSpace(&pf, &ctx);
+    slider.x = p.x;
+    slider.y = p.y;
+    slider.setDragCallback(this->dragCallback);
 }
 
 void App::update()
@@ -63,6 +73,7 @@ void App::update()
     Mouse::poll();
 
     test.update(0.1f);
+    slider.update(0.1f);
 }
 
 void App::draw()
@@ -70,6 +81,7 @@ void App::draw()
     ctx.clear();
 	
     test.draw(ctx);
+    slider.draw(ctx);
     
     ctx.render();
 }

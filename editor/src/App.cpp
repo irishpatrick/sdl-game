@@ -16,6 +16,11 @@ void App::testCallback()
     printf("test button\n");
 }
 
+void App::dragCallback()
+{
+    
+}
+
 App::App() : SimpleGame()
 {
 

@@ -16,6 +16,7 @@ public:
 
     static void quitCallback();
     static void testCallback();
+    void dragCallback();
 
 private:
     static int running;

@@ -1,5 +1,6 @@
 #include "Slider.hpp"
 #include "Mouse.hpp"
+#include <cmath>
 
 Slider::Slider() : Sprite()
 {
@@ -22,25 +23,26 @@ void Slider::update(float delta)
     int mx = Mouse::getPos().x;
     int my = Mouse::getPos().y;
 
+    if (status)
+    {
+        dragCallback((void*)&old);
+        if (!Mouse::getRight())
+        {
+
+            status = 0;
+        }
+    }
+
     if (mx > x && 
         mx < x + w &&
         my > y &&
         my < y + h && 
-        Mouse::getLeft() &&
+        Mouse::getRight() &&
         !status)
     {
         status = 1;
-        old.x = mx;
-        old.y = my;
-    }
-
-    if (status)
-    {
-        dragCallback((void*)&old);
-        if (!Mouse::getLeft())
-        {
-            status = 0;
-        }
+        old.x = x + 64;
+        old.y = y + 64;
     }
 }
 

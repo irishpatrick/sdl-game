@@ -41,6 +41,7 @@ void App::init()
     Mouse::setScale(ctx.getScale());
     
     engine::Assets::loadTexture(ctx, "assets/test.png");
+    engine::Assets::loadTexture(ctx, "assets/nav.png");
 
     test.init(ctx);
     test.setToggle(1);
@@ -52,7 +53,7 @@ void App::init()
     test.setClickCallback(this->testCallback);
 
     slider.init(ctx);
-    slider.setTexture(engine::Assets::getTexture("test.png"));
+    slider.setTexture(engine::Assets::getTexture("nav.png"));
     pf = {0,0};
     p = Util::toPixelSpace(&pf, &ctx);
     slider.x = p.x;
@@ -71,6 +72,14 @@ void App::update()
     }
 
     Mouse::poll();
+
+    bool s = Mouse::getRight() != 0;
+    slider.setVisible(s);
+    if (!s) 
+    {
+        slider.x = Mouse::getPos().x - 64;
+        slider.y = Mouse::getPos().y - 64;
+    }
 
     test.update(0.1f);
     slider.update(0.1f);

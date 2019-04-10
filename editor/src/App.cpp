@@ -31,6 +31,7 @@ void App::init()
     ctx.init(1024, 768, "Editor", false);
     printf("sanity check: %d, %d\n", ctx.getWidth(), ctx.getHeight());
     ctx.setQuitCallback(this->quitCallback);
+    Mouse::setScale(ctx.getScale());
     
     engine::Assets::loadTexture(ctx, "assets/test.png");
 
@@ -39,7 +40,6 @@ void App::init()
     test.setTexture(engine::Assets::getTexture("test.png"));
     Pointf pf = {-0.4f, 0.4f};
     Point p = Util::toPixelSpace(&pf, &ctx);
-    printf("%d, %d\n", p.x, p.y);
     test.x = p.x;
     test.y = p.y;
     test.setClickCallback(this->testCallback);

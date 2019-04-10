@@ -6,6 +6,7 @@ int Mouse::y = 0;
 int Mouse::left = 0;
 int Mouse::right = 0;
 uint32_t Mouse::state = 0;
+float Mouse::scale = 1.0f;
 
 void Mouse::poll()
 {
@@ -14,11 +15,21 @@ void Mouse::poll()
     right = state & SDL_BUTTON(SDL_BUTTON_RIGHT);
 }
 
+void Mouse::setScale(float val)
+{
+    if (val <= 0)
+    {
+        scale = 1;
+        return;
+    }
+    scale = val;
+}
+
 Point Mouse::getPos()
 {
     Point out;
-    out.x = x;
-    out.y = y;
+    out.x = x / scale;
+    out.y = y / scale;
     return out;
 }
 

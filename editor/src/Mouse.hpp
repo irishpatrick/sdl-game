@@ -10,6 +10,7 @@ public:
     static Point getPos();
     static int getLeft();
     static int getRight();
+    static void setScale(float);
 
 private:
     static int x;
@@ -17,4 +18,5 @@ private:
     static int left;
     static int right;
     static uint32_t state;
+    static float scale;
 };

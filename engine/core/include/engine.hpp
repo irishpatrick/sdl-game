@@ -22,7 +22,6 @@
 #include "SimpleGame.hpp"
 #include "StateBasedGame.hpp"
 #include "TileMap.hpp"
-#include "TileMap2.hpp"
 #include "QTree.hpp"
 #include "Canvas.hpp"
 #include "MovingAverage.hpp"

@@ -28,6 +28,7 @@ namespace engine
     	CORE_API virtual ~Sprite() {}
 
 		CORE_API void init(Context&);
+		CORE_API void init(Context*);
     	CORE_API void setTexture(Texture*);
         CORE_API virtual void draw(Context&);
 		CORE_API virtual void draw(Camera&, Context&);

@@ -120,6 +120,7 @@ set(LIBRARIES ${LIBRARIES} core)
 #set(LIBRARIES ${LIBRARIES} lua)
 
 #add_subdirectory(./testbench)
+add_subdirectory(./editor)
 
 if (BUILD_RPG)
     add_subdirectory(./rpg)

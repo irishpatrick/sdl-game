@@ -44,6 +44,11 @@ namespace engine
 
 	}
 
+	void Sprite::init(Context*)
+	{
+		
+	}
+
 	void Sprite::update(float delta)
 	{
 		x += xvel * delta;

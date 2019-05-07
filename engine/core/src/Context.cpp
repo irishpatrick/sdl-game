@@ -84,7 +84,7 @@ namespace engine
 		}
 
 		std::cout << "monitor height: " << current.h << std::endl;
-		double scale = (double)current.h / 1080;
+		scale = (double)current.h / 1080;
 		if (scale < 1) scale = 1;
 
 		w = SDL_CreateWindow(

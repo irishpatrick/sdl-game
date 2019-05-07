@@ -67,6 +67,11 @@ namespace engine
 			return (0.5f * y * height) + (height / 2.0f);
 		}
 
+		CORE_API double getScale()
+		{
+			return scale;
+		}
+
 	private:
 		SDL_Window* w;
 		SDL_Renderer* r;
@@ -74,6 +79,7 @@ namespace engine
 		SDL_DisplayMode current;
 		int width;
 		int height;
+		double scale;
 		void (*quitCallback)(void);
 	};
 }

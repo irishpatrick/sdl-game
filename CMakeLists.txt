@@ -128,6 +128,7 @@ set(LIBRARIES ${LIBRARIES} core)
 #set(LIBRARIES ${LIBRARIES} lua)
 
 #add_subdirectory(./testbench)
+add_subdirectory(./editor)
 
 #if (BUILD_RPG)
     add_subdirectory(./rpg)
@@ -136,7 +137,7 @@ set(LIBRARIES ${LIBRARIES} core)
 #add_subdirectory(./simple)
 
 if (BUILD_RASPBERRY_GAME)
-	#add_subdirectory(./catch)
+	add_subdirectory(./catch)
 endif (BUILD_RASPBERRY_GAME)
 
 if (BUILD_STRATEGY_GAME)

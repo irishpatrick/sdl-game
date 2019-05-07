@@ -1,5 +1,6 @@
 build/
 winbuild/
+.vs/
 .vscode/
 node_modules/
 tools/tpack/textures/

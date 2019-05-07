@@ -55,8 +55,8 @@ namespace engine
 		CORE_API float getMaxSpeed();
 		CORE_API std::string& getName();
     	CORE_API std::string getUUID();
-		CORE_API void debugDraw(Camera&, Context&);
-        CORE_API void setDebug(bool);
+		//CORE_API void debugDraw(Camera&, Context&);
+        //CORE_API void setDebug(bool);
 
         float xvel;
         float yvel;
@@ -74,7 +74,7 @@ namespace engine
     protected:
         Canvas canvas;
         bool visible;
-        bool debug;
+        //bool debug;
         Group* parent;
         Sprite* collision_;
         Camera* camera;

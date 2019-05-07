@@ -46,18 +46,14 @@ void App::init()
 	addState("game", &game);
 	addState("title", &title);
 	addState("mapTest", &mapTest);
-	setCurrentState("mapTest");
+	//setCurrentState("mapTest");
+	setCurrentState("game");
 }
 
 void App::draw()
 {
 	engine::MovingAverage<long> avg;
 	avg.allocate(10);
-	/*snap.setWeight(0.2f, 0);
-	snap.setWeight(0.4f, 1);
-	snap.setWeight(0.6f, 2);
-	snap.setWeight(0.8f, 3);
-	snap.setWeight(3.0f, 4);*/
 
 	long delta = 0;
 	long now;

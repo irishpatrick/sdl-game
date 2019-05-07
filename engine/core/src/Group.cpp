@@ -3,7 +3,9 @@
 #include "Camera.hpp"
 #include "Assets.hpp"
 #include <iostream>
-#include "Util.hpp"
+#include "extra.hpp"
+
+using json = nlohmann::json;
 
 namespace engine {
 
@@ -161,7 +163,7 @@ namespace engine {
 	{
 		for (auto& e : renderList)
 		{
-			e->setDebug(value);
+			//e->setDebug(value);
 		}
 	}
 

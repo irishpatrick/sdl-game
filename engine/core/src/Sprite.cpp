@@ -1,8 +1,4 @@
-#include "Sprite.hpp"
-#include "Group.hpp"
-#include "Texture.hpp"
-#include "Camera.hpp"
-#include "CairoUtil.hpp"
+#include "core.hpp"
 #include <iostream>
 #include <cairo.h>
 
@@ -31,7 +27,7 @@ namespace engine
 		boundingBox.y = 0.0f;
 		boundingBox.w = -1.0f;
 		boundingBox.h = -1.0f;
-        debug = false;
+        //debug = false;
 	}
 
 	void Sprite::setSpeed(float s)
@@ -164,13 +160,13 @@ namespace engine
 		rect.h = h;
 
 		SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
-        if (debug)
+        /*if (debug)
         {
             debugDraw(c, ctx);
-        }
+        }*/
     }
 
-	void Sprite::debugDraw(Camera& c, Context& ctx)
+	/*void Sprite::debugDraw(Camera& c, Context& ctx)
 	{
         if (!canvas.isReady())
         {
@@ -193,7 +189,7 @@ namespace engine
 		cairo_stroke(cr);
 
 		canvas.draw(ctx);
-	}
+	}*/
 
 	void Sprite::setBoundingBox(int bx, int by, int bw, int bh)
     {
@@ -263,10 +259,10 @@ namespace engine
 		visible = b;
 	}
 
-    void Sprite::setDebug(bool state)
+    /*void Sprite::setDebug(bool state)
     {
         debug = state;
-    }
+    }*/
 
 	bool Sprite::isVisible()
 	{

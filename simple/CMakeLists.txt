@@ -12,7 +12,7 @@ add_executable(${PROJECT_NAME} ${sources} ${headers})
 
 target_include_directories(${PROJECT_NAME} PRIVATE include ${INCLUDE_DIR} ${core_INCLUDE_DIRS})
 target_compile_options(${PROJECT_NAME} PRIVATE ${COMPILE_OPTIONS})
-target_link_libraries(${PROJECT_NAME} ${LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${LIBRARIES} core extra gfx structure)
 
 file(COPY ${assets} DESTINATION ./assets)
 file(COPY ${scripts} DESTINATION ./scripts)

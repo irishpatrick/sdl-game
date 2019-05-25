@@ -1,145 +1,32 @@
 cmake_minimum_required(VERSION 3.0)
 
-# set options
-option (HUNTER_BUILD_SHARED_LIBS "hunter build shared libs" ON)
-option (USE_PKGCONFIG "use pkg-config" OFF)
-option (BUILD_RPG "build game" OFF)
-option (BUILD_RASPBERRY_GAME "raspberry game" OFF)
-option (BUILD_STRATEGY_GAME "strategy game" OFF)
-option (DEBUG_SYMBOLS "enable debug symbols" ON)
-
-#set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
-#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
-#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
-
-# set variables
-set(COMPILE_OPTIONS "")
-set(LINK_OPTIONS "std=c++14")
-set(MSVC_INCLUDE "" CACHE PATH "")
-set(MSVC_LIB "" CACHE PATH "")
-set(INCLUDE_DIR "lib/include")
-
-# begin project
-project(sdl-game)
-
-# we're on windows
 if (MSVC)
 
-	set(LIBRARIES ${LIBRARIES})
-
-    message(STATUS "MSVC")
-
-	if (DEBUG_SYMBOLS)
-        set(COMPILE_OPTIONS ${COMPILE_OPTIONS} /DEBUG /Od)
-    endif (DEBUG_SYMBOLS)
-
-    set(COMPILE_OPTIONS /std:c++14 /W3 /D_REENTRANT /Od /MP)
-    set(INCLUDE_DIR ${INCLUDE_DIR};${MSVC_INCLUDE};${MSVC_INCLUDE}/SDL2)
-	message(STATUS ${INCLUDE_DIR})
-    set(LIBRARY_DIR ${LIBRARY_DIR} ${MSVC_LIB} )
-	set(LIBRARIES ${LIBRARIES} SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib)
-
-# we're probably on linux
 elseif (UNIX)
 
-	message(STATUS "UNIX")
+set(COMPILE_OPTIONS -std=c++11 -g -Wall)
 
-	set(INCLUDE_DIR ${INCLUDE_DIR} /usr/include/ /usr/local/include)
-    set(LIBRARY_DIR /usr/lib/)
-    set(LIBRARIES ${LIBRARIES} stdc++fs)
-    set(COMPILE_OPTIONS -D_REENTRANT -Wall -Wextra -Wshadow -Wnon-virtual-dtor -pedantic -pthread)
+find_package(PkgConfig)
 
-	if (DEBUG_SYMBOLS)
-        set(COMPILE_OPTIONS ${COMPILE_OPTIONS} -g)
-	endif (DEBUG_SYMBOLS)
+pkg_check_modules(SDL2 REQUIRED sdl2)
+pkg_check_modules(SDL2_IMAGE REQUIRED SDL2_image)
+pkg_check_modules(SDL2_TTF REQUIRED SDL2_ttf)
+pkg_check_modules(CAIRO REQUIRED cairo)
 
-# we have no idea
-endif ()
+set(INCL
+    ${SDL2_INCLUDE_DIRS}
+    ${SDL2_IMAGE_INCLUDE_DIRS}
+    ${SDL2_TTF_INCLUDE_DIRS}
+    ${CAIRO_INCLUDE_DIRS})
 
-# finding dependencies using pkg-config
-if (USE_PKGCONFIG)
+set(LIBS
+    ${SDL2_LIBS} 
+    ${SDL2_IMAGE_LIBS}
+    ${SDL2_TTF_LIBS}
+    ${CAIRO_LIBS}
+    stdc++fs)
 
-    message(STATUS "using pkg-config")
+endif (MSVC)
 
-    find_package(PkgConfig REQUIRED)
-    pkg_check_modules(SDL2 REQUIRED sdl2)
-    pkg_check_modules(SDL2_image REQUIRED SDL2_image)
-    pkg_check_modules(SDL2_ttf REQUIRED SDL2_ttf)
-    pkg_check_modules(CAIRO REQUIRED cairo)
-    #pkg_check_modules(nlohmann-json REQUIRED json)
-    pkg_check_modules(lua REQUIRED lua5.3)
-
-
-    set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/deps/include ${SDL2_INCLUDE_DIRS} ${SDL2_image_INCLUDE_DIRS} ${SDL2_ttf_INCLUDE_DIRS} ${CAIRO_INCLUDE_DIRS} ${lua_INCLUDE_DIRS} /usr/include/sol /usr/local/include/sol)
-    set(LIBRARY_DIR ${SDL2_LIBRARY_DIRS} ${SDL2_image_LIBRARY_DIRS} ${SDL2_ttf_LIBRARY_DIRS} ${CAIRO_LIBRARY_DIRS} ${lua_LIBRARY_DIRS})
-    set(LIBRARIES ${LIBRARIES} SDL2 SDL2_image SDL2_ttf cairo lua5.3)
-
-# use vcpkg
-else ()
-    find_package(SDL2 CONFIG REQUIRED)
-	find_package(sdl2-image CONFIG REQUIRED)
-	find_package(sdl2-ttf CONFIG REQUIRED)
-    #find_library(SDL2_IMAGE_LIB SDL2_image REQUIRED)
-    ##find_library(SDL2_TTF_LIB SDL2_ttf REQUIRED)
-    find_library(LUA_LIB lua REQUIRED)
-	#find_library(CAIRO cairo REQUIRED)
-    find_package(unofficial-cairo CONFIG REQUIRED)
-    find_package(nlohmann_json CONFIG REQUIRED)
-    #find_package(sol2 CONFIG REQUIRED)
-    find_package(Boost REQUIRED COMPONENTS filesystem)
-
-
-    set(LIBRARIES
-        SDL2::SDL2
-        SDL2::SDL2main
-		SDL2::SDL2_image
-		SDL2::SDL2_ttf
-        ${Boost_LIBRARIES}
-        #${LUA_LIB}
-        unofficial::cairo::cairo
-        unofficial::cairo::cairo-gobject
-		nlohmann_json
-        nlohmann_json::nlohmann_json
-        #sol2
-		bcrypt
-    )
-
-	find_path(SDL_INCLUDE_DIR NAMES SDL.h PATH_SUFFIXES SDL2)
-	#find_path(CAIRO_INCLUDE_DIR NAMES cairo.h PATH_SUFFIXES cairo)
-
-	set(INCLUDE_DIR
-		${INCLUDE_DIR}
-        ${SDL_INCLUDE_DIR}
-        #${CAIRO_INCLUDE_DIR}
-        ${Boost_INCLUDE_DIRS}
-	)
-
-endif ()
-
-
-# add all the projects
-
-add_subdirectory(./engine/extra)
-add_subdirectory(./engine/gfx)
-add_subdirectory(./engine/structure)
-add_subdirectory(./engine/core)
-
-set(LIBRARIES ${LIBRARIES} core)
-#set(LIBRARIES ${LIBRARIES} lua)
-
-#add_subdirectory(./testbench)
-add_subdirectory(./editor)
-
-#if (BUILD_RPG)
-    add_subdirectory(./rpg)
-#endif (BUILD_RPG)
-
-#add_subdirectory(./simple)
-
-if (BUILD_RASPBERRY_GAME)
-	add_subdirectory(./catch)
-endif (BUILD_RASPBERRY_GAME)
-
-if (BUILD_STRATEGY_GAME)
-	#add_subdirectory(./strategy)
-endif (BUILD_STRATEGY_GAME)
+add_subdirectory(./engine)
+add_subdirectory(./rpg)

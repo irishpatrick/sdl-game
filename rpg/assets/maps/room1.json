@@ -1,0 +1,43 @@
+{
+  "entry": {
+    "x": 100,
+    "y": 100
+  },
+  "doorentry": "door1",
+  "sprites": [
+    {
+        "name": "background",
+        "solid": false,
+        "x": 0,
+        "y": 0,
+        "texture": "room-bg.png"
+    },
+    {
+        "name": "monster",
+        "type": "npc",
+        "solid": true,
+        "dialogue": ["hello from room"],
+        "x": 20,
+        "y": 20,
+        "texture": "monster.png"
+    },
+    {
+        "name": "door",
+        "type": "door",
+        "solid": true,
+        "dest": "town1",
+        "x": 80,
+        "y": 0,
+        "texture": "door.png"
+    },
+    {
+        "name": "door1",
+        "type": "door",
+        "dest": "room2",
+        "x": 200,
+        "y": 0,
+        "texture": "door.png",
+        "solid": true
+    }
+  ]
+}

@@ -53,3 +53,4 @@ endif (MSVC)
 
 add_subdirectory(./engine)
 add_subdirectory(./rpg)
+add_subdirectory(./platformer)

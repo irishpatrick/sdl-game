@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.0)
 
 if (MSVC)
 
+set(COMPILE_OPTIONS /DEBUG /W3)
+
 find_package(SDL2 CONFIG REQUIRED)
 find_package(sdl2-image CONFIG REQUIRED)
 find_package(sdl2-ttf CONFIG REQUIRED)
@@ -43,10 +45,10 @@ set(INCL
     ${CAIRO_INCLUDE_DIRS})
 
 set(LIBS
-    ${SDL2_LIBS} 
-    ${SDL2_IMAGE_LIBS}
-    ${SDL2_TTF_LIBS}
-    ${CAIRO_LIBS}
+    ${SDL2_LIBRARIES} 
+    ${SDL2_IMAGE_LIBRARIES}
+    ${SDL2_TTF_LIBRARIES}
+    ${CAIRO_LIBRARIES}
     stdc++fs)
 
 endif (MSVC)

@@ -2,12 +2,13 @@
 
 #include <engine.hpp>
 
-class App : public engine::Game
+class App : public engine::SimpleGame
 {
 public:
-	App() : Game() {}
+	App() : SimpleGame() {}
 	~App() {};
 
+    void update();
 	void draw();
 	void mainLoop();
 };

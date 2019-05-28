@@ -5,7 +5,7 @@
 
 namespace engine
 {
-	class SimpleGame : Game
+	class SimpleGame : public Game
 	{
 	public:
 		CORE_API SimpleGame();

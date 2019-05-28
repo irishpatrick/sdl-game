@@ -13,6 +13,10 @@ namespace engine
 
 		CORE_API virtual void draw();
 		CORE_API virtual void mainLoop();
+        CORE_API virtual void run();
+        CORE_API virtual void quit();
 
+    private:
+        bool running;
 	};
 }

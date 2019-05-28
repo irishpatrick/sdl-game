@@ -2,7 +2,7 @@
 
 namespace engine
 {
-	SimpleGame::SimpleGame()
+	SimpleGame::SimpleGame() : Game()
 	{
 
 	}

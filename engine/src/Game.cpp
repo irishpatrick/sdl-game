@@ -20,5 +20,18 @@ namespace engine
 	void Game::mainLoop()
 	{
 
-	}
+    }
+
+    void Game::run()
+    {
+        while (running)
+        {
+            mainLoop();
+        }
+    }
+
+    void Game::quit()
+    {
+        running = false;
+    }
 }

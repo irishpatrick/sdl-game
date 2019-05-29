@@ -14,9 +14,9 @@ namespace engine
 		CORE_API virtual void draw();
 		CORE_API virtual void mainLoop();
         CORE_API virtual void run();
-        CORE_API virtual void quit();
+        CORE_API static void quit();
 
-    private:
-        bool running;
+    protected:
+        static bool running;
 	};
 }

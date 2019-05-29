@@ -3,6 +3,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <cstdint>
+#include "Game.hpp"
 
 #ifdef _WIN32
 #include <SDKDDKVer.h>
@@ -143,6 +144,8 @@ namespace engine
 				{
 					quitCallback();
 				}
+
+				Game::quit();
 			}
 		}
 	}

@@ -2,6 +2,8 @@
 
 namespace engine
 {
+	bool Game::running = true;
+
 	Game::Game()
 	{
 

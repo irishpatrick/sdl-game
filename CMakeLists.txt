@@ -49,7 +49,8 @@ set(LIBS
     ${SDL2_IMAGE_LIBRARIES}
     ${SDL2_TTF_LIBRARIES}
     ${CAIRO_LIBRARIES}
-    stdc++fs)
+    stdc++fs
+    freetype)
 
 endif (MSVC)
 

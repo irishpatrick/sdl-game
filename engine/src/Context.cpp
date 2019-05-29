@@ -37,12 +37,15 @@ namespace engine
 			//fwprintf(stderr, L"SetProcessDpiAwareness: %s\n", err.ErrorMessage());
 		}
 		#endif
-		if (SDL_Init(SDL_INIT_VIDEO) < 0)
+
+        std::cout << "init video\n";
+		if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) < 0)
 		{
 			std::cout << "SDL_Init error: " << SDL_GetError() << std::endl;
 			return -1;
 		}
 
+        std::cout << "init img\n";
 		if (!IMG_Init(IMG_INIT_PNG))
 		{
 			std::cout << "IMG_Init error: " << IMG_GetError() << std::endl;
@@ -50,11 +53,13 @@ namespace engine
 			std::cout << "We're not going to return, we'll just push on through" << std::endl;
 		}
 
+        std::cout << "init ttf\n";
 		if (TTF_Init() < 0)
 		{
 			std::cout << "TTF_Init error: " << TTF_GetError() << std::endl;
 		}
 
+        std::cout << "get display\n";
 		if (SDL_GetDesktopDisplayMode(0, &current) < 0)
 		{
 			std::cout << "Display mode error " << SDL_GetError() << std::endl;
@@ -87,6 +92,8 @@ namespace engine
 		scale = (double)current.h / 1080;
 		if (scale < 1) scale = 1;
 
+        std::cout << "create window\n";
+
 		w = SDL_CreateWindow(
 			title.c_str(),
 			SDL_WINDOWPOS_UNDEFINED,
@@ -101,6 +108,8 @@ namespace engine
 			std::cout << "SDL_CreateWindow error: " << SDL_GetError() << std::endl;
 			return -1;
 		}
+
+        std::cout << "create renderer\n";
 
 		r = SDL_CreateRenderer(
 			w,

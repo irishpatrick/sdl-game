@@ -1,6 +1,7 @@
 #pragma once
 
 #include <engine.hpp>
+#include "Player.hpp"
 
 class App : public engine::SimpleGame
 {
@@ -19,6 +20,6 @@ public:
 
 private:
     engine::Context ctx;
-    engine::Sprite player;
+    Player player;
     engine::Sprite platform;
 };

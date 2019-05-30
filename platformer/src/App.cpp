@@ -13,28 +13,38 @@ void App::init()
     player.x = 10;
     player.y = 10;
     player.setBoundingBox(0, 0, player.w, player.h);
-    player.yvel = 0.1f;
+    //player.yvel = 0.1f;
+    player.solid = true;
 
     platform.init(ctx);
     platform.setTexture(engine::Assets::getTexture("platform.png"));
     platform.x = 10;
-    platform.y = 100;
+    platform.y = 400;
     platform.setBoundingBox(0, 0, platform.w, platform.h);
+    platform.solid = true;
 }
 
 void App::update()
 {
     ctx.pollEvents();
 
-    player.setBoundingBox(player.x, player.y, player.w, player.h);
-    
-    std::string dir = engine::Util::checkCollision(&player, &platform);
-    //std::cout << dir << "\n";
-    if (dir == "north")
+    const uint8_t* kbd = SDL_GetKeyboardState(NULL);
+
+    bool esc = kbd[SDL_SCANCODE_ESCAPE];
+    if (esc)
     {
-        std::cout << "ground\n";
+        quit();
     }
 
+    if (kbd[SDL_SCANCODE_SPACE])
+    {
+        player.yvel = -1.0f;
+    }
+
+    player.yvel += 0.075f;
+    
+    engine::PlatformerPhysics::resolveCollision(player, platform, 1.0f);
+    
     player.y += player.yvel;
 
     player.update(1.0f);

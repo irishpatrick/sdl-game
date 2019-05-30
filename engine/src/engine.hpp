@@ -14,6 +14,7 @@
 #include "LocationStack.hpp"
 #include "MovingAverage.hpp"
 #include "OneShot.hpp"
+#include "PlatformerPhysics.hpp"
 #include "Point.hpp"
 #include "QTree.hpp"
 #include "ScrollingText.hpp"

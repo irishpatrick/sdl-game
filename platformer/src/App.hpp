@@ -19,4 +19,6 @@ public:
 
 private:
     engine::Context ctx;
+    engine::Sprite player;
+    engine::Sprite platform;
 };

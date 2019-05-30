@@ -26,8 +26,11 @@ namespace engine {
 		{
 			return "no collision";
 		}
-		BoundingBox abox = getAABB(a, (uint32_t)16.0f);
-		BoundingBox bbox = getAABB(b, (uint32_t)16.0f);
+		//BoundingBox abox = getAABB(a, (uint32_t)16.0f);
+		//BoundingBox bbox = getAABB(b, (uint32_t)16.0f);
+
+        BoundingBox& abox = a->getBoundingBox();
+        BoundingBox& bbox = b->getBoundingBox();
 
 		if (
 			abox.x < bbox.x + bbox.w &&

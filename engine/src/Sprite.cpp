@@ -31,6 +31,7 @@ namespace engine
 		boundingBox.w = -1.0f;
 		boundingBox.h = -1.0f;
         //debug = false;
+        collision_faces = 0;
 	}
 
 	void Sprite::setSpeed(float s)

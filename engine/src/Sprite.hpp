@@ -15,6 +15,11 @@
 #include "BoundingBox.hpp"
 #include "Canvas.hpp"
 
+#define FACE_NORTH 0x01
+#define FACE_EAST 0x02
+#define FACE_SOUTH 0x04
+#define FACE_WEST 0x08
+
 namespace engine
 {
     class Group;
@@ -66,11 +71,13 @@ namespace engine
         Texture* texture;
         bool solid;
         std::string name;
-	    int w;
-	    int h;
-	    bool dynamic;
-	    float x;
-	    float y;
+		int w;
+		int h;
+		bool dynamic;
+		float x;
+		float y;
+        unsigned char collision_faces;
+
     protected:
         Canvas canvas;
         bool visible;

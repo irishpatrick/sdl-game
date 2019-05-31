@@ -34,16 +34,32 @@ void App::update()
 
     bool esc = kbd[SDL_SCANCODE_ESCAPE];
     bool jump = kbd[SDL_SCANCODE_SPACE];
+    bool left = kbd[SDL_SCANCODE_LEFT];
+    bool right = kbd[SDL_SCANCODE_RIGHT];
+
     if (esc)
     {
         quit();
     }
 
-    std::cout << !((player.collision_faces >> 2) & 0x01) << " ";
-
     if (jump)
     {
         player.jump(1.0f);
+    }
+
+    if (!left && !right)
+    {
+        player.move(0.0f);
+    }
+
+    if (left)
+    {
+        player.move(-1.0f);
+    }
+
+    if (right)
+    {
+        player.move(1.0f);
     }
 
     player.yvel += 0.075f;

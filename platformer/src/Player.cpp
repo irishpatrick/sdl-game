@@ -7,11 +7,7 @@ void Player::jump(float delta)
     float rate = 5.0f;
     float initial = 1.5f;
 
-    bool jumping = !((collision_faces >> 2) & 0x01);
-
-    std::cout << jumping << " ";
-
-    if (jumping)
+    if (!on_ground)
     {
         float e = (logf(initial) / logf(rate)) - jump_clk;
         yvel += -1.0f * powf(rate, e);
@@ -24,8 +20,20 @@ void Player::jump(float delta)
     }
 }
 
+void Player::move(float velocity)
+{
+    if (on_ground)
+    {
+        xvel = velocity;
+    }
+    else
+    {
+        xvel += (velocity / (abs(velocity) + 0.0001f)) * (1.0f / (30 * (abs(xvel) + 1.0f)));
+    }
+}
+
 void Player::update(float delta)
 {
-
+    on_ground = ((collision_faces >> 2) & 0x01);
     Sprite::update(delta);
 }

@@ -26,24 +26,27 @@ void App::init()
 
 void App::update()
 {
+    engine::PlatformerPhysics::resolveCollision(player, platform, 1.0f);
+
     ctx.pollEvents();
 
     const uint8_t* kbd = SDL_GetKeyboardState(NULL);
 
     bool esc = kbd[SDL_SCANCODE_ESCAPE];
+    bool jump = kbd[SDL_SCANCODE_SPACE];
     if (esc)
     {
         quit();
     }
 
-    if (kbd[SDL_SCANCODE_SPACE])
+    std::cout << !((player.collision_faces >> 2) & 0x01) << " ";
+
+    if (jump)
     {
-        player.yvel = -1.0f;
+        player.jump(1.0f);
     }
 
     player.yvel += 0.075f;
-    
-    engine::PlatformerPhysics::resolveCollision(player, platform, 1.0f);
     
     player.y += player.yvel;
 

@@ -44,6 +44,7 @@ namespace engine
             if (aboveD1 && aboveD2)
             {
                 // south face
+                a.collision_faces |= FACE_SOUTH;
                 a.yvel = 0;
                 a.y = b.y - a.h;
 

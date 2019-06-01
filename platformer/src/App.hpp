@@ -22,4 +22,5 @@ private:
     engine::Context ctx;
     Player player;
     engine::Sprite platform;
+    engine::Sprite platform2;
 };

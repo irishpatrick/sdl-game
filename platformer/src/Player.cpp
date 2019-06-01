@@ -4,19 +4,17 @@
 
 void Player::jump(float delta)
 {
-    float rate = 5.0f;
-    float initial = 1.5f;
+    float a = 0.5f;
 
     if (!on_ground)
     {
-        float e = (logf(initial) / logf(rate)) - jump_clk;
-        yvel += -1.0f * powf(rate, e);
+        yvel += -1.0f * (a * jump_clk * jump_clk) / (0.5413f * expf(jump_clk));
         jump_clk += delta;
     }
     else
     {
         jump_clk = 0.0f;
-        yvel = -1.0f * initial;
+        yvel = -1.0f;
     }
 }
 

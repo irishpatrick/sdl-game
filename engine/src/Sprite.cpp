@@ -51,7 +51,6 @@ namespace engine
 
 	void Sprite::update(float delta)
 	{
-        std::cout << collision_faces << "\n";
 		x += xvel * delta;
 		y += yvel * delta;
         collision_faces = 0;

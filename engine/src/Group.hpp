@@ -33,6 +33,7 @@ namespace engine
         CORE_API void destroy();
         CORE_API std::vector<Sprite*> getSprites();
         CORE_API void add(Sprite*);
+        CORE_API void add(Sprite&);
         CORE_API void queryAll();
         CORE_API void sort();
         CORE_API Sprite* get_sprite_by_name(const std::string&);

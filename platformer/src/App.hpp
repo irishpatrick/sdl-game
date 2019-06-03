@@ -23,4 +23,7 @@ private:
     Player player;
     engine::Sprite platform;
     engine::Sprite platform2;
+
+    engine::Group sprites;
+    engine::Group platforms;
 };

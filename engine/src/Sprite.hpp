@@ -29,8 +29,8 @@ namespace engine
     class Sprite
 	{
     public:
-    	    CORE_API Sprite();
-    	    CORE_API virtual ~Sprite() {}
+        CORE_API Sprite();
+        CORE_API virtual ~Sprite() {}
 
 		CORE_API void init(Context&);
 		CORE_API void init(Context*);
@@ -38,7 +38,7 @@ namespace engine
         CORE_API virtual void draw(Context&);
 		CORE_API virtual void draw(Camera&, Context&);
     	    CORE_API void ResetCollision();
-    	    CORE_API void update(float);
+    	    CORE_API virtual void update(float);
     	    CORE_API void setSpeed(float);
     	    CORE_API void queryTexture();
     	    CORE_API void OnCollision(Sprite*);

@@ -15,7 +15,7 @@ public:
 
     void jump(float);
     void move(float);
-    void update(float);
+    void update(float) override;
 
 private:
     float jump_clk;

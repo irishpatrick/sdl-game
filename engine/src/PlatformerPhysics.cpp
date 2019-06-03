@@ -51,18 +51,23 @@ namespace engine
             }
             else if (!aboveD1 && !aboveD2)
             {
-                // north face
+                a.collision_faces |= FACE_NORTH;
+                a.yvel = 0;
+                a.y = b.y + b.h;
 
             }
             else if (!aboveD1 && aboveD2)
             {
-                // east face
+                a.collision_faces |= FACE_EAST;
+                a.xvel = 0;
+                a.x = b.x - a.w;
 
             }
             else if (aboveD1 && !aboveD2)
             {
-                // west face
-
+                a.collision_faces |= FACE_WEST;
+                a.xvel = 0;
+                a.x = b.x + b.w;
             }
         }
     }

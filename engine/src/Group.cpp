@@ -95,6 +95,12 @@ namespace engine {
         }
     }
 
+    void Group::add(Sprite& s)
+    {
+        s.setParent(this);
+        renderList.push_back(&s);
+    }
+
     void Group::add(Sprite* a) {
         a->setParent(this);
         renderList.push_back(a);

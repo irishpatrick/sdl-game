@@ -14,8 +14,8 @@ class Sprite;
 		CORE_API Camera();
 		CORE_API ~Camera();
 
-		CORE_API void setFocus(Sprite*);
-		CORE_API void update();
+		CORE_API virtual void setFocus(Sprite*);
+		CORE_API virtual void update();
 		CORE_API void setScreen(int, int);
         CORE_API BoundingBox getViewport();
 

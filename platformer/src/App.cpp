@@ -8,6 +8,9 @@ void App::init()
     engine::Assets::loadTexture(ctx, "assets/test_char.png");
     engine::Assets::loadTexture(ctx, "assets/platform.png");
 
+    sprites.init(ctx);
+    platforms.init(ctx);
+
     player.init(ctx);
     player.setTexture(engine::Assets::getTexture("test_char.png"));
     player.x = 10;
@@ -15,6 +18,8 @@ void App::init()
     player.setBoundingBox(0, 0, player.w, player.h);
     //player.yvel = 0.1f;
     player.solid = true;
+
+    sprites.add(player);
 
     platform.init(ctx);
     platform.setTexture(engine::Assets::getTexture("platform.png"));
@@ -29,12 +34,17 @@ void App::init()
     platform2.y = 350;
     platform2.setBoundingBox(0, 0, platform2.w, platform2.h);
     platform2.solid = true;
+
+    platforms.add(platform);
+    platforms.add(platform2);
 }
 
 void App::update()
 {
-    engine::PlatformerPhysics::resolveCollision(player, platform, 1.0f);
-    engine::PlatformerPhysics::resolveCollision(player, platform2, 1.0f);
+    for (auto& e : platforms.getSprites())
+    {
+        engine::PlatformerPhysics::resolveCollision(player, *e, 1.0f);
+    }
 
     ctx.pollEvents();
 
@@ -83,18 +93,16 @@ void App::update()
     
     player.y += player.yvel;
 
-    player.update(1.0f);
-    platform.update(1.0f);
-    platform2.update(1.0f);
+    sprites.update(1.0f);
+    platforms.update(1.0f);
 }
 
 void App::draw()
 {
     ctx.clear();
 
-    player.draw(ctx);
-    platform.draw(ctx);
-    platform2.draw(ctx);
+    sprites.draw(ctx);
+    platforms.draw(ctx);
 
     ctx.render();
 }

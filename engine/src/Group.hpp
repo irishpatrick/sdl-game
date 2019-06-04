@@ -11,13 +11,12 @@
 #include <SDL.h>
 #include <nlohmann/json.hpp>
 
+#include "Sprite.hpp"
 #include "Context.hpp"
+#include "Camera.hpp"
 
 namespace engine 
 {
-    class Sprite;
-    class Camera;
-
     class Group 
 	{
     public:
@@ -28,6 +27,7 @@ namespace engine
         CORE_API void init_from_json(const std::string&);
         CORE_API virtual void update(float);
         CORE_API virtual void draw(Context&);
+        CORE_API virtual void draw(Context&, Camera&);
         //CORE_API void draw(Object&, Context&);
         CORE_API void draw(Camera&, Context&);
         CORE_API void destroy();

@@ -6,6 +6,7 @@
 #include <sstream>
 #include <chrono>
 #include <cstdint>
+#include <cmath>
 #include <iostream>
 #include <vector>
 #include <boost/lexical_cast.hpp>
@@ -39,6 +40,7 @@ public:
 	CORE_API static float lerp(float, float, float);
 	CORE_API static void formatPath(std::string&);
 	CORE_API static json loadJson(const std::string&);
+    CORE_API static float getSign(float);
 
 	CORE_API static const int UP = 0;
 	CORE_API static const int DOWN = 1;

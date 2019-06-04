@@ -285,4 +285,9 @@ namespace engine {
 		}
 
 	}*/
+
+    float Util::getSign(float n)
+    {
+        return n / abs(n);
+    }
 }

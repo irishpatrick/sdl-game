@@ -2,6 +2,7 @@
 
 #include <engine.hpp>
 #include "Player.hpp"
+#include "Camera.hpp"
 
 class App : public engine::SimpleGame
 {
@@ -26,4 +27,6 @@ private:
 
     engine::Group sprites;
     engine::Group platforms;
+
+    Camera camera;
 };

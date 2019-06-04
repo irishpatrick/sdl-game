@@ -148,14 +148,14 @@ namespace engine
 		SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
     }
 
-	void Sprite::draw(Camera& c, Context& ctx)
+	void Sprite::draw(Context& ctx, Camera& c)
 	{
 		if (!visible) return;
 
-        if (!isOnScreen(&c))
+        /*if (!isOnScreen(&c))
         {
             return;
-        }
+        }*/
 
 		if (texture == nullptr)
 		{

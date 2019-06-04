@@ -4,7 +4,8 @@
 void App::init()
 {
     ctx.init(512, 480, "title", false);
-    
+    camera.init(ctx);
+
     engine::Assets::loadTexture(ctx, "assets/test_char.png");
     engine::Assets::loadTexture(ctx, "assets/platform.png");
 
@@ -20,6 +21,8 @@ void App::init()
     player.solid = true;
 
     sprites.add(player);
+
+    camera.setFocus(player);
 
     platform.init(ctx);
     platform.setTexture(engine::Assets::getTexture("platform.png"));
@@ -93,6 +96,7 @@ void App::update()
     
     player.y += player.yvel;
 
+    camera.update(1.0f);
     sprites.update(1.0f);
     platforms.update(1.0f);
 }
@@ -101,8 +105,9 @@ void App::draw()
 {
     ctx.clear();
 
-    sprites.draw(ctx);
-    platforms.draw(ctx);
+
+    sprites.draw(ctx, camera);
+    platforms.draw(ctx, camera);
 
     ctx.render();
 }

@@ -136,6 +136,19 @@ namespace engine {
         }
     }
 
+    void Group::draw(Context& ctx, Camera& c)
+    {
+        if (!visible)
+        {
+            return;
+        }
+
+        for (auto& e : renderList)
+        {
+            e->draw(ctx, c);
+        }
+    }
+
     /*void Group::draw(Object& obj, Context& ctx) {
 		if (!visible) return;
         for (auto& e : renderList) {
@@ -148,7 +161,7 @@ namespace engine {
         if (!visible) return;
         for (auto& e : renderList)
         {
-            e->draw(c, ctx);
+            e->draw(ctx, c);
         }
     }
 

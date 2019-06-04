@@ -19,6 +19,11 @@ namespace engine
 
 	}
 
+    void Camera::init(Context& ctx)
+    {
+        setScreen(ctx.getWidth(), ctx.getHeight());
+    }
+
 	void Camera::setScreen(int a, int b)
 	{
 		w = a;
@@ -36,10 +41,21 @@ namespace engine
 		}
 	}
 
+    void Camera::update(float delta)
+    {
+        x += xvel * delta;
+        y += yvel * delta;
+    }
+
 	void Camera::setFocus(Sprite* s)
 	{
 		focus = s;
 	}
+
+    void Camera::setFocus(Sprite& s)
+    {
+        focus = &s;
+    }
 
     BoundingBox Camera::getViewport()
     {

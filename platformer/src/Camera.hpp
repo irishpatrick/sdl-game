@@ -8,5 +8,5 @@ public:
     Camera() {}
     ~Camera() {}
 
-    void update() override;
+    void update(float) override;
 };

@@ -34,18 +34,18 @@ namespace engine
 
 		CORE_API void init(Context&);
 		CORE_API void init(Context*);
-        	CORE_API void setTexture(Texture*);
+        CORE_API void setTexture(Texture*);
         CORE_API virtual void draw(Context&);
 		CORE_API virtual void draw(Context&, Camera&);
-    	    CORE_API void ResetCollision();
-    	    CORE_API virtual void update(float);
-    	    CORE_API void setSpeed(float);
-    	    CORE_API void queryTexture();
-    	    CORE_API void OnCollision(Sprite*);
-    	    CORE_API Sprite* GetCollision();
-    	    CORE_API void setParent(Group*);
-    	    CORE_API Group* getParent();
-    	    CORE_API void setCamera(Camera*);
+    	CORE_API void ResetCollision();
+    	CORE_API virtual void update(float);
+    	CORE_API void setSpeed(float);
+    	CORE_API void queryTexture();
+    	CORE_API void OnCollision(Sprite*);
+    	CORE_API Sprite* GetCollision();
+    	CORE_API void setParent(Group*);
+    	CORE_API Group* getParent();
+    	CORE_API void setCamera(Camera*);
 	    CORE_API void setBoundingBox(int, int, int, int);
 	    CORE_API BoundingBox& getRelativeBoundingBox();
         CORE_API BoundingBox& getBoundingBox();
@@ -60,7 +60,7 @@ namespace engine
 	    CORE_API void setMaxSpeed(float);
 	    CORE_API float getMaxSpeed();
 	    CORE_API std::string& getName();
-    	    CORE_API std::string getUUID();
+    	CORE_API std::string getUUID();
 	    //CORE_API void debugDraw(Camera&, Context&);
         //CORE_API void setDebug(bool);
 
@@ -85,7 +85,7 @@ namespace engine
         Group* parent;
         Sprite* collision_;
         Camera* camera;
-        	std::string uuid_str;
+        std::string uuid_str;
 		BoundingBox boundingBox;
 		BoundingBox realBoundingBox;
 

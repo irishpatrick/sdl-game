@@ -13,6 +13,26 @@ namespace engine
 		name = "";
 	}
 
+    Texture::Texture(Context& ctx, const Texture& t)
+    {
+        w = t.w;
+        h = t.h;
+        ready = t.ready;
+        surf = SDL_CreateRGBSurface(
+            t.surf->flags,
+            w,
+            h,
+            t.surf->format->BitsPerPixel,
+            t.surf->format->Rmask,
+            t.surf->format->Gmask,
+            t.surf->format->Bmask,
+            t.surf->format->Amask
+        );
+        SDL_BlitSurface(t.surf, nullptr, surf, nullptr);
+        tex = nullptr;
+        create(ctx);
+    }
+
 	Texture::~Texture()
 	{
 
@@ -66,6 +86,26 @@ namespace engine
 		ready = true;
 	}
 
+    Texture Texture::subTexture(Context& ctx, int x, int y, int w, int h)
+    {
+        // crop sdl surface
+        SDL_Surface* subsurf = SDL_CreateRGBSurface(
+            surf->flags, 
+            w, h, 
+            surf->format->BitsPerPixel, 
+            surf->format->Rmask, 
+            surf->format->Gmask, 
+            surf->format->Bmask, 
+            surf->format->Amask
+        );
+        SDL_Rect r = { x, y, w, h };
+        SDL_BlitSurface(surf, &r, subsurf, nullptr);
+        Texture out;
+        out.create(ctx, subsurf);
+
+        return out;
+    }
+
 	SDL_Texture* Texture::use()
 	{
 		if (tex == nullptr) {
@@ -75,6 +115,16 @@ namespace engine
 		}
 		return tex;
 	}
+
+    void Texture::setName(const std::string& str)
+    {
+        name = str;
+    }
+
+    std::string Texture::getName()
+    {
+        return name;
+    }
 
 	void Texture::destroy()
 	{

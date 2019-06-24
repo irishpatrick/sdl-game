@@ -11,7 +11,6 @@ using json = nlohmann::json;
 
 namespace engine
 {
-
 	std::map<std::string, Texture*> Assets::texMap = std::map<std::string, Texture*>();
 	Texture* Assets::missing = nullptr;
 	fs::path Assets::cwd = fs::path();
@@ -25,46 +24,6 @@ namespace engine
 			tokens.push_back(item);
 		}
 		return tokens;
-	}
-
-	void Assets::getMissingTexture(Context& ctx)
-	{
-		if (missing != nullptr)
-		{
-			return;
-		}
-		uint32_t rmask, gmask, bmask, amask, magenta;
-		#if SDL_BYTEORDER == SDL_BIG_ENDIAN
-			rmask = 0xff000000;
-			gmask = 0x00ff0000;
-			bmask = 0x0000ff00;
-			amask = 0x000000ff;
-			magenta = 0xff00ffff;
-		#else
-			rmask = 0x000000ff;
-			gmask = 0x0000ff00;
-			bmask = 0x00ff0000;
-			amask = 0xff000000;
-			magenta = 0xffff00ff;
-		#endif
-		Texture* t = new Texture();
-		SDL_Surface* s = SDL_CreateRGBSurface(0, 32, 32, 32, rmask, gmask, bmask, amask);
-
-		if (s == nullptr)
-		{
-			std::cout << "getMissingTexture error" << std::endl;
-			exit(1);
-		}
-
-		for (uint32_t i=0; i<32*32; i++)
-		{
-			uint32_t* target = (uint32_t*)s->pixels + i;
-			*target = magenta;
-		}
-
-		t->create(ctx, s);
-
-		missing = t;
 	}
 
 	void Assets::loadTexture(Context& ctx, const std::string& fn)
@@ -163,6 +122,19 @@ namespace engine
 			delete t;
 		}
 	}
+
+    void Assets::registerTexture(Context& ctx, Texture& tex, const std::string& str)
+    {
+        if (texMap.find(str) == texMap.end())
+        {
+            Texture* t = new Texture(ctx, tex);
+            texMap[str] = t;
+        }
+        else
+        {
+            std::cout << "pick a different texture id\n";
+        }
+    }
 
 	void Assets::setCwd(const std::string& dir)
 	{

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(fighter)
+project(roguelike)
 
 file(GLOB sources src/*.cpp src/*.hpp src/*.inl)
 file(GLOB assets assets/*)

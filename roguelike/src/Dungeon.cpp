@@ -12,6 +12,8 @@ Dungeon::~Dungeon()
 
 void Dungeon::init(Context& ctx)
 {
+    player.x = 100;
+    player.y = 100;
     player.setTexture(Assets::getTexture("player.png"));
 }
 
@@ -25,19 +27,19 @@ void Dungeon::update(float delta)
 
     if (w)
     {
-        player.y -= 100 * delta;
+        player.translateY(-100 * delta);
     }
     if (s)
     {
-        player.y += 100 * delta;
+        player.translateY(100 * delta);
     }
     if (a)
     {
-        player.x -= 100 * delta;
+        player.translateX(-100 * delta);
     }
     if (d)
     {
-        player.x += 100 * delta;
+        player.translateX(100 * delta);
     }
 }
 

@@ -91,6 +91,16 @@ namespace engine
 		return uuid_str;
 	}
 
+    CORE_API void Sprite::translateX(float val)
+    {
+        x += val;
+    }
+
+    CORE_API void Sprite::translateY(float val)
+    {
+        y += val;
+    }
+
 	void Sprite::OnCollision(Sprite* sprite)
     {
 		collision_ = sprite;

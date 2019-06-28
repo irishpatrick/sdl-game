@@ -15,7 +15,6 @@ int main(int argc, char** argv)
 {
     std::cout << "hello world\n";
 
-    //Game game;
     StateBasedGame game;
     Dungeon dungeon;
     Context ctx;

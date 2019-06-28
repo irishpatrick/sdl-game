@@ -16,4 +16,5 @@ public:
 
 private:
     Sprite player;
+    Group enemies;
 };

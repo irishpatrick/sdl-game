@@ -1,0 +1,5 @@
+grass
+dirt
+water
+stone
+sand

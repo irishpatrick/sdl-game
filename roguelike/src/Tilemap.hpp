@@ -2,6 +2,7 @@
 
 #include <engine.hpp>
 #include <vector>
+#include <map>
 
 using namespace engine;
 
@@ -12,10 +13,14 @@ public:
     ~Tilemap();
 
     void setTextureAtlas(Texture*);
-    void extractTextures(const std::string&);
+    void extractTextures(Context&, const std::string&);
+    void extractLayout(Context& const std::string&);
+    Sprite* getSprite(int);
 
 private:
     Texture* atlas;
-    std::vector<Sprite*> tiles;
+    //std::vector<Sprite*> tiles;
+    std::map<std::string, Sprite*> tiles;
+    std::vector<std::string> layout;
     std::vector<Texture*> textures;
 };

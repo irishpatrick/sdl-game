@@ -12,6 +12,9 @@ Dungeon::~Dungeon()
 
 void Dungeon::init(Context& ctx)
 {
+    tm.setTextureAtlas(Assets::getTexture("atlas.png"));
+    tm.extractTextures(ctx, "assets/atlas.txt");
+
     player.x = 100;
     player.y = 100;
     player.setTexture(Assets::getTexture("player.png"));
@@ -46,4 +49,5 @@ void Dungeon::update(float delta)
 void Dungeon::render(Context& ctx)
 {
     player.draw(ctx);
+
 }

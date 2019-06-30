@@ -56,8 +56,6 @@ namespace engine
 		{
 			t->create(ctx, s);
 		}
-
-		SDL_FreeSurface(s);
 	}
 
 	void Assets::loadTexturesFromVector(const std::string& dir, std::vector<std::string> files, Context& ctx)

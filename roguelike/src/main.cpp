@@ -3,6 +3,7 @@
 #include <engine.hpp>
 #include "Game.hpp"
 #include "Dungeon.hpp"
+#include "Tilemap.hpp"
 
 using namespace engine;
 
@@ -23,6 +24,7 @@ int main(int argc, char** argv)
     ctx.setQuitCallback(quit_cb);
 
     Assets::loadTexture(ctx, "assets/player.png");
+    Assets::loadTexture(ctx, "assets/atlas.png");
 
     dungeon.init(ctx);
     game.addState("dungeon", &dungeon);

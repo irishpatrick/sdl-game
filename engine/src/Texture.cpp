@@ -35,7 +35,10 @@ namespace engine
 
 	Texture::~Texture()
 	{
-
+        if (surf != nullptr)
+        {
+            SDL_FreeSurface(surf);
+        }
 	}
 
 	uint32_t Texture::getW()

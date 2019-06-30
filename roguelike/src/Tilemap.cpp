@@ -9,7 +9,15 @@ Tilemap::Tilemap()
 
 Tilemap::~Tilemap()
 {
+    for (auto& e : textures)
+    {
+        delete e;
+    }
 
+    for (auto& e : tiles)
+    {
+        delete e.second;
+    }
 }
 
 void Tilemap::setTextureAtlas(Texture* tex)
@@ -17,7 +25,7 @@ void Tilemap::setTextureAtlas(Texture* tex)
     atlas = tex;
 }
 
-void Tilemap::extractTextures(const std::string& fn)
+void Tilemap::extractTextures(Context& ctx, const std::string& fn)
 {
     if (atlas == nullptr)
     {
@@ -35,5 +43,51 @@ void Tilemap::extractTextures(const std::string& fn)
         }
     }
 
+    int rows = 32;
+    int cols = 32;
+    int size = 32;
+    int margin = 1;
 
+    int i;
+    int j;
+    int n = 0;
+
+    for (i = 0; i < rows; ++i)
+    {
+        int y = (i * size) + (i * (margin + (margin / 2))) + (margin / 2) + 1;
+        for (j = 0; j < cols; ++j)
+        {
+            int x = (j * size) + (j * (margin + (margin / 2))) + (margin / 2) + 1;
+            textures.push_back(new Texture(atlas->subTexture(ctx, x, y, size, size)));
+        }
+    }
+
+    for (auto& e : names)
+    {
+        Sprite* s = new Sprite();
+        s->name = e;
+        s->setTexture(textures[n++]);
+        tiles[e] = s;
+    }
+}
+
+void Tilemap::extractLayout(Context& ctx, const std::string& fn)
+{
+    std::ifstream fp(fn);
+    if (!fp.is_open())
+    {
+        std::cout << "error" << std::endl;
+        return;
+    }
+
+    std::string str;
+    while (std::getline(fp, str))
+    {
+
+    }
+}
+
+Sprite* Tilemap::getSprite(int index)
+{
+    return nullptr;
 }

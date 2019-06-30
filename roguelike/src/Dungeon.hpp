@@ -1,6 +1,7 @@
 #pragma once
 
 #include <engine.hpp>
+#include "Tilemap.hpp"
 
 using namespace engine;
 
@@ -17,4 +18,5 @@ public:
 private:
     Sprite player;
     Group enemies;
+    Tilemap tm;
 };

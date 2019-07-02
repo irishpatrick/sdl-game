@@ -1,6 +1,8 @@
 #include "Tilemap.hpp"
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <sstream>
 
 Tilemap::Tilemap()
 {
@@ -83,7 +85,13 @@ void Tilemap::extractLayout(Context& ctx, const std::string& fn)
     std::string str;
     while (std::getline(fp, str))
     {
+        std::vector<std::string> tokens;
+        std::istringstream stream(str);
+        std::string part;
+        while (std::getline(stream, part, '\t'))
+        {
 
+        }
     }
 }
 

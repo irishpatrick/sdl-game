@@ -29,6 +29,7 @@ class Util
 public:
 	CORE_API static bool simpleCollision(Sprite*, Sprite*);
 	CORE_API static std::string checkCollision(Sprite*, Sprite*);
+    CORE_API static bool checkIntersect(BoundingBox&, BoundingBox&);
 	CORE_API static std::string checkVelocityCollision(Sprite*, Sprite*, float);
 	CORE_API static void contain(Sprite*, Sprite*);
 	CORE_API static BoundingBox getAABB(Sprite*, uint32_t);

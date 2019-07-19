@@ -63,6 +63,9 @@ namespace engine
     	CORE_API std::string getUUID();
         CORE_API void translateX(float);
         CORE_API void translateY(float);
+        CORE_API void scale(float);
+        CORE_API float getScaledWidth();
+        CORE_API float getScaledHeight();
 	    //CORE_API void debugDraw(Camera&, Context&);
         //CORE_API void setDebug(bool);
 
@@ -78,6 +81,8 @@ namespace engine
 		bool dynamic;
 		float x;
 		float y;
+        float scale_x;
+        float scale_y;
         unsigned char collision_faces;
 
     protected:

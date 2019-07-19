@@ -32,6 +32,8 @@ namespace engine
 		boundingBox.h = -1.0f;
         //debug = false;
         collision_faces = 0;
+        scale_x = 1.0f;
+        scale_y = 1.0f;
 	}
 
 	void Sprite::setSpeed(float s)
@@ -152,8 +154,8 @@ namespace engine
 			rect.x = x;
 			rect.y = y;
 		}
-		rect.w = w;
-		rect.h = h;
+        rect.w = w * scale_x;
+        rect.h = h * scale_y;
 
 		SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
     }
@@ -176,8 +178,8 @@ namespace engine
         SDL_Rect rect;
 		rect.x = x - c.x;
 		rect.y = y - c.y;
-		rect.w = w;
-		rect.h = h;
+		rect.w = w * scale_x;
+		rect.h = h * scale_y;
 
 		SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
         /*if (debug)
@@ -310,4 +312,20 @@ namespace engine
 	{
 		return name;
 	}
+
+    void Sprite::scale(float val)
+    {
+        scale_x = val;
+        scale_y = val;
+    }
+
+    float Sprite::getScaledWidth()
+    {
+        return w * scale_x;
+    }
+
+    float Sprite::getScaledHeight()
+    {
+        return h * scale_y;
+    }
 }

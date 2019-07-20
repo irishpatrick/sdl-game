@@ -49,6 +49,6 @@ void Player::checkAndHit(Context& ctx, Ball* ball)
             dx = ctx.getWidth() - ball->x;
         }
 
-        ball->bounce(this);
+        ball->bounce(ctx, this);
     }
 }

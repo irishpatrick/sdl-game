@@ -9,17 +9,23 @@ using namespace engine;
 class Ball : public Sprite
 {
 public:
-    Ball() : dtheta(0) {}
+    Ball() : 
+        dtheta(0),
+        speed(400)
+    {}
     ~Ball() {}
 
     void init(Context&);
     BoundingBox getBoundingBox();
-    void bounce(Player*);
+    void bounce(Context&, Player*);
+    void setShadow(Context&);
     void update(float);
     void draw(Context&);
     void serve(Context&, int);
 
 private:
+    float height;
     Sprite shadow;
     float dtheta;
+    float speed;
 };

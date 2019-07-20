@@ -80,16 +80,19 @@ int main(int argc, char** argv)
             player.right(delta);
         }
 
+        opponent.process(&ball);
+
         player.checkAndHit(ctx, &ball);
         opponent.checkAndHit(ctx, &ball);
 
         player.update(delta);
         opponent.update(delta);
+        ball.setShadow(ctx);
         ball.update(delta);
 
         ctx.clear();
 
-        //court.draw(ctx);
+        court.draw(ctx);
         opponent.draw(ctx);
         ball.draw(ctx);
         player.draw(ctx);

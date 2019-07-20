@@ -83,6 +83,7 @@ namespace engine
 		float y;
         float scale_x;
         float scale_y;
+        float theta;
         unsigned char collision_faces;
 
     protected:

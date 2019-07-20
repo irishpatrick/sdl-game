@@ -2,7 +2,7 @@
 
 #include <engine.hpp>
 
-#include "Ball.hpp"
+class Ball;
 
 using namespace engine;
 
@@ -17,9 +17,9 @@ public:
     void left(float);
     void right(float);
     BoundingBox getBoundingBox();
-    void checkAndHit(Context&, Ball&);
+    void checkAndHit(Context&, Ball*);
 
 protected:
-    float speed = 10;
+    float speed = 200;
     BoundingBox hitbox;
 };

@@ -34,6 +34,7 @@ namespace engine
         collision_faces = 0;
         scale_x = 1.0f;
         scale_y = 1.0f;
+        theta = 0;
 	}
 
 	void Sprite::setSpeed(float s)
@@ -157,7 +158,7 @@ namespace engine
         rect.w = w * scale_x;
         rect.h = h * scale_y;
 
-		SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
+		SDL_RenderCopyEx(ctx.getRenderer(), texture->use(), nullptr, &rect, theta, NULL, SDL_FLIP_NONE);
     }
 
 	void Sprite::draw(Context& ctx, Camera& c)

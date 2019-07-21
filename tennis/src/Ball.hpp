@@ -11,7 +11,8 @@ class Ball : public Sprite
 public:
     Ball() : 
         dtheta(0),
-        speed(400)
+        speed(400),
+        height(0.0f)
     {}
     ~Ball() {}
 

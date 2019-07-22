@@ -48,6 +48,7 @@ void Ball::bounce(Context& ctx, Player* player)
 
 void Ball::serve(Context& ctx, int side)
 {
+    xvel = 0;
     x = ctx.getWidth() / 2;
     xvel = 0;
     if (side == 0)

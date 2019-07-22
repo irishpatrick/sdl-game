@@ -49,7 +49,7 @@ void Ball::bounce(Context& ctx, Player* player)
 void Ball::serve(Context& ctx, int side)
 {
     x = ctx.getWidth() / 2;
-    height = 10;
+    xvel = 0;
     if (side == 0)
     {
         yvel = -speed;

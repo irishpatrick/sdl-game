@@ -84,6 +84,19 @@ namespace engine {
             a.y + a.h > b.y;
     }
 
+    bool Util::checkVelocityIntersect(BoundingBox& a, Point& avel, BoundingBox& b, Point& bvel)
+    {
+        float ax = a.x + avel.x;
+        float ay = a.y + avel.y;
+        float bx = b.x + bvel.x;
+        float by = b.y + bvel.y;
+
+        return ax < bx + b.w &&
+            ax + a.w > bx &&
+            ay < by + b.h &&
+            ay + a.h > by;
+    }
+
 	std::string Util::checkVelocityCollision(Sprite* a, Sprite* b, float delta) {
 		//std::cout << "collision between " <<
 		//	a->name << "(" << a->isSolid() << ")" <<

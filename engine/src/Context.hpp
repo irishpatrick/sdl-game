@@ -5,6 +5,8 @@
 #include <string>
 #include <SDL.h>
 
+#include "BoundingBox.hpp"
+
 namespace engine
 {
 
@@ -71,6 +73,8 @@ namespace engine
 		{
 			return scale;
 		}
+
+        CORE_API BoundingBox& getBoundingBox();
 
 	private:
 		SDL_Window* w;

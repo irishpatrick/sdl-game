@@ -104,4 +104,13 @@ namespace engine
     {
         return ready;
     }
+
+    Texture& Canvas::toTexture(Context& ctx)
+    {
+        Texture tex;
+
+        tex.create(ctx, surface);
+
+        return tex;
+    }
 }

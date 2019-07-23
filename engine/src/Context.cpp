@@ -20,6 +20,8 @@ namespace engine
 	Context::Context()
 	{
 		quitCallback = nullptr;
+        width = -1;
+        height = -1;
 	}
 
 	Context::~Context()
@@ -149,4 +151,9 @@ namespace engine
 			}
 		}
 	}
+
+    BoundingBox& Context::getBoundingBox()
+    {
+        return BoundingBox(0, 0, width, height);
+    }
 }

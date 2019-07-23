@@ -2,7 +2,9 @@
 
 #include "core_api.hpp"
 #include <string>
+#include <ostream>
 #include <sstream>
+#include <iostream>
 #include "Point.hpp"
 
 namespace engine
@@ -19,6 +21,8 @@ namespace engine
         CORE_API bool isInside(BoundingBox&);
 		CORE_API std::string str();
         CORE_API Point center();
+
+        friend std::ostream& operator<<(std::ostream& os, const BoundingBox& m);
 
         float x;
         float y;

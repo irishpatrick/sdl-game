@@ -5,6 +5,8 @@
 #include "Player.hpp"
 #include "Opponent.hpp"
 #include "Ball.hpp"
+#include "Court.hpp"
+
 
 using namespace engine;
 
@@ -22,8 +24,10 @@ int main(int argc, char** argv)
     Ball ball;
     Sprite court;
 
+    int scale = 12;
+
     // create context
-    ctx.init(512, 480, "Tennis", false);
+    ctx.init(39 * scale, 79 * scale, "Tennis", false);
     ctx.setQuitCallback(&quit_cb);
 
     // load assets
@@ -34,7 +38,7 @@ int main(int argc, char** argv)
     Assets::loadTexture(ctx, "assets/opponent.png");
 
     court.setTexture(Assets::getTexture("court.png"));
-    court.scale(5.0f);
+    court.scale((float)scale);
     court.x = ctx.getWidth() / 2 - court.getScaledWidth() / 2;
     court.y = ctx.getHeight() / 2 - court.getScaledHeight() / 2;
 
@@ -61,23 +65,37 @@ int main(int argc, char** argv)
         int left = keys[SDL_SCANCODE_LEFT];
         int right = keys[SDL_SCANCODE_RIGHT];
         int space = keys[SDL_SCANCODE_SPACE];
+        int escape = keys[SDL_SCANCODE_ESCAPE];
 
-        if (space)
+        if (escape)
         {
-            ball.serve(ctx, 0);
+            quit_cb();
         }
 
-        if (left && right)
+        if (ball.isVisible())
         {
+            if (left && right)
+            {
 
+            }
+            else if (left)
+            {
+                player.left(delta);
+            }
+            else if (right)
+            {
+                player.right(delta);
+            }
         }
-        else if (left)
+        else
         {
-            player.left(delta);
-        }
-        else if (right)
-        {
-            player.right(delta);
+            player.x = ctx.getWidth() / 2 - player.w / 2;
+            opponent.x = ctx.getWidth() / 2 - opponent.w / 2;
+
+            if (space)
+            {
+                ball.serve(ctx, 0);
+            }
         }
 
         opponent.process(&ball);
@@ -88,7 +106,7 @@ int main(int argc, char** argv)
         player.update(delta);
         opponent.update(delta);
         ball.setShadow(ctx);
-        ball.update(delta);
+        ball.update(ctx, delta);
 
         ctx.clear();
 

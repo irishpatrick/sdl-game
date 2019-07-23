@@ -39,4 +39,10 @@ namespace engine
     {
         return Point(x + w / 2, y + h / 2);
     }
+
+    std::ostream& operator<<(std::ostream& os, const BoundingBox& m)
+    {
+        os << "{" << m.x << ", " << m.y << ", " << m.w << ", " << m.h << "}";
+        return os;
+    }
 }

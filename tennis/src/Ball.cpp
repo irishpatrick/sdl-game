@@ -17,6 +17,14 @@ BoundingBox Ball::getBoundingBox()
 
 void Ball::bounce(Context& ctx, Player* player)
 {
+    if (player->y < ctx.getWidth() / 2)
+    {
+        y = player->getBoundingBox().y + player->getBoundingBox().h;
+    }
+    else
+    {
+        y = player->getBoundingBox().y - h;
+    }
     float glance = ((x + w / 2) - (player->x + player->w / 2)) / (player->w / 2 + w / 2);
     float phi_max = 0;
     float dx = 0.0f;
@@ -48,6 +56,7 @@ void Ball::bounce(Context& ctx, Player* player)
 
 void Ball::serve(Context& ctx, int side)
 {
+    visible = true;
     xvel = 0;
     x = ctx.getWidth() / 2;
     xvel = 0;
@@ -67,21 +76,25 @@ void Ball::setShadow(Context& ctx)
 {
     if (yvel < 0)
     {
-        height = fabsf(y - ctx.getHeight() * (3.0f / 4.0f));
+        height = fabsf(y - ctx.getHeight() * (1.0f / 4.0f));
     }
     else if (yvel > 0)
     {
-        height = fabsf(y - ctx.getHeight() * (1.0f / 4.0f));
+        height = fabsf(y - ctx.getHeight() * (3.0f / 4.0f));
     }
     height = fminf(height, 150);
 }
 
-void Ball::update(float delta)
-{
-    if (y <= 0)
+void Ball::update(Context& ctx, float delta)
+{   
+    //std::cout << ctx.getBoundingBox() << "\t|\t" << getBoundingBox() << std::endl;
+    visible = Util::checkIntersect(getBoundingBox(), BoundingBox(0, 0, ctx.getWidth(), ctx.getHeight()));
+    //std::cout << "visible = " << visible << std::endl;
+    shadow.setVisible(visible);
+    if (!visible)
     {
-        xvel *= -1.0f;
-        yvel *= -1.0f;
+        xvel = 0;
+        yvel = 0;
     }
 
     x += xvel * delta;

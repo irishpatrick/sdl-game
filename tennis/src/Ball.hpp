@@ -11,7 +11,7 @@ class Ball : public Sprite
 public:
     Ball() : 
         dtheta(0),
-        speed(400),
+        speed(600),
         height(0.0f)
     {}
     ~Ball() {}
@@ -20,7 +20,7 @@ public:
     BoundingBox getBoundingBox();
     void bounce(Context&, Player*);
     void setShadow(Context&);
-    void update(float);
+    void update(Context&, float);
     void draw(Context&);
     void serve(Context&, int);
 

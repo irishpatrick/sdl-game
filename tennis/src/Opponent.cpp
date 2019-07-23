@@ -11,6 +11,12 @@ void Opponent::init(Context& ctx)
 
 void Opponent::process(Ball* b)
 {
+    if (!b->IsVisible())
+    {
+        dir = 0;
+        return;
+    }
+
     if (b->x < x)
     {
         dir = -1;

@@ -5,6 +5,9 @@
 #include "Context.hpp"
 #include <cairo.h>
 
+#include "Context.hpp"
+#include "Texture.hpp"
+
 namespace engine
 {
     class Canvas
@@ -27,6 +30,8 @@ namespace engine
         bool isReady();
         uint32_t getWidth();
         uint32_t getHeight();
+
+        Texture& toTexture(Context&);
 
         float x;
         float y;

@@ -59,6 +59,11 @@ namespace engine
         collision_faces = 0;
 	}
 
+    void Sprite::update(Context& ctx, float delta)
+    {
+        update(delta);
+    }
+
 	void Sprite::setTexture(Texture *t)
 	{
 		if (t == nullptr) {
@@ -68,6 +73,8 @@ namespace engine
 		texture = t;
 		w = texture->getW();
 		h = texture->getH();
+        boundingBox.w = w;
+        boundingBox.h = h;
 	}
 
 	void Sprite::setCamera(Camera* c)

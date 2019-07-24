@@ -1,4 +1,6 @@
 #include "Court.hpp"
+#include "Player.hpp"
+#include "Ball.hpp"
 
 void Court::init(Context& ctx)
 {
@@ -52,4 +54,16 @@ int Court::judge(Ball* ball)
 
 void Court::update(Context& ctx, float delta)
 {
+}
+
+void Court::contain(Player* p)
+{
+    if (p->x < 0)
+    {
+        p->x = 0;
+    }
+    else if (p->x + p->w > w)
+    {
+        p->x = w - p->w;
+    }
 }

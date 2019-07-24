@@ -76,13 +76,13 @@ void Ball::setShadow(Context& ctx)
 {
     if (yvel < 0)
     {
-        height = fabsf(y - ctx.getHeight() * (1.0f / 4.0f));
+        height = 10 * fabsf(y - ctx.getHeight() * (1.0f / 4.0f));
     }
     else if (yvel > 0)
     {
-        height = fabsf(y - ctx.getHeight() * (3.0f / 4.0f));
+        height = 10 * fabsf(y - ctx.getHeight() * (3.0f / 4.0f));
     }
-    height = fminf(height, 150);
+    height = fminf(height, 6000);
 }
 
 void Ball::update(Context& ctx, float delta)

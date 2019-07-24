@@ -12,7 +12,6 @@ using namespace engine;
 
 void quit_cb()
 {
-    Assets::destroy();
     exit(0);
 }
 
@@ -103,6 +102,9 @@ int main(int argc, char** argv)
             }
         }
 
+        crt.contain(&player);
+        crt.contain(&opponent);
+
         opponent.process(&ball);
 
         player.checkAndHit(ctx, &ball);
@@ -124,8 +126,6 @@ int main(int argc, char** argv)
 
         ctx.render();
     }
-
-    Assets::destroy();
 
     return 0;
 }

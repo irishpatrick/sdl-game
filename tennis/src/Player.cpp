@@ -24,18 +24,18 @@ BoundingBox Player::getBoundingBox()
     return BoundingBox(x + hitbox.x, y + hitbox.y, hitbox.w, hitbox.h);
 }
 
-void Player::checkAndHit(Context& ctx, Ball* ball)
+void Player::checkAndHit(BoundingBox& box, Ball* ball)
 {
     if (Util::checkIntersect(getBoundingBox(), ball->getBoundingBox()))
     {
-        float side = getBoundingBox().center().x - ball->getBoundingBox().center().x;
+        /*float side = getBoundingBox().center().x - ball->getBoundingBox().center().x;
         float dx, dy;
 
-        if (ball->y < ctx.getHeight() / 2)
+        if (ball->y < box.h / 2)
         {
-            dy = ctx.getHeight() - ball->y;
+            dy = box.h - ball->y;
         }
-        else if (ball->y > ctx.getHeight() / 2)
+        else if (ball->y > box.h / 2)
         {
             dy = ball->y;
         }
@@ -46,9 +46,9 @@ void Player::checkAndHit(Context& ctx, Ball* ball)
         }
         else if (side < 0) // right
         {
-            dx = ctx.getWidth() - ball->x;
-        }
+            dx = box.h - ball->x;
+        }*/
 
-        ball->bounce(ctx, this);
+        ball->bounce(box, this);
     }
 }

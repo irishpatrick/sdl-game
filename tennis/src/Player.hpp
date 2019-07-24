@@ -17,7 +17,7 @@ public:
     void left(float);
     void right(float);
     BoundingBox getBoundingBox();
-    void checkAndHit(Context&, Ball*);
+    void checkAndHit(BoundingBox&, Ball*);
 
 protected:
     float speed = 200;

@@ -107,8 +107,8 @@ int main(int argc, char** argv)
 
         opponent.process(&ball);
 
-        player.checkAndHit(ctx, &ball);
-        opponent.checkAndHit(ctx, &ball);
+        player.checkAndHit(crt.getBounds(), &ball);
+        opponent.checkAndHit(crt.getBounds(), &ball);
 
         crt.update(ctx, delta);
         player.update(delta);

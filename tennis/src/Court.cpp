@@ -67,3 +67,8 @@ void Court::contain(Player* p)
         p->x = w - p->w;
     }
 }
+
+BoundingBox& Court::getBounds()
+{
+    return in_bounds;
+}

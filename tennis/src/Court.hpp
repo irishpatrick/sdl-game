@@ -20,6 +20,7 @@ public:
     int judge(Ball*);
     virtual void update(Context&, float);
     void contain(Player*);
+    BoundingBox& getBounds();
 
 private:
     BoundingBox in_bounds;

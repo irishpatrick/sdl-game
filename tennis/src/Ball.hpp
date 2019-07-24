@@ -18,7 +18,7 @@ public:
 
     void init(Context&);
     BoundingBox getBoundingBox();
-    void bounce(Context&, Player*);
+    void bounce(BoundingBox&, Player*);
     void setShadow(Context&);
     void update(Context&, float);
     void draw(Context&);

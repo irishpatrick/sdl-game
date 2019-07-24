@@ -15,9 +15,13 @@ BoundingBox Ball::getBoundingBox()
     return BoundingBox(x, y, w, h);
 }
 
-void Ball::bounce(Context& ctx, Player* player)
+void Ball::bounce(BoundingBox& box, Player* player)
 {
-    if (player->y < ctx.getWidth() / 2)
+    float cx = box.x + box.w / 2;
+    float cy = box.y + box.h / 2;
+    float mx = box.x + box.w;
+    float my = box.y + box.h;
+    if (player->y < cy)
     {
         y = player->getBoundingBox().y + player->getBoundingBox().h;
     }
@@ -29,17 +33,17 @@ void Ball::bounce(Context& ctx, Player* player)
     float phi_max = 0;
     float dx = 0.0f;
     float dy = 1.0f;
-    if (y < ctx.getHeight() / 2)
+    if (y < cy)
     {
-        dy = ctx.getHeight() - y;
+        dy = my - y;
     }
-    else if (y > ctx.getHeight() / 2)
+    else if (y > cy)
     {
         dy = y;
     }
     if (glance > 0)
     {
-        dx = ctx.getWidth() - x;
+        dx = mx - x;
         phi_max = atanf(dx / dy);
     }
     else if (glance < 0)

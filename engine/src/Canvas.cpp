@@ -48,7 +48,13 @@ namespace engine
             amask
         );
 
-        //SDL_LockSurface(surface);
+        if (surface == NULL)
+        {
+            std::cout << "ERROR: failed to create SDL surface" << std::endl;
+            return;
+        }
+
+        SDL_LockSurface(surface);
 
         texture = SDL_CreateTextureFromSurface(ctx.getRenderer(), surface);
         cairoSurface = cairo_image_surface_create_for_data
@@ -59,9 +65,18 @@ namespace engine
             surface->h,
             surface->pitch
         );
+        if (cairoSurface == NULL)
+        {
+            std::cout << "ERROR: failed to create cairo surface" << std::endl;
+            return;
+        }
 
         cr = cairo_create(cairoSurface);
-
+        if (cr == NULL)
+        {
+            std::cout << "ERROR: failed to create cairo context" << std::endl;
+            return;
+        }
         ready = true;
     }
 
@@ -70,11 +85,16 @@ namespace engine
         return cr;
     }
 
+    cairo_surface_t* Canvas::getCairoSurface()
+    {
+        return cairoSurface;
+    }
+
     void Canvas::draw(Context& ctx)
     {
-        //SDL_UnlockSurface(surface);
+        SDL_UnlockSurface(surface);
         SDL_UpdateTexture(texture, NULL, surface->pixels, surface->pitch);
-        //SDL_LockSurface(surface);
+        SDL_LockSurface(surface);
 
         SDL_Rect rect;
         rect.x = (int)x;
@@ -108,9 +128,20 @@ namespace engine
     Texture& Canvas::toTexture(Context& ctx)
     {
         Texture tex;
-
+        if (surface == NULL)
+        {
+            std::cout << "SURFACE IS NULL\n";
+        }
         tex.create(ctx, surface);
 
         return tex;
+    }
+    Texture* Canvas::toTexturePtr(Context& ctx)
+    {
+        Texture* t = new Texture();
+        SDL_UnlockSurface(surface);
+        t->create(ctx, surface);
+        SDL_LockSurface(surface);
+        return t;
     }
 }

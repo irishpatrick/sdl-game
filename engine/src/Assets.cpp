@@ -134,6 +134,18 @@ namespace engine
         }
     }
 
+    void Assets::registerTexture(Context& ctx, Texture* tex_ptr, const std::string& id)
+    {
+        if (texMap.find(id) == texMap.end())
+        {
+            texMap[id] = tex_ptr;
+        }
+        else
+        {
+            std::cout << "pick a different texture id\n";
+        }
+    }
+
 	void Assets::setCwd(const std::string& dir)
 	{
 		cwd = fs::path(dir);

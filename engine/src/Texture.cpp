@@ -81,7 +81,7 @@ namespace engine
 		tex = SDL_CreateTextureFromSurface(ctx.getRenderer(), s);
 		if (tex == nullptr)
 		{
-			std::cout << "(" << name << ") error: " << SDL_GetError() << std::endl;
+			std::cout << "texture error: (" << name << ") " << SDL_GetError() << std::endl;
 			return;
 		}
 		w = s->w;

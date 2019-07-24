@@ -27,11 +27,13 @@ namespace engine
         void create(Context&, uint32_t, uint32_t);
         void draw(Context&);
         cairo_t* getCairo();
+        cairo_surface_t* getCairoSurface();
         bool isReady();
         uint32_t getWidth();
         uint32_t getHeight();
 
         Texture& toTexture(Context&);
+        Texture* toTexturePtr(Context&);
 
         float x;
         float y;

@@ -12,6 +12,7 @@ using namespace engine;
 
 void quit_cb()
 {
+    Assets::destroy();
     exit(0);
 }
 
@@ -23,11 +24,14 @@ int main(int argc, char** argv)
     Opponent opponent;
     Ball ball;
     Sprite court;
+    Court crt;
 
     int scale = 12;
 
     // create context
     ctx.init(39 * scale, 79 * scale, "Tennis", false);
+    //
+    //ctx.init(500, 1000, "Tennis", false);
     ctx.setQuitCallback(&quit_cb);
 
     // load assets
@@ -42,6 +46,7 @@ int main(int argc, char** argv)
     court.x = ctx.getWidth() / 2 - court.getScaledWidth() / 2;
     court.y = ctx.getHeight() / 2 - court.getScaledHeight() / 2;
 
+    crt.init(ctx);
     ball.init(ctx);
     ball.serve(ctx, 0);
     player.init(ctx);
@@ -103,6 +108,7 @@ int main(int argc, char** argv)
         player.checkAndHit(ctx, &ball);
         opponent.checkAndHit(ctx, &ball);
 
+        crt.update(ctx, delta);
         player.update(delta);
         opponent.update(delta);
         ball.setShadow(ctx);
@@ -110,13 +116,16 @@ int main(int argc, char** argv)
 
         ctx.clear();
 
-        court.draw(ctx);
+        //court.draw(ctx);
+        crt.draw(ctx);
         opponent.draw(ctx);
         ball.draw(ctx);
         player.draw(ctx);
 
         ctx.render();
     }
+
+    Assets::destroy();
 
     return 0;
 }

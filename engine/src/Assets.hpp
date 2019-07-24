@@ -24,6 +24,7 @@ namespace engine
 		CORE_API static Texture* getTexture(const std::string&);
 		CORE_API static void destroy();
         CORE_API static void registerTexture(Context&, Texture&, const std::string&);
+        CORE_API static void registerTexture(Context&, Texture*, const std::string&);
 		CORE_API static void useAll(Context&);
 		CORE_API static void setCwd(const std::string&);
 		CORE_API static void setCwd(fs::path);

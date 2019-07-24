@@ -74,13 +74,11 @@ namespace engine
 			return scale;
 		}
 
-        CORE_API BoundingBox& getBoundingBox();
+        CORE_API BoundingBox getBoundingBox();
 
 	private:
 		SDL_Window* w;
 		SDL_Renderer* r;
-		SDL_Event e;
-		SDL_DisplayMode current;
 		int width;
 		int height;
 		double scale;

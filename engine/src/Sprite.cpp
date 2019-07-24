@@ -73,8 +73,8 @@ namespace engine
 		texture = t;
 		w = texture->getW();
 		h = texture->getH();
-        boundingBox.w = w;
-        boundingBox.h = h;
+        boundingBox.w = (float)w;
+        boundingBox.h = (float)h;
 	}
 
 	void Sprite::setCamera(Camera* c)

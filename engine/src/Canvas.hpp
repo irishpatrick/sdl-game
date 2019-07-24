@@ -32,7 +32,6 @@ namespace engine
         uint32_t getWidth();
         uint32_t getHeight();
 
-        Texture& toTexture(Context&);
         Texture* toTexturePtr(Context&);
 
         float x;

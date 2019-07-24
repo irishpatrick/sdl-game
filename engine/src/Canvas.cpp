@@ -125,17 +125,6 @@ namespace engine
         return ready;
     }
 
-    Texture& Canvas::toTexture(Context& ctx)
-    {
-        Texture tex;
-        if (surface == NULL)
-        {
-            std::cout << "SURFACE IS NULL\n";
-        }
-        tex.create(ctx, surface);
-
-        return tex;
-    }
     Texture* Canvas::toTexturePtr(Context& ctx)
     {
         Texture* t = new Texture();

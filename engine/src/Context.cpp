@@ -17,11 +17,15 @@
 namespace engine
 {
 
-	Context::Context()
+    Context::Context() :
+        width(-1),
+        height(-1),
+        quitCallback(nullptr),
+        w(nullptr),
+        r(nullptr),
+        scale(0.0f)
 	{
-		quitCallback = nullptr;
-        width = -1;
-        height = -1;
+
 	}
 
 	Context::~Context()
@@ -63,6 +67,7 @@ namespace engine
 		}
 
         std::cout << "get display\n";
+        SDL_DisplayMode current;
 		if (SDL_GetDesktopDisplayMode(0, &current) < 0)
 		{
 			std::cout << "Display mode error " << SDL_GetError() << std::endl;
@@ -138,6 +143,7 @@ namespace engine
 
 	void Context::pollEvents()
 	{
+        SDL_Event e;
 		while (SDL_PollEvent(&e))
 		{
 			if (e.type == SDL_QUIT)
@@ -152,7 +158,7 @@ namespace engine
 		}
 	}
 
-    BoundingBox& Context::getBoundingBox()
+    BoundingBox Context::getBoundingBox()
     {
         return BoundingBox(0, 0, width, height);
     }

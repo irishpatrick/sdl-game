@@ -22,7 +22,7 @@ public:
     void setShadow(Context&);
     void update(Context&, float);
     void draw(Context&);
-    void serve(Context&, int);
+    void serve(Context&, Player*);
 
 private:
     float height;

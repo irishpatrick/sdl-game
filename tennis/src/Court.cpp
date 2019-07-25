@@ -10,7 +10,6 @@ void Court::init(Context& ctx)
     in_bounds = BoundingBox(x + w / 10, y + w / 10, w - w / 5, h - w / 5);
 
     Canvas canvas;
-    std::cout << "create canvas\n";
     canvas.create(ctx, ctx.getWidth(), ctx.getHeight());
     // draw court
     cairo_t* cr = canvas.getCairo();
@@ -54,6 +53,7 @@ int Court::judge(Ball* ball)
 
 void Court::update(Context& ctx, float delta)
 {
+
 }
 
 void Court::contain(Player* p)

@@ -47,7 +47,6 @@ int main(int argc, char** argv)
 
     crt.init(ctx);
     ball.init(ctx);
-    ball.serve(ctx, 0);
     player.init(ctx);
     opponent.init(ctx);
 
@@ -98,7 +97,7 @@ int main(int argc, char** argv)
 
             if (space)
             {
-                ball.serve(ctx, 0);
+                ball.serve(ctx, &player);
             }
         }
 

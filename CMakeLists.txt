@@ -25,7 +25,7 @@ set(LIBS
 	nlohmann_json
 	nlohmann_json::nlohmann_json
 	bcrypt
-	)
+)
 
 elseif (UNIX)
 
@@ -50,7 +50,8 @@ set(LIBS
     ${SDL2_TTF_LIBRARIES}
     ${CAIRO_LIBRARIES}
     stdc++fs
-    freetype)
+    freetype
+)
 
 endif (MSVC)
 

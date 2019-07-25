@@ -5,6 +5,9 @@
 
 void Ball::init(Context& ctx)
 {
+    visible = false;
+    x = -100;
+    y = -100;
     setTexture(Assets::getTexture("ball.png"));
     shadow.init(ctx);
     shadow.setTexture(Assets::getTexture("ball_shadow.png"));
@@ -58,22 +61,27 @@ void Ball::bounce(BoundingBox& box, Player* player)
     dtheta = Random::randint(-20, 20) * 10;
 }
 
-void Ball::serve(Context& ctx, int side)
+void Ball::serve(Context& ctx, Player* p)
 {
     visible = true;
     xvel = 0;
-    x = ctx.getWidth() / 2;
+    //x = ctx.getWidth() / 2;
     xvel = 0;
-    if (side == 0)
+
+    if (p->y > ctx.getHeight() / 2)
     {
         yvel = -speed;
-        y = ctx.getHeight() * (2.0f / 3.0f);
+        //y = ctx.getHeight() * (2.0f / 3.0f);
+        y = p->y - h;
     }
-    else if (side == 1)
+    else if (p->y < ctx.getHeight() / 2)
     {
         yvel = speed;
-        y = ctx.getHeight() * (1.0f / 3.0f);
+        //y = ctx.getHeight() * (1.0f / 3.0f);
+        y = p->y + p->h;
     }
+
+    x = p->x + w;
 }
 
 void Ball::setShadow(Context& ctx)
@@ -90,10 +98,8 @@ void Ball::setShadow(Context& ctx)
 }
 
 void Ball::update(Context& ctx, float delta)
-{   
-    //std::cout << ctx.getBoundingBox() << "\t|\t" << getBoundingBox() << std::endl;
+{
     visible = Util::checkIntersect(getBoundingBox(), BoundingBox(0, 0, ctx.getWidth(), ctx.getHeight()));
-    //std::cout << "visible = " << visible << std::endl;
     shadow.setVisible(visible);
     if (!visible)
     {

@@ -6,6 +6,7 @@
 #include "Camera.hpp"
 #include "Canvas.hpp"
 #include "Context.hpp"
+#include "Debugger.hpp"
 #include "Font.hpp"
 #include "Game.hpp"
 #include "Group.hpp"

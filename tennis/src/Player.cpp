@@ -5,8 +5,8 @@ void Player::init(Context& ctx)
 {
     setTexture(Assets::getTexture("player.png"));
     x = ctx.getWidth() / 2 - w / 2;
-    y = ctx.getHeight() - h - 0.5 * h;
-    hitbox.xywh(0, 10, w, h / 2);
+    y = ctx.getHeight() - h - 1.5 * h;
+    hitbox.xywh(w / 8, 10, 6 * w / 8, h / 2);
 }
 
 void Player::left(float delta)

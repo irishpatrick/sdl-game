@@ -13,7 +13,6 @@
 
 #include "Context.hpp"
 #include "BoundingBox.hpp"
-#include "Canvas.hpp"
 
 #define FACE_NORTH 0x01
 #define FACE_EAST 0x02
@@ -30,7 +29,7 @@ namespace engine
 	{
     public:
         CORE_API Sprite();
-        CORE_API virtual ~Sprite() {}
+        CORE_API virtual ~Sprite();
 
 		CORE_API void init(Context&);
 		CORE_API void init(Context*);
@@ -88,7 +87,6 @@ namespace engine
         unsigned char collision_faces;
 
     protected:
-        Canvas canvas;
         bool visible;
         //bool debug;
         Group* parent;

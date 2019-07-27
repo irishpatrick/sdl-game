@@ -25,29 +25,53 @@ void Court::init(Context& ctx)
     cairo_set_line_width(cr, 4.0);
     cairo_rectangle(cr, in_bounds.x, in_bounds.y, in_bounds.w, in_bounds.h);
     
-    cairo_move_to(cr, in_bounds.x, in_bounds.y + in_bounds.h / 2);
-    cairo_line_to(cr, in_bounds.x + in_bounds.w, in_bounds.y + in_bounds.h / 2);
+    cairo_move_to(cr, 
+        (double)(in_bounds.x), 
+        (double)in_bounds.y + in_bounds.h / 2.0f
+    );
 
-    cairo_rectangle(cr, in_bounds.x, in_bounds.y + 3 * in_bounds.h / 16, in_bounds.w, 10 * in_bounds.h / 16);
+    cairo_line_to(cr, 
+        (double)in_bounds.x + in_bounds.w, 
+        (double)in_bounds.y + in_bounds.h / 2.0f
+    );
+
+    cairo_rectangle(cr, 
+        (double)in_bounds.x, 
+        (double)in_bounds.y + 3.0f * in_bounds.h / 16.0f, 
+        (double)in_bounds.w, 
+        (double)10.0f * in_bounds.h / 16.0f
+    );
     
     cairo_move_to(cr,
-        in_bounds.x + in_bounds.w / 2,
-        in_bounds.y + 3 * in_bounds.h / 16
+        (double)in_bounds.x + in_bounds.w / 2.0f,
+        (double)in_bounds.y + 3 * in_bounds.h / 16.0f
     );
+
     cairo_line_to(cr,
-        in_bounds.x + in_bounds.w / 2,
-        in_bounds.y + 13 * in_bounds.h / 16
+        (double)in_bounds.x + in_bounds.w / 2.0f,
+        (double)in_bounds.y + 13.0f * in_bounds.h / 16.0f
     );
 
     cairo_stroke(cr);
 
-    Texture* tex = canvas.toTexturePtr(ctx);
-    Assets::registerTexture(ctx, tex, "court");
-    texture = Assets::getTexture("court");
+    texture = canvas.getTexture();
+    // don't forget to update
+    texture->update();
 }
 
 int Court::judge(Ball* ball)
 {
+    if (ball->x < in_bounds.x)
+    {
+        ball->x = in_bounds.x;
+        ball->xvel = 0;
+    }
+    else if (ball->x > in_bounds.x + in_bounds.w)
+    {
+        ball->x = in_bounds.x + in_bounds.w;
+        ball->xvel = 0;
+    }
+
     return 0;
 }
 

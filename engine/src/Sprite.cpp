@@ -2,6 +2,7 @@
 #include "Camera.hpp"
 #include "Texture.hpp"
 #include "Group.hpp"
+#include "Canvas.hpp"
 #include <iostream>
 #include <cairo.h>
 
@@ -36,6 +37,11 @@ namespace engine
         scale_y = 1.0f;
         theta = 0;
 	}
+
+    Sprite::~Sprite()
+    {
+
+    }
 
 	void Sprite::setSpeed(float s)
 	{

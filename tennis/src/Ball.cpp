@@ -11,6 +11,7 @@ void Ball::init(Context& ctx)
     setTexture(Assets::getTexture("ball.png"));
     shadow.init(ctx);
     shadow.setTexture(Assets::getTexture("ball_shadow.png"));
+    setBoundingBox(w / 4, h / 4, w / 2, h / 2);
 }
 
 BoundingBox Ball::getBoundingBox()
@@ -94,7 +95,7 @@ void Ball::setShadow(Context& ctx)
     {
         height = 10 * fabsf(y - ctx.getHeight() * (3.0f / 4.0f));
     }
-    height = fminf(height, 6000);
+    //height = fminf(height, 10000);
 }
 
 void Ball::update(Context& ctx, float delta)

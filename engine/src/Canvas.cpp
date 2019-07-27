@@ -5,19 +5,24 @@ namespace engine
 {
     Canvas::~Canvas()
     {
-        if (surface != nullptr)
+        /*if (surface != nullptr)
         {
             SDL_FreeSurface(surface);
         }
         if (texture != nullptr)
         {
             SDL_DestroyTexture(texture);
+        }*/
+        if (tex != nullptr)
+        {
+            //tex->destroy();
         }
     }
 
     void Canvas::create(Context& ctx, uint32_t aw, uint32_t ah)
     {
-    
+        tex = new Texture();
+
         uint32_t rmask, gmask, bmask, amask;
 
     /* SDL interprets each pixel as a 32-bit number, so our masks must depend
@@ -39,7 +44,7 @@ namespace engine
         {
             std::cout << "warning: width and/or height could be zero" << std::endl;
         }
-        surface = SDL_CreateRGBSurface
+        SDL_Surface* surface = SDL_CreateRGBSurface
         (
             0, w, h, 32,
             rmask,
@@ -56,7 +61,8 @@ namespace engine
 
         SDL_LockSurface(surface);
 
-        texture = SDL_CreateTextureFromSurface(ctx.getRenderer(), surface);
+        //texture = SDL_CreateTextureFromSurface(ctx.getRenderer(), surface);
+        tex->create(ctx, surface);
         cairoSurface = cairo_image_surface_create_for_data
         (
             (uint8_t*)surface->pixels,
@@ -92,16 +98,14 @@ namespace engine
 
     void Canvas::draw(Context& ctx)
     {
-        SDL_UnlockSurface(surface);
-        SDL_UpdateTexture(texture, NULL, surface->pixels, surface->pitch);
-        SDL_LockSurface(surface);
+        tex->update();
 
         SDL_Rect rect;
         rect.x = (int)x;
         rect.y = (int)y;
         rect.w = (int)w;
         rect.h = (int)h;
-        SDL_RenderCopy(ctx.getRenderer(), texture, NULL, &rect);
+        SDL_RenderCopy(ctx.getRenderer(), tex->use(), NULL, &rect);
         
         cairo_save (cr);
         cairo_set_source_rgba (cr, 0 ,0 ,0 ,0);
@@ -127,10 +131,16 @@ namespace engine
 
     Texture* Canvas::toTexturePtr(Context& ctx)
     {
-        Texture* t = new Texture();
+        /*Texture* t = new Texture();
         SDL_UnlockSurface(surface);
         t->create(ctx, surface);
         SDL_LockSurface(surface);
-        return t;
+        return t;*/
+        return nullptr;
+    }
+
+    Texture* Canvas::getTexture()
+    {
+        return tex;
     }
 }

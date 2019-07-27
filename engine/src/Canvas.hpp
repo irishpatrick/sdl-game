@@ -7,18 +7,18 @@
 
 #include "Context.hpp"
 #include "Texture.hpp"
+#include "Sprite.hpp"
 
 namespace engine
 {
-    class Canvas
+    class Canvas : public Sprite
     {
     public:
-        Canvas() : 
+        Canvas() : Sprite(),
             x(0), y(0), 
             w(0), h(0),
             ready(false),
-            texture(nullptr), 
-            surface(nullptr),
+            tex(nullptr), 
             cairoSurface(nullptr),
             cr(nullptr)
         {}
@@ -33,6 +33,7 @@ namespace engine
         uint32_t getHeight();
 
         Texture* toTexturePtr(Context&);
+        Texture* getTexture();
 
         float x;
         float y;
@@ -41,8 +42,9 @@ namespace engine
         uint32_t w;
         uint32_t h;
         bool ready;
-        SDL_Texture* texture;
-        SDL_Surface* surface;
+        //SDL_Texture* texture;
+        //SDL_Surface* surface;
+        Texture* tex;
         cairo_surface_t* cairoSurface;
         cairo_t* cr;
     };

@@ -22,30 +22,21 @@ int main(int argc, char** argv)
     Player player;
     Opponent opponent;
     Ball ball;
-    Sprite court;
-    Court crt;
+    Court court;
 
     int scale = 12;
 
     // create context
     ctx.init(39 * scale, 79 * scale, "Tennis", false);
-    //
-    //ctx.init(500, 1000, "Tennis", false);
     ctx.setQuitCallback(&quit_cb);
 
     // load assets
-    Assets::loadTexture(ctx, "assets/court.png");
     Assets::loadTexture(ctx, "assets/ball.png");
     Assets::loadTexture(ctx, "assets/ball_shadow.png");
     Assets::loadTexture(ctx, "assets/player.png");
     Assets::loadTexture(ctx, "assets/opponent.png");
 
-    court.setTexture(Assets::getTexture("court.png"));
-    court.scale((float)scale);
-    court.x = ctx.getWidth() / 2 - court.getScaledWidth() / 2;
-    court.y = ctx.getHeight() / 2 - court.getScaledHeight() / 2;
-
-    crt.init(ctx);
+    court.init(ctx);
     ball.init(ctx);
     player.init(ctx);
     opponent.init(ctx);
@@ -101,24 +92,26 @@ int main(int argc, char** argv)
             }
         }
 
-        crt.contain(&player);
-        crt.contain(&opponent);
+        court.contain(&player);
+        court.contain(&opponent);
 
         opponent.process(&ball);
 
-        player.checkAndHit(crt.getBounds(), &ball);
-        opponent.checkAndHit(crt.getBounds(), &ball);
+        player.checkAndHit(court.getBounds(), &ball);
+        opponent.checkAndHit(court.getBounds(), &ball);
 
-        crt.update(ctx, delta);
+        court.judge(&ball);
+
+        court.update(ctx, delta);
         player.update(delta);
         opponent.update(delta);
         ball.setShadow(ctx);
         ball.update(ctx, delta);
 
+
         ctx.clear();
 
-        //court.draw(ctx);
-        crt.draw(ctx);
+        court.draw(ctx);
         opponent.draw(ctx);
         ball.draw(ctx);
         player.draw(ctx);

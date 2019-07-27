@@ -69,7 +69,19 @@ namespace engine
 
 	void Texture::create(Context& ctx)
 	{
+        int relock = 0;
+
+        if (surf->locked)
+        {
+            relock = 1;
+            SDL_UnlockSurface(surf);
+        }
 		tex = SDL_CreateTextureFromSurface(ctx.getRenderer(), surf);
+        if (relock)
+        {
+            SDL_LockSurface(surf);
+        }
+
 		if (tex == nullptr) {
 			std::cout << "(" << name << ") error: cannot create texture: " << SDL_GetError() << std::endl;
 		}
@@ -78,8 +90,20 @@ namespace engine
 	void Texture::create(Context& ctx, SDL_Surface* s)
 	{
 		surf = s;
+        int relock = 0;
+
+        if (s->locked)
+        {
+            relock = 1;
+            SDL_UnlockSurface(s);
+        }
 		tex = SDL_CreateTextureFromSurface(ctx.getRenderer(), s);
-		if (tex == nullptr)
+        if (relock)
+        {
+            SDL_LockSurface(s);
+        }
+
+        if (tex == nullptr)
 		{
 			std::cout << "texture error: (" << name << ") " << SDL_GetError() << std::endl;
 			return;
@@ -88,6 +112,26 @@ namespace engine
 		h = s->h;
 		ready = true;
 	}
+
+    void Texture::update(SDL_Surface* s)
+    {
+        int relock = 0;
+        if (s->locked)
+        {
+            relock = 1;
+            SDL_UnlockSurface(s);
+        }
+        SDL_UpdateTexture(tex, NULL, s->pixels, s->pitch);
+        if (relock)
+        {
+            SDL_LockSurface(s);
+        }
+    }
+
+    void Texture::update()
+    {
+        Texture::update(surf);
+    }
 
     Texture Texture::subTexture(Context& ctx, int x, int y, int w, int h)
     {
@@ -118,6 +162,11 @@ namespace engine
 		}
 		return tex;
 	}
+
+    SDL_Surface* Texture::getSurface()
+    {
+        return surf;
+    }
 
     void Texture::setName(const std::string& str)
     {

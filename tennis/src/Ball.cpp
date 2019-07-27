@@ -100,7 +100,7 @@ void Ball::setShadow(Context& ctx)
 
 void Ball::update(Context& ctx, float delta)
 {
-    visible = Util::checkIntersect(getBoundingBox(), BoundingBox(0, 0, ctx.getWidth(), ctx.getHeight()));
+    visible = Util::checkIntersect(&getBoundingBox(), &ctx.getBoundingBox());
     shadow.setVisible(visible);
     if (!visible)
     {

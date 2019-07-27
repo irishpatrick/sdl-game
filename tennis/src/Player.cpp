@@ -26,7 +26,7 @@ BoundingBox Player::getBoundingBox()
 
 void Player::checkAndHit(BoundingBox& box, Ball* ball)
 {
-    if (Util::checkIntersect(getBoundingBox(), ball->getBoundingBox()))
+    if (Util::checkIntersect(&getBoundingBox(), &ball->getBoundingBox()))
     {
         /*float side = getBoundingBox().center().x - ball->getBoundingBox().center().x;
         float dx, dy;

@@ -32,8 +32,11 @@ namespace engine
         uint32_t getWidth();
         uint32_t getHeight();
 
-        Texture* toTexturePtr(Context&);
+        void update();
+
         Texture* getTexture();
+
+        void destroy();
 
         float x;
         float y;
@@ -42,9 +45,8 @@ namespace engine
         uint32_t w;
         uint32_t h;
         bool ready;
-        //SDL_Texture* texture;
-        //SDL_Surface* surface;
         Texture* tex;
+        SDL_Surface* surface;
         cairo_surface_t* cairoSurface;
         cairo_t* cr;
     };

@@ -53,10 +53,9 @@ void Court::init(Context& ctx)
     );
 
     cairo_stroke(cr);
+    canvas.update();
 
-    texture = canvas.getTexture();
-    // don't forget to update
-    texture->update();
+    texture = new Texture(ctx, *canvas.getTexture());
 }
 
 int Court::judge(Ball* ball)

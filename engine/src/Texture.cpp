@@ -18,6 +18,7 @@ namespace engine
         w = t.w;
         h = t.h;
         ready = t.ready;
+        SDL_UnlockSurface(t.surf);
         surf = SDL_CreateRGBSurface(
             t.surf->flags,
             w,

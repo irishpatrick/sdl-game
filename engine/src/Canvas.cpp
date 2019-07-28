@@ -5,18 +5,7 @@ namespace engine
 {
     Canvas::~Canvas()
     {
-        /*if (surface != nullptr)
-        {
-            SDL_FreeSurface(surface);
-        }
-        if (texture != nullptr)
-        {
-            SDL_DestroyTexture(texture);
-        }*/
-        if (tex != nullptr)
-        {
-            //tex->destroy();
-        }
+        destroy();
     }
 
     void Canvas::create(Context& ctx, uint32_t aw, uint32_t ah)
@@ -44,7 +33,7 @@ namespace engine
         {
             std::cout << "warning: width and/or height could be zero" << std::endl;
         }
-        SDL_Surface* surface = SDL_CreateRGBSurface
+        surface = SDL_CreateRGBSurface
         (
             0, w, h, 32,
             rmask,
@@ -124,23 +113,45 @@ namespace engine
         return h;
     }
 
+    void Canvas::update()
+    {
+        tex->update();
+    }
+
     bool Canvas::isReady()
     {
         return ready;
     }
 
-    Texture* Canvas::toTexturePtr(Context& ctx)
-    {
-        /*Texture* t = new Texture();
-        SDL_UnlockSurface(surface);
-        t->create(ctx, surface);
-        SDL_LockSurface(surface);
-        return t;*/
-        return nullptr;
-    }
-
     Texture* Canvas::getTexture()
     {
         return tex;
+    }
+
+    void Canvas::destroy()
+    {
+        if (cr != nullptr)
+        {
+            cairo_destroy(cr);
+            cr = nullptr;
+        }
+
+        if (cairoSurface != nullptr)
+        {
+            cairo_surface_destroy(cairoSurface);
+            cairoSurface = nullptr;
+        }
+
+        if (surface != nullptr)
+        {
+            SDL_FreeSurface(surface);
+            surface = nullptr;
+        }
+
+        if (tex != nullptr)
+        {
+            delete tex;
+            tex = nullptr;
+        }
     }
 }

@@ -30,7 +30,7 @@ namespace engine
 
 	Context::~Context()
 	{
-
+        destroy();
 	}
 
 	int Context::init(int a, int b, const std::string& title, bool fullscreen)

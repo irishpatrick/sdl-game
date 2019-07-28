@@ -54,9 +54,17 @@ namespace engine
 
 		CORE_API inline void destroy()
 		{
-			SDL_DestroyRenderer(r);
-			SDL_DestroyWindow(w);
-			SDL_Quit();
+            if (r != nullptr)
+            {
+                SDL_DestroyRenderer(r);
+                r = nullptr;
+            }
+            if (w != nullptr)
+            {
+                SDL_DestroyWindow(w);
+                w = nullptr;
+            }
+            SDL_Quit();
 		}
 
 		CORE_API inline float coordX(float x)

@@ -14,7 +14,9 @@ public:
     {}
 
     ~Court()
-    {}
+    {
+        delete texture;
+    }
 
     void init(Context&);
     int judge(Ball*);

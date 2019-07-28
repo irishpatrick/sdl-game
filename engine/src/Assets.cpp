@@ -116,7 +116,7 @@ namespace engine
 
 		for (auto& e : texMap) {
 			Texture* t = e.second;
-			t->destroy();
+            std::cout << "destroy texture " << t->getName() << std::endl;
 			delete t;
 		}
 	}

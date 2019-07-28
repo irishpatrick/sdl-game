@@ -35,10 +35,7 @@ namespace engine
 
 	Texture::~Texture()
 	{
-        if (surf != nullptr)
-        {
-            SDL_FreeSurface(surf);
-        }
+        destroy();
 	}
 
 	uint32_t Texture::getW()
@@ -61,6 +58,7 @@ namespace engine
 
 	void Texture::copy(Texture* t)
 	{
+        std::cout << "BAD" << std::endl;
 		w = t->getW();
 		h = t->getH();
 		tex = t->use();
@@ -180,6 +178,15 @@ namespace engine
 
 	void Texture::destroy()
 	{
-		SDL_DestroyTexture(tex);
+        if (surf != nullptr)
+        {
+            SDL_FreeSurface(surf);
+            surf = nullptr;
+        }
+        if (tex != nullptr)
+        {
+            SDL_DestroyTexture(tex);
+            tex = nullptr;
+        }
 	}
 }

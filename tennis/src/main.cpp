@@ -10,9 +10,11 @@
 
 using namespace engine;
 
+int running = 1;
+
 void quit_cb()
 {
-    exit(0);
+    running = 0;
 }
 
 int main(int argc, char** argv)
@@ -46,7 +48,7 @@ int main(int argc, char** argv)
     float delta;
 
     // main loop
-    while (1)
+    while (running)
     {
         now = SDL_GetTicks();
         delta = (now - then) / 1000.0f;
@@ -118,6 +120,8 @@ int main(int argc, char** argv)
 
         ctx.render();
     }
+
+    Assets::destroy();
 
     return 0;
 }

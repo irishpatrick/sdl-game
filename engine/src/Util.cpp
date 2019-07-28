@@ -84,6 +84,14 @@ namespace engine {
             a->y + a->h > b->y;
     }
 
+    bool Util::checkIntersect(BoundingBox a, BoundingBox b)
+    {
+        return a.x < b.x + b.w &&
+            a.x + a.w > b.x &&
+            a.y < b.y + b.h &&
+            a.y + a.h > b.y;
+    }
+
     bool Util::checkVelocityIntersect(BoundingBox& a, Point& avel, BoundingBox& b, Point& bvel)
     {
         float ax = a.x + avel.x;

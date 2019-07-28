@@ -14,10 +14,10 @@ void Ball::init(Context& ctx)
     setBoundingBox(w / 4, h / 4, w / 2, h / 2);
 }
 
-BoundingBox Ball::getBoundingBox()
+/*BoundingBox Ball::getBoundingBox()
 {
-    return BoundingBox(x, y, w, h);
-}
+    //return BoundingBox(x, y, w, h);
+}*/
 
 void Ball::bounce(BoundingBox& box, Player* player)
 {
@@ -100,7 +100,7 @@ void Ball::setShadow(Context& ctx)
 
 void Ball::update(Context& ctx, float delta)
 {
-    visible = Util::checkIntersect(&getBoundingBox(), &ctx.getBoundingBox());
+    visible = Util::checkIntersect(getBoundingBox(), ctx.getBoundingBox());
     shadow.setVisible(visible);
     if (!visible)
     {

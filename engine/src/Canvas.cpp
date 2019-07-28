@@ -144,6 +144,7 @@ namespace engine
 
         if (surface != nullptr)
         {
+            SDL_UnlockSurface(surface);
             SDL_FreeSurface(surface);
             surface = nullptr;
         }

@@ -1,3 +1,9 @@
+#ifdef _DEBUG
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#endif
+
 #include <iostream>
 #include <cstdlib>
 #include <engine.hpp>
@@ -122,6 +128,12 @@ int main(int argc, char** argv)
     }
 
     Assets::destroy();
+
+    malloc(100);
+
+#ifdef _DEBUG
+    _CrtDumpMemoryLeaks();
+#endif
 
     return 0;
 }

@@ -11,21 +11,25 @@ namespace engine
     void Canvas::create(Context& ctx, uint32_t aw, uint32_t ah)
     {
         tex = new Texture();
+        create(ctx, tex, aw, ah);
+    }
 
+    void Canvas::create(Context& ctx, Texture* tex, uint32_t aw, uint32_t ah)
+    {
         uint32_t rmask, gmask, bmask, amask;
 
-    /* SDL interprets each pixel as a 32-bit number, so our masks must depend
-       on the endianness (byte order) of the machine */
+        /* SDL interprets each pixel as a 32-bit number, so our masks must depend
+           on the endianness (byte order) of the machine */
 #if SDL_BYTEORDER == SDL_BIG_ENDIAN
-    rmask = 0xff000000;
-    gmask = 0x00ff0000;
-    bmask = 0x0000ff00;
-    amask = 0x000000ff;
+        rmask = 0xff000000;
+        gmask = 0x00ff0000;
+        bmask = 0x0000ff00;
+        amask = 0x000000ff;
 #else
-    rmask = 0x000000ff;
-    gmask = 0x0000ff00;
-    bmask = 0x00ff0000;
-    amask = 0xff000000;
+        rmask = 0x000000ff;
+        gmask = 0x0000ff00;
+        bmask = 0x00ff0000;
+        amask = 0xff000000;
 #endif
         w = aw;
         h = ah;
@@ -73,6 +77,11 @@ namespace engine
             return;
         }
         ready = true;
+    }
+
+    void Canvas::attachTexture(Texture* t)
+    {
+
     }
 
     cairo_t* Canvas::getCairo()

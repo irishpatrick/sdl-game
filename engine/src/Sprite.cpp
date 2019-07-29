@@ -36,6 +36,7 @@ namespace engine
         scale_x = 1.0f;
         scale_y = 1.0f;
         theta = 0;
+        dynamic = false;
 	}
 
     Sprite::~Sprite()
@@ -63,11 +64,14 @@ namespace engine
 		x += xvel * delta;
 		y += yvel * delta;
         collision_faces = 0;
+
+        updateChildren(delta);
 	}
 
     void Sprite::update(Context& ctx, float delta)
     {
         update(delta);
+        updateChildren(ctx, delta);
     }
 
 	void Sprite::setTexture(Texture *t)
@@ -97,6 +101,27 @@ namespace engine
     {
 		return parent;
 	}
+
+    void Sprite::addChild(Sprite* s)
+    {
+        children.push_back(s);
+    }
+
+    void Sprite::updateChildren(Context& ctx, float delta)
+    {
+        for (auto& e : children)
+        {
+            e->update(ctx, delta);
+        }
+    }
+
+    void Sprite::updateChildren(float delta)
+    {
+        for (auto& e : children)
+        {
+            e->update(delta);
+        }
+    }
 
 	std::string Sprite::getUUID()
     {
@@ -140,6 +165,7 @@ namespace engine
 
     void Sprite::draw(Context& ctx)
     {
+        drawChildren(ctx);
         if (!visible) return;
 
 		if (texture == nullptr)
@@ -176,6 +202,7 @@ namespace engine
 
 	void Sprite::draw(Context& ctx, Camera& c)
 	{
+        drawChildren(ctx, c);
 		if (!visible) return;
 
         /*if (!isOnScreen(&c))
@@ -200,6 +227,22 @@ namespace engine
         {
             debugDraw(c, ctx);
         }*/
+    }
+
+    void Sprite::drawChildren(Context& ctx)
+    {
+        for (auto& e : children)
+        {
+            e->draw(ctx);
+        }
+    }
+
+    void Sprite::drawChildren(Context& ctx, Camera& cam)
+    {
+        for (auto& e : children)
+        {
+            e->draw(ctx, cam);
+        }
     }
 
 	/*void Sprite::debugDraw(Camera& c, Context& ctx)

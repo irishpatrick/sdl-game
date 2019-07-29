@@ -1,11 +1,12 @@
+#ifdef _WIN32
 #ifdef _DEBUG
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
 #endif
+#endif
 
 #include <iostream>
-#include <cstdlib>
 #include <engine.hpp>
 
 #include "Player.hpp"
@@ -25,6 +26,10 @@ void quit_cb()
 
 int main(int argc, char** argv)
 {
+#ifdef _DEBUG
+    _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
+#endif
+
     // declare game components
     Context ctx;
     Player player;
@@ -32,10 +37,11 @@ int main(int argc, char** argv)
     Ball ball;
     Court court;
 
-    int scale = 12;
+    int scale = 8;
 
     // create context
     ctx.init(39 * scale, 79 * scale, "Tennis", false);
+    //ctx.init(512, 480, "Tennis", false);
     ctx.setQuitCallback(&quit_cb);
 
     // load assets
@@ -129,7 +135,9 @@ int main(int argc, char** argv)
 
     Assets::destroy();
 
-    malloc(100);
+    char* mem = (char*)malloc(100);
+    new int;
+    //free(mem);
 
 #ifdef _DEBUG
     _CrtDumpMemoryLeaks();

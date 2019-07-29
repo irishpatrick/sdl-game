@@ -53,6 +53,48 @@ void Court::init(Context& ctx)
     );
 
     cairo_stroke(cr);
+
+    // draw net
+    int stretch = 10;
+    cairo_set_source_rgb(cr, 0.2, 0.2, 0.2);
+    cairo_set_line_width(cr, 4.0);
+    cairo_move_to(cr, in_bounds.x - stretch, in_bounds.y + 7.0 * in_bounds.h / 16.0);
+    cairo_line_to(cr, in_bounds.x + stretch + in_bounds.w, in_bounds.y + 7.0 * in_bounds.h / 16.0);
+    cairo_line_to(cr, in_bounds.x + in_bounds.w, in_bounds.y + in_bounds.h / 2.0);
+    cairo_line_to(cr, in_bounds.x, in_bounds.y + in_bounds.h / 2);
+    cairo_close_path(cr);
+
+    cairo_stroke(cr);
+
+    cairo_set_line_width(cr, 2.0);
+    int i;
+    int num_h = 8;
+    int num_v = 20;
+    float m = fabs((in_bounds.y + in_bounds.h / 2.0 - (in_bounds.y + 7.0 * in_bounds.h / 16.0)) / (in_bounds.x - (in_bounds.x - stretch)));
+    float dy = (in_bounds.y + in_bounds.h / 2.0 - (in_bounds.y + 7.0 * in_bounds.h / 16.0));
+    for (i = 0; i < num_h; ++i)
+    {
+        float step = (i + 1) * (dy / (num_h + 1));
+        float y = (in_bounds.y + in_bounds.h / 2) - step;
+        float x = in_bounds.x - (step / m);
+        cairo_move_to(cr, x, y);
+        x = in_bounds.x + in_bounds.w + (step / m);
+        cairo_line_to(cr, x, y);
+    }
+
+    for (i = 0; i < num_v; ++i)
+    {
+        float step = (i + 1) * (in_bounds.w / (num_v + 1));
+        float y = in_bounds.y + in_bounds.h / 2;
+        float x = in_bounds.x + step;
+        cairo_move_to(cr, x, y);
+        x = x + stretch * ((2 * ((float)i / num_v)) - 1.0);
+        y = in_bounds.y + 7.0 * in_bounds.h / 16.0;
+        cairo_line_to(cr, x, y);
+    }
+
+    cairo_stroke(cr);
+
     canvas.update();
 
     texture = new Texture(ctx, *canvas.getTexture());

@@ -25,6 +25,8 @@ namespace engine
         ~Canvas();
         
         void create(Context&, uint32_t, uint32_t);
+        void create(Context&, Texture*, uint32_t, uint32_t);
+        void attachTexture(Texture*);
         void draw(Context&);
         cairo_t* getCairo();
         cairo_surface_t* getCairoSurface();

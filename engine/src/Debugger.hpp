@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Sprite.hpp"
+#include "Canvas.hpp"
+#include "Context.hpp"
 
 namespace engine
 {
@@ -13,6 +15,11 @@ namespace engine
         ~Debugger()
         {}
 
+        void init(Context&);
+        void update(float);
+        Canvas* getCanvas();
 
+    private:
+        Canvas canvas;
     };
 }

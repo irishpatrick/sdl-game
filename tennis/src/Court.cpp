@@ -2,6 +2,22 @@
 #include "Player.hpp"
 #include "Ball.hpp"
 
+double half(double val)
+{
+    return val / 2.0;
+}
+
+void to_cr(float* val)
+{
+    *val = roundf(*val) + 1.0f;
+}
+
+void to_cr(float* x, float* y)
+{
+    *x = roundf(*x) + 1.0f;
+    *y = roundf(*y) + 1.0f;
+}
+
 void Court::init(Context& ctx)
 {
     w = ctx.getWidth();
@@ -25,7 +41,8 @@ void Court::init(Context& ctx)
     cairo_set_line_width(cr, 4.0);
     cairo_rectangle(cr, in_bounds.x, in_bounds.y, in_bounds.w, in_bounds.h);
     
-    cairo_move_to(cr, 
+    // center line
+    /*cairo_move_to(cr, 
         (double)(in_bounds.x), 
         (double)in_bounds.y + in_bounds.h / 2.0f
     );
@@ -33,7 +50,7 @@ void Court::init(Context& ctx)
     cairo_line_to(cr, 
         (double)in_bounds.x + in_bounds.w, 
         (double)in_bounds.y + in_bounds.h / 2.0f
-    );
+    );*/
 
     cairo_rectangle(cr, 
         (double)in_bounds.x, 
@@ -43,40 +60,41 @@ void Court::init(Context& ctx)
     );
     
     cairo_move_to(cr,
-        (double)in_bounds.x + in_bounds.w / 2.0f,
+        (double)in_bounds.x + half(in_bounds.w),
         (double)in_bounds.y + 3 * in_bounds.h / 16.0f
     );
 
     cairo_line_to(cr,
-        (double)in_bounds.x + in_bounds.w / 2.0f,
+        (double)in_bounds.x + half(in_bounds.w),
         (double)in_bounds.y + 13.0f * in_bounds.h / 16.0f
     );
 
     cairo_stroke(cr);
 
     // draw net
-    int stretch = 10;
+    /*int stretch = 10;
     double ratio = 7.5 / 16.0;
-    cairo_set_source_rgb(cr, 0.8, 0.8, 0.8);
-    cairo_set_line_width(cr, 4.0);
+    cairo_set_source_rgb(cr, 0.5, 0.5, 0.5);
+    cairo_set_line_width(cr, 3.0);
     cairo_move_to(cr, in_bounds.x - stretch, in_bounds.y + (in_bounds.h * ratio));
     cairo_line_to(cr, in_bounds.x + stretch + in_bounds.w, in_bounds.y + (in_bounds.h * ratio));
-    cairo_line_to(cr, in_bounds.x + in_bounds.w, in_bounds.y + in_bounds.h / 2.0);
-    cairo_line_to(cr, in_bounds.x, in_bounds.y + in_bounds.h / 2);
+    cairo_line_to(cr, in_bounds.x + in_bounds.w, in_bounds.y + half(in_bounds.h));
+    cairo_line_to(cr, in_bounds.x, in_bounds.y + half(in_bounds.h));
     cairo_close_path(cr);
 
     cairo_stroke(cr);
 
+    cairo_set_source_rgb(cr, 1.0, 1.0, 1.0);
     cairo_set_line_width(cr, 1.0);
     int i;
     int num_h = 4;
     int num_v = 20;
-    float m = fabs((in_bounds.y + in_bounds.h / 2.0 - (in_bounds.y + (in_bounds.h * ratio))) / (in_bounds.x - (in_bounds.x - stretch)));
-    float dy = (in_bounds.y + in_bounds.h / 2.0 - (in_bounds.y + (in_bounds.h * ratio)));
+    float m = fabs((in_bounds.y + half(in_bounds.h) - (in_bounds.y + (in_bounds.h * ratio))) / (in_bounds.x - (in_bounds.x - stretch)));
+    float dy = (in_bounds.y + half(in_bounds.h) - (in_bounds.y + (in_bounds.h * ratio)));
     for (i = 0; i < num_h; ++i)
     {
         float step = (i + 1) * (dy / (num_h + 1));
-        float y = (in_bounds.y + in_bounds.h / 2) - step;
+        float y = (in_bounds.y + half(in_bounds.h)) - step;
         float x = in_bounds.x - (step / m);
         cairo_move_to(cr, x, y);
         x = in_bounds.x + in_bounds.w + (step / m);
@@ -94,6 +112,69 @@ void Court::init(Context& ctx)
         cairo_line_to(cr, x, y);
     }
 
+    cairo_stroke(cr);
+    */
+
+    // draw other net
+    float height = 30;
+    float width = height / 4;
+
+    cairo_set_source_rgb(cr, 0, 0, 0);
+    cairo_set_line_width(cr, 2);
+
+    int num_x = 30;
+    int num_y = 6;
+    int i;
+
+    float xstep = (in_bounds.w + (width * 2)) / (num_x + 1);
+    float ystep = height / (num_y + 1);
+
+    for (i = 0; i < num_x; ++i)
+    {
+        float x = in_bounds.x - width + ((i + 1) * xstep);
+        float y = in_bounds.y + half(in_bounds.h) - height;
+        to_cr(&x, &y);
+        cairo_move_to(cr, x, y);
+        y = (in_bounds.y + half(in_bounds.h));
+        to_cr(&y);
+        cairo_line_to(cr, x, y);
+    }
+
+    for (i = 0; i < num_y; ++i)
+    {
+        float x = in_bounds.x - width;
+        float y = in_bounds.y + half(in_bounds.h) - height + ((i + 1) * ystep);
+        to_cr(&x, &y);
+        cairo_move_to(cr, x, y);
+        //y = in_bounds.y + half(in_bounds.h);
+        x = in_bounds.x + in_bounds.w + width;
+        to_cr(&x);
+        cairo_line_to(cr, x, y);
+    }
+
+    cairo_stroke(cr);
+
+    // draw posts
+    cairo_set_source_rgb(cr, 0, (221.0 / 255.0), 1);
+    cairo_set_line_width(cr, width);
+    cairo_move_to(cr, in_bounds.x - width, in_bounds.y + half(in_bounds.h) + half(width));
+    cairo_line_to(cr, in_bounds.x - width, in_bounds.y + half(in_bounds.h) - height - half(width));
+    cairo_move_to(cr, in_bounds.x + in_bounds.w + width, in_bounds.y + half(in_bounds.h) + half(width));
+    cairo_line_to(cr, in_bounds.x + in_bounds.w + width, in_bounds.y + half(in_bounds.h) - height - half(width));
+    cairo_stroke(cr);
+
+    // draw top
+    cairo_set_source_rgb(cr, 1, 1, 1);
+    cairo_set_line_width(cr, width);
+    cairo_move_to(cr, in_bounds.x - width + half(width), in_bounds.y + half(in_bounds.h) - height);
+    cairo_line_to(cr, in_bounds.x + in_bounds.w + width - half(width), in_bounds.y + half(in_bounds.h) - height);
+    cairo_stroke(cr);
+
+    // shadow
+    cairo_set_source_rgba(cr, 0, 0, 0, 0.2);
+    cairo_set_line_width(cr, width);
+    cairo_move_to(cr, in_bounds.x - width + half(width), in_bounds.y + half(in_bounds.h));
+    cairo_line_to(cr, in_bounds.x + in_bounds.w + width - half(width), in_bounds.y + half(in_bounds.h));
     cairo_stroke(cr);
 
     canvas.update();

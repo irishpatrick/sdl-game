@@ -36,6 +36,7 @@ int main(int argc, char** argv)
     Opponent opponent;
     Ball ball;
     Court court;
+    Sprite bg;
 
     int scale = 8;
 
@@ -45,6 +46,7 @@ int main(int argc, char** argv)
     ctx.setQuitCallback(&quit_cb);
 
     // load assets
+    Assets::loadTexture(ctx, "assets/default.png");
     Assets::loadTexture(ctx, "assets/ball.png");
     Assets::loadTexture(ctx, "assets/ball_shadow.png");
     Assets::loadTexture(ctx, "assets/player.png");
@@ -54,6 +56,9 @@ int main(int argc, char** argv)
     ball.init(ctx);
     player.init(ctx);
     opponent.init(ctx);
+
+    bg.init(ctx);
+    bg.setTexture(Assets::getTexture("default.png"));
 
     long now;
     long then = SDL_GetTicks();
@@ -125,6 +130,7 @@ int main(int argc, char** argv)
 
         ctx.clear();
 
+        bg.draw(ctx);
         court.draw(ctx);
         opponent.draw(ctx);
         ball.draw(ctx);

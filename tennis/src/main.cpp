@@ -1,3 +1,10 @@
+#ifdef _DEBUG
+#pragma message("debug build")
+#endif
+#ifdef _RELEASE
+#pragma message("release build")
+#endif
+
 #ifdef _WIN32
 #ifdef _DEBUG
 #define _CRTDBG_MAP_ALLOC

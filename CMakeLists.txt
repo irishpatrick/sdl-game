@@ -2,7 +2,17 @@ cmake_minimum_required(VERSION 3.0)
 
 if (MSVC)
 
-set(COMPILE_OPTIONS /DEBUG /W3 /D_DEBUG /MDd /EHsc)
+if (CMAKE_BUILD_TYPE EQUAL Debug)
+
+message(STATUS "DEBUG")
+set(COMPILE_OPTIONS /DEBUG /W3 /D_DEBUG)
+
+elseif (CMAKE_BUILD_TYPE EQUAL Release)
+
+message(STATUS "RELEASE")
+set (COMPILE_OPTIONS /W3 /D_RELEASE /O2)
+
+endif ()
 
 find_package(SDL2 CONFIG REQUIRED)
 find_package(sdl2-image CONFIG REQUIRED)

@@ -56,22 +56,23 @@ void Court::init(Context& ctx)
 
     // draw net
     int stretch = 10;
-    cairo_set_source_rgb(cr, 0.2, 0.2, 0.2);
+    double ratio = 7.5 / 16.0;
+    cairo_set_source_rgb(cr, 0.8, 0.8, 0.8);
     cairo_set_line_width(cr, 4.0);
-    cairo_move_to(cr, in_bounds.x - stretch, in_bounds.y + 7.0 * in_bounds.h / 16.0);
-    cairo_line_to(cr, in_bounds.x + stretch + in_bounds.w, in_bounds.y + 7.0 * in_bounds.h / 16.0);
+    cairo_move_to(cr, in_bounds.x - stretch, in_bounds.y + (in_bounds.h * ratio));
+    cairo_line_to(cr, in_bounds.x + stretch + in_bounds.w, in_bounds.y + (in_bounds.h * ratio));
     cairo_line_to(cr, in_bounds.x + in_bounds.w, in_bounds.y + in_bounds.h / 2.0);
     cairo_line_to(cr, in_bounds.x, in_bounds.y + in_bounds.h / 2);
     cairo_close_path(cr);
 
     cairo_stroke(cr);
 
-    cairo_set_line_width(cr, 2.0);
+    cairo_set_line_width(cr, 1.0);
     int i;
-    int num_h = 8;
+    int num_h = 4;
     int num_v = 20;
-    float m = fabs((in_bounds.y + in_bounds.h / 2.0 - (in_bounds.y + 7.0 * in_bounds.h / 16.0)) / (in_bounds.x - (in_bounds.x - stretch)));
-    float dy = (in_bounds.y + in_bounds.h / 2.0 - (in_bounds.y + 7.0 * in_bounds.h / 16.0));
+    float m = fabs((in_bounds.y + in_bounds.h / 2.0 - (in_bounds.y + (in_bounds.h * ratio))) / (in_bounds.x - (in_bounds.x - stretch)));
+    float dy = (in_bounds.y + in_bounds.h / 2.0 - (in_bounds.y + (in_bounds.h * ratio)));
     for (i = 0; i < num_h; ++i)
     {
         float step = (i + 1) * (dy / (num_h + 1));
@@ -89,7 +90,7 @@ void Court::init(Context& ctx)
         float x = in_bounds.x + step;
         cairo_move_to(cr, x, y);
         x = x + stretch * ((2 * ((float)i / num_v)) - 1.0);
-        y = in_bounds.y + 7.0 * in_bounds.h / 16.0;
+        y = in_bounds.y + (in_bounds.h * ratio);
         cairo_line_to(cr, x, y);
     }
 

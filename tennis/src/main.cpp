@@ -1,19 +1,13 @@
-#ifdef _DEBUG
-#pragma message("debug build")
-#endif
-#ifdef _RELEASE
-#pragma message("release build")
-#endif
-
 #ifdef _WIN32
 #ifdef _DEBUG
-#define _CRTDBG_MAP_ALLOC
+/*#define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
-#include <crtdbg.h>
+#include <crtdbg.h>*/
 #endif
 #endif
 
 #include <iostream>
+#include <cstdlib>
 #include <engine.hpp>
 
 #include "Player.hpp"
@@ -33,10 +27,7 @@ void quit_cb()
 
 int main(int argc, char** argv)
 {
-#ifdef _DEBUG
-    _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
-#endif
-
+    std::cout << "hello world\n";
     // declare game components
     Context ctx;
     Player player;
@@ -59,13 +50,17 @@ int main(int argc, char** argv)
     Assets::loadTexture(ctx, "assets/player.png");
     Assets::loadTexture(ctx, "assets/opponent.png");
 
+    std::cout << "init court\n";
     court.init(ctx);
+    std::cout << "done\n";
     ball.init(ctx);
     player.init(ctx);
     opponent.init(ctx);
 
     bg.init(ctx);
     bg.setTexture(Assets::getTexture("default.png"));
+
+    std::cout << "done\n";
 
     long now;
     long then = SDL_GetTicks();
@@ -138,7 +133,9 @@ int main(int argc, char** argv)
         ctx.clear();
 
         bg.draw(ctx);
+        std::cout << "draw court\n";
         court.draw(ctx);
+        std::cout << "done\n";
         opponent.draw(ctx);
         ball.draw(ctx);
         player.draw(ctx);
@@ -147,14 +144,6 @@ int main(int argc, char** argv)
     }
 
     Assets::destroy();
-
-    char* mem = (char*)malloc(100);
-    new int;
-    //free(mem);
-
-#ifdef _DEBUG
-    _CrtDumpMemoryLeaks();
-#endif
 
     return 0;
 }

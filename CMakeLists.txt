@@ -2,15 +2,15 @@ cmake_minimum_required(VERSION 3.0)
 
 if (MSVC)
 
-if (CMAKE_BUILD_TYPE EQUAL Debug)
+if (_DEBUG)
 
 message(STATUS "DEBUG")
-set(COMPILE_OPTIONS /DEBUG /W3 /D_DEBUG)
+set(COMPILE_OPTIONS /DEBUG /W3 /D_DEBUG /MDd)
 
-elseif (CMAKE_BUILD_TYPE EQUAL Release)
+elseif (_RELEASE)
 
 message(STATUS "RELEASE")
-set (COMPILE_OPTIONS /W3 /D_RELEASE /O2)
+set (COMPILE_OPTIONS /W3 /D_RELEASE /MD)
 
 endif ()
 

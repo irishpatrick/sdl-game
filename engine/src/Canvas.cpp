@@ -139,6 +139,7 @@ namespace engine
 
     void Canvas::destroy()
     {
+        std::cout << "destroy canvas\n";
         if (cr != nullptr)
         {
             cairo_destroy(cr);
@@ -163,5 +164,6 @@ namespace engine
             delete tex;
             tex = nullptr;
         }
+        std::cout << "done\n";
     }
 }

@@ -179,15 +179,17 @@ namespace engine
 
 	void Texture::destroy()
 	{
-        if (surf != nullptr)
-        {
-            SDL_FreeSurface(surf);
-            surf = nullptr;
-        }
+        std::cout << "destroy texture\n";
         if (tex != nullptr)
         {
             SDL_DestroyTexture(tex);
             tex = nullptr;
         }
+        if (surf != nullptr)
+        {
+            SDL_FreeSurface(surf);
+            surf = nullptr;
+        }
+        std::cout << "done\n";
 	}
 }

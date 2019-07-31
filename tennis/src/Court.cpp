@@ -25,10 +25,8 @@ void Court::init(Context& ctx)
 
     in_bounds = BoundingBox(x + w / 10, y + w / 10, w - w / 5, h - w / 5);
 
-    std::cout << "create canvas\n";
     Canvas canvas;
     canvas.create(ctx, ctx.getWidth(), ctx.getHeight());
-    std::cout << "done\n";
 
     // draw court
     cairo_t* cr = canvas.getCairo();
@@ -180,14 +178,9 @@ void Court::init(Context& ctx)
     cairo_line_to(cr, in_bounds.x + in_bounds.w + width - half(width), in_bounds.y + half(in_bounds.h));
     cairo_stroke(cr);
 
-    std::cout << "update canvas\n";
     canvas.update();
-    std::cout << "done\n";
 
-    std::cout << "copy texture\n";
     texture = new Texture(ctx, *canvas.getTexture());
-    std::cout << "done\n";
-    std::cout << "exiting init method\n";
 }
 
 int Court::judge(Ball* ball)

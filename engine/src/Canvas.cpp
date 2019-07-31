@@ -139,7 +139,6 @@ namespace engine
 
     void Canvas::destroy()
     {
-        std::cout << "destroy canvas\n";
         if (cr != nullptr)
         {
             cairo_destroy(cr);
@@ -152,18 +151,10 @@ namespace engine
             cairoSurface = nullptr;
         }
 
-        if (surface != nullptr)
-        {
-            SDL_UnlockSurface(surface);
-            SDL_FreeSurface(surface);
-            surface = nullptr;
-        }
-
         if (tex != nullptr)
         {
             delete tex;
             tex = nullptr;
         }
-        std::cout << "done\n";
     }
 }

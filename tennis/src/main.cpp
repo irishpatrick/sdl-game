@@ -50,17 +50,13 @@ int main(int argc, char** argv)
     Assets::loadTexture(ctx, "assets/player.png");
     Assets::loadTexture(ctx, "assets/opponent.png");
 
-    std::cout << "init court\n";
     court.init(ctx);
-    std::cout << "done\n";
     ball.init(ctx);
     player.init(ctx);
     opponent.init(ctx);
 
     bg.init(ctx);
     bg.setTexture(Assets::getTexture("default.png"));
-
-    std::cout << "done\n";
 
     long now;
     long then = SDL_GetTicks();
@@ -133,9 +129,7 @@ int main(int argc, char** argv)
         ctx.clear();
 
         bg.draw(ctx);
-        std::cout << "draw court\n";
         court.draw(ctx);
-        std::cout << "done\n";
         opponent.draw(ctx);
         ball.draw(ctx);
         player.draw(ctx);

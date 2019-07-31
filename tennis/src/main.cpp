@@ -14,6 +14,8 @@
 #include "Opponent.hpp"
 #include "Ball.hpp"
 #include "Court.hpp"
+#include "Stats.hpp"
+#include "Scoreboard.hpp"
 
 
 using namespace engine;
@@ -27,7 +29,7 @@ void quit_cb()
 
 int main(int argc, char** argv)
 {
-    std::cout << "hello world\n";
+    Stats stats;
     // declare game components
     Context ctx;
     Player player;
@@ -35,6 +37,7 @@ int main(int argc, char** argv)
     Ball ball;
     Court court;
     Sprite bg;
+    Scoreboard board;
 
     int scale = 8;
 
@@ -114,8 +117,18 @@ int main(int argc, char** argv)
 
         opponent.process(&ball);
 
-        player.checkAndHit(court.getBounds(), &ball);
-        opponent.checkAndHit(court.getBounds(), &ball);
+        int success = 0;
+        success = player.checkAndHit(court.getBounds(), &ball);
+        success = opponent.checkAndHit(court.getBounds(), &ball);
+
+        if (success)
+        {
+            stats.recordVolley();
+        }
+        else
+        {
+            stats.resetVolley();
+        }
 
         court.judge(&ball);
 

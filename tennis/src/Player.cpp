@@ -24,31 +24,12 @@ BoundingBox Player::getBoundingBox()
     return BoundingBox(x + hitbox.x, y + hitbox.y, hitbox.w, hitbox.h);
 }
 
-void Player::checkAndHit(BoundingBox& box, Ball* ball)
+int Player::checkAndHit(BoundingBox& box, Ball* ball)
 {
     if (Util::checkIntersect(getBoundingBox(), ball->getBoundingBox()))
     {
-        /*float side = getBoundingBox().center().x - ball->getBoundingBox().center().x;
-        float dx, dy;
-
-        if (ball->y < box.h / 2)
-        {
-            dy = box.h - ball->y;
-        }
-        else if (ball->y > box.h / 2)
-        {
-            dy = ball->y;
-        }
-
-        if (side > 0) // left
-        {
-            dx = ball->x;
-        }
-        else if (side < 0) // right
-        {
-            dx = box.h - ball->x;
-        }*/
-
         ball->bounce(box, this);
+        return 1;
     }
+    return 0;
 }

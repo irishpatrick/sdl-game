@@ -59,7 +59,7 @@ void Ball::bounce(BoundingBox& box, Player* player)
     xvel = speed * sinf(phi_max * glance);
     yvel = -1.0f * (yvel / fabsf(yvel)) * speed * cosf(phi_max * glance);
     
-    dtheta = Random::randint(-20, 20) * 10;
+    dtheta = Random::randint(-3, 3);
 }
 
 void Ball::serve(Context& ctx, Player* p)
@@ -108,16 +108,15 @@ void Ball::update(Context& ctx, float delta)
         yvel = 0;
     }
 
-    x += xvel * delta;
-    y += yvel * delta;
-    theta += dtheta * delta;
-
+    x += xvel;
+    y += yvel;
+    theta += dtheta;
     shadow.x = x + (sqrtf(height)) / 2;
     shadow.y = y + (sqrtf(height)) / 2;
 }
 
-void Ball::draw(Context& ctx)
+void Ball::draw(Context& ctx, float e)
 {
-    shadow.draw(ctx);
-    Sprite::draw(ctx);
+    shadow.draw(ctx, e);
+    Sprite::draw(ctx, e);
 }

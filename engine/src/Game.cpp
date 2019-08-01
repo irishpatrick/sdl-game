@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include <SDL.h>
 
 namespace engine
 {
@@ -21,11 +22,16 @@ namespace engine
 
 	void Game::mainLoop()
 	{
-
+        /*double current = SDL_GetTicks();
+        double elapsed = current - previous;
+        previous = current;
+        lag += elapsed;*/
     }
 
     void Game::run()
     {
+        //previous = SDL_GetTicks();
+        //lag = 0.0;
         while (running)
         {
             mainLoop();

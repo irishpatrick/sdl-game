@@ -165,41 +165,60 @@ namespace engine
 
     void Sprite::draw(Context& ctx)
     {
-        drawChildren(ctx);
         if (!visible) return;
-
-		if (texture == nullptr)
-		{
-			std::cout << "error, texture is null" << std::endl;
-			return;
-		}
+        drawChildren(ctx);
+        if (texture == nullptr)
+        {
+	    std::cout << "error, texture is null" << std::endl;
+	    return;
+        }
 
         SDL_Rect rect;
-		if (parent != nullptr)
+	if (parent != nullptr)
         {
-			rect.x = x + parent->getScreenX();
-			rect.y = y + parent->getScreenY();
-		}
-		else if (camera != nullptr) 
+            rect.x = x + parent->getScreenX();
+	    rect.y = y + parent->getScreenY();
+        }
+	else if (camera != nullptr) 
         {
             if (!isOnScreen(camera))
             {
                 return;
             }
-			rect.x = x + camera->x;
-			rect.y = y + camera->y;
-		}
-		else
+	    rect.x = x + camera->x;
+	    rect.y = y + camera->y;
+	}
+	else
         {
-			rect.x = x;
-			rect.y = y;
-		}
+	    rect.x = x;
+	    rect.y = y;
+	}
+
         rect.w = w * scale_x;
         rect.h = h * scale_y;
 
-		SDL_RenderCopyEx(ctx.getRenderer(), texture->use(), nullptr, &rect, theta, NULL, SDL_FLIP_NONE);
+        SDL_RenderCopyEx(
+                ctx.getRenderer(), 
+                texture->use(), 
+                nullptr, 
+                &rect, 
+                theta, 
+                NULL, 
+                SDL_FLIP_NONE);
     }
 
+    void Sprite::draw(Context& ctx, float e)
+    {
+        if (!visible) return;
+        drawChildren(ctx);
+        SDL_Rect r;
+        r.x = x + (xvel * e);
+        r.y = y + (yvel * e);
+        r.w = w * scale_x;
+        r.h = h * scale_y;
+
+        SDL_RenderCopyEx(ctx.getRenderer(), texture->use(), nullptr, &r, theta, NULL, SDL_FLIP_NONE);
+    }
 	void Sprite::draw(Context& ctx, Camera& c)
 	{
         drawChildren(ctx, c);

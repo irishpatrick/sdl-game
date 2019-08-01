@@ -5,6 +5,7 @@
 #include "CairoUtil.hpp"
 #include "Camera.hpp"
 #include "Canvas.hpp"
+#include "Clock.hpp"
 #include "Context.hpp"
 #include "Debugger.hpp"
 #include "Font.hpp"

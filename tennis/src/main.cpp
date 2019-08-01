@@ -1,11 +1,3 @@
-#ifdef _WIN32
-#ifdef _DEBUG
-/*#define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
-#include <crtdbg.h>*/
-#endif
-#endif
-
 #include <iostream>
 #include <cstdlib>
 #include <engine.hpp>
@@ -16,7 +8,6 @@
 #include "Court.hpp"
 #include "Stats.hpp"
 #include "Scoreboard.hpp"
-
 
 using namespace engine;
 
@@ -29,8 +20,8 @@ void quit_cb()
 
 int main(int argc, char** argv)
 {
+    Clock clock;
     Stats stats;
-    // declare game components
     Context ctx;
     Player player;
     Opponent opponent;
@@ -66,11 +57,11 @@ int main(int argc, char** argv)
     float delta;
 
     // main loop
+    clock.start();
     while (running)
     {
-        now = SDL_GetTicks();
-        delta = (now - then) / 1000.0f;
-        then = now;
+        clock.tick();
+        float delta = 10.0 / 1000.0;
 
         ctx.pollEvents();
 
@@ -86,66 +77,74 @@ int main(int argc, char** argv)
             quit_cb();
         }
 
-        if (ball.isVisible())
+        while (clock.hasLag())
         {
-            if (left && right)
+            if (ball.isVisible())
             {
+                if (left && right)
+                {
 
+                }
+                else if (left)
+                {
+                    player.left(delta);
+                }
+                else if (right)
+                {
+                    player.right(delta);
+                }
             }
-            else if (left)
+            else
             {
-                player.left(delta);
+                player.x = ctx.getWidth() / 2 - player.w / 2;
+                opponent.x = ctx.getWidth() / 2 - opponent.w / 2;
+
+                if (space)
+                {
+                    ball.serve(ctx, &player);
+                }
             }
-            else if (right)
+
+            court.contain(&player);
+            court.contain(&opponent);
+
+            opponent.process(&ball);
+
+            int success = 0;
+            success = player.checkAndHit(court.getBounds(), &ball);
+            success = opponent.checkAndHit(court.getBounds(), &ball);
+
+            if (success)
             {
-                player.right(delta);
+                stats.recordVolley();
             }
-        }
-        else
-        {
-            player.x = ctx.getWidth() / 2 - player.w / 2;
-            opponent.x = ctx.getWidth() / 2 - opponent.w / 2;
-
-            if (space)
+            else
             {
-                ball.serve(ctx, &player);
+                stats.resetVolley();
             }
+
+            court.judge(&ball);
+
+            court.update(ctx, delta);
+            player.update(delta);
+            opponent.update(delta);
+            ball.setShadow(ctx);
+            ball.update(ctx, delta);
+
+            //std::cout << "tick\n";
+
+            clock.lagTick();
         }
-
-        court.contain(&player);
-        court.contain(&opponent);
-
-        opponent.process(&ball);
-
-        int success = 0;
-        success = player.checkAndHit(court.getBounds(), &ball);
-        success = opponent.checkAndHit(court.getBounds(), &ball);
-
-        if (success)
-        {
-            stats.recordVolley();
-        }
-        else
-        {
-            stats.resetVolley();
-        }
-
-        court.judge(&ball);
-
-        court.update(ctx, delta);
-        player.update(delta);
-        opponent.update(delta);
-        ball.setShadow(ctx);
-        ball.update(ctx, delta);
-
 
         ctx.clear();
 
-        bg.draw(ctx);
-        court.draw(ctx);
-        opponent.draw(ctx);
-        ball.draw(ctx);
-        player.draw(ctx);
+        double e = clock.extrapolate();
+
+        bg.draw(ctx, e);
+        court.draw(ctx, e);
+        opponent.draw(ctx, e);
+        ball.draw(ctx, e);
+        player.draw(ctx, e);
 
         ctx.render();
     }

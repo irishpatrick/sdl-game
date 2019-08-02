@@ -68,6 +68,12 @@ namespace engine
         updateChildren(delta);
 	}
 
+    void Sprite::update()
+    {
+        x += xvel;
+        y += yvel;
+    }
+
     void Sprite::update(Context& ctx, float delta)
     {
         update(delta);

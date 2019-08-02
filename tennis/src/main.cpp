@@ -18,6 +18,9 @@ void quit_cb()
     running = 0;
 }
 
+#ifdef main
+#undef main
+#endif
 int main(int argc, char** argv)
 {
     Clock clock;
@@ -27,7 +30,6 @@ int main(int argc, char** argv)
     Opponent opponent;
     Ball ball;
     Court court;
-    Sprite bg;
     Scoreboard board;
 
     int scale = 8;
@@ -38,30 +40,25 @@ int main(int argc, char** argv)
     ctx.setQuitCallback(&quit_cb);
 
     // load assets
-    Assets::loadTexture(ctx, "assets/default.png");
     Assets::loadTexture(ctx, "assets/ball.png");
     Assets::loadTexture(ctx, "assets/ball_shadow.png");
-    Assets::loadTexture(ctx, "assets/player.png");
-    Assets::loadTexture(ctx, "assets/opponent.png");
+    Assets::loadTexture(ctx, "assets/cat1.png");
+    Assets::loadTexture(ctx, "assets/cat2.png");
 
     court.init(ctx);
     ball.init(ctx);
     player.init(ctx);
     opponent.init(ctx);
 
-    bg.init(ctx);
-    bg.setTexture(Assets::getTexture("default.png"));
-
     long now;
     long then = SDL_GetTicks();
-    float delta;
+    float delta = 1.0;
 
     // main loop
     clock.start();
     while (running)
     {
         clock.tick();
-        float delta = 10.0 / 1000.0;
 
         ctx.pollEvents();
 
@@ -87,11 +84,11 @@ int main(int argc, char** argv)
                 }
                 else if (left)
                 {
-                    player.left(delta);
+                    player.left();
                 }
                 else if (right)
                 {
-                    player.right(delta);
+                    player.right();
                 }
             }
             else
@@ -102,6 +99,7 @@ int main(int argc, char** argv)
                 if (space)
                 {
                     ball.serve(ctx, &player);
+                    opponent.calculate(&ball);
                 }
             }
 
@@ -112,6 +110,11 @@ int main(int argc, char** argv)
 
             int success = 0;
             success = player.checkAndHit(court.getBounds(), &ball);
+            if (success)
+            {
+                opponent.calculate(&ball);
+            }
+
             success = opponent.checkAndHit(court.getBounds(), &ball);
 
             if (success)
@@ -126,12 +129,10 @@ int main(int argc, char** argv)
             court.judge(&ball);
 
             court.update(ctx, delta);
-            player.update(delta);
-            opponent.update(delta);
+            player.update();
+            opponent.update();
             ball.setShadow(ctx);
             ball.update(ctx, delta);
-
-            //std::cout << "tick\n";
 
             clock.lagTick();
         }
@@ -140,7 +141,6 @@ int main(int argc, char** argv)
 
         double e = clock.extrapolate();
 
-        bg.draw(ctx, e);
         court.draw(ctx, e);
         opponent.draw(ctx, e);
         ball.draw(ctx, e);

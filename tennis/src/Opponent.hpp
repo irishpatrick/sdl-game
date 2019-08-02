@@ -10,15 +10,15 @@ using namespace engine;
 class Opponent : public Player
 {
 public:
-    Opponent() :
-        dir(0)
+    Opponent()
     {}
     ~Opponent() {}
 
     void init(Context& ctx);
+    void calculate(Ball*);
     void process(Ball*);
-    void update(float) override;
+    //int checkAndHit(BoundingBox&, Ball*) override;
 
 private:
-    int dir;
+    float target;
 };

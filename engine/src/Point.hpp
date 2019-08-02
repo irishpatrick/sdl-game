@@ -9,12 +9,12 @@ class Point
 {
 public:
 	CORE_API Point();
-	CORE_API Point(float, float);
+	CORE_API Point(double, double);
 
-	CORE_API void set(float, float);
+	CORE_API void set(double, double);
 
-    float x;
-    float y;
+    double x;
+    double y;
 };
 
 }

@@ -113,6 +113,7 @@ void Ball::update(Context& ctx, float delta)
     theta += dtheta;
     shadow.x = x + (sqrtf(height)) / 2;
     shadow.y = y + (sqrtf(height)) / 2;
+    shadow.yvel = yvel;
 }
 
 void Ball::draw(Context& ctx, float e)

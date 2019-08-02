@@ -14,12 +14,15 @@ public:
 
     void init(Context&);
 
-    void left(float);
-    void right(float);
+    void left();
+    void right();
+    void update() override;
     BoundingBox getBoundingBox();
-    int checkAndHit(BoundingBox&, Ball*);
+    BoundingBox getRelativeBoundingBox();
+    virtual int checkAndHit(BoundingBox&, Ball*);
 
 protected:
-    float speed = 200;
+    float speed = 3;
+    int dir = 0;
     BoundingBox hitbox;
 };

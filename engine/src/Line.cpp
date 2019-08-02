@@ -7,7 +7,7 @@ namespace engine {
 		b = 0.0f;
 	}
 
-	Line::Line(float x1, float y1, float x2, float y2) {
+	Line::Line(double x1, double y1, double x2, double y2) {
 		m = (y2 - y1) / (x2 - x1);
 		b = y1 - (m * x1);
 	}
@@ -16,8 +16,19 @@ namespace engine {
 
 	}
 
-	float Line::solve(float x) {
+	double Line::solve(double x) {
 		return m * x + b;
 	}
+
+    double Line::solveInverse(double y)
+    {
+        return (y - b) / m;
+    }
+
+    void Line::fit(Point q, Point r)
+    {
+        m = (r.y - q.y) / (r.x - q.x);
+        b = q.y - m * q.x;
+    }
 
 }

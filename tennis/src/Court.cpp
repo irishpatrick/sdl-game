@@ -206,13 +206,15 @@ void Court::update(Context& ctx, float delta)
 
 void Court::contain(Player* p)
 {
-    if (p->x < 0)
+    BoundingBox b = p->getBoundingBox();
+    BoundingBox rb = p->getRelativeBoundingBox();
+    if (b.x < 0)
     {
-        p->x = 0;
+        p->x = -rb.x;
     }
-    else if (p->x + p->w > w)
+    else if (b.x + b.w > w)
     {
-        p->x = w - p->w;
+        p->x = w - b.w - rb.x;
     }
 }
 

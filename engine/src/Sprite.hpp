@@ -42,6 +42,7 @@ namespace engine
         CORE_API virtual void drawChildren(Context&, Camera&);
         CORE_API void ResetCollision();
     	CORE_API virtual void update(float);
+        CORE_API virtual void update();
         CORE_API virtual void update(Context&, float);
         CORE_API void setSpeed(float);
     	CORE_API void queryTexture();

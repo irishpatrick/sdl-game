@@ -2,18 +2,18 @@
 
 namespace engine
 {
-	Point::Point(): Point(0.0f,0.0f)
+	Point::Point(): Point(0.0,0.0)
 	{
 
 	}
 
-	Point::Point(float a, float b)
+	Point::Point(double a, double b)
 	{
 		x = a;
 		y = b;
 	}
 
-	void Point::set(float a, float b)
+	void Point::set(double a, double b)
 	{
 		x = a;
 		y = b;

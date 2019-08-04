@@ -1,6 +1,9 @@
 #include "Clock.hpp"
 #include <SDL.h>
 #include <iostream>
+#include <chrono>
+
+namespace chrono = std::chrono;
 
 namespace engine
 {
@@ -52,5 +55,17 @@ namespace engine
     bool Clock::hasLag()
     {
         return lag >= updateInterval;
+    }
+
+    long Clock::getMillis()
+    {
+        return SDL_GetTicks();
+    }
+
+    long Clock::getNano()
+    {
+        auto n = chrono::high_resolution_clock::now();
+        auto duration = n.time_since_epoch();
+        return (long)chrono::duration_cast<chrono::nanoseconds>(duration).count();
     }
 }

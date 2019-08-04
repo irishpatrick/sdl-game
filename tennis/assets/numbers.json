@@ -1,0 +1,10 @@
+{
+    "dataFormat": "compact",
+    "texture": "numbers.png",
+    "frameList": [
+        [ 0, 0, 64, 64 ],
+        [ 65, 0, 64, 64 ]
+    ],
+    "animations": [],
+    "default":  "null"
+}

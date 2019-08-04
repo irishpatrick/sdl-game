@@ -44,15 +44,13 @@ int main(int argc, char** argv)
     Assets::loadTexture(ctx, "assets/ball_shadow.png");
     Assets::loadTexture(ctx, "assets/cat1.png");
     Assets::loadTexture(ctx, "assets/cat2.png");
+    Assets::loadTexture(ctx, "assets/numbers.png");
 
     court.init(ctx);
     ball.init(ctx);
     player.init(ctx);
     opponent.init(ctx);
-
-    long now;
-    long then = SDL_GetTicks();
-    float delta = 1.0;
+    board.init(ctx);
 
     // main loop
     clock.start();
@@ -128,11 +126,10 @@ int main(int argc, char** argv)
 
             court.judge(&ball);
 
-            court.update(ctx, delta);
             player.update();
             opponent.update();
             ball.setShadow(ctx);
-            ball.update(ctx, delta);
+            ball.update(ctx);
 
             clock.lagTick();
         }

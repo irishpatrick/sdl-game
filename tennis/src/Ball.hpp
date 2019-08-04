@@ -9,9 +9,9 @@ using namespace engine;
 class Ball : public Sprite
 {
 public:
-    Ball() : 
+    Ball() :
         dtheta(0),
-        speed(6),
+        speed(7),
         height(0.0f)
     {}
     ~Ball() {}
@@ -20,7 +20,7 @@ public:
     //BoundingBox getBoundingBox();
     void bounce(BoundingBox&, Player*);
     void setShadow(Context&);
-    void update(Context&, float);
+    void update(Context&);
     void draw(Context&, float);
     void serve(Context&, Player*);
 

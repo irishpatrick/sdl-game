@@ -22,7 +22,7 @@ public:
     virtual int checkAndHit(BoundingBox&, Ball*);
 
 protected:
-    float speed = 2.2;
+    float speed = 2;
     int dir = 0;
     BoundingBox hitbox;
 };

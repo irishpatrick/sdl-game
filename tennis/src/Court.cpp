@@ -31,7 +31,7 @@ void Court::init(Context& ctx)
     // draw court
     cairo_t* cr = canvas.getCairo();
     cairo_surface_t* surf = canvas.getCairoSurface();
-    
+
     // background
     cairo_set_source_rgb(cr, 0.208, 0.671, 0.357);
     cairo_rectangle(cr, 0, 0, ctx.getWidth(), ctx.getHeight());
@@ -41,25 +41,25 @@ void Court::init(Context& ctx)
     cairo_set_source_rgb(cr, 1.0, 1.0, 1.0);
     cairo_set_line_width(cr, 4.0);
     cairo_rectangle(cr, in_bounds.x, in_bounds.y, in_bounds.w, in_bounds.h);
-    
+
     // center line
-    /*cairo_move_to(cr, 
-        (double)(in_bounds.x), 
+    /*cairo_move_to(cr,
+        (double)(in_bounds.x),
         (double)in_bounds.y + in_bounds.h / 2.0f
     );
 
-    cairo_line_to(cr, 
-        (double)in_bounds.x + in_bounds.w, 
+    cairo_line_to(cr,
+        (double)in_bounds.x + in_bounds.w,
         (double)in_bounds.y + in_bounds.h / 2.0f
     );*/
 
-    cairo_rectangle(cr, 
-        (double)in_bounds.x, 
-        (double)in_bounds.y + 3.0f * in_bounds.h / 16.0f, 
-        (double)in_bounds.w, 
+    cairo_rectangle(cr,
+        (double)in_bounds.x,
+        (double)in_bounds.y + 3.0f * in_bounds.h / 16.0f,
+        (double)in_bounds.w,
         (double)10.0f * in_bounds.h / 16.0f
     );
-    
+
     cairo_move_to(cr,
         (double)in_bounds.x + half(in_bounds.w),
         (double)in_bounds.y + 3 * in_bounds.h / 16.0f
@@ -199,7 +199,7 @@ int Court::judge(Ball* ball)
     return 0;
 }
 
-void Court::update(Context& ctx, float delta)
+void Court::update(Context& ctx)
 {
 
 }

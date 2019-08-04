@@ -58,7 +58,7 @@ void Ball::bounce(BoundingBox& box, Player* player)
 
     xvel = speed * sinf(phi_max * glance);
     yvel = -1.0f * (yvel / fabsf(yvel)) * speed * cosf(phi_max * glance);
-    
+
     dtheta = Random::randint(-3, 3);
 }
 
@@ -98,7 +98,7 @@ void Ball::setShadow(Context& ctx)
     //height = fminf(height, 10000);
 }
 
-void Ball::update(Context& ctx, float delta)
+void Ball::update(Context& ctx)
 {
     visible = Util::checkIntersect(getBoundingBox(), ctx.getBoundingBox());
     shadow.setVisible(visible);

@@ -125,9 +125,38 @@ namespace engine
 		running = true;
 	}
 
+    void KeyFrameSprite::setCurrentFrame(int frame)
+    {
+        running = false;
+        currentFrame = frame;
+    }
+
 	void KeyFrameSprite::update(float delta)
 	{
 		Sprite::update(delta);
+
+		if (!running || !initialized)
+		{
+			return;
+		}
+
+		if (animations[currentAnim].length == 0)
+		{
+
+		}
+		else if (timer.tick())
+		{
+			if (currentFrame + 1 == animations[currentAnim].length)
+			{
+				running = repeat;
+			}
+			currentFrame = (currentFrame + 1) % animations[currentAnim].length;
+		}
+	}
+
+    void KeyFrameSprite::update()
+	{
+		Sprite::update();
 
 		if (!running || !initialized)
 		{
@@ -182,6 +211,6 @@ namespace engine
 			dst.h = (int)cf->h;
 
 			SDL_RenderCopy(ctx.getRenderer(), texture->use(), &src, &dst);
-		}		
+		}
 	}
 }

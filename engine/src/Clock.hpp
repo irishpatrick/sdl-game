@@ -18,10 +18,13 @@ namespace engine
         void start();
         void tick();
         void lagTick();
-        
+
         double getDelta();
         double getLag();
         double extrapolate();
+
+        static long getMillis();
+        static long getNano();
 
         bool hasLag();
 

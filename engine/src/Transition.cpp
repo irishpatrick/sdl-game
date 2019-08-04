@@ -1,6 +1,7 @@
 #include "Transition.hpp"
 #include "Util.hpp"
 #include "Context.hpp"
+#include "Clock.hpp"
 #include <SDL2/SDL.h>
 #include <cmath>
 #include <iostream>
@@ -59,7 +60,7 @@ namespace engine
 		{
 			running = true;
 			duration = (double)(d * 1e6);
-			start = Timer::getNanoTime();
+			start = Clock::getNano();
 			fade = FADE_OUT;
 			timer.start();
 		}
@@ -72,7 +73,7 @@ namespace engine
 		{
 			running = true;
 			duration = (double)(d * 1e6);
-			start = Timer::getNanoTime();
+			start = Clock::getNano();
 			fade = FADE_IN;
 			timer.start();
 		}

@@ -10,7 +10,7 @@ namespace engine
 {
 	typedef struct _Frame
 	{
-		float x;
+        float x;
 		float y;
 		int w;
 		int h;
@@ -41,27 +41,18 @@ namespace engine
 		}
 
 		~KeyFrameSprite()
-		{
-			/*if (animations != nullptr)
-			{
-				free(animations);
-			}
-			if (frameRef != nullptr)
-			{
-				free(frameRef);
-			}*/
-		}
+		{}
 
         using Sprite::init;
 		CORE_API void init(Context&, const std::string&);
 		CORE_API void setCurrentAnimation(const std::string&, bool);
+        CORE_API void setCurrentFrame(int);
 		CORE_API void update(float);
+        CORE_API void update();
 		CORE_API void draw(Context&);
 		CORE_API void stop();
 
 	private:
-		//Anim* animations;
-		//Frame* frameRef;
 		std::vector<Anim> animations;
 		std::vector<Frame> frameRef;
 		int currentAnim;

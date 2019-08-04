@@ -56,7 +56,7 @@ namespace engine
 
 	void Sprite::init(Context*)
 	{
-		
+
 	}
 
 	void Sprite::update(float delta)
@@ -72,6 +72,8 @@ namespace engine
     {
         x += xvel;
         y += yvel;
+
+        updateChildren();
     }
 
     void Sprite::update(Context& ctx, float delta)
@@ -129,6 +131,14 @@ namespace engine
         }
     }
 
+    void Sprite::updateChildren()
+    {
+        for (auto & e : children)
+        {
+            e->update();
+        }
+    }
+
 	std::string Sprite::getUUID()
     {
 		if (uuid_str == "") {
@@ -163,7 +173,7 @@ namespace engine
 		collision_ = nullptr;
 	}
 
-	void Sprite::queryTexture() 
+	void Sprite::queryTexture()
     {
 		w = texture->getW();
 		h = texture->getH();
@@ -185,7 +195,7 @@ namespace engine
             rect.x = x + parent->getScreenX();
 	    rect.y = y + parent->getScreenY();
         }
-	else if (camera != nullptr) 
+	else if (camera != nullptr)
         {
             if (!isOnScreen(camera))
             {
@@ -204,12 +214,12 @@ namespace engine
         rect.h = h * scale_y;
 
         SDL_RenderCopyEx(
-                ctx.getRenderer(), 
-                texture->use(), 
-                nullptr, 
-                &rect, 
-                theta, 
-                NULL, 
+                ctx.getRenderer(),
+                texture->use(),
+                nullptr,
+                &rect,
+                theta,
+                NULL,
                 SDL_FLIP_NONE);
     }
 
@@ -225,6 +235,20 @@ namespace engine
 
         SDL_RenderCopyEx(ctx.getRenderer(), texture->use(), nullptr, &r, theta, NULL, SDL_FLIP_NONE);
     }
+
+    void Sprite::draw(Context& ctx, float e, Point offset)
+    {
+        if (!visible) return;
+        drawChildren(ctx);
+        SDL_Rect r;
+        r.x = offset.x + x + (xvel * e);
+        r.y = offset.y + y + (yvel * e);
+        r.w = w * scale_x;
+        r.h = h * scale_y;
+
+        SDL_RenderCopyEx(ctx.getRenderer(), texture->use(), nullptr, &r, theta, NULL, SDL_FLIP_NONE);
+    }
+
 	void Sprite::draw(Context& ctx, Camera& c)
 	{
         drawChildren(ctx, c);
@@ -258,7 +282,7 @@ namespace engine
     {
         for (auto& e : children)
         {
-            e->draw(ctx);
+            e->draw(ctx, 0.0f, Point(x, y));
         }
     }
 
@@ -267,6 +291,14 @@ namespace engine
         for (auto& e : children)
         {
             e->draw(ctx, cam);
+        }
+    }
+
+    void Sprite::drawChildren(Context& ctx, float ex, Point offset)
+    {
+        for (auto& e : children)
+        {
+            e->draw(ctx, ex, offset);
         }
     }
 

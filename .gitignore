@@ -2,6 +2,8 @@
 CMakeSettings.json
 build/
 winbuild/
+debug/
+release/
 .vs/
 .vscode/
 node_modules/

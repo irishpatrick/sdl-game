@@ -39,7 +39,11 @@ set(LIBS
 
 elseif (UNIX)
 
-set(COMPILE_OPTIONS -std=c++11 -g -Wall)
+if (_DEBUG)
+    set(COMPILE_OPTIONS -std=c++11 -g -Wall)
+elseif(_RELEASE)
+    set(COMPILE_OPTIONS -std=c++11 -O2 -Wall)
+endif()
 
 find_package(PkgConfig)
 
@@ -55,7 +59,7 @@ set(INCL
     ${CAIRO_INCLUDE_DIRS})
 
 set(LIBS
-    ${SDL2_LIBRARIES} 
+    ${SDL2_LIBRARIES}
     ${SDL2_IMAGE_LIBRARIES}
     ${SDL2_TTF_LIBRARIES}
     ${CAIRO_LIBRARIES}

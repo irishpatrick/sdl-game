@@ -14,11 +14,6 @@ void Ball::init(Context& ctx)
     setBoundingBox(w / 4, h / 4, w / 2, h / 2);
 }
 
-/*BoundingBox Ball::getBoundingBox()
-{
-    //return BoundingBox(x, y, w, h);
-}*/
-
 void Ball::bounce(BoundingBox& box, Player* player)
 {
     float cx = box.x + box.w / 2;
@@ -66,19 +61,16 @@ void Ball::serve(Context& ctx, Player* p)
 {
     visible = true;
     xvel = 0;
-    //x = ctx.getWidth() / 2;
     xvel = 0;
 
     if (p->y > ctx.getHeight() / 2)
     {
         yvel = -speed;
-        //y = ctx.getHeight() * (2.0f / 3.0f);
         y = p->y - h;
     }
     else if (p->y < ctx.getHeight() / 2)
     {
         yvel = speed;
-        //y = ctx.getHeight() * (1.0f / 3.0f);
         y = p->y + p->h;
     }
 
@@ -113,7 +105,7 @@ void Ball::update(Context& ctx)
     theta += dtheta;
     shadow.x = x + (sqrtf(height)) / 2;
     shadow.y = y + (sqrtf(height)) / 2;
-    shadow.yvel = yvel;
+    shadow.yvel = yvel; // kind of a hack
 }
 
 void Ball::draw(Context& ctx, float e)

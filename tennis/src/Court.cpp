@@ -42,17 +42,6 @@ void Court::init(Context& ctx)
     cairo_set_line_width(cr, 4.0);
     cairo_rectangle(cr, in_bounds.x, in_bounds.y, in_bounds.w, in_bounds.h);
 
-    // center line
-    /*cairo_move_to(cr,
-        (double)(in_bounds.x),
-        (double)in_bounds.y + in_bounds.h / 2.0f
-    );
-
-    cairo_line_to(cr,
-        (double)in_bounds.x + in_bounds.w,
-        (double)in_bounds.y + in_bounds.h / 2.0f
-    );*/
-
     cairo_rectangle(cr,
         (double)in_bounds.x,
         (double)in_bounds.y + 3.0f * in_bounds.h / 16.0f,
@@ -72,7 +61,7 @@ void Court::init(Context& ctx)
 
     cairo_stroke(cr);
 
-    // draw net
+    // old net
     /*int stretch = 10;
     double ratio = 7.5 / 16.0;
     cairo_set_source_rgb(cr, 0.5, 0.5, 0.5);
@@ -116,7 +105,7 @@ void Court::init(Context& ctx)
     cairo_stroke(cr);
     */
 
-    // draw other net
+    // new net
     float height = 30;
     float width = height / 4;
 

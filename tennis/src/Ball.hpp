@@ -17,7 +17,6 @@ public:
     ~Ball() {}
 
     void init(Context&);
-    //BoundingBox getBoundingBox();
     void bounce(BoundingBox&, Player*);
     void setShadow(Context&);
     void update(Context&);

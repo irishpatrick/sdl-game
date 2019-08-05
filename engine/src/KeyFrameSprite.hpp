@@ -32,7 +32,7 @@ namespace engine
 			// dynamically allocated
 			//animations = nullptr;
 			//frameRef = nullptr;
-			numAnimations = 0;
+			numAnimations = -1;
 
 			currentAnim = -1;
 			currentFrame = 0;
@@ -54,7 +54,7 @@ namespace engine
 
 	private:
 		std::vector<Anim> animations;
-		std::vector<Frame> frameRef;
+		std::vector<Frame> frames;
 		int currentAnim;
 		int numAnimations;
 		int currentFrame;

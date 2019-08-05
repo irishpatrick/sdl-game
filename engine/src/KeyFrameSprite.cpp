@@ -22,22 +22,29 @@ namespace engine
 
 		std::string fmt = o["dataFormat"].get<std::string>();
 		bool verboseFormat = fmt == "verbose";
-		//std::cout << verboseFormat << std::endl;
 
+		// required field
 		setTexture(Assets::getTexture(o["texture"].get<std::string>()));
-		numAnimations = o["animations"].size();
-		int numFrames = o["frameList"].size();
-		animations = std::vector<Anim>(numAnimations);
-		frameRef = std::vector<Frame>(numFrames);
-		currentAnim = 0;
-		int n;
 
-		n = 0;
+		// not required
+		if (o.find("animations") != o.end())
+		{
+			numAnimations = o["animations"].size();
+			animations = std::vector<Anim>(numAnimations);
+		}
+
+		// required field
+		int numFrames = o["frameList"].size();
+		frames = std::vector<Frame>(numFrames);
+
+		currentAnim = 0;
+
+		int n = 0;
 		if (verboseFormat)
 		{
 			for (auto& e : o["frameList"])
 			{
-				Frame* c = &frameRef[n++];
+				Frame* c = &frames[n++];
 				c->x = e["x"];
 				c->y = e["y"];
 				c->w = e["w"];
@@ -48,7 +55,7 @@ namespace engine
 		{
 			for (auto& e : o["frameList"])
 			{
-				Frame* c = &frameRef[n++];
+				Frame* c = &frames[n++];
 				c->x = e[0];
 				c->y = e[1];
 				c->w = e[2];
@@ -59,36 +66,39 @@ namespace engine
 		try
 		{
 			n = 0;
-			if (verboseFormat)
+			if (numAnimations > 0)
 			{
-				for (auto& e : o["animations"])
+				if (verboseFormat)
 				{
-					Anim* c = &animations[n++];
-					c->name = (char*)malloc(e["name"].get<std::string>().size());
-					// leak
-					strcpy(c->name, e["name"].get<std::string>().c_str());
-					c->fps = e["fps"];
-					c->length = e["length"];
-					c->frames = (int*)malloc(sizeof(int) * c->length);
-					for (int i = 0; i < c->length; i++)
+					for (auto& e : o["animations"])
 					{
-						c->frames[i] = e["frames"][i];
+						Anim* c = &animations[n++];
+						c->name = (char*)malloc(e["name"].get<std::string>().size());
+						// leak
+						strcpy(c->name, e["name"].get<std::string>().c_str());
+						c->fps = e["fps"];
+						c->length = e["length"];
+						c->frames = (int*)malloc(sizeof(int) * c->length);
+						for (int i = 0; i < c->length; i++)
+						{
+							c->frames[i] = e["frames"][i];
+						}
 					}
 				}
-			}
-			else
-			{
-				for (auto& e : o["animations"])
+				else
 				{
-					Anim* c = &animations[n++];
-					c->name = (char*) malloc(e[0].get<std::string>().size());
-					strcpy(c->name, e[0].get<std::string>().c_str());
-					c->fps = e[1];
-					c->length = e[2];
-					c->frames = (int*)malloc(sizeof(int) * c->length);
-					for (int i = 0; i < c->length; i++)
+					for (auto& e : o["animations"])
 					{
-						c->frames[i] = e[3][i];
+						Anim* c = &animations[n++];
+						c->name = (char*) malloc(e[0].get<std::string>().size());
+						strcpy(c->name, e[0].get<std::string>().c_str());
+						c->fps = e[1];
+						c->length = e[2];
+						c->frames = (int*)malloc(sizeof(int) * c->length);
+						for (int i = 0; i < c->length; i++)
+						{
+							c->frames[i] = e[3][i];
+						}
 					}
 				}
 			}
@@ -194,7 +204,7 @@ namespace engine
 		if (initialized)
 		{
 			Anim* ca = &animations[currentAnim];
-			Frame* cf = &frameRef[ca->frames[currentFrame]];
+			Frame* cf = &frames[ca->frames[currentFrame]];
 
 			w = cf->w;
 			h = cf->h;

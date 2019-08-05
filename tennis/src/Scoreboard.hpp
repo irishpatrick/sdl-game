@@ -12,6 +12,8 @@ public:
     ~Scoreboard();
 
     void init(Context&);
+    void update();
+    void draw(Context&);
 
 private:
     KeyFrameSprite l0;

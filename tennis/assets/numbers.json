@@ -1,7 +1,7 @@
 {
     "dataFormat": "compact",
     "texture": "numbers.png",
-    "frameList": [
+    "frames": [
         [ 0, 0, 64, 64 ],
         [ 65, 0, 64, 64 ]
     ],

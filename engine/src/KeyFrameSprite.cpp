@@ -34,12 +34,13 @@ namespace engine
 		}
 
 		// required field
-		int numFrames = o["frameList"].size();
+		int numFrames = o["frames"].size();
 		frames = std::vector<Frame>(numFrames);
 
 		currentAnim = 0;
 
 		int n = 0;
+		// everything is stored as an object {}
 		if (verboseFormat)
 		{
 			for (auto& e : o["frameList"])
@@ -51,9 +52,10 @@ namespace engine
 				c->h = e["h"];
 			}
 		}
+		// everything is stored as an array []
 		else
 		{
-			for (auto& e : o["frameList"])
+			for (auto& e : o["frames"])
 			{
 				Frame* c = &frames[n++];
 				c->x = e[0];
@@ -63,55 +65,58 @@ namespace engine
 			}
 		}
 
-		try
+		n = 0;
+		if (numAnimations > 0)
 		{
-			n = 0;
-			if (numAnimations > 0)
+			// everything is stored as an object {}
+			if (verboseFormat)
 			{
-				if (verboseFormat)
+				for (auto& e : o["animations"])
 				{
-					for (auto& e : o["animations"])
+					Anim* c = &animations[n++];
+
+					// copy name
+					size_t len = e["name"].get<std::string>().size();
+					c->name = (char*)malloc(len);
+					strncpy(c->name, e["name"].get<std::string>().c_str(), len);
+
+					// fill fields
+					c->fps = e["fps"];
+					c->length = e["length"];
+					c->frames = (int*)malloc(sizeof(int) * c->length);
+
+					// fill frames
+					for (int i = 0; i < c->length; i++)
 					{
-						Anim* c = &animations[n++];
-						c->name = (char*)malloc(e["name"].get<std::string>().size());
-						// leak
-						strcpy(c->name, e["name"].get<std::string>().c_str());
-						c->fps = e["fps"];
-						c->length = e["length"];
-						c->frames = (int*)malloc(sizeof(int) * c->length);
-						for (int i = 0; i < c->length; i++)
-						{
-							c->frames[i] = e["frames"][i];
-						}
+						c->frames[i] = e["frames"][i];
 					}
 				}
-				else
+			}
+			// everything is stored as an array []
+			else
+			{
+				for (auto& e : o["animations"])
 				{
-					for (auto& e : o["animations"])
+					Anim* c = &animations[n++];
+					size_t len = e[0].get<std::string>().size();
+					c->name = (char*) malloc(len);
+					strncpy(c->name, e[0].get<std::string>().c_str(), len);
+
+					// fill fields
+					c->fps = e[1];
+					c->length = e[2];
+					c->frames = (int*)malloc(sizeof(int) * c->length);
+
+					// fill frames
+					for (int i = 0; i < c->length; i++)
 					{
-						Anim* c = &animations[n++];
-						c->name = (char*) malloc(e[0].get<std::string>().size());
-						strcpy(c->name, e[0].get<std::string>().c_str());
-						c->fps = e[1];
-						c->length = e[2];
-						c->frames = (int*)malloc(sizeof(int) * c->length);
-						for (int i = 0; i < c->length; i++)
-						{
-							c->frames[i] = e[3][i];
-						}
+						c->frames[i] = e[3][i];
 					}
 				}
 			}
 		}
-		catch (std::exception& e)
-		{
-			std::cout << "exception thrown" << std::endl;
-			std::cout << e.what() << std::endl;
-		}
 
 		initialized = true;
-
-		setCurrentAnimation(o["default"].get<std::string>(), true);
 	}
 
 	void KeyFrameSprite::setCurrentAnimation(const std::string& aname, bool loop)
@@ -123,9 +128,10 @@ namespace engine
 		frameCount = 0;
 		for (int i = 0; i < numAnimations; i++)
 		{
-			// leak
-			if (strncmp(aname.c_str(), animations[i].name, strlen(animations[i].name)) == 0)
+			// check if valid name
+			if (!strncmp(aname.c_str(), animations[i].name, strlen(animations[i].name)))
 			{
+				// set the current animation and set the proper timing
 				currentAnim = i;
 				timer.setInterval((long)((1.0f / animations[currentAnim].fps) * 1000));
 				break;
@@ -150,17 +156,22 @@ namespace engine
 			return;
 		}
 
-		if (animations[currentAnim].length == 0)
+		if (animations.size() > 0)
 		{
-
-		}
-		else if (timer.tick())
-		{
-			if (currentFrame + 1 == animations[currentAnim].length)
+			if (animations[currentAnim].length == 0)
 			{
-				running = repeat;
+
 			}
-			currentFrame = (currentFrame + 1) % animations[currentAnim].length;
+			else if (timer.tick())
+			{
+				if (currentFrame + 1 == animations[currentAnim].length)
+				{
+					// keep running if repeat is true
+					// stop if false
+					running = repeat;
+				}
+				frameIndex = (frameIndex + 1) % animations[currentAnim].length;
+			}
 		}
 	}
 
@@ -172,18 +183,22 @@ namespace engine
 		{
 			return;
 		}
-
-		if (animations[currentAnim].length == 0)
+		if (animations.size() > 0)
 		{
-
-		}
-		else if (timer.tick())
-		{
-			if (currentFrame + 1 == animations[currentAnim].length)
+			if (animations[currentAnim].length == 0)
 			{
-				running = repeat;
+
 			}
-			currentFrame = (currentFrame + 1) % animations[currentAnim].length;
+			else if (timer.tick())
+			{
+				if (frameIndex + 1 == animations[currentAnim].length)
+				{
+					running = repeat;
+				}
+				frameIndex = (frameIndex + 1) % animations[currentAnim].length;
+			}
+
+			currentFrame = animations[currentAnim].frames[frameIndex];
 		}
 	}
 
@@ -203,8 +218,12 @@ namespace engine
 
 		if (initialized)
 		{
-			Anim* ca = &animations[currentAnim];
-			Frame* cf = &frames[ca->frames[currentFrame]];
+			Anim* ca = nullptr;
+			if (animations.size() > 0)
+			{
+				ca = &animations[currentAnim];
+			}
+			Frame* cf = &frames[currentFrame];
 
 			w = cf->w;
 			h = cf->h;

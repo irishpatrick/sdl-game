@@ -30,6 +30,7 @@ namespace engine
 		KeyFrameSprite() : Sprite()
 		{
 			// dynamically allocated
+
 			//animations = nullptr;
 			//frameRef = nullptr;
 			numAnimations = -1;
@@ -58,6 +59,7 @@ namespace engine
 		int currentAnim;
 		int numAnimations;
 		int currentFrame;
+		int frameIndex;
 		Timer timer;
 		bool running;
 		bool repeat;

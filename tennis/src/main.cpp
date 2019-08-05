@@ -130,6 +130,7 @@ int main(int argc, char** argv)
             opponent.update();
             ball.setShadow(ctx);
             ball.update(ctx);
+            board.update();
 
             clock.lagTick();
         }
@@ -142,6 +143,7 @@ int main(int argc, char** argv)
         opponent.draw(ctx, e);
         ball.draw(ctx, e);
         player.draw(ctx, e);
+        board.draw(ctx);
 
         ctx.render();
     }

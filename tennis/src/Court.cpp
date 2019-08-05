@@ -188,11 +188,6 @@ int Court::judge(Ball* ball)
     return 0;
 }
 
-void Court::update(Context& ctx)
-{
-
-}
-
 void Court::contain(Player* p)
 {
     BoundingBox b = p->getBoundingBox();

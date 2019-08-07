@@ -1,4 +1,5 @@
 #include "Scoreboard.hpp"
+#include <iostream>
 
 Scoreboard::~Scoreboard()
 {
@@ -12,11 +13,11 @@ void Scoreboard::init(Context& ctx)
     r0.init(ctx, "assets/numbers.json");
     r1.init(ctx, "assets/numbers.json");
 
-    l0.x = -100;
-    l1.x = -164;
+    l0.x = -64;
+    l1.x = -128;
 
-    r0.x = 100;
-    r1.x = 164;
+    r0.x = 64;
+    r1.x = 128;
 
     addChild(&l0);
     addChild(&l1);
@@ -43,8 +44,5 @@ void Scoreboard::update()
 
 void Scoreboard::draw(Context& ctx)
 {
-    l0.draw(ctx);
-    l1.draw(ctx);
-    r0.draw(ctx);
-    r1.draw(ctx);
+    drawChildren(ctx, 0.0f, Point(x, y));
 }

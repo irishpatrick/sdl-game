@@ -51,6 +51,8 @@ namespace engine
 		CORE_API void update(float);
         CORE_API void update();
 		CORE_API void draw(Context&);
+		CORE_API void draw(Context&, float);
+		CORE_API void draw(Context& , float, Point);
 		CORE_API void stop();
 
 	private:

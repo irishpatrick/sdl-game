@@ -2,8 +2,8 @@
     "dataFormat": "compact",
     "texture": "numbers.png",
     "frames": [
-        [ 0, 0, 64, 64 ],
-        [ 65, 0, 64, 64 ]
+        [ 0, 0, 63, 64 ],
+        [ 65, 0, 63, 64 ]
     ],
     "animations": [],
     "default":  "null"

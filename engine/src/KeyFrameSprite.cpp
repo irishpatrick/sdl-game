@@ -1,5 +1,6 @@
 #include "KeyFrameSprite.hpp"
 #include <fstream>
+#include <iostream>
 #include <experimental/filesystem>
 #include <nlohmann/json.hpp>
 #include <cstdlib>
@@ -236,6 +237,78 @@ namespace engine
 
 			dst.x = (int)x;
 			dst.y = (int)y;
+			dst.w = (int)cf->w;
+			dst.h = (int)cf->h;
+
+			SDL_RenderCopy(ctx.getRenderer(), texture->use(), &src, &dst);
+		}
+	}
+
+	void KeyFrameSprite::draw(Context& ctx, float ex)
+	{
+		if (!visible)
+		{
+			return;
+		}
+
+		SDL_Rect src, dst;
+
+		if (initialized)
+		{
+			Anim* ca = nullptr;
+			if (animations.size() > 0)
+			{
+				ca = &animations[currentAnim];
+			}
+			Frame* cf = &frames[currentFrame];
+
+			w = cf->w;
+			h = cf->h;
+			setBoundingBox(0, 0, w, h);
+
+			src.x = (int)cf->x;
+			src.y = (int)cf->y;
+			src.w = (int)cf->w;
+			src.h = (int)cf->h;
+
+			dst.x = (int)x + (xvel * ex);
+			dst.y = (int)y + (yvel * ex);
+			dst.w = (int)cf->w;
+			dst.h = (int)cf->h;
+
+			SDL_RenderCopy(ctx.getRenderer(), texture->use(), &src, &dst);
+		}
+	}
+
+	void KeyFrameSprite::draw(Context& ctx, float ex, Point pt)
+	{
+		if (!visible)
+		{
+			return;
+		}
+
+		SDL_Rect src, dst;
+
+		if (initialized)
+		{
+			Anim* ca = nullptr;
+			if (animations.size() > 0)
+			{
+				ca = &animations[currentAnim];
+			}
+			Frame* cf = &frames[currentFrame];
+
+			w = cf->w;
+			h = cf->h;
+			setBoundingBox(0, 0, w, h);
+
+			src.x = (int)cf->x;
+			src.y = (int)cf->y;
+			src.w = (int)cf->w;
+			src.h = (int)cf->h;
+
+			dst.x = pt.x + (int)x + (xvel * ex);
+			dst.y = pt.y + (int)y + (yvel * ex);
 			dst.w = (int)cf->w;
 			dst.h = (int)cf->h;
 

@@ -2,6 +2,7 @@
 
 #include <engine.hpp>
 #include "Tilemap.hpp"
+#include "Layout.hpp"
 
 using namespace engine;
 
@@ -19,4 +20,5 @@ private:
     Sprite player;
     Group enemies;
     Tilemap tm;
+    Layout lay;
 };

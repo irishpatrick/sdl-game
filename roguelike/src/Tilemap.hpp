@@ -20,7 +20,6 @@ public:
 
 private:
     Texture* atlas;
-    //std::vector<Sprite*> tiles;
     std::map<std::string, Sprite*> tiles;
     std::vector<std::string> layout;
     std::vector<Texture*> textures;

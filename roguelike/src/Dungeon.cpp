@@ -15,6 +15,8 @@ void Dungeon::init(Context& ctx)
     tm.setTextureAtlas(Assets::getTexture("atlas.png"));
     tm.extractTextures(ctx, "assets/atlas.txt");
 
+    lay.load("assets/layout.json");
+
     player.x = 100;
     player.y = 100;
     player.setTexture(Assets::getTexture("player.png"));
@@ -48,27 +50,6 @@ void Dungeon::update()
 
 void Dungeon::render(Context& ctx, float ex)
 {
-    int i;
-    int j;
-    int x;
-    int y;
-    int size = 32;
-    int len = 32;
-    for (i = 0; i < len; ++i)
-    {
-        for (j = 0; j < len; ++j)
-        {
-            x = size * j;
-            y = size * i;
-            Sprite* s = tm.getTile("grass");
-            if (s == nullptr)
-            {
-                break;
-            }
-            s->x = x;
-            s->y = y;
-            s->draw(ctx, ex);
-        }
-    }
+    lay.draw(ctx, ex, &tm);
     player.draw(ctx, ex);
 }

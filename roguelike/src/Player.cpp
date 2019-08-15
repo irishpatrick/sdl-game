@@ -4,6 +4,7 @@ Player::Player() : Sprite()
 {
     x_dir = 0;
     y_dir = 0;
+    speed = 4;
 }
 
 Player::~Player()

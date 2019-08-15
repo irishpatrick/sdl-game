@@ -18,4 +18,5 @@ public:
 private:
     int x_dir;
     int y_dir;
+    int speed;
 };

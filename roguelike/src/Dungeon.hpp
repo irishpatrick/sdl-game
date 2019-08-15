@@ -12,8 +12,8 @@ public:
     ~Dungeon();
 
     void init(Context&);
-    void update(float);
-    void render(Context&);
+    void update();
+    void render(Context&, float);
 
 private:
     Sprite player;

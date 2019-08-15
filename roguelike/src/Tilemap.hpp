@@ -16,6 +16,7 @@ public:
     void extractTextures(Context&, const std::string&);
     void extractLayout(Context&, const std::string&);
     Sprite* getSprite(int);
+    Sprite* getTile(const std::string&);
 
 private:
     Texture* atlas;

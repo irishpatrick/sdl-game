@@ -15,27 +15,41 @@ namespace engine
 
 	}
 
-	void Game::draw()
+	void Game::init()
 	{
 
 	}
 
-	void Game::mainLoop()
+	void Game::update()
 	{
-        /*double current = SDL_GetTicks();
-        double elapsed = current - previous;
-        previous = current;
-        lag += elapsed;*/
+
+	}
+
+	void Game::draw(float ex)
+	{
+
+	}
+
+	void Game::loop()
+	{
+		clock.tick();
+
+		while (clock.hasLag())
+		{
+			update();
+			clock.lagTick();
+		}
+
+		draw(clock.extrapolate());
     }
 
-    void Game::run()
+    void Game::start()
     {
-        //previous = SDL_GetTicks();
-        //lag = 0.0;
+		init();
         while (running)
-        {
-            mainLoop();
-        }
+		{
+			loop();
+		}
     }
 
     void Game::quit()

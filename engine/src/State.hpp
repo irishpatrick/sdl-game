@@ -16,8 +16,10 @@ namespace engine
 
 		CORE_API virtual void onEntry();
 		CORE_API virtual void init(Context&);
+		CORE_API virtual void update();
 		CORE_API virtual void update(float);
 		CORE_API virtual void render(Context&);
+		CORE_API virtual void render(Context&, float);
 		CORE_API void updateKeys();
 		CORE_API virtual void destroy();
 		CORE_API void setGame(Game&);

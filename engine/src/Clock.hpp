@@ -5,14 +5,7 @@ namespace engine
     class Clock
     {
     public:
-        Clock() :
-            updateInterval(12),
-            cur(0),
-            prev(0),
-            elapsed(0),
-            lag(0)
-        {}
-
+        Clock();
         ~Clock();
 
         void start();

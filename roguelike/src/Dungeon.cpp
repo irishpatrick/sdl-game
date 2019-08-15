@@ -20,7 +20,7 @@ void Dungeon::init(Context& ctx)
     player.setTexture(Assets::getTexture("player.png"));
 }
 
-void Dungeon::update(float delta)
+void Dungeon::update()
 {
     const uint8_t* keys = SDL_GetKeyboardState(nullptr);
     int w = keys[SDL_SCANCODE_W];
@@ -30,24 +30,45 @@ void Dungeon::update(float delta)
 
     if (w)
     {
-        player.translateY(-100 * delta);
+        player.translateY(-1);
     }
     if (s)
     {
-        player.translateY(100 * delta);
+        player.translateY(1);
     }
     if (a)
     {
-        player.translateX(-100 * delta);
+        player.translateX(-1);
     }
     if (d)
     {
-        player.translateX(100 * delta);
+        player.translateX(1);
     }
 }
 
-void Dungeon::render(Context& ctx)
+void Dungeon::render(Context& ctx, float ex)
 {
-    player.draw(ctx);
-
+    int i;
+    int j;
+    int x;
+    int y;
+    int size = 32;
+    int len = 32;
+    for (i = 0; i < len; ++i)
+    {
+        for (j = 0; j < len; ++j)
+        {
+            x = size * j;
+            y = size * i;
+            Sprite* s = tm.getTile("grass");
+            if (s == nullptr)
+            {
+                break;
+            }
+            s->x = x;
+            s->y = y;
+            s->draw(ctx, ex);
+        }
+    }
+    player.draw(ctx, ex);
 }

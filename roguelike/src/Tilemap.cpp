@@ -41,7 +41,7 @@ void Tilemap::extractTextures(Context& ctx, const std::string& fn)
         std::string str;
         while (std::getline(fp, str))
         {
-            names.push_back(str);
+            names.push_back(str.substr(0, str.size()-1));
         }
     }
 
@@ -93,6 +93,15 @@ void Tilemap::extractLayout(Context& ctx, const std::string& fn)
 
         }
     }
+}
+
+Sprite* Tilemap::getTile(const std::string& str)
+{
+    if (tiles.find(str) != tiles.end())
+    {
+        return tiles[str];
+    }
+    return nullptr;
 }
 
 Sprite* Tilemap::getSprite(int index)

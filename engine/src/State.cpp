@@ -1,16 +1,16 @@
 #include "State.hpp"
 
-namespace engine 
+namespace engine
 {
 
-	State::State() 
+	State::State()
 	{
 		kbd = nullptr;
 	}
 
-	State::~State() 
+	State::~State()
 	{
-	
+
 	}
 
 	void State::onEntry()
@@ -23,6 +23,11 @@ namespace engine
 
 	}
 
+	void State::update()
+	{
+		
+	}
+
 	void State::update(float delta)
 	{
 
@@ -30,14 +35,19 @@ namespace engine
 
 	void State::destroy()
 	{
-		
+
 	}
 
 	void State::render(Context& ctx)
 	{
 
 	}
-	
+
+	void State::render(Context& ctx, float ex)
+	{
+
+	}
+
 	void State::updateKeys()
 	{
 		kbd = (uint8_t*)SDL_GetKeyboardState(nullptr);

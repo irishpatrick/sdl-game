@@ -31,7 +31,8 @@ void Grid::load(Context& ctx, const std::string& fn)
         std::cout << "cannot open " << fn << "\n";
         return;
     }
-    json o(in);
+    json o;
+    in >> o;
     in.close();
 
     if (!json_has(o, "size"))
@@ -101,4 +102,9 @@ void Grid::draw(Context& ctx, float ex)
 
         ++i;
     }
+}
+
+int Grid::getSize()
+{
+    return size;
 }

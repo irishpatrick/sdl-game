@@ -2,6 +2,7 @@
 
 #include <engine.hpp>
 #include "Grid.hpp"
+#include "Player.hpp"
 
 using namespace engine;
 
@@ -16,7 +17,7 @@ public:
     void render(Context&, float);
 
 private:
-    Sprite player;
+    Player player;
     Group enemies;
     Grid grid;
 };

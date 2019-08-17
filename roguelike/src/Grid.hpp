@@ -15,6 +15,8 @@ public:
     void load(Context&, const std::string&);
     void draw(Context&, float);
 
+    int getSize();
+
 private:
     Texture* atlas;
     std::vector<Tile*> tiles;

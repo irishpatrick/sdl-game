@@ -13,12 +13,10 @@ Dungeon::~Dungeon()
 void Dungeon::init(Context& ctx)
 {
     grid.load(ctx, "assets/grid.json");
-
-    player.x = 100;
-    player.y = 100;
-    player.setTexture(Assets::getTexture("player.png"));
-
     grid.addChild(&player);
+
+    player.setGridPos(2, 2);
+    player.setTexture(Assets::getTexture("player.png"));
 }
 
 void Dungeon::update()
@@ -31,20 +29,22 @@ void Dungeon::update()
 
     if (w)
     {
-        player.translateY(-1);
+        player.up();
     }
     if (s)
     {
-        player.translateY(1);
+        player.down();
     }
     if (a)
     {
-        player.translateX(-1);
+        player.left();
     }
     if (d)
     {
-        player.translateX(1);
+        player.right();
     }
+
+    player.update();
 }
 
 void Dungeon::render(Context& ctx, float ex)

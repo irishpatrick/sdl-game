@@ -10,13 +10,22 @@ public:
     Player();
     ~Player();
 
-    void translateX(float);
-    void translateY(float);
+    void setGridPos(int, int);
+    void left();
+    void right();
+    void up();
+    void down();
 
-    void attack(Group&);
+    void update();
 
 private:
+    int gridx;
+    int gridy;
+    int targx;
+    int targy;
+
     int x_dir;
     int y_dir;
     int speed;
+    int moving;
 };

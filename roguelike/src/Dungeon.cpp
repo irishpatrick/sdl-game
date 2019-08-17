@@ -12,14 +12,13 @@ Dungeon::~Dungeon()
 
 void Dungeon::init(Context& ctx)
 {
-    tm.setTextureAtlas(Assets::getTexture("atlas.png"));
-    tm.extractTextures(ctx, "assets/atlas.txt");
-
-    lay.load("assets/layout.json");
+    grid.load(ctx, "assets/grid.json");
 
     player.x = 100;
     player.y = 100;
     player.setTexture(Assets::getTexture("player.png"));
+
+    grid.addChild(&player);
 }
 
 void Dungeon::update()
@@ -50,6 +49,6 @@ void Dungeon::update()
 
 void Dungeon::render(Context& ctx, float ex)
 {
-    lay.draw(ctx, ex, &tm);
+    grid.draw(ctx, ex);
     player.draw(ctx, ex);
 }

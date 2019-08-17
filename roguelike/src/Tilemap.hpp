@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 
 #include <engine.hpp>
 #include <vector>
@@ -23,4 +23,4 @@ private:
     std::map<std::string, Sprite*> tiles;
     std::vector<std::string> layout;
     std::vector<Texture*> textures;
-};
+};*/

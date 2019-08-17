@@ -1,4 +1,4 @@
-#include "Tilemap.hpp"
+/*#include "Tilemap.hpp"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -107,4 +107,4 @@ Sprite* Tilemap::getTile(const std::string& str)
 Sprite* Tilemap::getSprite(int index)
 {
     return nullptr;
-}
+}*/

@@ -1,4 +1,4 @@
-#include "TileMap2.hpp"
+/*#include "TileMap2.hpp"
 #include "Assets.hpp"
 #include <iostream>
 #include <sstream>
@@ -35,7 +35,7 @@ namespace engine
         std::vector<std::string> parts;
         int mode = NONE;
         while (std::getline(fp, line))
-        {   
+        {
             if (mode == NONE)
             {
                 if (boost::starts_with(line, "begin "))
@@ -114,3 +114,4 @@ namespace engine
         }
     }
 }
+*/

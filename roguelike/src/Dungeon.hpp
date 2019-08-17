@@ -1,8 +1,7 @@
 #pragma once
 
 #include <engine.hpp>
-#include "Tilemap.hpp"
-#include "Layout.hpp"
+#include "Grid.hpp"
 
 using namespace engine;
 
@@ -19,6 +18,5 @@ public:
 private:
     Sprite player;
     Group enemies;
-    Tilemap tm;
-    Layout lay;
+    Grid grid;
 };

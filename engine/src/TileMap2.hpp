@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 
 #include "Sprite.hpp"
 #include <string>
@@ -29,4 +29,4 @@ namespace engine
         std::vector<Tile> tilemap;
     };
 }
-
+*/

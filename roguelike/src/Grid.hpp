@@ -4,11 +4,7 @@
 
 using namespace engine;
 
-struct GTile
-{
-    char tex;
-    char solid;
-};
+class Tile;
 
 class Grid : public Sprite
 {
@@ -17,12 +13,14 @@ public:
     ~Grid();
 
     void load(Context&, const std::string&);
+    void draw(Context&, float);
 
 private:
-    //Tile** map;
     Texture* atlas;
-    std::vector<struct GTile*> tiles;
-    std::vector<Texture*> tex;
+    std::vector<Tile*> tiles;
+    std::vector<Tile*> grid;
+    int size;
+    int padding;
     int w;
     int h;
 };

@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 
 #include "Sprite.hpp"
 #include <string>
@@ -31,3 +31,4 @@ namespace engine
 		BoundingBox** solids_p;
 	};
 }
+*/

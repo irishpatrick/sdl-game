@@ -136,7 +136,11 @@ namespace engine
 
     void Assets::registerTexture(Context& ctx, Texture* tex_ptr, const std::string& id)
     {
-        if (texMap.find(id) == texMap.end())
+		if (id == "")
+		{
+			texMap[Util::randName()] = tex_ptr;
+		}
+        else if (texMap.find(id) == texMap.end())
         {
             texMap[id] = tex_ptr;
         }

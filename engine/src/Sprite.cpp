@@ -37,6 +37,7 @@ namespace engine
         scale_y = 1.0f;
         theta = 0;
         dynamic = false;
+		sparent = nullptr;
 	}
 
     Sprite::~Sprite()
@@ -110,8 +111,14 @@ namespace engine
 		return parent;
 	}
 
+	void Sprite::setSpriteParent(Sprite* s)
+	{
+		sparent = s;
+	}
+
     void Sprite::addChild(Sprite* s)
     {
+		s->setSpriteParent(this);
         children.push_back(s);
     }
 

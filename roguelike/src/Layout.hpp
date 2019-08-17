@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 
 #include <engine.hpp>
 #include <string>
@@ -26,4 +26,4 @@ private:
     std::vector<std::string> ref;
     int w;
     int h;
-};
+};*/

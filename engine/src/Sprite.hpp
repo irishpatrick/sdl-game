@@ -54,6 +54,7 @@ namespace engine
         CORE_API void setParent(Group*);
         CORE_API Group* getParent();
         CORE_API void addChild(Sprite*);
+        CORE_API void setSpriteParent(Sprite*);
         CORE_API void updateChildren(Context&, float);
         CORE_API void updateChildren(float);
         CORE_API void updateChildren();
@@ -103,6 +104,7 @@ namespace engine
         bool visible;
         //bool debug;
         Group* parent;
+        Sprite* sparent;
         Sprite* collision_;
         Camera* camera;
         std::string uuid_str;

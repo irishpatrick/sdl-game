@@ -44,6 +44,7 @@ public:
 	CORE_API static void formatPath(std::string&);
 	CORE_API static json loadJson(const std::string&);
     CORE_API static float getSign(float);
+	CORE_API static std::string randName();
 
 	CORE_API static const int UP = 0;
 	CORE_API static const int DOWN = 1;

@@ -1,4 +1,4 @@
-#include "TileMap.hpp"
+/*#include "TileMap.hpp"
 #include <cstdlib>
 #include <nlohmann/json.hpp>
 #include <experimental/filesystem>
@@ -52,7 +52,7 @@ namespace engine
 
 		// allocate rows
 		map_p = (TILE**)malloc(r * sizeof(TILE*));
-		
+
 		// allocate cols
 		for (int i = 0; i < r; i++)
 		{
@@ -104,3 +104,4 @@ namespace engine
 		}
 	}
 }
+*/

@@ -319,4 +319,22 @@ namespace engine {
     {
         return n / abs(n);
     }
+
+	std::string Util::randName()
+	{
+		std::string out = "";
+		static const char alpha[] =
+			"abcdefghijklmnopqrstuvwxyz"
+			"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+		int i;
+		for (i = 0; i < 200; ++i)
+		{
+			out += alpha[rand() % (sizeof(alpha) - 1)];
+		}
+
+		//out += '\0';
+
+		return out;
+	}
 }

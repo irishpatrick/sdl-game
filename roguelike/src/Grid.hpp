@@ -14,6 +14,8 @@ public:
 
     void load(Context&, const std::string&);
     void draw(Context&, float);
+    
+    bool checkMove(int, int);
 
     int getSize();
 

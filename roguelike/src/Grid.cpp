@@ -104,6 +104,12 @@ void Grid::draw(Context& ctx, float ex)
     }
 }
 
+bool Grid::checkMove(int x, int y)
+{
+    int index = y * h + x;
+    return !grid[index]->solid;
+}
+
 int Grid::getSize()
 {
     return size;

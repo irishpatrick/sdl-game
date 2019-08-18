@@ -29,6 +29,7 @@ private:
     std::vector<Tile*> grid;
     int size;
     int padding;
+    int border;
     int w;
     int h;
 };

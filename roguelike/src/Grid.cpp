@@ -61,6 +61,7 @@ void Grid::load(Context& ctx, const std::string& fn)
     h = o["size"][1].get<int>();
     size = o["size"][2].get<int>();
     padding = o["size"][3].get<int>();
+    border = o["size"][4].get<int>();
 
     if (!json_has(o, "atlas"))
     {
@@ -83,8 +84,8 @@ void Grid::load(Context& ctx, const std::string& fn)
         int y = e[1].get<int>();
         Texture* tex = new Texture(atlas->subTexture(
             ctx,
-            (x * size) + (x * padding),
-            (y * size) + (y * padding),
+            border + (x * size) + (x * padding),
+            border + (y * size) + (y * padding),
             e[2].get<int>(),
             e[3].get<int>()
         ));

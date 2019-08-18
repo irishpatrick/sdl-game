@@ -24,7 +24,6 @@ private:
     int gridy;
     int targx;
     int targy;
-
     int x_dir;
     int y_dir;
     float speed;

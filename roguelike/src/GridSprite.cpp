@@ -9,7 +9,7 @@ GridSprite::GridSprite() :
     targy(0),
     x_dir(0),
     y_dir(0),
-    speed(1.0f),
+    speed(1.5f),
     moving(0)
 {
 
@@ -81,13 +81,17 @@ void GridSprite::update()
     float tx = targx * g->getSize();
     float ty = targy * g->getSize();
 
-    if (fabs(x - tx) == 0)
+    float dx = x - tx;
+    float dy = y - ty;
+    float thr = speed / 2.0f;
+
+    if (fabs(dx) < thr)
     {
         xvel = 0;
         gridx = targx;
     }
 
-    if (fabs(y - ty) == 0)
+    if (fabs(dy) < thr)
     {
         yvel = 0;
         gridy = targy;

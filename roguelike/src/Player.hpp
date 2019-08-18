@@ -1,31 +1,15 @@
 #pragma once
 
-#include <engine.hpp>
+#include "GridSprite.hpp"
+#include "Item.hpp"
+#include <vector>
 
-using namespace engine;
-
-class Player : public Sprite
+class Player : public GridSprite
 {
 public:
     Player();
     ~Player();
 
-    void setGridPos(int, int);
-    void left();
-    void right();
-    void up();
-    void down();
-
-    void update();
-
 private:
-    int gridx;
-    int gridy;
-    int targx;
-    int targy;
-
-    int x_dir;
-    int y_dir;
-    float speed;
-    int moving;
+    std::vector<Item> inventory;
 };

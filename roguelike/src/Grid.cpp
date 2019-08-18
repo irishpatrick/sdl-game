@@ -1,5 +1,6 @@
 #include "Grid.hpp"
 #include "Tile.hpp"
+#include "GridSprite.hpp"
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
@@ -20,6 +21,23 @@ Grid::Grid()
 Grid::~Grid()
 {
 
+}
+
+void Grid::addChild(Sprite* s)
+{
+    s->setSpriteParent(this);
+    children.push_back(s);
+    GridSprite* derived = dynamic_cast<GridSprite*>(s);
+    if (derived)
+    {
+        Point p = derived->getGridPos();
+        int i = ctoi(p.x, p.y);
+        childmap[i] = derived;
+    }
+    else
+    {
+        std::cout << "cast to GridSprite failed\n";
+    }
 }
 
 void Grid::load(Context& ctx, const std::string& fn)
@@ -104,10 +122,33 @@ void Grid::draw(Context& ctx, float ex)
     }
 }
 
+int Grid::ctoi(int x, int y)
+{
+    return y * h + x;
+}
+
+Point Grid::itoc(int i)
+{
+    Point p;
+    p.x = i % w;
+    p.y = i / w;
+    return p;
+}
+
 bool Grid::checkMove(int x, int y)
 {
-    int index = y * h + x;
-    return !grid[index]->solid;
+    int index = ctoi(x, y);
+    bool valid = !grid[index]->solid;
+    for (auto& e : children)
+    {
+        GridSprite* s = nullptr;
+        s = dynamic_cast<GridSprite*>(e);
+        if (s != nullptr)
+        {
+            valid = valid && !s->getGridPos().equals(Point(x, y));
+        }
+    }
+    return valid;
 }
 
 int Grid::getSize()

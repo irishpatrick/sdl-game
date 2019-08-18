@@ -12,6 +12,7 @@ public:
 	CORE_API Point(double, double);
 
 	CORE_API void set(double, double);
+	CORE_API bool equals(Point);
 
     double x;
     double y;

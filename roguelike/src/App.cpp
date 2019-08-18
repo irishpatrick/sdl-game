@@ -22,6 +22,8 @@ void App::init()
 
     Assets::loadTexture(ctx, "assets/player.png");
     Assets::loadTexture(ctx, "assets/atlas.png");
+    Assets::loadTexture(ctx, "assets/chest.png");
+    Assets::loadTexture(ctx, "assets/enemy.png");
 
     dungeon.init(ctx);
 

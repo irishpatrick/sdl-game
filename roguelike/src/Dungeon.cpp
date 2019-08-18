@@ -14,9 +14,17 @@ void Dungeon::init(Context& ctx)
 {
     grid.load(ctx, "assets/grid.json");
     grid.addChild(&player);
+    grid.addChild(&chest);
+    grid.addChild(&enemy);
 
     player.setGridPos(2, 2);
     player.setTexture(Assets::getTexture("player.png"));
+
+    chest.init(ctx);
+    chest.setGridPos(4, 4);
+
+    enemy.init(ctx);
+    enemy.setGridPos(6, 6);
 }
 
 void Dungeon::update()
@@ -50,5 +58,7 @@ void Dungeon::update()
 void Dungeon::render(Context& ctx, float ex)
 {
     grid.draw(ctx, ex);
+    chest.draw(ctx, ex);
     player.draw(ctx, ex);
+    enemy.draw(ctx, ex);
 }

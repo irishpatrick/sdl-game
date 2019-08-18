@@ -3,6 +3,8 @@
 #include <engine.hpp>
 #include "Grid.hpp"
 #include "Player.hpp"
+#include "Chest.hpp"
+#include "Enemy.hpp"
 
 using namespace engine;
 
@@ -18,6 +20,7 @@ public:
 
 private:
     Player player;
-    Group enemies;
+    Enemy enemy;
+    Chest chest;
     Grid grid;
 };

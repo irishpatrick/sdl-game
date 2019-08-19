@@ -9,4 +9,5 @@ public:
     ~Chest();
 
     void init(Context&);
+    void interact(GridSprite*);
 };

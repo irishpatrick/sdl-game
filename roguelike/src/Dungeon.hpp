@@ -19,6 +19,7 @@ public:
     void render(Context&, float);
 
 private:
+    OneShot prompt;
     Player player;
     Enemy enemy;
     Chest chest;

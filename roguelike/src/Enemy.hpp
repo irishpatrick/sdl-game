@@ -12,4 +12,6 @@ public:
     ~Enemy();
 
     void init(Context&);
+
+    void interact(GridSprite*);
 };

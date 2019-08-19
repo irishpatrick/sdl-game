@@ -34,6 +34,8 @@ void Dungeon::update()
     int s = keys[SDL_SCANCODE_S];
     int a = keys[SDL_SCANCODE_A];
     int d = keys[SDL_SCANCODE_D];
+    int p = keys[SDL_SCANCODE_P];
+    prompt.check(p);
 
     if (w)
     {
@@ -50,6 +52,10 @@ void Dungeon::update()
     if (d)
     {
         player.right();
+    }
+    if (prompt.fire())
+    {
+        player.prompt();
     }
 
     player.update();

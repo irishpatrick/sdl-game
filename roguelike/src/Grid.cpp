@@ -23,23 +23,6 @@ Grid::~Grid()
 
 }
 
-void Grid::addChild(Sprite* s)
-{
-    s->setSpriteParent(this);
-    children.push_back(s);
-    GridSprite* derived = dynamic_cast<GridSprite*>(s);
-    if (derived)
-    {
-        Point p = derived->getGridPos();
-        int i = ctoi(p.x, p.y);
-        childmap[i] = derived;
-    }
-    else
-    {
-        std::cout << "cast to GridSprite failed\n";
-    }
-}
-
 void Grid::load(Context& ctx, const std::string& fn)
 {
     std::ifstream in(fn);
@@ -103,6 +86,25 @@ void Grid::load(Context& ctx, const std::string& fn)
     {
         grid.push_back(tiles[e.get<int>()]);
     }
+}
+
+GridSprite* Grid::at(int x, int y)
+{
+    GridSprite* g = nullptr;
+    for (auto& e : children)
+    {
+        g = dynamic_cast<GridSprite*>(e);
+        if (g)
+        {
+            if (g->getGridPos().equals(Point(x, y)))
+            {
+                break;
+            }
+        }
+        g = nullptr;
+    }
+
+    return g;
 }
 
 void Grid::draw(Context& ctx, float ex)

@@ -17,7 +17,10 @@ public:
     void up();
     void down();
 
-    void update();
+    virtual void interact(GridSprite*);
+    virtual void prompt();
+
+    virtual void update();
 
 private:
     int gridx;
@@ -28,4 +31,5 @@ private:
     int y_dir;
     float speed;
     int moving;
+    Point dir;
 };

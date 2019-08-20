@@ -38,6 +38,7 @@ void Grid::load(Context& ctx, const std::string& fn)
 
     if (!json_has(o, "size"))
     {
+        std::cout << "no size field\n";
         return;
     }
     w = o["size"][0].get<int>();
@@ -48,16 +49,19 @@ void Grid::load(Context& ctx, const std::string& fn)
 
     if (!json_has(o, "atlas"))
     {
+        std::cout << "missing texture atlas field!\n";
         return;
     }
     atlas = Assets::getTexture(o["atlas"]);
     if (atlas == nullptr)
     {
         std::cout << "cannot find texture " << o["atlas"] << "\n";
+        return;
     }
 
     if (!json_has(o, "tiles"))
     {
+        std::cout << "missing tiles field!\n";
         return;
     }
     for (auto& e : o["tiles"])
@@ -65,13 +69,15 @@ void Grid::load(Context& ctx, const std::string& fn)
         Tile* tile = new Tile();
         int x = e[0].get<int>();
         int y = e[1].get<int>();
-        Texture* tex = new Texture(atlas->subTexture(
+        Texture* copy = atlas->subTextureP(
             ctx,
             border + (x * size) + (x * padding),
             border + (y * size) + (y * padding),
             e[2].get<int>(),
             e[3].get<int>()
-        ));
+        );
+        Texture* tex = new Texture(ctx, *copy);
+        delete copy;
         Assets::registerTexture(ctx, tex, ""); // let Assets handle disposal
         tile->setTexture(tex);
         tile->solid = (bool)e[4].get<int>();
@@ -80,6 +86,7 @@ void Grid::load(Context& ctx, const std::string& fn)
 
     if (!json_has(o, "data"))
     {
+        std::cout << "missing data field!\n";
         return;
     }
     for (auto& e : o["data"])

@@ -27,6 +27,7 @@ public:
     CORE_API void update(SDL_Surface*);
     CORE_API void update();
     CORE_API Texture subTexture(Context&, int, int, int, int);
+    CORE_API Texture* subTextureP(Context&, int, int, int, int);
 	CORE_API uint32_t getW();
 	CORE_API uint32_t getH();
 	CORE_API SDL_Texture* use();

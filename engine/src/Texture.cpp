@@ -1,4 +1,5 @@
 #include "Texture.hpp"
+#include <iostream>
 
 namespace engine
 {
@@ -7,8 +8,8 @@ namespace engine
 	{
 		w = 0;
 		h = 0;
-		tex = NULL;
-		surf = NULL;
+        tex = nullptr;
+        surf = nullptr;
 		ready = false;
 		name = "";
 	}
@@ -149,6 +150,24 @@ namespace engine
         Texture out;
         out.create(ctx, subsurf);
 
+        return out;
+    }
+
+    Texture* Texture::subTextureP(Context& ctx, int x, int y, int w, int h)
+    {
+        Texture* out = new Texture();
+        SDL_Surface* subs = SDL_CreateRGBSurface(
+            surf->flags,
+            w, h,
+            surf->format->BitsPerPixel,
+            surf->format->Rmask,
+            surf->format->Gmask,
+            surf->format->Bmask,
+            surf->format->Amask
+        );
+        SDL_Rect r = { x, y, w, h };
+        SDL_BlitSurface(surf, &r, subs, nullptr);
+        out->create(ctx, subs);
         return out;
     }
 

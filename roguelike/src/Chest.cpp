@@ -1,7 +1,8 @@
 #include "Chest.hpp"
 #include <iostream>
 
-Chest::Chest()
+Chest::Chest() :
+    searched(false)
 {
 
 }
@@ -18,5 +19,18 @@ void Chest::init(Context& ctx)
 
 void Chest::interact(GridSprite* prompt)
 {
+    if (searched) return;
     std::cout << "chest" << std::endl;
+    searched = true;
+    contents.clear();
+}
+
+void Chest::fill()
+{
+    int n = Random::randint(1, 8);
+    int i;
+    for (i = 0; i < n; ++i)
+    {
+        
+    }
 }

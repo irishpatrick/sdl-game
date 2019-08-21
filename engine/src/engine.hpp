@@ -19,6 +19,7 @@
 #include "PlatformerPhysics.hpp"
 #include "Point.hpp"
 #include "QTree.hpp"
+#include "Random.hpp"
 #include "ScrollingText.hpp"
 #include "SimpleGame.hpp"
 #include "Sprite.hpp"

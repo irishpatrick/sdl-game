@@ -13,6 +13,8 @@ public:
     Player();
     ~Player();
 
+    virtual void give(Item);
+
 private:
     std::vector<Item> inventory;
 };

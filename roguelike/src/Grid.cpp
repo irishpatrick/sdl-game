@@ -5,13 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <nlohmann/json.hpp>
-
-using json = nlohmann::json;
-
-bool json_has(json& o, const std::string& name)
-{
-    return o.find(name) != o.end();
-}
+#include "Stuff.hpp"
 
 Grid::Grid()
 {

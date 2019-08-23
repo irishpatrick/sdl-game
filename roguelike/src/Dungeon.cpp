@@ -22,6 +22,7 @@ void Dungeon::init(Context& ctx)
 
     chest.init(ctx);
     chest.setGridPos(4, 4);
+    chest.fill();
 
     enemy.init(ctx);
     enemy.setGridPos(6, 6);

@@ -1,5 +1,5 @@
 {
-    "name": apple,
-    "category": "food",
+    "name": "apple",
+    "type": "food",
     "data": [25]
 }

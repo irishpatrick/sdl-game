@@ -60,6 +60,21 @@ namespace engine
 
 	}
 
+    void Sprite::loadAnimation(const std::string& fn)
+    {
+        json o = Util::loadJson(fn);
+
+        if (o.find("frames") == o.end())
+        {
+
+            return;
+        }
+        for (auto& e : o["frames"])
+        {
+            
+        }
+    }
+
 	void Sprite::update(float delta)
 	{
 		x += xvel * delta;

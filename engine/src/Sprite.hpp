@@ -15,6 +15,7 @@
 #include "Context.hpp"
 #include "BoundingBox.hpp"
 #include "Point.hpp"
+#include "Animation.hpp"
 
 #define FACE_NORTH 0x01
 #define FACE_EAST 0x02
@@ -35,6 +36,7 @@ namespace engine
 
         CORE_API void init(Context&);
         CORE_API void init(Context*);
+        CORE_API void loadAnimation(const std::string&);
         CORE_API void setTexture(Texture*);
         CORE_API virtual void draw(Context&);
         CORE_API virtual void draw(Context&, float);
@@ -111,6 +113,7 @@ namespace engine
 	    BoundingBox boundingBox;
 	    BoundingBox realBoundingBox;
         std::vector<Sprite*> children;
+        std::vector<Animation> animations;
 
     private:
         boost::uuids::uuid tag;

@@ -1,7 +1,9 @@
 #include "Player.hpp"
 #include <iostream>
 
-Player::Player()
+Player::Player() :
+    weapon(nullptr),
+    armor(nullptr)
 {
 
 }

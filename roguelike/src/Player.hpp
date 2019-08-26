@@ -16,5 +16,7 @@ public:
     virtual void give(Item);
 
 private:
+    Item* weapon;
+    Item* armor;
     std::vector<Item> inventory;
 };

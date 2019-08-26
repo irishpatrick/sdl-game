@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Animation.hpp"
 #include "Assets.hpp"
 #include "BoundingBox.hpp"
 #include "CairoUtil.hpp"

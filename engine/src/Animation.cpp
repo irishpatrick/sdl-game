@@ -51,14 +51,14 @@ namespace engine
         currentFrame = frame;
     }
 
-    void Animation::pushFrame(AnimFrame frame)
+    void Animation::pushFrame(Rect frame)
     {
         frames.push_back(frame);
     }
 
     void Animation::createAnimation(const std::string& name, int* frames, int numframes, int fps)
     {
-        
+
     }
 
     void Animation::setFps(int val)

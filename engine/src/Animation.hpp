@@ -1,17 +1,11 @@
 #pragma once
 
 #include <vector>
+#include <string>
+#include "Rect.hpp"
 
 namespace engine
 {
-    typedef struct _AnimFrame
-    {
-        int x;
-        int y;
-        int w;
-        int h;
-    } AnimFrame;
-
     class Animation
     {
     public:
@@ -25,7 +19,7 @@ namespace engine
 
         void setFps(int);
         void setTicksPerSecond(int);
-        void pushFrame(AnimFrame);
+        void pushFrame(Rect);
         void createAnimation(const std::string&, int*, int, int);
 
     private:
@@ -34,7 +28,7 @@ namespace engine
         int ticks;
         int ticksPerSecond;
         bool running;
-        std::vector<AnimFrame> frames;
+        std::vector<Rect> frames;
         std::vector<int*> animations;
     };
 }

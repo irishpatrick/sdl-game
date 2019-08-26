@@ -3,8 +3,13 @@
 #include "Texture.hpp"
 #include "Group.hpp"
 #include "Canvas.hpp"
+#include "Util.hpp"
+#include "Rect.hpp"
 #include <iostream>
 #include <cairo.h>
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
 
 namespace engine
 {
@@ -69,9 +74,32 @@ namespace engine
 
             return;
         }
+        std::vector<Rect> frames;
         for (auto& e : o["frames"])
         {
-            
+            Rect r;
+            r.x = e[0].get<int>();
+            r.y = e[1].get<int>();
+            r.w = e[2].get<int>();
+            r.h = e[3].get<int>();
+            frames.push_back(r);
+        }
+
+        if (o.find("animations") == o.end())
+        {
+
+            return;
+        }
+        for (auto& e : o["animations"])
+        {
+            Animation a;
+            //a.setName(e[0].get<std::string>());
+            a.setFps(e[1].get<int>());
+            for (auto& f : e[2])
+            {
+                a.pushFrame(frames[f.get<int>()]);
+            }
+            animations[e[0].get<std::string>()] = a;
         }
     }
 

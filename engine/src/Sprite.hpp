@@ -11,6 +11,7 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/uuid/uuid_io.hpp>
 #include <vector>
+#include <map>
 
 #include "Context.hpp"
 #include "BoundingBox.hpp"
@@ -49,6 +50,7 @@ namespace engine
         CORE_API virtual void update(float);
         CORE_API virtual void update();
         CORE_API virtual void update(Context&, float);
+        CORE_API virtual void updateAnimations();
         CORE_API void setSpeed(float);
         CORE_API void queryTexture();
         CORE_API void OnCollision(Sprite*);
@@ -113,7 +115,7 @@ namespace engine
 	    BoundingBox boundingBox;
 	    BoundingBox realBoundingBox;
         std::vector<Sprite*> children;
-        std::vector<Animation> animations;
+        std::map<std::string, Animation> animations;
 
     private:
         boost::uuids::uuid tag;

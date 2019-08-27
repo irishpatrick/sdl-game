@@ -109,8 +109,9 @@ namespace engine
                 ++it;
             }
 
-            // name is stored at index 0
             std::cout << a.toString() << std::endl;
+
+            // name is stored at index 0
             animations[e[0].get<std::string>()] = a;
         }
     }
@@ -146,7 +147,7 @@ namespace engine
 
     void Sprite::playAnimation()
     {
-        if (animations.size() < 1 && currentAnimation == "")
+        if (animations.size() < 1 || currentAnimation == "")
         {
             return;
         }
@@ -156,7 +157,7 @@ namespace engine
 
     void Sprite::stopAnimation()
     {
-        if (animations.size() < 1 && currentAnimation == "")
+        if (animations.size() < 1 || currentAnimation == "")
         {
             return;
         }
@@ -166,7 +167,7 @@ namespace engine
 
     void Sprite::updateAnimations()
     {
-        if (animations.size() < 1 && currentAnimation == "")
+        if (animations.size() < 1 || currentAnimation == "")
         {
             return;
         }
@@ -332,7 +333,7 @@ namespace engine
         r.w = w * scale_x;
         r.h = h * scale_y;
 
-        if (animations.size() < 1 && currentAnimation == "")
+        if (animations.size() < 1 || currentAnimation == "")
         {
             SDL_RenderCopyEx(ctx.getRenderer(), texture->use(), nullptr, &r, theta, nullptr, SDL_FLIP_NONE);
         }

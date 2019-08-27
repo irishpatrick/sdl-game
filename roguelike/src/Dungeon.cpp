@@ -45,22 +45,27 @@ void Dungeon::update()
     int p = keys[SDL_SCANCODE_P];
     prompt.check(p);
 
-    if (w)
+    if (!w && !s && !a && !d)
+    {
+        
+    }
+    else if (w)
     {
         player.up();
     }
-    if (s)
+    else if (s)
     {
         player.down();
     }
-    if (a)
+    else if (a)
     {
         player.left();
     }
-    if (d)
+    else if (d)
     {
         player.right();
     }
+
     if (prompt.fire())
     {
         player.prompt();

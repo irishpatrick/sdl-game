@@ -16,6 +16,7 @@ Chest::~Chest()
 void Chest::init(Context& ctx)
 {
     setTexture(Assets::getTexture("chest.png"));
+    loadAnimation("assets/animations/chest.json");
 }
 
 void Chest::interact(GridSprite* prompt)

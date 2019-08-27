@@ -1,11 +1,10 @@
 #pragma once
 
 #include <engine.hpp>
-#include "GridAlign.hpp"
 
 using namespace engine;
 
-class GridSprite : public Sprite//, public GridAlign
+class GridSprite : public Sprite
 {
 public:
     GridSprite();

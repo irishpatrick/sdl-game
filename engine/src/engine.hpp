@@ -12,7 +12,6 @@
 #include "Font.hpp"
 #include "Game.hpp"
 #include "Group.hpp"
-#include "KeyFrameSprite.hpp"
 #include "Line.hpp"
 #include "LocationStack.hpp"
 #include "MovingAverage.hpp"

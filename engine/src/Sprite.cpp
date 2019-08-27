@@ -109,7 +109,7 @@ namespace engine
                 ++it;
             }
 
-            std::cout << a.toString() << std::endl;
+            //std::cout << a.toString() << std::endl;
 
             // name is stored at index 0
             animations[e[0].get<std::string>()] = a;

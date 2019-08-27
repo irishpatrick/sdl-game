@@ -43,7 +43,7 @@ void Chest::interact(GridSprite* prompt)
 
 void Chest::fill()
 {
-    int n = Random::randint(1, 8);
+    int n = Random::randint(3, 8);
     int i;
     for (i = 0; i < n; ++i)
     {

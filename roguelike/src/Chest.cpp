@@ -17,11 +17,17 @@ void Chest::init(Context& ctx)
 {
     setTexture(Assets::getTexture("chest.png"));
     loadAnimation("assets/animations/chest.json");
+    setCurrentAnimation("closed");
+    playAnimation();
+    w = 32;
+    h = 32;
 }
 
 void Chest::interact(GridSprite* prompt)
 {
     if (searched) return;
+    setCurrentAnimation("open");
+    playAnimation();
     std::cout << "chest" << std::endl;
     searched = true;
     Player* player = dynamic_cast<Player*>(prompt);

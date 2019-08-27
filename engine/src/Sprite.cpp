@@ -173,6 +173,8 @@ namespace engine
         }
 
         Animation* cur = &animations[currentAnimation];
+        w = cur->getCurrentFrame().w;
+        h = cur->getCurrentFrame().h;
         cur->update();
     }
 

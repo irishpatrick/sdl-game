@@ -20,7 +20,10 @@ namespace engine
         void setFps(int);
         void setTicksPerSecond(int);
         void pushFrame(Rect);
-        void createAnimation(const std::string&, int*, int, int);
+
+        Rect getCurrentFrame();
+
+        std::string toString();
 
     private:
         int fps;

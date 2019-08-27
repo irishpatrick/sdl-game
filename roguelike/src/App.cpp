@@ -20,10 +20,10 @@ void App::init()
     ctx.init(512, 480, "Roguelike", false);
     ctx.setQuitCallback(quit_cb);
 
-    Assets::loadTexture(ctx, "assets/player.png");
-    Assets::loadTexture(ctx, "assets/atlas.png");
-    Assets::loadTexture(ctx, "assets/chest.png");
-    Assets::loadTexture(ctx, "assets/enemy.png");
+    Assets::loadTexture(ctx, "assets/sprites/player.png");
+    Assets::loadTexture(ctx, "assets/sprites/atlas.png");
+    Assets::loadTexture(ctx, "assets/sprites/chest.png");
+    Assets::loadTexture(ctx, "assets/sprites/enemy.png");
 
     dungeon.init(ctx);
 

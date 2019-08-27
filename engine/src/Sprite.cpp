@@ -8,6 +8,7 @@
 #include <iostream>
 #include <cairo.h>
 #include <nlohmann/json.hpp>
+#include <iterator>
 
 using json = nlohmann::json;
 
@@ -43,6 +44,7 @@ namespace engine
         theta = 0;
         dynamic = false;
 		sparent = nullptr;
+        currentAnimation = "";
 	}
 
     Sprite::~Sprite()
@@ -67,11 +69,12 @@ namespace engine
 
     void Sprite::loadAnimation(const std::string& fn)
     {
+        std::cout << "loading animation " << fn << std::endl;
         json o = Util::loadJson(fn);
 
         if (o.find("frames") == o.end())
         {
-
+            std::cout << "format error" << std::endl;
             return;
         }
         std::vector<Rect> frames;
@@ -87,18 +90,27 @@ namespace engine
 
         if (o.find("animations") == o.end())
         {
-
+            std::cout << "format error" << std::endl;
             return;
         }
         for (auto& e : o["animations"])
         {
             Animation a;
-            //a.setName(e[0].get<std::string>());
+
+            // fps is stored at index 1
             a.setFps(e[1].get<int>());
-            for (auto& f : e[2])
+
+            // frames begin at second index
+            auto it = e.begin();
+            std::advance(it, 2);
+            while (it != e.end())
             {
-                a.pushFrame(frames[f.get<int>()]);
+                a.pushFrame(frames[*it]);
+                ++it;
             }
+
+            // name is stored at index 0
+            std::cout << a.toString() << std::endl;
             animations[e[0].get<std::string>()] = a;
         }
     }
@@ -117,6 +129,7 @@ namespace engine
         x += xvel;
         y += yvel;
 
+        updateAnimations();
         updateChildren();
     }
 
@@ -124,6 +137,42 @@ namespace engine
     {
         update(delta);
         updateChildren(ctx, delta);
+    }
+
+    void Sprite::setCurrentAnimation(const std::string& name)
+    {
+        currentAnimation = name;
+    }
+
+    void Sprite::playAnimation()
+    {
+        if (animations.size() < 1 && currentAnimation == "")
+        {
+            return;
+        }
+
+        animations[currentAnimation].play();
+    }
+
+    void Sprite::stopAnimation()
+    {
+        if (animations.size() < 1 && currentAnimation == "")
+        {
+            return;
+        }
+
+        animations[currentAnimation].stop();
+    }
+
+    void Sprite::updateAnimations()
+    {
+        if (animations.size() < 1 && currentAnimation == "")
+        {
+            return;
+        }
+
+        Animation* cur = &animations[currentAnimation];
+        cur->update();
     }
 
 	void Sprite::setTexture(Texture *t)
@@ -283,7 +332,22 @@ namespace engine
         r.w = w * scale_x;
         r.h = h * scale_y;
 
-        SDL_RenderCopyEx(ctx.getRenderer(), texture->use(), nullptr, &r, theta, NULL, SDL_FLIP_NONE);
+        if (animations.size() < 1 && currentAnimation == "")
+        {
+            SDL_RenderCopyEx(ctx.getRenderer(), texture->use(), nullptr, &r, theta, nullptr, SDL_FLIP_NONE);
+        }
+        else
+        {
+            SDL_Rect frame;
+            Rect rect = animations[currentAnimation].getCurrentFrame();
+            frame.x = rect.x;
+            frame.y = rect.y;
+            frame.w = rect.w;
+            frame.h = rect.h;
+            //std::cout << "FRAME: [" << frame.x << "," << frame.y << "," << frame.w << "," << frame.h << "]" << std::endl;
+            SDL_RenderCopyEx(ctx.getRenderer(), texture->use(), &frame, &r, theta, nullptr, SDL_FLIP_NONE);
+        }
+
     }
 
     void Sprite::draw(Context& ctx, float e, Point offset)

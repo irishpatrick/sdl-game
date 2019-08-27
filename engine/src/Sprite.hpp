@@ -32,13 +32,34 @@ namespace engine
     class Sprite
     {
     public:
+        // constructors
         CORE_API Sprite();
         CORE_API virtual ~Sprite();
 
+        // init
         CORE_API void init(Context&);
         CORE_API void init(Context*);
+
+        // load
         CORE_API void loadAnimation(const std::string&);
         CORE_API void setTexture(Texture*);
+        CORE_API void ResetCollision();
+
+        // animations
+        CORE_API void setCurrentAnimation(const std::string&);
+        CORE_API void playAnimation();
+        CORE_API void stopAnimation();
+        CORE_API virtual void updateAnimations();
+
+        // update
+        CORE_API virtual void update(float);
+        CORE_API virtual void update();
+        CORE_API virtual void update(Context&, float);
+        CORE_API void updateChildren(Context&, float);
+        CORE_API void updateChildren(float);
+        CORE_API void updateChildren();
+
+        // draw
         CORE_API virtual void draw(Context&);
         CORE_API virtual void draw(Context&, float);
         CORE_API virtual void draw(Context&, float, Point);
@@ -46,11 +67,7 @@ namespace engine
         CORE_API virtual void drawChildren(Context&);
         CORE_API virtual void drawChildren(Context&, Camera&);
         CORE_API virtual void drawChildren(Context&, float, Point);
-        CORE_API void ResetCollision();
-        CORE_API virtual void update(float);
-        CORE_API virtual void update();
-        CORE_API virtual void update(Context&, float);
-        CORE_API virtual void updateAnimations();
+
         CORE_API void setSpeed(float);
         CORE_API void queryTexture();
         CORE_API void OnCollision(Sprite*);
@@ -59,9 +76,7 @@ namespace engine
         CORE_API Group* getParent();
         CORE_API void addChild(Sprite*);
         CORE_API void setSpriteParent(Sprite*);
-        CORE_API void updateChildren(Context&, float);
-        CORE_API void updateChildren(float);
-        CORE_API void updateChildren();
+
 
         CORE_API void setCamera(Camera*);
         CORE_API void setBoundingBox(int, int, int, int);
@@ -116,6 +131,7 @@ namespace engine
 	    BoundingBox realBoundingBox;
         std::vector<Sprite*> children;
         std::map<std::string, Animation> animations;
+        std::string currentAnimation;
 
     private:
         boost::uuids::uuid tag;

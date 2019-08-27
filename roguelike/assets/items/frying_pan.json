@@ -1,5 +1,5 @@
 {
     "name": "frying pan",
     "type": "weapon",
-    "data": [10]
+    "data": [10, 200]
 }

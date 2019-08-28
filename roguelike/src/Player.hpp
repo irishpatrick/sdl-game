@@ -4,6 +4,7 @@
 #include "GridSprite.hpp"
 #include "Item.hpp"
 #include <vector>
+#include "Stats.hpp"
 
 using namespace engine;
 
@@ -19,4 +20,5 @@ private:
     Item* weapon;
     Item* armor;
     std::vector<Item> inventory;
+    Stats stats;
 };

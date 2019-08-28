@@ -16,7 +16,6 @@ void Dungeon::init(Context& ctx)
     grid.addChild(&player);
     grid.addChild(&chest);
     grid.addChild(&enemy);
-    grid.addChild(&test);
 
     player.setGridPos(2, 2);
     player.setTexture(Assets::getTexture("player.png"));
@@ -27,12 +26,6 @@ void Dungeon::init(Context& ctx)
 
     enemy.init(ctx);
     enemy.setGridPos(6, 6);
-
-    test.init(ctx);
-    test.setGridPos(8, 8);
-    test.loadAnimation("assets/animations/character.json");
-    test.setCurrentAnimation("forward");
-    test.playAnimation();
 }
 
 void Dungeon::update()
@@ -72,7 +65,6 @@ void Dungeon::update()
     }
 
     player.update();
-    test.update();
 }
 
 void Dungeon::render(Context& ctx, float ex)
@@ -81,5 +73,4 @@ void Dungeon::render(Context& ctx, float ex)
     chest.draw(ctx, ex);
     player.draw(ctx, ex);
     enemy.draw(ctx, ex);
-    test.draw(ctx, ex);
 }

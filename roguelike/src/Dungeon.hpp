@@ -21,7 +21,6 @@ public:
 private:
     OneShot prompt;
     Player player;
-    Enemy test;
     Enemy enemy;
     Chest chest;
     Grid grid;

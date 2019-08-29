@@ -5,6 +5,7 @@
 #include "Canvas.hpp"
 #include "Util.hpp"
 #include "Rect.hpp"
+#include "MyEngine.hpp"
 #include <iostream>
 #include <cairo.h>
 #include <nlohmann/json.hpp>
@@ -45,11 +46,13 @@ namespace engine
         dynamic = false;
 		sparent = nullptr;
         currentAnimation = "";
+
+        MyEngine::addSprite(this);
 	}
 
     Sprite::~Sprite()
     {
-
+        MyEngine::delSprite(this);
     }
 
 	void Sprite::setSpeed(float s)

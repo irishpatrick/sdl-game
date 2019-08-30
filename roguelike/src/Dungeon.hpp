@@ -5,6 +5,7 @@
 #include "Player.hpp"
 #include "Chest.hpp"
 #include "Enemy.hpp"
+#include "Menu.hpp"
 
 using namespace engine;
 
@@ -24,4 +25,5 @@ private:
     Enemy enemy;
     Chest chest;
     Grid grid;
+    Menu test;
 };

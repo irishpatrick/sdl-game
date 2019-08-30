@@ -26,6 +26,8 @@ void Dungeon::init(Context& ctx)
 
     enemy.init(ctx);
     enemy.setGridPos(6, 6);
+
+    test.pushOption(ctx, "test");
 }
 
 void Dungeon::update()
@@ -73,4 +75,5 @@ void Dungeon::render(Context& ctx, float ex)
     chest.draw(ctx, ex);
     player.draw(ctx, ex);
     enemy.draw(ctx, ex);
+    test.draw(ctx, ex);
 }

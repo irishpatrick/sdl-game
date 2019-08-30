@@ -29,6 +29,7 @@
 #include "Sprite.hpp"
 #include "State.hpp"
 #include "StateBasedGame.hpp"
+#include "Text.hpp"
 #include "Texture.hpp"
 #include "Timer.hpp"
 #include "Transition.hpp"

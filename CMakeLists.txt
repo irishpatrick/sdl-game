@@ -51,6 +51,8 @@ pkg_check_modules(SDL2 REQUIRED sdl2)
 pkg_check_modules(SDL2_IMAGE REQUIRED SDL2_image)
 pkg_check_modules(SDL2_TTF REQUIRED SDL2_ttf)
 pkg_check_modules(CAIRO REQUIRED cairo)
+pkg_check_modules(PANGO REQUIRED pango)
+pkg_check_modules(PANGOCAIRO REQUIRED pangocairo)
 pkg_check_modules(LUA REQUIRED lua5.2)
 
 set(INCL
@@ -58,6 +60,8 @@ set(INCL
     ${SDL2_IMAGE_INCLUDE_DIRS}
     ${SDL2_TTF_INCLUDE_DIRS}
     ${CAIRO_INCLUDE_DIRS}
+    ${PANGO_INCLUDE_DIRS}
+    ${PANGOCAIRO_INCLUDE_DIRS}
     ${LUA_INCLUDE_DIRS}
 )
 
@@ -66,6 +70,8 @@ set(LIBS
     ${SDL2_IMAGE_LIBRARIES}
     ${SDL2_TTF_LIBRARIES}
     ${CAIRO_LIBRARIES}
+    ${PANGO_LIBRARIES}
+    ${PANGOCAIRO_LIBRARIES}
     ${LUA_LIBRARIES}
     stdc++fs
     freetype

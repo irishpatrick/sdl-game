@@ -28,6 +28,7 @@ namespace engine
         void create(Context&, Texture*, uint32_t, uint32_t);
         void attachTexture(Texture*);
         void draw(Context&);
+        void draw(Context&, float, Point);
         cairo_t* getCairo();
         cairo_surface_t* getCairoSurface();
         bool isReady();

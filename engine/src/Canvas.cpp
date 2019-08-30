@@ -112,6 +112,24 @@ namespace engine
         cairo_restore (cr);
     }
 
+    void Canvas::draw(Context& ctx, float ex, Point offset)
+    {
+        tex->update();
+
+        SDL_Rect rect;
+        rect.x = (int)x + offset.x;
+        rect.y = (int)y + offset.y;
+        rect.w = (int)w;
+        rect.h = (int)h;
+        SDL_RenderCopy(ctx.getRenderer(), tex->use(), NULL, &rect);
+        
+        cairo_save (cr);
+        cairo_set_source_rgba (cr, 0 ,0 ,0 ,0);
+        cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
+        cairo_paint (cr);
+        cairo_restore (cr);
+    }
+
     uint32_t Canvas::getWidth()
     {
         return w;

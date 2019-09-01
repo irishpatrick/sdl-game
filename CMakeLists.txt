@@ -39,11 +39,7 @@ set(LIBS
 
 elseif (UNIX)
 
-if (_DEBUG)
-    set(COMPILE_OPTIONS -std=c++11 -g -Wall)
-elseif(_RELEASE)
-    set(COMPILE_OPTIONS -std=c++11 -O2 -Wall)
-endif()
+set(COMPILE_OPTIONS -std=c++11 -g -Wall)
 
 find_package(PkgConfig)
 

@@ -246,11 +246,12 @@ namespace engine
 
 	std::string Sprite::getUUID()
     {
-		if (uuid_str == "") {
+		/*if (uuid_str == "") {
 			uuid_str = boost::lexical_cast<std::string>(tag);
 		}
 
-		return uuid_str;
+		return uuid_str;*/
+        return boost::lexical_cast<std::string>(tag);
 	}
 
     CORE_API void Sprite::translateX(float val)
@@ -290,8 +291,8 @@ namespace engine
         drawChildren(ctx);
         if (texture == nullptr)
         {
-	    std::cout << "error, texture is null" << std::endl;
-	    return;
+	        std::cout << "error, texture is null" << std::endl;
+	        return;
         }
 
         SDL_Rect rect;
@@ -338,6 +339,11 @@ namespace engine
         r.w = w * scale_x;
         r.h = h * scale_y;
 
+        if (texture == nullptr)
+        {
+            std::cout << "error: texture is null" << std::endl;
+        }
+
         if (animations.size() < 1 || currentAnimation == "")
         {
             SDL_RenderCopyEx(ctx.getRenderer(), texture->use(), nullptr, &r, theta, nullptr, SDL_FLIP_NONE);
@@ -365,6 +371,11 @@ namespace engine
         r.y = offset.y + y + (yvel * e);
         r.w = w * scale_x;
         r.h = h * scale_y;
+
+        if (texture == nullptr)
+        {
+            std::cout << "error: texture is null" << std::endl;
+        }
 
         SDL_RenderCopyEx(ctx.getRenderer(), texture->use(), nullptr, &r, theta, NULL, SDL_FLIP_NONE);
     }

@@ -16,6 +16,6 @@ public:
 
 private:
     Canvas window;
-    std::vector<Text> opts;
+    std::vector<Text*> opts;
     Sprite cursor;
 };

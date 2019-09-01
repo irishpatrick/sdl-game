@@ -96,6 +96,10 @@ namespace engine
 
     void Canvas::draw(Context& ctx)
     {
+        if (tex == nullptr)
+        {
+            return;
+        }
         tex->update();
 
         SDL_Rect rect;
@@ -104,7 +108,14 @@ namespace engine
         rect.w = (int)w;
         rect.h = (int)h;
         SDL_RenderCopy(ctx.getRenderer(), tex->use(), NULL, &rect);
-        
+    }
+
+    void Canvas::clear()
+    {
+        if (cr == nullptr)
+        {
+            return;
+        }
         cairo_save (cr);
         cairo_set_source_rgba (cr, 0 ,0 ,0 ,0);
         cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
@@ -114,6 +125,12 @@ namespace engine
 
     void Canvas::draw(Context& ctx, float ex, Point offset)
     {
+        if (tex == nullptr)
+        {
+            std::cout << "error: tex was null" << std::endl;
+            return;
+        }
+        std::cout << "update tex" << std::endl;
         tex->update();
 
         SDL_Rect rect;
@@ -122,12 +139,6 @@ namespace engine
         rect.w = (int)w;
         rect.h = (int)h;
         SDL_RenderCopy(ctx.getRenderer(), tex->use(), NULL, &rect);
-        
-        cairo_save (cr);
-        cairo_set_source_rgba (cr, 0 ,0 ,0 ,0);
-        cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
-        cairo_paint (cr);
-        cairo_restore (cr);
     }
 
     uint32_t Canvas::getWidth()

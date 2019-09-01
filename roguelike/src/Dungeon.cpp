@@ -28,6 +28,15 @@ void Dungeon::init(Context& ctx)
     enemy.setGridPos(6, 6);
 
     test.pushOption(ctx, "test");
+
+    textTest.create(ctx, "Hello World");
+    ref.create(ctx, 1024, 1024);
+    cairo_t* cr = ref.getCairo();
+    //cairo_set_source_rgb(cr, 1.0, 1.0, 1.0);
+    //cairo_paint(cr);
+    cairo_set_source_rgb(cr, 1.0, 0.0, 0.0);
+    cairo_arc(cr, 50, 50, 50, 0, 2 * M_PI);
+    cairo_fill(cr);
 }
 
 void Dungeon::update()

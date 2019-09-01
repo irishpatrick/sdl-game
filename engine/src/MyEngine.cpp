@@ -7,15 +7,24 @@ namespace engine
 
     void MyEngine::addSprite(Sprite* s)
     {
+        if (s == nullptr)
+        {
+            return;
+        }
         sprites.push_back(s);
     }
 
     void MyEngine::delSprite(Sprite* s)
     {
+        return;
+        if (s == nullptr)
+        {
+            return;
+        }
         auto it = sprites.end();
         while (it != sprites.begin())
         {
-            if (s->getUUID() == (*it)->getUUID())
+            if (*it != nullptr && s->getUUID() == (*it)->getUUID())
             {
                 sprites.erase(it);
             }

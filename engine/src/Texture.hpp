@@ -17,6 +17,7 @@ class Texture
 {
 public:
 	CORE_API Texture();
+    CORE_API Texture(const Texture&);
     CORE_API Texture(Context&, const Texture&);
 	CORE_API ~Texture();
 
@@ -35,6 +36,8 @@ public:
     CORE_API void destroy();
     CORE_API void setName(const std::string&);
     CORE_API std::string getName();
+
+    //void postCopy();
 
     bool ready;
 

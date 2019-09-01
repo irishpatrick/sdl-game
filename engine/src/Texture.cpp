@@ -14,6 +14,15 @@ namespace engine
 		name = "";
 	}
 
+    Texture::Texture(const Texture& t)
+    {
+        w = t.w;
+        h = t.h;
+        ready = t.ready;
+        surf = t.surf;
+        tex = t.tex;
+    }
+
     Texture::Texture(Context& ctx, const Texture& t)
     {
         w = t.w;
@@ -115,6 +124,16 @@ namespace engine
 
     void Texture::update(SDL_Surface* s)
     {
+        if (s == nullptr)
+        {
+            std::cout << "error: surface was null" << std::endl;
+            return;
+        }
+        if (tex == nullptr)
+        {
+            std::cout << "error: texture was null" << std::endl;
+            return;
+        }
         int relock = 0;
         if (s->locked)
         {
@@ -210,4 +229,10 @@ namespace engine
             surf = nullptr;
         }
 	}
+
+    /*void Texture::postCopy()
+    {
+        surf = nullptr;
+        tex = nullptr;
+    }*/
 }

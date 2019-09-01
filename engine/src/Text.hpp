@@ -15,6 +15,11 @@ namespace engine
         ~Text();
 
         void create(Context&, const std::string&);
-        //void draw(Context&, float, Point);
+
+    private:
+        std::string genFontString();
+        int fontsize;
+        std::string fontmod;
+        std::string fonttype;
     };
 }

@@ -14,7 +14,8 @@ namespace engine
     class Canvas : public Sprite
     {
     public:
-        Canvas() : Sprite(),
+        Canvas() : 
+            Sprite(),
             x(0), y(0), 
             w(0), h(0),
             ready(false),
@@ -22,11 +23,12 @@ namespace engine
             cairoSurface(nullptr),
             cr(nullptr)
         {}
-        ~Canvas();
+        virtual ~Canvas();
         
         void create(Context&, uint32_t, uint32_t);
         void create(Context&, Texture*, uint32_t, uint32_t);
         void attachTexture(Texture*);
+        void clear();
         void draw(Context&);
         void draw(Context&, float, Point);
         cairo_t* getCairo();

@@ -16,9 +16,10 @@ public:
     void draw(Context&, float);
 
 private:
+    int choice;
     Color bgcolor;
     Color txtcolor;
     Canvas window;
     std::vector<Text*> opts;
-    Sprite cursor;
+    Canvas cursor;
 };

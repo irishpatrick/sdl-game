@@ -28,7 +28,10 @@ void Dungeon::init(Context& ctx)
     enemy.setGridPos(6, 6);
 
     test.init(ctx);
-    test.pushOption(ctx, "test");
+    test.pushOption(ctx, "option 1");
+    test.pushOption(ctx, "option 2");
+    test.x = 20;
+    test.y = 20;
 }
 
 void Dungeon::update()

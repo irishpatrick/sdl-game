@@ -1,7 +1,8 @@
 #include "Menu.hpp"
 
 Menu::Menu() :
-    Sprite()
+    Sprite(),
+    choice(0)
 {
     bgcolor.setRGB(1.0, 1.0, 1.0);
     txtcolor.setRGB(0.0, 0.0, 0.0);
@@ -34,11 +35,16 @@ void Menu::init(Context& ctx)
     // draw border
     cairo_set_source_rgb(cr, 0.0, 0.0, 0.0);
     cairo_rectangle(cr, 0, 0, 100, 100);
-    cairo_set_source_rgb(cr, rgb.r.f, rgb.g.f, rgb.b.f);
-    cairo_rectangle(cr, 2, 2, 97, 97);
-    cairo_set_source_rgb(cr, 0.0, 0.0, 0.0);
-    cairo_rectangle(cr, 4, 4, 95, 95);
     cairo_stroke(cr);
+
+    // create cursor
+    int s = 8;
+    cursor.create(ctx, s, s);
+    cr = cursor.getCairo();
+    
+    cairo_set_source_rgb(cr, 0.0, 0.0, 0.0);
+    cairo_arc(cr, s/2, s/2, s/2, 0, 2.0 * M_PI);
+    cairo_fill(cr);
 }
 
 void Menu::pushOption(Context& ctx, const std::string& str)
@@ -55,8 +61,8 @@ void Menu::draw(Context& ctx, float ex)
     int r = 0;
     for (auto& e : opts)
     {
-        e->draw(ctx, ex, Point(10 + x, 10 + y));
+        e->draw(ctx, ex, Point(14 + x, 10 + y + (24 * r)));
         ++r;
     }
-    //cursor.draw(ctx, ex, Point(x, y));
+    cursor.draw(ctx, ex, Point(4 + x, 4 + 10 + y + (24 * choice)));
 }

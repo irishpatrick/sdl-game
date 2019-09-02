@@ -15,8 +15,10 @@ namespace engine
         ~Text();
 
         void create(Context&, const std::string&);
+        void setColor(Color);
 
     private:
+        Color color;
         std::string genFontString();
         int fontsize;
         std::string fontmod;

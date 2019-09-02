@@ -12,11 +12,16 @@ namespace engine
 
     }
 
+    void Color::setRGB(double r, double g, double b)
+    {
+        rgb.r.f = r;
+        rgb.g.f = g;
+        rgb.b.f = b;
+    }
+
     Color_RGB Color::getRGB()
     {
-        Color_RGB out;
-
-        return out;
+        return rgb;
     }
 
     Color_HSL Color::getHSL()

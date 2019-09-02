@@ -11,10 +11,13 @@ public:
     Menu();
     ~Menu();
 
+    void init(Context&);
     void pushOption(Context&, const std::string&);
     void draw(Context&, float);
 
 private:
+    Color bgcolor;
+    Color txtcolor;
     Canvas window;
     std::vector<Text*> opts;
     Sprite cursor;

@@ -26,6 +26,4 @@ private:
     Chest chest;
     Grid grid;
     Menu test;
-    Text textTest;
-    Canvas ref;
 };

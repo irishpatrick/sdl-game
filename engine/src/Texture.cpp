@@ -126,12 +126,12 @@ namespace engine
     {
         if (s == nullptr)
         {
-            std::cout << "error: surface was null" << std::endl;
+            //std::cout << "error: surface was null" << std::endl;
             return;
         }
         if (tex == nullptr)
         {
-            std::cout << "error: texture was null" << std::endl;
+            //std::cout << "error: texture was null" << std::endl;
             return;
         }
         int relock = 0;

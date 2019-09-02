@@ -11,7 +11,7 @@ namespace engine
         fontmod(""),
         fonttype("Times New Roman")
     {
-
+        color.setRGB(0.0, 0.0, 0.0);
     }
 
     Text::~Text()
@@ -41,9 +41,15 @@ namespace engine
 
         //cairo_set_source_rgb(cr, 1.0, 1.0, 1.0);
         //cairo_paint(cr);
-        cairo_set_source_rgb(cr, 0.8, 0.1, 0.4);
+        Color_RGB rgb = color.getRGB();
+        cairo_set_source_rgb(cr, rgb.r.f, rgb.g.f, rgb.b.f);
         pango_cairo_show_layout(cr, layout);
 
         g_object_unref(layout);
+    }
+
+    void Text::setColor(Color c)
+    {
+        color = c;
     }
 }

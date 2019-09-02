@@ -5,8 +5,8 @@ namespace engine
     union Color_Value
     {
         int i;
-        float f;
-        char c;
+        double f;
+        char b;
     };
     struct Color_RGB
     {
@@ -32,10 +32,13 @@ namespace engine
         Color();
         ~Color();
 
+        void setRGB(double, double, double);
+
         Color_RGB getRGB();
         Color_HSL getHSL();
         Color_HSV getHSV();
 
     private:
+        Color_RGB rgb;
     };
 }

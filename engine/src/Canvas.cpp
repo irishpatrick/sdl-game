@@ -127,10 +127,10 @@ namespace engine
     {
         if (tex == nullptr)
         {
-            std::cout << "error: tex was null" << std::endl;
+            //std::cout << "error: tex was null" << std::endl;
             return;
         }
-        std::cout << "update tex" << std::endl;
+        //std::cout << "update tex" << std::endl;
         tex->update();
 
         SDL_Rect rect;

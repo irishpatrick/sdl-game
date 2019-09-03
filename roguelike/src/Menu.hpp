@@ -2,6 +2,7 @@
 
 #include <engine.hpp>
 #include <vector>
+#include <string>
 
 using namespace engine;
 
@@ -12,8 +13,13 @@ public:
     ~Menu();
 
     void init(Context&);
+    void applyFormat(const std::string&);
     void pushOption(Context&, const std::string&);
     void draw(Context&, float);
+
+    void moveCursor(int);
+
+    int getChoice();
 
 private:
     int choice;

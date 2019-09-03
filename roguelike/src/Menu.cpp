@@ -1,9 +1,13 @@
 #include "Menu.hpp"
 
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
+
 Menu::Menu() :
     Sprite(),
     choice(0)
 {
+    visible = false;
     bgcolor.setRGB(1.0, 1.0, 1.0);
     txtcolor.setRGB(0.0, 0.0, 0.0);
 }
@@ -57,6 +61,8 @@ void Menu::pushOption(Context& ctx, const std::string& str)
 
 void Menu::draw(Context& ctx, float ex)
 {
+    if (!visible) return;
+
     window.draw(ctx, ex, Point(x, y));
     int r = 0;
     for (auto& e : opts)
@@ -65,4 +71,23 @@ void Menu::draw(Context& ctx, float ex)
         ++r;
     }
     cursor.draw(ctx, ex, Point(4 + x, 4 + 10 + y + (24 * choice)));
+}
+
+void Menu::moveCursor(int offset)
+{
+    int next = choice + offset;
+    if (next < 0)
+    {
+        next = 0;
+    }
+    else if (next > opts.size() - 1)
+    {
+        next = opts.size() - 1;
+    }
+    choice = next;
+}
+
+int Menu::getChoice()
+{
+    return choice;
 }

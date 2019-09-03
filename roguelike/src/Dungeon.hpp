@@ -6,6 +6,7 @@
 #include "Chest.hpp"
 #include "Enemy.hpp"
 #include "Menu.hpp"
+#include <vector>
 
 using namespace engine;
 
@@ -21,9 +22,12 @@ public:
 
 private:
     OneShot prompt;
+    OneShot w_once;
+    OneShot s_once;
     Player player;
     Enemy enemy;
     Chest chest;
     Grid grid;
-    Menu test;
+    Menu menu;
+    std::vector<Menu*> menuStack;
 };

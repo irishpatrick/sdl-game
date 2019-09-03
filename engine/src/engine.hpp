@@ -25,7 +25,6 @@
 #include "Rect.hpp"
 #include "Scene.hpp"
 #include "Script.hpp"
-#include "ScrollingText.hpp"
 #include "SimpleGame.hpp"
 #include "Sprite.hpp"
 #include "State.hpp"

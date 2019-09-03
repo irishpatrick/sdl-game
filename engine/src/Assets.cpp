@@ -2,6 +2,7 @@
 #include "Texture.hpp"
 #include "Context.hpp"
 #include "Util.hpp"
+#include "MyEngine.hpp"
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -28,6 +29,40 @@ namespace engine
 
 	void Assets::loadTexture(Context& ctx, const std::string& fn)
 	{
+		std::cout << "loading texture " << fn << std::endl;
+		std::vector<std::string> vec = split(fn, '/');
+		std::string key = vec[vec.size() - 1];
+
+		/*if (texMap.find(key) != texMap.end()) {
+			texMap[key] = new Texture(r);
+			futures.push_back(std::async(std::launch::async, parallel_load, std::ref(texMap), fn, key));
+		} else {
+			std::cout << "key does not exist" << std::endl;
+		}*/
+
+		Texture* t = new Texture();
+		texMap[key] = t;
+		t->setName(key);
+
+		SDL_Surface* s = IMG_Load(fn.c_str());
+		if (s == nullptr)
+		{
+			std::cout << "error!" << std::endl;
+			std::cout << "t has been deleted" << std::endl;
+			std::cout << "surface for " << t->getName() << " failed to load: " << IMG_GetError() << std::endl;
+			delete t;
+			return;
+		}
+		else
+		{
+			t->create(ctx, s);
+		}
+	}
+
+	void Assets::loadTexture(const std::string& fn)
+	{
+		Context& ctx = MyEngine::getContext();
+		
 		std::cout << "loading texture " << fn << std::endl;
 		std::vector<std::string> vec = split(fn, '/');
 		std::string key = vec[vec.size() - 1];

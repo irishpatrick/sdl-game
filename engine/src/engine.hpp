@@ -16,6 +16,7 @@
 #include "Line.hpp"
 #include "LocationStack.hpp"
 #include "MovingAverage.hpp"
+#include "MyEngine.hpp"
 #include "OneShot.hpp"
 #include "PlatformerPhysics.hpp"
 #include "Point.hpp"

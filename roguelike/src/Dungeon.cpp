@@ -2,7 +2,7 @@
 
 Dungeon::Dungeon()
 {
-
+    setName("dungeon");
 }
 
 Dungeon::~Dungeon()
@@ -10,8 +10,9 @@ Dungeon::~Dungeon()
 
 }
 
-void Dungeon::init(Context& ctx)
+void Dungeon::init()
 {
+    Context& ctx = MyEngine::getContext();
     grid.load(ctx, "assets/maps/grid.json");
     grid.addChild(&player);
     grid.addChild(&chest);
@@ -27,11 +28,13 @@ void Dungeon::init(Context& ctx)
     enemy.init(ctx);
     enemy.setGridPos(6, 6);
 
-    menu.init(ctx);
-    menu.pushOption(ctx, "option 1");
-    menu.pushOption(ctx, "option 2");
-    menu.x = 20;
-    menu.y = 20;
+    pauseMenu.init(ctx);
+    pauseMenu.pushOption(ctx, "Resume");
+    pauseMenu.pushOption(ctx, "Save");
+    pauseMenu.pushOption(ctx, "Options");
+    pauseMenu.pushOption(ctx, "Quit");
+    pauseMenu.x = 20;
+    pauseMenu.y = 20;
 }
 
 void Dungeon::update()
@@ -45,9 +48,10 @@ void Dungeon::update()
     int d = keys[SDL_SCANCODE_D];
     int p = keys[SDL_SCANCODE_P];
     int e = keys[SDL_SCANCODE_E];
+    int esc = keys[SDL_SCANCODE_ESCAPE];
     prompt.check(p);
 
-    if (!menu.isVisible())
+    if (!pauseMenu.isVisible())
     {
         if (!w && !s && !a && !d)
         {
@@ -70,9 +74,9 @@ void Dungeon::update()
             player.right();
         }
         
-        if (e)
+        if (esc)
         {
-            menu.setVisible(true);
+            pauseMenu.setVisible(true);
         }
 
         if (prompt.fire())
@@ -84,28 +88,32 @@ void Dungeon::update()
     {
         if (w_once.fire())
         {
-            menu.moveCursor(-1);
+            pauseMenu.moveCursor(-1);
         }
         if (s_once.fire())
         {
-            menu.moveCursor(1);
+            pauseMenu.moveCursor(1);
         }
         if (prompt.fire())
         {
-            menu.setVisible(false);
-            std::cout << "player chose option " << menu.getChoice() << std::endl;
+            pauseMenu.setVisible(false);
+            if (pauseMenu.getChoice() == 3)
+            {
+                exit(0);
+            }
         }
     }
-    
 
     player.update();
 }
 
-void Dungeon::render(Context& ctx, float ex)
+void Dungeon::render(float ex)
 {
+    Context& ctx = MyEngine::getContext();
+    
     grid.draw(ctx, ex);
     chest.draw(ctx, ex);
     player.draw(ctx, ex);
     enemy.draw(ctx, ex);
-    menu.draw(ctx, ex);
+    pauseMenu.draw(ctx, ex);
 }

@@ -48,6 +48,16 @@ namespace engine
 
 	}
 
+	void State::render()
+	{
+
+	}
+
+	void State::render(float ex)
+	{
+		
+	}
+
 	void State::updateKeys()
 	{
 		kbd = (uint8_t*)SDL_GetKeyboardState(nullptr);
@@ -56,5 +66,15 @@ namespace engine
 	void State::setGame(Game& g)
 	{
 		game = &g;
+	}
+
+	void State::setName(const std::string& str)
+	{
+		name = str;
+	}
+
+	std::string State::getName()
+	{
+		return name;
 	}
 }

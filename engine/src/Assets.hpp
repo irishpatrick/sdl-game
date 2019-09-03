@@ -19,6 +19,7 @@ namespace engine
 	{
 	public:
 		CORE_API static void loadTexture(Context& ctx, const std::string&);
+		static void loadTexture(const std::string&);
 		CORE_API static void loadTexturesFromVector(const std::string&, std::vector<std::string>, Context&);
 		CORE_API static void loadTexturesFromJson(Context&, const std::string&);
 		CORE_API static Texture* getTexture(const std::string&);

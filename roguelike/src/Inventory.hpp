@@ -1,21 +1,16 @@
 #pragma once
 
 #include <engine.hpp>
-#include "Dungeon.hpp"
 
 using namespace engine;
 
-class App : public Game
+class Inventory : public State
 {
 public:
-    App();
-    ~App();
+    Inventory();
+    ~Inventory();
 
     void init();
     void update();
     void draw(float);
-
-private:
-    Context* ctx;
-    Dungeon dungeon;
 };

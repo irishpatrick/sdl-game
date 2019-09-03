@@ -16,9 +16,9 @@ public:
     Dungeon();
     ~Dungeon();
 
-    void init(Context&);
+    void init();
     void update();
-    void render(Context&, float);
+    void render(float);
 
 private:
     OneShot prompt;
@@ -28,6 +28,6 @@ private:
     Enemy enemy;
     Chest chest;
     Grid grid;
-    Menu menu;
+    Menu pauseMenu;
     std::vector<Menu*> menuStack;
 };

@@ -1,5 +1,6 @@
 #include "App.hpp"
 
+
 App::App()
 {
 
@@ -17,29 +18,29 @@ void quit_cb()
 
 void App::init()
 {
-    ctx.init(512, 480, "Roguelike", false);
-    ctx.setQuitCallback(quit_cb);
+    ctx = &MyEngine::getContext();
+    ctx->init(512, 480, "Roguelike", false);
+    ctx->setQuitCallback(quit_cb);
 
-    Assets::loadTexture(ctx, "assets/sprites/player.png");
-    Assets::loadTexture(ctx, "assets/sprites/atlas.png");
-    Assets::loadTexture(ctx, "assets/sprites/chest.png");
-    Assets::loadTexture(ctx, "assets/sprites/enemy.png");
+    Assets::loadTexture("assets/sprites/player.png");
+    Assets::loadTexture("assets/sprites/atlas.png");
+    Assets::loadTexture("assets/sprites/chest.png");
+    Assets::loadTexture("assets/sprites/enemy.png");
 
-    dungeon.init(ctx);
-
-    addState("dungeon", &dungeon);
-    setCurrentState("dungeon");
+    dungeon.init();
+    MyEngine::addState(&dungeon);
+    MyEngine::setCurrentState("dungeon");
 }
 
 void App::update()
 {
-    ctx.pollEvents();
-    getCurrentState()->update();
+    ctx->pollEvents();
+    MyEngine::getCurrentState()->update();
 }
 
 void App::draw(float ex)
 {
-    ctx.clear();
-    getCurrentState()->render(ctx, ex);
-    ctx.render();
+    ctx->clear();
+    MyEngine::getCurrentState()->render(ex);
+    ctx->render();
 }

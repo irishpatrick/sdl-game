@@ -80,9 +80,9 @@ void Menu::moveCursor(int offset)
     {
         next = 0;
     }
-    else if (next > opts.size() - 1)
+    else if (next > (int)opts.size() - 1)
     {
-        next = opts.size() - 1;
+        next = (int)opts.size() - 1;
     }
     choice = next;
 }

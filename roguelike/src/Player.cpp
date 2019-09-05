@@ -15,6 +15,11 @@ Player::~Player()
 
 void Player::give(Item item)
 {
-    std::cout << "received " << item.getName() << std::endl;
+    std::cout << "received " << item.getQuantity() << " " << item.getName() << "(s)" << std::endl;
     inventory.push_back(item);
+}
+
+std::vector<Item>& Player::getInventory()
+{
+    return inventory;
 }

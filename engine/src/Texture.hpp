@@ -33,11 +33,10 @@ public:
 	CORE_API uint32_t getH();
 	CORE_API SDL_Texture* use();
     CORE_API SDL_Surface* getSurface();
+    CORE_API void display(int, int);
     CORE_API void destroy();
     CORE_API void setName(const std::string&);
     CORE_API std::string getName();
-
-    //void postCopy();
 
     bool ready;
 

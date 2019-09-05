@@ -124,7 +124,7 @@ namespace engine
 	{
 		if (texMap.find(key) == texMap.end())
 		{
-			printf("key %s not found!\n", key.c_str());
+			printf("key \"%s\" not found!\n", key.c_str());
 			//getMissingTexture(ctx);
 			//return missing;
 			return nullptr;

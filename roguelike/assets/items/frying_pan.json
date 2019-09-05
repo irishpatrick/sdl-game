@@ -1,6 +1,6 @@
 {
     "name": "frying pan",
-    "texture": "",
+    "texture": "frying_pan.png",
     "type": "weapon",
     "data": [10, 200]
 }

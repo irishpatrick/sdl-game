@@ -6,7 +6,11 @@
 
 using json = nlohmann::json;
 
-Item::Item()
+Item::Item() :
+    quantity(0),
+    name(""),
+    type(""),
+    tex(nullptr)
 {
 
 }
@@ -18,6 +22,7 @@ Item::~Item()
 
 void Item::load(const std::string& fn)
 {
+    std::cout << "loading item " << fn << std::endl;
     std::ifstream in(fn);
     if (!in)
     {
@@ -62,4 +67,24 @@ void Item::load(const std::string& fn)
 const std::string Item::getName()
 {
     return name;
+}
+
+Texture* Item::getTexture()
+{
+    return tex;
+}
+
+int Item::getQuantity()
+{
+    return quantity;
+}
+
+void Item::setQuantity(int q)
+{
+    quantity = q;
+}
+
+void Item::incQuantity(int d)
+{
+    quantity += d;
 }

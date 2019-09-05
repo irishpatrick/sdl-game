@@ -1,5 +1,6 @@
 #include "Inventory.hpp"
 #include "Player.hpp"
+#include <iostream>
 
 Inventory::Inventory() :
     State()
@@ -31,7 +32,26 @@ void Inventory::update()
     }
 }
 
-void Inventory::draw(float ex)
+void Inventory::render(float ex)
 {
-    //Context& ctx = MyEngine::getContext();
+    //std::cout << "draw inventory" << std::endl;
+    if (player == nullptr)
+    {
+        //std::cout << "player null, cannot draw" << std::endl;
+        return;
+    }
+    int n = 0;
+    int p = 10;
+    int w = 32;
+    for (auto& e : player->getInventory())
+    {
+        Texture* t = e.getTexture();
+        if (t == nullptr)
+        {
+            //std::cout << "null texture, cannot display" << std::endl;
+            continue;
+        }
+        t->display(p + w * n, p);
+        ++n;
+    }
 }

@@ -1,5 +1,7 @@
 #include "Texture.hpp"
+#include "MyEngine.hpp"
 #include <iostream>
+#include <SDL.h>
 
 namespace engine
 {
@@ -200,6 +202,18 @@ namespace engine
 		return tex;
 	}
 
+    void Texture::display(int x, int y)
+    {
+        Context& ctx = MyEngine::getContext();
+        SDL_Rect r;
+        r.x = x;
+        r.y = y;
+        r.w = w;
+        r.h = h;
+
+        SDL_RenderCopy(ctx.getRenderer(), use(), nullptr, &r);
+    }
+
     SDL_Surface* Texture::getSurface()
     {
         return surf;
@@ -229,10 +243,4 @@ namespace engine
             surf = nullptr;
         }
 	}
-
-    /*void Texture::postCopy()
-    {
-        surf = nullptr;
-        tex = nullptr;
-    }*/
 }

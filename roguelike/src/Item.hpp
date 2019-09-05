@@ -15,8 +15,15 @@ public:
     void load(const std::string&);
 
     const std::string getName();
+    Texture* getTexture();
+
+    int getQuantity();
+    void setQuantity(int);
+    void incQuantity(int);
+
 
 private:
+    int quantity;
     std::string name;
     std::string type;
     std::vector<int> data;

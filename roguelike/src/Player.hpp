@@ -15,6 +15,7 @@ public:
     ~Player();
 
     virtual void give(Item);
+    std::vector<Item>& getInventory();
 
 private:
     Item* weapon;

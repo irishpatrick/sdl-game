@@ -15,7 +15,7 @@ public:
     void init();
     void fill(Player*);
     void update();
-    void draw(float);
+    void render(float);
 
 private:
     Player* player;

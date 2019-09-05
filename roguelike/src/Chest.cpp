@@ -44,11 +44,12 @@ void Chest::interact(GridSprite* prompt)
 void Chest::fill()
 {
     int n = Random::randint(3, 8);
-    int i;
-    for (i = 0; i < n; ++i)
-    {
-        Item item;
-        item.load("assets/items/apple.json");
-        contents.push_back(item);
-    }
+    Item food;
+    Item weapon;
+    food.load("assets/items/apple.json");
+    food.setQuantity(n);
+    weapon.load("assets/items/frying_pan.json");
+    weapon.setQuantity(1);
+    contents.push_back(food);
+    contents.push_back(weapon);
 }

@@ -26,6 +26,7 @@ void App::init()
     Assets::loadTexture("assets/sprites/atlas.png");
     Assets::loadTexture("assets/sprites/chest.png");
     Assets::loadTexture("assets/sprites/enemy.png");
+    Assets::loadTexture("assets/sprites/apple.png");
 
     dungeon.init();
     MyEngine::addState(&dungeon);

@@ -2,6 +2,9 @@
 
 #include <string>
 #include <vector>
+#include <engine.hpp>
+
+using namespace engine;
 
 class Item
 {
@@ -17,4 +20,5 @@ private:
     std::string name;
     std::string type;
     std::vector<int> data;
+    Texture* tex;
 };

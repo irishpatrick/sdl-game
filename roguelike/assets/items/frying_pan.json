@@ -1,5 +1,6 @@
 {
     "name": "frying pan",
+    "texture": "",
     "type": "weapon",
     "data": [10, 200]
 }

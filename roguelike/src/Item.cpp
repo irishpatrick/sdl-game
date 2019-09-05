@@ -34,6 +34,13 @@ void Item::load(const std::string& fn)
     }
     name = o["name"];
 
+    if (!json_has(o, "texture"))
+    {
+        std::cout << "missing texture field\n";
+        return;
+    }
+    tex = Assets::getTexture(o["texture"]);
+
     if (!json_has(o, "type"))
     {
         std::cout << "missing type field\n";

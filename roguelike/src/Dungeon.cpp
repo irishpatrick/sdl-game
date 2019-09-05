@@ -1,4 +1,5 @@
 #include "Dungeon.hpp"
+#include "Inventory.hpp"
 
 Dungeon::Dungeon()
 {
@@ -69,7 +70,12 @@ void Dungeon::update()
 
         if (Keyboard::isPressed("e"))
         {
-            MyEngine::setCurrentState("inventory");
+            Inventory* i = dynamic_cast<Inventory*>(MyEngine::getState("inventory"));
+            if (i != nullptr)
+            {
+                i->fill(&player);
+                MyEngine::setCurrentState("inventory");
+            }
         }
         
         if (Keyboard::isPressed("escape"))

@@ -1,4 +1,5 @@
 #include "Inventory.hpp"
+#include "Player.hpp"
 
 Inventory::Inventory() :
     State()
@@ -14,6 +15,11 @@ Inventory::~Inventory()
 void Inventory::init()
 {
     //Context& ctx = MyEngine::getContext();
+}
+
+void Inventory::fill(Player* p)
+{
+    player = p;
 }
 
 void Inventory::update()

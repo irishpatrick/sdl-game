@@ -18,6 +18,7 @@ namespace engine
         static void addState(State*);
         static void delState(State*);
         static void delState(const std::string&);
+        static State* getState(const std::string&);
         static void setCurrentState(const std::string&);
         static State* getCurrentState();
 

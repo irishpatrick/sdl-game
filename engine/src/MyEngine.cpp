@@ -66,6 +66,18 @@ namespace engine
         }
     }
 
+    State* MyEngine::getState(const std::string& name)
+    {
+        for (auto& e : states)
+        {
+            if (e->getName() == name)
+            {
+                return e;
+            }
+        }
+        return nullptr;
+    }
+
     void MyEngine::setCurrentState(const std::string& name)
     {
         int found = 0;

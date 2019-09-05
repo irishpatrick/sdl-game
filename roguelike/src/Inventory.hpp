@@ -4,6 +4,8 @@
 
 using namespace engine;
 
+class Player;
+
 class Inventory : public State
 {
 public:
@@ -11,6 +13,10 @@ public:
     ~Inventory();
 
     void init();
+    void fill(Player*);
     void update();
     void draw(float);
+
+private:
+    Player* player;
 };

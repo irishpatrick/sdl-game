@@ -13,6 +13,7 @@
 #include "Font.hpp"
 #include "Game.hpp"
 #include "Group.hpp"
+#include "Keyboard.hpp"
 #include "Line.hpp"
 #include "LocationStack.hpp"
 #include "MovingAverage.hpp"

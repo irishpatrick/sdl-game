@@ -68,12 +68,18 @@ namespace engine
 
     void MyEngine::setCurrentState(const std::string& name)
     {
+        int found = 0;
         for (auto& e : states)
         {
             if (e != nullptr && e->getName() == name)
             {
+                found = 1;
                 currentState = e;
             }
+        }
+        if (!found)
+        {
+            std::cout << "error: state not found" << std::endl;
         }
     }
 

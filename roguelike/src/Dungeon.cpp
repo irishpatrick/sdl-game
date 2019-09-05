@@ -39,62 +39,60 @@ void Dungeon::init()
 
 void Dungeon::update()
 {
-    const uint8_t* keys = SDL_GetKeyboardState(nullptr);
-    int w = keys[SDL_SCANCODE_W];
-    w_once.check(w);
-    int s = keys[SDL_SCANCODE_S];
-    s_once.check(s);
-    int a = keys[SDL_SCANCODE_A];
-    int d = keys[SDL_SCANCODE_D];
-    int p = keys[SDL_SCANCODE_P];
-    int e = keys[SDL_SCANCODE_E];
-    int esc = keys[SDL_SCANCODE_ESCAPE];
-    prompt.check(p);
+    Keyboard::poll();
 
     if (!pauseMenu.isVisible())
     {
-        if (!w && !s && !a && !d)
+        if (!Keyboard::isDown("w") &&
+            !Keyboard::isDown("a") &&
+            !Keyboard::isDown("s") &&
+            !Keyboard::isDown("d"))
         {
             
         }
-        else if (w)
+        else if (Keyboard::isDown("w"))
         {
             player.up();
         }
-        else if (s)
+        else if (Keyboard::isDown("s"))
         {
             player.down();
         }
-        else if (a)
+        else if (Keyboard::isDown("a"))
         {
             player.left();
         }
-        else if (d)
+        else if (Keyboard::isDown("d"))
         {
             player.right();
         }
+
+        if (Keyboard::isPressed("e"))
+        {
+            MyEngine::setCurrentState("inventory");
+        }
         
-        if (esc)
+        if (Keyboard::isPressed("escape"))
         {
             pauseMenu.setVisible(true);
         }
 
-        if (prompt.fire())
+        if (Keyboard::isPressed("p"))
         {
             player.prompt();
         }
     }
     else
     {
-        if (w_once.fire())
+        if (Keyboard::isPressed("w"))
         {
             pauseMenu.moveCursor(-1);
         }
-        if (s_once.fire())
+        if (Keyboard::isPressed("s"))
         {
             pauseMenu.moveCursor(1);
         }
-        if (prompt.fire())
+        if (Keyboard::isPressed("p"))
         {
             pauseMenu.setVisible(false);
             if (pauseMenu.getChoice() == 3)

@@ -30,6 +30,11 @@ void App::init()
     dungeon.init();
     MyEngine::addState(&dungeon);
     MyEngine::setCurrentState("dungeon");
+
+    inventory.init();
+    MyEngine::addState(&inventory);
+
+
 }
 
 void App::update()

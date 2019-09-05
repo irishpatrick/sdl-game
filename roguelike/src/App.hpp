@@ -2,6 +2,7 @@
 
 #include <engine.hpp>
 #include "Dungeon.hpp"
+#include "Inventory.hpp"
 
 using namespace engine;
 
@@ -18,4 +19,5 @@ public:
 private:
     Context* ctx;
     Dungeon dungeon;
+    Inventory inventory;
 };

@@ -3,7 +3,7 @@
 Inventory::Inventory() :
     State()
 {
-
+    setName("inventory");
 }
 
 Inventory::~Inventory()
@@ -18,7 +18,11 @@ void Inventory::init()
 
 void Inventory::update()
 {
-
+    Keyboard::poll();
+    if (Keyboard::isPressed("escape"))
+    {
+        MyEngine::setCurrentState("dungeon");
+    }
 }
 
 void Inventory::draw(float ex)

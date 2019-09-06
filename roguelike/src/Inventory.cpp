@@ -26,7 +26,7 @@ void Inventory::fill(Player* p)
 void Inventory::update()
 {
     Keyboard::poll();
-    if (Keyboard::isPressed("escape"))
+    if (Keyboard::isPressed("escape") || Keyboard::isPressed("e"))
     {
         MyEngine::setCurrentState("dungeon");
     }
@@ -51,7 +51,7 @@ void Inventory::render(float ex)
             //std::cout << "null texture, cannot display" << std::endl;
             continue;
         }
-        t->display(p + w * n, p);
+        t->display((p * (n + 1)) + (w * n), p);
         ++n;
     }
 }

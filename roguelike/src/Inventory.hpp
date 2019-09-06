@@ -5,6 +5,7 @@
 using namespace engine;
 
 class Player;
+class Item;
 
 class Inventory : public State
 {
@@ -18,5 +19,12 @@ public:
     void render(float);
 
 private:
+    int gridW;
+    int gridH;
+    int tileSize;
+    int tilePad;
+    std::vector<Item**> grid;
     Player* player;
+    Canvas cursor;
+    Point selection;
 };

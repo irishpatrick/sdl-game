@@ -26,6 +26,7 @@ private:
     int quantity;
     std::string name;
     std::string type;
+    std::string flavor;
     std::vector<int> data;
     Texture* tex;
 };

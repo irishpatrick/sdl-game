@@ -10,6 +10,7 @@ Item::Item() :
     quantity(0),
     name(""),
     type(""),
+    flavor(""),
     tex(nullptr)
 {
 
@@ -52,6 +53,13 @@ void Item::load(const std::string& fn)
         return;
     }
     type = o["type"];
+
+    if (!json_has(o, "flavor"))
+    {
+        std::cout << "missing flavor text field" << std::endl;
+        return;
+    }
+    flavor = o["flavor"];
 
     if (!json_has(o, "data"))
     {

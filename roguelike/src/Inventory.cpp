@@ -76,6 +76,16 @@ void Inventory::fill(Player* p)
     }
 }
 
+Item* Inventory::getSelection()
+{
+    int index = selection.x + (selection.y * gridW);
+    if (selection.x > gridW || index > numItems)
+    {
+        return nullptr;
+    }
+    return grid[(int)selection.y][(int)selection.x];
+}
+
 void Inventory::update()
 {
     Keyboard::poll();

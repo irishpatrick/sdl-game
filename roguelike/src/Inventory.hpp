@@ -17,6 +17,7 @@ public:
     void fill(Player*);
     void update();
     void render(float);
+    Item* getSelection();
 
 private:
     int gridW;

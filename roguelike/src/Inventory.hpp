@@ -23,6 +23,7 @@ private:
     int gridH;
     int tileSize;
     int tilePad;
+    int numItems;
     std::vector<Item**> grid;
     Player* player;
     Canvas cursor;

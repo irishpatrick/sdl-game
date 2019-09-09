@@ -9,7 +9,8 @@ Inventory::Inventory() :
     gridW(0),
     gridH(0),
     tileSize(32),
-    tilePad(10)
+    tilePad(10),
+    numItems(0)
 {
     setName("inventory");
 }
@@ -61,10 +62,13 @@ void Inventory::fill(Player* p)
     int n = 0;
     int r;
     int c;
+    numItems = player->getInventory().size();
     for (auto& e : player->getInventory())
     {
         r = n / gridW;
         c = n % gridW;
+
+        std::cout << "place item at <" << r << "," << c << ">" << std::endl;
 
         grid[r][c] = &e;
 
@@ -113,40 +117,27 @@ void Inventory::render(float ex)
         //std::cout << "player null, cannot draw" << std::endl;
         return;
     }
-    for (auto& e : grid)
+
+    int n = numItems;
+    int i;
+    int r;
+    int c;
+    for (i = 0; i < n; ++i)
     {
-        if (e == nullptr)
+        r = i / gridW;
+        c = i % gridW;
+        Item* item = grid[r][c];
+        if (item == nullptr)
         {
+            std::cout << "item was null" << std::endl;
             break;
         }
-        int c;
-        int r = 0;
-        for (c = 0; c < gridW; ++c)
-        {
-            Item* i = e[c];
-            if (i == nullptr)
-            {
-                break;
-            }
-            Texture* t = i->getTexture();
-            if (t == nullptr)
-            {
-                continue;
-            }
-            t->display((tilePad * (c + 1)) + (tileSize * c), (tilePad * (r + 1)) + (tileSize * r));
-        }
-        ++r;
-    }
-    /*int n = 0;
-    for (auto& e : player->getInventory())
-    {
-        Texture* t = e.getTexture();
+        Texture* t = item->getTexture();
         if (t == nullptr)
         {
-            //std::cout << "null texture, cannot display" << std::endl;
-            continue;
+            std::cout << "texture was null" << std::endl;
+            break;
         }
-        t->display((tilePad * (n + 1)) + (tileSize * n), tilePad);
-        ++n;
-    }*/
+        t->display((tilePad * (c + 1)) + (tileSize * c), (tilePad * (r + 1)) + (tileSize * r));   
+    }
 }

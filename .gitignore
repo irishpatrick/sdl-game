@@ -8,6 +8,8 @@ release/
 .vscode/
 node_modules/
 tools/tpack/textures/
+bin/
+obj/
 
 tools/pack/target/
 tools/pack/pom.xml.tag

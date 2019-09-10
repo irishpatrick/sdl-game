@@ -1,6 +1,7 @@
 #pragma once
 
 #include <engine.hpp>
+#include "Menu.hpp"
 
 using namespace engine;
 
@@ -29,4 +30,5 @@ private:
     Player* player;
     Canvas cursor;
     Point selection;
+    Menu actions;
 };

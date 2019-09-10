@@ -16,6 +16,7 @@ public:
     void applyFormat(const std::string&);
     void pushOption(Context&, const std::string&);
     void draw(Context&, float);
+    void draw(float);
 
     void moveCursor(int);
 

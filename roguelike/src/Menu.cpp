@@ -73,6 +73,12 @@ void Menu::draw(Context& ctx, float ex)
     cursor.draw(ctx, ex, Point(4 + x, 4 + 10 + y + (24 * choice)));
 }
 
+void Menu::draw(float ex)
+{
+    Context& ctx = MyEngine::getContext();
+    draw(ctx, ex);
+}
+
 void Menu::moveCursor(int offset)
 {
     int next = choice + offset;

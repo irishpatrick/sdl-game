@@ -54,6 +54,11 @@ void Inventory::init()
     cairo_rectangle(cr, 0, 0, tileSize, tileSize);
     //cairo_stroke(cr);
     cairo_fill(cr);
+
+    actions.init(ctx);
+    actions.pushOption(ctx, "Use");
+    actions.pushOption(ctx, "Equip");
+    actions.pushOption(ctx, "Drop");
 }
 
 void Inventory::fill(Player* p)
@@ -110,6 +115,11 @@ void Inventory::update()
         selection.x -= 1;
     }
 
+    selection.x = (int)fmax(0, selection.x);
+    selection.y = (int)fmax(0, selection.y);
+    selection.x = (int)fmin(selection.x, (numItems % gridW) - 1);
+    selection.y = (int)fmin(selection.y, numItems / gridH);
+
     if (Keyboard::isPressed("p"))
     {
         Item* selection = getSelection();
@@ -119,10 +129,6 @@ void Inventory::update()
         }
     }
 
-    selection.x = (int)fmax(0, selection.x);
-    selection.y = (int)fmax(0, selection.y);
-    selection.x = (int)fmin(selection.x, gridW);
-    selection.y = (int)fmin(selection.y, gridH);
     cursor.update();
     cursor.x = (tilePad * (selection.x + 1)) + (tileSize * selection.x);
     cursor.y = (tilePad * (selection.y + 1)) + (tileSize * selection.y);
@@ -130,6 +136,10 @@ void Inventory::update()
 
 void Inventory::render(float ex)
 {
+    if (numItems < 1)
+    {
+        return;
+    }
     cursor.draw(MyEngine::getContext());
     //std::cout << "draw inventory" << std::endl;
     if (player == nullptr)
@@ -160,4 +170,6 @@ void Inventory::render(float ex)
         }
         t->display((tilePad * (c + 1)) + (tileSize * c), (tilePad * (r + 1)) + (tileSize * r));
     }
+
+    actions.draw(ex);
 }

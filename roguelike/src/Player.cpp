@@ -19,6 +19,11 @@ void Player::give(Item item)
     inventory.push_back(item);
 }
 
+void Player::use(Item item)
+{
+    
+}
+
 std::vector<Item>& Player::getInventory()
 {
     return inventory;

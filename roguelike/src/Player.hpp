@@ -15,6 +15,7 @@ public:
     ~Player();
 
     virtual void give(Item);
+    virtual void use(Item);
     std::vector<Item>& getInventory();
 
 private:

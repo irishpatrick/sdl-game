@@ -77,9 +77,19 @@ const std::string Item::getName()
     return name;
 }
 
+const std::string Item::getType()
+{
+    return type;
+}
+
 Texture* Item::getTexture()
 {
     return tex;
+}
+
+int Item::getDataPoint(int index)
+{
+    return data[index];
 }
 
 int Item::getQuantity()

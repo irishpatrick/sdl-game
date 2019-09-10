@@ -1,24 +1,47 @@
 #include "Stats.hpp"
+#include <cmath>
 
-Stats::Stats() :
-    lvl(0),
-    xp(0),
-    hp(0),
-    atk(0),
-    def(0),
-    spd(0)
+Stats::Stats()
 {
 
 }
 
 Stats::~Stats()
 {
-    
+
 }
 
-void Stats::giveXp(int val)
+void Stats::setStat(int index, int val)
 {
-    xp += val;
+    cur[index] = val;
+}
+
+int Stats::getStat(int index)
+{
+    return cur[index] + mod[index];
+}
+
+int Stats::modStat(int index, int val)
+{
+    mod[index] += val;
+    return 0;
+}
+
+int Stats::resetStat(int index)
+{
+    mod[index] = 0;
+    return 0;
+}
+
+int Stats::resetStats()
+{
+    int i;
+    for (i = 0; i < NUM_STATS; ++i)
+    {
+        resetStat(i);
+    }
+
+    return 0;
 }
 
 int Stats::getLvl()
@@ -36,17 +59,15 @@ int Stats::getHp()
     return hp;
 }
 
-int Stats::getAtk()
+void Stats::giveXp(int val)
 {
-    return atk;
+
 }
 
-int Stats::getDef()
+void Stats::modHp(int val)
 {
-    return def;
-}
-
-int Stats::getSpd()
-{
-    return spd;
+    int pre = hp + val;
+    pre = (int)fmin(0, pre);
+    pre = (int)fmax(pre, getStat(HP));
+    hp = pre;
 }

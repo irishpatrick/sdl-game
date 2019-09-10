@@ -21,7 +21,11 @@ void Player::give(Item item)
 
 void Player::use(Item item)
 {
-    
+    const std::string type = item.getType();
+    if (type == "food")
+    {
+
+    }
 }
 
 std::vector<Item>& Player::getInventory()

@@ -15,7 +15,10 @@ public:
     void load(const std::string&);
 
     const std::string getName();
+    const std::string getType();
     Texture* getTexture();
+
+    int getDataPoint(int);
 
     int getQuantity();
     void setQuantity(int);

@@ -68,7 +68,7 @@ void Inventory::fill(Player* p)
         r = n / gridW;
         c = n % gridW;
 
-        std::cout << "place item at <" << r << "," << c << ">" << std::endl;
+        //std::cout << "place item at <" << r << "," << c << ">" << std::endl;
 
         grid[r][c] = &e;
 
@@ -109,6 +109,16 @@ void Inventory::update()
     {
         selection.x -= 1;
     }
+
+    if (Keyboard::isPressed("p"))
+    {
+        Item* selection = getSelection();
+        if (selection != nullptr)
+        {
+            std::cout << "selection: " << getSelection()->getName() << std::endl;
+        }
+    }
+
     selection.x = (int)fmax(0, selection.x);
     selection.y = (int)fmax(0, selection.y);
     selection.x = (int)fmin(selection.x, gridW);
@@ -148,6 +158,6 @@ void Inventory::render(float ex)
             std::cout << "texture was null" << std::endl;
             break;
         }
-        t->display((tilePad * (c + 1)) + (tileSize * c), (tilePad * (r + 1)) + (tileSize * r));   
+        t->display((tilePad * (c + 1)) + (tileSize * c), (tilePad * (r + 1)) + (tileSize * r));
     }
 }

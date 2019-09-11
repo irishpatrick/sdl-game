@@ -126,6 +126,9 @@ void Inventory::update()
         selection.x = (int)fmin(selection.x, (numItems % gridW) - 1);
         selection.y = (int)fmin(selection.y, numItems / gridH);
 
+        actions.x = 32 + (tilePad * (selection.x + 1)) + (tileSize * selection.x);
+        actions.y = 32 + (tilePad * (selection.y + 1)) + (tileSize * selection.y);
+
         if (Keyboard::isPressed("p"))
         {
             /*Item* selection = getSelection();

@@ -1,11 +1,13 @@
 #include "Textbox.hpp"
+#include <iostream>
 #include <sstream>
 #include <boost/algorithm/string.hpp>
 
 Textbox::Textbox() :
     Sprite(),
-    currentLine(0)
+    currentLine(-1)
 {
+    Sprite::setVisible(false);
 }
 
 Textbox::~Textbox()
@@ -21,7 +23,7 @@ void Textbox::init()
 void Textbox::fillDialogue(const std::string& str)
 {
     // split string into words
-    std::vector<std::string> words;
+    /*std::vector<std::string> words;
     boost::split(words, str, [](char c){return c == ' ';});
     int max_words = 5;
     int wc;
@@ -41,6 +43,7 @@ void Textbox::fillDialogue(const std::string& str)
         }
         else
         {
+            std::cout << "creating line \"" << builder.str() << "\"" << std::endl;
             cur->create(MyEngine::getContext(), builder.str());
             builder.clear();
             wc = -1;
@@ -50,6 +53,25 @@ void Textbox::fillDialogue(const std::string& str)
     if (wc != 0)
     {
         cur->create(MyEngine::getContext(), builder.str());
+    }*/
+    Text* t = new Text();
+    lines.push_back(t);
+    t->create(MyEngine::getContext(), str);
+}
+
+void Textbox::play()
+{
+    ++currentLine;
+    if (currentLine < lines.size())
+    {
+        //std::cout << "set visible" << std::endl;
+        Sprite::setVisible(true);
+    }
+    else
+    {
+        Sprite::setVisible(false);
+        //reset();
+        currentLine = -1;
     }
 }
 
@@ -66,7 +88,9 @@ void Textbox::reset()
 
 void Textbox::draw(float ex)
 {
+    if (!visible) return;
+    
     Context& ctx = MyEngine::getContext();
-
     window.draw(ctx, ex, Point(x, y));
+    lines[currentLine]->draw(ctx, ex, Point(10 + x, 10 + y));
 }

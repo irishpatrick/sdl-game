@@ -25,6 +25,7 @@ public:
 
 private:
     int choice;
+    bool remember;
     Color bgcolor;
     Color txtcolor;
     Canvas window;

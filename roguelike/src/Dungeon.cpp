@@ -36,6 +36,10 @@ void Dungeon::init()
     pauseMenu.pushOption(ctx, "Quit");
     pauseMenu.x = 20;
     pauseMenu.y = 20;
+
+    text.init();
+    text.x = 20;
+    text.y = 20;
 }
 
 void Dungeon::update()
@@ -87,8 +91,14 @@ void Dungeon::update()
         {
             player.prompt();
         }
+
+        if (Keyboard::isPressed("l"))
+        {
+            text.fillDialogue("hello world");
+            text.play();
+        }
     }
-    else
+    else if (pauseMenu.isVisible())
     {
         if (Keyboard::isPressed("w"))
         {
@@ -107,6 +117,13 @@ void Dungeon::update()
             pauseMenu.setVisible(false);
         }
     }
+    else if (text.isVisible())
+    {
+        if (Keyboard::isPressed("p"))
+        {
+            text.play();
+        }
+    }
 
     player.update();
 }
@@ -119,5 +136,6 @@ void Dungeon::render(float ex)
     chest.draw(ctx, ex);
     player.draw(ctx, ex);
     enemy.draw(ctx, ex);
+    text.draw(ex);
     pauseMenu.draw(ctx, ex);
 }

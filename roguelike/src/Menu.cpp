@@ -5,7 +5,8 @@ using json = nlohmann::json;
 
 Menu::Menu() :
     Sprite(),
-    choice(0)
+    choice(0),
+    remember(false)
 {
     visible = false;
     bgcolor.setRGB(1.0, 1.0, 1.0);
@@ -29,7 +30,10 @@ Menu::~Menu()
 void Menu::setVisible(bool val)
 {
     Sprite::setVisible(val);
-    choice = 0;
+    if (!remember)
+    {
+        choice = 0;
+    }
 }
 
 void Menu::init(Context& ctx)

@@ -59,6 +59,9 @@ void Inventory::init()
     actions.pushOption(ctx, "Use");
     actions.pushOption(ctx, "Equip");
     actions.pushOption(ctx, "Drop");
+
+    actions.x = 32;
+    actions.y = 32;
 }
 
 void Inventory::fill(Player* p)
@@ -94,44 +97,83 @@ Item* Inventory::getSelection()
 void Inventory::update()
 {
     Keyboard::poll();
-    if (Keyboard::isPressed("escape") || Keyboard::isPressed("e"))
-    {
-        MyEngine::setCurrentState("dungeon");
-    }
-    if (Keyboard::isPressed("w"))
-    {
-        selection.y -= 1;
-    }
-    else if (Keyboard::isPressed("s"))
-    {
-        selection.y += 1;
-    }
-    if (Keyboard::isPressed("d"))
-    {
-        selection.x += 1;
-    }
-    else if (Keyboard::isPressed("a"))
-    {
-        selection.x -= 1;
-    }
 
-    selection.x = (int)fmax(0, selection.x);
-    selection.y = (int)fmax(0, selection.y);
-    selection.x = (int)fmin(selection.x, (numItems % gridW) - 1);
-    selection.y = (int)fmin(selection.y, numItems / gridH);
-
-    if (Keyboard::isPressed("p"))
+    if (!actions.isVisible())
     {
-        Item* selection = getSelection();
-        if (selection != nullptr)
+        if (Keyboard::isPressed("escape") || Keyboard::isPressed("e"))
         {
-            std::cout << "selection: " << getSelection()->getName() << std::endl;
+            MyEngine::setCurrentState("dungeon");
         }
-    }
+        if (Keyboard::isPressed("w"))
+        {
+            selection.y -= 1;
+        }
+        else if (Keyboard::isPressed("s"))
+        {
+            selection.y += 1;
+        }
+        if (Keyboard::isPressed("d"))
+        {
+            selection.x += 1;
+        }
+        else if (Keyboard::isPressed("a"))
+        {
+            selection.x -= 1;
+        }
 
-    cursor.update();
-    cursor.x = (tilePad * (selection.x + 1)) + (tileSize * selection.x);
-    cursor.y = (tilePad * (selection.y + 1)) + (tileSize * selection.y);
+        selection.x = (int)fmax(0, selection.x);
+        selection.y = (int)fmax(0, selection.y);
+        selection.x = (int)fmin(selection.x, (numItems % gridW) - 1);
+        selection.y = (int)fmin(selection.y, numItems / gridH);
+
+        if (Keyboard::isPressed("p"))
+        {
+            /*Item* selection = getSelection();
+            if (selection != nullptr)
+            {
+                std::cout << "selection: " << getSelection()->getName() << std::endl;
+            }*/
+            actions.setVisible(true);
+        }
+
+        cursor.update();
+        cursor.x = (tilePad * (selection.x + 1)) + (tileSize * selection.x);
+        cursor.y = (tilePad * (selection.y + 1)) + (tileSize * selection.y);
+    }
+    else
+    {
+        if (Keyboard::isPressed("escape"))
+        {
+            actions.setVisible(false);
+        }
+        else if (Keyboard::isPressed("w"))
+        {
+            actions.moveCursor(-1);
+        }
+        else if (Keyboard::isPressed("s"))
+        {
+            actions.moveCursor(1);
+        }
+        else if (Keyboard::isPressed("p"))
+        {
+            int cur = actions.getChoice();
+            Item* sel = getSelection();
+            if (cur == 0)
+            {
+                std::cout << "use item " << sel->getName() << std::endl;
+            }
+            else if (cur == 1)
+            {
+                std::cout << "equip item " << sel->getName() << std::endl;
+            }
+            else if (cur == 2)
+            {
+                std::cout << "drop item " << sel->getName() << std::endl;
+            }
+            actions.setVisible(false);
+        }
+
+    }
 }
 
 void Inventory::render(float ex)

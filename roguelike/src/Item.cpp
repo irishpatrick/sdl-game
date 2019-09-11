@@ -106,3 +106,18 @@ void Item::incQuantity(int d)
 {
     quantity += d;
 }
+
+bool Item::isConsumable()
+{
+    return true;
+}
+
+bool Item::isEquippable()
+{
+    return true;
+}
+
+bool Item::isDroppable()
+{
+    return true;
+}

@@ -24,6 +24,10 @@ public:
     void setQuantity(int);
     void incQuantity(int);
 
+    bool isEquippable();
+    bool isConsumable();
+    bool isDroppable();
+
 
 private:
     int quantity;

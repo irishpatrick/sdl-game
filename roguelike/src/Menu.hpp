@@ -17,6 +17,7 @@ public:
     void pushOption(Context&, const std::string&);
     void draw(Context&, float);
     void draw(float);
+    void setVisible(bool);
 
     void moveCursor(int);
 

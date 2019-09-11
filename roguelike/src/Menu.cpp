@@ -26,6 +26,12 @@ Menu::~Menu()
     }
 }
 
+void Menu::setVisible(bool val)
+{
+    Sprite::setVisible(val);
+    choice = 0;
+}
+
 void Menu::init(Context& ctx)
 {
     // create window

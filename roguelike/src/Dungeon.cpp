@@ -100,11 +100,11 @@ void Dungeon::update()
         }
         if (Keyboard::isPressed("p"))
         {
-            pauseMenu.setVisible(false);
             if (pauseMenu.getChoice() == 3)
             {
                 exit(0);
             }
+            pauseMenu.setVisible(false);
         }
     }
 

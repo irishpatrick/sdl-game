@@ -62,6 +62,8 @@ void Textbox::fillDialogue(const std::string& str)
 void Textbox::play()
 {
     ++currentLine;
+    std::cout << "currentLine = " << currentLine << std::endl;
+    std::cout << "lines.size() = " << lines.size() << std::endl;
     if (currentLine < lines.size())
     {
         //std::cout << "set visible" << std::endl;
@@ -69,14 +71,15 @@ void Textbox::play()
     }
     else
     {
+        std::cout << "hide" << std::endl;
         Sprite::setVisible(false);
-        //reset();
         currentLine = -1;
     }
 }
 
 void Textbox::reset()
 {
+    std::cout << "deleting " << lines.size() << " lines" << std::endl;
     for (auto& e : lines)
     {
         if (e != nullptr)
@@ -84,6 +87,7 @@ void Textbox::reset()
             delete e;
         }
     }
+    lines.clear();
 }
 
 void Textbox::draw(float ex)

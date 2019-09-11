@@ -94,6 +94,7 @@ void Dungeon::update()
 
         if (Keyboard::isPressed("l"))
         {
+            text.reset();
             text.fillDialogue("hello world");
             text.play();
         }

@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 #include <cstdint>
+#include <stack>
 
 namespace engine
 {
@@ -14,9 +15,15 @@ namespace engine
         static bool isDown(const char*);
         static bool isPressed(const char*);
 
+        static int lock();
+        static int unlock(int);
+        static bool isLocked();
+        static int lockDepth();
+
     private:
         static int primed;
         static const uint8_t* keys;
         static uint8_t states[1000];
+        static std::stack<int> locks;
     };
 }

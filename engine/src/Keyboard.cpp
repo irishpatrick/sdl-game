@@ -6,6 +6,7 @@ namespace engine
     const uint8_t* Keyboard::keys = nullptr;
     int Keyboard::primed = 0;
     uint8_t Keyboard::states[1000];
+    std::stack<int> Keyboard::locks = std::stack<int>();
 
     void Keyboard::poll()
     {
@@ -49,5 +50,32 @@ namespace engine
     bool Keyboard::isPressed(const char* key)
     {
         return isPressed(SDL_GetScancodeFromName(key));
+    }
+
+    int Keyboard::lock()
+    {
+        int id = locks.size();
+        locks.push(id);
+        return id;
+    }
+
+    int Keyboard::unlock(int id)
+    {
+        if (id != locks.top())
+        {
+            return -1;
+        }
+        locks.pop();
+        return id;
+    }
+
+    int Keyboard::lockDepth()
+    {
+        return locks.size();
+    }
+
+    bool Keyboard::isLocked()
+    {
+        return locks.size() > 0;
     }
 }

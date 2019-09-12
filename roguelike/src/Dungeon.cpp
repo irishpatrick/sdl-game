@@ -18,6 +18,7 @@ void Dungeon::init()
     grid.addChild(&player);
     grid.addChild(&chest);
     grid.addChild(&enemy);
+    grid.addChild(&npcTest);
 
     player.setGridPos(2, 2);
     player.setTexture(Assets::getTexture("player.png"));
@@ -28,6 +29,10 @@ void Dungeon::init()
 
     enemy.init(ctx);
     enemy.setGridPos(6, 6);
+
+    npcTest.init();
+    npcTest.setGridPos(2, 6);
+    npcTest.setTexture(Assets::getTexture("player.png"));
 
     pauseMenu.init(ctx);
     pauseMenu.pushOption(ctx, "Resume");
@@ -119,7 +124,15 @@ void Dungeon::update()
             pauseMenu.setVisible(false);
         }
     }
-    else if (text.isVisible())
+    /*else if (text.isVisible())
+    {
+        if (Keyboard::isPressed("p"))
+        {
+            text.play();
+        }
+    }*/
+    Textbox* active = Textbox::getActive();
+    if (active != nullptr)
     {
         if (Keyboard::isPressed("p"))
         {
@@ -138,6 +151,7 @@ void Dungeon::render(float ex)
     chest.draw(ctx, ex);
     player.draw(ctx, ex);
     enemy.draw(ctx, ex);
+    npcTest.draw(ex);
     text.draw(ex);
     pauseMenu.draw(ctx, ex);
 }

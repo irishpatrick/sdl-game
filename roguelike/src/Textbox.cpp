@@ -3,6 +3,8 @@
 #include <sstream>
 #include <boost/algorithm/string.hpp>
 
+std::stack<Textbox*> Textbox::active;
+
 Textbox::Textbox() :
     Sprite(),
     currentLine(-1)
@@ -79,12 +81,14 @@ void Textbox::play()
     {
         //std::cout << "set visible" << std::endl;
         Sprite::setVisible(true);
+        active.push(this);
     }
     else
     {
         //std::cout << "hide" << std::endl;
         Sprite::setVisible(false);
         currentLine = -1;
+        active.pop();
     }
 }
 
@@ -108,4 +112,13 @@ void Textbox::draw(float ex)
     Context& ctx = MyEngine::getContext();
     window.draw(ctx, ex, Point(x, y));
     lines[currentLine]->draw(ctx, ex, Point(10 + x, 10 + y));
+}
+
+Textbox* Textbox::getActive()
+{
+    if (active.size() == 0)
+    {
+        return nullptr;
+    }
+    return active.top();
 }

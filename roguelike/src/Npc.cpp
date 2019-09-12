@@ -29,3 +29,10 @@ void Npc::draw(float ex)
     GridSprite::draw(ctx, ex);
     text.draw(ex);
 }
+
+void Npc::interact(GridSprite* prompt)
+{
+    text.reset();
+    text.fillDialogue("hello, player!");
+    text.play();
+}

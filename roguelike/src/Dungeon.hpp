@@ -7,6 +7,7 @@
 #include "Enemy.hpp"
 #include "Menu.hpp"
 #include "Textbox.hpp"
+#include "Npc.hpp"
 #include <vector>
 
 using namespace engine;
@@ -29,6 +30,7 @@ private:
     Enemy enemy;
     Chest chest;
     Grid grid;
+    Npc npcTest;
     Menu pauseMenu;
     Textbox text;
     std::vector<Menu*> menuStack;

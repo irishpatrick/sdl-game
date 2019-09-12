@@ -2,6 +2,7 @@
 
 #include <engine.hpp>
 #include <vector>
+#include <stack>
 #include <string>
 
 using namespace engine;
@@ -18,8 +19,11 @@ public:
     void draw(float);
     void reset();
 
+    static Textbox* getActive();
+
 private:
     int currentLine;
     Canvas window;
     std::vector<Text*> lines;
+    static std::stack<Textbox*> active;
 };

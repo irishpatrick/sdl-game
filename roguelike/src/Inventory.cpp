@@ -149,7 +149,7 @@ void Inventory::update()
     }
     else if (actions.isVisible())
     {
-        if (Keyboard::isPressed("escape"))
+        if (Keyboard::isPressed("escape") || Keyboard::isPressed("e"))
         {
             actions.setVisible(false);
         }

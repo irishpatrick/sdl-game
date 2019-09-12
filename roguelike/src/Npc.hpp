@@ -16,6 +16,8 @@ public:
     void update();
     void draw(float);
 
+    void interact(GridSprite*);
+
 private:
     Textbox text;
 };

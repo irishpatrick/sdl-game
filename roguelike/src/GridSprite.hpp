@@ -20,8 +20,10 @@ public:
     virtual void interact(GridSprite*);
     virtual void prompt();
     virtual void update();
+    virtual void strafe();
 
 private:
+    int strafing;
     int gridx;
     int gridy;
     int targx;

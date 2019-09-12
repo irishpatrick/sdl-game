@@ -3,6 +3,7 @@
 
 GridSprite::GridSprite() :
     Sprite(),
+    strafing(0),
     gridx(0),
     gridy(0),
     targx(0),
@@ -39,8 +40,11 @@ Point GridSprite::getGridPos()
 
 void GridSprite::left()
 {
-    dir.x = -1;
-    dir.y = 0;
+    if (!strafing)
+    {
+        dir.x = -1;
+        dir.y = 0;
+    }
     if (moving) return;
     Grid* g = (Grid*)sparent;
     if (!g->checkMove(targx - 1, targy)) return;
@@ -50,8 +54,11 @@ void GridSprite::left()
 
 void GridSprite::right()
 {
-    dir.x = 1;
-    dir.y = 0;
+    if (!strafing)
+    {
+        dir.x = 1;
+        dir.y = 0;
+    }
     if (moving) return;
     Grid* g = (Grid*)sparent;
     if (!g->checkMove(targx + 1, targy)) return;
@@ -61,8 +68,11 @@ void GridSprite::right()
 
 void GridSprite::up()
 {
-    dir.x = 0;
-    dir.y = -1;
+    if (!strafing)
+    {
+        dir.x = 0;
+        dir.y = -1;
+    }
     if (moving) return;
     Grid* g = (Grid*)sparent;
     if (!g->checkMove(targx, targy - 1)) return;
@@ -72,13 +82,21 @@ void GridSprite::up()
 
 void GridSprite::down()
 {
-    dir.x = 0;
-    dir.y = 1;
+    if (!strafing)
+    {
+        dir.x = 0;
+        dir.y = 1;
+    }
     if (moving) return;
     Grid* g = (Grid*)sparent;
     if (!g->checkMove(targx, targy + 1)) return;
     targy = gridy + 1;
     yvel = speed;
+}
+
+void GridSprite::strafe()
+{
+    strafing = 1;
 }
 
 void GridSprite::interact(GridSprite* prompt)
@@ -120,4 +138,6 @@ void GridSprite::update()
         yvel = 0;
         gridy = targy;
     }
+
+    strafing = 0;
 }

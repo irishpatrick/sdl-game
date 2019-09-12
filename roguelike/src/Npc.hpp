@@ -12,6 +12,10 @@ public:
     Npc();
     ~Npc();
 
+    void init();
+    void update();
+    void draw(float);
+
 private:
     Textbox text;
 };

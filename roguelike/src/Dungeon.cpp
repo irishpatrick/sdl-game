@@ -48,6 +48,10 @@ void Dungeon::update()
 
     if (!pauseMenu.isVisible())
     {
+        if (Keyboard::isDown("left shift"))
+        {
+            player.strafe();
+        }
         if (!Keyboard::isDown("w") &&
             !Keyboard::isDown("a") &&
             !Keyboard::isDown("s") &&

@@ -91,13 +91,6 @@ void Dungeon::update()
         {
             player.prompt();
         }
-
-        if (Keyboard::isPressed("l"))
-        {
-            text.reset();
-            text.fillDialogue("hello world");
-            text.play();
-        }
     }
     else if (pauseMenu.isVisible())
     {

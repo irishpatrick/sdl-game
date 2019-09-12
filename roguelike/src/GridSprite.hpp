@@ -19,7 +19,6 @@ public:
 
     virtual void interact(GridSprite*);
     virtual void prompt();
-
     virtual void update();
 
 private:

@@ -8,7 +8,7 @@ Menu::Menu() :
     choice(0),
     remember(false)
 {
-    visible = false;
+    Sprite::setVisible(false);
     bgcolor.setRGB(1.0, 1.0, 1.0);
     txtcolor.setRGB(0.0, 0.0, 0.0);
 }

@@ -101,6 +101,10 @@ void Dungeon::update()
     }
     else if (pauseMenu.isVisible())
     {
+        if (Keyboard::isPressed("escape"))
+        {
+            pauseMenu.setVisible(false);
+        }
         if (Keyboard::isPressed("w"))
         {
             pauseMenu.moveCursor(-1);

@@ -114,7 +114,7 @@ bool Item::isConsumable()
 
 bool Item::isEquippable()
 {
-    return true;
+    return false;
 }
 
 bool Item::isDroppable()

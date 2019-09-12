@@ -2,6 +2,7 @@
 
 #include <engine.hpp>
 #include "Menu.hpp"
+#include "Textbox.hpp"
 
 using namespace engine;
 
@@ -31,4 +32,5 @@ private:
     Canvas cursor;
     Point selection;
     Menu actions;
+    Textbox text;
 };

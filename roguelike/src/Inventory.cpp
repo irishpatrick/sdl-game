@@ -62,6 +62,10 @@ void Inventory::init()
 
     actions.x = 32;
     actions.y = 32;
+
+    text.init();
+    text.x = 32;
+    text.y = 32;
 }
 
 void Inventory::fill(Player* p)
@@ -98,7 +102,7 @@ void Inventory::update()
 {
     Keyboard::poll();
 
-    if (!actions.isVisible())
+    if (!actions.isVisible() && !text.isVisible())
     {
         if (Keyboard::isPressed("escape") || Keyboard::isPressed("e"))
         {
@@ -143,7 +147,7 @@ void Inventory::update()
         cursor.x = (tilePad * (selection.x + 1)) + (tileSize * selection.x);
         cursor.y = (tilePad * (selection.y + 1)) + (tileSize * selection.y);
     }
-    else
+    else if (actions.isVisible())
     {
         if (Keyboard::isPressed("escape"))
         {
@@ -163,19 +167,32 @@ void Inventory::update()
             Item* sel = getSelection();
             if (cur == 0)
             {
-                std::cout << "use item " << sel->getName() << std::endl;
+                //std::cout << "use item " << sel->getName() << std::endl;
             }
             else if (cur == 1)
             {
-                std::cout << "equip item " << sel->getName() << std::endl;
+                //std::cout << "equip item " << sel->getName() << std::endl;
+                if (!sel->isEquippable())
+                {
+                    //std::cout << "can't equip" << std::endl;
+                    text.reset();
+                    text.fillDialogue("you cannot equip that item!");
+                    text.play();
+                }
             }
             else if (cur == 2)
             {
-                std::cout << "drop item " << sel->getName() << std::endl;
+                //std::cout << "drop item " << sel->getName() << std::endl;
             }
             actions.setVisible(false);
         }
-
+    }
+    else if (text.isVisible())
+    {
+        if (Keyboard::isPressed("p"))
+        {
+            text.play();
+        }
     }
 }
 
@@ -217,4 +234,5 @@ void Inventory::render(float ex)
     }
 
     actions.draw(ex);
+    text.draw(ex);
 }

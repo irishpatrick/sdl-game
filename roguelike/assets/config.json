@@ -1,0 +1,13 @@
+{
+    "keys": {
+        "up": "w",
+        "down": "s",
+        "left": "a",
+        "right": "d",
+        "strafe": "left shift",
+        "primary": "p",
+        "cancel": "l",
+        "inventory": "e",
+        "escape": "escape"
+    }
+}

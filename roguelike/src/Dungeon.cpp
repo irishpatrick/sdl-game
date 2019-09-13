@@ -1,5 +1,6 @@
 #include "Dungeon.hpp"
 #include "Inventory.hpp"
+#include "Config.hpp"
 
 Dungeon::Dungeon()
 {
@@ -53,7 +54,7 @@ void Dungeon::update()
 
     if (!pauseMenu.isVisible())
     {
-        if (Keyboard::isDown("left shift"))
+        if (Keyboard::isDown(Config::getKey("strafe").c_str()))
         {
             player.strafe();
         }
@@ -64,24 +65,24 @@ void Dungeon::update()
         {
             
         }
-        else if (Keyboard::isDown("w"))
+        else if (Keyboard::isDown(Config::getKey("up").c_str()))
         {
             player.up();
         }
-        else if (Keyboard::isDown("s"))
+        else if (Keyboard::isDown(Config::getKey("down").c_str()))
         {
             player.down();
         }
-        else if (Keyboard::isDown("a"))
+        else if (Keyboard::isDown(Config::getKey("left").c_str()))
         {
             player.left();
         }
-        else if (Keyboard::isDown("d"))
+        else if (Keyboard::isDown(Config::getKey("right").c_str()))
         {
             player.right();
         }
 
-        if (Keyboard::isPressed("e"))
+        if (Keyboard::isPressed(Config::getKey("inventory").c_str()))
         {
             Inventory* i = dynamic_cast<Inventory*>(MyEngine::getState("inventory"));
             if (i != nullptr)
@@ -96,7 +97,7 @@ void Dungeon::update()
             pauseMenu.setVisible(true);
         }
 
-        if (Keyboard::isPressed("p"))
+        if (Keyboard::isPressed(Config::getKey("primary").c_str()))
         {
             player.prompt();
         }

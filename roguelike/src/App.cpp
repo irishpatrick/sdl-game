@@ -1,4 +1,5 @@
 #include "App.hpp"
+#include "Config.hpp"
 
 
 App::App()
@@ -18,6 +19,8 @@ void quit_cb()
 
 void App::init()
 {
+    Config::load("assets/config.json");
+
     ctx = &MyEngine::getContext();
     ctx->init(512, 480, "Roguelike", false);
     ctx->setQuitCallback(quit_cb);
@@ -35,8 +38,6 @@ void App::init()
 
     inventory.init();
     MyEngine::addState(&inventory);
-
-
 }
 
 void App::update()

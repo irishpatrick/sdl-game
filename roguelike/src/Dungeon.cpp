@@ -52,7 +52,7 @@ void Dungeon::update()
 {
     Keyboard::poll();
 
-    if (!pauseMenu.isVisible())
+    if (!pauseMenu.isVisible() && Textbox::getActive() == nullptr)
     {
         if (Keyboard::isDown(Config::getKey("strafe").c_str()))
         {
@@ -92,7 +92,7 @@ void Dungeon::update()
             }
         }
         
-        if (Keyboard::isPressed("escape"))
+        if (Keyboard::isPressed(Config::getKey("escape").c_str()))
         {
             pauseMenu.setVisible(true);
         }
@@ -104,19 +104,19 @@ void Dungeon::update()
     }
     else if (pauseMenu.isVisible())
     {
-        if (Keyboard::isPressed("escape"))
+        if (Keyboard::isPressed(Config::getKey("primary").c_str()))
         {
             pauseMenu.setVisible(false);
         }
-        if (Keyboard::isPressed("w"))
+        if (Keyboard::isPressed(Config::getKey("up").c_str()))
         {
             pauseMenu.moveCursor(-1);
         }
-        if (Keyboard::isPressed("s"))
+        if (Keyboard::isPressed(Config::getKey("down").c_str()))
         {
             pauseMenu.moveCursor(1);
         }
-        if (Keyboard::isPressed("p"))
+        if (Keyboard::isPressed(Config::getKey("primary").c_str()))
         {
             if (pauseMenu.getChoice() == 3)
             {
@@ -135,9 +135,10 @@ void Dungeon::update()
     Textbox* active = Textbox::getActive();
     if (active != nullptr)
     {
-        if (Keyboard::isPressed("p"))
+        if (Keyboard::isPressed(Config::getKey("primary").c_str()))
         {
-            text.play();
+            //std::cout << "play" << std::endl;
+            active->play();
         }
     }
 

@@ -1,7 +1,6 @@
 #include "App.hpp"
 #include "Config.hpp"
 
-
 App::App()
 {
 

@@ -104,10 +104,6 @@ void Dungeon::update()
     }
     else if (pauseMenu.isVisible())
     {
-        if (Keyboard::isPressed(Config::getKey("primary").c_str()))
-        {
-            pauseMenu.setVisible(false);
-        }
         if (Keyboard::isPressed(Config::getKey("up").c_str()))
         {
             pauseMenu.moveCursor(-1);
@@ -118,6 +114,7 @@ void Dungeon::update()
         }
         if (Keyboard::isPressed(Config::getKey("primary").c_str()))
         {
+            std::cout << "pausemenu click" << std::endl;
             if (pauseMenu.getChoice() == 3)
             {
                 exit(0);

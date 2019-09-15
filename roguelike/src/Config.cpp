@@ -28,7 +28,7 @@ void Config::load(const std::string& fn)
     {
         for (auto& e : o["keys"].items())
         {
-            std::cout << "registering key " << e.key() << " as " << e.value() << std::endl;
+            //std::cout << "registering key " << e.key() << " as " << e.value() << std::endl;
             keymap[e.key()] = e.value();
         }
     }

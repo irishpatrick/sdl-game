@@ -41,6 +41,7 @@ namespace engine
 		}
 
 		draw(clock.extrapolate());
+		clock.back();
     }
 
     void Game::start()

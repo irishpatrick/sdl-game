@@ -12,7 +12,8 @@ namespace engine
         cur(0),
         prev(0),
         elapsed(0),
-        lag(0)
+        lag(0),
+        back_ratio(0.5)
     {
 
     }
@@ -39,6 +40,12 @@ namespace engine
     void Clock::lagTick()
     {
         lag -= updateInterval;
+    }
+
+    void Clock::back()
+    {
+        int m = (int)((double)lag * back_ratio);
+        SDL_Delay(m);
     }
 
     double Clock::getDelta()

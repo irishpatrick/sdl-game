@@ -11,6 +11,7 @@ namespace engine
         void start();
         void tick();
         void lagTick();
+        void back();
 
         double getDelta();
         double getLag();
@@ -27,5 +28,6 @@ namespace engine
         double elapsed;
         double prev;
         double lag;
+        double back_ratio;
     };
 }

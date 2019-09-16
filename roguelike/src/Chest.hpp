@@ -2,6 +2,7 @@
 
 #include "GridSprite.hpp"
 #include "Item.hpp"
+#include "Textbox.hpp"
 #include <engine.hpp>
 #include <vector>
 
@@ -21,4 +22,5 @@ public:
 private:
     std::vector<Item> contents;
     bool searched;
+    Textbox text;
 };

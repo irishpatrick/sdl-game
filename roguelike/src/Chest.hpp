@@ -22,5 +22,4 @@ public:
 private:
     std::vector<Item> contents;
     bool searched;
-    Textbox text;
 };

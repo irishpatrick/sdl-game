@@ -2,7 +2,6 @@
 
 #include <engine.hpp>
 #include "GridSprite.hpp"
-#include "Textbox.hpp"
 
 using namespace engine;
 
@@ -19,5 +18,4 @@ public:
     void interact(GridSprite*);
 
 private:
-    Textbox text;
 };

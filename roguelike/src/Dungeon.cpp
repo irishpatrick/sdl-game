@@ -1,6 +1,7 @@
 #include "Dungeon.hpp"
 #include "Inventory.hpp"
 #include "Config.hpp"
+#include "TextboxS.hpp"
 
 Dungeon::Dungeon()
 {
@@ -42,17 +43,13 @@ void Dungeon::init()
     pauseMenu.pushOption(ctx, "Quit");
     pauseMenu.x = 20;
     pauseMenu.y = 20;
-
-    text.init();
-    text.x = 20;
-    text.y = 20;
 }
 
 void Dungeon::update()
 {
     Keyboard::poll();
 
-    if (!pauseMenu.isVisible() && Textbox::getActive() == nullptr)
+    if (!pauseMenu.isVisible() && !TextboxS::isVisible())
     {
         if (Keyboard::isDown(Config::getKey("strafe").c_str()))
         {
@@ -121,13 +118,11 @@ void Dungeon::update()
             pauseMenu.setVisible(false);
         }
     }
-    Textbox* active = Textbox::getActive();
-    if (active != nullptr)
+    else if (TextboxS::isVisible())
     {
         if (Keyboard::isPressed(Config::getKey("primary").c_str()))
         {
-            //std::cout << "play" << std::endl;
-            active->play();
+            TextboxS::play();
         }
     }
 
@@ -143,6 +138,6 @@ void Dungeon::render(float ex)
     player.draw(ctx, ex);
     enemy.draw(ctx, ex);
     npcTest.draw(ex);
-    text.draw(ex);
+    TextboxS::draw();
     pauseMenu.draw(ctx, ex);
 }

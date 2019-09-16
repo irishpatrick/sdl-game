@@ -6,7 +6,6 @@
 #include "Chest.hpp"
 #include "Enemy.hpp"
 #include "Menu.hpp"
-#include "Textbox.hpp"
 #include "Npc.hpp"
 #include <vector>
 
@@ -32,6 +31,5 @@ private:
     Grid grid;
     Npc npcTest;
     Menu pauseMenu;
-    Textbox text;
     std::vector<Menu*> menuStack;
 };

@@ -1,5 +1,6 @@
 #include "Chest.hpp"
 #include "Player.hpp"
+#include "TextboxS.hpp"
 #include <iostream>
 
 Chest::Chest() :
@@ -39,6 +40,10 @@ void Chest::interact(GridSprite* prompt)
         }
     }
     contents.clear();
+
+    TextboxS::reset();
+    TextboxS::fillDialogue("you found some shit!\nNow get lost.");
+    TextboxS::play();
 }
 
 void Chest::fill()

@@ -7,6 +7,7 @@
 using json = nlohmann::json;
 
 Item::Item() :
+    Sprite(),
     quantity(0),
     name(""),
     type(""),
@@ -45,7 +46,8 @@ void Item::load(const std::string& fn)
         std::cout << "missing texture field\n";
         return;
     }
-    tex = Assets::getTexture(o["texture"]);
+    //tex = Assets::getTexture(o["texture"]);
+    setTexture(Assets::getTexture(o["texture"]));
 
     if (!json_has(o, "type"))
     {

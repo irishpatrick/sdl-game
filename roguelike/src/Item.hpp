@@ -6,7 +6,7 @@
 
 using namespace engine;
 
-class Item
+class Item : public Sprite
 {
 public:
     Item();

@@ -1,7 +1,7 @@
 #include "App.hpp"
 #include "Config.hpp"
 #include "Item.hpp"
-#include "TextboxS.hpp"
+#include "Textbox.hpp"
 
 App::App()
 {
@@ -38,7 +38,7 @@ void App::init()
     Item::load("assets/items/frying_pan.json");
     Item::load("assets/items/sword.json");
 
-    TextboxS::init();
+    Textbox::init();
 
     dungeon.init();
     MyEngine::addState(&dungeon);

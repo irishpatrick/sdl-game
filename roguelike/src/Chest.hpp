@@ -2,7 +2,6 @@
 
 #include "GridSprite.hpp"
 #include "Item.hpp"
-#include "Textbox.hpp"
 #include <engine.hpp>
 #include <vector>
 

@@ -1,5 +1,5 @@
 #include "Npc.hpp"
-#include "TextboxS.hpp"
+#include "Textbox.hpp"
 #include <iostream>
 
 Npc::Npc() : 
@@ -31,7 +31,7 @@ void Npc::draw(float ex)
 
 void Npc::interact(GridSprite* prompt)
 {
-    TextboxS::reset();
-    TextboxS::fillDialogue("hello, player!");
-    TextboxS::play();
+    Textbox::reset();
+    Textbox::fillDialogue("hello, player!");
+    Textbox::play();
 }

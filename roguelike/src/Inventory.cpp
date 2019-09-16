@@ -1,7 +1,7 @@
 #include "Inventory.hpp"
 #include "Player.hpp"
 #include "Item.hpp"
-#include "TextboxS.hpp"
+#include "Textbox.hpp"
 #include <cstdlib>
 #include <iostream>
 
@@ -99,7 +99,7 @@ void Inventory::update()
 {
     Keyboard::poll();
 
-    if (!actions.isVisible() && !TextboxS::isVisible())
+    if (!actions.isVisible() && !Textbox::isVisible())
     {
         if (Keyboard::isPressed("escape") || Keyboard::isPressed("e"))
         {
@@ -166,37 +166,37 @@ void Inventory::update()
             {
                 if (!sel->isConsumable())
                 {
-                    TextboxS::reset();
-                    TextboxS::fillDialogue("that item is not consumable");
-                    TextboxS::play();
+                    Textbox::reset();
+                    Textbox::fillDialogue("that item is not consumable");
+                    Textbox::play();
                 }
             }
             else if (cur == 1)
             {
                 if (!sel->isEquippable())
                 {
-                    TextboxS::reset();
-                    TextboxS::fillDialogue("you cannot equip that item!");
-                    TextboxS::play();
+                    Textbox::reset();
+                    Textbox::fillDialogue("you cannot equip that item!");
+                    Textbox::play();
                 }
             }
             else if (cur == 2)
             {
                 if (!sel->isDroppable())
                 {
-                    TextboxS::reset();
-                    TextboxS::fillDialogue("you cannot drop that item!");
-                    TextboxS::play();
+                    Textbox::reset();
+                    Textbox::fillDialogue("you cannot drop that item!");
+                    Textbox::play();
                 }
             }
             actions.setVisible(false);
         }
     }
-    else if (TextboxS::isVisible())
+    else if (Textbox::isVisible())
     {
         if (Keyboard::isPressed("p"))
         {
-            TextboxS::play();
+            Textbox::play();
         }
     }
 }
@@ -240,5 +240,5 @@ void Inventory::render(float ex)
     }
 
     actions.draw(ex);
-    TextboxS::draw();
+    Textbox::draw();
 }

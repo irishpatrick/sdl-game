@@ -1,7 +1,7 @@
 #include "Dungeon.hpp"
 #include "Inventory.hpp"
 #include "Config.hpp"
-#include "TextboxS.hpp"
+#include "Textbox.hpp"
 
 Dungeon::Dungeon()
 {
@@ -49,7 +49,7 @@ void Dungeon::update()
 {
     Keyboard::poll();
 
-    if (!pauseMenu.isVisible() && !TextboxS::isVisible())
+    if (!pauseMenu.isVisible() && !Textbox::isVisible())
     {
         if (Keyboard::isDown(Config::getKey("strafe").c_str()))
         {
@@ -118,11 +118,11 @@ void Dungeon::update()
             pauseMenu.setVisible(false);
         }
     }
-    else if (TextboxS::isVisible())
+    else if (Textbox::isVisible())
     {
         if (Keyboard::isPressed(Config::getKey("primary").c_str()))
         {
-            TextboxS::play();
+            Textbox::play();
         }
     }
 
@@ -138,6 +138,6 @@ void Dungeon::render(float ex)
     player.draw(ctx, ex);
     enemy.draw(ctx, ex);
     npcTest.draw(ex);
-    TextboxS::draw();
+    Textbox::draw();
     pauseMenu.draw(ctx, ex);
 }

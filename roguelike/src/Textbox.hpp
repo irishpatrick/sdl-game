@@ -2,28 +2,23 @@
 
 #include <engine.hpp>
 #include <vector>
-#include <stack>
-#include <string>
 
 using namespace engine;
 
-class Textbox : public Sprite
+class Textbox
 {
 public:
-    Textbox();
-    ~Textbox();
-
-    void init();
-    void fillDialogue(const std::string&);
-    void play();
-    void draw(float);
-    void reset();
-
-    static Textbox* getActive();
-
+    static void init();
+    static void fillDialogue(const std::string&);
+    static void play();
+    static void draw();
+    static void reset();
+    static bool isVisible();
 private:
-    int currentLine;
-    Canvas window;
-    std::vector<Text*> lines;
-    static std::stack<Textbox*> active;
+    static int currentLine;
+    static Canvas window;
+    static std::vector<Text*> lines;
+    static int x;
+    static int y;
+    static bool visible;
 };

@@ -2,7 +2,10 @@
 
 #include <vector>
 #include <string>
+#include <memory>
 #include "Context.hpp"
+//#include "Sprite.hpp"
+//#include "State.hpp"
 
 namespace engine
 {
@@ -21,10 +24,13 @@ namespace engine
         static State* getState(const std::string&);
         static void setCurrentState(const std::string&);
         static State* getCurrentState();
-
         static Context& getContext();
+        static void printNum();
+
+        //static Sprite* newSprite();
 
     private:
+        //static std::vector<std::shared_ptr<Sprite>> sprites;
         static std::vector<Sprite*> sprites;
         static std::vector<State*> states;
         static State* currentState;

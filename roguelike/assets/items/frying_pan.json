@@ -1,6 +1,7 @@
 {
     "name": "frying pan",
     "texture": "frying_pan.png",
+    "animation": "",
     "type": "weapon",
     "flavor": "the deadliest kitchen utensil",
     "data": [10, 200]

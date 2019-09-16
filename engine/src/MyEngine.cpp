@@ -1,6 +1,7 @@
 #include "MyEngine.hpp"
 #include "Sprite.hpp"
 #include "State.hpp"
+#include <iostream>
 
 namespace engine
 {
@@ -9,6 +10,11 @@ namespace engine
     State* MyEngine::currentState = nullptr;
     Context MyEngine::ctx = Context();
 
+    void MyEngine::printNum()
+    {
+        std::cout << "sprites: " << sprites.size() << std::endl;
+    }
+
     void MyEngine::addSprite(Sprite* s)
     {
         if (s == nullptr)
@@ -16,6 +22,8 @@ namespace engine
             return;
         }
         sprites.push_back(s);
+
+        printNum();
     }
 
     void MyEngine::delSprite(Sprite* s)
@@ -33,6 +41,8 @@ namespace engine
             }
             --it;
         }
+
+        printNum();
     }
 
     void MyEngine::addState(State* s)
@@ -103,5 +113,10 @@ namespace engine
     Context& MyEngine::getContext()
     {
         return ctx;
-    }    
+    }
+
+    /*Sprite* MyEngine::newSprite()
+    {
+        
+    }*/
 }

@@ -1,5 +1,6 @@
 #include "App.hpp"
 #include "Config.hpp"
+#include "Item.hpp"
 
 App::App()
 {
@@ -30,6 +31,11 @@ void App::init()
     Assets::loadTexture("assets/sprites/enemy.png");
     Assets::loadTexture("assets/sprites/apple.png");
     Assets::loadTexture("assets/sprites/frying_pan.png");
+    Assets::loadTexture("assets/sprites/sword.png");
+
+    Item::load("assets/items/apple.json");
+    Item::load("assets/items/frying_pan.json");
+    Item::load("assets/items/sword.json");
 
     dungeon.init();
     MyEngine::addState(&dungeon);

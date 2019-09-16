@@ -114,7 +114,6 @@ void Dungeon::update()
         }
         if (Keyboard::isPressed(Config::getKey("primary").c_str()))
         {
-            std::cout << "pausemenu click" << std::endl;
             if (pauseMenu.getChoice() == 3)
             {
                 exit(0);
@@ -122,13 +121,6 @@ void Dungeon::update()
             pauseMenu.setVisible(false);
         }
     }
-    /*else if (text.isVisible())
-    {
-        if (Keyboard::isPressed("p"))
-        {
-            text.play();
-        }
-    }*/
     Textbox* active = Textbox::getActive();
     if (active != nullptr)
     {

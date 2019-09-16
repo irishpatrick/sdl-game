@@ -46,10 +46,14 @@ void Chest::fill()
     int n = Random::randint(3, 8);
     Item food;
     Item weapon;
-    food.load("assets/items/apple.json");
+    Item sw;
+    food = Item::get("apple");
     food.setQuantity(n);
-    weapon.load("assets/items/frying_pan.json");
+    weapon = Item::get("frying pan");
     weapon.setQuantity(1);
+    sw = Item::get("sword");
+    sw.setQuantity(1);
     contents.push_back(food);
     contents.push_back(weapon);
+    contents.push_back(sw);
 }

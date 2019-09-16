@@ -47,12 +47,30 @@ namespace engine
 		sparent = nullptr;
         currentAnimation = "";
 
-        MyEngine::addSprite(this);
+        //MyEngine::addSprite(this);
 	}
+
+    /*Sprite::Sprite(const Sprite& c) :
+        x(c.x),
+        y(c.y),
+        w(c.w),
+        h(c.h),
+        name(c.name),
+        theta(c.theta),
+        scale_x(c.scale_x),
+        scale_y(c.scale_y),
+        solid(c.solid),
+        texture(c.texture),
+        visible(c.visible)
+
+    {
+        tag = boost::uuids::random_generator()();
+        MyEngine::addSprite(this);
+    }*/
 
     Sprite::~Sprite()
     {
-        MyEngine::delSprite(this);
+        //MyEngine::delSprite(this);
     }
 
 	void Sprite::setSpeed(float s)
@@ -377,7 +395,23 @@ namespace engine
             std::cout << "error: texture is null" << std::endl;
         }
 
-        SDL_RenderCopyEx(ctx.getRenderer(), texture->use(), nullptr, &r, theta, NULL, SDL_FLIP_NONE);
+        if (animations.size() < 1 || currentAnimation == "")
+        {
+            SDL_RenderCopyEx(ctx.getRenderer(), texture->use(), nullptr, &r, theta, nullptr, SDL_FLIP_NONE);
+        }
+        else
+        {
+            SDL_Rect frame;
+            Rect rect = animations[currentAnimation].getCurrentFrame();
+            frame.x = rect.x;
+            frame.y = rect.y;
+            frame.w = rect.w;
+            frame.h = rect.h;
+            r.w = frame.w * scale_x;
+            r.h = frame.h * scale_y;
+            //std::cout << "FRAME: [" << frame.x << "," << frame.y << "," << frame.w << "," << frame.h << "]" << std::endl;
+            SDL_RenderCopyEx(ctx.getRenderer(), texture->use(), &frame, &r, theta, nullptr, SDL_FLIP_NONE);
+        }
     }
 
 	void Sprite::draw(Context& ctx, Camera& c)

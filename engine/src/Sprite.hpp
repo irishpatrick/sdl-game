@@ -34,6 +34,7 @@ namespace engine
     public:
         // constructors
         CORE_API Sprite();
+        //CORE_API Sprite(const Sprite&);
         CORE_API virtual ~Sprite();
 
         // init

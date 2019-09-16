@@ -6,23 +6,24 @@
 
 using json = nlohmann::json;
 
+std::map<std::string, Item*> Item::item_map;
+
 Item::Item() :
     Sprite(),
-    quantity(0),
-    name(""),
-    type(""),
-    flavor(""),
-    tex(nullptr)
+    quantity(-1),
+    name("none"),
+    type("none"),
+    flavor("none")
 {
 
 }
 
 Item::~Item()
 {
-
+    
 }
 
-void Item::load(const std::string& fn)
+/*void Item::load(const std::string& fn)
 {
     std::cout << "loading item " << fn << std::endl;
     std::ifstream in(fn);
@@ -72,6 +73,83 @@ void Item::load(const std::string& fn)
     {
         data.push_back(e.get<int>());
     }
+}*/
+
+void Item::load(const std::string& fn)
+{
+    Item* item = new Item();
+
+    std::cout << "loading item " << fn << std::endl;
+    std::ifstream in(fn);
+    if (!in)
+    {
+        return;
+    }
+    json o;
+    in >> o;
+    in.close();
+
+    if (!json_has(o, "name"))
+    {
+        std::cout << "missing name field\n";
+        return;
+    }
+    item->name = o["name"];
+
+    if (!json_has(o, "texture"))
+    {
+        std::cout << "missing texture field\n";
+        return;
+    }
+    //tex = Assets::getTexture(o["texture"]);
+    item->setTexture(Assets::getTexture(o["texture"]));
+
+    if (!json_has(o, "animation"))
+    {
+        std::cout << "Missing animation field" << std::endl;
+        return;
+    }
+    if (o["animation"] != "")
+    {
+        item->loadAnimation(o["animation"]);
+        item->setCurrentAnimation("north");
+    }
+
+    if (!json_has(o, "type"))
+    {
+        std::cout << "missing type field\n";
+        return;
+    }
+    item->type = o["type"];
+
+    if (!json_has(o, "flavor"))
+    {
+        std::cout << "missing flavor text field" << std::endl;
+        return;
+    }
+    item->flavor = o["flavor"];
+
+    if (!json_has(o, "data"))
+    {
+        std::cout << "missing data field\n";
+        return;
+    }
+    for (auto& e : o["data"])
+    {
+        item->data.push_back(e.get<int>());
+    }
+
+    item_map[item->name] = item;
+}
+
+Item Item::get(const std::string& name)
+{
+    if (item_map.find(name) == item_map.end())
+    {
+        std::cout << "item " << name << " does not exist" << std::endl;
+        Item();
+    }
+    return *item_map[name];
 }
 
 const std::string Item::getName()
@@ -82,11 +160,6 @@ const std::string Item::getName()
 const std::string Item::getType()
 {
     return type;
-}
-
-Texture* Item::getTexture()
-{
-    return tex;
 }
 
 int Item::getDataPoint(int index)
@@ -111,12 +184,12 @@ void Item::incQuantity(int d)
 
 bool Item::isConsumable()
 {
-    return true;
+    return type == "food";
 }
 
 bool Item::isEquippable()
 {
-    return false;
+    return type == "weapon" || type == "armor";
 }
 
 bool Item::isDroppable()

@@ -167,14 +167,17 @@ void Inventory::update()
             Item* sel = getSelection();
             if (cur == 0)
             {
-                //std::cout << "use item " << sel->getName() << std::endl;
+                if (!sel->isConsumable())
+                {
+                    text.reset();
+                    text.fillDialogue("that item is not consumable");
+                    text.play();
+                }
             }
             else if (cur == 1)
             {
-                //std::cout << "equip item " << sel->getName() << std::endl;
                 if (!sel->isEquippable())
                 {
-                    //std::cout << "can't equip" << std::endl;
                     text.reset();
                     text.fillDialogue("you cannot equip that item!");
                     text.play();
@@ -182,12 +185,17 @@ void Inventory::update()
             }
             else if (cur == 2)
             {
-                //std::cout << "drop item " << sel->getName() << std::endl;
+                if (!sel->isDroppable())
+                {
+                    text.reset();
+                    text.fillDialogue("you cannot drop that item!");
+                    text.play();
+                }
             }
             actions.setVisible(false);
         }
     }
-    else if (text.isVisible())
+    else if (Textbox::getActive() != nullptr)
     {
         if (Keyboard::isPressed("p"))
         {
@@ -224,13 +232,14 @@ void Inventory::render(float ex)
             std::cout << "item was null" << std::endl;
             break;
         }
-        Texture* t = item->getTexture();
+        /*Texture* t = item->getTexture();
         if (t == nullptr)
         {
             std::cout << "texture was null" << std::endl;
             break;
-        }
-        t->display((tilePad * (c + 1)) + (tileSize * c), (tilePad * (r + 1)) + (tileSize * r));
+        }*/
+        //t->display((tilePad * (c + 1)) + (tileSize * c), (tilePad * (r + 1)) + (tileSize * r));
+        item->draw(MyEngine::getContext(), ex, Point((tilePad * (c + 1)) + (tileSize * c), (tilePad * (r + 1)) + (tileSize * r)));
     }
 
     actions.draw(ex);

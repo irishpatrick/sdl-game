@@ -1,6 +1,7 @@
 {
     "name": "apple",
     "texture": "apple.png",
+    "animation": "",
     "type": "food",
     "flavor": "it's an apple",
     "data": [25]

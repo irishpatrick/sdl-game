@@ -1,7 +1,8 @@
 #include "Stats.hpp"
 #include <cmath>
 
-Stats::Stats()
+Stats::Stats() :
+    hp(3)
 {
 
 }

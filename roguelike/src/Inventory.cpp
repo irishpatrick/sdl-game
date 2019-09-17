@@ -63,6 +63,9 @@ void Inventory::init()
 
     actions.x = 32;
     actions.y = 32;
+
+    bg.init(ctx);
+    bg.setTexture(Assets::getTexture("inventory.png"));
 }
 
 void Inventory::fill(Player* p)
@@ -179,6 +182,10 @@ void Inventory::update()
                     Textbox::fillDialogue("you cannot equip that item!");
                     Textbox::play();
                 }
+                else
+                {
+                    player->equip(sel->getName());
+                }
             }
             else if (cur == 2)
             {
@@ -207,6 +214,9 @@ void Inventory::render(float ex)
     {
         return;
     }
+
+    bg.draw(MyEngine::getContext(), ex);
+
     cursor.draw(MyEngine::getContext());
     //std::cout << "draw inventory" << std::endl;
     if (player == nullptr)

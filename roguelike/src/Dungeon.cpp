@@ -141,7 +141,7 @@ void Dungeon::render(float ex)
     player.draw(ctx, ex);
     enemy.draw(ctx, ex);
     npcTest.draw(ex);
+    hud.draw();
     Textbox::draw();
     pauseMenu.draw(ctx, ex);
-    hud.draw();
 }

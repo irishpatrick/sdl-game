@@ -9,7 +9,8 @@ namespace engine
         Canvas(),
         fontsize(12),
         fontmod(""),
-        fonttype("Times New Roman")
+        fonttype("Times New Roman"),
+        str("")
     {
         color.setRGB(0.0, 0.0, 0.0);
     }
@@ -25,8 +26,9 @@ namespace engine
         return ss.str();
     }
 
-    void Text::create(Context& ctx, const std::string& str)
+    void Text::create(Context& ctx, const std::string& s)
     {
+        str = s;
         Canvas::create(ctx, 1024, 1024);
         cairo_t* cr = Canvas::getCairo();
 
@@ -51,5 +53,10 @@ namespace engine
     void Text::setColor(Color c)
     {
         color = c;
+    }
+
+    std::string Text::getString()
+    {
+        return str;
     }
 }

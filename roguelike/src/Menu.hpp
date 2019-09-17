@@ -22,6 +22,7 @@ public:
     void moveCursor(int);
 
     int getChoice();
+    std::string getChoiceStr();
 
 private:
     int choice;

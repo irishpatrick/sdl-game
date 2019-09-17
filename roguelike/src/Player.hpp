@@ -3,8 +3,9 @@
 #include <engine.hpp>
 #include "GridSprite.hpp"
 #include "Item.hpp"
-#include <vector>
 #include "Stats.hpp"
+#include <vector>
+#include <string>
 
 using namespace engine;
 
@@ -16,8 +17,10 @@ public:
 
     virtual void give(Item);
     virtual void use(Item);
+    virtual void equip(const std::string&);
     std::vector<Item>& getInventory();
     Stats getStats();
+    Item* getWeapon();
 
 private:
     Item* weapon;

@@ -38,9 +38,14 @@ void Hud::draw()
 
     Context& ctx = MyEngine::getContext();
 
-    int hearts = player->getStats().getStat(Stats::HP);
+    int hearts = player->getStats().getHp();
     for (int i = 0; i < hearts; ++i)
     {
-        heart.draw(ctx, 0.0f, Point(i * 10, 0));
+        heart.draw(ctx, 0.0f, Point(i * (20), 0));
+    }
+
+    if (player->getWeapon() != nullptr)
+    {
+        player->getWeapon()->draw(ctx, 0.0f, Point(ctx.getWidth() - 64, 32));
     }
 }

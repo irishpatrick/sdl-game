@@ -17,11 +17,14 @@ namespace engine
         void create(Context&, const std::string&);
         void setColor(Color);
 
+        std::string getString();
+
     private:
         Color color;
         std::string genFontString();
         int fontsize;
         std::string fontmod;
         std::string fonttype;
+        std::string str;
     };
 }

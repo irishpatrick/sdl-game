@@ -38,3 +38,26 @@ Stats Player::getStats()
 {
     return stats;
 }
+
+void Player::equip(const std::string& name)
+{
+    for (auto& e : inventory)
+    {
+        if (e.getName() == name)
+        {
+            if (e.getType() == "weapon")
+            {
+                weapon = &e;
+            }
+            else if (e.getType() == "armor")
+            {
+                armor = &e;
+            }
+        }
+    }
+}
+
+Item* Player::getWeapon()
+{
+    return weapon;
+}

@@ -31,4 +31,5 @@ private:
     Canvas cursor;
     Point selection;
     Menu actions;
+    Sprite bg;
 };

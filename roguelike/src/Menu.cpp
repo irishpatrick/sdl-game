@@ -107,3 +107,8 @@ int Menu::getChoice()
 {
     return choice;
 }
+
+std::string Menu::getChoiceStr()
+{
+    return opts[choice]->getString();
+}

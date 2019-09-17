@@ -17,6 +17,7 @@ public:
     virtual void give(Item);
     virtual void use(Item);
     std::vector<Item>& getInventory();
+    Stats getStats();
 
 private:
     Item* weapon;

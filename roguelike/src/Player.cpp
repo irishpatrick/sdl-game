@@ -3,7 +3,8 @@
 
 Player::Player() :
     weapon(nullptr),
-    armor(nullptr)
+    armor(nullptr),
+    stats()
 {
 
 }
@@ -31,4 +32,9 @@ void Player::use(Item item)
 std::vector<Item>& Player::getInventory()
 {
     return inventory;
+}
+
+Stats Player::getStats()
+{
+    return stats;
 }

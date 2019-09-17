@@ -45,6 +45,7 @@ void Dungeon::init()
     pauseMenu.y = 20;
 
     hud.init();
+    hud.setPlayer(&player);
 }
 
 void Dungeon::update()

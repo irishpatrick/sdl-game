@@ -43,6 +43,8 @@ void Dungeon::init()
     pauseMenu.pushOption(ctx, "Quit");
     pauseMenu.x = 20;
     pauseMenu.y = 20;
+
+    hud.init();
 }
 
 void Dungeon::update()
@@ -140,4 +142,5 @@ void Dungeon::render(float ex)
     npcTest.draw(ex);
     Textbox::draw();
     pauseMenu.draw(ctx, ex);
+    hud.draw();
 }

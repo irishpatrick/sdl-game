@@ -33,6 +33,7 @@ void App::init()
     Assets::loadTexture("assets/sprites/apple.png");
     Assets::loadTexture("assets/sprites/frying_pan.png");
     Assets::loadTexture("assets/sprites/sword.png");
+    Assets::loadTexture("assets/sprites/heart.png");
 
     Item::load("assets/items/apple.json");
     Item::load("assets/items/frying_pan.json");

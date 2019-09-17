@@ -1,5 +1,6 @@
 #pragma once
 
+#include <vector>
 #include <engine.hpp>
 
 using namespace engine;
@@ -12,8 +13,11 @@ public:
     Hud();
     ~Hud();
 
+    void init();
     void setPlayer(Player*);
+    void draw();
 
 private:
     Player* player;
+    Sprite heart;
 };

@@ -7,6 +7,7 @@
 #include "Enemy.hpp"
 #include "Menu.hpp"
 #include "Npc.hpp"
+#include "Hud.hpp"
 #include <vector>
 
 using namespace engine;
@@ -31,5 +32,6 @@ private:
     Grid grid;
     Npc npcTest;
     Menu pauseMenu;
+    Hud hud;
     std::vector<Menu*> menuStack;
 };

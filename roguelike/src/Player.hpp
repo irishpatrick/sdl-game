@@ -22,6 +22,9 @@ public:
     Stats getStats();
     Item* getWeapon();
 
+    void attack();
+    void hit(Player*);
+
 private:
     Item* weapon;
     Item* armor;

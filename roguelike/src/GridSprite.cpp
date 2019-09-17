@@ -141,3 +141,14 @@ void GridSprite::update()
 
     strafing = 0;
 }
+
+Grid* GridSprite::getGridParent()
+{
+    Grid* out = nullptr;
+    if (parent != nullptr)
+    {
+        out = dynamic_cast<Grid*>(parent);
+    }
+
+    return out;
+}

@@ -61,3 +61,25 @@ Item* Player::getWeapon()
 {
     return weapon;
 }
+
+/*void Player::attack()
+{
+    // attack animation
+    
+    // apply damage
+    Grid* g = getGridParent();
+    if (g == nullptr)
+    {
+        return;
+    }
+    GridSprite* s = g->at(getGridPos().x + dir_x, getGridPos().y + dir_y);
+    if (s == nullptr)
+    {
+        return;
+    }
+}
+
+void Player::hit(Player* other)
+{
+
+}*/

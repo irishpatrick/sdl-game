@@ -4,6 +4,8 @@
 
 using namespace engine;
 
+class Grid;
+
 class GridSprite : public Sprite
 {
 public:
@@ -21,6 +23,8 @@ public:
     virtual void prompt();
     virtual void update();
     virtual void strafe();
+
+    Grid* getGridParent();
 
 private:
     int strafing;

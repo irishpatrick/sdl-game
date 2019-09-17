@@ -1,7 +1,8 @@
 #include "Enemy.hpp"
 #include <iostream>
 
-Enemy::Enemy()
+Enemy::Enemy() :
+    Player()
 {
 
 }

@@ -26,15 +26,17 @@ public:
 
     Grid* getGridParent();
 
-private:
-    int strafing;
+protected:
+    Point dir;
     int gridx;
     int gridy;
+
+private:
+    int strafing;
     int targx;
     int targy;
     int x_dir;
     int y_dir;
     float speed;
     int moving;
-    Point dir;
 };

@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include "Grid.hpp"
 #include <iostream>
 
 Player::Player() :
@@ -60,6 +61,22 @@ void Player::equip(const std::string& name)
 Item* Player::getWeapon()
 {
     return weapon;
+}
+
+void Player::attack()
+{
+    Grid* g = (Grid*)sparent;
+    if (g == nullptr)
+    {
+        return;
+    }
+    GridSprite* at = g->at(gridx + dir.x, gridy + dir.y);
+    if (at == nullptr)
+    {
+        return;
+    }
+
+    
 }
 
 /*void Player::attack()

@@ -1,11 +1,11 @@
 #include "Grid.hpp"
 #include "Tile.hpp"
 #include "GridSprite.hpp"
+#include "Stuff.hpp"
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <nlohmann/json.hpp>
-#include "Stuff.hpp"
 
 Grid::Grid()
 {

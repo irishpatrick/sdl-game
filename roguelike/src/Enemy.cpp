@@ -21,3 +21,10 @@ void Enemy::interact(GridSprite* prompt)
 {
     std::cout << "enemy" << std::endl;
 }
+
+void Enemy::update()
+{
+    Player::update();
+
+    // ai stuff
+}

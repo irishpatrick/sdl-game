@@ -31,7 +31,8 @@ void Player::update()
     
     if (stats.getHp() <= 0)
     {
-        setVisible(false);
+        std::cout << name << " is dead" << std::endl;
+        //setVisible(false);
     }
 }
 
@@ -112,7 +113,28 @@ void Player::hit(Player* other)
     Item* w = other->getWeapon();
     if (w == nullptr)
     {
+        std::cout << "no weapon, no damage" << std::endl;
         return;
     }
+    std::cout << "damage dealt: " << w->getDataPoint(0) << std::endl;
     stats.modHp(-1 * w->getDataPoint(0));
+
+    // knockback
+    Point p_dir = other->getDir();
+    if (p_dir.x > 0)
+    {
+        right();
+    }
+    else if (p_dir.x < 0)
+    {
+        left();
+    }
+    else if (p_dir.y > 0)
+    {
+        down();
+    }
+    else if (p_dir.y < 0)
+    {
+        up();
+    }
 }

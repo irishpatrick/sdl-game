@@ -14,6 +14,7 @@ public:
 
     void setGridPos(int, int);
     Point getGridPos();
+    Point getDir();
     void left();
     void right();
     void up();

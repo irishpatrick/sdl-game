@@ -14,5 +14,7 @@ public:
 
     void init(Context&);
 
+    void update();
+
     void interact(GridSprite*);
 };

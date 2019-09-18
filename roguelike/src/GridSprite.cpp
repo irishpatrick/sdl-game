@@ -38,6 +38,11 @@ Point GridSprite::getGridPos()
     return Point(gridx, gridy);
 }
 
+Point GridSprite::getDir()
+{
+    return dir;
+}
+
 void GridSprite::left()
 {
     if (!strafing)

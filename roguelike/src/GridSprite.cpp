@@ -3,6 +3,7 @@
 
 GridSprite::GridSprite() :
     Sprite(),
+    solid(true),
     strafing(0),
     gridx(0),
     gridy(0),
@@ -161,4 +162,14 @@ Grid* GridSprite::getGridParent()
     }
 
     return out;
+}
+
+void GridSprite::setSolid(bool val)
+{
+    solid = val;
+}
+
+bool GridSprite::isSolid()
+{
+    return solid;
 }

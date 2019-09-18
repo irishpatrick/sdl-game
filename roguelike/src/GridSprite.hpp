@@ -26,6 +26,9 @@ public:
     virtual void update();
     virtual void strafe();
 
+    void setSolid(bool);
+    bool isSolid();
+
     Grid* getGridParent();
 
 protected:
@@ -34,6 +37,7 @@ protected:
     int gridy;
 
 private:
+    bool solid;
     int strafing;
     int targx;
     int targy;

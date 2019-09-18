@@ -3,7 +3,7 @@
 #include <iostream>
 
 Npc::Npc() : 
-    GridSprite()
+    Player()
 {
 
 }
@@ -20,7 +20,7 @@ void Npc::init()
 
 void Npc::update()
 {
-
+    Player::update();
 }
 
 void Npc::draw(float ex)

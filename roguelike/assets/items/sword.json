@@ -4,5 +4,5 @@
     "animation": "assets/animations/weapon.json",
     "type": "weapon",
     "flavor": "it's no frying pan",
-    "data": [2, 200]
+    "data": [2, 20, 200]
 }

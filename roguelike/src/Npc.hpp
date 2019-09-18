@@ -1,11 +1,11 @@
 #pragma once
 
 #include <engine.hpp>
-#include "GridSprite.hpp"
+#include "Player.hpp"
 
 using namespace engine;
 
-class Npc : public GridSprite
+class Npc : public Player
 {
 public:
     Npc();

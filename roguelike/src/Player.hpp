@@ -25,6 +25,8 @@ public:
     Stats getStats();
     Item* getWeapon();
 
+    bool canMove();
+
     void attack();
     void hit(Player*);
 
@@ -36,4 +38,6 @@ private:
     std::vector<Item> inventory;
     Stats stats;
     std::string name;
+    bool attacking;
+    int attackCounter;
 };

@@ -5,6 +5,8 @@
 Player::Player() :
     weapon(nullptr),
     armor(nullptr),
+    attacking(false),
+    attackCounter(0),
     stats()
 {
 
@@ -28,10 +30,21 @@ std::string Player::getName()
 void Player::update()
 {
     GridSprite::update();
+
+    if (attacking)
+    {
+        //std::cout << name << " stall " << attackCounter << std::endl;
+        attackCounter++;
+        if (attackCounter >= weapon->getDataPoint(1))
+        {
+            attackCounter = 0;
+            attacking = false;
+        }
+    }
     
     if (stats.getHp() <= 0)
     {
-        std::cout << name << " is dead" << std::endl;
+        //std::cout << name << " is dead" << std::endl;
         //setVisible(false);
     }
 }
@@ -84,6 +97,11 @@ Item* Player::getWeapon()
     return weapon;
 }
 
+bool Player::canMove()
+{
+    return GridSprite::canMove() && !attacking;
+}
+
 void Player::attack()
 {
     Grid* g = (Grid*)sparent;
@@ -105,6 +123,8 @@ void Player::attack()
     }
 
     p->hit(this);
+
+    attacking = true;
 }
 
 void Player::hit(Player* other)

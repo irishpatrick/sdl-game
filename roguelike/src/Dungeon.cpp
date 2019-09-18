@@ -138,6 +138,7 @@ void Dungeon::update()
 
     player.update();
     enemy.update();
+    npcTest.update();
 }
 
 void Dungeon::render(float ex)

@@ -20,6 +20,7 @@ public:
     void up();
     void down();
 
+    virtual bool canMove();
     virtual void interact(GridSprite*);
     virtual void prompt();
     virtual void update();

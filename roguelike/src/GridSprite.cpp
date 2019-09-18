@@ -43,6 +43,11 @@ Point GridSprite::getDir()
     return dir;
 }
 
+bool GridSprite::canMove()
+{
+    return !moving;
+}
+
 void GridSprite::left()
 {
     if (!strafing)
@@ -50,7 +55,7 @@ void GridSprite::left()
         dir.x = -1;
         dir.y = 0;
     }
-    if (moving) return;
+    if (!canMove()) return;
     Grid* g = (Grid*)sparent;
     if (!g->checkMove(targx - 1, targy)) return;
     targx = gridx - 1;
@@ -64,7 +69,7 @@ void GridSprite::right()
         dir.x = 1;
         dir.y = 0;
     }
-    if (moving) return;
+    if (!canMove()) return;
     Grid* g = (Grid*)sparent;
     if (!g->checkMove(targx + 1, targy)) return;
     targx = gridx + 1;
@@ -78,7 +83,7 @@ void GridSprite::up()
         dir.x = 0;
         dir.y = -1;
     }
-    if (moving) return;
+    if (!canMove()) return;
     Grid* g = (Grid*)sparent;
     if (!g->checkMove(targx, targy - 1)) return;
     targy = gridy - 1;
@@ -92,7 +97,7 @@ void GridSprite::down()
         dir.x = 0;
         dir.y = 1;
     }
-    if (moving) return;
+    if (!canMove()) return;
     Grid* g = (Grid*)sparent;
     if (!g->checkMove(targx, targy + 1)) return;
     targy = gridy + 1;

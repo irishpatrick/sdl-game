@@ -15,6 +15,9 @@ public:
     Player();
     ~Player();
 
+    void setName(const std::string&);
+    std::string getName();
+
     virtual void give(Item);
     virtual void use(Item);
     virtual void equip(const std::string&);
@@ -25,9 +28,12 @@ public:
     void attack();
     void hit(Player*);
 
+    void update();
+
 private:
     Item* weapon;
     Item* armor;
     std::vector<Item> inventory;
     Stats stats;
+    std::string name;
 };

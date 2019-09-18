@@ -8,6 +8,7 @@
         "primary": "p",
         "cancel": "l",
         "inventory": "e",
-        "escape": "escape"
+        "escape": "escape",
+        "attack": "o"
     }
 }

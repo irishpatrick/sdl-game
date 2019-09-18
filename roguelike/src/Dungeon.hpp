@@ -23,9 +23,6 @@ public:
     void render(float);
 
 private:
-    OneShot prompt;
-    OneShot w_once;
-    OneShot s_once;
     Player player;
     Enemy enemy;
     Chest chest;

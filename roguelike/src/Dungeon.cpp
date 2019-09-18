@@ -24,6 +24,7 @@ void Dungeon::init()
 
     player.setGridPos(2, 2);
     player.setTexture(Assets::getTexture("player.png"));
+    player.setName("player");
 
     chest.init(ctx);
     chest.setGridPos(4, 4);
@@ -31,6 +32,7 @@ void Dungeon::init()
 
     enemy.init(ctx);
     enemy.setGridPos(6, 6);
+    enemy.setName("enemy");
 
     npcTest.init();
     npcTest.setGridPos(2, 6);
@@ -80,6 +82,11 @@ void Dungeon::update()
         else if (Keyboard::isDown(Config::getKey("right").c_str()))
         {
             player.right();
+        }
+
+        if (Keyboard::isPressed(Config::getKey("attack").c_str()))
+        {
+            player.attack();
         }
 
         if (Keyboard::isPressed(Config::getKey("inventory").c_str()))

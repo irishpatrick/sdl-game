@@ -15,6 +15,26 @@ Player::~Player()
 
 }
 
+void Player::setName(const std::string& str)
+{
+    name = str;
+}
+
+std::string Player::getName()
+{
+    return name;
+}
+
+void Player::update()
+{
+    GridSprite::update();
+    
+    if (stats.getHp() <= 0)
+    {
+        setVisible(false);
+    }
+}
+
 void Player::give(Item item)
 {
     std::cout << "received " << item.getQuantity() << " " << item.getName() << "(s)" << std::endl;
@@ -76,27 +96,23 @@ void Player::attack()
         return;
     }
 
-    
-}
+    Player* p = nullptr;
+    p = dynamic_cast<Player*>(at);
+    if (p == nullptr)
+    {
+        return;
+    }
 
-/*void Player::attack()
-{
-    // attack animation
-    
-    // apply damage
-    Grid* g = getGridParent();
-    if (g == nullptr)
-    {
-        return;
-    }
-    GridSprite* s = g->at(getGridPos().x + dir_x, getGridPos().y + dir_y);
-    if (s == nullptr)
-    {
-        return;
-    }
+    p->hit(this);
 }
 
 void Player::hit(Player* other)
 {
-
-}*/
+    std::cout << name << " hit by " << other->getName() << std::endl;
+    Item* w = other->getWeapon();
+    if (w == nullptr)
+    {
+        return;
+    }
+    stats.modHp(-1 * w->getDataPoint(0));
+}

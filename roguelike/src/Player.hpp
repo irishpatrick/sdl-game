@@ -31,6 +31,7 @@ public:
     void hit(Player*);
 
     void update();
+    void draw(Context&, float);
 
 private:
     Item* weapon;

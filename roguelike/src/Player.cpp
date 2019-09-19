@@ -49,6 +49,16 @@ void Player::update()
     }
 }
 
+void Player::draw(Context& ctx, float ex)
+{
+    GridSprite::draw(ctx, ex);
+
+    if (attacking)
+    {
+        weapon->draw(ctx, ex, Point(x, y));
+    }
+}
+
 void Player::give(Item item)
 {
     std::cout << "received " << item.getQuantity() << " " << item.getName() << "(s)" << std::endl;

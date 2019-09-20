@@ -23,6 +23,7 @@ public:
     void render(float);
 
 private:
+    Camera camera;
     Player player;
     Enemy enemy;
     Chest chest;

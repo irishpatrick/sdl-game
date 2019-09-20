@@ -8,6 +8,7 @@
 namespace engine
 {
     class Texture;
+	class Camera;
 
 	class Context 
 	{
@@ -18,8 +19,9 @@ namespace engine
 
 		CORE_API int init(int, int, const std::string&, bool);
 
+		CORE_API void draw(Texture*, SDL_Rect*);
 		CORE_API void draw(Texture*, SDL_Rect*, SDL_Rect*);
-		CORE_API void draw(Texture*, SDL_Rect*, SDL_Rect*, SDL_Point*, double);
+		CORE_API void draw(Texture*, SDL_Rect*, SDL_Rect*, double, SDL_Point*, SDL_RendererFlip);
 
 		CORE_API void pollEvents();
 		CORE_API void setQuitCallback(void( *)(void));
@@ -86,7 +88,12 @@ namespace engine
 
         CORE_API BoundingBox getBoundingBox();
 
+		CORE_API Camera* getCamera();
+		CORE_API void setCamera(Camera*);
+
 	private:
+		void applyCamera(SDL_Rect*);
+		Camera* camera;
 		SDL_Window* w;
 		SDL_Renderer* r;
 		int width;

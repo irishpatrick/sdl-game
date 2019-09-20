@@ -5,6 +5,7 @@
 #include <cstdint>
 #include "Game.hpp"
 #include "Texture.hpp"
+#include "Camera.hpp"
 
 #ifdef _WIN32
 #include <SDKDDKVer.h>
@@ -19,6 +20,7 @@ namespace engine
 {
 
     Context::Context() :
+		camera(nullptr),
         width(-1),
         height(-1),
         quitCallback(nullptr),
@@ -159,13 +161,46 @@ namespace engine
 		}
 	}
 
+	void Context::draw(Texture* t, SDL_Rect* dst)
+	{
+		draw(t, nullptr, dst);
+	}
+
 	void Context::draw(Texture* t, SDL_Rect* src, SDL_Rect* dst)
 	{
+		applyCamera(dst);
 		SDL_RenderCopy(r, t->use(), src, dst);
+	}
+
+	void Context::draw(Texture* t, SDL_Rect* src, SDL_Rect* dst, double theta, SDL_Point* center, SDL_RendererFlip flip)
+	{
+		applyCamera(dst);
+		SDL_RenderCopyEx(r, t->use(), src, dst, theta, center, flip);
 	}
 
     BoundingBox Context::getBoundingBox()
     {
         return BoundingBox(0, 0, width, height);
     }
+
+	void Context::applyCamera(SDL_Rect* r)
+	{
+		if (r == nullptr || camera == nullptr)
+		{
+			return;
+		}
+
+		r->x -= camera->x;
+		r->y -= camera->y;
+	}
+
+	void Context::setCamera(Camera* c)
+	{
+		camera = c;
+	}
+
+	Camera* Context::getCamera()
+	{
+		return camera;
+	}
 }

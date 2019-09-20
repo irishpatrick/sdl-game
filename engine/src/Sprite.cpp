@@ -337,14 +337,16 @@ namespace engine
         rect.w = w * scale_x;
         rect.h = h * scale_y;
 
-        SDL_RenderCopyEx(
+        /*SDL_RenderCopyEx(
                 ctx.getRenderer(),
                 texture->use(),
                 nullptr,
                 &rect,
                 theta,
                 NULL,
-                SDL_FLIP_NONE);
+                SDL_FLIP_NONE);*/
+
+        ctx.draw(texture, nullptr, &rect, theta, nullptr, SDL_FLIP_NONE);
     }
 
     void Sprite::draw(Context& ctx, float e)
@@ -364,7 +366,8 @@ namespace engine
 
         if (animations.size() < 1 || currentAnimation == "")
         {
-            SDL_RenderCopyEx(ctx.getRenderer(), texture->use(), nullptr, &r, theta, nullptr, SDL_FLIP_NONE);
+            //SDL_RenderCopyEx(ctx.getRenderer(), texture->use(), nullptr, &r, theta, nullptr, SDL_FLIP_NONE);
+            ctx.draw(texture, nullptr, &r, theta, nullptr, SDL_FLIP_NONE);
         }
         else
         {
@@ -375,7 +378,8 @@ namespace engine
             frame.w = rect.w;
             frame.h = rect.h;
             //std::cout << "FRAME: [" << frame.x << "," << frame.y << "," << frame.w << "," << frame.h << "]" << std::endl;
-            SDL_RenderCopyEx(ctx.getRenderer(), texture->use(), &frame, &r, theta, nullptr, SDL_FLIP_NONE);
+            //SDL_RenderCopyEx(ctx.getRenderer(), texture->use(), &frame, &r, theta, nullptr, SDL_FLIP_NONE);
+            ctx.draw(texture, &frame, &r, theta, nullptr, SDL_FLIP_NONE);
         }
 
     }
@@ -397,7 +401,7 @@ namespace engine
 
         if (animations.size() < 1 || currentAnimation == "")
         {
-            SDL_RenderCopyEx(ctx.getRenderer(), texture->use(), nullptr, &r, theta, nullptr, SDL_FLIP_NONE);
+            ctx.draw(texture, nullptr, &r, theta, nullptr, SDL_FLIP_NONE);
         }
         else
         {
@@ -410,7 +414,7 @@ namespace engine
             r.w = frame.w * scale_x;
             r.h = frame.h * scale_y;
             //std::cout << "FRAME: [" << frame.x << "," << frame.y << "," << frame.w << "," << frame.h << "]" << std::endl;
-            SDL_RenderCopyEx(ctx.getRenderer(), texture->use(), &frame, &r, theta, nullptr, SDL_FLIP_NONE);
+            ctx.draw(texture, &frame, &r, theta, nullptr, SDL_FLIP_NONE);
         }
     }
 
@@ -436,7 +440,8 @@ namespace engine
 		rect.w = w * scale_x;
 		rect.h = h * scale_y;
 
-		SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
+		//SDL_RenderCopy(ctx.getRenderer(), texture->use(), nullptr, &rect);
+        ctx.draw(texture, nullptr, &rect);
         /*if (debug)
         {
             debugDraw(c, ctx);

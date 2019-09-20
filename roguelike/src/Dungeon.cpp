@@ -16,6 +16,9 @@ Dungeon::~Dungeon()
 void Dungeon::init()
 {
     Context& ctx = MyEngine::getContext();
+    ctx.setCamera(&camera);
+    camera.init(ctx);
+
     grid.load(ctx, "assets/maps/grid.json");
     grid.addChild(&player);
     grid.addChild(&chest);
@@ -25,6 +28,8 @@ void Dungeon::init()
     player.setGridPos(2, 2);
     player.setTexture(Assets::getTexture("player.png"));
     player.setName("player");
+
+    //camera.setFocus(player);
 
     chest.init(ctx);
     chest.setGridPos(4, 4);
@@ -139,6 +144,7 @@ void Dungeon::update()
     player.update();
     enemy.update();
     npcTest.update();
+    camera.update();
 }
 
 void Dungeon::render(float ex)

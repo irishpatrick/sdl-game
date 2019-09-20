@@ -31,7 +31,7 @@ void Player::update()
 {
     GridSprite::update();
 
-    if (attacking)
+    if (attacking && weapon != nullptr)
     {
         //std::cout << name << " stall " << attackCounter << std::endl;
         attackCounter++;
@@ -53,7 +53,7 @@ void Player::draw(Context& ctx, float ex)
 {
     GridSprite::draw(ctx, ex);
 
-    if (attacking)
+    if (attacking && weapon != nullptr)
     {
         weapon->draw(ctx, ex, Point(x, y));
     }

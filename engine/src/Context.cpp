@@ -4,6 +4,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <cstdint>
 #include "Game.hpp"
+#include "Texture.hpp"
 
 #ifdef _WIN32
 #include <SDKDDKVer.h>

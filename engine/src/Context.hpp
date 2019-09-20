@@ -4,10 +4,10 @@
 #include <string>
 #include <SDL.h>
 #include "BoundingBox.hpp"
-#include "Texture.hpp"
 
 namespace engine
 {
+    class Texture;
 
 	class Context 
 	{

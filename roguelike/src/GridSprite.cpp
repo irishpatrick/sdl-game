@@ -3,17 +3,18 @@
 
 GridSprite::GridSprite() :
     Sprite(),
-    solid(true),
-    strafing(0),
+    dir(),
     gridx(0),
     gridy(0),
+    solid(true),
+    strafing(0),
     targx(0),
     targy(0),
     x_dir(0),
     y_dir(0),
     speed(1.5f),
-    moving(0),
-    dir(0, 1)
+    moving(0)
+
 {
 
 }

@@ -5,9 +5,9 @@
 Player::Player() :
     weapon(nullptr),
     armor(nullptr),
+    name(""),
     attacking(false),
-    attackCounter(0),
-    stats()
+    attackCounter(0)
 {
 
 }

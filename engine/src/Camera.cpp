@@ -5,13 +5,15 @@
 namespace engine
 {
 
-	Camera::Camera()
+	Camera::Camera() :
+		x(0),
+		y(0),
+		w(-1),
+		h(-1),
+		focus(nullptr),
+		mode(FOLLOW)
 	{
-		x = 0;
-		y = 0;
-		w = -1;
-		h = -1;
-		focus = nullptr;
+		
 	}
 
 	Camera::~Camera()
@@ -32,20 +34,17 @@ namespace engine
 
 	void Camera::update()
 	{
-		if (w == -1 && h == -1) {
-			std::cout << "need to set screen dimensions" << std::endl;
-		}
-		if (focus != nullptr) {
-			x = floorf(focus->x + (focus->w / 2.0f) - (getViewport().w / 2.0f));
-    		y = floorf(focus->y + (focus->h / 2.0f) - (getViewport().h / 2.0f));
+		if (mode == FOLLOW)
+		{
+			if (w == -1 && h == -1) {
+				std::cout << "need to set screen dimensions" << std::endl;
+			}
+			if (focus != nullptr) {
+				x = floorf(focus->x + (focus->w / 2.0f) - (getViewport().w / 2.0f));
+				y = floorf(focus->y + (focus->h / 2.0f) - (getViewport().h / 2.0f));
+			}
 		}
 	}
-
-    void Camera::update(float delta)
-    {
-        x += xvel * delta;
-        y += yvel * delta;
-    }
 
 	void Camera::setFocus(Sprite* s)
 	{
@@ -61,4 +60,9 @@ namespace engine
     {
         return BoundingBox(x, y, w, h);
     }
+
+	void Camera::setMode(int m)
+	{
+		mode = m;
+	}
 }

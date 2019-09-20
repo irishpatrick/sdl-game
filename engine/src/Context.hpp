@@ -1,11 +1,10 @@
 #pragma once
 
 #include "core_api.hpp"
-
 #include <string>
 #include <SDL.h>
-
 #include "BoundingBox.hpp"
+#include "Texture.hpp"
 
 namespace engine
 {
@@ -18,6 +17,9 @@ namespace engine
 		CORE_API ~Context();
 
 		CORE_API int init(int, int, const std::string&, bool);
+
+		CORE_API void draw(Texture*, SDL_Rect*, SDL_Rect*);
+		CORE_API void draw(Texture*, SDL_Rect*, SDL_Rect*, SDL_Point*, double);
 
 		CORE_API void pollEvents();
 		CORE_API void setQuitCallback(void( *)(void));

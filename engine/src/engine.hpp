@@ -21,6 +21,7 @@
 #include "OneShot.hpp"
 #include "PlatformerPhysics.hpp"
 #include "Point.hpp"
+#include "PointT.hpp"
 #include "QTree.hpp"
 #include "Random.hpp"
 #include "Rect.hpp"

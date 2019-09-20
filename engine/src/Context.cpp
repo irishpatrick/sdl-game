@@ -158,6 +158,11 @@ namespace engine
 		}
 	}
 
+	void Context::draw(Texture* t, SDL_Rect* src, SDL_Rect* dst)
+	{
+		SDL_RenderCopy(r, t->use(), src, dst);
+	}
+
     BoundingBox Context::getBoundingBox()
     {
         return BoundingBox(0, 0, width, height);

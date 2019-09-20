@@ -13,3 +13,5 @@ namespace engine
         T y;
     };
 }
+
+#include "PointT.inl"

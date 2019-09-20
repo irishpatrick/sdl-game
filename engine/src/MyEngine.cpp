@@ -5,10 +5,11 @@
 
 namespace engine
 {
-    std::vector<Sprite*> MyEngine::sprites = std::vector<Sprite*>();
-    std::vector<State*> MyEngine::states = std::vector<State*>();
+    std::vector<Sprite*> MyEngine::sprites;
+    std::vector<State*> MyEngine::states;
     State* MyEngine::currentState = nullptr;
-    Context MyEngine::ctx = Context();
+    Context MyEngine::ctx;
+    Camera MyEngine::camera;
 
     void MyEngine::printNum()
     {

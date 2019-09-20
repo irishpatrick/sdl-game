@@ -31,4 +31,6 @@ private:
     Menu pauseMenu;
     Hud hud;
     std::vector<Menu*> menuStack;
+    PointT<float> tpf;
+    PointT<int> tpi;
 };

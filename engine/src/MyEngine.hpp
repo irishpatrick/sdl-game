@@ -4,6 +4,7 @@
 #include <string>
 #include <memory>
 #include "Context.hpp"
+#include "Camera.hpp"
 //#include "Sprite.hpp"
 //#include "State.hpp"
 
@@ -35,5 +36,6 @@ namespace engine
         static std::vector<State*> states;
         static State* currentState;
         static Context ctx;
+        static Camera camera;
     };
 }

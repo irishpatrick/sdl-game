@@ -8,9 +8,9 @@
 
 const Point pattern[] = {
     {1, 0}, 
-    {0, 1}, 
+    {0, -1}, 
     {-1, 0}, 
-    {0, -1}
+    {0, 1}
 };
 
 const Point pe = {-1, -1};
@@ -20,7 +20,7 @@ int randint(int min, int max)
     return (rand() % (max - min + 1)) + min;
 }
 
-int accept(struct Grid* grid)
+/*int accept(struct Grid* grid)
 {
     int ret = 0;
     int i;
@@ -46,7 +46,7 @@ int accept(struct Grid* grid)
     }
     //printf("accept: ret was %d\n", ret);
     return ret == 0;
-}
+}*/
 
 int reject(struct Grid* grid, Point point)
 {
@@ -124,8 +124,8 @@ Point next(struct Grid* grid, Point point)
         break;
 
         case 1:
-        c->s = 0;
-        neighbor->n = 0;
+        c->n = 0;
+        neighbor->s = 0;
         break;
 
         case 2:
@@ -134,8 +134,8 @@ Point next(struct Grid* grid, Point point)
         break;
 
         case 3:
-        c->n = 0;
-        neighbor->s = 0;
+        c->s = 0;
+        neighbor->n = 0;
     }
 
     point.x += dir->x;
@@ -190,8 +190,8 @@ Point first(struct Grid* grid, Point point)
         break;
 
         case 1:
-        c->s = 0;
-        neighbor->n = 0;
+        c->n = 0;
+        neighbor->s = 0;
         break;
 
         case 2:
@@ -200,8 +200,9 @@ Point first(struct Grid* grid, Point point)
         break;
 
         case 3:
-        c->n = 0;
-        neighbor->s = 0;
+        c->s = 0;
+        neighbor->n = 0;
+        break;
     }
 
     point.x += dir->x;
@@ -214,19 +215,12 @@ Point first(struct Grid* grid, Point point)
 
 void backtrace(struct Grid* grid, Point pt)
 {
-    //printf("bt\n");
 
     if (reject(grid, pt))
     {
         //printf("reject\n");
         return;
     }
-
-    /*if (accept(grid))
-    {
-        printf("accept\n");
-        return;
-    }*/
 
     Point point = first(grid, pt);
     //grid_print(grid);
@@ -239,8 +233,6 @@ void backtrace(struct Grid* grid, Point pt)
         //printf("\n\n");
         //printf("next\n");
     }
-
-    //printf("up\n");
 }
 
 /**

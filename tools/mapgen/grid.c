@@ -173,7 +173,7 @@ void grid_save_compact(struct Grid* grid)
     const char newl = 0xFF;
 
     FILE* fp = fopen("out.hex", "wb");
-    char* buffer = (char*)malloc(sizeof(int) + ((grid->length + 1) * grid->length));
+    char* buffer = (char*)malloc(sizeof(int) + ((grid->length/* + 1*/) * grid->length));
 
     // fill buffer
     unsigned char cl = (unsigned char)grid->length;
@@ -207,10 +207,10 @@ void grid_save_compact(struct Grid* grid)
 
             buffer[pos++] = val;
         }
-        buffer[pos++] = newl;
+        //buffer[pos++] = newl;
     }
 
-    fwrite(buffer, sizeof(char), (grid->length + 1) * grid->length, fp);
+    fwrite(buffer, sizeof(char), (grid->length/* + 1*/) * grid->length, fp);
     fclose(fp);
     free(buffer);
 }

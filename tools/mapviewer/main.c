@@ -15,6 +15,9 @@ void init()
     renderer = SDL_CreateRenderer(window, -1, 0);
 
     maze_init(renderer);
+    maze_open("../out.hex");
+    maze_print();
+    maze_destroy();
 }
 
 void update()

@@ -16,8 +16,7 @@ void init()
 
     maze_init(renderer);
     maze_open("../out.hex");
-    maze_print();
-    maze_destroy();
+    //maze_print();
 }
 
 void update()
@@ -28,12 +27,33 @@ void update()
         {
             quit = 1;
         }
+
+        int speed = 10;
+
+        const unsigned char* keys = SDL_GetKeyboardState(NULL);
+
+        if (keys[SDL_SCANCODE_UP])
+        {
+            maze_pos(maze_x(), maze_y() + speed);
+        }
+        if (keys[SDL_SCANCODE_DOWN])
+        {
+            maze_pos(maze_x(), maze_y() - speed);
+        }
+        if (keys[SDL_SCANCODE_LEFT])
+        {
+            maze_pos(maze_x() +  speed, maze_y());
+        }
+        if (keys[SDL_SCANCODE_RIGHT])
+        {
+            maze_pos(maze_x() - speed, maze_y());
+        }
     }
 }
 
 void draw()
 {
-
+    maze_draw(renderer);
 }
 
 int main(int argc, char** argv)
@@ -45,7 +65,10 @@ int main(int argc, char** argv)
         SDL_RenderClear(renderer);
         draw();
         SDL_RenderPresent(renderer);
+        SDL_Delay(20);
     }
+
+    maze_destroy();
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);

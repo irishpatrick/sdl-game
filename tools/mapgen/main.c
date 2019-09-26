@@ -89,7 +89,8 @@ Point next(struct Grid* grid, Point point)
     {
         return pe;
     }
-
+    
+    c->visited = 1;
     c->initial = (c->initial + 1) % 4;
     unsigned char orig = c->initial;
 
@@ -138,6 +139,7 @@ Point next(struct Grid* grid, Point point)
         neighbor->n = 0;
     }
 
+    printf("\tdir [%d,%d]\n", dir->x, dir->y);
     point.x += dir->x;
     point.y += dir->y;
 
@@ -154,7 +156,7 @@ Point first(struct Grid* grid, Point point)
     }
 
     c->visited = 1;
-    c->initial = (unsigned char)randint(0, 4);
+    c->initial = (unsigned char)randint(0, 3);
     unsigned char orig = c->initial;
     const Point* dir = &pattern[c->initial];
     struct Cell* neighbor = grid_get(grid, point.x + dir->x, point.y + dir->y);
@@ -205,6 +207,7 @@ Point first(struct Grid* grid, Point point)
         break;
     }
 
+    printf("\tdir [%d,%d]\n", dir->x, dir->y);
     point.x += dir->x;
     point.y += dir->y;
 
@@ -215,6 +218,9 @@ Point first(struct Grid* grid, Point point)
 
 void backtrace(struct Grid* grid, Point pt)
 {
+    printf("point: [%d,%d]\n", pt.x, pt.y);
+    grid_print(grid);
+    printf("\n\n");
 
     if (reject(grid, pt))
     {
@@ -223,16 +229,19 @@ void backtrace(struct Grid* grid, Point pt)
     }
 
     Point point = first(grid, pt);
-    //grid_print(grid);
-    //printf("\n\n");
+    printf("first point: [%d,%d] -> [%d,%d]\n", pt.x, pt.y, point.x, point.y);
     while (point.x >= 0 && point.y >= 0)
     {
+        printf("bt with: [%d,%d]\n", point.x, point.y);
         backtrace(grid, point);
-        point = next(grid, point);
+        point = next(grid, pt);
+        printf("next point: [%d,%d]\n", point.x, point.y);
         //grid_print(grid);
         //printf("\n\n");
         //printf("next\n");
     }
+
+    printf("return\n");
 }
 
 /**

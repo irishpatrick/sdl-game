@@ -7,6 +7,9 @@ static SDL_Texture* path;
 unsigned char* grid;
 int gridl;
 
+int gx = 0;
+int gy = 0;
+
 typedef struct _Point
 {
     int x;
@@ -27,6 +30,22 @@ static Point pattern[4] = {
     {0, 1}
 };
 
+void maze_pos(int x, int y)
+{
+    gx = x;
+    gy = y;
+}
+
+int maze_x()
+{
+    return gx;
+}
+
+int maze_y()
+{
+    return gy;
+}
+
 int ind(int x, int y, int len)
 {
     return (x % len) + (y * len);
@@ -38,7 +57,7 @@ int ctgi(int x, int y, int len)
     int xp = 1 + (x * 2);
     int yp = 1 + (y * 2);
 
-    printf("new coord: (%d,%d)\n", xp, yp);
+    //printf("new coord: (%d,%d)\n", xp, yp);
 
     return (xp % glen) + (yp * glen);
 }
@@ -52,11 +71,11 @@ void ctgip(int* x, int* y, int len)
 
 void maze_init(SDL_Renderer* r)
 {
-    SDL_Surface* wallsurf = SDL_LoadBMP("../wall.bmp");
+    SDL_Surface* wallsurf = SDL_LoadBMP("../path.bmp");
     wall = SDL_CreateTextureFromSurface(r, wallsurf);
     SDL_FreeSurface(wallsurf);
 
-    SDL_Surface* pathsurf = SDL_LoadBMP("../path.bmp");
+    SDL_Surface* pathsurf = SDL_LoadBMP("../wall.bmp");
     path = SDL_CreateTextureFromSurface(r, pathsurf);
     SDL_FreeSurface(pathsurf);
 }
@@ -67,14 +86,14 @@ void maze_open(const char* fn)
 
     unsigned char len;
     fread(&len, sizeof(unsigned char), 1, fp);
-    printf("maze dimensions: %dx%d\n", (int)len, (int)len);
+    //printf("maze dimensions: %dx%d\n", (int)len, (int)len);
 
     unsigned char* buffer = (unsigned char*)malloc((len + 1) * len);
     fread(buffer, sizeof(unsigned char), (len + 1) * len, fp);
     
     int glen = 1 + (len * 2);
     gridl = glen;
-    printf("grid dimensions: %dx%d\n", gridl, gridl);
+    //printf("grid dimensions: %dx%d\n", gridl, gridl);
     grid = (unsigned char*)malloc(glen * glen * sizeof(unsigned char));
     memset(grid, 1, gridl * gridl);
 
@@ -93,7 +112,7 @@ void maze_open(const char* fn)
             w[2] = (c >> 2) & 0x1;
             w[3] = (c >> 3) & 0x1;
 
-            printf("wall: %d,%d,%d,%d\n", w[0], w[1], w[2], w[3]);
+            //printf("wall: %d,%d,%d,%d\n", w[0], w[1], w[2], w[3]);
 
             for (k = 0; k < 4; ++k)
             {
@@ -102,7 +121,7 @@ void maze_open(const char* fn)
                 int x = j;
                 int y = i;
                 ctgip(&x, &y, len);
-                printf("coord: %d,%d\n", x + xo, y + yo);
+                //printf("coord: %d,%d\n", x + xo, y + yo);
                 unsigned char* p = &grid[ind(x + xo, y + yo, gridl)];
                 *p = w[k];
             }
@@ -111,6 +130,33 @@ void maze_open(const char* fn)
 
     free(buffer);
     fclose(fp);
+}
+
+void maze_draw(SDL_Renderer* renderer)
+{
+    int i;
+    int j;
+    SDL_Rect r;
+    SDL_Texture* t;
+    r.w = 16;
+    r.h = 16;
+    for (i = 0; i < gridl; ++i)
+    {
+        for (j = 0; j < gridl; ++j)
+        {
+            if (!grid[ind(j, i, gridl)])
+            {
+                t = path;
+            }
+            else
+            {
+                t = wall;
+            }
+            r.x = gx + j * 16;
+            r.y = gy + i * 16;
+            SDL_RenderCopy(renderer, t, NULL, &r);
+        }
+    }
 }
 
 void maze_print()

@@ -6,5 +6,6 @@ void cell_init(struct Cell* c)
     c->s = 1;
     c->e = 1;
     c->w = 1;
+    c->initial = 0;
     c->visited = 0;
 }

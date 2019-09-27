@@ -20,45 +20,17 @@ int randint(int min, int max)
     return (rand() % (max - min + 1)) + min;
 }
 
-/*int accept(struct Grid* grid)
-{
-    int ret = 0;
-    int i;
-    int j;
-    int k;
-    for (i = 0; i < grid->length; ++i)
-    {
-        for (j = 0; j < grid->length; ++j)
-        {
-            struct Cell* neighbors[4];
-            const Point* p;
-            
-            for (k = 0; k < 4; ++k)
-            {
-                p = &pattern[k];
-                neighbors[k] = grid_get(grid, j + p->x, i + p->y);
-                if (neighbors[k] != NULL)
-                {
-                    ret += !neighbors[k]->visited;
-                }
-            }
-        }
-    }
-    //printf("accept: ret was %d\n", ret);
-    return ret == 0;
-}*/
-
-int reject(struct Grid* grid, Point point)
+int reject(Grid* grid, Point point)
 {
     //printf("reject: get cell at point [%d,%d]\n", point.x, point.y);
-    struct Cell* c = grid_get(grid, point.x, point.y);
+    Cell* c = grid_get(grid, point.x, point.y);
     if (c == NULL)
     {
         printf("error: cell was null\n");
         return 1;
     }
 
-    struct Cell* neighbors[4];
+    Cell* neighbors[4];
     const Point* p;
     int ret = 0;
 
@@ -82,9 +54,9 @@ int reject(struct Grid* grid, Point point)
     return ret > 3;
 }
 
-Point next(struct Grid* grid, Point point)
+Point next(Grid* grid, Point point)
 {
-    struct Cell* c = grid_get(grid, point.x, point.y);
+    Cell* c = grid_get(grid, point.x, point.y);
     if (c == NULL)
     {
         return pe;
@@ -95,7 +67,7 @@ Point next(struct Grid* grid, Point point)
     unsigned char orig = c->initial;
 
     const Point* dir = &pattern[c->initial];
-    struct Cell* neighbor = grid_get(grid, point.x + dir->x, point.y + dir->y);
+    Cell* neighbor = grid_get(grid, point.x + dir->x, point.y + dir->y);
     while (neighbor == NULL || neighbor->visited)
     {
         c->initial = (c->initial + 1) % 4;
@@ -139,19 +111,19 @@ Point next(struct Grid* grid, Point point)
         neighbor->n = 0;
     }
 
-    printf("\tdir [%d,%d]\n", dir->x, dir->y);
+    //printf("\tdir [%d,%d]\n", dir->x, dir->y);
     point.x += dir->x;
     point.y += dir->y;
 
     return point;
 }
 
-Point first(struct Grid* grid, Point point)
+Point first(Grid* grid, Point point)
 {
-    struct Cell* c = grid_get(grid, point.x, point.y);
+    Cell* c = grid_get(grid, point.x, point.y);
     if (c == NULL)
     {
-        printf("error: cell was null\n");
+        //printf("error: cell was null\n");
         return pe;
     }
 
@@ -159,7 +131,7 @@ Point first(struct Grid* grid, Point point)
     c->initial = (unsigned char)randint(0, 3);
     unsigned char orig = c->initial;
     const Point* dir = &pattern[c->initial];
-    struct Cell* neighbor = grid_get(grid, point.x + dir->x, point.y + dir->y);
+    Cell* neighbor = grid_get(grid, point.x + dir->x, point.y + dir->y);
     
     while (neighbor == NULL || neighbor->visited)
     {
@@ -175,7 +147,7 @@ Point first(struct Grid* grid, Point point)
     
     if (neighbor == NULL)
     {
-        printf("error: neighbor was null\n");
+        //printf("error: neighbor was null\n");
         return pe;
     }
 
@@ -207,7 +179,8 @@ Point first(struct Grid* grid, Point point)
         break;
     }
 
-    printf("\tdir [%d,%d]\n", dir->x, dir->y);
+    //printf("\tdir [%d,%d]\n", dir->x, dir->y);
+
     point.x += dir->x;
     point.y += dir->y;
 
@@ -216,11 +189,11 @@ Point first(struct Grid* grid, Point point)
     return point;
 }
 
-void backtrace(struct Grid* grid, Point pt)
+void backtrace(Grid* grid, Point pt)
 {
-    printf("point: [%d,%d]\n", pt.x, pt.y);
-    grid_print(grid);
-    printf("\n\n");
+    //printf("point: [%d,%d]\n", pt.x, pt.y);
+    //grid_print(grid);
+    //printf("\n\n");
 
     if (reject(grid, pt))
     {
@@ -229,19 +202,19 @@ void backtrace(struct Grid* grid, Point pt)
     }
 
     Point point = first(grid, pt);
-    printf("first point: [%d,%d] -> [%d,%d]\n", pt.x, pt.y, point.x, point.y);
+    //printf("first point: [%d,%d] -> [%d,%d]\n", pt.x, pt.y, point.x, point.y);
     while (point.x >= 0 && point.y >= 0)
     {
-        printf("bt with: [%d,%d]\n", point.x, point.y);
+        //printf("bt with: [%d,%d]\n", point.x, point.y);
         backtrace(grid, point);
         point = next(grid, pt);
-        printf("next point: [%d,%d]\n", point.x, point.y);
+        //printf("next point: [%d,%d]\n", point.x, point.y);
         //grid_print(grid);
         //printf("\n\n");
         //printf("next\n");
     }
 
-    printf("return\n");
+    //printf("return\n");
 }
 
 /**
@@ -271,7 +244,7 @@ int main(int argc, char** argv)
     start.x = 0;
     start.y = 0;
 
-    struct Grid* grid = grid_new(dim);
+    Grid* grid = grid_new(dim);
     if (grid == NULL)
     {
         printf("cannot malloc grid\n");

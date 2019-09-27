@@ -1,6 +1,6 @@
 #include "cell.h"
 
-void cell_init(struct Cell* c)
+void cell_init(Cell* c)
 {
     c->n = 1;
     c->s = 1;

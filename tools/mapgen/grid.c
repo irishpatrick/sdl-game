@@ -3,12 +3,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-struct Grid* grid_new(int length)
+Grid* grid_new(int length)
 {
-    struct Grid* grid;
-    grid = (struct Grid*)malloc(sizeof(struct Grid));
+    Grid* grid;
+    grid = (Grid*)malloc(sizeof(Grid));
     grid->length = length;
-    grid->cells = (struct Cell*)malloc(grid->length * grid->length * sizeof(struct Cell));
+    grid->cells = (Cell*)malloc(grid->length * grid->length * sizeof(Cell));
     if (grid->cells == NULL)
     {
         printf("out of memory\n");
@@ -22,7 +22,7 @@ struct Grid* grid_new(int length)
     return grid;
 }
 
-struct Cell* grid_get(struct Grid* grid, int x, int y)
+Cell* grid_get(Grid* grid, int x, int y)
 {
     if (x < 0 || y < 0 || x >= grid->length || y >= grid->length)
     {
@@ -32,7 +32,7 @@ struct Cell* grid_get(struct Grid* grid, int x, int y)
     return &grid->cells[index];
 }
 
-void grid_print(struct Grid* grid)
+void grid_print(Grid* grid)
 {
     int i;
     int j;
@@ -44,7 +44,7 @@ void grid_print(struct Grid* grid)
             //  ^v  n and s, no e and w walls
 
             Point p = {j, i};
-            struct Cell* c = grid_get(grid, p.x, p.y);
+            Cell* c = grid_get(grid, p.x, p.y);
             char v = ':';
             if (c->visited)
             {
@@ -96,7 +96,7 @@ void grid_print(struct Grid* grid)
     }
 }
 
-void grid_save(struct Grid* grid)
+void grid_save(Grid* grid)
 {
     FILE* fp = fopen("out.txt", "w");
 
@@ -110,7 +110,7 @@ void grid_save(struct Grid* grid)
             //  ^v  n and s, no e and w walls
 
             Point p = {j, i};
-            struct Cell* c = grid_get(grid, p.x, p.y);
+            Cell* c = grid_get(grid, p.x, p.y);
             char v = ':';
             if (c->visited)
             {
@@ -164,13 +164,13 @@ void grid_save(struct Grid* grid)
     fclose(fp);
 }
 
-void grid_save_compact(struct Grid* grid)
+void grid_save_compact(Grid* grid)
 {
     const char E = 0x1;
     const char N = 0x2;
     const char W = 0x4;
     const char S = 0x8;
-    const char newl = 0xFF;
+    //const char newl = 0xFF;
 
     FILE* fp = fopen("../out.hex", "wb");
     char* buffer = (char*)malloc(sizeof(int) + ((grid->length/* + 1*/) * grid->length));
@@ -186,7 +186,7 @@ void grid_save_compact(struct Grid* grid)
     {
         for (j = 0; j < grid->length; ++j)
         {
-            struct Cell* c = grid_get(grid, j, i);
+            Cell* c = grid_get(grid, j, i);
             char val = 0;
             if (c->e)
             {
@@ -215,7 +215,7 @@ void grid_save_compact(struct Grid* grid)
     free(buffer);
 }
 
-void grid_free(struct Grid* grid)
+void grid_free(Grid* grid)
 {
     if (grid == NULL)
     {

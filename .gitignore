@@ -12,6 +12,7 @@ bin/
 obj/
 CMakeFiles/
 CMakeCache.txt
+*.hex
 
 tools/pack/target/
 tools/pack/pom.xml.tag

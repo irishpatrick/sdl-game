@@ -3,17 +3,17 @@
 
 #include "cell.h"
 
-struct Grid
+typedef struct Grid_
 {
-    struct Cell* cells;
+    Cell* cells;
     int length;
-};
+} Grid;
 
-struct Grid* grid_new(int);
-struct Cell* grid_get(struct Grid*, int, int);
-void grid_print(struct Grid*);
-void grid_save(struct Grid*);
-void grid_save_compact(struct Grid*);
-void grid_free(struct Grid*);
+Grid* grid_new(int);
+Cell* grid_get(Grid*, int, int);
+void grid_print(Grid*);
+void grid_save(Grid*);
+void grid_save_compact(Grid*);
+void grid_free(Grid*);
 
 #endif /* GRID_H */

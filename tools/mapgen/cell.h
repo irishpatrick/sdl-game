@@ -1,7 +1,7 @@
 #ifndef CELL_H
 #define CELL_H
 
-struct Cell
+typedef struct Cell_
 {
     unsigned char n;
     unsigned char s;
@@ -9,8 +9,8 @@ struct Cell
     unsigned char w;
     unsigned char initial;
     unsigned char visited;
-};
+} Cell;
 
-void cell_init(struct Cell*);
+void cell_init(Cell*);
 
 #endif /* CELL_H */

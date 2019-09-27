@@ -7,7 +7,7 @@ void cs_init(struct CellStack* cs)
     cs->head = NULL;
 }
 
-void cs_push(struct CellStack* cs, struct Cell* cell)
+void cs_push(struct CellStack* cs, Cell* cell)
 {
     struct Node** node = &cs->head;
 
@@ -21,11 +21,11 @@ void cs_push(struct CellStack* cs, struct Cell* cell)
     (*node)->cell = cell;
 }
 
-struct Cell* cs_pop(struct CellStack* cs)
+Cell* cs_pop(struct CellStack* cs)
 {
     struct Node** node = &cs->head;
     struct Node* prev = NULL;
-    struct Cell* ret = NULL;
+    Cell* ret = NULL;
 
     if (*node == NULL)
     {

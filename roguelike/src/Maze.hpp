@@ -13,7 +13,9 @@ public:
     Maze();
     ~Maze();
 
+    void generate(int, int);
+
 private:
-    LM_Maze* maze;
-    LM_Grid* grid;
+    LM_Maze* lm_maze;
+    LM_Grid* lm_grid;
 };

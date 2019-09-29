@@ -3,6 +3,10 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus  
+extern "C" { 
+#endif 
+
 typedef struct _LM_Point
 {
     int x;
@@ -30,5 +34,9 @@ typedef struct _LM_Grid
     uint8_t* cells;
     LM_Point dimension;
 } LM_Grid;
+
+#ifdef __cplusplus 
+} 
+#endif 
 
 #endif /* CORE_H */

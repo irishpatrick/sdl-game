@@ -7,7 +7,9 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 
-Grid::Grid()
+Grid::Grid() :
+    Sprite(),
+    atlas(nullptr)
 {
 
 }

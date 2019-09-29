@@ -23,7 +23,7 @@ public:
 
     int getSize();
 
-private:
+protected:
     Texture* atlas;
     std::vector<Tile*> tiles;
     std::vector<Tile*> grid;

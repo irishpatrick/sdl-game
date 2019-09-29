@@ -1,5 +1,0 @@
-things to implement
-
-combat
-equipping items
-hud

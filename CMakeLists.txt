@@ -23,6 +23,7 @@ find_package(nlohmann_json CONFIG REQUIRED)
 find_path(CAIRO_INCLUDE_DIR NAMES cairo.h PATH_SUFFIXES cairo)
 
 set(INCL
+    3rdparty
 	${CAIRO_INCLUDE_DIR})
 
 set(LIBS
@@ -76,6 +77,7 @@ set(LIBS
 endif (MSVC)
 
 add_subdirectory(./engine)
+add_subdirectory(./tools/libmaze)
 add_subdirectory(./rpg)
 add_subdirectory(./platformer)
 add_subdirectory(./roguelike)

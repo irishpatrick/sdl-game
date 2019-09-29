@@ -64,7 +64,6 @@ int ctgi(int x, int y, int len)
 
 void ctgip(int* x, int* y, int len)
 {
-    int glen = 1 + (len * 2);
     *x = 1 + (*x * 2);
     *y = 1 + (*y * 2);
 }
@@ -91,10 +90,10 @@ void maze_open(const char* fn)
     unsigned char* buffer = (unsigned char*)malloc((len + 1) * len);
     fread(buffer, sizeof(unsigned char), (len + 1) * len, fp);
     
-    int glen = 1 + (len * 2);
-    gridl = glen;
+    gridl = 1 + (len * 2);
+    
     //printf("grid dimensions: %dx%d\n", gridl, gridl);
-    grid = (unsigned char*)malloc(glen * glen * sizeof(unsigned char));
+    grid = (unsigned char*)malloc(gridl * gridl * sizeof(unsigned char));
     memset(grid, 1, gridl * gridl);
 
     int i;

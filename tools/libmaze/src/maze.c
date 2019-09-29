@@ -4,11 +4,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-Maze* maze_generate(int w, int h)
+LM_Maze* maze_generate(int w, int h)
 {
-    Maze* m = (Maze*)malloc(sizeof(Maze));
+    LM_Maze* m = (LM_Maze*)malloc(sizeof(LM_Maze));
     
-    Point p = {w, h};
+    LM_Point p = {w, h};
     m->dimension = p;
     m->cells = NULL;
 
@@ -17,14 +17,14 @@ Maze* maze_generate(int w, int h)
     return m;
 }
 
-Grid* maze_format(Maze* m, int padding)
+LM_Grid* maze_format(LM_Maze* m, int padding)
 {
     return fmt_gen(m, padding);
 }
 
-Maze* maze_open(const char* fn)
+LM_Maze* maze_open(const char* fn)
 {
-    Maze* m = (Maze*)malloc(sizeof(Maze));
+    LM_Maze* m = (LM_Maze*)malloc(sizeof(LM_Maze));
 
     FILE* fp = fopen(fn, "rb");
     if (!fp)
@@ -44,7 +44,7 @@ Maze* maze_open(const char* fn)
     for (i = 0; i < buffer_size; ++i)
     {
         uint8_t ch = buffer[i];
-        Cell* c = &m->cells[i];
+        LM_Cell* c = &m->cells[i];
         c->visited = 1;
         c->e = (ch >> 0) & 0x1;
         c->n = (ch >> 1) & 0x1;
@@ -58,7 +58,7 @@ Maze* maze_open(const char* fn)
     return m;
 }
 
-void maze_save(Maze* m, const char* fn)
+void maze_save(LM_Maze* m, const char* fn)
 {
     const char E = 0x1;
     const char N = 0x2;
@@ -76,7 +76,7 @@ void maze_save(Maze* m, const char* fn)
     int i;
     for (i = 0; i < len; ++i)
     {
-        Cell* c = &m->cells[i];
+        LM_Cell* c = &m->cells[i];
         uint8_t ch = 0;
 
         if (c->e)
@@ -102,7 +102,7 @@ void maze_save(Maze* m, const char* fn)
     fclose(fp);
 }
 
-Cell* maze_get(Maze* m, int x, int y)
+LM_Cell* maze_get(LM_Maze* m, int x, int y)
 {
     if (x < 0 || y < 0 || x >= m->dimension.x || y >= m->dimension.y)
     {
@@ -112,7 +112,7 @@ Cell* maze_get(Maze* m, int x, int y)
     return &m->cells[index];
 }
 
-void maze_free(Maze* m)
+void maze_free(LM_Maze* m)
 {
     if (m != NULL)
     {
@@ -124,7 +124,7 @@ void maze_free(Maze* m)
     }
 }
 
-void grid_free(Grid* g)
+void grid_free(LM_Grid* g)
 {
     if (g != NULL)
     {

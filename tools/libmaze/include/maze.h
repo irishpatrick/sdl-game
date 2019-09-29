@@ -3,14 +3,14 @@
 
 #include "core.h"
 
-Maze* maze_generate(int, int);
-Maze* maze_open(const char*);
-void maze_save(Maze*, const char*);
-Cell* maze_get(Maze*, int, int);
+LM_Maze* maze_generate(int, int);
+LM_Maze* maze_open(const char*);
+void maze_save(LM_Maze*, const char*);
+LM_Cell* maze_get(LM_Maze*, int, int);
 
-Grid* maze_format(Maze*, int);
+LM_Grid* maze_format(LM_Maze*, int);
 
-void maze_free(Maze*);
-void grid_free(Grid*);
+void maze_free(LM_Maze*);
+void grid_free(LM_Grid*);
 
 #endif /* MAZE_H */ 

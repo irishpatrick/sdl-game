@@ -3,6 +3,6 @@
 
 #include "core.h"
 
-Grid* fmt_gen(Maze*, int);
+LM_Grid* fmt_gen(LM_Maze*, int);
 
 #endif /* FMT_H */

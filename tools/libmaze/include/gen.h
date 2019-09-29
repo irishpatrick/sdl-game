@@ -3,7 +3,7 @@
 
 #include "core.h"
 
-void gen_clear(Maze*);
-void gen_new(Maze*);
+void gen_clear(LM_Maze*);
+void gen_new(LM_Maze*);
 
 #endif /* GEN_H */

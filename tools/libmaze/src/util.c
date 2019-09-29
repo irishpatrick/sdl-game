@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-const Point pattern[4] = {
+const LM_Point pattern[4] = {
     {1, 0},
     {0, -1},
     {-1, 0},

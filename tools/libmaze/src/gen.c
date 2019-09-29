@@ -4,15 +4,15 @@
 #include <stdlib.h>
 
 // indicates an error
-static const Point ep = {-1, -1};
+static const LM_Point ep = {-1, -1};
 
 
-Point extend(Maze* m, Point p)
+LM_Point extend(LM_Maze* m, LM_Point p)
 {
-    Cell* c = maze_get(m, p.x, p.y);
+    LM_Cell* c = maze_get(m, p.x, p.y);
     uint8_t orig = c->initial;
-    const Point* dir = &pattern[c->initial];
-    Cell* neighbor = maze_get(m, p.x + dir->x, p.y + dir->y);
+    const LM_Point* dir = &pattern[c->initial];
+    LM_Cell* neighbor = maze_get(m, p.x + dir->x, p.y + dir->y);
 
     while (neighbor == NULL || neighbor->visited)
     {
@@ -60,9 +60,9 @@ Point extend(Maze* m, Point p)
     return p;
 }
 
-Point first(Maze* m, Point p)
+LM_Point first(LM_Maze* m, LM_Point p)
 {
-    Cell* c = maze_get(m, p.x, p.y);
+    LM_Cell* c = maze_get(m, p.x, p.y);
     if (c == NULL)
     {
         return ep;
@@ -74,9 +74,9 @@ Point first(Maze* m, Point p)
     return extend(m, p);
 }
 
-Point next(Maze* m, Point p)
+LM_Point next(LM_Maze* m, LM_Point p)
 {
-    Cell* c = maze_get(m, p.x, p.y);
+    LM_Cell* c = maze_get(m, p.x, p.y);
     if (c == NULL)
     {
         return ep;
@@ -88,16 +88,16 @@ Point next(Maze* m, Point p)
     return extend(m, p);
 }
 
-int reject(Maze* m, Point p)
+int reject(LM_Maze* m, LM_Point p)
 {
-    Cell* c = maze_get(m, p.x, p.y);
+    LM_Cell* c = maze_get(m, p.x, p.y);
     if (c == NULL)
     {
         return 1;
     }
 
-    Cell* neighbors[4];
-    const Point* q;
+    LM_Cell* neighbors[4];
+    const LM_Point* q;
     int ret = 0;
 
     int i;
@@ -118,14 +118,14 @@ int reject(Maze* m, Point p)
     return ret > 3;
 }
 
-void backtrace(Maze* m, Point p)
+void backtrace(LM_Maze* m, LM_Point p)
 {
     if (reject(m, p))
     {
         return;
     }
 
-    Point newp = first(m, p);
+    LM_Point newp = first(m, p);
     while (newp.x >= 0 && newp.y >= 0)
     {
         backtrace(m, newp);
@@ -133,15 +133,15 @@ void backtrace(Maze* m, Point p)
     }
 }
 
-void gen_clear(Maze* m)
+void gen_clear(LM_Maze* m)
 {
     int num_cells = m->dimension.x * m->dimension.y;
-    m->cells = (Cell*)malloc(num_cells * sizeof(Cell));
+    m->cells = (LM_Cell*)malloc(num_cells * sizeof(LM_Cell));
 
     int i;
     for (i = 0; i < num_cells; ++i)
     {
-        Cell* c = &m->cells[i];
+        LM_Cell* c = &m->cells[i];
         c->n = 1;
         c->e = 1;
         c->s = 1;
@@ -150,11 +150,11 @@ void gen_clear(Maze* m)
     }
 }
 
-void gen_new(Maze* m)
+void gen_new(LM_Maze* m)
 {
     gen_clear(m);
 
-    Point start;
+    LM_Point start;
     start.x = 0;
     start.y = 0;
 

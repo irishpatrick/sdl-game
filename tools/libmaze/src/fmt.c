@@ -4,22 +4,22 @@
 #include <stdlib.h>
 #include <string.h>
 
-Point remap(Grid* g, Point p)
+LM_Point remap(LM_Grid* g, LM_Point p)
 {
-    Point q;
+    LM_Point q;
     q.x = 1 + (p.x * 2);
     q.y = 1 + (p.y * 2);
     return q;
 }
 
-int toindex(Point p, Point d)
+int toindex(LM_Point p, LM_Point d)
 {
     return (p.x % d.x) + (p.y * d.y);
 }
 
-Grid* fmt_gen(Maze* m, int padding)
+LM_Grid* fmt_gen(LM_Maze* m, int padding)
 {
-    Grid* g = (Grid*)malloc(sizeof(Grid));
+    LM_Grid* g = (LM_Grid*)malloc(sizeof(LM_Grid));
     g->dimension.x = (1 + m->dimension.x) * 2;
     g->dimension.y = (1 + m->dimension.y) * 2;
     int cells_size = g->dimension.x * g->dimension.y * sizeof(uint8_t);
@@ -33,9 +33,9 @@ Grid* fmt_gen(Maze* m, int padding)
     {
         for (j = 0; j < m->dimension.x; ++j)
         {
-            Point cp = {j, i};
-            Cell* c = maze_get(m, cp.x, cp.y);
-            Point gp = remap(g, cp);
+            LM_Point cp = {j, i};
+            LM_Cell* c = maze_get(m, cp.x, cp.y);
+            LM_Point gp = remap(g, cp);
             g->cells[toindex(gp, g->dimension)] = 0;
 
             uint8_t w[4];
@@ -46,8 +46,8 @@ Grid* fmt_gen(Maze* m, int padding)
 
             for (k = 0; k < 4; ++k)
             {
-                Point o = pattern[k];
-                Point ogp = {gp.x + o.x, gp.y + o.y};
+                LM_Point o = pattern[k];
+                LM_Point ogp = {gp.x + o.x, gp.y + o.y};
                 uint8_t* uch = &g->cells[toindex(ogp, g->dimension)];
                 *uch = w[k];
             }

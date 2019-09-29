@@ -3,7 +3,7 @@
 
 #include "core.h"
 
-extern const Point pattern[4];
+extern const LM_Point pattern[4];
 
 int randint(int, int);
 

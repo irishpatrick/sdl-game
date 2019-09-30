@@ -2,6 +2,7 @@
 
 #include "Sprite.hpp"
 #include "Context.hpp"
+#include "Color.hpp"
 
 namespace engine
 {
@@ -11,6 +12,13 @@ namespace engine
         Light();
         ~Light();
 
+        void setIntensity(double);
         void draw(Context&, float);
+
+        Color color;
+
+    private:
+        double intensity;
+        double temperature;
     };
 }

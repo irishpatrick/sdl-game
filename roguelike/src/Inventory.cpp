@@ -210,6 +210,8 @@ void Inventory::update()
 
 void Inventory::render(float ex)
 {
+    MyEngine::getContext().pushCfg();
+    MyEngine::getContext().getCfg()->useCamera = false;
     if (numItems < 1)
     {
         return;
@@ -251,4 +253,6 @@ void Inventory::render(float ex)
 
     actions.draw(ex);
     Textbox::draw();
+
+    MyEngine::getContext().popCfg();
 }

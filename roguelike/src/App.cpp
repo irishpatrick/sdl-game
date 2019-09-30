@@ -35,6 +35,8 @@ void App::init()
     Assets::loadTexture("assets/sprites/sword.png");
     Assets::loadTexture("assets/sprites/heart.png");
     Assets::loadTexture("assets/sprites/inventory.png");
+    Assets::loadTexture("assets/lighting/testlight.png");
+    Assets::loadTexture("assets/lighting/pointlight.png");
 
     Item::load("assets/items/apple.json");
     Item::load("assets/items/frying_pan.json");

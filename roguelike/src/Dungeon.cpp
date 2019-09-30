@@ -21,13 +21,16 @@ void Dungeon::init()
 
     grid.load(ctx, "assets/maps/grid.json");
     //grid.addChild(&player);
-    grid.addChild(&chest);
-    grid.addChild(&enemy);
-    grid.addChild(&npcTest);
+    //grid.addChild(&chest);
+    //grid.addChild(&enemy);
+    //grid.addChild(&npcTest);
 
     mazetest.load(ctx, "assets/maps/grid.json");
     mazetest.generate(8, 8);
     mazetest.addChild(&player);
+    mazetest.addChild(&enemy);
+    mazetest.addChild(&npcTest);
+    mazetest.addChild(&chest);
 
     player.setGridPos(5, 5);
     player.setTexture(Assets::getTexture("player.png"));
@@ -44,7 +47,7 @@ void Dungeon::init()
     enemy.setName("enemy");
 
     npcTest.init();
-    npcTest.setGridPos(2, 6);
+    npcTest.setGridPos(6, 5);
     npcTest.setTexture(Assets::getTexture("player.png"));
 
     pauseMenu.init(ctx);
@@ -57,6 +60,11 @@ void Dungeon::init()
 
     hud.init();
     hud.setPlayer(&player);
+
+    lighttest.init(ctx);
+    lighttest.setTexture(Assets::getTexture("testlight.png"));
+    lighttest.setIntensity(1.0);
+    lighttest.color.setRGB(0.2, 0.2, 0.8);
 }
 
 void Dungeon::update()
@@ -155,12 +163,14 @@ void Dungeon::render(float ex)
 {
     Context& ctx = MyEngine::getContext();
     
-    grid.draw(ctx, ex);
+    //grid.draw(ctx, ex);
     mazetest.draw(ctx, ex);
     chest.draw(ctx, ex);
     player.draw(ctx, ex);
     enemy.draw(ctx, ex);
     npcTest.draw(ex);
+    lighttest.draw(ctx, ex);
+    
     hud.draw();
     Textbox::draw();
     pauseMenu.draw(ctx, ex);

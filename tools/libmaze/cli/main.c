@@ -109,7 +109,20 @@ int main(int argc, char** argv)
                 continue;
             }
 
-            g = maze_format(m, 1);
+            int scale = 1;
+
+            char word[20];
+            getword(word, buffer, 1, sizeof(word));
+            if (strlen(word) > 0)
+            {
+                scale = atoi(word);
+                if (scale < 1)
+                {
+                    scale = 1;
+                }
+            }
+
+            g = maze_format(m, scale);
         }
 
         else if (startswith(buffer, "open"))

@@ -122,6 +122,7 @@ namespace engine
 
     protected:
         bool visible;
+        bool rejectCamera;
         //bool debug;
         Group* parent;
         Sprite* sparent;

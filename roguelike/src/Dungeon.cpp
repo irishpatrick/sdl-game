@@ -20,19 +20,20 @@ void Dungeon::init()
     camera.init(ctx);
 
     grid.load(ctx, "assets/maps/grid.json");
-    grid.addChild(&player);
+    //grid.addChild(&player);
     grid.addChild(&chest);
     grid.addChild(&enemy);
     grid.addChild(&npcTest);
 
     mazetest.load(ctx, "assets/maps/grid.json");
-    mazetest.generate(10, 10);
+    mazetest.generate(8, 8);
+    mazetest.addChild(&player);
 
-    player.setGridPos(2, 2);
+    player.setGridPos(5, 5);
     player.setTexture(Assets::getTexture("player.png"));
     player.setName("player");
 
-    //camera.setFocus(player);
+    camera.setFocus(player);
 
     chest.init(ctx);
     chest.setGridPos(4, 4);

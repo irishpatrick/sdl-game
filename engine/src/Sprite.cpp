@@ -15,7 +15,8 @@ using json = nlohmann::json;
 
 namespace engine
 {
-	Sprite::Sprite()
+	Sprite::Sprite() :
+        rejectCamera(false)
 	{
 		x = 0;
 		y = 0;

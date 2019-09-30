@@ -28,12 +28,41 @@ namespace engine
         r(nullptr),
         scale(0.0f)
 	{
-
+		Settings def;
+		def.useCamera = true;
+		def.mode = SDL_BLENDMODE_BLEND;
+		cfg.push(def);
 	}
 
 	Context::~Context()
 	{
         destroy();
+	}
+
+	void Context::pushCfg()
+	{
+		Settings mod = cfg.top();
+		cfg.push(mod);
+	}
+
+	Settings* Context::getCfg()
+	{
+		return &cfg.top();
+	}
+
+	void Context::popCfg()
+	{
+		if (cfg.size() < 2)
+		{
+			return;
+		}
+
+		cfg.pop();
+	}
+
+	void Context::applyCfg()
+	{
+
 	}
 
 	int Context::init(int a, int b, const std::string& title, bool fullscreen)
@@ -163,18 +192,32 @@ namespace engine
 
 	void Context::draw(Texture* t, SDL_Rect* dst)
 	{
+		Settings* cur = &cfg.top();
+		SDL_SetTextureBlendMode(t->use(), cur->mode);
 		draw(t, nullptr, dst);
 	}
 
 	void Context::draw(Texture* t, SDL_Rect* src, SDL_Rect* dst)
 	{
-		applyCamera(dst);
+		Settings* cur = &cfg.top();
+
+		if (cur->useCamera)
+		{
+			applyCamera(dst);
+		}
+		SDL_SetTextureBlendMode(t->use(), cur->mode);
 		SDL_RenderCopy(r, t->use(), src, dst);
 	}
 
 	void Context::draw(Texture* t, SDL_Rect* src, SDL_Rect* dst, double theta, SDL_Point* center, SDL_RendererFlip flip)
 	{
-		applyCamera(dst);
+		Settings* cur = &cfg.top();
+
+		if (cur->useCamera)
+		{
+			applyCamera(dst);
+		}
+		SDL_SetTextureBlendMode(t->use(), cur->mode);
 		SDL_RenderCopyEx(r, t->use(), src, dst, theta, center, flip);
 	}
 

@@ -4,9 +4,16 @@
 #include <string>
 #include <SDL.h>
 #include "BoundingBox.hpp"
+#include <stack>
 
 namespace engine
 {
+	typedef struct _Settings
+	{
+		bool useCamera;
+		SDL_BlendMode mode;
+	} Settings;
+
     class Texture;
 	class Camera;
 
@@ -18,6 +25,11 @@ namespace engine
 		CORE_API ~Context();
 
 		CORE_API int init(int, int, const std::string&, bool);
+
+		void pushCfg();
+		Settings* getCfg();
+		void popCfg();
+		void applyCfg();
 
 		CORE_API void draw(Texture*, SDL_Rect*);
 		CORE_API void draw(Texture*, SDL_Rect*, SDL_Rect*);
@@ -99,6 +111,7 @@ namespace engine
 		int width;
 		int height;
 		double scale;
+		std::stack<Settings> cfg;
 		void (*quitCallback)(void);
 	};
 }

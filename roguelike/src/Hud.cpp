@@ -6,7 +6,7 @@ Hud::Hud() :
     Sprite(),
     player(nullptr)
 {
-
+    rejectCamera = true;
 }
 
 Hud::~Hud()
@@ -38,6 +38,10 @@ void Hud::draw()
 
     Context& ctx = MyEngine::getContext();
 
+    ctx.pushCfg();
+
+    ctx.getCfg()->useCamera = false;
+
     int hearts = player->getStats().getHp();
     for (int i = 0; i < hearts; ++i)
     {
@@ -48,4 +52,6 @@ void Hud::draw()
     {
         player->getWeapon()->draw(ctx, 0.0f, Point(ctx.getWidth() - 64, 32));
     }
+
+    ctx.popCfg();
 }

@@ -33,6 +33,7 @@ typedef struct _LM_Grid
 {
     uint8_t* cells;
     LM_Point dimension;
+    uint8_t scale;
 } LM_Grid;
 
 #ifdef __cplusplus 

@@ -8,6 +8,7 @@
 #include "Menu.hpp"
 #include "Npc.hpp"
 #include "Hud.hpp"
+#include "Maze.hpp"
 #include <vector>
 
 using namespace engine;
@@ -34,4 +35,5 @@ private:
     std::vector<Menu*> menuStack;
     PointT<float> tpf;
     PointT<int> tpi;
+    Maze mazetest;
 };

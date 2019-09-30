@@ -25,6 +25,9 @@ void Dungeon::init()
     grid.addChild(&enemy);
     grid.addChild(&npcTest);
 
+    mazetest.load(ctx, "assets/maps/grid.json");
+    mazetest.generate(10, 10);
+
     player.setGridPos(2, 2);
     player.setTexture(Assets::getTexture("player.png"));
     player.setName("player");
@@ -152,6 +155,7 @@ void Dungeon::render(float ex)
     Context& ctx = MyEngine::getContext();
     
     grid.draw(ctx, ex);
+    mazetest.draw(ctx, ex);
     chest.draw(ctx, ex);
     player.draw(ctx, ex);
     enemy.draw(ctx, ex);

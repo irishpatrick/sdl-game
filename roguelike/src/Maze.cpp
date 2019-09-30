@@ -1,4 +1,5 @@
 #include "Maze.hpp"
+#include <iostream>
 
 Maze::Maze() :
     Grid(),
@@ -21,12 +22,30 @@ Maze::~Maze()
     }
 }
 
-void Maze::generate(int w, int h)
+void Maze::generate(int mw, int mh)
 {
     if (atlas == nullptr || tiles.size() < 1)
     {
         return;
     }
-    lm_maze = maze_generate(w, h);
+    lm_maze = maze_generate(mw, mh);
     lm_grid = maze_format(lm_maze, 1);
+
+    w = lm_grid->dimension.x;
+    h = lm_grid->dimension.y;
+
+    grid.clear();
+
+    int i;
+    int j;
+    for (i = 0; i < lm_grid->dimension.y; ++i)
+    {
+        for (j = 0; j < lm_grid->dimension.x; ++j)
+        {
+            int t = (int)grid_get(lm_grid, j, i);
+            //std::cout << t << " ";
+            grid.push_back(tiles[t * 3]);
+        }
+        //std::cout << std::endl;
+    }
 }

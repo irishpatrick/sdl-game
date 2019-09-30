@@ -64,8 +64,8 @@ int main(int argc, char** argv)
     char buffer[256];
     memset(buffer, 0, sizeof(buffer));
 
-    Maze* m = NULL;
-    Grid* g = NULL;
+    LM_Maze* m = NULL;
+    LM_Grid* g = NULL;
 
     while (!quit)
     {
@@ -100,6 +100,18 @@ int main(int argc, char** argv)
             printf("generating maze of size %d,%d\n", w, h);
             m = maze_generate(w, h);
         }
+
+        else if (startswith(buffer, "format"))
+        {
+            if (m == NULL)
+            {
+                printf("need to open/generate maze first\n");
+                continue;
+            }
+
+            g = maze_format(m, 1);
+        }
+
         else if (startswith(buffer, "open"))
         {
 
@@ -113,7 +125,31 @@ int main(int argc, char** argv)
             }
             char word[20];
             getword(word, buffer, 1, sizeof(word));
+            if (strlen(word) < 1)
+            {
+                printf("bad arg\n");
+                continue;
+            }
             maze_save(m, word);
+        }
+        else if (startswith(buffer, "export"))
+        {
+            if (g == NULL)
+            {
+                printf("need to create grid first\n");
+                continue;
+            }
+            
+            int i;
+            int j;
+            for (i = 0; i < g->dimension.y; ++i)
+            {
+                for (j = 0; j < g->dimension.x; ++j)
+                {
+                    printf("%d ", grid_get(g, j, i));
+                }
+                printf("\n");
+            }
         }
         else if (startswith(buffer, "reset"))
         {

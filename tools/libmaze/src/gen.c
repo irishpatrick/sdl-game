@@ -10,6 +10,7 @@ static const LM_Point ep = {-1, -1};
 LM_Point extend(LM_Maze* m, LM_Point p)
 {
     LM_Cell* c = maze_get(m, p.x, p.y);
+
     uint8_t orig = c->initial;
     const LM_Point* dir = &pattern[c->initial];
     LM_Cell* neighbor = maze_get(m, p.x + dir->x, p.y + dir->y);
@@ -147,6 +148,7 @@ void gen_clear(LM_Maze* m)
         c->s = 1;
         c->w = 1;
         c->visited = 0;
+        c->initial = 0;
     }
 }
 

@@ -102,6 +102,12 @@ void maze_save(LM_Maze* m, const char* fn)
     fclose(fp);
 }
 
+void grid_save(LM_Grid* g, const char* fn)
+{
+    FILE* fp = fopen(fn, "wb");
+    fclose(fp);
+}
+
 LM_Cell* maze_get(LM_Maze* m, int x, int y)
 {
     if (x < 0 || y < 0 || x >= m->dimension.x || y >= m->dimension.y)
@@ -110,6 +116,12 @@ LM_Cell* maze_get(LM_Maze* m, int x, int y)
     }
     int index = (x % m->dimension.x) + (y * m->dimension.y);
     return &m->cells[index];
+}
+
+uint8_t grid_get(LM_Grid* g, int x, int y)
+{
+    int index = (x % g->dimension.x) + (y * g->dimension.y);
+    return g->cells[index];
 }
 
 void maze_free(LM_Maze* m)

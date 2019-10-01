@@ -25,6 +25,8 @@ public:
 	CORE_API void copy(Texture*);
 	CORE_API void create(Context&);
 	CORE_API void create(Context&, SDL_Surface*);
+    CORE_API void create(Context&, int, int);
+    CORE_API void createTarget(Context&, int, int);
     CORE_API void update(SDL_Surface*);
     CORE_API void update();
     CORE_API Texture subTexture(Context&, int, int, int, int);

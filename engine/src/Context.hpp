@@ -8,14 +8,15 @@
 
 namespace engine
 {
+	class Texture;
+	class Camera;
+
 	typedef struct _Settings
 	{
 		bool useCamera;
 		SDL_BlendMode mode;
+		SDL_Texture* renderTarget;
 	} Settings;
-
-    class Texture;
-	class Camera;
 
 	class Context 
 	{
@@ -30,6 +31,7 @@ namespace engine
 		Settings* getCfg();
 		void popCfg();
 		void applyCfg();
+		void setTarget();
 
 		CORE_API void draw(Texture*, SDL_Rect*);
 		CORE_API void draw(Texture*, SDL_Rect*, SDL_Rect*);

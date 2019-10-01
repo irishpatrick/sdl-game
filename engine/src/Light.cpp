@@ -6,6 +6,7 @@
 namespace engine
 {
     Light::Light() :
+        obeyCamera(true),
         intensity(1.0),
         temperature(0.5)
     {
@@ -17,6 +18,11 @@ namespace engine
 
     }
 
+    void Light::setObeyCamera(bool val)
+    {
+        obeyCamera = val;
+    }
+
     void Light::setIntensity(double val)
     {
         intensity = val;
@@ -25,21 +31,18 @@ namespace engine
     void Light::draw(Context& ctx, float ex)
     {
         ctx.pushCfg();
-        /*ctx.getCfg()->mode = SDL_ComposeCustomBlendMode(
-            SDL_BLENDFACTOR_SRC_COLOR,
-            SDL_BLENDFACTOR_DST_COLOR,
-            SDL_BLENDOPERATION_ADD,
+        ctx.getCfg()->useCamera = obeyCamera;
+        ctx.getCfg()->mode = SDL_BLENDMODE_ADD;
+        //ctx.getCfg()->mode = SDL_BLENDMODE_MOD;
 
-        );*/
-        //ctx.getCfg()->useCamera = false;
-        ctx.getCfg()->mode = SDL_BLENDMODE_MOD;
         uint8_t i = (uint8_t)(intensity * 255);
         double r, g, b;
         r = intensity * color.getRGB().r.f;
         g = intensity * color.getRGB().g.f;
         b = intensity * color.getRGB().g.f;
 
-        SDL_SetTextureColorMod(texture->use(), r * 255, g * 255, b * 255);
+        //SDL_SetTextureColorMod(texture->use(), r * 255, g * 255, b * 255);
+        SDL_SetTextureColorMod(texture->use(), i, i, i);
         Sprite::draw(ctx, ex);
         ctx.popCfg();
     }

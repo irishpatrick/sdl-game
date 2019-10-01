@@ -2,6 +2,7 @@
 #include "MyEngine.hpp"
 #include <iostream>
 #include <SDL.h>
+#include <cstdint>
 
 namespace engine
 {
@@ -123,6 +124,48 @@ namespace engine
 		h = s->h;
 		ready = true;
 	}
+
+    void Texture::create(Context& ctx, int w, int h)
+    {
+        uint32_t rmask, gmask, bmask, amask;
+    #if SDL_BYTEORDER == SDL_BIG_ENDIAN
+        rmask = 0xff000000;
+        gmask = 0x00ff0000;
+        bmask = 0x0000ff00;
+        amask = 0x000000ff;
+    #else
+        rmask = 0x000000ff;
+        gmask = 0x0000ff00;
+        bmask = 0x00ff0000;
+        amask = 0xff000000;
+    #endif
+        
+        surf = SDL_CreateRGBSurface(0, w, h, 32, rmask, gmask, bmask, amask);
+    
+        SDL_FillRect(surf, nullptr, 0x000000);
+
+        create(ctx);
+    }
+
+    void Texture::createTarget(Context& ctx, int w, int h)
+    {
+        //SDL_RendererInfo = SDL_GetRendererInfo(ctx.getRenderer());
+        
+        surf = nullptr;
+        tex = SDL_CreateTexture(
+            ctx.getRenderer(),
+            SDL_PIXELFORMAT_RGBA8888, 
+            SDL_TEXTUREACCESS_TARGET,
+            w,
+            h
+        );
+        if (tex == nullptr)
+        {
+            std::cout << "Texture::createTarget error: " << SDL_GetError() << std::endl;
+        }
+
+        ready = true;
+    }
 
     void Texture::update(SDL_Surface* s)
     {

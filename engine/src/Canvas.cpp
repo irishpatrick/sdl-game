@@ -107,7 +107,8 @@ namespace engine
         rect.y = (int)y;
         rect.w = (int)w;
         rect.h = (int)h;
-        SDL_RenderCopy(ctx.getRenderer(), tex->use(), NULL, &rect);
+        //SDL_RenderCopy(ctx.getRenderer(), tex->use(), NULL, &rect);
+        ctx.draw(tex, NULL, &rect);
     }
 
     void Canvas::clear()

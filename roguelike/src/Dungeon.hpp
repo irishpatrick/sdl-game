@@ -37,4 +37,6 @@ private:
     PointT<int> tpi;
     Maze mazetest;
     Light lighttest;
+    Light otherlight;
+    LightStage stage;
 };

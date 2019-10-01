@@ -15,6 +15,7 @@
 #include "Group.hpp"
 #include "Keyboard.hpp"
 #include "Light.hpp"
+#include "LightStage.hpp"
 #include "Line.hpp"
 #include "LocationStack.hpp"
 #include "MovingAverage.hpp"

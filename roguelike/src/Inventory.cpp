@@ -210,12 +210,13 @@ void Inventory::update()
 
 void Inventory::render(float ex)
 {
-    MyEngine::getContext().pushCfg();
-    MyEngine::getContext().getCfg()->useCamera = false;
     if (numItems < 1)
     {
         return;
     }
+
+    MyEngine::getContext().pushCfg();
+    MyEngine::getContext().getCfg()->useCamera = false;
 
     bg.draw(MyEngine::getContext(), ex);
 

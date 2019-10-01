@@ -31,6 +31,7 @@ namespace engine
 		Settings def;
 		def.useCamera = true;
 		def.mode = SDL_BLENDMODE_BLEND;
+		def.renderTarget = nullptr;
 		cfg.push(def);
 	}
 
@@ -56,11 +57,22 @@ namespace engine
 		{
 			return;
 		}
-
+		
 		cfg.pop();
 	}
 
 	void Context::applyCfg()
+	{
+		int e;
+		Settings* cur = &cfg.top();
+		e = SDL_SetRenderTarget(r, cur->renderTarget);
+		if (e < 0)
+		{
+			std::cout << SDL_GetError() << std::endl;
+		}
+	}
+
+	void Context::setTarget()
 	{
 
 	}
@@ -154,7 +166,7 @@ namespace engine
 		r = SDL_CreateRenderer(
 			w,
 			-1,
-			SDL_RENDERER_PRESENTVSYNC
+			SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_TARGETTEXTURE
 		);
 
 		SDL_RenderSetScale(r, (float)scale, (float)scale);
@@ -193,6 +205,7 @@ namespace engine
 	void Context::draw(Texture* t, SDL_Rect* dst)
 	{
 		Settings* cur = &cfg.top();
+		applyCfg();
 		SDL_SetTextureBlendMode(t->use(), cur->mode);
 		draw(t, nullptr, dst);
 	}
@@ -205,6 +218,7 @@ namespace engine
 		{
 			applyCamera(dst);
 		}
+		applyCfg();
 		SDL_SetTextureBlendMode(t->use(), cur->mode);
 		SDL_RenderCopy(r, t->use(), src, dst);
 	}
@@ -217,6 +231,7 @@ namespace engine
 		{
 			applyCamera(dst);
 		}
+		applyCfg();
 		SDL_SetTextureBlendMode(t->use(), cur->mode);
 		SDL_RenderCopyEx(r, t->use(), src, dst, theta, center, flip);
 	}

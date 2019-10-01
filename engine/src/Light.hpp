@@ -13,11 +13,13 @@ namespace engine
         ~Light();
 
         void setIntensity(double);
-        void draw(Context&, float);
+        void setObeyCamera(bool);
+        void draw(Context&, float) override;
 
         Color color;
 
     private:
+        bool obeyCamera;
         double intensity;
         double temperature;
     };

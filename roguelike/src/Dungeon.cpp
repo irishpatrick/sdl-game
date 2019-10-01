@@ -61,10 +61,20 @@ void Dungeon::init()
     hud.init();
     hud.setPlayer(&player);
 
+    // lighting
+
     lighttest.init(ctx);
     lighttest.setTexture(Assets::getTexture("testlight.png"));
-    lighttest.setIntensity(1.0);
-    lighttest.color.setRGB(0.2, 0.2, 0.8);
+    lighttest.setIntensity(0.5);
+    lighttest.color.setRGB(1.0, 1.0, 1.0);
+    lighttest.setObeyCamera(false);
+
+    otherlight.init(ctx);
+    otherlight.setTexture(Assets::getTexture("testlight.png"));
+    otherlight.setIntensity(0.5);
+
+    stage.init(ctx);
+    stage.addLight(&lighttest);
 }
 
 void Dungeon::update()
@@ -169,7 +179,7 @@ void Dungeon::render(float ex)
     player.draw(ctx, ex);
     enemy.draw(ctx, ex);
     npcTest.draw(ex);
-    lighttest.draw(ctx, ex);
+    stage.draw(ctx, ex);
     
     hud.draw();
     Textbox::draw();

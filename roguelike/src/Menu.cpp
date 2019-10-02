@@ -1,6 +1,8 @@
 #include "Menu.hpp"
-
 #include <nlohmann/json.hpp>
+#define _USE_MATH_DEFINES
+#include <cmath>
+
 using json = nlohmann::json;
 
 Menu::Menu() :
@@ -57,7 +59,7 @@ void Menu::init(Context& ctx)
     cr = cursor.getCairo();
     
     cairo_set_source_rgb(cr, 0.0, 0.0, 0.0);
-    cairo_arc(cr, s/2, s/2, s/2, 0, 2.0 * M_PI);
+    cairo_arc(cr, s/2, s/2, s/2, 0, 2.0 * 3.141592653589793238462643383279);
     cairo_fill(cr);
 }
 

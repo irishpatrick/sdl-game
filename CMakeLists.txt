@@ -21,10 +21,13 @@ find_package(unofficial-cairo CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
 
 find_path(CAIRO_INCLUDE_DIR NAMES cairo.h PATH_SUFFIXES cairo)
+find_path(PANGO_INCLUDE_DIR NAMES pango.h PATH_SUFFIXES pango)
 
 set(INCL
     3rdparty
-	${CAIRO_INCLUDE_DIR})
+	${CAIRO_INCLUDE_DIR}
+    ${PANGO_INCLUDE_DIR}
+)
 
 set(LIBS
 	SDL2::SDL2
@@ -36,6 +39,9 @@ set(LIBS
 	nlohmann_json
 	nlohmann_json::nlohmann_json
 	bcrypt
+    gobject-2.0
+    pangocairo-1.0
+    pango-1.0
 )
 
 elseif (UNIX)

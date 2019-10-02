@@ -169,6 +169,7 @@ namespace engine
 			SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_TARGETTEXTURE
 		);
 
+		SDL_SetWindowResizable(w, SDL_FALSE);
 		SDL_RenderSetScale(r, (float)scale, (float)scale);
 
 		if (r == nullptr)

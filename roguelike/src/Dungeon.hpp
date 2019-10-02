@@ -36,7 +36,7 @@ private:
     PointT<float> tpf;
     PointT<int> tpi;
     Maze mazetest;
-    Light lighttest;
-    Light otherlight;
+    Light ambient;
+    Light point;
     LightStage stage;
 };

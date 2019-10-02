@@ -63,18 +63,24 @@ void Dungeon::init()
 
     // lighting
 
-    lighttest.init(ctx);
-    lighttest.setTexture(Assets::getTexture("testlight.png"));
-    lighttest.setIntensity(0.5);
-    lighttest.color.setRGB(1.0, 1.0, 1.0);
-    lighttest.setObeyCamera(false);
+    ambient.init(ctx);
+    ambient.setTexture(Assets::getTexture("testlight.png"));
+    ambient.setIntensity(0.2);
+    ambient.color.setRGB(1.0, 1.0, 1.0);
+    ambient.setObeyCamera(false);
 
-    otherlight.init(ctx);
-    otherlight.setTexture(Assets::getTexture("testlight.png"));
-    otherlight.setIntensity(0.5);
+    point.init(ctx);
+    point.setTexture(Assets::getTexture("pointlight.png"));
+    point.setIntensity(1.0);
+    point.setObeyCamera(true);
+    point.w = 256;
+    point.h = 256;
+    point.x = ctx.getWidth() / 2 - point.w / 2;
+    point.y = ctx.getHeight() / 2 - point.h / 2;
 
     stage.init(ctx);
-    stage.addLight(&lighttest);
+    stage.addLight(&ambient);
+    stage.addLight(&point);
 }
 
 void Dungeon::update()

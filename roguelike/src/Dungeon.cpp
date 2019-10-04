@@ -73,6 +73,7 @@ void Dungeon::init()
     point.setTexture(Assets::getTexture("pointlight.png"));
     point.setIntensity(1.0);
     point.setObeyCamera(true);
+    point.color.setRGB(1.0, 0.8, 0.6);
     point.w = 256;
     point.h = 256;
     point.x = ctx.getWidth() / 2 - point.w / 2;
@@ -185,7 +186,7 @@ void Dungeon::render(float ex)
     player.draw(ctx, ex);
     enemy.draw(ctx, ex);
     npcTest.draw(ex);
-    stage.draw(ctx, ex);
+    //stage.draw(ctx, ex);
     
     hud.draw();
     Textbox::draw();

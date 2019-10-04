@@ -97,3 +97,116 @@ LM_Grid* fmt_gen(LM_Maze* m, int scale)
 
     return g;
 }
+
+int fmt_mod(LM_Grid* g, int scale)
+{
+    uint8_t* modified = (uint8_t*)malloc(g->dimension.x * scale * g->dimension.y * scale * sizeof(uint8_t));
+
+    LM_Point sd = {g->dimension.x * scale, g->dimension.y * scale};
+
+    int i;
+    int j;
+    int k;
+    int l;
+    for (i = 0; i < g->dimension.y; ++i)
+    {
+        for (j = 0; j < g->dimension.x; ++j)
+        {
+            LM_Point orig = {j, i};
+            int ind = toindex(orig, g->dimension);
+            uint8_t val = g->cells[ind];
+            for (k = 0; k < scale; ++k)
+            {
+                for (l = 0; l < scale; ++l)
+                {
+                    LM_Point target = {(orig.x * scale) + l, (orig.y * scale) + k};
+                    ind = toindex(target, sd);
+                    modified[ind] = val;
+                }
+            }
+        }
+    }
+
+    g->dimension.x = g->dimension.x * scale;
+    g->dimension.y = g->dimension.y * scale;
+    uint8_t* trash = g->cells;
+    g->cells = modified;
+    free(trash);
+    return 0;
+}
+
+void trim_walls(LM_Grid* g, LM_Point p)
+{
+    int i;
+    for (i = 0; i < 4; ++i)
+    {
+        uint8_t* vp = grid_getp(g, p.x + pattern[i].x, p.y + pattern[i].y);
+        if (*vp == 1)
+        {
+            *vp = 0;
+        }
+    }
+}
+
+void connect(uint8_t* arr, LM_Point p, LM_Point d)
+{
+    
+}
+
+int fmt_space(LM_Grid* g, int spacing)
+{
+    /*fmt_mod(g, spacing);
+
+    int i;
+    int j;
+    for (i = 0; i < g->dimension.y; ++i)
+    {
+        for (j = 0; j < g->dimension.x; ++j)
+        {
+            uint8_t val = grid_get(g, j, i);
+            if (val == 0)
+            {
+                LM_Point cur = {j, i};
+                trim_walls(g, cur);
+            }
+        }
+    }*/
+
+    LM_Point newd = {g->dimension.x * spacing, g->dimension.y * spacing};
+    uint8_t* modified = (uint8_t*)malloc(newd.x * newd.y * sizeof(uint8_t));
+    memset(modified, 2, newd.x * newd.y * sizeof(uint8_t));
+
+    int i;
+    int j;
+    for (i = 0; i < g->dimension.y; ++i)
+    {
+        for (j = 0; j < g->dimension.x; ++j)
+        {
+            LM_Point newp = {j * spacing, i * spacing};
+            int index = toindex(newp, newd);
+            modified[index] = grid_get(g, j, i);
+        }
+    }
+
+    // connect all the floating points, unless a wall exists between them
+    for (i = 0; i < newd.y; ++i)
+    {
+        for (j = 0; j < newd.x; ++j)
+        {
+            LM_Point newp = {j, i};
+            uint8_t val = modified[toindex(newp, newd)];
+            if (val == 0)
+            {
+                connect(modified, newp, newd);
+            }
+        }
+    }
+
+    g->dimension.x = g->dimension.x * spacing;
+    g->dimension.y = g->dimension.y * spacing;
+    uint8_t* trash = g->cells;
+    g->cells = modified;
+    free(trash);
+
+    return 0;
+}

@@ -1,8 +1,66 @@
 #include "maze.h"
 #include "gen.h"
 #include "fmt.h"
+#include "util.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+int overlap(LM_Point a, LM_Point b, LM_Point d)
+{
+    return 
+        a.x < b.x + d.x &&
+        a.x + d.x > b.x &&
+        a.y < b.y + d.y &&
+        a.y + d.y > b.y;
+}
+
+LM_Maze* maze_generate_with_rooms(int w, int h)
+{
+    LM_Maze* m = (LM_Maze*)malloc(sizeof(LM_Maze));
+
+    LM_Point p = {w, h};
+    m->dimension = p;
+    m->cells = NULL;
+
+    const int max_rooms = 5;
+    int num_rooms = 0;
+    int room_size = 4;
+    LM_Point corner;
+    LM_Point placed[max_rooms];
+
+    int i;
+
+    while (num_rooms < max_rooms)
+    {
+        corner.x = randint(0, m->dimension.x - room_size);
+        corner.y = randint(0, m->dimension.y - room_size);
+        int ok = 1;
+        for (i = 0; i < num_rooms; ++i)
+        {
+            ok = !overlap(corner, placed[i], p);
+        }
+        if (ok)
+        {
+            int y;
+            int x;
+            for (y = 0; y < room_size; ++y)
+            {
+                for (x = 0; x < room_size; ++x)
+                {
+                    LM_Point loc = {corner.x + x, corner.y + y};
+                    LM_Cell* c = maze_get(m, loc.x, loc.y);
+                    c->visited = 1;
+                }
+            }
+            placed[num_rooms] = corner;
+            num_rooms++;
+        }
+    }
+
+    gen_new(m);
+
+    return m;
+}
 
 LM_Maze* maze_generate(int w, int h)
 {
@@ -20,6 +78,16 @@ LM_Maze* maze_generate(int w, int h)
 LM_Grid* maze_format(LM_Maze* m, int padding)
 {
     return fmt_gen(m, padding);
+}
+
+int grid_format(LM_Grid* g, int padding)
+{
+    return fmt_mod(g, padding);
+}
+
+int grid_space(LM_Grid* g, int spacing)
+{
+    return fmt_space(g, spacing);
 }
 
 LM_Maze* maze_open(const char* fn)
@@ -122,6 +190,12 @@ uint8_t grid_get(LM_Grid* g, int x, int y)
 {
     int index = (x % g->dimension.x) + (y * g->dimension.y);
     return g->cells[index];
+}
+
+uint8_t* grid_getp(LM_Grid* g, int x, int y)
+{
+    int index = (x % g->dimension.x) + (y * g->dimension.y);
+    return &g->cells[index];
 }
 
 void maze_free(LM_Maze* m)

@@ -41,8 +41,8 @@ namespace engine
         g = intensity * color.getRGB().g.f;
         b = intensity * color.getRGB().g.f;
 
-        //SDL_SetTextureColorMod(texture->use(), r * 255, g * 255, b * 255);
-        SDL_SetTextureColorMod(texture->use(), i, i, i);
+        SDL_SetTextureColorMod(texture->use(), r * 255, g * 255, b * 255);
+        //SDL_SetTextureColorMod(texture->use(), r, g, b);
         Sprite::draw(ctx, ex);
         ctx.popCfg();
     }

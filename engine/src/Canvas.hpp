@@ -14,13 +14,14 @@ namespace engine
     class Canvas : public Sprite
     {
     public:
-        Canvas() : 
+        Canvas() :
             Sprite(),
-            x(0), y(0), 
+            x(0), y(0),
             w(0), h(0),
             ready(false),
-            tex(nullptr), 
+            tex(nullptr),
             cairoSurface(nullptr),
+            surface(nullptr),
             cr(nullptr)
         {}
         virtual ~Canvas();

@@ -13,6 +13,14 @@ typedef struct _LM_Point
     int y;
 } LM_Point;
 
+typedef struct _LM_Rect
+{
+    int x;
+    int y;
+    int w;
+    int h;
+} LM_Rect;
+
 typedef struct _LM_Cell
 {
     uint8_t n;

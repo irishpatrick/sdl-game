@@ -38,6 +38,10 @@ void Inventory::init()
     for (i = 0; i < gridH; ++i)
     {
         Item** arr = (Item**)malloc(sizeof(Item*) * gridW);
+        if (arr == NULL)
+        {
+            return;
+        }
         int j;
         for (j = 0; j < gridW; ++j)
         {

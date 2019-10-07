@@ -30,8 +30,17 @@ LM_Point extend(LM_Maze* m, LM_Point p)
     {
         return ep;
     }
+
+    if (neighbor->visited)
+    {
+        //printf("%d,%d already visited\n", dir->x + p.x, dir->y + p.y);
+        return ep;
+    }
+
+    //printf("%d,%d not yet visited\n", dir->x + p.x, dir->y + p.y);
     
     neighbor->visited = 1;
+    
     switch(c->initial)
     {
         case 0:
@@ -121,10 +130,10 @@ int reject(LM_Maze* m, LM_Point p)
 
 void backtrace(LM_Maze* m, LM_Point p)
 {
-    if (reject(m, p))
+    /*if (reject(m, p))
     {
         return;
-    }
+    }*/
 
     LM_Point newp = first(m, p);
     while (newp.x >= 0 && newp.y >= 0)
@@ -138,6 +147,10 @@ void gen_clear(LM_Maze* m)
 {
     int num_cells = m->dimension.x * m->dimension.y;
     m->cells = (LM_Cell*)malloc(num_cells * sizeof(LM_Cell));
+    if (m->cells == NULL)
+    {
+        return;
+    }
 
     int i;
     for (i = 0; i < num_cells; ++i)
@@ -154,7 +167,19 @@ void gen_clear(LM_Maze* m)
 
 void gen_new(LM_Maze* m)
 {
-    gen_clear(m);
+    //gen_clear(m);
+
+    int i;
+    int j;
+    printf("all visited cells\n");
+    for (i = 0; i < m->dimension.y; ++i)
+    {
+        for (j = 0; j < m->dimension.x; ++j)
+        {
+            printf("%d ", maze_get(m, j, i)->visited);
+        }
+        printf("\n");
+    }
 
     LM_Point start;
     start.x = 0;

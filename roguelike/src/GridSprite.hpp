@@ -21,6 +21,7 @@ public:
     void down();
 
     virtual bool canMove();
+    virtual bool canMove(int, int);
     virtual void interact(GridSprite*);
     virtual void prompt();
     virtual void update();
@@ -28,6 +29,9 @@ public:
 
     void setSolid(bool);
     bool isSolid();
+
+    void setObeyWalls(bool);
+    bool obeysWalls();
 
     Grid* getGridParent();
 
@@ -38,6 +42,7 @@ protected:
 
 private:
     bool solid;
+    bool obeyWalls;
     int strafing;
     int targx;
     int targy;

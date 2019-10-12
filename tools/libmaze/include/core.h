@@ -35,6 +35,8 @@ typedef struct _LM_Maze
 {
     LM_Cell* cells;
     LM_Point dimension;
+    LM_Rect* rooms;
+    int num_rooms;
 } LM_Maze;
 
 typedef struct _LM_Grid

@@ -7,7 +7,8 @@
 namespace engine
 {
 
-	Texture::Texture()
+    Texture::Texture() :
+        tex_da(false)
 	{
 		w = 0;
 		h = 0;
@@ -76,6 +77,7 @@ namespace engine
 		w = t->getW();
 		h = t->getH();
 		tex = t->use();
+        tex_da = false;
 		ready = true;
 	}
 
@@ -89,6 +91,7 @@ namespace engine
             SDL_UnlockSurface(surf);
         }
 		tex = SDL_CreateTextureFromSurface(ctx.getRenderer(), surf);
+        tex_da = true;
         if (relock)
         {
             SDL_LockSurface(surf);
@@ -110,6 +113,7 @@ namespace engine
             SDL_UnlockSurface(s);
         }
 		tex = SDL_CreateTextureFromSurface(ctx.getRenderer(), s);
+        tex_da = true;
         if (relock)
         {
             SDL_LockSurface(s);
@@ -159,6 +163,7 @@ namespace engine
             w,
             h
         );
+        tex_da = true;
         if (tex == nullptr)
         {
             std::cout << "Texture::createTarget error: " << SDL_GetError() << std::endl;
@@ -274,9 +279,9 @@ namespace engine
 
 	void Texture::destroy()
 	{
-        if (tex != nullptr)
+        if (tex_da)
         {
-            SDL_DestroyTexture(tex);
+            //SDL_DestroyTexture(tex);
             tex = nullptr;
         }
         if (surf != nullptr)

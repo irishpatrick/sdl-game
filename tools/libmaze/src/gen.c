@@ -182,8 +182,8 @@ void gen_new(LM_Maze* m)
     }
 
     LM_Point start;
-    start.x = 0;
-    start.y = 0;
+    start.x = 3;
+    start.y = 3;
 
     backtrace(m, start);
 }

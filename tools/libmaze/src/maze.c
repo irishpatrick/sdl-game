@@ -61,11 +61,20 @@ LM_Maze* maze_generate_with_rooms(int w, int h)
     m->dimension = p;
     m->cells = NULL;
 
+    m->num_rooms = 0;
+    m->rooms = (LM_Rect*)malloc(5 * sizeof(LM_Rect));
+    if (m->rooms == NULL)
+    {
+        free(m);
+        return NULL;
+    }
+    m->num_rooms = 5;
+
     gen_clear(m);
 
-    const int max_rooms = 1;
+    const int max_rooms = 5;
     int num_rooms = 0;
-    int room_size = 2;
+    int room_size = 3;
     LM_Point corner;
     LM_Point placed[5];
 
@@ -98,29 +107,24 @@ LM_Maze* maze_generate_with_rooms(int w, int h)
                     LM_Point loc = {corner.x + x, corner.y + y};
                     LM_Cell* c = maze_get(m, loc.x, loc.y);
                     c->visited = 1;
-                    c->e = 0;
-                    c->n = 0;
-                    c->w = 0;
-                    c->s = 0;
-                    if (x == 0)
+
+                    if (y < room_size - 1)
                     {
-                        c->w = 1;
+                        //maze_remove_wall(m, loc.x, loc.y, loc.x, loc.y + 1);
                     }
-                    else if (x == room_size - 1)
+
+                    if (x < room_size - 1)
                     {
-                        c->e = 0;
-                    }
-                    if (y == 0)
-                    {
-                        c->n = 0;
-                    }
-                    else if (y == room_size - 1)
-                    {
-                        c->s = 0;
+                        //maze_remove_wall(m, loc.x, loc.y, loc.x + 1, loc.y);
                     }
                 }
             }
             placed[num_rooms] = corner;
+            LM_Rect* r = &m->rooms[num_rooms];
+            r->x = corner.x;
+            r->y = corner.y;
+            r->w = room_size;
+            r->h = room_size;
             num_rooms++;
         }
         limiter++;
@@ -159,6 +163,7 @@ LM_Maze* maze_generate(int w, int h)
     LM_Point p = {w, h};
     m->dimension = p;
     m->cells = NULL;
+    m->rooms = NULL;
 
     gen_new(m);
 
@@ -178,6 +183,11 @@ int grid_format(LM_Grid* g, int padding)
 int grid_space(LM_Grid* g, int spacing)
 {
     return fmt_space(g, spacing);
+}
+
+int grid_fill_rooms(LM_Grid* g)
+{
+
 }
 
 LM_Maze* maze_open(const char* fn)
@@ -303,6 +313,10 @@ void maze_free(LM_Maze* m)
         if (m->cells != NULL)
         {
             free(m->cells);
+        }
+        if (m->rooms != NULL)
+        {
+            free(m->rooms);
         }
         free(m);
     }

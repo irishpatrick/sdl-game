@@ -3,6 +3,19 @@
 
 namespace engine
 {
+    Canvas::Canvas() :
+        Sprite(),
+        x(0), y(0),
+        w(0), h(0),
+        ready(false),
+        tex(nullptr),
+        cairoSurface(nullptr),
+        surface(nullptr),
+        cr(nullptr),
+        da(false)
+    {
+        
+    }
     Canvas::~Canvas()
     {
         destroy();
@@ -11,6 +24,7 @@ namespace engine
     void Canvas::create(Context& ctx, uint32_t aw, uint32_t ah)
     {
         tex = new Texture();
+        da = true;
         create(ctx, tex, aw, ah);
     }
 
@@ -181,7 +195,8 @@ namespace engine
             cairoSurface = nullptr;
         }
 
-        if (tex != nullptr)
+        //if (tex != nullptr)
+        if (da)
         {
             delete tex;
             tex = nullptr;

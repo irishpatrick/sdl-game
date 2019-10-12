@@ -20,6 +20,7 @@ uint8_t* grid_getp(LM_Grid*, int, int);
 LM_Grid* maze_format(LM_Maze*, int);
 int grid_format(LM_Grid*, int);
 int grid_space(LM_Grid*, int);
+int grid_fill_rooms(LM_Grid*);
 
 void maze_free(LM_Maze*);
 void grid_free(LM_Grid*);

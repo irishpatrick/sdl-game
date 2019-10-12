@@ -26,7 +26,7 @@ void Dungeon::init()
     //grid.addChild(&npcTest);
 
     mazetest.load(ctx, "assets/maps/grid.json");
-    mazetest.generate(8, 8);
+    mazetest.generate(20, 20);
     mazetest.addChild(&player);
     mazetest.addChild(&enemy);
     mazetest.addChild(&npcTest);
@@ -116,6 +116,12 @@ void Dungeon::update()
         else if (Keyboard::isDown(Config::getKey("right").c_str()))
         {
             player.right();
+        }
+
+        if (Keyboard::isPressed("u"))
+        {
+            std::cout << "toggle no walls" << std::endl;
+            player.setObeyWalls(!player.obeysWalls());
         }
 
         if (Keyboard::isPressed(Config::getKey("attack").c_str()))

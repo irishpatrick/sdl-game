@@ -14,16 +14,7 @@ namespace engine
     class Canvas : public Sprite
     {
     public:
-        Canvas() :
-            Sprite(),
-            x(0), y(0),
-            w(0), h(0),
-            ready(false),
-            tex(nullptr),
-            cairoSurface(nullptr),
-            surface(nullptr),
-            cr(nullptr)
-        {}
+        Canvas();
         virtual ~Canvas();
         
         void create(Context&, uint32_t, uint32_t);
@@ -55,5 +46,6 @@ namespace engine
         SDL_Surface* surface;
         cairo_surface_t* cairoSurface;
         cairo_t* cr;
+        bool da;
     };
 }

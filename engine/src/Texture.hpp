@@ -48,6 +48,7 @@ private:
     std::string name;
     SDL_Texture* tex;
     SDL_Surface* surf;
+    bool tex_da;
 };
 
 }

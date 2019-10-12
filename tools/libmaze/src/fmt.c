@@ -39,27 +39,70 @@ LM_Grid* fmt_gen(LM_Maze* m, int scale)
     {
         for (j = 0; j < m->dimension.x; ++j)
         {
-            LM_Point cp = {j, i};
-            LM_Cell* c = maze_get(m, cp.x, cp.y);
-            LM_Point gp = remap(g, cp);
-            //printf("(%d,%d) -> 0\n", gp.x, gp.y);
-            g->cells[toindex(gp, g->dimension)] = 0;
+            LM_Point current_pt = {j, i};
+            LM_Cell* cell = maze_get(m, current_pt.x, current_pt.y);
+            LM_Point grid_pt = remap(g, current_pt);
+            g->cells[toindex(grid_pt, g->dimension)] = 0;
 
             uint8_t w[4];
-            w[0] = c->e;
-            w[1] = c->n;
-            w[2] = c->w;
-            w[3] = c->s;
+            w[0] = cell->e;
+            w[1] = cell->n;
+            w[2] = cell->w;
+            w[3] = cell->s;
 
             for (k = 0; k < 4; ++k)
             {
-                LM_Point o = pattern[k];
-                LM_Point ogp = {gp.x + o.x, gp.y + o.y};
-                uint8_t* uch = &g->cells[toindex(ogp, g->dimension)];
-                *uch = w[k];
-                //printf("(%d,%d) -> %d\n", ogp.x, ogp.y, w[k]);
+                LM_Point orig = pattern[k];
+                LM_Point orig_grid_pt = {grid_pt.x + orig.x, grid_pt.y + orig.y};
+                uint8_t* value = &g->cells[toindex(orig_grid_pt, g->dimension)];
+                *value = w[k];
             }
-            //printf("\n");
+        }
+    }
+
+    // fill in the rooms
+    if (m->rooms != NULL)
+    {
+        for (i = 0; i < m->num_rooms; ++i) // TODO: fix bounds
+        {
+            LM_Rect* room = &m->rooms[i];
+            for (j = 0; j < room->h; ++j)
+            {
+                for (k = 0; k < room->w; ++k)
+                {
+                    LM_Point pt = { room->x + k, room->y + j };
+                    LM_Point grid_pt = remap(g, pt);
+                    g->cells[toindex(grid_pt, g->dimension)] = 0;
+
+                    LM_Point grid_pt_s = grid_pt;
+                    grid_pt_s.y += 1;
+                    LM_Point grid_pt_w = grid_pt;
+                    grid_pt_w.x += 1;
+                    LM_Point diag = grid_pt;
+                    diag.x += 1;
+                    diag.y += 1;
+
+                    uint8_t* south = &g->cells[toindex(grid_pt_s, g->dimension)];
+                    uint8_t* west = &g->cells[toindex(grid_pt_w, g->dimension)];
+                    uint8_t* southwest = &g->cells[toindex(diag, g->dimension)];
+                    
+                    int south_ok = j < room->h - 1;
+                    int west_ok = k < room->w - 1;
+                    
+                    if (south_ok)
+                    {
+                        *south = 0;
+                    }
+                    if (west_ok)
+                    {
+                        *west = 0;
+                    }
+                    if (south_ok && west_ok)
+                    {
+                        *southwest = 0;
+                    }
+                }
+            }
         }
     }
 
@@ -68,6 +111,11 @@ LM_Grid* fmt_gen(LM_Maze* m, int scale)
     if (g->scale > 1)
     {
         uint8_t* scaled_cells = (uint8_t*)malloc(g->dimension.x * g->scale * g->dimension.y * g->scale * sizeof(uint8_t));
+        if (scaled_cells == NULL)
+        {
+            return NULL;
+        }
+
         LM_Point scaled_dimension = {g->dimension.x * g->scale, g->dimension.y * g->scale};
         int l;
 
@@ -101,6 +149,10 @@ LM_Grid* fmt_gen(LM_Maze* m, int scale)
 int fmt_mod(LM_Grid* g, int scale)
 {
     uint8_t* modified = (uint8_t*)malloc(g->dimension.x * scale * g->dimension.y * scale * sizeof(uint8_t));
+    if (modified == NULL)
+    {
+        return 1;
+    }
 
     LM_Point sd = {g->dimension.x * scale, g->dimension.y * scale};
 
@@ -174,6 +226,10 @@ int fmt_space(LM_Grid* g, int spacing)
 
     LM_Point newd = {g->dimension.x * spacing, g->dimension.y * spacing};
     uint8_t* modified = (uint8_t*)malloc(newd.x * newd.y * sizeof(uint8_t));
+    if (modified == NULL)
+    {
+        return 1;
+    }
     memset(modified, 2, newd.x * newd.y * sizeof(uint8_t));
 
     int i;

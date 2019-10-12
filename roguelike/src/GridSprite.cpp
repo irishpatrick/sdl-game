@@ -13,8 +13,8 @@ GridSprite::GridSprite() :
     x_dir(0),
     y_dir(0),
     speed(1.5f),
-    moving(0)
-
+    moving(0),
+    obeyWalls(true)
 {
 
 }
@@ -50,6 +50,12 @@ bool GridSprite::canMove()
     return !moving;
 }
 
+bool GridSprite::canMove(int tx, int ty)
+{
+    Grid* g = (Grid*)sparent;
+    return !moving && (!obeyWalls || g->checkMove(tx, ty));
+}
+
 void GridSprite::left()
 {
     if (!strafing)
@@ -57,9 +63,9 @@ void GridSprite::left()
         dir.x = -1;
         dir.y = 0;
     }
-    if (!canMove()) return;
-    Grid* g = (Grid*)sparent;
-    if (!g->checkMove(targx - 1, targy)) return;
+    if (!canMove(targx - 1, targy)) return;
+    //Grid* g = (Grid*)sparent;
+    //if (obeyWalls && !g->checkMove(targx - 1, targy)) return;
     targx = gridx - 1;
     xvel = -speed;
 }
@@ -73,7 +79,7 @@ void GridSprite::right()
     }
     if (!canMove()) return;
     Grid* g = (Grid*)sparent;
-    if (!g->checkMove(targx + 1, targy)) return;
+    if (obeyWalls && !g->checkMove(targx + 1, targy)) return;
     targx = gridx + 1;
     xvel = speed;
 }
@@ -87,7 +93,7 @@ void GridSprite::up()
     }
     if (!canMove()) return;
     Grid* g = (Grid*)sparent;
-    if (!g->checkMove(targx, targy - 1)) return;
+    if (obeyWalls && !g->checkMove(targx, targy - 1)) return;
     targy = gridy - 1;
     yvel = -speed;
 }
@@ -101,7 +107,7 @@ void GridSprite::down()
     }
     if (!canMove()) return;
     Grid* g = (Grid*)sparent;
-    if (!g->checkMove(targx, targy + 1)) return;
+    if (obeyWalls && !g->checkMove(targx, targy + 1)) return;
     targy = gridy + 1;
     yvel = speed;
 }
@@ -173,4 +179,14 @@ void GridSprite::setSolid(bool val)
 bool GridSprite::isSolid()
 {
     return solid;
+}
+
+void GridSprite::setObeyWalls(bool val)
+{
+    obeyWalls = val;
+}
+
+bool GridSprite::obeysWalls()
+{
+    return obeyWalls;
 }

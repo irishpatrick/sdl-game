@@ -36,7 +36,7 @@ void Maze::generate(int mw, int mh)
 
     lm_maze = maze_generate_with_rooms(mw, mh);
     
-    lm_grid = maze_format(lm_maze, 1);
+    lm_grid = maze_format(lm_maze, 4);
 
     w = lm_grid->dimension.x;
     h = lm_grid->dimension.y;

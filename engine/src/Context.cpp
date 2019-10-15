@@ -93,7 +93,8 @@ namespace engine
 		if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) < 0)
 		{
 			std::cout << "SDL_Init error: " << SDL_GetError() << std::endl;
-			return -1;
+            exit(1);
+            //return -1;
 		}
 
         std::cout << "init img\n";

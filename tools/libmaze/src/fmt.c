@@ -23,11 +23,20 @@ LM_Grid* fmt_gen(LM_Maze* m, int scale)
     // allocate
     
     LM_Grid* g = (LM_Grid*)malloc(sizeof(LM_Grid));
+    if (g == NULL)
+    {
+        return NULL;
+    }
     g->scale = (uint8_t)scale;
     g->dimension.x = 1 + (m->dimension.x * 2);
     g->dimension.y = 1 + (m->dimension.y * 2);
     int cells_size = g->dimension.x * g->dimension.y;
     g->cells = (uint8_t*)malloc(cells_size * sizeof(uint8_t));
+    if (g->cells == NULL)
+    {
+        free(g);
+        return NULL;
+    }
     memset(g->cells, 1, cells_size);
 
     // generate unscaled grid
@@ -61,6 +70,7 @@ LM_Grid* fmt_gen(LM_Maze* m, int scale)
     }
 
     // fill in the rooms
+
     if (m->rooms != NULL)
     {
         for (i = 0; i < m->num_rooms; ++i) // TODO: fix bounds
@@ -71,6 +81,20 @@ LM_Grid* fmt_gen(LM_Maze* m, int scale)
                 for (k = 0; k < room->w; ++k)
                 {
                     LM_Point pt = { room->x + k, room->y + j };
+
+                    int perimeter = (
+                        (pt.x == room->x)               * 1     +
+                        (pt.x == room->x + room->w - 1) * 10    +
+                        (pt.y == room->y)               * 100   + 
+                        (pt.y == room->y + room->h - 1) * 1000
+                    );
+                    //printf("PERIMETER: %.4d\n", perimeter);
+
+                    if (perimeter > 0)
+                    {
+
+                    }
+
                     LM_Point grid_pt = remap(g, pt);
                     g->cells[toindex(grid_pt, g->dimension)] = 0;
 

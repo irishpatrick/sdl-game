@@ -14,7 +14,16 @@
 #include <SDL_image.h>
 #include <nlohmann/json.hpp>
 #include "BoundingBox.hpp"
+
+#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+
+#ifdef _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
 #include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
+#else
+#include <filesystem>
+namespace fs = std::experimental::filesystem;
+#endif
 
 namespace engine {
 

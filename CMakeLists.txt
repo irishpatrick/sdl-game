@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 
+project(sdl-game)
+
 if (MSVC)
 
 if (_DEBUG)
@@ -23,6 +25,11 @@ find_package(nlohmann_json CONFIG REQUIRED)
 find_path(CAIRO_INCLUDE_DIR NAMES cairo.h PATH_SUFFIXES cairo)
 find_path(PANGO_INCLUDE_DIR NAMES pango.h PATH_SUFFIXES pango)
 
+find_library(BCRYPT NAMES bcrypt)
+find_library(GOBJECT NAMES gobject-2.0)
+find_library(PANGOCAIRO NAMES pangocairo-1.0)
+find_library(PANGO NAMES pango-1.0)
+
 set(INCL
     3rdparty
 	${CAIRO_INCLUDE_DIR}
@@ -38,10 +45,10 @@ set(LIBS
 	unofficial::cairo::cairo-gobject
 	nlohmann_json
 	nlohmann_json::nlohmann_json
-	bcrypt
-    gobject-2.0
-    pangocairo-1.0
-    pango-1.0
+    ${BCRYPT}
+    ${GOBJECT}
+    ${PANGOCAIRO}
+    ${PANGO}
 )
 
 elseif (UNIX)

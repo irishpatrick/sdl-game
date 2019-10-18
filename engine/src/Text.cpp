@@ -1,8 +1,11 @@
 #include "Text.hpp"
 #include <sstream>
 #include <cmath>
-#include <pango/pango.h>
-#include <pango/pangocairo.h>
+//#include <pango/pango.h>
+//#include <pango/pangocairo.h>
+
+#include <pango.h>
+#include <pangocairo.h>
 
 namespace engine
 {

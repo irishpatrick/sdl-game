@@ -6,9 +6,16 @@
 #include <vector>
 #include <SDL.h>
 #include <SDL_image.h>
-#include <experimental/filesystem>
 
+#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+
+#ifdef _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+#include <experimental/filesystem>
 namespace fs = std::experimental::filesystem;
+#else
+#include <filesystem>
+namespace fs = std::experimental::filesystem;
+#endif
 
 namespace engine
 {

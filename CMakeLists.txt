@@ -29,6 +29,7 @@ find_library(BCRYPT NAMES bcrypt)
 find_library(GOBJECT NAMES gobject-2.0)
 find_library(PANGOCAIRO NAMES pangocairo-1.0)
 find_library(PANGO NAMES pango-1.0)
+find_library(LUA NAMES lua)
 
 set(INCL
     3rdparty
@@ -49,6 +50,7 @@ set(LIBS
     ${GOBJECT}
     ${PANGOCAIRO}
     ${PANGO}
+    ${LUA}
 )
 
 elseif (UNIX)

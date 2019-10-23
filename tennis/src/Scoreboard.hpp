@@ -16,8 +16,8 @@ public:
     void draw(Context&);
 
 private:
-    KeyFrameSprite l0;
-    KeyFrameSprite l1;
-    KeyFrameSprite r0;
-    KeyFrameSprite r1;
+    Sprite l0;
+    Sprite l1;
+    Sprite r0;
+    Sprite r1;
 };

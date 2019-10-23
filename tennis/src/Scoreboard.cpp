@@ -8,10 +8,10 @@ Scoreboard::~Scoreboard()
 
 void Scoreboard::init(Context& ctx)
 {
-    l0.init(ctx, "assets/numbers.json");
-    l1.init(ctx, "assets/numbers.json");
-    r0.init(ctx, "assets/numbers.json");
-    r1.init(ctx, "assets/numbers.json");
+    l0.loadAnimation("assets/numbers.json");
+    l1.loadAnimation("assets/numbers.json");
+    r0.loadAnimation("assets/numbers.json");
+    r1.loadAnimation("assets/numbers.json");
 
     l0.x = -64;
     l1.x = -128;
@@ -24,10 +24,10 @@ void Scoreboard::init(Context& ctx)
     addChild(&r0);
     addChild(&r1);
 
-    l0.setCurrentFrame(1);
-    l1.setCurrentFrame(1);
-    r0.setCurrentFrame(1);
-    r1.setCurrentFrame(1);
+    //l0.setCurrentFrame(1);
+    //l1.setCurrentFrame(1);
+    //r0.setCurrentFrame(1);
+    //r1.setCurrentFrame(1);
 
 
     x = ctx.getWidth() / 2;
@@ -44,5 +44,5 @@ void Scoreboard::update()
 
 void Scoreboard::draw(Context& ctx)
 {
-    drawChildren(ctx, 0.0f, Point(x, y));
+    //drawChildren(ctx, 0.0f, Point(x, y));
 }

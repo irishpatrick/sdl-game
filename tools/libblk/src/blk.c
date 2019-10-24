@@ -18,7 +18,12 @@ BLK* blk_new(int w, int h)
     out->entries = 0;
     memset(out->table, 0, 255 * 255 * sizeof(char));
     out->grid = (uint8_t*)malloc(w * h * sizeof(uint8_t));
-    return 0;
+    if (out->grid == NULL)
+    {
+        free(out);
+        return NULL;
+    }
+    return out;
 }
 
 BLK* blk_open(const char* fn)
@@ -81,7 +86,7 @@ int blk_save(BLK* b, const char* fn)
         return 1;
     }
 
-    const char* magic = "BLK";
+    const char magic[4] = "BLK";
     fwrite(magic, sizeof(char), 3, fp);
 
     int dimension[2];
@@ -89,14 +94,14 @@ int blk_save(BLK* b, const char* fn)
     dimension[1] = b->dimension.y;
     fwrite(dimension, sizeof(int), 2, fp);
 
-    fwrite(b->grid, sizeof(uint8_t), dimension[0] * dimension[1], fp);
-
-    fwrite(b->entries, sizeof(int), 1, fp);
+    fwrite(&b->entries, sizeof(int), 1, fp);
     int i;
     for (i = 0; i < b->entries; i++)
     {
         fwrite(b->table[i], sizeof(char), strlen(b->table[i]), fp);
     }
+
+    fwrite(b->grid, sizeof(uint8_t), dimension[0] * dimension[1], fp);
 
     fclose(fp);
     return 0;
@@ -104,16 +109,14 @@ int blk_save(BLK* b, const char* fn)
 
 int blk_free(BLK* b)
 {
-    if (b->grid == NULL)
+    if (b->grid != NULL)
     {
-        return 1;
+        free(b->grid);
     }
-    free(b->grid);
-    if (b == NULL)
+    if (b != NULL)
     {
-        return 1;
+        free(b);
     }
-    free(b);
 
     return 0;
 }

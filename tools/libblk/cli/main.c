@@ -64,7 +64,7 @@ int main(int argc, char** argv)
     char buffer[256];
     memset(buffer, 0, sizeof(buffer));
 
-    BLK* map;
+    BLK* map = NULL;
 
     while (!quit)
     {
@@ -76,24 +76,69 @@ int main(int argc, char** argv)
 
         if (startswith(buffer, "new"))
         {
+            int w = 0;
+            int h = 0;
             char word[20];
+            getword(word, buffer, 1, sizeof(word));
+            w = atoi(word);
+            getword(word, buffer, 1, sizeof(word));
+            h = atoi(word);
+
+            if (w <= 0 || h <= 0)
+            {
+                printf("bad args\n");
+                continue;
+            }
+
+            map = blk_new(w, h);
         }
 
         else if (startswith(buffer, "open"))
         {
-
+            char word[20];
+            getword(word, buffer, 1, sizeof(word));
+            map = blk_open(word);
         }
         else if (startswith(buffer, "save"))
         {
-            
+            if (map == NULL)
+            {
+                continue;
+            }
+            char word[20];
+            getword(word, buffer, 1, sizeof(word));
+            blk_save(map, word);
         }
         else if (startswith(buffer, "export"))
         {
-            
+            char word[20];
+            getword(word, buffer, 1, sizeof(word));
+            blk_save(map, word);
+        }
+        else if (startswith(buffer, "summary"))
+        {
+            if (map == NULL)
+            {
+                printf("nothing in memory\n");
+                continue;
+            }
+            printf("w: %d, h: %d, entries: %d\n", map->dimension.x, map->dimension.y, map->entries);
         }
         else if (startswith(buffer, "reset"))
         {
-            
+            if (map != NULL)
+            {
+                int err = blk_free(map);
+                map = NULL;
+                if (err)
+                {
+                    printf("deallocate error\n");
+                }
+            }
+            else
+            {
+                printf("map has not been allocated\n");
+            }
         }
         else if (startswith(buffer, "exit"))
         {
@@ -103,7 +148,11 @@ int main(int argc, char** argv)
         {
             printf("unknown command\n");
         }
+    }
 
+    if (map != NULL)
+    {
+        blk_free(map);
     }
 
     return 0;

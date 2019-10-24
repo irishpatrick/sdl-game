@@ -15,7 +15,8 @@ extern "C" {
     typedef struct _BLK
     {
         Point dimension;
-        char** table;
+        int entries;
+        char table[255][255];
         uint8_t* grid;
     } BLK;
 

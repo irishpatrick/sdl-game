@@ -81,7 +81,7 @@ int main(int argc, char** argv)
             char word[20];
             getword(word, buffer, 1, sizeof(word));
             w = atoi(word);
-            getword(word, buffer, 1, sizeof(word));
+            getword(word, buffer, 2, sizeof(word));
             h = atoi(word);
 
             if (w <= 0 || h <= 0)
@@ -123,6 +123,22 @@ int main(int argc, char** argv)
                 continue;
             }
             printf("w: %d, h: %d, entries: %d\n", map->dimension.x, map->dimension.y, map->entries);
+        }
+        else if (startswith(buffer, "entry"))
+        {
+            int val = -1;
+            char word[20];
+            char word2[20];
+            getword(word, buffer, 1, sizeof(word));
+            getword(word2, buffer, 2, sizeof(word2));
+            val = atoi(word2);
+            if (val < 0 || strlen(word) < 1)
+            {
+                printf("bad args\n");
+                continue;
+            }
+
+            blk_add_entry(map, word, (unsigned char)val);
         }
         else if (startswith(buffer, "reset"))
         {

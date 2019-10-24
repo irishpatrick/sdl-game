@@ -22,6 +22,7 @@ extern "C" {
 
     BLK* blk_new(int, int);
     BLK* blk_open(const char*);
+    int blk_add_entry(BLK*, const char*, uint8_t);
     int blk_save(BLK*, const char*);
     int blk_free(BLK*);
     

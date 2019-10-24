@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdint.h>
+#include <math.h>
 #include "util.h"
 
 BLK* blk_new(int w, int h)
@@ -23,7 +24,16 @@ BLK* blk_new(int w, int h)
         free(out);
         return NULL;
     }
+    memset(out->grid, 0, w * h * sizeof(char));
     return out;
+}
+
+int blk_add_entry(BLK* b, const char* tag, uint8_t value)
+{
+    b->entries += 1;
+    int len = (int)fmin(strlen(tag), 255);
+    strncpy(b->table[value], tag, len);
+    return 0;
 }
 
 BLK* blk_open(const char* fn)
@@ -67,6 +77,7 @@ BLK* blk_open(const char* fn)
         do
         {
             fread(&c, sizeof(char), 1, fp);
+            printf("%c\n", c);
             int cur_len = strlen(str);
             str[cur_len] = c;
             str[cur_len + 1] = '\0';

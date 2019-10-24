@@ -93,6 +93,7 @@ endif (MSVC)
 
 add_subdirectory(./engine)
 add_subdirectory(./tools/libmaze)
+add_subdirectory(./tools/libblk)
 add_subdirectory(./rpg)
 add_subdirectory(./platformer)
 add_subdirectory(./roguelike)

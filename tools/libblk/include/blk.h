@@ -22,7 +22,7 @@ extern "C" {
     BLK* blk_new(int, int);
     BLK* blk_open(const char*);
     int blk_save(BLK*, const char*);
-    int blk_close(BLK*);
+    int blk_free(BLK*);
     
 
 #ifdef __cplusplus  

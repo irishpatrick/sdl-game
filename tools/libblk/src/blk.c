@@ -36,6 +36,32 @@ int blk_add_entry(BLK* b, const char* tag, uint8_t value)
     return 0;
 }
 
+const char* blk_get_entry(BLK* b, uint8_t index)
+{
+    return b->table[index];
+}
+
+uint8_t blk_at(BLK* b, int x, int y)
+{
+    if (x < 0 || x > b->dimension.x || y < 0 || y > b->dimension.y)
+    {
+        return 0;
+    }
+    return b->grid[get_index(b, x, y)];
+}
+
+int blk_set(BLK* b, int x, int y, uint8_t value)
+{
+    if (b == NULL ||
+        x < 0 || x > b->dimension.x ||
+        y < 0 || y > b->dimension.y)
+    {
+        return 1;
+    }
+    b->grid[get_index(b, x, y)] = value;
+    return 0;
+}
+
 BLK* blk_open(const char* fn)
 {
     FILE* fp = fopen(fn, "rb");
@@ -77,7 +103,6 @@ BLK* blk_open(const char* fn)
         do
         {
             fread(&c, sizeof(char), 1, fp);
-            printf("%c\n", c);
             int cur_len = strlen(str);
             str[cur_len] = c;
             str[cur_len + 1] = '\0';

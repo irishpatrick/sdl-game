@@ -103,17 +103,20 @@ int main(int argc, char** argv)
         {
             if (map == NULL)
             {
+                printf("nothing in memory\n");
                 continue;
             }
             char word[20];
             getword(word, buffer, 1, sizeof(word));
             blk_save(map, word);
         }
-        else if (startswith(buffer, "export"))
+        else if (startswith(buffer, "view"))
         {
-            char word[20];
-            getword(word, buffer, 1, sizeof(word));
-            blk_save(map, word);
+            if (map == NULL)
+            {
+                printf("nothing in memory\n");
+                continue;
+            }
         }
         else if (startswith(buffer, "summary"))
         {

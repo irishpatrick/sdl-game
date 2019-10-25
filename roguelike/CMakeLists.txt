@@ -8,7 +8,7 @@ file(GLOB assets assets/*)
 link_directories(${PROJECT_NAME} PRIVATE ${LIBRARY_DIR})
 add_executable(${PROJECT_NAME} ${sources})
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${INCL} ${engine_INCLUDE_DIRS} ${maze_INCLUDE_DIRS})
+target_include_directories(${PROJECT_NAME} PRIVATE ${INCL} ${engine_INCLUDE_DIRS} ${maze_INCLUDE_DIRS} ${blk_INCLUDE_DIRS})
 target_compile_options(${PROJECT_NAME} PRIVATE ${COMPILE_OPTIONS})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${LIBS} engine maze blk)
 

@@ -36,7 +36,6 @@ int main(int argc, char** argv)
 
     // create context
     ctx.init(39 * scale, 79 * scale, "Tennis", false);
-    //ctx.init(512, 480, "Tennis", false);
     ctx.setQuitCallback(&quit_cb);
 
     // load assets

@@ -19,7 +19,7 @@ endif ()
 find_package(SDL2 CONFIG REQUIRED)
 find_package(sdl2-image CONFIG REQUIRED)
 find_package(sdl2-ttf CONFIG REQUIRED)
-find_package(unofficial-cairo CONFIG REQUIRED)
+find_package(cairo CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
 
 find_path(CAIRO_INCLUDE_DIR NAMES cairo.h PATH_SUFFIXES cairo)
@@ -42,8 +42,8 @@ set(LIBS
 	SDL2::SDL2main
 	SDL2::SDL2_image
 	SDL2::SDL2_ttf
-	unofficial::cairo::cairo
-	unofficial::cairo::cairo-gobject
+	cairo::cairo
+	cairo::cairo-gobject
 	nlohmann_json
 	nlohmann_json::nlohmann_json
     ${BCRYPT}

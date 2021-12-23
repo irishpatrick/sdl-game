@@ -13,8 +13,12 @@ public:
         dtheta(0),
         speed(7),
         height(0.0f)
-    {}
-    ~Ball() {}
+    {
+    }
+
+    ~Ball()
+    {
+    }
 
     void init(Context&);
     void bounce(BoundingBox&, Player*);

@@ -25,7 +25,7 @@ namespace engine
 
 	void State::update()
 	{
-		
+		update(0.0f);
 	}
 
 	void State::update(float delta)

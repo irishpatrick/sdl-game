@@ -17,6 +17,9 @@ namespace engine
 		CORE_API void addState(const std::string&, State*);
 		CORE_API void setCurrentState(const std::string&);
 		CORE_API State* getCurrentState();
+		
+		void update();
+		void draw(float);
 
 	private:
 		std::map<std::string, State*> states;

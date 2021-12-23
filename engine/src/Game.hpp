@@ -19,8 +19,16 @@ namespace engine
         CORE_API virtual void start();
         CORE_API static void quit();
 
+        inline Context& getContext()
+        {
+            return ctx;
+        }
 
     protected:
+        virtual void internalUpdate() {}
+        virtual void internalDraw() {}
+
+        Context ctx;
         Clock clock;
         static bool running;
     };

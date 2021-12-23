@@ -57,6 +57,9 @@ elseif (UNIX)
 
 set(COMPILE_OPTIONS -std=c++11 -g -Wall)
 
+find_path(CAIRO_INCLUDE_DIR NAMES cairo.h PATH_SUFFIXES cairo)
+find_path(PANGO_INCLUDE_DIR NAMES pango.h PATH_SUFFIXES pango HINTS /usr/include/pango-1.0)
+
 find_package(PkgConfig)
 
 pkg_check_modules(SDL2 REQUIRED sdl2)
@@ -65,7 +68,7 @@ pkg_check_modules(SDL2_TTF REQUIRED SDL2_ttf)
 pkg_check_modules(CAIRO REQUIRED cairo)
 pkg_check_modules(PANGO REQUIRED pango)
 pkg_check_modules(PANGOCAIRO REQUIRED pangocairo)
-pkg_check_modules(LUA REQUIRED lua5.2)
+pkg_check_modules(LUA REQUIRED lua)
 
 set(INCL
     ${SDL2_INCLUDE_DIRS}
@@ -75,6 +78,8 @@ set(INCL
     ${PANGO_INCLUDE_DIRS}
     ${PANGOCAIRO_INCLUDE_DIRS}
     ${LUA_INCLUDE_DIRS}
+	${CAIRO_INCLUDE_DIR}
+    ${PANGO_INCLUDE_DIR}
 )
 
 set(LIBS

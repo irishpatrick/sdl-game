@@ -33,20 +33,28 @@ namespace engine
 	void Game::loop()
 	{
 		clock.tick();
+		ctx.pollEvents();
 
 		while (clock.hasLag())
 		{
+			internalUpdate();
 			update();
 			clock.lagTick();
 		}
 
+		internalDraw();
+		
+		ctx.clear();
 		draw(clock.extrapolate());
+		ctx.render();
+
 		clock.back();
     }
 
     void Game::start()
     {
 		init();
+		clock.start();
         while (running)
 		{
 			loop();

@@ -29,5 +29,15 @@ namespace engine
 	{
 		return states.at(currentState);
 	}
+
+	void StateBasedGame::update()
+	{
+		getCurrentState()->update();
+	}
+
+	void StateBasedGame::draw(float ex)
+	{
+		getCurrentState()->render(ctx, ex);
+	}
 }
 

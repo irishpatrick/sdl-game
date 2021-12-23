@@ -16,15 +16,17 @@ void TennisGame::init()
 
     // load assets
     Assets::loadTexture(ctx, "assets/ball.png");
+    Assets::loadTexture(ctx, "assets/title.png");
     Assets::loadTexture(ctx, "assets/ball_shadow.png");
     Assets::loadTexture(ctx, "assets/cat1.png");
     Assets::loadTexture(ctx, "assets/cat2.png");
     Assets::loadTexture(ctx, "assets/numbers.png");
 
-    this->addState("title", &state_titleScreen);
     this->addState("match", &state_match);
+    this->addState("title", &state_titleScreen);
 
     state_match.init(ctx);
+    state_titleScreen.init(ctx);
 
-    this->setCurrentState("match");
+    this->setCurrentState("title");
 }
